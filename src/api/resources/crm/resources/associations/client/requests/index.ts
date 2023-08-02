@@ -1,0 +1,2 @@
+export { CustomObjectClassesCustomObjectsAssociationsListRequest } from "./CustomObjectClassesCustomObjectsAssociationsListRequest";
+export { CustomObjectClassesCustomObjectsAssociationsUpdateRequest } from "./CustomObjectClassesCustomObjectsAssociationsUpdateRequest";
