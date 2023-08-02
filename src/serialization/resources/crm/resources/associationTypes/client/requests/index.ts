@@ -1,0 +1,1 @@
+export { CrmAssociationTypeEndpointRequest } from "./CrmAssociationTypeEndpointRequest";
