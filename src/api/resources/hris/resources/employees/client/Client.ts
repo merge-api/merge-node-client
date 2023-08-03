@@ -13,7 +13,7 @@ import * as errors from "../../../../../../errors";
 export declare namespace Employees {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
-        token: core.Supplier<core.BearerToken>;
+        apiKey: core.Supplier<core.BearerToken>;
         accountToken?: core.Supplier<string | undefined>;
     }
 
@@ -194,7 +194,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.0",
+                "X-Fern-SDK-Version": "0.1.1",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -262,7 +262,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.0",
+                "X-Fern-SDK-Version": "0.1.1",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -346,7 +346,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.0",
+                "X-Fern-SDK-Version": "0.1.1",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -405,7 +405,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.0",
+                "X-Fern-SDK-Version": "0.1.1",
             },
             contentType: "application/json",
             body: await serializers.hris.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -457,7 +457,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.0",
+                "X-Fern-SDK-Version": "0.1.1",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -494,6 +494,6 @@ export class Employees {
     }
 
     protected async _getAuthorizationHeader() {
-        return `Bearer ${await core.Supplier.get(this._options.token)}`;
+        return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }
