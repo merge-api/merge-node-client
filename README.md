@@ -1,6 +1,6 @@
 # Merge Node Library
 
-[![npm shield](https://img.shields.io/npm/v/@merge-api/merge-node-client)](https://www.npmjs.com/package/@merge-api/merge-node-client)
+[![npm shield](https://img.shields.io/npm/v/@mergeapi/merge-node-client)](https://www.npmjs.com/package/@mergeapi/merge-node-client)
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
 
 The Merge Node.js library provides access to the Merge API from JavaScript/TypeScript.
@@ -12,15 +12,15 @@ API reference documentation is available [here](https://docs.merge.dev/).
 ## Installation
 
 ```
-npm install --save @merge-api/merge-node-client
+npm install --save @mergeapi/merge-node-client
 # or
-yarn add @fern-api/merge-node-client
+yarn add @mergeapi/merge-node-client
 ```
 
 ## Instantiation
 
 ```typescript
-import { MergeClient } from '@merge-api/merge-node-client';
+import { MergeClient } from '@mergeapi/merge-node-client';
 
 const merge = new MergeClient({
   apiKey: 'YOUR_API_KEY',
@@ -53,7 +53,7 @@ Below are code snippets of how you can use the Node SDK.
 ### Create Link Token
 
 ```typescript
-import { MergeClient, Merge } from '@merge-api/merge-node-client';
+import { MergeClient, Merge } from '@mergeapi/merge-node-client';
 
 const merge = new MergeClient({
   apiKey: 'YOUR_API_KEY',
@@ -74,7 +74,7 @@ console.log("Created link token", linkTokenResponse.linkToken)
 ### Get Employee
 
 ```typescript
-import { MergeClient, Merge } from '@merge-api/merge-node-client';
+import { MergeClient, Merge } from '@mergeapi/merge-node-client';
 
 const merge = new MergeClient({
   apiKey: 'YOUR_API_KEY',
@@ -88,7 +88,7 @@ employee = await merge.hris.employees.retrieve("0958cbc6-6040-430a-848e-aafacbad
 ### Get Candidate
 
 ```typescript
-import { MergeClient, Merge } from '@merge-api/merge-node-client';
+import { MergeClient, Merge } from '@mergeapi/merge-node-client';
 
 const merge = new MergeClient({
   apiKey: 'YOUR_API_KEY',
@@ -103,7 +103,7 @@ candidate = await merge.ats.candidates.retrieve(
 ### Filter Candidate
 
 ```typescript
-import { MergeClient, Merge } from '@merge-api/merge-node-client';
+import { MergeClient, Merge } from '@mergeapi/merge-node-client';
 
 const merge = new MergeClient({
   apiKey: 'YOUR_API_KEY',
@@ -120,7 +120,7 @@ console.log(candidatesResponse.results)
 ### Get Contact
 
 ```typescript
-import { MergeClient, Merge } from '@merge-api/merge-node-client';
+import { MergeClient, Merge } from '@mergeapi/merge-node-client';
 
 const merge = new MergeClient({
   apiKey: 'YOUR_API_KEY',
@@ -134,7 +134,7 @@ contact = await merge.accounting.contacts.retrieve(
 ### Create Ticket
 
 ```typescript
-import { MergeClient, Merge } from '@merge-api/merge-node-client';
+import { MergeClient, Merge } from '@mergeapi/merge-node-client';
 
 const merge = new MergeClient({
   apiKey: 'YOUR_API_KEY',
@@ -155,7 +155,7 @@ await merge.ticketing.tickets.create({
 ### File Download
 
 ```typescript
-import { MergeClient, Merge } from '@merge-api/merge-node-client';
+import { MergeClient, Merge } from '@mergeapi/merge-node-client';
 import * as fs from 'fs/promises';
 
 const merge = new MergeClient({
