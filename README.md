@@ -168,12 +168,9 @@ const listResponse = await merge.filestorage.files.list({
 })
 
 const file = response.results[0]
+const localFilepath = `<LOCAL_FILE_PATH>/${file.name}`
 
-id = file.id
-name = file.name
-localFilepath = `<LOCAL_FILE_PATH>/${name}`
-
-const response = await merge.filestorage.files.downloadRetrieve(id)
+const response = await merge.filestorage.files.downloadRetrieve(file.id)
 const fileStream = fs.createWriteStream(localFilepath);
 await stream.pipeline(response, fileStream);
 ```
@@ -189,12 +186,12 @@ the request.
 Below is an example of iterating over all pages:
 ```typescript
 
-# response contains the first page
+// response contains the first page
 let response = merge.hris.employees.list({
   createdAfter: "2030-01-01",
 })
 
-# if there is a next page, load it by passing `next` to the cursor argument
+// if there is a next page, load it by passing `next` to the cursor argument
 while (response.next != null) {
     response = merge.hris.employees.list({
         cursor: response.next, 
