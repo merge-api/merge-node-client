@@ -1,0 +1,16 @@
+_Last updated: August 2, 2023_
+
+**Merge SDK &amp; Code Snippets License**
+
+Merge makes available to Customers various software development kits (&quot;**SDKs**&quot;) and code snippets (&quot;**Snippets**&quot;) (together, the &quot;**Merge Assets**&quot;) to assist with Merge Integrations and making connections to their Customer Application. Merge Assets are deemed Software under the MSA (defined below). All terms applicable to Software under the MSA apply with equal force and effect to the Merge Assets under this Merge SDK and Code Snippets License (&quot;**License**&quot;).
+
+&quot;**Customer**&quot; means a person or entity that uses any of the Merge Assets. By using any Merge Asset, Customer agrees to the terms of this License.
+
+&quot;**MSA**&quot; for the purpose of this License means: (a) for Merge &quot;Launch&quot; Customers, the Subscriber Agreement (available at: [https://merge.dev/subscriber-agreement](https://merge.dev/subscriber-agreement)); and (b) for Merge &quot;Growth&quot; and/or &quot;Expand&quot; Customers, Merge&#39;s Master Services Agreement (available at [https://merge.dev/msa](https://merge.dev/msa)), unless Merge and Customer have entered into a separate written agreement governing the Customer&#39;s use of the Service. Customer&#39;s use of any Merge Asset will be governed by the applicable MSA as well as the additional terms of this License. Capitalized terms used but not defined herein shall have the meaning as set forth in the MSA. In the event of any inconsistency between the terms of the MSA and this License, the terms of the MSA will prevail.
+
+Merge reserves the right to modify or update this License in its sole discretion, the effective date of such updates and/or modifications will be the earlier of: (i) 30 days from the date of such update or modification; or (ii) Customer&#39;s continued use of any Merge Asset.
+
+1. **SDK and Snippets License**. Customer&#39;s right to access and use the Service under Section 1 of the MSA is extended to include use of the Merge Assets but solely during the Term and subject to the terms of the MSA.
+2. **Use with the Service Only**. Customer may use the Merge Assets but only in connections with the Service and Merge Integrations. Any other use of the Merge Assets requires Merge&#39;s prior written consent.
+3. **Limitations**. Customer&#39;s use of the Merge Assets may be subject to bandwidth limitations that Merge may impose from time to time during the Subscription. Merge will make commercially reasonable efforts to notify Customer of such limitations in advance via the location where Customer gained access to the applicable Merge Asset(s).
+4. **Merge Assets &amp; Intellectual Property Rights**. Any modifications or derivatives (together, &quot;**Asset Derivatives**&quot;) made by Customer to the Merge Assets are deemed &quot;works made for hire&quot; as that term is defined in the United States Copyright Act and are the sole property of Merge. To the extent that ownership of any Asset Derivative does not by operation of law vest in Merge, Customer hereby assigns to Merge all right, title and interest in and to the Asset Derivative, including all related intellectual property rights. Asset Derivatives will be governed by the terms of this License.
