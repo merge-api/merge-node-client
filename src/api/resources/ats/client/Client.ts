@@ -37,7 +37,7 @@ import { WebhookReceivers } from "../resources/webhookReceivers/client/Client";
 export declare namespace Ats {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
-        token: core.Supplier<core.BearerToken>;
+        apiKey: core.Supplier<core.BearerToken>;
         accountToken?: core.Supplier<string | undefined>;
     }
 

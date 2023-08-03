@@ -1,6 +1,6 @@
 {
     "name": "@mergeapi/merge-node-client",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "private": false,
     "repository": "https://github.com/merge-api/merge-node-client",
     "main": "./index.js",
