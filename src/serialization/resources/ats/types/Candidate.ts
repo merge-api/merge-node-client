@@ -14,9 +14,9 @@ export const Candidate: core.serialization.ObjectSchema<serializers.ats.Candidat
         lastName: core.serialization.property("last_name", core.serialization.string().optional()),
         company: core.serialization.string().optional(),
         title: core.serialization.string().optional(),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
-        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
-        lastInteractionAt: core.serialization.property("last_interaction_at", core.serialization.string().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
+        lastInteractionAt: core.serialization.property("last_interaction_at", core.serialization.date().optional()),
         isPrivate: core.serialization.property("is_private", core.serialization.boolean().optional()),
         canEmail: core.serialization.property("can_email", core.serialization.boolean().optional()),
         locations: core.serialization.list(core.serialization.string().optional()).optional(),
@@ -36,10 +36,18 @@ export const Candidate: core.serialization.ObjectSchema<serializers.ats.Candidat
             .list(core.serialization.lazyObject(async () => (await import("../../..")).ats.Url))
             .optional(),
         tags: core.serialization.list(core.serialization.string().optional()).optional(),
-        applications: core.serialization.list(core.serialization.string().optional()).optional(),
-        attachments: core.serialization.list(core.serialization.string().optional()).optional(),
+        applications: core.serialization
+            .list(
+                core.serialization.lazy(async () => (await import("../../..")).ats.CandidateApplicationsItem).optional()
+            )
+            .optional(),
+        attachments: core.serialization
+            .list(
+                core.serialization.lazy(async () => (await import("../../..")).ats.CandidateAttachmentsItem).optional()
+            )
+            .optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -70,8 +78,8 @@ export declare namespace Candidate {
         email_addresses?: serializers.ats.EmailAddress.Raw[] | null;
         urls?: serializers.ats.Url.Raw[] | null;
         tags?: (string | null | undefined)[] | null;
-        applications?: (string | null | undefined)[] | null;
-        attachments?: (string | null | undefined)[] | null;
+        applications?: (serializers.ats.CandidateApplicationsItem.Raw | null | undefined)[] | null;
+        attachments?: (serializers.ats.CandidateAttachmentsItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;

@@ -21,7 +21,7 @@ export interface PurchaseOrderLineItemRequest {
     unitPrice?: number;
     /** The line item's quantity. */
     quantity?: number;
-    item?: string;
+    item?: Merge.accounting.PurchaseOrderLineItemRequestItem;
     /** The purchase order line item's account. */
     account?: string;
     /** The purchase order line item's associated tracking category. */

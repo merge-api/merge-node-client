@@ -338,7 +338,7 @@ export interface CompanyInfo {
      */
     currency?: Merge.accounting.CompanyInfoCurrency;
     /** When the third party's company was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** The company's urls. */
     urls?: (string | undefined)[];
     addresses?: Merge.accounting.Address[];
@@ -346,7 +346,7 @@ export interface CompanyInfo {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

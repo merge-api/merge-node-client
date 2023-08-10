@@ -11,12 +11,25 @@ export const JournalLineRequest: core.serialization.ObjectSchema<
     Merge.accounting.JournalLineRequest
 > = core.serialization.object({
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    account: core.serialization.string().optional(),
+    account: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.JournalLineRequestAccount)
+        .optional(),
     netAmount: core.serialization.property("net_amount", core.serialization.number().optional()),
-    trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
+    trackingCategory: core.serialization.property(
+        "tracking_category",
+        core.serialization
+            .lazy(async () => (await import("../../..")).accounting.JournalLineRequestTrackingCategory)
+            .optional()
+    ),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.JournalLineRequestTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
     ),
     contact: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
@@ -34,10 +47,12 @@ export const JournalLineRequest: core.serialization.ObjectSchema<
 export declare namespace JournalLineRequest {
     interface Raw {
         remote_id?: string | null;
-        account?: string | null;
+        account?: serializers.accounting.JournalLineRequestAccount.Raw | null;
         net_amount?: number | null;
-        tracking_category?: string | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        tracking_category?: serializers.accounting.JournalLineRequestTrackingCategory.Raw | null;
+        tracking_categories?:
+            | (serializers.accounting.JournalLineRequestTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         contact?: string | null;
         description?: string | null;
         exchange_rate?: string | null;

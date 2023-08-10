@@ -21,8 +21,6 @@ export * as notes from "./notes";
 export * from "./notes/client/requests";
 export * as opportunities from "./opportunities";
 export * from "./opportunities/client/requests";
-export * as passthrough from "./passthrough";
-export * from "./passthrough/client/requests";
 export * as regenerateKey from "./regenerateKey";
 export * from "./regenerateKey/client/requests";
 export * from "./selectiveSync/client/requests";

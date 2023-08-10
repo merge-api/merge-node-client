@@ -24,19 +24,19 @@ export interface PurchaseOrder {
      */
     status?: Merge.accounting.PurchaseOrderStatus;
     /** The purchase order's issue date. */
-    issueDate?: string;
+    issueDate?: Date;
     /** The purchase order's delivery date. */
-    deliveryDate?: string;
+    deliveryDate?: Date;
     /** The purchase order's delivery address. */
-    deliveryAddress?: string;
+    deliveryAddress?: Merge.accounting.PurchaseOrderDeliveryAddress;
     /** The contact making the purchase order. */
     customer?: string;
     /** The party fulfilling the purchase order. */
-    vendor?: string;
+    vendor?: Merge.accounting.PurchaseOrderVendor;
     /** A memo attached to the purchase order. */
     memo?: string;
     /** The company the purchase order belongs to. */
-    company?: string;
+    company?: Merge.accounting.PurchaseOrderCompany;
     /** The purchase order's total amount. */
     totalAmount?: number;
     /**
@@ -353,18 +353,18 @@ export interface PurchaseOrder {
     /** The purchase order's exchange rate. */
     exchangeRate?: string;
     lineItems?: Merge.accounting.PurchaseOrderLineItem[];
-    trackingCategories?: (string | undefined)[];
+    trackingCategories?: (Merge.accounting.PurchaseOrderTrackingCategoriesItem | undefined)[];
     /** When the third party's purchase order note was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the third party's purchase order note was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

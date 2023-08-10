@@ -17,15 +17,15 @@ export interface Task {
     /** The task's content. */
     content?: string;
     /** The task's owner. */
-    owner?: string;
+    owner?: Merge.crm.TaskOwner;
     /** The task's account. */
-    account?: string;
+    account?: Merge.crm.TaskAccount;
     /** The task's opportunity. */
-    opportunity?: string;
+    opportunity?: Merge.crm.TaskOpportunity;
     /** When the task is completed. */
-    completedDate?: string;
+    completedDate?: Date;
     /** When the task is due. */
-    dueDate?: string;
+    dueDate?: Date;
     /**
      * The task's status.
      *
@@ -39,7 +39,7 @@ export interface Task {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

@@ -22,13 +22,13 @@ export interface User {
     emailAddress?: string;
     /** Whether or not the user is active. */
     isActive?: boolean;
-    teams?: (string | undefined)[];
+    teams?: (Merge.ticketing.UserTeamsItem | undefined)[];
     /** The user's avatar picture. */
     avatar?: string;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
 }

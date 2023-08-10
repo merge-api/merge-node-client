@@ -14,7 +14,7 @@ export const User: core.serialization.ObjectSchema<serializers.crm.User.Raw, Mer
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()

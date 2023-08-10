@@ -18,7 +18,7 @@ export const Address: core.serialization.ObjectSchema<serializers.crm.Address.Ra
             "address_type",
             core.serialization.lazy(async () => (await import("../../..")).crm.AddressAddressType).optional()
         ),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
 export declare namespace Address {

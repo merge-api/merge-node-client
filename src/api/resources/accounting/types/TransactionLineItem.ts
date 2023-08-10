@@ -21,7 +21,7 @@ export interface TransactionLineItem {
     unitPrice?: string;
     /** The line item's quantity. */
     quantity?: string;
-    item?: string;
+    item?: Merge.accounting.TransactionLineItemItem;
     /** The line item's account. */
     account?: string;
     /** The line's associated tracking category. */
@@ -348,5 +348,5 @@ export interface TransactionLineItem {
     /** The company the line belongs to. */
     company?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
 }

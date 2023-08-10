@@ -12,7 +12,7 @@ export const TimeOffBalance: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    employee: core.serialization.string().optional(),
+    employee: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffBalanceEmployee).optional(),
     balance: core.serialization.number().optional(),
     used: core.serialization.number().optional(),
     policyType: core.serialization.property(
@@ -20,7 +20,7 @@ export const TimeOffBalance: core.serialization.ObjectSchema<
         core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffBalancePolicyType).optional()
     ),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -37,7 +37,7 @@ export declare namespace TimeOffBalance {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        employee?: string | null;
+        employee?: serializers.hris.TimeOffBalanceEmployee.Raw | null;
         balance?: number | null;
         used?: number | null;
         policy_type?: serializers.hris.TimeOffBalancePolicyType.Raw | null;

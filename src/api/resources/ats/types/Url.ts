@@ -27,5 +27,5 @@ export interface Url {
      */
     urlType?: Merge.ats.UrlUrlType;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
 }

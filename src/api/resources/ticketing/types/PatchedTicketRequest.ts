@@ -19,7 +19,7 @@ export interface PatchedTicketRequest {
     /** The user who created this ticket. */
     creator?: string;
     /** The ticket's due date. */
-    dueDate?: string;
+    dueDate?: Date;
     /**
      * The current status of the ticket.
      *
@@ -42,7 +42,7 @@ export interface PatchedTicketRequest {
     parentTicket?: string;
     tags?: (string | undefined)[];
     /** When the ticket was completed. */
-    completedAt?: string;
+    completedAt?: Date;
     /** The 3rd party url of the Ticket. */
     ticketUrl?: string;
     /**

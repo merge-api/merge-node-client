@@ -12,13 +12,18 @@ export const EmployeePayrollRun: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    employee: core.serialization.string().optional(),
-    payrollRun: core.serialization.property("payroll_run", core.serialization.string().optional()),
+    employee: core.serialization
+        .lazy(async () => (await import("../../..")).hris.EmployeePayrollRunEmployee)
+        .optional(),
+    payrollRun: core.serialization.property(
+        "payroll_run",
+        core.serialization.lazy(async () => (await import("../../..")).hris.EmployeePayrollRunPayrollRun).optional()
+    ),
     grossPay: core.serialization.property("gross_pay", core.serialization.number().optional()),
     netPay: core.serialization.property("net_pay", core.serialization.number().optional()),
-    startDate: core.serialization.property("start_date", core.serialization.string().optional()),
-    endDate: core.serialization.property("end_date", core.serialization.string().optional()),
-    checkDate: core.serialization.property("check_date", core.serialization.string().optional()),
+    startDate: core.serialization.property("start_date", core.serialization.date().optional()),
+    endDate: core.serialization.property("end_date", core.serialization.date().optional()),
+    checkDate: core.serialization.property("check_date", core.serialization.date().optional()),
     earnings: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).hris.Earning))
         .optional(),
@@ -29,7 +34,7 @@ export const EmployeePayrollRun: core.serialization.ObjectSchema<
         .list(core.serialization.lazyObject(async () => (await import("../../..")).hris.Tax))
         .optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -46,8 +51,8 @@ export declare namespace EmployeePayrollRun {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        employee?: string | null;
-        payroll_run?: string | null;
+        employee?: serializers.hris.EmployeePayrollRunEmployee.Raw | null;
+        payroll_run?: serializers.hris.EmployeePayrollRunPayrollRun.Raw | null;
         gross_pay?: number | null;
         net_pay?: number | null;
         start_date?: string | null;

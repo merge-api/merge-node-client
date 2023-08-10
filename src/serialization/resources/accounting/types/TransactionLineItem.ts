@@ -14,7 +14,7 @@ export const TransactionLineItem: core.serialization.ObjectSchema<
     memo: core.serialization.string().optional(),
     unitPrice: core.serialization.property("unit_price", core.serialization.string().optional()),
     quantity: core.serialization.string().optional(),
-    item: core.serialization.string().optional(),
+    item: core.serialization.lazy(async () => (await import("../../..")).accounting.TransactionLineItemItem).optional(),
     account: core.serialization.string().optional(),
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
@@ -28,7 +28,7 @@ export const TransactionLineItem: core.serialization.ObjectSchema<
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     company: core.serialization.string().optional(),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace TransactionLineItem {
@@ -37,7 +37,7 @@ export declare namespace TransactionLineItem {
         memo?: string | null;
         unit_price?: string | null;
         quantity?: string | null;
-        item?: string | null;
+        item?: serializers.accounting.TransactionLineItemItem.Raw | null;
         account?: string | null;
         tracking_category?: string | null;
         tracking_categories: string[];

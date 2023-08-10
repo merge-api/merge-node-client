@@ -14,7 +14,7 @@ export const User: core.serialization.ObjectSchema<serializers.filestorage.User.
         emailAddress: core.serialization.property("email_address", core.serialization.string().optional()),
         isMe: core.serialization.property("is_me", core.serialization.boolean().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()

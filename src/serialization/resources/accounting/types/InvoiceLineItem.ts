@@ -19,16 +19,29 @@ export const InvoiceLineItem: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).accounting.InvoiceLineItemCurrency)
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-    item: core.serialization.string().optional(),
-    account: core.serialization.string().optional(),
-    trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
+    item: core.serialization.lazy(async () => (await import("../../..")).accounting.InvoiceLineItemItem).optional(),
+    account: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.InvoiceLineItemAccount)
+        .optional(),
+    trackingCategory: core.serialization.property(
+        "tracking_category",
+        core.serialization
+            .lazy(async () => (await import("../../..")).accounting.InvoiceLineItemTrackingCategory)
+            .optional()
+    ),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.InvoiceLineItemTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
     ),
     company: core.serialization.string().optional(),
     id: core.serialization.string().optional(),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -44,10 +57,12 @@ export declare namespace InvoiceLineItem {
         total_amount?: number | null;
         currency?: serializers.accounting.InvoiceLineItemCurrency.Raw | null;
         exchange_rate?: string | null;
-        item?: string | null;
-        account?: string | null;
-        tracking_category?: string | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        item?: serializers.accounting.InvoiceLineItemItem.Raw | null;
+        account?: serializers.accounting.InvoiceLineItemAccount.Raw | null;
+        tracking_category?: serializers.accounting.InvoiceLineItemTrackingCategory.Raw | null;
+        tracking_categories?:
+            | (serializers.accounting.InvoiceLineItemTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         company?: string | null;
         id?: string | null;
         modified_at?: string | null;

@@ -12,11 +12,11 @@ export interface EmployeesListRequest {
     /**
      * If provided, will only return objects created after this datetime.
      */
-    createdAfter?: string;
+    createdAfter?: Date;
     /**
      * If provided, will only return objects created before this datetime.
      */
-    createdBefore?: string;
+    createdBefore?: Date;
     /**
      * The pagination cursor value.
      */
@@ -68,11 +68,11 @@ export interface EmployeesListRequest {
     /**
      * If provided, only objects synced by Merge after this date time will be returned.
      */
-    modifiedAfter?: string;
+    modifiedAfter?: Date;
     /**
      * If provided, only objects synced by Merge before this date time will be returned.
      */
-    modifiedBefore?: string;
+    modifiedBefore?: Date;
     /**
      * Number of results to return per page.
      */
@@ -100,11 +100,11 @@ export interface EmployeesListRequest {
     /**
      * If provided, will only return employees that started after this datetime.
      */
-    startedAfter?: string;
+    startedAfter?: Date;
     /**
      * If provided, will only return employees that started before this datetime.
      */
-    startedBefore?: string;
+    startedBefore?: Date;
     /**
      * If provided, will only return employees for this team.
      */
@@ -112,11 +112,11 @@ export interface EmployeesListRequest {
     /**
      * If provided, will only return employees that were terminated after this datetime.
      */
-    terminatedAfter?: string;
+    terminatedAfter?: Date;
     /**
      * If provided, will only return employees that were terminated before this datetime.
      */
-    terminatedBefore?: string;
+    terminatedBefore?: Date;
     /**
      * If provided, will only return Employees with this work email
      */

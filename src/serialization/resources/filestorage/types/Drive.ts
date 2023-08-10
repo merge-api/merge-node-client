@@ -11,10 +11,10 @@ export const Drive: core.serialization.ObjectSchema<serializers.filestorage.Driv
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         name: core.serialization.string().optional(),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         driveUrl: core.serialization.property("drive_url", core.serialization.string().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()

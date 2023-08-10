@@ -10,13 +10,13 @@ export const AccountRequest: core.serialization.ObjectSchema<
     serializers.crm.AccountRequest.Raw,
     Merge.crm.AccountRequest
 > = core.serialization.object({
-    owner: core.serialization.string().optional(),
+    owner: core.serialization.lazy(async () => (await import("../../..")).crm.AccountRequestOwner).optional(),
     name: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
     industry: core.serialization.string().optional(),
     website: core.serialization.string().optional(),
     numberOfEmployees: core.serialization.property("number_of_employees", core.serialization.number().optional()),
-    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.string().optional()),
+    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -35,7 +35,7 @@ export const AccountRequest: core.serialization.ObjectSchema<
 
 export declare namespace AccountRequest {
     interface Raw {
-        owner?: string | null;
+        owner?: serializers.crm.AccountRequestOwner.Raw | null;
         name?: string | null;
         description?: string | null;
         industry?: string | null;

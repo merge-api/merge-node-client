@@ -7,6 +7,7 @@ import * as core from "../../../../core";
 import { AccountDetails } from "../resources/accountDetails/client/Client";
 import { AccountToken } from "../resources/accountToken/client/Client";
 import { Accounts } from "../resources/accounts/client/Client";
+import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
 import { Attachments } from "../resources/attachments/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { Collections } from "../resources/collections/client/Client";
@@ -60,6 +61,12 @@ export class Ticketing {
 
     public get accounts(): Accounts {
         return (this._accounts ??= new Accounts(this._options));
+    }
+
+    protected _asyncPassthrough: AsyncPassthrough | undefined;
+
+    public get asyncPassthrough(): AsyncPassthrough {
+        return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
     }
 
     protected _attachments: Attachments | undefined;

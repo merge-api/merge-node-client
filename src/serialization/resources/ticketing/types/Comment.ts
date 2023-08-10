@@ -10,15 +10,15 @@ export const Comment: core.serialization.ObjectSchema<serializers.ticketing.Comm
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        user: core.serialization.string().optional(),
-        contact: core.serialization.string().optional(),
+        user: core.serialization.lazy(async () => (await import("../../..")).ticketing.CommentUser).optional(),
+        contact: core.serialization.lazy(async () => (await import("../../..")).ticketing.CommentContact).optional(),
         body: core.serialization.string().optional(),
         htmlBody: core.serialization.property("html_body", core.serialization.string().optional()),
-        ticket: core.serialization.string().optional(),
+        ticket: core.serialization.lazy(async () => (await import("../../..")).ticketing.CommentTicket).optional(),
         isPrivate: core.serialization.property("is_private", core.serialization.boolean().optional()),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -35,11 +35,11 @@ export declare namespace Comment {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        user?: string | null;
-        contact?: string | null;
+        user?: serializers.ticketing.CommentUser.Raw | null;
+        contact?: serializers.ticketing.CommentContact.Raw | null;
         body?: string | null;
         html_body?: string | null;
-        ticket?: string | null;
+        ticket?: serializers.ticketing.CommentTicket.Raw | null;
         is_private?: boolean | null;
         remote_created_at?: string | null;
         remote_was_deleted?: boolean | null;

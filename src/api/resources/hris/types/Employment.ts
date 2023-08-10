@@ -19,7 +19,7 @@ export interface Employment {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The employee holding this position. */
-    employee?: string;
+    employee?: Merge.hris.EmploymentEmployee;
     /** The position's title. */
     jobTitle?: string;
     /** The position's pay rate in dollars. */
@@ -364,7 +364,7 @@ export interface Employment {
      */
     payCurrency?: Merge.hris.EmploymentPayCurrency;
     /** The employment's pay group */
-    payGroup?: string;
+    payGroup?: Merge.hris.EmploymentPayGroup;
     /**
      * The position's FLSA status.
      *
@@ -375,7 +375,7 @@ export interface Employment {
      */
     flsaStatus?: Merge.hris.EmploymentFlsaStatus;
     /** The position's effective date. */
-    effectiveDate?: string;
+    effectiveDate?: Date;
     /**
      * The position's type of employment.
      *
@@ -389,7 +389,7 @@ export interface Employment {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

@@ -18,7 +18,7 @@ export const CompanyInfo: core.serialization.ObjectSchema<
     fiscalYearEndMonth: core.serialization.property("fiscal_year_end_month", core.serialization.number().optional()),
     fiscalYearEndDay: core.serialization.property("fiscal_year_end_day", core.serialization.number().optional()),
     currency: core.serialization.lazy(async () => (await import("../../..")).accounting.CompanyInfoCurrency).optional(),
-    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
+    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
     urls: core.serialization.list(core.serialization.string().optional()).optional(),
     addresses: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.Address))
@@ -32,7 +32,7 @@ export const CompanyInfo: core.serialization.ObjectSchema<
             .optional()
     ),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()

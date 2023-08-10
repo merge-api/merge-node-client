@@ -17,8 +17,6 @@ export * as journalEntries from "./journalEntries";
 export * from "./journalEntries/client/requests";
 export * as linkToken from "./linkToken";
 export * from "./linkToken/client/requests";
-export * as passthrough from "./passthrough";
-export * from "./passthrough/client/requests";
 export * as payments from "./payments";
 export * from "./payments/client/requests";
 export * as purchaseOrders from "./purchaseOrders";

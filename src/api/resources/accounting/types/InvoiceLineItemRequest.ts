@@ -336,10 +336,10 @@ export interface InvoiceLineItemRequest {
     currency?: Merge.accounting.InvoiceLineItemRequestCurrency;
     /** The line item's exchange rate. */
     exchangeRate?: string;
-    item?: string;
-    account?: string;
-    trackingCategory?: string;
-    trackingCategories?: (string | undefined)[];
+    item?: Merge.accounting.InvoiceLineItemRequestItem;
+    account?: Merge.accounting.InvoiceLineItemRequestAccount;
+    trackingCategory?: Merge.accounting.InvoiceLineItemRequestTrackingCategory;
+    trackingCategories?: (Merge.accounting.InvoiceLineItemRequestTrackingCategoriesItem | undefined)[];
     /** The company the line item belongs to. */
     company?: string;
     integrationParams?: Record<string, unknown>;

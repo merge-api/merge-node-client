@@ -16,9 +16,11 @@ export const IncomeStatement: core.serialization.ObjectSchema<
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.IncomeStatementCurrency)
         .optional(),
-    company: core.serialization.string().optional(),
-    startPeriod: core.serialization.property("start_period", core.serialization.string().optional()),
-    endPeriod: core.serialization.property("end_period", core.serialization.string().optional()),
+    company: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.IncomeStatementCompany)
+        .optional(),
+    startPeriod: core.serialization.property("start_period", core.serialization.date().optional()),
+    endPeriod: core.serialization.property("end_period", core.serialization.date().optional()),
     income: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.ReportItem))
         .optional(),
@@ -44,7 +46,7 @@ export const IncomeStatement: core.serialization.ObjectSchema<
     ),
     netIncome: core.serialization.property("net_income", core.serialization.number().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -63,7 +65,7 @@ export declare namespace IncomeStatement {
         remote_id?: string | null;
         name?: string | null;
         currency?: serializers.accounting.IncomeStatementCurrency.Raw | null;
-        company?: string | null;
+        company?: serializers.accounting.IncomeStatementCompany.Raw | null;
         start_period?: string | null;
         end_period?: string | null;
         income?: serializers.accounting.ReportItem.Raw[] | null;

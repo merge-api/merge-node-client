@@ -12,11 +12,11 @@ export interface OffersListRequest {
     /**
      * If provided, will only return objects created after this datetime.
      */
-    createdAfter?: string;
+    createdAfter?: Date;
     /**
      * If provided, will only return objects created before this datetime.
      */
-    createdBefore?: string;
+    createdBefore?: Date;
     /**
      * If provided, will only return offers created by this user.
      */
@@ -40,11 +40,11 @@ export interface OffersListRequest {
     /**
      * If provided, only objects synced by Merge after this date time will be returned.
      */
-    modifiedAfter?: string;
+    modifiedAfter?: Date;
     /**
      * If provided, only objects synced by Merge before this date time will be returned.
      */
-    modifiedBefore?: string;
+    modifiedBefore?: Date;
     /**
      * Number of results to return per page.
      */

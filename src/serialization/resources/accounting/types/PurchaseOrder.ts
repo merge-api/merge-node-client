@@ -11,13 +11,18 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
     Merge.accounting.PurchaseOrder
 > = core.serialization.object({
     status: core.serialization.lazy(async () => (await import("../../..")).accounting.PurchaseOrderStatus).optional(),
-    issueDate: core.serialization.property("issue_date", core.serialization.string().optional()),
-    deliveryDate: core.serialization.property("delivery_date", core.serialization.string().optional()),
-    deliveryAddress: core.serialization.property("delivery_address", core.serialization.string().optional()),
+    issueDate: core.serialization.property("issue_date", core.serialization.date().optional()),
+    deliveryDate: core.serialization.property("delivery_date", core.serialization.date().optional()),
+    deliveryAddress: core.serialization.property(
+        "delivery_address",
+        core.serialization
+            .lazy(async () => (await import("../../..")).accounting.PurchaseOrderDeliveryAddress)
+            .optional()
+    ),
     customer: core.serialization.string().optional(),
-    vendor: core.serialization.string().optional(),
+    vendor: core.serialization.lazy(async () => (await import("../../..")).accounting.PurchaseOrderVendor).optional(),
     memo: core.serialization.string().optional(),
-    company: core.serialization.string().optional(),
+    company: core.serialization.lazy(async () => (await import("../../..")).accounting.PurchaseOrderCompany).optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.PurchaseOrderCurrency)
@@ -33,14 +38,20 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
     ),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.PurchaseOrderTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
     ),
-    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
-    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
+    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -58,16 +69,18 @@ export declare namespace PurchaseOrder {
         status?: serializers.accounting.PurchaseOrderStatus.Raw | null;
         issue_date?: string | null;
         delivery_date?: string | null;
-        delivery_address?: string | null;
+        delivery_address?: serializers.accounting.PurchaseOrderDeliveryAddress.Raw | null;
         customer?: string | null;
-        vendor?: string | null;
+        vendor?: serializers.accounting.PurchaseOrderVendor.Raw | null;
         memo?: string | null;
-        company?: string | null;
+        company?: serializers.accounting.PurchaseOrderCompany.Raw | null;
         total_amount?: number | null;
         currency?: serializers.accounting.PurchaseOrderCurrency.Raw | null;
         exchange_rate?: string | null;
         line_items?: serializers.accounting.PurchaseOrderLineItem.Raw[] | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        tracking_categories?:
+            | (serializers.accounting.PurchaseOrderTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;

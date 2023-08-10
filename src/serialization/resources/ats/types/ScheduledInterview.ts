@@ -12,18 +12,33 @@ export const ScheduledInterview: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    application: core.serialization.string().optional(),
-    jobInterviewStage: core.serialization.property("job_interview_stage", core.serialization.string().optional()),
-    organizer: core.serialization.string().optional(),
-    interviewers: core.serialization.list(core.serialization.string().optional()).optional(),
+    application: core.serialization
+        .lazy(async () => (await import("../../..")).ats.ScheduledInterviewApplication)
+        .optional(),
+    jobInterviewStage: core.serialization.property(
+        "job_interview_stage",
+        core.serialization
+            .lazy(async () => (await import("../../..")).ats.ScheduledInterviewJobInterviewStage)
+            .optional()
+    ),
+    organizer: core.serialization
+        .lazy(async () => (await import("../../..")).ats.ScheduledInterviewOrganizer)
+        .optional(),
+    interviewers: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).ats.ScheduledInterviewInterviewersItem)
+                .optional()
+        )
+        .optional(),
     location: core.serialization.string().optional(),
-    startAt: core.serialization.property("start_at", core.serialization.string().optional()),
-    endAt: core.serialization.property("end_at", core.serialization.string().optional()),
-    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
-    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
+    startAt: core.serialization.property("start_at", core.serialization.date().optional()),
+    endAt: core.serialization.property("end_at", core.serialization.date().optional()),
+    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
     status: core.serialization.lazy(async () => (await import("../../..")).ats.ScheduledInterviewStatus).optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -40,10 +55,10 @@ export declare namespace ScheduledInterview {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        application?: string | null;
-        job_interview_stage?: string | null;
-        organizer?: string | null;
-        interviewers?: (string | null | undefined)[] | null;
+        application?: serializers.ats.ScheduledInterviewApplication.Raw | null;
+        job_interview_stage?: serializers.ats.ScheduledInterviewJobInterviewStage.Raw | null;
+        organizer?: serializers.ats.ScheduledInterviewOrganizer.Raw | null;
+        interviewers?: (serializers.ats.ScheduledInterviewInterviewersItem.Raw | null | undefined)[] | null;
         location?: string | null;
         start_at?: string | null;
         end_at?: string | null;

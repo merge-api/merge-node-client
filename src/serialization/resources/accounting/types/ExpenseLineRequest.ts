@@ -11,16 +11,31 @@ export const ExpenseLineRequest: core.serialization.ObjectSchema<
     Merge.accounting.ExpenseLineRequest
 > = core.serialization.object({
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    item: core.serialization.string().optional(),
+    item: core.serialization.lazy(async () => (await import("../../..")).accounting.ExpenseLineRequestItem).optional(),
     netAmount: core.serialization.property("net_amount", core.serialization.number().optional()),
-    trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
+    trackingCategory: core.serialization.property(
+        "tracking_category",
+        core.serialization
+            .lazy(async () => (await import("../../..")).accounting.ExpenseLineRequestTrackingCategory)
+            .optional()
+    ),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.ExpenseLineRequestTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
     ),
     company: core.serialization.string().optional(),
-    account: core.serialization.string().optional(),
-    contact: core.serialization.string().optional(),
+    account: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.ExpenseLineRequestAccount)
+        .optional(),
+    contact: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.ExpenseLineRequestContact)
+        .optional(),
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
@@ -36,13 +51,15 @@ export const ExpenseLineRequest: core.serialization.ObjectSchema<
 export declare namespace ExpenseLineRequest {
     interface Raw {
         remote_id?: string | null;
-        item?: string | null;
+        item?: serializers.accounting.ExpenseLineRequestItem.Raw | null;
         net_amount?: number | null;
-        tracking_category?: string | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        tracking_category?: serializers.accounting.ExpenseLineRequestTrackingCategory.Raw | null;
+        tracking_categories?:
+            | (serializers.accounting.ExpenseLineRequestTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         company?: string | null;
-        account?: string | null;
-        contact?: string | null;
+        account?: serializers.accounting.ExpenseLineRequestAccount.Raw | null;
+        contact?: serializers.accounting.ExpenseLineRequestContact.Raw | null;
         description?: string | null;
         exchange_rate?: string | null;
         integration_params?: Record<string, unknown> | null;

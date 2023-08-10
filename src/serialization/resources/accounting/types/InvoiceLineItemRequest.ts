@@ -19,12 +19,29 @@ export const InvoiceLineItemRequest: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).accounting.InvoiceLineItemRequestCurrency)
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-    item: core.serialization.string().optional(),
-    account: core.serialization.string().optional(),
-    trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
+    item: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.InvoiceLineItemRequestItem)
+        .optional(),
+    account: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.InvoiceLineItemRequestAccount)
+        .optional(),
+    trackingCategory: core.serialization.property(
+        "tracking_category",
+        core.serialization
+            .lazy(async () => (await import("../../..")).accounting.InvoiceLineItemRequestTrackingCategory)
+            .optional()
+    ),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(
+                        async () => (await import("../../..")).accounting.InvoiceLineItemRequestTrackingCategoriesItem
+                    )
+                    .optional()
+            )
+            .optional()
     ),
     company: core.serialization.string().optional(),
     integrationParams: core.serialization.property(
@@ -46,10 +63,12 @@ export declare namespace InvoiceLineItemRequest {
         total_amount?: number | null;
         currency?: serializers.accounting.InvoiceLineItemRequestCurrency.Raw | null;
         exchange_rate?: string | null;
-        item?: string | null;
-        account?: string | null;
-        tracking_category?: string | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        item?: serializers.accounting.InvoiceLineItemRequestItem.Raw | null;
+        account?: serializers.accounting.InvoiceLineItemRequestAccount.Raw | null;
+        tracking_category?: serializers.accounting.InvoiceLineItemRequestTrackingCategory.Raw | null;
+        tracking_categories?:
+            | (serializers.accounting.InvoiceLineItemRequestTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         company?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

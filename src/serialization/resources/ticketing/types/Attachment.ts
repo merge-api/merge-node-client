@@ -13,13 +13,13 @@ export const Attachment: core.serialization.ObjectSchema<
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
     fileName: core.serialization.property("file_name", core.serialization.string().optional()),
-    ticket: core.serialization.string().optional(),
+    ticket: core.serialization.lazy(async () => (await import("../../..")).ticketing.AttachmentTicket).optional(),
     fileUrl: core.serialization.property("file_url", core.serialization.string().optional()),
     contentType: core.serialization.property("content_type", core.serialization.string().optional()),
     uploadedBy: core.serialization.property("uploaded_by", core.serialization.string().optional()),
-    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
+    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -37,7 +37,7 @@ export declare namespace Attachment {
         id?: string | null;
         remote_id?: string | null;
         file_name?: string | null;
-        ticket?: string | null;
+        ticket?: serializers.ticketing.AttachmentTicket.Raw | null;
         file_url?: string | null;
         content_type?: string | null;
         uploaded_by?: string | null;

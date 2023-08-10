@@ -10,11 +10,11 @@ export const CommentRequest: core.serialization.ObjectSchema<
     serializers.ticketing.CommentRequest.Raw,
     Merge.ticketing.CommentRequest
 > = core.serialization.object({
-    user: core.serialization.string().optional(),
-    contact: core.serialization.string().optional(),
+    user: core.serialization.lazy(async () => (await import("../../..")).ticketing.CommentRequestUser).optional(),
+    contact: core.serialization.lazy(async () => (await import("../../..")).ticketing.CommentRequestContact).optional(),
     body: core.serialization.string().optional(),
     htmlBody: core.serialization.property("html_body", core.serialization.string().optional()),
-    ticket: core.serialization.string().optional(),
+    ticket: core.serialization.lazy(async () => (await import("../../..")).ticketing.CommentRequestTicket).optional(),
     isPrivate: core.serialization.property("is_private", core.serialization.boolean().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -28,11 +28,11 @@ export const CommentRequest: core.serialization.ObjectSchema<
 
 export declare namespace CommentRequest {
     interface Raw {
-        user?: string | null;
-        contact?: string | null;
+        user?: serializers.ticketing.CommentRequestUser.Raw | null;
+        contact?: serializers.ticketing.CommentRequestContact.Raw | null;
         body?: string | null;
         html_body?: string | null;
-        ticket?: string | null;
+        ticket?: serializers.ticketing.CommentRequestTicket.Raw | null;
         is_private?: boolean | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

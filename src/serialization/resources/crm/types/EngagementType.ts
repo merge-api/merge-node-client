@@ -17,7 +17,7 @@ export const EngagementType: core.serialization.ObjectSchema<
     name: core.serialization.string().optional(),
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     remoteFields: core.serialization.property(
         "remote_fields",
         core.serialization

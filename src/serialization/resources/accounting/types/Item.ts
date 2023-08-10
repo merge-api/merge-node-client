@@ -14,12 +14,18 @@ export const Item: core.serialization.ObjectSchema<serializers.accounting.Item.R
         status: core.serialization.lazy(async () => (await import("../../..")).accounting.ItemStatus).optional(),
         unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
         purchasePrice: core.serialization.property("purchase_price", core.serialization.number().optional()),
-        purchaseAccount: core.serialization.property("purchase_account", core.serialization.string().optional()),
-        salesAccount: core.serialization.property("sales_account", core.serialization.string().optional()),
-        company: core.serialization.string().optional(),
-        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
+        purchaseAccount: core.serialization.property(
+            "purchase_account",
+            core.serialization.lazy(async () => (await import("../../..")).accounting.ItemPurchaseAccount).optional()
+        ),
+        salesAccount: core.serialization.property(
+            "sales_account",
+            core.serialization.lazy(async () => (await import("../../..")).accounting.ItemSalesAccount).optional()
+        ),
+        company: core.serialization.lazy(async () => (await import("../../..")).accounting.ItemCompany).optional(),
+        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -40,9 +46,9 @@ export declare namespace Item {
         status?: serializers.accounting.ItemStatus.Raw | null;
         unit_price?: number | null;
         purchase_price?: number | null;
-        purchase_account?: string | null;
-        sales_account?: string | null;
-        company?: string | null;
+        purchase_account?: serializers.accounting.ItemPurchaseAccount.Raw | null;
+        sales_account?: serializers.accounting.ItemSalesAccount.Raw | null;
+        company?: serializers.accounting.ItemCompany.Raw | null;
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;

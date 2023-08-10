@@ -23,9 +23,9 @@ export interface PatchedTaskRequest {
     /** The task's opportunity. */
     opportunity?: string;
     /** When the task is completed. */
-    completedDate?: string;
+    completedDate?: Date;
     /** When the task is due. */
-    dueDate?: string;
+    dueDate?: Date;
     /**
      * The task's status.
      *

@@ -14,11 +14,11 @@ import * as Merge from "../../..";
  */
 export interface ExpenseRequest {
     /** When the transaction occurred. */
-    transactionDate?: string;
+    transactionDate?: Date;
     /** The expense's payment account. */
-    account?: string;
+    account?: Merge.accounting.ExpenseRequestAccount;
     /** The expense's contact. */
-    contact?: string;
+    contact?: Merge.accounting.ExpenseRequestContact;
     /** The expense's total amount. */
     totalAmount?: number;
     /**
@@ -335,11 +335,11 @@ export interface ExpenseRequest {
     /** The expense's exchange rate. */
     exchangeRate?: string;
     /** The company the expense belongs to. */
-    company?: string;
+    company?: Merge.accounting.ExpenseRequestCompany;
     /** The expense's private note. */
     memo?: string;
     lines?: Merge.accounting.ExpenseLineRequest[];
-    trackingCategories?: (string | undefined)[];
+    trackingCategories?: (Merge.accounting.ExpenseRequestTrackingCategoriesItem | undefined)[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }

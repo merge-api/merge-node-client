@@ -13,7 +13,7 @@ import * as Merge from "../../..";
  */
 export interface Engagement {
     /** The engagement's owner. */
-    owner?: string;
+    owner?: Merge.crm.EngagementOwner;
     /** The engagement's content. */
     content?: string;
     /** The engagement's subject. */
@@ -26,21 +26,21 @@ export interface Engagement {
      */
     direction?: Merge.crm.EngagementDirection;
     /** The engagement type of the engagement. */
-    engagementType?: string;
+    engagementType?: Merge.crm.EngagementEngagementType;
     /** The time at which the engagement started. */
-    startTime?: string;
+    startTime?: Date;
     /** The time at which the engagement ended. */
-    endTime?: string;
+    endTime?: Date;
     /** The account of the engagement. */
-    account?: string;
-    contacts?: (string | undefined)[];
+    account?: Merge.crm.EngagementAccount;
+    contacts?: (Merge.crm.EngagementContactsItem | undefined)[];
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

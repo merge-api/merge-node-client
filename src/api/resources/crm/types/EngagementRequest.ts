@@ -13,7 +13,7 @@ import * as Merge from "../../..";
  */
 export interface EngagementRequest {
     /** The engagement's owner. */
-    owner?: string;
+    owner?: Merge.crm.EngagementRequestOwner;
     /** The engagement's content. */
     content?: string;
     /** The engagement's subject. */
@@ -26,14 +26,14 @@ export interface EngagementRequest {
      */
     direction?: Merge.crm.EngagementRequestDirection;
     /** The engagement type of the engagement. */
-    engagementType?: string;
+    engagementType?: Merge.crm.EngagementRequestEngagementType;
     /** The time at which the engagement started. */
-    startTime?: string;
+    startTime?: Date;
     /** The time at which the engagement ended. */
-    endTime?: string;
+    endTime?: Date;
     /** The account of the engagement. */
-    account?: string;
-    contacts?: (string | undefined)[];
+    account?: Merge.crm.EngagementRequestAccount;
+    contacts?: (Merge.crm.EngagementRequestContactsItem | undefined)[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.crm.RemoteFieldRequest[];

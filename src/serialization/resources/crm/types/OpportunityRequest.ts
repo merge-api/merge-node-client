@@ -13,12 +13,12 @@ export const OpportunityRequest: core.serialization.ObjectSchema<
     name: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
     amount: core.serialization.number().optional(),
-    owner: core.serialization.string().optional(),
-    account: core.serialization.string().optional(),
-    stage: core.serialization.string().optional(),
+    owner: core.serialization.lazy(async () => (await import("../../..")).crm.OpportunityRequestOwner).optional(),
+    account: core.serialization.lazy(async () => (await import("../../..")).crm.OpportunityRequestAccount).optional(),
+    stage: core.serialization.lazy(async () => (await import("../../..")).crm.OpportunityRequestStage).optional(),
     status: core.serialization.lazy(async () => (await import("../../..")).crm.OpportunityRequestStatus).optional(),
-    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.string().optional()),
-    closeDate: core.serialization.property("close_date", core.serialization.string().optional()),
+    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
+    closeDate: core.serialization.property("close_date", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -40,9 +40,9 @@ export declare namespace OpportunityRequest {
         name?: string | null;
         description?: string | null;
         amount?: number | null;
-        owner?: string | null;
-        account?: string | null;
-        stage?: string | null;
+        owner?: serializers.crm.OpportunityRequestOwner.Raw | null;
+        account?: serializers.crm.OpportunityRequestAccount.Raw | null;
+        stage?: serializers.crm.OpportunityRequestStage.Raw | null;
         status?: serializers.crm.OpportunityRequestStatus.Raw | null;
         last_activity_at?: string | null;
         close_date?: string | null;

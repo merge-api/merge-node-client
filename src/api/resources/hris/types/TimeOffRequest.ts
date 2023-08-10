@@ -14,9 +14,9 @@ import * as Merge from "../../..";
  */
 export interface TimeOffRequest {
     /** The employee requesting time off. */
-    employee?: string;
+    employee?: Merge.hris.TimeOffRequestEmployee;
     /** The Merge ID of the employee with the ability to approve the time off request. */
-    approver?: string;
+    approver?: Merge.hris.TimeOffRequestApprover;
     /**
      * The status of this time off request.
      *
@@ -50,9 +50,9 @@ export interface TimeOffRequest {
      */
     requestType?: Merge.hris.TimeOffRequestRequestType;
     /** The day and time of the start of the time requested off. */
-    startTime?: string;
+    startTime?: Date;
     /** The day and time of the end of the time requested off. */
-    endTime?: string;
+    endTime?: Date;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }

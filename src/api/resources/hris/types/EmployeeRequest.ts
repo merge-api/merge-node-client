@@ -16,7 +16,7 @@ export interface EmployeeRequest {
     /** The employee's number that appears in the third-party integration's UI. */
     employeeNumber?: string;
     /** The ID of the employee's company. */
-    company?: string;
+    company?: Merge.hris.EmployeeRequestCompany;
     /** The employee's first name. */
     firstName?: string;
     /** The employee's last name. */
@@ -25,7 +25,7 @@ export interface EmployeeRequest {
     displayFullName?: string;
     /** The employee's username that appears in the remote UI. */
     username?: string;
-    groups?: (string | undefined)[];
+    groups?: (Merge.hris.EmployeeRequestGroupsItem | undefined)[];
     /** The employee's work email. */
     workEmail?: string;
     /** The employee's personal email. */
@@ -33,17 +33,17 @@ export interface EmployeeRequest {
     /** The employee's mobile phone number. */
     mobilePhoneNumber?: string;
     /** Array of `Employment` IDs for this Employee. */
-    employments?: (string | undefined)[];
+    employments?: (Merge.hris.EmployeeRequestEmploymentsItem | undefined)[];
     /** The employee's home address. */
-    homeLocation?: string;
+    homeLocation?: Merge.hris.EmployeeRequestHomeLocation;
     /** The employee's work address. */
-    workLocation?: string;
+    workLocation?: Merge.hris.EmployeeRequestWorkLocation;
     /** The employee ID of the employee's manager. */
-    manager?: string;
+    manager?: Merge.hris.EmployeeRequestManager;
     /** The employee's team. */
-    team?: string;
+    team?: Merge.hris.EmployeeRequestTeam;
     /** The employee's pay group */
-    payGroup?: string;
+    payGroup?: Merge.hris.EmployeeRequestPayGroup;
     /** The employee's social security number. */
     ssn?: string;
     /**
@@ -80,11 +80,11 @@ export interface EmployeeRequest {
      */
     maritalStatus?: Merge.hris.EmployeeRequestMaritalStatus;
     /** The employee's date of birth. */
-    dateOfBirth?: string;
+    dateOfBirth?: Date;
     /** The date that the employee was hired, usually the day that an offer letter is signed. If an employee has multiple hire dates from previous employments, this represents the most recent hire date. Note: If you're looking for the employee's start date, refer to the start_date field. */
-    hireDate?: string;
+    hireDate?: Date;
     /** The date that the employee started working. If an employee was rehired, the most recent start date will be returned. */
-    startDate?: string;
+    startDate?: Date;
     /**
      * The employment status of the employee.
      *
@@ -94,7 +94,7 @@ export interface EmployeeRequest {
      */
     employmentStatus?: Merge.hris.EmployeeRequestEmploymentStatus;
     /** The employee's termination date. */
-    terminationDate?: string;
+    terminationDate?: Date;
     /** The URL of the employee's avatar image. */
     avatar?: string;
     integrationParams?: Record<string, unknown>;

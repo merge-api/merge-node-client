@@ -17,7 +17,7 @@ export interface BankInfo {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The employee with this bank account. */
-    employee?: string;
+    employee?: Merge.hris.BankInfoEmployee;
     /** The account number. */
     accountNumber?: string;
     /** The routing number. */
@@ -32,11 +32,11 @@ export interface BankInfo {
      */
     accountType?: Merge.hris.BankInfoAccountType;
     /** When the matching bank object was created in the third party system. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

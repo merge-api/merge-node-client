@@ -21,11 +21,13 @@ export const TrackingCategory: core.serialization.ObjectSchema<
             .optional()
     ),
     parentCategory: core.serialization.property("parent_category", core.serialization.string().optional()),
-    company: core.serialization.string().optional(),
+    company: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.TrackingCategoryCompany)
+        .optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -44,7 +46,7 @@ export declare namespace TrackingCategory {
         status?: serializers.accounting.TrackingCategoryStatus.Raw | null;
         category_type?: serializers.accounting.TrackingCategoryCategoryType.Raw | null;
         parent_category?: string | null;
-        company?: string | null;
+        company?: serializers.accounting.TrackingCategoryCompany.Raw | null;
         remote_was_deleted?: boolean | null;
         id?: string | null;
         remote_id?: string | null;

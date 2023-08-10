@@ -18,13 +18,13 @@ export interface JobInterviewStage {
     /** Standard stage names are offered by ATS systems but can be modified by users. */
     name?: string;
     /** This field is populated only if the stage is specific to a particular job. If the stage is generic, this field will not be populated. */
-    job?: string;
+    job?: Merge.ats.JobInterviewStageJob;
     /** The stage’s order, with the lowest values ordered first. If the third-party does not return details on the order of stages, this field will not be populated. */
     stageOrder?: number;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

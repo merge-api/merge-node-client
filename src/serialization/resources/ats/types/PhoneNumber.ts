@@ -13,7 +13,7 @@ export const PhoneNumber: core.serialization.ObjectSchema<serializers.ats.PhoneN
             "phone_number_type",
             core.serialization.lazy(async () => (await import("../../..")).ats.PhoneNumberPhoneNumberType).optional()
         ),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
 export declare namespace PhoneNumber {

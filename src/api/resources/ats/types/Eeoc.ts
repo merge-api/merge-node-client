@@ -16,9 +16,9 @@ export interface Eeoc {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The candidate being represented. */
-    candidate?: string;
+    candidate?: Merge.ats.EeocCandidate;
     /** When the information was submitted. */
-    submittedAt?: string;
+    submittedAt?: Date;
     /**
      * The candidate's race.
      *
@@ -61,7 +61,7 @@ export interface Eeoc {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

@@ -17,7 +17,7 @@ export interface Benefit {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The employee on the plan. */
-    employee?: string;
+    employee?: Merge.hris.BenefitEmployee;
     /** The name of the benefit provider. */
     providerName?: string;
     /** The type of benefit plan */
@@ -27,13 +27,15 @@ export interface Benefit {
     /** The company's contribution. */
     companyContribution?: number;
     /** The day and time the benefit started. */
-    startDate?: string;
+    startDate?: Date;
     /** The day and time the benefit ended. */
-    endDate?: string;
+    endDate?: Date;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
+    /** The employer benefit plan the employee is enrolled in. */
+    employerBenefit?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

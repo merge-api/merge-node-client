@@ -16,13 +16,13 @@ export interface Drive {
     /** The drive's name. */
     name?: string;
     /** When the third party's drive was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** The drive's url. */
     driveUrl?: string;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: (Record<string, unknown> | undefined)[];
 }

@@ -286,5 +286,5 @@ export interface Address {
     /** The address's zip code. */
     zipCode?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
 }

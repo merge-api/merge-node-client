@@ -14,7 +14,9 @@ export const PurchaseOrderLineItemRequest: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
     quantity: core.serialization.number().optional(),
-    item: core.serialization.string().optional(),
+    item: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.PurchaseOrderLineItemRequestItem)
+        .optional(),
     account: core.serialization.string().optional(),
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
@@ -44,7 +46,7 @@ export declare namespace PurchaseOrderLineItemRequest {
         description?: string | null;
         unit_price?: number | null;
         quantity?: number | null;
-        item?: string | null;
+        item?: serializers.accounting.PurchaseOrderLineItemRequestItem.Raw | null;
         account?: string | null;
         tracking_category?: string | null;
         tracking_categories: string[];

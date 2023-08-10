@@ -13,7 +13,7 @@ import * as Merge from "../../..";
  */
 export interface Lead {
     /** The lead's owner. */
-    owner?: string;
+    owner?: Merge.crm.LeadOwner;
     /** The lead's source. */
     leadSource?: string;
     /** The lead's title. */
@@ -28,21 +28,21 @@ export interface Lead {
     emailAddresses?: Merge.crm.EmailAddress[];
     phoneNumbers?: Merge.crm.PhoneNumber[];
     /** When the third party's lead was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** When the third party's lead was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the lead was converted. */
-    convertedDate?: string;
+    convertedDate?: Date;
     /** The contact of the converted lead. */
-    convertedContact?: string;
+    convertedContact?: Merge.crm.LeadConvertedContact;
     /** The account of the converted lead. */
-    convertedAccount?: string;
+    convertedAccount?: Merge.crm.LeadConvertedAccount;
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

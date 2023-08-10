@@ -17,7 +17,7 @@ export interface TimeOffBalance {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The employee the balance belongs to. */
-    employee?: string;
+    employee?: Merge.hris.TimeOffBalanceEmployee;
     /** The current remaining PTO balance, always measured in terms of hours. */
     balance?: number;
     /** The amount of PTO used in terms of hours. */
@@ -36,7 +36,7 @@ export interface TimeOffBalance {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

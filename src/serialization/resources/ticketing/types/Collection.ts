@@ -18,13 +18,16 @@ export const Collection: core.serialization.ObjectSchema<
         "collection_type",
         core.serialization.lazy(async () => (await import("../../..")).ticketing.CollectionCollectionType).optional()
     ),
-    parentCollection: core.serialization.property("parent_collection", core.serialization.string().optional()),
+    parentCollection: core.serialization.property(
+        "parent_collection",
+        core.serialization.lazy(async () => (await import("../../..")).ticketing.CollectionParentCollection).optional()
+    ),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     accessLevel: core.serialization.property(
         "access_level",
         core.serialization.lazy(async () => (await import("../../..")).ticketing.CollectionAccessLevel).optional()
     ),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -44,7 +47,7 @@ export declare namespace Collection {
         name?: string | null;
         description?: string | null;
         collection_type?: serializers.ticketing.CollectionCollectionType.Raw | null;
-        parent_collection?: string | null;
+        parent_collection?: serializers.ticketing.CollectionParentCollection.Raw | null;
         remote_was_deleted?: boolean | null;
         access_level?: serializers.ticketing.CollectionAccessLevel.Raw | null;
         modified_at?: string | null;

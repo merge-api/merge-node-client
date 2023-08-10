@@ -10,18 +10,30 @@ export const PaymentRequest: core.serialization.ObjectSchema<
     serializers.accounting.PaymentRequest.Raw,
     Merge.accounting.PaymentRequest
 > = core.serialization.object({
-    transactionDate: core.serialization.property("transaction_date", core.serialization.string().optional()),
-    contact: core.serialization.string().optional(),
-    account: core.serialization.string().optional(),
+    transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
+    contact: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.PaymentRequestContact)
+        .optional(),
+    account: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.PaymentRequestAccount)
+        .optional(),
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.PaymentRequestCurrency)
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-    company: core.serialization.string().optional(),
+    company: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.PaymentRequestCompany)
+        .optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.PaymentRequestTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
     ),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -36,13 +48,15 @@ export const PaymentRequest: core.serialization.ObjectSchema<
 export declare namespace PaymentRequest {
     interface Raw {
         transaction_date?: string | null;
-        contact?: string | null;
-        account?: string | null;
+        contact?: serializers.accounting.PaymentRequestContact.Raw | null;
+        account?: serializers.accounting.PaymentRequestAccount.Raw | null;
         currency?: serializers.accounting.PaymentRequestCurrency.Raw | null;
         exchange_rate?: string | null;
-        company?: string | null;
+        company?: serializers.accounting.PaymentRequestCompany.Raw | null;
         total_amount?: number | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        tracking_categories?:
+            | (serializers.accounting.PaymentRequestTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
     }

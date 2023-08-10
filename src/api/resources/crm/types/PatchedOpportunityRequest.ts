@@ -33,9 +33,9 @@ export interface PatchedOpportunityRequest {
      */
     status?: Merge.crm.PatchedOpportunityRequestStatus;
     /** When the opportunity's last activity occurred. */
-    lastActivityAt?: string;
+    lastActivityAt?: Date;
     /** When the opportunity was closed. */
-    closeDate?: string;
+    closeDate?: Date;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.crm.RemoteFieldRequest[];

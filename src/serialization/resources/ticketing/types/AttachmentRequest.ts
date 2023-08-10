@@ -11,7 +11,9 @@ export const AttachmentRequest: core.serialization.ObjectSchema<
     Merge.ticketing.AttachmentRequest
 > = core.serialization.object({
     fileName: core.serialization.property("file_name", core.serialization.string().optional()),
-    ticket: core.serialization.string().optional(),
+    ticket: core.serialization
+        .lazy(async () => (await import("../../..")).ticketing.AttachmentRequestTicket)
+        .optional(),
     fileUrl: core.serialization.property("file_url", core.serialization.string().optional()),
     contentType: core.serialization.property("content_type", core.serialization.string().optional()),
     uploadedBy: core.serialization.property("uploaded_by", core.serialization.string().optional()),
@@ -28,7 +30,7 @@ export const AttachmentRequest: core.serialization.ObjectSchema<
 export declare namespace AttachmentRequest {
     interface Raw {
         file_name?: string | null;
-        ticket?: string | null;
+        ticket?: serializers.ticketing.AttachmentRequestTicket.Raw | null;
         file_url?: string | null;
         content_type?: string | null;
         uploaded_by?: string | null;

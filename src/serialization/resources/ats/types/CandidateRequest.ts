@@ -14,7 +14,7 @@ export const CandidateRequest: core.serialization.ObjectSchema<
     lastName: core.serialization.property("last_name", core.serialization.string().optional()),
     company: core.serialization.string().optional(),
     title: core.serialization.string().optional(),
-    lastInteractionAt: core.serialization.property("last_interaction_at", core.serialization.string().optional()),
+    lastInteractionAt: core.serialization.property("last_interaction_at", core.serialization.date().optional()),
     isPrivate: core.serialization.property("is_private", core.serialization.boolean().optional()),
     canEmail: core.serialization.property("can_email", core.serialization.boolean().optional()),
     locations: core.serialization.list(core.serialization.string().optional()).optional(),
@@ -34,8 +34,20 @@ export const CandidateRequest: core.serialization.ObjectSchema<
         .list(core.serialization.lazyObject(async () => (await import("../../..")).ats.UrlRequest))
         .optional(),
     tags: core.serialization.list(core.serialization.string().optional()).optional(),
-    applications: core.serialization.list(core.serialization.string().optional()).optional(),
-    attachments: core.serialization.list(core.serialization.string().optional()).optional(),
+    applications: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).ats.CandidateRequestApplicationsItem)
+                .optional()
+        )
+        .optional(),
+    attachments: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).ats.CandidateRequestAttachmentsItem)
+                .optional()
+        )
+        .optional(),
     remoteTemplateId: core.serialization.property("remote_template_id", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -61,8 +73,8 @@ export declare namespace CandidateRequest {
         email_addresses?: serializers.ats.EmailAddressRequest.Raw[] | null;
         urls?: serializers.ats.UrlRequest.Raw[] | null;
         tags?: (string | null | undefined)[] | null;
-        applications?: (string | null | undefined)[] | null;
-        attachments?: (string | null | undefined)[] | null;
+        applications?: (serializers.ats.CandidateRequestApplicationsItem.Raw | null | undefined)[] | null;
+        attachments?: (serializers.ats.CandidateRequestAttachmentsItem.Raw | null | undefined)[] | null;
         remote_template_id?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

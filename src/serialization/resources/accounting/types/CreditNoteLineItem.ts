@@ -10,7 +10,7 @@ export const CreditNoteLineItem: core.serialization.ObjectSchema<
     serializers.accounting.CreditNoteLineItem.Raw,
     Merge.accounting.CreditNoteLineItem
 > = core.serialization.object({
-    item: core.serialization.string().optional(),
+    item: core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteLineItemItem).optional(),
     name: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
     quantity: core.serialization.string().optional(),
@@ -24,14 +24,16 @@ export const CreditNoteLineItem: core.serialization.ObjectSchema<
         core.serialization.list(core.serialization.string())
     ),
     account: core.serialization.string().optional(),
-    company: core.serialization.string().optional(),
+    company: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.CreditNoteLineItemCompany)
+        .optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace CreditNoteLineItem {
     interface Raw {
-        item?: string | null;
+        item?: serializers.accounting.CreditNoteLineItemItem.Raw | null;
         name?: string | null;
         description?: string | null;
         quantity?: string | null;
@@ -42,7 +44,7 @@ export declare namespace CreditNoteLineItem {
         tracking_category?: string | null;
         tracking_categories: string[];
         account?: string | null;
-        company?: string | null;
+        company?: serializers.accounting.CreditNoteLineItemCompany.Raw | null;
         remote_id?: string | null;
         modified_at?: string | null;
     }

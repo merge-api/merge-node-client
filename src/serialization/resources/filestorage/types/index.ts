@@ -1,3 +1,4 @@
+export * from "./DataPassthroughRequest";
 export * from "./FilesListRequestExpand";
 export * from "./FilesRetrieveRequestExpand";
 export * from "./FoldersListRequestExpand";
@@ -10,6 +11,7 @@ export * from "./AccountDetailsAndActionsIntegration";
 export * from "./AccountDetailsAndActionsStatusEnum";
 export * from "./AccountIntegration";
 export * from "./AccountToken";
+export * from "./AsyncPassthroughReciept";
 export * from "./AvailableActions";
 export * from "./CategoriesEnum";
 export * from "./CategoryEnum";

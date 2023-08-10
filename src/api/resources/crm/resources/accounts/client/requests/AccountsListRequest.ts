@@ -6,11 +6,11 @@ export interface AccountsListRequest {
     /**
      * If provided, will only return objects created after this datetime.
      */
-    createdAfter?: string;
+    createdAfter?: Date;
     /**
      * If provided, will only return objects created before this datetime.
      */
-    createdBefore?: string;
+    createdBefore?: Date;
     /**
      * The pagination cursor value.
      */
@@ -34,11 +34,11 @@ export interface AccountsListRequest {
     /**
      * If provided, only objects synced by Merge after this date time will be returned.
      */
-    modifiedAfter?: string;
+    modifiedAfter?: Date;
     /**
      * If provided, only objects synced by Merge before this date time will be returned.
      */
-    modifiedBefore?: string;
+    modifiedBefore?: Date;
     /**
      * If provided, will only return accounts with this owner.
      */

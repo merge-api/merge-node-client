@@ -28,7 +28,7 @@ export const PatchedContactRequest: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.PhoneNumberRequest))
             .optional()
     ),
-    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.string().optional()),
+    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()

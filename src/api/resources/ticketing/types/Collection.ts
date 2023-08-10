@@ -29,7 +29,7 @@ export interface Collection {
      */
     collectionType?: Merge.ticketing.CollectionCollectionType;
     /** The parent collection for this collection. */
-    parentCollection?: string;
+    parentCollection?: Merge.ticketing.CollectionParentCollection;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /**
@@ -41,7 +41,7 @@ export interface Collection {
      */
     accessLevel?: Merge.ticketing.CollectionAccessLevel;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
 }

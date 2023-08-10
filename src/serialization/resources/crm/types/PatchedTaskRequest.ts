@@ -15,8 +15,8 @@ export const PatchedTaskRequest: core.serialization.ObjectSchema<
     owner: core.serialization.string().optional(),
     account: core.serialization.string().optional(),
     opportunity: core.serialization.string().optional(),
-    completedDate: core.serialization.property("completed_date", core.serialization.string().optional()),
-    dueDate: core.serialization.property("due_date", core.serialization.string().optional()),
+    completedDate: core.serialization.property("completed_date", core.serialization.date().optional()),
+    dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     status: core.serialization.lazy(async () => (await import("../../..")).crm.PatchedTaskRequestStatus).optional(),
     integrationParams: core.serialization.property(
         "integration_params",

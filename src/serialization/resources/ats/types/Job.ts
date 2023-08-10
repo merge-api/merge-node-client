@@ -19,18 +19,26 @@ export const Job: core.serialization.ObjectSchema<serializers.ats.Job.Raw, Merge
             .list(core.serialization.lazyObject(async () => (await import("../../..")).ats.Url))
             .optional()
     ),
-    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
-    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
+    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
     confidential: core.serialization.boolean().optional(),
-    departments: core.serialization.list(core.serialization.string().optional()).optional(),
-    offices: core.serialization.list(core.serialization.string().optional()).optional(),
+    departments: core.serialization
+        .list(core.serialization.lazy(async () => (await import("../../..")).ats.JobDepartmentsItem).optional())
+        .optional(),
+    offices: core.serialization
+        .list(core.serialization.lazy(async () => (await import("../../..")).ats.JobOfficesItem).optional())
+        .optional(),
     hiringManagers: core.serialization.property(
         "hiring_managers",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(core.serialization.lazy(async () => (await import("../../..")).ats.JobHiringManagersItem).optional())
+            .optional()
     ),
-    recruiters: core.serialization.list(core.serialization.string().optional()).optional(),
+    recruiters: core.serialization
+        .list(core.serialization.lazy(async () => (await import("../../..")).ats.JobRecruitersItem).optional())
+        .optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -55,10 +63,10 @@ export declare namespace Job {
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
         confidential?: boolean | null;
-        departments?: (string | null | undefined)[] | null;
-        offices?: (string | null | undefined)[] | null;
-        hiring_managers?: (string | null | undefined)[] | null;
-        recruiters?: (string | null | undefined)[] | null;
+        departments?: (serializers.ats.JobDepartmentsItem.Raw | null | undefined)[] | null;
+        offices?: (serializers.ats.JobOfficesItem.Raw | null | undefined)[] | null;
+        hiring_managers?: (serializers.ats.JobHiringManagersItem.Raw | null | undefined)[] | null;
+        recruiters?: (serializers.ats.JobRecruitersItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;

@@ -65,11 +65,11 @@ export class Issues {
         }
 
         if (firstIncidentTimeAfter != null) {
-            _queryParams.append("first_incident_time_after", firstIncidentTimeAfter);
+            _queryParams.append("first_incident_time_after", firstIncidentTimeAfter.toISOString());
         }
 
         if (firstIncidentTimeBefore != null) {
-            _queryParams.append("first_incident_time_before", firstIncidentTimeBefore);
+            _queryParams.append("first_incident_time_before", firstIncidentTimeBefore.toISOString());
         }
 
         if (includeMuted != null) {
@@ -81,11 +81,11 @@ export class Issues {
         }
 
         if (lastIncidentTimeAfter != null) {
-            _queryParams.append("last_incident_time_after", lastIncidentTimeAfter);
+            _queryParams.append("last_incident_time_after", lastIncidentTimeAfter.toISOString());
         }
 
         if (lastIncidentTimeBefore != null) {
-            _queryParams.append("last_incident_time_before", lastIncidentTimeBefore);
+            _queryParams.append("last_incident_time_before", lastIncidentTimeBefore.toISOString());
         }
 
         if (pageSize != null) {
@@ -114,7 +114,7 @@ export class Issues {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -169,7 +169,7 @@ export class Issues {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -69,11 +69,11 @@ export class Employees {
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter);
+            _queryParams.append("created_after", createdAfter.toISOString());
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore);
+            _queryParams.append("created_before", createdBefore.toISOString());
         }
 
         if (cursor != null) {
@@ -121,11 +121,11 @@ export class Employees {
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter);
+            _queryParams.append("modified_after", modifiedAfter.toISOString());
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore);
+            _queryParams.append("modified_before", modifiedBefore.toISOString());
         }
 
         if (pageSize != null) {
@@ -153,11 +153,11 @@ export class Employees {
         }
 
         if (startedAfter != null) {
-            _queryParams.append("started_after", startedAfter);
+            _queryParams.append("started_after", startedAfter.toISOString());
         }
 
         if (startedBefore != null) {
-            _queryParams.append("started_before", startedBefore);
+            _queryParams.append("started_before", startedBefore.toISOString());
         }
 
         if (teamId != null) {
@@ -165,11 +165,11 @@ export class Employees {
         }
 
         if (terminatedAfter != null) {
-            _queryParams.append("terminated_after", terminatedAfter);
+            _queryParams.append("terminated_after", terminatedAfter.toISOString());
         }
 
         if (terminatedBefore != null) {
-            _queryParams.append("terminated_before", terminatedBefore);
+            _queryParams.append("terminated_before", terminatedBefore.toISOString());
         }
 
         if (workEmail != null) {
@@ -194,7 +194,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -262,7 +262,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -346,7 +346,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -405,7 +405,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             body: await serializers.hris.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -457,7 +457,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

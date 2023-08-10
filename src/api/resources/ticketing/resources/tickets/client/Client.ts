@@ -79,11 +79,11 @@ export class Tickets {
         }
 
         if (completedAfter != null) {
-            _queryParams.append("completed_after", completedAfter);
+            _queryParams.append("completed_after", completedAfter.toISOString());
         }
 
         if (completedBefore != null) {
-            _queryParams.append("completed_before", completedBefore);
+            _queryParams.append("completed_before", completedBefore.toISOString());
         }
 
         if (contactId != null) {
@@ -91,11 +91,11 @@ export class Tickets {
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter);
+            _queryParams.append("created_after", createdAfter.toISOString());
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore);
+            _queryParams.append("created_before", createdBefore.toISOString());
         }
 
         if (cursor != null) {
@@ -103,11 +103,11 @@ export class Tickets {
         }
 
         if (dueAfter != null) {
-            _queryParams.append("due_after", dueAfter);
+            _queryParams.append("due_after", dueAfter.toISOString());
         }
 
         if (dueBefore != null) {
-            _queryParams.append("due_before", dueBefore);
+            _queryParams.append("due_before", dueBefore.toISOString());
         }
 
         if (expand != null) {
@@ -127,11 +127,11 @@ export class Tickets {
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter);
+            _queryParams.append("modified_after", modifiedAfter.toISOString());
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore);
+            _queryParams.append("modified_before", modifiedBefore.toISOString());
         }
 
         if (pageSize != null) {
@@ -151,11 +151,11 @@ export class Tickets {
         }
 
         if (remoteCreatedAfter != null) {
-            _queryParams.append("remote_created_after", remoteCreatedAfter);
+            _queryParams.append("remote_created_after", remoteCreatedAfter.toISOString());
         }
 
         if (remoteCreatedBefore != null) {
-            _queryParams.append("remote_created_before", remoteCreatedBefore);
+            _queryParams.append("remote_created_before", remoteCreatedBefore.toISOString());
         }
 
         if (remoteFields != null) {
@@ -167,11 +167,11 @@ export class Tickets {
         }
 
         if (remoteUpdatedAfter != null) {
-            _queryParams.append("remote_updated_after", remoteUpdatedAfter);
+            _queryParams.append("remote_updated_after", remoteUpdatedAfter.toISOString());
         }
 
         if (remoteUpdatedBefore != null) {
-            _queryParams.append("remote_updated_before", remoteUpdatedBefore);
+            _queryParams.append("remote_updated_before", remoteUpdatedBefore.toISOString());
         }
 
         if (showEnumOrigins != null) {
@@ -204,7 +204,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -272,7 +272,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -356,7 +356,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -425,7 +425,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -509,7 +509,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -567,7 +567,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -621,7 +621,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -696,7 +696,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

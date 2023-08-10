@@ -24,11 +24,11 @@ export interface Candidate {
     /** The candidate's current title. */
     title?: string;
     /** When the third party's candidate was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the third party's candidate was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** When the most recent interaction with the candidate occurred. */
-    lastInteractionAt?: string;
+    lastInteractionAt?: Date;
     /** Whether or not the candidate is private. */
     isPrivate?: boolean;
     /** Whether or not the candidate can be emailed. */
@@ -41,12 +41,12 @@ export interface Candidate {
     /** Array of `Tag` names as strings. */
     tags?: (string | undefined)[];
     /** Array of `Application` object IDs. */
-    applications?: (string | undefined)[];
+    applications?: (Merge.ats.CandidateApplicationsItem | undefined)[];
     /** Array of `Attachment` object IDs. */
-    attachments?: (string | undefined)[];
+    attachments?: (Merge.ats.CandidateAttachmentsItem | undefined)[];
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

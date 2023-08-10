@@ -8,19 +8,24 @@ import * as core from "../../../../core";
 
 export const Engagement: core.serialization.ObjectSchema<serializers.crm.Engagement.Raw, Merge.crm.Engagement> =
     core.serialization.object({
-        owner: core.serialization.string().optional(),
+        owner: core.serialization.lazy(async () => (await import("../../..")).crm.EngagementOwner).optional(),
         content: core.serialization.string().optional(),
         subject: core.serialization.string().optional(),
         direction: core.serialization.lazy(async () => (await import("../../..")).crm.EngagementDirection).optional(),
-        engagementType: core.serialization.property("engagement_type", core.serialization.string().optional()),
-        startTime: core.serialization.property("start_time", core.serialization.string().optional()),
-        endTime: core.serialization.property("end_time", core.serialization.string().optional()),
-        account: core.serialization.string().optional(),
-        contacts: core.serialization.list(core.serialization.string().optional()).optional(),
+        engagementType: core.serialization.property(
+            "engagement_type",
+            core.serialization.lazy(async () => (await import("../../..")).crm.EngagementEngagementType).optional()
+        ),
+        startTime: core.serialization.property("start_time", core.serialization.date().optional()),
+        endTime: core.serialization.property("end_time", core.serialization.date().optional()),
+        account: core.serialization.lazy(async () => (await import("../../..")).crm.EngagementAccount).optional(),
+        contacts: core.serialization
+            .list(core.serialization.lazy(async () => (await import("../../..")).crm.EngagementContactsItem).optional())
+            .optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -41,15 +46,15 @@ export const Engagement: core.serialization.ObjectSchema<serializers.crm.Engagem
 
 export declare namespace Engagement {
     interface Raw {
-        owner?: string | null;
+        owner?: serializers.crm.EngagementOwner.Raw | null;
         content?: string | null;
         subject?: string | null;
         direction?: serializers.crm.EngagementDirection.Raw | null;
-        engagement_type?: string | null;
+        engagement_type?: serializers.crm.EngagementEngagementType.Raw | null;
         start_time?: string | null;
         end_time?: string | null;
-        account?: string | null;
-        contacts?: (string | null | undefined)[] | null;
+        account?: serializers.crm.EngagementAccount.Raw | null;
+        contacts?: (serializers.crm.EngagementContactsItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
         id?: string | null;
         remote_id?: string | null;

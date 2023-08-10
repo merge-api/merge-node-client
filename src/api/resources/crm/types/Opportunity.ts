@@ -19,11 +19,11 @@ export interface Opportunity {
     /** The opportunity's amount. */
     amount?: number;
     /** The opportunity's owner. */
-    owner?: string;
+    owner?: Merge.crm.OpportunityOwner;
     /** The account of the opportunity. */
-    account?: string;
+    account?: Merge.crm.OpportunityAccount;
     /** The stage of the opportunity. */
-    stage?: string;
+    stage?: Merge.crm.OpportunityStage;
     /**
      * The opportunity's status.
      *
@@ -33,17 +33,17 @@ export interface Opportunity {
      */
     status?: Merge.crm.OpportunityStatus;
     /** When the opportunity's last activity occurred. */
-    lastActivityAt?: string;
+    lastActivityAt?: Date;
     /** When the opportunity was closed. */
-    closeDate?: string;
+    closeDate?: Date;
     /** When the third party's opportunity was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

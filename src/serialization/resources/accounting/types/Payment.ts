@@ -10,20 +10,26 @@ export const Payment: core.serialization.ObjectSchema<serializers.accounting.Pay
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        transactionDate: core.serialization.property("transaction_date", core.serialization.string().optional()),
-        contact: core.serialization.string().optional(),
-        account: core.serialization.string().optional(),
+        transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
+        contact: core.serialization.lazy(async () => (await import("../../..")).accounting.PaymentContact).optional(),
+        account: core.serialization.lazy(async () => (await import("../../..")).accounting.PaymentAccount).optional(),
         currency: core.serialization.lazy(async () => (await import("../../..")).accounting.PaymentCurrency).optional(),
         exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-        company: core.serialization.string().optional(),
+        company: core.serialization.lazy(async () => (await import("../../..")).accounting.PaymentCompany).optional(),
         totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
         trackingCategories: core.serialization.property(
             "tracking_categories",
-            core.serialization.list(core.serialization.string().optional()).optional()
+            core.serialization
+                .list(
+                    core.serialization
+                        .lazy(async () => (await import("../../..")).accounting.PaymentTrackingCategoriesItem)
+                        .optional()
+                )
+                .optional()
         ),
-        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
+        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -41,13 +47,13 @@ export declare namespace Payment {
         id?: string | null;
         remote_id?: string | null;
         transaction_date?: string | null;
-        contact?: string | null;
-        account?: string | null;
+        contact?: serializers.accounting.PaymentContact.Raw | null;
+        account?: serializers.accounting.PaymentAccount.Raw | null;
         currency?: serializers.accounting.PaymentCurrency.Raw | null;
         exchange_rate?: string | null;
-        company?: string | null;
+        company?: serializers.accounting.PaymentCompany.Raw | null;
         total_amount?: number | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        tracking_categories?: (serializers.accounting.PaymentTrackingCategoriesItem.Raw | null | undefined)[] | null;
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;

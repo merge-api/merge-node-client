@@ -17,26 +17,26 @@ export interface EmployeePayrollRun {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The employee whose payroll is being run. */
-    employee?: string;
+    employee?: Merge.hris.EmployeePayrollRunEmployee;
     /** The payroll being run. */
-    payrollRun?: string;
+    payrollRun?: Merge.hris.EmployeePayrollRunPayrollRun;
     /** The total earnings throughout a given period for an employee before any deductions are made. */
     grossPay?: number;
     /** The take-home pay throughout a given period for an employee after deductions are made. */
     netPay?: number;
     /** The day and time the payroll run started. */
-    startDate?: string;
+    startDate?: Date;
     /** The day and time the payroll run ended. */
-    endDate?: string;
+    endDate?: Date;
     /** The day and time the payroll run was checked. */
-    checkDate?: string;
+    checkDate?: Date;
     earnings?: Merge.hris.Earning[];
     deductions?: Merge.hris.Deduction[];
     taxes?: Merge.hris.Tax[];
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

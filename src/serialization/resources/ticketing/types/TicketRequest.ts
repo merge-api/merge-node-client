@@ -11,19 +11,40 @@ export const TicketRequest: core.serialization.ObjectSchema<
     Merge.ticketing.TicketRequest
 > = core.serialization.object({
     name: core.serialization.string().optional(),
-    assignees: core.serialization.list(core.serialization.string().optional()).optional(),
-    creator: core.serialization.string().optional(),
-    dueDate: core.serialization.property("due_date", core.serialization.string().optional()),
+    assignees: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).ticketing.TicketRequestAssigneesItem)
+                .optional()
+        )
+        .optional(),
+    creator: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketRequestCreator).optional(),
+    dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     status: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketRequestStatus).optional(),
     description: core.serialization.string().optional(),
-    collections: core.serialization.list(core.serialization.string().optional()).optional(),
+    collections: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).ticketing.TicketRequestCollectionsItem)
+                .optional()
+        )
+        .optional(),
     ticketType: core.serialization.property("ticket_type", core.serialization.string().optional()),
-    account: core.serialization.string().optional(),
-    contact: core.serialization.string().optional(),
-    parentTicket: core.serialization.property("parent_ticket", core.serialization.string().optional()),
-    attachments: core.serialization.list(core.serialization.string().optional()).optional(),
+    account: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketRequestAccount).optional(),
+    contact: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketRequestContact).optional(),
+    parentTicket: core.serialization.property(
+        "parent_ticket",
+        core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketRequestParentTicket).optional()
+    ),
+    attachments: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).ticketing.TicketRequestAttachmentsItem)
+                .optional()
+        )
+        .optional(),
     tags: core.serialization.list(core.serialization.string().optional()).optional(),
-    completedAt: core.serialization.property("completed_at", core.serialization.string().optional()),
+    completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
     ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
     priority: core.serialization
         .lazy(async () => (await import("../../..")).ticketing.TicketRequestPriority)
@@ -47,17 +68,17 @@ export const TicketRequest: core.serialization.ObjectSchema<
 export declare namespace TicketRequest {
     interface Raw {
         name?: string | null;
-        assignees?: (string | null | undefined)[] | null;
-        creator?: string | null;
+        assignees?: (serializers.ticketing.TicketRequestAssigneesItem.Raw | null | undefined)[] | null;
+        creator?: serializers.ticketing.TicketRequestCreator.Raw | null;
         due_date?: string | null;
         status?: serializers.ticketing.TicketRequestStatus.Raw | null;
         description?: string | null;
-        collections?: (string | null | undefined)[] | null;
+        collections?: (serializers.ticketing.TicketRequestCollectionsItem.Raw | null | undefined)[] | null;
         ticket_type?: string | null;
-        account?: string | null;
-        contact?: string | null;
-        parent_ticket?: string | null;
-        attachments?: (string | null | undefined)[] | null;
+        account?: serializers.ticketing.TicketRequestAccount.Raw | null;
+        contact?: serializers.ticketing.TicketRequestContact.Raw | null;
+        parent_ticket?: serializers.ticketing.TicketRequestParentTicket.Raw | null;
+        attachments?: (serializers.ticketing.TicketRequestAttachmentsItem.Raw | null | undefined)[] | null;
         tags?: (string | null | undefined)[] | null;
         completed_at?: string | null;
         ticket_url?: string | null;

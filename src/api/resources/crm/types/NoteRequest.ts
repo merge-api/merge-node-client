@@ -13,15 +13,15 @@ import * as Merge from "../../..";
  */
 export interface NoteRequest {
     /** The note's owner. */
-    owner?: string;
+    owner?: Merge.crm.NoteRequestOwner;
     /** The note's content. */
     content?: string;
     /** The note's contact. */
-    contact?: string;
+    contact?: Merge.crm.NoteRequestContact;
     /** The note's account. */
-    account?: string;
+    account?: Merge.crm.NoteRequestAccount;
     /** The note's opportunity. */
-    opportunity?: string;
+    opportunity?: Merge.crm.NoteRequestOpportunity;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.crm.RemoteFieldRequest[];

@@ -17,11 +17,11 @@ export interface Payment {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The payment's transaction date. */
-    transactionDate?: string;
+    transactionDate?: Date;
     /** The supplier, or customer involved in the payment. */
-    contact?: string;
+    contact?: Merge.accounting.PaymentContact;
     /** The supplier’s or customer’s account in which the payment is made. */
-    account?: string;
+    account?: Merge.accounting.PaymentAccount;
     /**
      * The payment's currency.
      *
@@ -336,16 +336,16 @@ export interface Payment {
     /** The payment's exchange rate. */
     exchangeRate?: string;
     /** The company the payment belongs to. */
-    company?: string;
+    company?: Merge.accounting.PaymentCompany;
     /** The total amount of money being paid to the supplier, or customer, after taxes. */
     totalAmount?: number;
-    trackingCategories?: (string | undefined)[];
+    trackingCategories?: (Merge.accounting.PaymentTrackingCategoriesItem | undefined)[];
     /** When the third party's payment entry was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

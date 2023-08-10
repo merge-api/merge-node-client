@@ -13,19 +13,19 @@ import * as Merge from "../../..";
  */
 export interface ScheduledInterviewRequest {
     /** The application being interviewed. */
-    application?: string;
+    application?: Merge.ats.ScheduledInterviewRequestApplication;
     /** The stage of the interview. */
-    jobInterviewStage?: string;
+    jobInterviewStage?: Merge.ats.ScheduledInterviewRequestJobInterviewStage;
     /** The user organizing the interview. */
-    organizer?: string;
+    organizer?: Merge.ats.ScheduledInterviewRequestOrganizer;
     /** Array of `RemoteUser` IDs. */
-    interviewers?: (string | undefined)[];
+    interviewers?: (Merge.ats.ScheduledInterviewRequestInterviewersItem | undefined)[];
     /** The interview's location. */
     location?: string;
     /** When the interview was started. */
-    startAt?: string;
+    startAt?: Date;
     /** When the interview was ended. */
-    endAt?: string;
+    endAt?: Date;
     /**
      * The interview's status.
      *

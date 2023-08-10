@@ -16,9 +16,11 @@ export const CashFlowStatement: core.serialization.ObjectSchema<
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.CashFlowStatementCurrency)
         .optional(),
-    company: core.serialization.string().optional(),
-    startPeriod: core.serialization.property("start_period", core.serialization.string().optional()),
-    endPeriod: core.serialization.property("end_period", core.serialization.string().optional()),
+    company: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.CashFlowStatementCompany)
+        .optional(),
+    startPeriod: core.serialization.property("start_period", core.serialization.date().optional()),
+    endPeriod: core.serialization.property("end_period", core.serialization.date().optional()),
     cashAtBeginningOfPeriod: core.serialization.property(
         "cash_at_beginning_of_period",
         core.serialization.number().optional()
@@ -42,9 +44,9 @@ export const CashFlowStatement: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.ReportItem))
             .optional()
     ),
-    remoteGeneratedAt: core.serialization.property("remote_generated_at", core.serialization.string().optional()),
+    remoteGeneratedAt: core.serialization.property("remote_generated_at", core.serialization.date().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -63,7 +65,7 @@ export declare namespace CashFlowStatement {
         remote_id?: string | null;
         name?: string | null;
         currency?: serializers.accounting.CashFlowStatementCurrency.Raw | null;
-        company?: string | null;
+        company?: serializers.accounting.CashFlowStatementCompany.Raw | null;
         start_period?: string | null;
         end_period?: string | null;
         cash_at_beginning_of_period?: number | null;

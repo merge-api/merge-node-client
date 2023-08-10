@@ -15,8 +15,8 @@ export interface Issue {
     status?: Merge.crm.IssueStatus;
     errorDescription: string;
     endUser?: Record<string, unknown>;
-    firstIncidentTime?: string;
-    lastIncidentTime?: string;
+    firstIncidentTime?: Date;
+    lastIncidentTime?: Date;
     isMuted?: boolean;
     errorDetails?: string[];
 }

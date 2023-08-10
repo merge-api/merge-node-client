@@ -10,7 +10,7 @@ export const Employment: core.serialization.ObjectSchema<serializers.hris.Employ
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        employee: core.serialization.string().optional(),
+        employee: core.serialization.lazy(async () => (await import("../../..")).hris.EmploymentEmployee).optional(),
         jobTitle: core.serialization.property("job_title", core.serialization.string().optional()),
         payRate: core.serialization.property("pay_rate", core.serialization.number().optional()),
         payPeriod: core.serialization.property(
@@ -25,18 +25,21 @@ export const Employment: core.serialization.ObjectSchema<serializers.hris.Employ
             "pay_currency",
             core.serialization.lazy(async () => (await import("../../..")).hris.EmploymentPayCurrency).optional()
         ),
-        payGroup: core.serialization.property("pay_group", core.serialization.string().optional()),
+        payGroup: core.serialization.property(
+            "pay_group",
+            core.serialization.lazy(async () => (await import("../../..")).hris.EmploymentPayGroup).optional()
+        ),
         flsaStatus: core.serialization.property(
             "flsa_status",
             core.serialization.lazy(async () => (await import("../../..")).hris.EmploymentFlsaStatus).optional()
         ),
-        effectiveDate: core.serialization.property("effective_date", core.serialization.string().optional()),
+        effectiveDate: core.serialization.property("effective_date", core.serialization.date().optional()),
         employmentType: core.serialization.property(
             "employment_type",
             core.serialization.lazy(async () => (await import("../../..")).hris.EmploymentEmploymentType).optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -53,13 +56,13 @@ export declare namespace Employment {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        employee?: string | null;
+        employee?: serializers.hris.EmploymentEmployee.Raw | null;
         job_title?: string | null;
         pay_rate?: number | null;
         pay_period?: serializers.hris.EmploymentPayPeriod.Raw | null;
         pay_frequency?: serializers.hris.EmploymentPayFrequency.Raw | null;
         pay_currency?: serializers.hris.EmploymentPayCurrency.Raw | null;
-        pay_group?: string | null;
+        pay_group?: serializers.hris.EmploymentPayGroup.Raw | null;
         flsa_status?: serializers.hris.EmploymentFlsaStatus.Raw | null;
         effective_date?: string | null;
         employment_type?: serializers.hris.EmploymentEmploymentType.Raw | null;

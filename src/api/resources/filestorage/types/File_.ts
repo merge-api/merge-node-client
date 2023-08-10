@@ -32,13 +32,13 @@ export interface File_ {
     /** The drive that the file belongs to. */
     drive?: string;
     /** When the third party's file was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the third party's file was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: (Record<string, unknown> | undefined)[];
 }

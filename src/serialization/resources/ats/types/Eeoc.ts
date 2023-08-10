@@ -10,8 +10,8 @@ export const Eeoc: core.serialization.ObjectSchema<serializers.ats.Eeoc.Raw, Mer
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        candidate: core.serialization.string().optional(),
-        submittedAt: core.serialization.property("submitted_at", core.serialization.string().optional()),
+        candidate: core.serialization.lazy(async () => (await import("../../..")).ats.EeocCandidate).optional(),
+        submittedAt: core.serialization.property("submitted_at", core.serialization.date().optional()),
         race: core.serialization.lazy(async () => (await import("../../..")).ats.EeocRace).optional(),
         gender: core.serialization.lazy(async () => (await import("../../..")).ats.EeocGender).optional(),
         veteranStatus: core.serialization.property(
@@ -23,7 +23,7 @@ export const Eeoc: core.serialization.ObjectSchema<serializers.ats.Eeoc.Raw, Mer
             core.serialization.lazy(async () => (await import("../../..")).ats.EeocDisabilityStatus).optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -40,7 +40,7 @@ export declare namespace Eeoc {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        candidate?: string | null;
+        candidate?: serializers.ats.EeocCandidate.Raw | null;
         submitted_at?: string | null;
         race?: serializers.ats.EeocRace.Raw | null;
         gender?: serializers.ats.EeocGender.Raw | null;

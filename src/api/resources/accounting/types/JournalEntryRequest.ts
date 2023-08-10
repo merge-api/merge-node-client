@@ -14,9 +14,9 @@ import * as Merge from "../../..";
  */
 export interface JournalEntryRequest {
     /** The journal entry's transaction date. */
-    transactionDate?: string;
+    transactionDate?: Date;
     /** Array of `Payment` object IDs. */
-    payments?: (string | undefined)[];
+    payments?: (Merge.accounting.JournalEntryRequestPaymentsItem | undefined)[];
     /** The journal entry's private note. */
     memo?: string;
     /**
@@ -333,7 +333,7 @@ export interface JournalEntryRequest {
     /** The journal entry's exchange rate. */
     exchangeRate?: string;
     /** The company the journal entry belongs to. */
-    company?: string;
+    company?: Merge.accounting.JournalEntryRequestCompany;
     lines?: Merge.accounting.JournalLineRequest[];
     /**
      * The journal's posting status.

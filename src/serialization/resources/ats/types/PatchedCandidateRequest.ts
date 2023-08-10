@@ -14,7 +14,7 @@ export const PatchedCandidateRequest: core.serialization.ObjectSchema<
     lastName: core.serialization.property("last_name", core.serialization.string().optional()),
     company: core.serialization.string().optional(),
     title: core.serialization.string().optional(),
-    lastInteractionAt: core.serialization.property("last_interaction_at", core.serialization.string().optional()),
+    lastInteractionAt: core.serialization.property("last_interaction_at", core.serialization.date().optional()),
     isPrivate: core.serialization.property("is_private", core.serialization.boolean().optional()),
     canEmail: core.serialization.property("can_email", core.serialization.boolean().optional()),
     locations: core.serialization.list(core.serialization.string().optional()).optional(),

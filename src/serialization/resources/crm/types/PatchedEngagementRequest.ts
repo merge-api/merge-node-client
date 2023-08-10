@@ -17,8 +17,8 @@ export const PatchedEngagementRequest: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).crm.PatchedEngagementRequestDirection)
         .optional(),
     engagementType: core.serialization.property("engagement_type", core.serialization.string().optional()),
-    startTime: core.serialization.property("start_time", core.serialization.string().optional()),
-    endTime: core.serialization.property("end_time", core.serialization.string().optional()),
+    startTime: core.serialization.property("start_time", core.serialization.date().optional()),
+    endTime: core.serialization.property("end_time", core.serialization.date().optional()),
     account: core.serialization.string().optional(),
     contacts: core.serialization.list(core.serialization.string().optional()).optional(),
     integrationParams: core.serialization.property(

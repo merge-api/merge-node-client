@@ -14,13 +14,13 @@ import * as Merge from "../../..";
  */
 export interface Expense {
     /** When the transaction occurred. */
-    transactionDate?: string;
+    transactionDate?: Date;
     /** When the expense was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** The expense's payment account. */
-    account?: string;
+    account?: Merge.accounting.ExpenseAccount;
     /** The expense's contact. */
-    contact?: string;
+    contact?: Merge.accounting.ExpenseContact;
     /** The expense's total amount. */
     totalAmount?: number;
     /**
@@ -337,18 +337,18 @@ export interface Expense {
     /** The expense's exchange rate. */
     exchangeRate?: string;
     /** The company the expense belongs to. */
-    company?: string;
+    company?: Merge.accounting.ExpenseCompany;
     /** The expense's private note. */
     memo?: string;
     lines?: Merge.accounting.ExpenseLine[];
-    trackingCategories?: (string | undefined)[];
+    trackingCategories?: (Merge.accounting.ExpenseTrackingCategoriesItem | undefined)[];
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

@@ -13,25 +13,25 @@ import * as Merge from "../../..";
  */
 export interface Note {
     /** The note's owner. */
-    owner?: string;
+    owner?: Merge.crm.NoteOwner;
     /** The note's content. */
     content?: string;
     /** The note's contact. */
-    contact?: string;
+    contact?: Merge.crm.NoteContact;
     /** The note's account. */
-    account?: string;
+    account?: Merge.crm.NoteAccount;
     /** The note's opportunity. */
-    opportunity?: string;
+    opportunity?: Merge.crm.NoteOpportunity;
     /** When the third party's lead was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** When the third party's lead was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

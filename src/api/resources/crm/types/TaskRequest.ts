@@ -17,15 +17,15 @@ export interface TaskRequest {
     /** The task's content. */
     content?: string;
     /** The task's owner. */
-    owner?: string;
+    owner?: Merge.crm.TaskRequestOwner;
     /** The task's account. */
-    account?: string;
+    account?: Merge.crm.TaskRequestAccount;
     /** The task's opportunity. */
-    opportunity?: string;
+    opportunity?: Merge.crm.TaskRequestOpportunity;
     /** When the task is completed. */
-    completedDate?: string;
+    completedDate?: Date;
     /** When the task is due. */
-    dueDate?: string;
+    dueDate?: Date;
     /**
      * The task's status.
      *

@@ -15,11 +15,11 @@ import * as Merge from "../../..";
 export interface TicketRequest {
     /** The ticket's name. */
     name?: string;
-    assignees?: (string | undefined)[];
+    assignees?: (Merge.ticketing.TicketRequestAssigneesItem | undefined)[];
     /** The user who created this ticket. */
-    creator?: string;
+    creator?: Merge.ticketing.TicketRequestCreator;
     /** The ticket's due date. */
-    dueDate?: string;
+    dueDate?: Date;
     /**
      * The current status of the ticket.
      *
@@ -31,19 +31,19 @@ export interface TicketRequest {
     status?: Merge.ticketing.TicketRequestStatus;
     /** The ticket’s description. HTML version of description is mapped if supported by the third-party platform. */
     description?: string;
-    collections?: (string | undefined)[];
+    collections?: (Merge.ticketing.TicketRequestCollectionsItem | undefined)[];
     /** The ticket's type. */
     ticketType?: string;
     /** The account associated with the ticket. */
-    account?: string;
+    account?: Merge.ticketing.TicketRequestAccount;
     /** The contact associated with the ticket. */
-    contact?: string;
+    contact?: Merge.ticketing.TicketRequestContact;
     /** The ticket's parent ticket. */
-    parentTicket?: string;
-    attachments?: (string | undefined)[];
+    parentTicket?: Merge.ticketing.TicketRequestParentTicket;
+    attachments?: (Merge.ticketing.TicketRequestAttachmentsItem | undefined)[];
     tags?: (string | undefined)[];
     /** When the ticket was completed. */
-    completedAt?: string;
+    completedAt?: Date;
     /** The 3rd party url of the Ticket. */
     ticketUrl?: string;
     /**

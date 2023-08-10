@@ -17,22 +17,22 @@ export interface Comment {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The author of the Comment, if the author is a User. */
-    user?: string;
+    user?: Merge.ticketing.CommentUser;
     /** The author of the Comment, if the author is a Contact. */
-    contact?: string;
+    contact?: Merge.ticketing.CommentContact;
     /** The comment's text body. */
     body?: string;
     /** The comment's text body formatted as html. */
     htmlBody?: string;
     /** The ticket associated with the comment. */
-    ticket?: string;
+    ticket?: Merge.ticketing.CommentTicket;
     /** Whether or not the comment is internal. */
     isPrivate?: boolean;
     /** When the third party's comment was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
 }
