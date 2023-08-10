@@ -21,7 +21,7 @@ export interface PurchaseOrderLineItem {
     unitPrice?: number;
     /** The line item's quantity. */
     quantity?: number;
-    item?: string;
+    item?: Merge.accounting.PurchaseOrderLineItemItem;
     /** The purchase order line item's account. */
     account?: string;
     /** The purchase order line item's associated tracking category. */
@@ -348,5 +348,5 @@ export interface PurchaseOrderLineItem {
     /** The company the purchase order line item belongs to. */
     company?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
 }

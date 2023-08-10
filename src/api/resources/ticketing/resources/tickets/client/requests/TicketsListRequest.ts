@@ -20,11 +20,11 @@ export interface TicketsListRequest {
     /**
      * If provided, will only return tickets completed after this datetime.
      */
-    completedAfter?: string;
+    completedAfter?: Date;
     /**
      * If provided, will only return tickets completed before this datetime.
      */
-    completedBefore?: string;
+    completedBefore?: Date;
     /**
      * If provided, will only return tickets for this contact.
      */
@@ -32,11 +32,11 @@ export interface TicketsListRequest {
     /**
      * If provided, will only return objects created after this datetime.
      */
-    createdAfter?: string;
+    createdAfter?: Date;
     /**
      * If provided, will only return objects created before this datetime.
      */
-    createdBefore?: string;
+    createdBefore?: Date;
     /**
      * The pagination cursor value.
      */
@@ -44,11 +44,11 @@ export interface TicketsListRequest {
     /**
      * If provided, will only return tickets due after this datetime.
      */
-    dueAfter?: string;
+    dueAfter?: Date;
     /**
      * If provided, will only return tickets due before this datetime.
      */
-    dueBefore?: string;
+    dueBefore?: Date;
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
@@ -68,11 +68,11 @@ export interface TicketsListRequest {
     /**
      * If provided, only objects synced by Merge after this date time will be returned.
      */
-    modifiedAfter?: string;
+    modifiedAfter?: Date;
     /**
      * If provided, only objects synced by Merge before this date time will be returned.
      */
-    modifiedBefore?: string;
+    modifiedBefore?: Date;
     /**
      * Number of results to return per page.
      */
@@ -97,11 +97,11 @@ export interface TicketsListRequest {
     /**
      * If provided, will only return tickets created in the third party platform after this datetime.
      */
-    remoteCreatedAfter?: string;
+    remoteCreatedAfter?: Date;
     /**
      * If provided, will only return tickets created in the third party platform before this datetime.
      */
-    remoteCreatedBefore?: string;
+    remoteCreatedBefore?: Date;
     /**
      * Deprecated. Use show_enum_origins.
      */
@@ -113,11 +113,11 @@ export interface TicketsListRequest {
     /**
      * If provided, will only return tickets updated in the third party platform after this datetime.
      */
-    remoteUpdatedAfter?: string;
+    remoteUpdatedAfter?: Date;
     /**
      * If provided, will only return tickets updated in the third party platform before this datetime.
      */
-    remoteUpdatedBefore?: string;
+    remoteUpdatedBefore?: Date;
     /**
      * Which fields should be returned in non-normalized form.
      */

@@ -12,7 +12,7 @@ export const CustomObject: core.serialization.ObjectSchema<serializers.crm.Custo
         fields: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         id: core.serialization.string().optional(),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         remoteFields: core.serialization.property(
             "remote_fields",
             core.serialization

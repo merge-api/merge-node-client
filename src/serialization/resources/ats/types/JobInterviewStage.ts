@@ -13,10 +13,10 @@ export const JobInterviewStage: core.serialization.ObjectSchema<
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
     name: core.serialization.string().optional(),
-    job: core.serialization.string().optional(),
+    job: core.serialization.lazy(async () => (await import("../../..")).ats.JobInterviewStageJob).optional(),
     stageOrder: core.serialization.property("stage_order", core.serialization.number().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -34,7 +34,7 @@ export declare namespace JobInterviewStage {
         id?: string | null;
         remote_id?: string | null;
         name?: string | null;
-        job?: string | null;
+        job?: serializers.ats.JobInterviewStageJob.Raw | null;
         stage_order?: number | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;

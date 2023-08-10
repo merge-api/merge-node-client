@@ -21,7 +21,7 @@ export interface PatchedCandidateRequest {
     /** The candidate's current title. */
     title?: string;
     /** When the most recent interaction with the candidate occurred. */
-    lastInteractionAt?: string;
+    lastInteractionAt?: Date;
     /** Whether or not the candidate is private. */
     isPrivate?: boolean;
     /** Whether or not the candidate can be emailed. */

@@ -12,7 +12,7 @@ export const CreditNote: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    transactionDate: core.serialization.property("transaction_date", core.serialization.string().optional()),
+    transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
     status: core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteStatus).optional(),
     number: core.serialization.string().optional(),
     contact: core.serialization.string().optional(),
@@ -28,14 +28,24 @@ export const CreditNote: core.serialization.ObjectSchema<
     ),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.CreditNoteTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
     ),
     currency: core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteCurrency).optional(),
-    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
-    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
-    payments: core.serialization.list(core.serialization.string().optional()).optional(),
+    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
+    payments: core.serialization
+        .list(
+            core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNotePaymentsItem).optional()
+        )
+        .optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -61,11 +71,11 @@ export declare namespace CreditNote {
         total_amount?: number | null;
         remaining_credit?: number | null;
         line_items?: serializers.accounting.CreditNoteLineItem.Raw[] | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        tracking_categories?: (serializers.accounting.CreditNoteTrackingCategoriesItem.Raw | null | undefined)[] | null;
         currency?: serializers.accounting.CreditNoteCurrency.Raw | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
-        payments?: (string | null | undefined)[] | null;
+        payments?: (serializers.accounting.CreditNotePaymentsItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;

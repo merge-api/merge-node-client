@@ -10,7 +10,7 @@ export const Contact: core.serialization.ObjectSchema<serializers.crm.Contact.Ra
     core.serialization.object({
         firstName: core.serialization.property("first_name", core.serialization.string().optional()),
         lastName: core.serialization.property("last_name", core.serialization.string().optional()),
-        account: core.serialization.string().optional(),
+        account: core.serialization.lazy(async () => (await import("../../..")).crm.ContactAccount).optional(),
         addresses: core.serialization
             .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.Address))
             .optional(),
@@ -26,12 +26,12 @@ export const Contact: core.serialization.ObjectSchema<serializers.crm.Contact.Ra
                 .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.PhoneNumber))
                 .optional()
         ),
-        lastActivityAt: core.serialization.property("last_activity_at", core.serialization.string().optional()),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
+        lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -54,7 +54,7 @@ export declare namespace Contact {
     interface Raw {
         first_name?: string | null;
         last_name?: string | null;
-        account?: string | null;
+        account?: serializers.crm.ContactAccount.Raw | null;
         addresses?: serializers.crm.Address.Raw[] | null;
         email_addresses?: serializers.crm.EmailAddress.Raw[] | null;
         phone_numbers?: serializers.crm.PhoneNumber.Raw[] | null;

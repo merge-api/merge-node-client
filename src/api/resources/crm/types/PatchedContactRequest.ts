@@ -22,7 +22,7 @@ export interface PatchedContactRequest {
     emailAddresses?: Merge.crm.EmailAddressRequest[];
     phoneNumbers?: Merge.crm.PhoneNumberRequest[];
     /** When the contact's last activity occurred. */
-    lastActivityAt?: string;
+    lastActivityAt?: Date;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.crm.RemoteFieldRequest[];

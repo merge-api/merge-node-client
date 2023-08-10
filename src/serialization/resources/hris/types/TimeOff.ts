@@ -10,8 +10,8 @@ export const TimeOff: core.serialization.ObjectSchema<serializers.hris.TimeOff.R
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        employee: core.serialization.string().optional(),
-        approver: core.serialization.string().optional(),
+        employee: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffEmployee).optional(),
+        approver: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffApprover).optional(),
         status: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffStatus).optional(),
         employeeNote: core.serialization.property("employee_note", core.serialization.string().optional()),
         units: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffUnits).optional(),
@@ -20,10 +20,10 @@ export const TimeOff: core.serialization.ObjectSchema<serializers.hris.TimeOff.R
             "request_type",
             core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffRequestType).optional()
         ),
-        startTime: core.serialization.property("start_time", core.serialization.string().optional()),
-        endTime: core.serialization.property("end_time", core.serialization.string().optional()),
+        startTime: core.serialization.property("start_time", core.serialization.date().optional()),
+        endTime: core.serialization.property("end_time", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -40,8 +40,8 @@ export declare namespace TimeOff {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        employee?: string | null;
-        approver?: string | null;
+        employee?: serializers.hris.TimeOffEmployee.Raw | null;
+        approver?: serializers.hris.TimeOffApprover.Raw | null;
         status?: serializers.hris.TimeOffStatus.Raw | null;
         employee_note?: string | null;
         units?: serializers.hris.TimeOffUnits.Raw | null;

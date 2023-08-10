@@ -24,19 +24,19 @@ export interface PurchaseOrderRequest {
      */
     status?: Merge.accounting.PurchaseOrderRequestStatus;
     /** The purchase order's issue date. */
-    issueDate?: string;
+    issueDate?: Date;
     /** The purchase order's delivery date. */
-    deliveryDate?: string;
+    deliveryDate?: Date;
     /** The purchase order's delivery address. */
-    deliveryAddress?: string;
+    deliveryAddress?: Merge.accounting.PurchaseOrderRequestDeliveryAddress;
     /** The contact making the purchase order. */
     customer?: string;
     /** The party fulfilling the purchase order. */
-    vendor?: string;
+    vendor?: Merge.accounting.PurchaseOrderRequestVendor;
     /** A memo attached to the purchase order. */
     memo?: string;
     /** The company the purchase order belongs to. */
-    company?: string;
+    company?: Merge.accounting.PurchaseOrderRequestCompany;
     /** The purchase order's total amount. */
     totalAmount?: number;
     /**

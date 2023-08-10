@@ -1,6 +1,7 @@
 export * as accountDetails from "./accountDetails";
 export * as accountToken from "./accountToken";
 export * as accounts from "./accounts";
+export * as asyncPassthrough from "./asyncPassthrough";
 export * as attachments from "./attachments";
 export * as availableActions from "./availableActions";
 export * as collections from "./collections";
@@ -31,7 +32,6 @@ export * from "./generateKey/client/requests";
 export * from "./issues/client/requests";
 export * from "./linkToken/client/requests";
 export * from "./linkedAccounts/client/requests";
-export * from "./passthrough/client/requests";
 export * from "./projects/client/requests";
 export * from "./regenerateKey/client/requests";
 export * from "./selectiveSync/client/requests";

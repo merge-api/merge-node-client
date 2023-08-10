@@ -8,6 +8,7 @@ import { AccountDetails } from "../resources/accountDetails/client/Client";
 import { AccountToken } from "../resources/accountToken/client/Client";
 import { Accounts } from "../resources/accounts/client/Client";
 import { Addresses } from "../resources/addresses/client/Client";
+import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
 import { Attachments } from "../resources/attachments/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { BalanceSheets } from "../resources/balanceSheets/client/Client";
@@ -76,6 +77,12 @@ export class Accounting {
 
     public get addresses(): Addresses {
         return (this._addresses ??= new Addresses(this._options));
+    }
+
+    protected _asyncPassthrough: AsyncPassthrough | undefined;
+
+    public get asyncPassthrough(): AsyncPassthrough {
+        return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
     }
 
     protected _attachments: Attachments | undefined;

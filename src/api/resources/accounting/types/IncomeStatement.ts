@@ -330,11 +330,11 @@ export interface IncomeStatement {
      */
     currency?: Merge.accounting.IncomeStatementCurrency;
     /** The company the income statement belongs to. */
-    company?: string;
+    company?: Merge.accounting.IncomeStatementCompany;
     /** The income statement's start period. */
-    startPeriod?: string;
+    startPeriod?: Date;
     /** The income statement's end period. */
-    endPeriod?: string;
+    endPeriod?: Date;
     income?: Merge.accounting.ReportItem[];
     costOfSales?: Merge.accounting.ReportItem[];
     /** The revenue minus the cost of sale. */
@@ -348,7 +348,7 @@ export interface IncomeStatement {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

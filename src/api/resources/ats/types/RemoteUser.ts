@@ -24,7 +24,7 @@ export interface RemoteUser {
     /** Whether the user's account had been disabled. */
     disabled?: boolean;
     /** When the third party's user was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /**
      * The user's role.
      *
@@ -38,7 +38,7 @@ export interface RemoteUser {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

@@ -22,19 +22,19 @@ export interface InvoiceRequest {
      */
     type?: Merge.accounting.InvoiceRequestType;
     /** The invoice's contact. */
-    contact?: string;
+    contact?: Merge.accounting.InvoiceRequestContact;
     /** The invoice's number. */
     number?: string;
     /** The invoice's issue date. */
-    issueDate?: string;
+    issueDate?: Date;
     /** The invoice's due date. */
-    dueDate?: string;
+    dueDate?: Date;
     /** The invoice's paid date. */
-    paidOnDate?: string;
+    paidOnDate?: Date;
     /** The invoice's private note. */
     memo?: string;
     /** The company the invoice belongs to. */
-    company?: string;
+    company?: Merge.accounting.InvoiceRequestCompany;
     /**
      * The invoice's currency.
      *
@@ -359,7 +359,8 @@ export interface InvoiceRequest {
     /** The invoice's remaining balance. */
     balance?: number;
     /** Array of `Payment` object IDs. */
-    payments?: (string | undefined)[];
+    payments?: (Merge.accounting.InvoiceRequestPaymentsItem | undefined)[];
+    trackingCategories?: (Merge.accounting.InvoiceRequestTrackingCategoriesItem | undefined)[];
     lineItems?: Merge.accounting.InvoiceLineItemRequest[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;

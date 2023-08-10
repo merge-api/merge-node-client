@@ -10,7 +10,7 @@ export const Benefit: core.serialization.ObjectSchema<serializers.hris.Benefit.R
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        employee: core.serialization.string().optional(),
+        employee: core.serialization.lazy(async () => (await import("../../..")).hris.BenefitEmployee).optional(),
         providerName: core.serialization.property("provider_name", core.serialization.string().optional()),
         benefitPlanType: core.serialization.property("benefit_plan_type", core.serialization.string().optional()),
         employeeContribution: core.serialization.property(
@@ -21,10 +21,11 @@ export const Benefit: core.serialization.ObjectSchema<serializers.hris.Benefit.R
             "company_contribution",
             core.serialization.number().optional()
         ),
-        startDate: core.serialization.property("start_date", core.serialization.string().optional()),
-        endDate: core.serialization.property("end_date", core.serialization.string().optional()),
+        startDate: core.serialization.property("start_date", core.serialization.date().optional()),
+        endDate: core.serialization.property("end_date", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        employerBenefit: core.serialization.property("employer_benefit", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -41,7 +42,7 @@ export declare namespace Benefit {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        employee?: string | null;
+        employee?: serializers.hris.BenefitEmployee.Raw | null;
         provider_name?: string | null;
         benefit_plan_type?: string | null;
         employee_contribution?: number | null;
@@ -49,6 +50,7 @@ export declare namespace Benefit {
         start_date?: string | null;
         end_date?: string | null;
         remote_was_deleted?: boolean | null;
+        employer_benefit?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.hris.RemoteData.Raw[] | null;

@@ -15,8 +15,8 @@ import * as Merge from "../../..";
 export interface SyncStatus {
     modelName: string;
     modelId: string;
-    lastSyncStart?: string;
-    nextSyncStart?: string;
+    lastSyncStart?: Date;
+    nextSyncStart?: Date;
     status: Merge.ats.SyncStatusStatusEnum;
     isInitialSync: boolean;
     selectiveSyncConfigurationsUsage?: Merge.ats.SelectiveSyncConfigurationsUsageEnum;

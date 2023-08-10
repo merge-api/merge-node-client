@@ -28,9 +28,9 @@ export interface PatchedEngagementRequest {
     /** The engagement type of the engagement. */
     engagementType?: string;
     /** The time at which the engagement started. */
-    startTime?: string;
+    startTime?: Date;
     /** The time at which the engagement ended. */
-    endTime?: string;
+    endTime?: Date;
     /** The account of the engagement. */
     account?: string;
     contacts?: (string | undefined)[];

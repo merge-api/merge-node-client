@@ -16,17 +16,17 @@ export interface Offer {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The application who is receiving the offer. */
-    application?: string;
+    application?: Merge.ats.OfferApplication;
     /** The user who created the offer. */
-    creator?: string;
+    creator?: Merge.ats.OfferCreator;
     /** When the third party's offer was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the offer was closed. */
-    closedAt?: string;
+    closedAt?: Date;
     /** When the offer was sent. */
-    sentAt?: string;
+    sentAt?: Date;
     /** The employment start date on the offer. */
-    startDate?: string;
+    startDate?: Date;
     /**
      * The offer's status.
      *
@@ -44,7 +44,7 @@ export interface Offer {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

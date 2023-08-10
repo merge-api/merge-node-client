@@ -36,7 +36,7 @@ export interface Contact {
     /** The currency the contact's transactions are in. */
     currency?: string;
     /** When the third party's contact was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** The company the contact belongs to. */
     company?: string;
     /** `Address` object IDs for the given `Contacts` object. */
@@ -46,7 +46,7 @@ export interface Contact {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

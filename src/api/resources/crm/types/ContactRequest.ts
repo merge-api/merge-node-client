@@ -17,12 +17,12 @@ export interface ContactRequest {
     /** The contact's last name. */
     lastName?: string;
     /** The contact's account. */
-    account?: string;
+    account?: Merge.crm.ContactRequestAccount;
     addresses?: Merge.crm.AddressRequest[];
     emailAddresses?: Merge.crm.EmailAddressRequest[];
     phoneNumbers?: Merge.crm.PhoneNumberRequest[];
     /** When the contact's last activity occurred. */
-    lastActivityAt?: string;
+    lastActivityAt?: Date;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.crm.RemoteFieldRequest[];

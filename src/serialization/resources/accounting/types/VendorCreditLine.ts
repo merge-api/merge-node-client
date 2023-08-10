@@ -18,10 +18,12 @@ export const VendorCreditLine: core.serialization.ObjectSchema<
         core.serialization.list(core.serialization.string())
     ),
     description: core.serialization.string().optional(),
-    account: core.serialization.string().optional(),
+    account: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.VendorCreditLineAccount)
+        .optional(),
     company: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace VendorCreditLine {
@@ -31,7 +33,7 @@ export declare namespace VendorCreditLine {
         tracking_category?: string | null;
         tracking_categories: string[];
         description?: string | null;
-        account?: string | null;
+        account?: serializers.accounting.VendorCreditLineAccount.Raw | null;
         company?: string | null;
         exchange_rate?: string | null;
         modified_at?: string | null;

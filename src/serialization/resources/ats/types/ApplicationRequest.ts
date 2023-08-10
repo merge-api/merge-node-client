@@ -10,14 +10,25 @@ export const ApplicationRequest: core.serialization.ObjectSchema<
     serializers.ats.ApplicationRequest.Raw,
     Merge.ats.ApplicationRequest
 > = core.serialization.object({
-    candidate: core.serialization.string().optional(),
-    job: core.serialization.string().optional(),
-    appliedAt: core.serialization.property("applied_at", core.serialization.string().optional()),
-    rejectedAt: core.serialization.property("rejected_at", core.serialization.string().optional()),
+    candidate: core.serialization
+        .lazy(async () => (await import("../../..")).ats.ApplicationRequestCandidate)
+        .optional(),
+    job: core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationRequestJob).optional(),
+    appliedAt: core.serialization.property("applied_at", core.serialization.date().optional()),
+    rejectedAt: core.serialization.property("rejected_at", core.serialization.date().optional()),
     source: core.serialization.string().optional(),
-    creditedTo: core.serialization.property("credited_to", core.serialization.string().optional()),
-    currentStage: core.serialization.property("current_stage", core.serialization.string().optional()),
-    rejectReason: core.serialization.property("reject_reason", core.serialization.string().optional()),
+    creditedTo: core.serialization.property(
+        "credited_to",
+        core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationRequestCreditedTo).optional()
+    ),
+    currentStage: core.serialization.property(
+        "current_stage",
+        core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationRequestCurrentStage).optional()
+    ),
+    rejectReason: core.serialization.property(
+        "reject_reason",
+        core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationRequestRejectReason).optional()
+    ),
     remoteTemplateId: core.serialization.property("remote_template_id", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -31,14 +42,14 @@ export const ApplicationRequest: core.serialization.ObjectSchema<
 
 export declare namespace ApplicationRequest {
     interface Raw {
-        candidate?: string | null;
-        job?: string | null;
+        candidate?: serializers.ats.ApplicationRequestCandidate.Raw | null;
+        job?: serializers.ats.ApplicationRequestJob.Raw | null;
         applied_at?: string | null;
         rejected_at?: string | null;
         source?: string | null;
-        credited_to?: string | null;
-        current_stage?: string | null;
-        reject_reason?: string | null;
+        credited_to?: serializers.ats.ApplicationRequestCreditedTo.Raw | null;
+        current_stage?: serializers.ats.ApplicationRequestCurrentStage.Raw | null;
+        reject_reason?: serializers.ats.ApplicationRequestRejectReason.Raw | null;
         remote_template_id?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

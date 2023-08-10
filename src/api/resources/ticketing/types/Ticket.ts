@@ -18,11 +18,11 @@ export interface Ticket {
     remoteId?: string;
     /** The ticket's name. */
     name?: string;
-    assignees?: (string | undefined)[];
+    assignees?: (Merge.ticketing.TicketAssigneesItem | undefined)[];
     /** The user who created this ticket. */
-    creator?: string;
+    creator?: Merge.ticketing.TicketCreator;
     /** The ticket's due date. */
-    dueDate?: string;
+    dueDate?: Date;
     /**
      * The current status of the ticket.
      *
@@ -34,23 +34,23 @@ export interface Ticket {
     status?: Merge.ticketing.TicketStatus;
     /** The ticket’s description. HTML version of description is mapped if supported by the third-party platform. */
     description?: string;
-    collections?: (string | undefined)[];
+    collections?: (Merge.ticketing.TicketCollectionsItem | undefined)[];
     /** The ticket's type. */
     ticketType?: string;
     /** The account associated with the ticket. */
-    account?: string;
+    account?: Merge.ticketing.TicketAccount;
     /** The contact associated with the ticket. */
-    contact?: string;
+    contact?: Merge.ticketing.TicketContact;
     /** The ticket's parent ticket. */
-    parentTicket?: string;
-    attachments?: (string | undefined)[];
+    parentTicket?: Merge.ticketing.TicketParentTicket;
+    attachments?: (Merge.ticketing.TicketAttachmentsItem | undefined)[];
     tags?: (string | undefined)[];
     /** When the third party's ticket was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the third party's ticket was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** When the ticket was completed. */
-    completedAt?: string;
+    completedAt?: Date;
     remoteWasDeleted?: boolean;
     /** The 3rd party url of the Ticket. */
     ticketUrl?: string;
@@ -64,7 +64,7 @@ export interface Ticket {
      */
     priority?: Merge.ticketing.TicketPriority;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
     remoteFields?: Merge.ticketing.RemoteField[];

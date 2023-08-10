@@ -11,17 +11,17 @@ export const Opportunity: core.serialization.ObjectSchema<serializers.crm.Opport
         name: core.serialization.string().optional(),
         description: core.serialization.string().optional(),
         amount: core.serialization.number().optional(),
-        owner: core.serialization.string().optional(),
-        account: core.serialization.string().optional(),
-        stage: core.serialization.string().optional(),
+        owner: core.serialization.lazy(async () => (await import("../../..")).crm.OpportunityOwner).optional(),
+        account: core.serialization.lazy(async () => (await import("../../..")).crm.OpportunityAccount).optional(),
+        stage: core.serialization.lazy(async () => (await import("../../..")).crm.OpportunityStage).optional(),
         status: core.serialization.lazy(async () => (await import("../../..")).crm.OpportunityStatus).optional(),
-        lastActivityAt: core.serialization.property("last_activity_at", core.serialization.string().optional()),
-        closeDate: core.serialization.property("close_date", core.serialization.string().optional()),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
+        lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
+        closeDate: core.serialization.property("close_date", core.serialization.date().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -45,9 +45,9 @@ export declare namespace Opportunity {
         name?: string | null;
         description?: string | null;
         amount?: number | null;
-        owner?: string | null;
-        account?: string | null;
-        stage?: string | null;
+        owner?: serializers.crm.OpportunityOwner.Raw | null;
+        account?: serializers.crm.OpportunityAccount.Raw | null;
+        stage?: serializers.crm.OpportunityStage.Raw | null;
         status?: serializers.crm.OpportunityStatus.Raw | null;
         last_activity_at?: string | null;
         close_date?: string | null;

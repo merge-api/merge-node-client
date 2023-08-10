@@ -18,11 +18,11 @@ export interface Transaction {
     /** The transaction's number used for identifying purposes. */
     number?: string;
     /** The date upon which the transaction occurred. */
-    transactionDate?: string;
+    transactionDate?: Date;
     /** The transaction's account. */
-    account?: string;
+    account?: Merge.accounting.TransactionAccount;
     /** The contact to whom the transaction relates to. */
-    contact?: string;
+    contact?: Merge.accounting.TransactionContact;
     /** The total amount being paid after taxes. */
     totalAmount?: string;
     /**
@@ -340,7 +340,7 @@ export interface Transaction {
     exchangeRate?: string;
     /** The company the transaction belongs to. */
     company?: string;
-    trackingCategories?: (string | undefined)[];
+    trackingCategories?: (Merge.accounting.TransactionTrackingCategoriesItem | undefined)[];
     lineItems?: Merge.accounting.TransactionLineItem[];
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
@@ -348,7 +348,7 @@ export interface Transaction {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

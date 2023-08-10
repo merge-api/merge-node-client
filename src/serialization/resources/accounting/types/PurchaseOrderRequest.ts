@@ -13,13 +13,22 @@ export const PurchaseOrderRequest: core.serialization.ObjectSchema<
     status: core.serialization
         .lazy(async () => (await import("../../..")).accounting.PurchaseOrderRequestStatus)
         .optional(),
-    issueDate: core.serialization.property("issue_date", core.serialization.string().optional()),
-    deliveryDate: core.serialization.property("delivery_date", core.serialization.string().optional()),
-    deliveryAddress: core.serialization.property("delivery_address", core.serialization.string().optional()),
+    issueDate: core.serialization.property("issue_date", core.serialization.date().optional()),
+    deliveryDate: core.serialization.property("delivery_date", core.serialization.date().optional()),
+    deliveryAddress: core.serialization.property(
+        "delivery_address",
+        core.serialization
+            .lazy(async () => (await import("../../..")).accounting.PurchaseOrderRequestDeliveryAddress)
+            .optional()
+    ),
     customer: core.serialization.string().optional(),
-    vendor: core.serialization.string().optional(),
+    vendor: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.PurchaseOrderRequestVendor)
+        .optional(),
     memo: core.serialization.string().optional(),
-    company: core.serialization.string().optional(),
+    company: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.PurchaseOrderRequestCompany)
+        .optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.PurchaseOrderRequestCurrency)
@@ -50,11 +59,11 @@ export declare namespace PurchaseOrderRequest {
         status?: serializers.accounting.PurchaseOrderRequestStatus.Raw | null;
         issue_date?: string | null;
         delivery_date?: string | null;
-        delivery_address?: string | null;
+        delivery_address?: serializers.accounting.PurchaseOrderRequestDeliveryAddress.Raw | null;
         customer?: string | null;
-        vendor?: string | null;
+        vendor?: serializers.accounting.PurchaseOrderRequestVendor.Raw | null;
         memo?: string | null;
-        company?: string | null;
+        company?: serializers.accounting.PurchaseOrderRequestCompany.Raw | null;
         total_amount?: number | null;
         currency?: serializers.accounting.PurchaseOrderRequestCurrency.Raw | null;
         exchange_rate?: string | null;

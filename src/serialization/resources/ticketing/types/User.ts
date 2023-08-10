@@ -13,10 +13,12 @@ export const User: core.serialization.ObjectSchema<serializers.ticketing.User.Ra
         name: core.serialization.string().optional(),
         emailAddress: core.serialization.property("email_address", core.serialization.string().optional()),
         isActive: core.serialization.property("is_active", core.serialization.boolean().optional()),
-        teams: core.serialization.list(core.serialization.string().optional()).optional(),
+        teams: core.serialization
+            .list(core.serialization.lazy(async () => (await import("../../..")).ticketing.UserTeamsItem).optional())
+            .optional(),
         avatar: core.serialization.string().optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -36,7 +38,7 @@ export declare namespace User {
         name?: string | null;
         email_address?: string | null;
         is_active?: boolean | null;
-        teams?: (string | null | undefined)[] | null;
+        teams?: (serializers.ticketing.UserTeamsItem.Raw | null | undefined)[] | null;
         avatar?: string | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;

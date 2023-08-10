@@ -8,7 +8,7 @@ import * as core from "../../../../core";
 
 export const Account: core.serialization.ObjectSchema<serializers.crm.Account.Raw, Merge.crm.Account> =
     core.serialization.object({
-        owner: core.serialization.string().optional(),
+        owner: core.serialization.lazy(async () => (await import("../../..")).crm.AccountOwner).optional(),
         name: core.serialization.string().optional(),
         description: core.serialization.string().optional(),
         industry: core.serialization.string().optional(),
@@ -23,13 +23,13 @@ export const Account: core.serialization.ObjectSchema<serializers.crm.Account.Ra
                 .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.PhoneNumber))
                 .optional()
         ),
-        lastActivityAt: core.serialization.property("last_activity_at", core.serialization.string().optional()),
-        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
+        lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
+        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -50,7 +50,7 @@ export const Account: core.serialization.ObjectSchema<serializers.crm.Account.Ra
 
 export declare namespace Account {
     interface Raw {
-        owner?: string | null;
+        owner?: serializers.crm.AccountOwner.Raw | null;
         name?: string | null;
         description?: string | null;
         industry?: string | null;

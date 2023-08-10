@@ -11,13 +11,17 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
     Merge.accounting.InvoiceRequest
 > = core.serialization.object({
     type: core.serialization.lazy(async () => (await import("../../..")).accounting.InvoiceRequestType).optional(),
-    contact: core.serialization.string().optional(),
+    contact: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.InvoiceRequestContact)
+        .optional(),
     number: core.serialization.string().optional(),
-    issueDate: core.serialization.property("issue_date", core.serialization.string().optional()),
-    dueDate: core.serialization.property("due_date", core.serialization.string().optional()),
-    paidOnDate: core.serialization.property("paid_on_date", core.serialization.string().optional()),
+    issueDate: core.serialization.property("issue_date", core.serialization.date().optional()),
+    dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
+    paidOnDate: core.serialization.property("paid_on_date", core.serialization.date().optional()),
     memo: core.serialization.string().optional(),
-    company: core.serialization.string().optional(),
+    company: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.InvoiceRequestCompany)
+        .optional(),
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.InvoiceRequestCurrency)
         .optional(),
@@ -27,7 +31,23 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
     totalTaxAmount: core.serialization.property("total_tax_amount", core.serialization.number().optional()),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     balance: core.serialization.number().optional(),
-    payments: core.serialization.list(core.serialization.string().optional()).optional(),
+    payments: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).accounting.InvoiceRequestPaymentsItem)
+                .optional()
+        )
+        .optional(),
+    trackingCategories: core.serialization.property(
+        "tracking_categories",
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.InvoiceRequestTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
+    ),
     lineItems: core.serialization.property(
         "line_items",
         core.serialization
@@ -49,13 +69,13 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
 export declare namespace InvoiceRequest {
     interface Raw {
         type?: serializers.accounting.InvoiceRequestType.Raw | null;
-        contact?: string | null;
+        contact?: serializers.accounting.InvoiceRequestContact.Raw | null;
         number?: string | null;
         issue_date?: string | null;
         due_date?: string | null;
         paid_on_date?: string | null;
         memo?: string | null;
-        company?: string | null;
+        company?: serializers.accounting.InvoiceRequestCompany.Raw | null;
         currency?: serializers.accounting.InvoiceRequestCurrency.Raw | null;
         exchange_rate?: string | null;
         total_discount?: number | null;
@@ -63,7 +83,10 @@ export declare namespace InvoiceRequest {
         total_tax_amount?: number | null;
         total_amount?: number | null;
         balance?: number | null;
-        payments?: (string | null | undefined)[] | null;
+        payments?: (serializers.accounting.InvoiceRequestPaymentsItem.Raw | null | undefined)[] | null;
+        tracking_categories?:
+            | (serializers.accounting.InvoiceRequestTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         line_items?: serializers.accounting.InvoiceLineItemRequest.Raw[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

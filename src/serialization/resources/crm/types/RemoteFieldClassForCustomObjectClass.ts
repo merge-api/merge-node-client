@@ -36,7 +36,7 @@ export const RemoteFieldClassForCustomObjectClass: core.serialization.ObjectSche
             .lazyObject(async () => (await import("../../..")).crm.RemoteFieldClassForCustomObjectClassItemSchema)
             .optional()
     ),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace RemoteFieldClassForCustomObjectClass {

@@ -12,7 +12,7 @@ export const Url: core.serialization.ObjectSchema<serializers.ats.Url.Raw, Merge
         "url_type",
         core.serialization.lazy(async () => (await import("../../..")).ats.UrlUrlType).optional()
     ),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace Url {

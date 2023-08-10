@@ -13,7 +13,7 @@ import * as Merge from "../../..";
  */
 export interface ActivityRequest {
     /** The user that performed the action. */
-    user?: string;
+    user?: Merge.ats.ActivityRequestUser;
     /**
      * The activity's type.
      *

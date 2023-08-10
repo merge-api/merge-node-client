@@ -18,11 +18,11 @@ export const PayrollRun: core.serialization.ObjectSchema<serializers.hris.Payrol
             "run_type",
             core.serialization.lazy(async () => (await import("../../..")).hris.PayrollRunRunType).optional()
         ),
-        startDate: core.serialization.property("start_date", core.serialization.string().optional()),
-        endDate: core.serialization.property("end_date", core.serialization.string().optional()),
-        checkDate: core.serialization.property("check_date", core.serialization.string().optional()),
+        startDate: core.serialization.property("start_date", core.serialization.date().optional()),
+        endDate: core.serialization.property("end_date", core.serialization.date().optional()),
+        checkDate: core.serialization.property("check_date", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()

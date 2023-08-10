@@ -6,6 +6,7 @@ import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import { AccountDetails } from "../resources/accountDetails/client/Client";
 import { AccountToken } from "../resources/accountToken/client/Client";
+import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
 import { Drives } from "../resources/drives/client/Client";
@@ -49,6 +50,12 @@ export class Filestorage {
 
     public get accountToken(): AccountToken {
         return (this._accountToken ??= new AccountToken(this._options));
+    }
+
+    protected _asyncPassthrough: AsyncPassthrough | undefined;
+
+    public get asyncPassthrough(): AsyncPassthrough {
+        return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
     }
 
     protected _availableActions: AvailableActions | undefined;

@@ -11,26 +11,39 @@ export const JournalLine: core.serialization.ObjectSchema<
     Merge.accounting.JournalLine
 > = core.serialization.object({
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    account: core.serialization.string().optional(),
+    account: core.serialization.lazy(async () => (await import("../../..")).accounting.JournalLineAccount).optional(),
     netAmount: core.serialization.property("net_amount", core.serialization.number().optional()),
-    trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
+    trackingCategory: core.serialization.property(
+        "tracking_category",
+        core.serialization
+            .lazy(async () => (await import("../../..")).accounting.JournalLineTrackingCategory)
+            .optional()
+    ),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.JournalLineTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
     ),
     contact: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace JournalLine {
     interface Raw {
         remote_id?: string | null;
-        account?: string | null;
+        account?: serializers.accounting.JournalLineAccount.Raw | null;
         net_amount?: number | null;
-        tracking_category?: string | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        tracking_category?: serializers.accounting.JournalLineTrackingCategory.Raw | null;
+        tracking_categories?:
+            | (serializers.accounting.JournalLineTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         contact?: string | null;
         description?: string | null;
         exchange_rate?: string | null;

@@ -16,15 +16,18 @@ export const Association: core.serialization.ObjectSchema<serializers.crm.Associ
             "target_object",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
         ),
-        associationType: core.serialization.property("association_type", core.serialization.string().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        associationType: core.serialization.property(
+            "association_type",
+            core.serialization.lazy(async () => (await import("../../..")).crm.AssociationAssociationType).optional()
+        ),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
 export declare namespace Association {
     interface Raw {
         source_object?: Record<string, unknown> | null;
         target_object?: Record<string, unknown> | null;
-        association_type?: string | null;
+        association_type?: serializers.crm.AssociationAssociationType.Raw | null;
         modified_at?: string | null;
     }
 }

@@ -14,13 +14,13 @@ import * as Merge from "../../..";
  */
 export interface JournalEntry {
     /** The journal entry's transaction date. */
-    transactionDate?: string;
+    transactionDate?: Date;
     /** When the third party's journal entry was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the third party's journal entry was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** Array of `Payment` object IDs. */
-    payments?: (string | undefined)[];
+    payments?: (Merge.accounting.JournalEntryPaymentsItem | undefined)[];
     /** The journal entry's private note. */
     memo?: string;
     /**
@@ -337,9 +337,9 @@ export interface JournalEntry {
     /** The journal entry's exchange rate. */
     exchangeRate?: string;
     /** The company the journal entry belongs to. */
-    company?: string;
+    company?: Merge.accounting.JournalEntryCompany;
     lines?: Merge.accounting.JournalLine[];
-    trackingCategories?: (string | undefined)[];
+    trackingCategories?: (Merge.accounting.JournalEntryTrackingCategoriesItem | undefined)[];
     remoteWasDeleted?: boolean;
     /**
      * The journal's posting status.
@@ -352,7 +352,7 @@ export interface JournalEntry {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

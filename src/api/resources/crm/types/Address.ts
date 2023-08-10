@@ -284,5 +284,5 @@ export interface Address {
      */
     addressType?: Merge.crm.AddressAddressType;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
 }

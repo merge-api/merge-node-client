@@ -6,13 +6,16 @@ import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import { AccountDetails } from "../resources/accountDetails/client/Client";
 import { AccountToken } from "../resources/accountToken/client/Client";
+import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { BankInfo } from "../resources/bankInfo/client/Client";
 import { Benefits } from "../resources/benefits/client/Client";
 import { Companies } from "../resources/companies/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
+import { Dependents } from "../resources/dependents/client/Client";
 import { EmployeePayrollRuns } from "../resources/employeePayrollRuns/client/Client";
 import { Employees } from "../resources/employees/client/Client";
+import { EmployerBenefits } from "../resources/employerBenefits/client/Client";
 import { Employments } from "../resources/employments/client/Client";
 import { GenerateKey } from "../resources/generateKey/client/Client";
 import { Groups } from "../resources/groups/client/Client";
@@ -59,6 +62,12 @@ export class Hris {
         return (this._accountToken ??= new AccountToken(this._options));
     }
 
+    protected _asyncPassthrough: AsyncPassthrough | undefined;
+
+    public get asyncPassthrough(): AsyncPassthrough {
+        return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
+    }
+
     protected _availableActions: AvailableActions | undefined;
 
     public get availableActions(): AvailableActions {
@@ -89,6 +98,12 @@ export class Hris {
         return (this._deleteAccount ??= new DeleteAccount(this._options));
     }
 
+    protected _dependents: Dependents | undefined;
+
+    public get dependents(): Dependents {
+        return (this._dependents ??= new Dependents(this._options));
+    }
+
     protected _employeePayrollRuns: EmployeePayrollRuns | undefined;
 
     public get employeePayrollRuns(): EmployeePayrollRuns {
@@ -99,6 +114,12 @@ export class Hris {
 
     public get employees(): Employees {
         return (this._employees ??= new Employees(this._options));
+    }
+
+    protected _employerBenefits: EmployerBenefits | undefined;
+
+    public get employerBenefits(): EmployerBenefits {
+        return (this._employerBenefits ??= new EmployerBenefits(this._options));
     }
 
     protected _employments: Employments | undefined;

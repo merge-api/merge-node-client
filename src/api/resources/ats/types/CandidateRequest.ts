@@ -21,7 +21,7 @@ export interface CandidateRequest {
     /** The candidate's current title. */
     title?: string;
     /** When the most recent interaction with the candidate occurred. */
-    lastInteractionAt?: string;
+    lastInteractionAt?: Date;
     /** Whether or not the candidate is private. */
     isPrivate?: boolean;
     /** Whether or not the candidate can be emailed. */
@@ -34,9 +34,9 @@ export interface CandidateRequest {
     /** Array of `Tag` names as strings. */
     tags?: (string | undefined)[];
     /** Array of `Application` object IDs. */
-    applications?: (string | undefined)[];
+    applications?: (Merge.ats.CandidateRequestApplicationsItem | undefined)[];
     /** Array of `Attachment` object IDs. */
-    attachments?: (string | undefined)[];
+    attachments?: (Merge.ats.CandidateRequestAttachmentsItem | undefined)[];
     /** <span style="white-space: nowrap">`non-empty`</span> */
     remoteTemplateId?: string;
     integrationParams?: Record<string, unknown>;

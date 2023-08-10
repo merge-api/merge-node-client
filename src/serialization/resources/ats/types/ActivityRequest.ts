@@ -10,7 +10,7 @@ export const ActivityRequest: core.serialization.ObjectSchema<
     serializers.ats.ActivityRequest.Raw,
     Merge.ats.ActivityRequest
 > = core.serialization.object({
-    user: core.serialization.string().optional(),
+    user: core.serialization.lazy(async () => (await import("../../..")).ats.ActivityRequestUser).optional(),
     activityType: core.serialization.property(
         "activity_type",
         core.serialization.lazy(async () => (await import("../../..")).ats.ActivityRequestActivityType).optional()
@@ -33,7 +33,7 @@ export const ActivityRequest: core.serialization.ObjectSchema<
 
 export declare namespace ActivityRequest {
     interface Raw {
-        user?: string | null;
+        user?: serializers.ats.ActivityRequestUser.Raw | null;
         activity_type?: serializers.ats.ActivityRequestActivityType.Raw | null;
         subject?: string | null;
         body?: string | null;

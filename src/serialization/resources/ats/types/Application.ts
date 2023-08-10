@@ -10,16 +10,25 @@ export const Application: core.serialization.ObjectSchema<serializers.ats.Applic
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        candidate: core.serialization.string().optional(),
-        job: core.serialization.string().optional(),
-        appliedAt: core.serialization.property("applied_at", core.serialization.string().optional()),
-        rejectedAt: core.serialization.property("rejected_at", core.serialization.string().optional()),
+        candidate: core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationCandidate).optional(),
+        job: core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationJob).optional(),
+        appliedAt: core.serialization.property("applied_at", core.serialization.date().optional()),
+        rejectedAt: core.serialization.property("rejected_at", core.serialization.date().optional()),
         source: core.serialization.string().optional(),
-        creditedTo: core.serialization.property("credited_to", core.serialization.string().optional()),
-        currentStage: core.serialization.property("current_stage", core.serialization.string().optional()),
-        rejectReason: core.serialization.property("reject_reason", core.serialization.string().optional()),
+        creditedTo: core.serialization.property(
+            "credited_to",
+            core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationCreditedTo).optional()
+        ),
+        currentStage: core.serialization.property(
+            "current_stage",
+            core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationCurrentStage).optional()
+        ),
+        rejectReason: core.serialization.property(
+            "reject_reason",
+            core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationRejectReason).optional()
+        ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -36,14 +45,14 @@ export declare namespace Application {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        candidate?: string | null;
-        job?: string | null;
+        candidate?: serializers.ats.ApplicationCandidate.Raw | null;
+        job?: serializers.ats.ApplicationJob.Raw | null;
         applied_at?: string | null;
         rejected_at?: string | null;
         source?: string | null;
-        credited_to?: string | null;
-        current_stage?: string | null;
-        reject_reason?: string | null;
+        credited_to?: serializers.ats.ApplicationCreditedTo.Raw | null;
+        current_stage?: serializers.ats.ApplicationCurrentStage.Raw | null;
+        reject_reason?: serializers.ats.ApplicationRejectReason.Raw | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;

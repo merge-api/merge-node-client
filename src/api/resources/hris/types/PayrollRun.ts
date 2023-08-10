@@ -37,15 +37,15 @@ export interface PayrollRun {
      */
     runType?: Merge.hris.PayrollRunRunType;
     /** The day and time the payroll run started. */
-    startDate?: string;
+    startDate?: Date;
     /** The day and time the payroll run ended. */
-    endDate?: string;
+    endDate?: Date;
     /** The day and time the payroll run was checked. */
-    checkDate?: string;
+    checkDate?: Date;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

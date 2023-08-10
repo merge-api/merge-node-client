@@ -8,7 +8,7 @@ import * as core from "../../../../core";
 
 export const Lead: core.serialization.ObjectSchema<serializers.crm.Lead.Raw, Merge.crm.Lead> =
     core.serialization.object({
-        owner: core.serialization.string().optional(),
+        owner: core.serialization.lazy(async () => (await import("../../..")).crm.LeadOwner).optional(),
         leadSource: core.serialization.property("lead_source", core.serialization.string().optional()),
         title: core.serialization.string().optional(),
         company: core.serialization.string().optional(),
@@ -29,15 +29,21 @@ export const Lead: core.serialization.ObjectSchema<serializers.crm.Lead.Raw, Mer
                 .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.PhoneNumber))
                 .optional()
         ),
-        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
-        convertedDate: core.serialization.property("converted_date", core.serialization.string().optional()),
-        convertedContact: core.serialization.property("converted_contact", core.serialization.string().optional()),
-        convertedAccount: core.serialization.property("converted_account", core.serialization.string().optional()),
+        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+        convertedDate: core.serialization.property("converted_date", core.serialization.date().optional()),
+        convertedContact: core.serialization.property(
+            "converted_contact",
+            core.serialization.lazy(async () => (await import("../../..")).crm.LeadConvertedContact).optional()
+        ),
+        convertedAccount: core.serialization.property(
+            "converted_account",
+            core.serialization.lazy(async () => (await import("../../..")).crm.LeadConvertedAccount).optional()
+        ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -58,7 +64,7 @@ export const Lead: core.serialization.ObjectSchema<serializers.crm.Lead.Raw, Mer
 
 export declare namespace Lead {
     interface Raw {
-        owner?: string | null;
+        owner?: serializers.crm.LeadOwner.Raw | null;
         lead_source?: string | null;
         title?: string | null;
         company?: string | null;
@@ -70,8 +76,8 @@ export declare namespace Lead {
         remote_updated_at?: string | null;
         remote_created_at?: string | null;
         converted_date?: string | null;
-        converted_contact?: string | null;
-        converted_account?: string | null;
+        converted_contact?: serializers.crm.LeadConvertedContact.Raw | null;
+        converted_account?: serializers.crm.LeadConvertedAccount.Raw | null;
         remote_was_deleted?: boolean | null;
         id?: string | null;
         remote_id?: string | null;

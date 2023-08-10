@@ -8,7 +8,7 @@ import * as core from "../../../../core";
 
 export const LeadRequest: core.serialization.ObjectSchema<serializers.crm.LeadRequest.Raw, Merge.crm.LeadRequest> =
     core.serialization.object({
-        owner: core.serialization.string().optional(),
+        owner: core.serialization.lazy(async () => (await import("../../..")).crm.LeadRequestOwner).optional(),
         leadSource: core.serialization.property("lead_source", core.serialization.string().optional()),
         title: core.serialization.string().optional(),
         company: core.serialization.string().optional(),
@@ -29,9 +29,15 @@ export const LeadRequest: core.serialization.ObjectSchema<serializers.crm.LeadRe
                 .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.PhoneNumberRequest))
                 .optional()
         ),
-        convertedDate: core.serialization.property("converted_date", core.serialization.string().optional()),
-        convertedContact: core.serialization.property("converted_contact", core.serialization.string().optional()),
-        convertedAccount: core.serialization.property("converted_account", core.serialization.string().optional()),
+        convertedDate: core.serialization.property("converted_date", core.serialization.date().optional()),
+        convertedContact: core.serialization.property(
+            "converted_contact",
+            core.serialization.lazy(async () => (await import("../../..")).crm.LeadRequestConvertedContact).optional()
+        ),
+        convertedAccount: core.serialization.property(
+            "converted_account",
+            core.serialization.lazy(async () => (await import("../../..")).crm.LeadRequestConvertedAccount).optional()
+        ),
         integrationParams: core.serialization.property(
             "integration_params",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -50,7 +56,7 @@ export const LeadRequest: core.serialization.ObjectSchema<serializers.crm.LeadRe
 
 export declare namespace LeadRequest {
     interface Raw {
-        owner?: string | null;
+        owner?: serializers.crm.LeadRequestOwner.Raw | null;
         lead_source?: string | null;
         title?: string | null;
         company?: string | null;
@@ -60,8 +66,8 @@ export declare namespace LeadRequest {
         email_addresses?: serializers.crm.EmailAddressRequest.Raw[] | null;
         phone_numbers?: serializers.crm.PhoneNumberRequest.Raw[] | null;
         converted_date?: string | null;
-        converted_contact?: string | null;
-        converted_account?: string | null;
+        converted_contact?: serializers.crm.LeadRequestConvertedContact.Raw | null;
+        converted_account?: serializers.crm.LeadRequestConvertedAccount.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
         remote_fields?: serializers.crm.RemoteFieldRequest.Raw[] | null;

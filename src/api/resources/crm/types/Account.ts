@@ -13,7 +13,7 @@ import * as Merge from "../../..";
  */
 export interface Account {
     /** The account's owner. */
-    owner?: string;
+    owner?: Merge.crm.AccountOwner;
     /** The account's name. */
     name?: string;
     /** The account's description. */
@@ -27,17 +27,17 @@ export interface Account {
     addresses?: Merge.crm.Address[];
     phoneNumbers?: Merge.crm.PhoneNumber[];
     /** The last date (either most recent or furthest in the future) of when an activity occurs in an account. */
-    lastActivityAt?: string;
+    lastActivityAt?: Date;
     /** When the CRM system account data was last modified by a user with a login. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** When the third party's account was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

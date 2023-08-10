@@ -17,24 +17,24 @@ export interface Application {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The candidate applying. */
-    candidate?: string;
+    candidate?: Merge.ats.ApplicationCandidate;
     /** The job being applied for. */
-    job?: string;
+    job?: Merge.ats.ApplicationJob;
     /** When the application was submitted. */
-    appliedAt?: string;
+    appliedAt?: Date;
     /** When the application was rejected. */
-    rejectedAt?: string;
+    rejectedAt?: Date;
     /** The application's source. */
     source?: string;
     /** The user credited for this application. */
-    creditedTo?: string;
+    creditedTo?: Merge.ats.ApplicationCreditedTo;
     /** The application's current stage. */
-    currentStage?: string;
+    currentStage?: Merge.ats.ApplicationCurrentStage;
     /** The application's reason for rejection. */
-    rejectReason?: string;
+    rejectReason?: Merge.ats.ApplicationRejectReason;
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

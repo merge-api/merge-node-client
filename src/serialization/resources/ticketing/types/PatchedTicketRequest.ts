@@ -13,7 +13,7 @@ export const PatchedTicketRequest: core.serialization.ObjectSchema<
     name: core.serialization.string().optional(),
     assignees: core.serialization.list(core.serialization.string().optional()).optional(),
     creator: core.serialization.string().optional(),
-    dueDate: core.serialization.property("due_date", core.serialization.string().optional()),
+    dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     status: core.serialization
         .lazy(async () => (await import("../../..")).ticketing.PatchedTicketRequestStatus)
         .optional(),
@@ -24,7 +24,7 @@ export const PatchedTicketRequest: core.serialization.ObjectSchema<
     contact: core.serialization.string().optional(),
     parentTicket: core.serialization.property("parent_ticket", core.serialization.string().optional()),
     tags: core.serialization.list(core.serialization.string().optional()).optional(),
-    completedAt: core.serialization.property("completed_at", core.serialization.string().optional()),
+    completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
     ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
     priority: core.serialization
         .lazy(async () => (await import("../../..")).ticketing.PatchedTicketRequestPriority)

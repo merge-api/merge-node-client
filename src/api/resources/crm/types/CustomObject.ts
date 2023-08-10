@@ -18,6 +18,6 @@ export interface CustomObject {
     remoteId?: string;
     id?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     remoteFields?: Merge.crm.RemoteField[];
 }

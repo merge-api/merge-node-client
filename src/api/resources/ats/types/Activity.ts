@@ -16,9 +16,9 @@ export interface Activity {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The user that performed the action. */
-    user?: string;
+    user?: Merge.ats.ActivityUser;
     /** When the third party's activity was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /**
      * The activity's type.
      *
@@ -44,7 +44,7 @@ export interface Activity {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

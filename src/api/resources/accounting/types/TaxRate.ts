@@ -20,14 +20,14 @@ export interface TaxRate {
     /** The tax rate's effective tax rate. */
     effectiveTaxRate?: number;
     /** The company the tax rate belongs to. */
-    company?: string;
+    company?: Merge.accounting.TaxRateCompany;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

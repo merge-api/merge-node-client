@@ -17,20 +17,20 @@ export interface Contact {
     /** The contact's last name. */
     lastName?: string;
     /** The contact's account. */
-    account?: string;
+    account?: Merge.crm.ContactAccount;
     addresses?: Merge.crm.Address[];
     emailAddresses?: Merge.crm.EmailAddress[];
     phoneNumbers?: Merge.crm.PhoneNumber[];
     /** When the contact's last activity occurred. */
-    lastActivityAt?: string;
+    lastActivityAt?: Date;
     /** When the third party's contact was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

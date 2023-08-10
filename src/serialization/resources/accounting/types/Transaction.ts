@@ -12,16 +12,22 @@ export const Transaction: core.serialization.ObjectSchema<
 > = core.serialization.object({
     transactionType: core.serialization.property("transaction_type", core.serialization.string().optional()),
     number: core.serialization.string().optional(),
-    transactionDate: core.serialization.property("transaction_date", core.serialization.string().optional()),
-    account: core.serialization.string().optional(),
-    contact: core.serialization.string().optional(),
+    transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
+    account: core.serialization.lazy(async () => (await import("../../..")).accounting.TransactionAccount).optional(),
+    contact: core.serialization.lazy(async () => (await import("../../..")).accounting.TransactionContact).optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.string().optional()),
     currency: core.serialization.lazy(async () => (await import("../../..")).accounting.TransactionCurrency).optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     company: core.serialization.string().optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.TransactionTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
     ),
     lineItems: core.serialization.property(
         "line_items",
@@ -32,7 +38,7 @@ export const Transaction: core.serialization.ObjectSchema<
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -50,13 +56,15 @@ export declare namespace Transaction {
         transaction_type?: string | null;
         number?: string | null;
         transaction_date?: string | null;
-        account?: string | null;
-        contact?: string | null;
+        account?: serializers.accounting.TransactionAccount.Raw | null;
+        contact?: serializers.accounting.TransactionContact.Raw | null;
         total_amount?: string | null;
         currency?: serializers.accounting.TransactionCurrency.Raw | null;
         exchange_rate?: string | null;
         company?: string | null;
-        tracking_categories?: (string | null | undefined)[] | null;
+        tracking_categories?:
+            | (serializers.accounting.TransactionTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         line_items?: serializers.accounting.TransactionLineItem.Raw[] | null;
         remote_was_deleted?: boolean | null;
         id?: string | null;

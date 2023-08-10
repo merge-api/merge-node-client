@@ -10,13 +10,28 @@ export const ScheduledInterviewRequest: core.serialization.ObjectSchema<
     serializers.ats.ScheduledInterviewRequest.Raw,
     Merge.ats.ScheduledInterviewRequest
 > = core.serialization.object({
-    application: core.serialization.string().optional(),
-    jobInterviewStage: core.serialization.property("job_interview_stage", core.serialization.string().optional()),
-    organizer: core.serialization.string().optional(),
-    interviewers: core.serialization.list(core.serialization.string().optional()).optional(),
+    application: core.serialization
+        .lazy(async () => (await import("../../..")).ats.ScheduledInterviewRequestApplication)
+        .optional(),
+    jobInterviewStage: core.serialization.property(
+        "job_interview_stage",
+        core.serialization
+            .lazy(async () => (await import("../../..")).ats.ScheduledInterviewRequestJobInterviewStage)
+            .optional()
+    ),
+    organizer: core.serialization
+        .lazy(async () => (await import("../../..")).ats.ScheduledInterviewRequestOrganizer)
+        .optional(),
+    interviewers: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).ats.ScheduledInterviewRequestInterviewersItem)
+                .optional()
+        )
+        .optional(),
     location: core.serialization.string().optional(),
-    startAt: core.serialization.property("start_at", core.serialization.string().optional()),
-    endAt: core.serialization.property("end_at", core.serialization.string().optional()),
+    startAt: core.serialization.property("start_at", core.serialization.date().optional()),
+    endAt: core.serialization.property("end_at", core.serialization.date().optional()),
     status: core.serialization
         .lazy(async () => (await import("../../..")).ats.ScheduledInterviewRequestStatus)
         .optional(),
@@ -32,10 +47,10 @@ export const ScheduledInterviewRequest: core.serialization.ObjectSchema<
 
 export declare namespace ScheduledInterviewRequest {
     interface Raw {
-        application?: string | null;
-        job_interview_stage?: string | null;
-        organizer?: string | null;
-        interviewers?: (string | null | undefined)[] | null;
+        application?: serializers.ats.ScheduledInterviewRequestApplication.Raw | null;
+        job_interview_stage?: serializers.ats.ScheduledInterviewRequestJobInterviewStage.Raw | null;
+        organizer?: serializers.ats.ScheduledInterviewRequestOrganizer.Raw | null;
+        interviewers?: (serializers.ats.ScheduledInterviewRequestInterviewersItem.Raw | null | undefined)[] | null;
         location?: string | null;
         start_at?: string | null;
         end_at?: string | null;

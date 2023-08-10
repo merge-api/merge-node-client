@@ -10,14 +10,22 @@ export const JournalEntryRequest: core.serialization.ObjectSchema<
     serializers.accounting.JournalEntryRequest.Raw,
     Merge.accounting.JournalEntryRequest
 > = core.serialization.object({
-    transactionDate: core.serialization.property("transaction_date", core.serialization.string().optional()),
-    payments: core.serialization.list(core.serialization.string().optional()).optional(),
+    transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
+    payments: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).accounting.JournalEntryRequestPaymentsItem)
+                .optional()
+        )
+        .optional(),
     memo: core.serialization.string().optional(),
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.JournalEntryRequestCurrency)
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-    company: core.serialization.string().optional(),
+    company: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.JournalEntryRequestCompany)
+        .optional(),
     lines: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.JournalLineRequest))
         .optional(),
@@ -40,11 +48,11 @@ export const JournalEntryRequest: core.serialization.ObjectSchema<
 export declare namespace JournalEntryRequest {
     interface Raw {
         transaction_date?: string | null;
-        payments?: (string | null | undefined)[] | null;
+        payments?: (serializers.accounting.JournalEntryRequestPaymentsItem.Raw | null | undefined)[] | null;
         memo?: string | null;
         currency?: serializers.accounting.JournalEntryRequestCurrency.Raw | null;
         exchange_rate?: string | null;
-        company?: string | null;
+        company?: serializers.accounting.JournalEntryRequestCompany.Raw | null;
         lines?: serializers.accounting.JournalLineRequest.Raw[] | null;
         posting_status?: serializers.accounting.JournalEntryRequestPostingStatus.Raw | null;
         integration_params?: Record<string, unknown> | null;

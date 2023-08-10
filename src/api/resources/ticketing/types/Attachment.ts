@@ -19,7 +19,7 @@ export interface Attachment {
     /** The attachment's name. It is required to include the file extension in the attachment's name. */
     fileName?: string;
     /** The ticket associated with the attachment. */
-    ticket?: string;
+    ticket?: Merge.ticketing.AttachmentTicket;
     /** The attachment's url. It is required to include the file extension in the file's URL. */
     fileUrl?: string;
     /** The attachment's file format. */
@@ -27,10 +27,10 @@ export interface Attachment {
     /** The user who uploaded the attachment. */
     uploadedBy?: string;
     /** When the third party's attachment was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
 }

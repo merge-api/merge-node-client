@@ -33,23 +33,23 @@ export interface Job {
     status?: Merge.ats.JobStatus;
     jobPostingUrls?: Merge.ats.Url[];
     /** When the third party's job was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the third party's job was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** Whether the job is confidential. */
     confidential?: boolean;
     /** IDs of `Department` objects for this `Job`. */
-    departments?: (string | undefined)[];
+    departments?: (Merge.ats.JobDepartmentsItem | undefined)[];
     /** IDs of `Office` objects for this `Job`. */
-    offices?: (string | undefined)[];
+    offices?: (Merge.ats.JobOfficesItem | undefined)[];
     /** IDs of `RemoteUser` objects that serve as hiring managers for this `Job`. */
-    hiringManagers?: (string | undefined)[];
+    hiringManagers?: (Merge.ats.JobHiringManagersItem | undefined)[];
     /** IDs of `RemoteUser` objects that serve as recruiters for this `Job`. */
-    recruiters?: (string | undefined)[];
+    recruiters?: (Merge.ats.JobRecruitersItem | undefined)[];
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

@@ -17,7 +17,7 @@ export interface CreditNote {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The credit note's transaction date. */
-    transactionDate?: string;
+    transactionDate?: Date;
     /**
      * The credit note's status.
      *
@@ -39,7 +39,7 @@ export interface CreditNote {
     /** The amount of value remaining in the credit note that the customer can use. */
     remainingCredit?: number;
     lineItems?: Merge.accounting.CreditNoteLineItem[];
-    trackingCategories?: (string | undefined)[];
+    trackingCategories?: (Merge.accounting.CreditNoteTrackingCategoriesItem | undefined)[];
     /**
      * The credit note's currency.
      *
@@ -352,15 +352,15 @@ export interface CreditNote {
      */
     currency?: Merge.accounting.CreditNoteCurrency;
     /** When the third party's credit note was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the third party's credit note was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** Array of `Payment` object IDs */
-    payments?: (string | undefined)[];
+    payments?: (Merge.accounting.CreditNotePaymentsItem | undefined)[];
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

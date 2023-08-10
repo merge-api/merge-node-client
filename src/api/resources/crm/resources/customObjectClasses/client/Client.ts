@@ -46,11 +46,11 @@ export class CustomObjectClasses {
         } = request;
         const _queryParams = new URLSearchParams();
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter);
+            _queryParams.append("created_after", createdAfter.toISOString());
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore);
+            _queryParams.append("created_before", createdBefore.toISOString());
         }
 
         if (cursor != null) {
@@ -70,11 +70,11 @@ export class CustomObjectClasses {
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter);
+            _queryParams.append("modified_after", modifiedAfter.toISOString());
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore);
+            _queryParams.append("modified_before", modifiedBefore.toISOString());
         }
 
         if (pageSize != null) {
@@ -99,7 +99,7 @@ export class CustomObjectClasses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -168,7 +168,7 @@ export class CustomObjectClasses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -237,7 +237,7 @@ export class CustomObjectClasses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

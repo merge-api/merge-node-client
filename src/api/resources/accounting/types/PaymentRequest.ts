@@ -14,11 +14,11 @@ import * as Merge from "../../..";
  */
 export interface PaymentRequest {
     /** The payment's transaction date. */
-    transactionDate?: string;
+    transactionDate?: Date;
     /** The supplier, or customer involved in the payment. */
-    contact?: string;
+    contact?: Merge.accounting.PaymentRequestContact;
     /** The supplier’s or customer’s account in which the payment is made. */
-    account?: string;
+    account?: Merge.accounting.PaymentRequestAccount;
     /**
      * The payment's currency.
      *
@@ -333,10 +333,10 @@ export interface PaymentRequest {
     /** The payment's exchange rate. */
     exchangeRate?: string;
     /** The company the payment belongs to. */
-    company?: string;
+    company?: Merge.accounting.PaymentRequestCompany;
     /** The total amount of money being paid to the supplier, or customer, after taxes. */
     totalAmount?: number;
-    trackingCategories?: (string | undefined)[];
+    trackingCategories?: (Merge.accounting.PaymentRequestTrackingCategoriesItem | undefined)[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }

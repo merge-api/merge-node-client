@@ -10,7 +10,7 @@ export const BankInfo: core.serialization.ObjectSchema<serializers.hris.BankInfo
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        employee: core.serialization.string().optional(),
+        employee: core.serialization.lazy(async () => (await import("../../..")).hris.BankInfoEmployee).optional(),
         accountNumber: core.serialization.property("account_number", core.serialization.string().optional()),
         routingNumber: core.serialization.property("routing_number", core.serialization.string().optional()),
         bankName: core.serialization.property("bank_name", core.serialization.string().optional()),
@@ -18,9 +18,9 @@ export const BankInfo: core.serialization.ObjectSchema<serializers.hris.BankInfo
             "account_type",
             core.serialization.lazy(async () => (await import("../../..")).hris.BankInfoAccountType).optional()
         ),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -37,7 +37,7 @@ export declare namespace BankInfo {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        employee?: string | null;
+        employee?: serializers.hris.BankInfoEmployee.Raw | null;
         account_number?: string | null;
         routing_number?: string | null;
         bank_name?: string | null;

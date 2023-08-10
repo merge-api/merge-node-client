@@ -15,8 +15,8 @@ export const Issue: core.serialization.ObjectSchema<serializers.hris.Issue.Raw, 
             "end_user",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
         ),
-        firstIncidentTime: core.serialization.property("first_incident_time", core.serialization.string().optional()),
-        lastIncidentTime: core.serialization.property("last_incident_time", core.serialization.string().optional()),
+        firstIncidentTime: core.serialization.property("first_incident_time", core.serialization.date().optional()),
+        lastIncidentTime: core.serialization.property("last_incident_time", core.serialization.date().optional()),
         isMuted: core.serialization.property("is_muted", core.serialization.boolean().optional()),
         errorDetails: core.serialization.property(
             "error_details",

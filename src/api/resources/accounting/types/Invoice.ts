@@ -22,19 +22,19 @@ export interface Invoice {
      */
     type?: Merge.accounting.InvoiceType;
     /** The invoice's contact. */
-    contact?: string;
+    contact?: Merge.accounting.InvoiceContact;
     /** The invoice's number. */
     number?: string;
     /** The invoice's issue date. */
-    issueDate?: string;
+    issueDate?: Date;
     /** The invoice's due date. */
-    dueDate?: string;
+    dueDate?: Date;
     /** The invoice's paid date. */
-    paidOnDate?: string;
+    paidOnDate?: Date;
     /** The invoice's private note. */
     memo?: string;
     /** The company the invoice belongs to. */
-    company?: string;
+    company?: Merge.accounting.InvoiceCompany;
     /**
      * The invoice's currency.
      *
@@ -359,16 +359,16 @@ export interface Invoice {
     /** The invoice's remaining balance. */
     balance?: number;
     /** When the third party's invoice entry was updated. */
-    remoteUpdatedAt?: string;
-    trackingCategories?: (string | undefined)[];
+    remoteUpdatedAt?: Date;
+    trackingCategories?: (Merge.accounting.InvoiceTrackingCategoriesItem | undefined)[];
     /** Array of `Payment` object IDs. */
-    payments?: (string | undefined)[];
+    payments?: (Merge.accounting.InvoicePaymentsItem | undefined)[];
     lineItems?: Merge.accounting.InvoiceLineItem[];
     remoteWasDeleted?: boolean;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

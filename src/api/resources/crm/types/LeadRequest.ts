@@ -13,7 +13,7 @@ import * as Merge from "../../..";
  */
 export interface LeadRequest {
     /** The lead's owner. */
-    owner?: string;
+    owner?: Merge.crm.LeadRequestOwner;
     /** The lead's source. */
     leadSource?: string;
     /** The lead's title. */
@@ -28,11 +28,11 @@ export interface LeadRequest {
     emailAddresses?: Merge.crm.EmailAddressRequest[];
     phoneNumbers?: Merge.crm.PhoneNumberRequest[];
     /** When the lead was converted. */
-    convertedDate?: string;
+    convertedDate?: Date;
     /** The contact of the converted lead. */
-    convertedContact?: string;
+    convertedContact?: Merge.crm.LeadRequestConvertedContact;
     /** The account of the converted lead. */
-    convertedAccount?: string;
+    convertedAccount?: Merge.crm.LeadRequestConvertedAccount;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.crm.RemoteFieldRequest[];

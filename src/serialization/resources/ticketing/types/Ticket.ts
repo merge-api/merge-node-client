@@ -11,25 +11,44 @@ export const Ticket: core.serialization.ObjectSchema<serializers.ticketing.Ticke
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         name: core.serialization.string().optional(),
-        assignees: core.serialization.list(core.serialization.string().optional()).optional(),
-        creator: core.serialization.string().optional(),
-        dueDate: core.serialization.property("due_date", core.serialization.string().optional()),
+        assignees: core.serialization
+            .list(
+                core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketAssigneesItem).optional()
+            )
+            .optional(),
+        creator: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketCreator).optional(),
+        dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
         status: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketStatus).optional(),
         description: core.serialization.string().optional(),
-        collections: core.serialization.list(core.serialization.string().optional()).optional(),
+        collections: core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).ticketing.TicketCollectionsItem)
+                    .optional()
+            )
+            .optional(),
         ticketType: core.serialization.property("ticket_type", core.serialization.string().optional()),
-        account: core.serialization.string().optional(),
-        contact: core.serialization.string().optional(),
-        parentTicket: core.serialization.property("parent_ticket", core.serialization.string().optional()),
-        attachments: core.serialization.list(core.serialization.string().optional()).optional(),
+        account: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketAccount).optional(),
+        contact: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketContact).optional(),
+        parentTicket: core.serialization.property(
+            "parent_ticket",
+            core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketParentTicket).optional()
+        ),
+        attachments: core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).ticketing.TicketAttachmentsItem)
+                    .optional()
+            )
+            .optional(),
         tags: core.serialization.list(core.serialization.string().optional()).optional(),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
-        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
-        completedAt: core.serialization.property("completed_at", core.serialization.string().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
+        completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
         priority: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketPriority).optional(),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -53,17 +72,17 @@ export declare namespace Ticket {
         id?: string | null;
         remote_id?: string | null;
         name?: string | null;
-        assignees?: (string | null | undefined)[] | null;
-        creator?: string | null;
+        assignees?: (serializers.ticketing.TicketAssigneesItem.Raw | null | undefined)[] | null;
+        creator?: serializers.ticketing.TicketCreator.Raw | null;
         due_date?: string | null;
         status?: serializers.ticketing.TicketStatus.Raw | null;
         description?: string | null;
-        collections?: (string | null | undefined)[] | null;
+        collections?: (serializers.ticketing.TicketCollectionsItem.Raw | null | undefined)[] | null;
         ticket_type?: string | null;
-        account?: string | null;
-        contact?: string | null;
-        parent_ticket?: string | null;
-        attachments?: (string | null | undefined)[] | null;
+        account?: serializers.ticketing.TicketAccount.Raw | null;
+        contact?: serializers.ticketing.TicketContact.Raw | null;
+        parent_ticket?: serializers.ticketing.TicketParentTicket.Raw | null;
+        attachments?: (serializers.ticketing.TicketAttachmentsItem.Raw | null | undefined)[] | null;
         tags?: (string | null | undefined)[] | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;

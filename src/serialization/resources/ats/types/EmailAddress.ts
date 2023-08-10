@@ -13,7 +13,7 @@ export const EmailAddress: core.serialization.ObjectSchema<serializers.ats.Email
             "email_address_type",
             core.serialization.lazy(async () => (await import("../../..")).ats.EmailAddressEmailAddressType).optional()
         ),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
 export declare namespace EmailAddress {

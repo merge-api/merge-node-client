@@ -18,11 +18,11 @@ export interface IssuesListRequest {
     /**
      * If provided, will only return issues whose first incident time was after this datetime.
      */
-    firstIncidentTimeAfter?: string;
+    firstIncidentTimeAfter?: Date;
     /**
      * If provided, will only return issues whose first incident time was before this datetime.
      */
-    firstIncidentTimeBefore?: string;
+    firstIncidentTimeBefore?: Date;
     /**
      * If True, will include muted issues
      */
@@ -31,11 +31,11 @@ export interface IssuesListRequest {
     /**
      * If provided, will only return issues whose last incident time was after this datetime.
      */
-    lastIncidentTimeAfter?: string;
+    lastIncidentTimeAfter?: Date;
     /**
      * If provided, will only return issues whose last incident time was before this datetime.
      */
-    lastIncidentTimeBefore?: string;
+    lastIncidentTimeBefore?: Date;
     /**
      * Number of results to return per page.
      */

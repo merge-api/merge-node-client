@@ -10,17 +10,24 @@ export const EngagementRequest: core.serialization.ObjectSchema<
     serializers.crm.EngagementRequest.Raw,
     Merge.crm.EngagementRequest
 > = core.serialization.object({
-    owner: core.serialization.string().optional(),
+    owner: core.serialization.lazy(async () => (await import("../../..")).crm.EngagementRequestOwner).optional(),
     content: core.serialization.string().optional(),
     subject: core.serialization.string().optional(),
     direction: core.serialization
         .lazy(async () => (await import("../../..")).crm.EngagementRequestDirection)
         .optional(),
-    engagementType: core.serialization.property("engagement_type", core.serialization.string().optional()),
-    startTime: core.serialization.property("start_time", core.serialization.string().optional()),
-    endTime: core.serialization.property("end_time", core.serialization.string().optional()),
-    account: core.serialization.string().optional(),
-    contacts: core.serialization.list(core.serialization.string().optional()).optional(),
+    engagementType: core.serialization.property(
+        "engagement_type",
+        core.serialization.lazy(async () => (await import("../../..")).crm.EngagementRequestEngagementType).optional()
+    ),
+    startTime: core.serialization.property("start_time", core.serialization.date().optional()),
+    endTime: core.serialization.property("end_time", core.serialization.date().optional()),
+    account: core.serialization.lazy(async () => (await import("../../..")).crm.EngagementRequestAccount).optional(),
+    contacts: core.serialization
+        .list(
+            core.serialization.lazy(async () => (await import("../../..")).crm.EngagementRequestContactsItem).optional()
+        )
+        .optional(),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -39,15 +46,15 @@ export const EngagementRequest: core.serialization.ObjectSchema<
 
 export declare namespace EngagementRequest {
     interface Raw {
-        owner?: string | null;
+        owner?: serializers.crm.EngagementRequestOwner.Raw | null;
         content?: string | null;
         subject?: string | null;
         direction?: serializers.crm.EngagementRequestDirection.Raw | null;
-        engagement_type?: string | null;
+        engagement_type?: serializers.crm.EngagementRequestEngagementType.Raw | null;
         start_time?: string | null;
         end_time?: string | null;
-        account?: string | null;
-        contacts?: (string | null | undefined)[] | null;
+        account?: serializers.crm.EngagementRequestAccount.Raw | null;
+        contacts?: (serializers.crm.EngagementRequestContactsItem.Raw | null | undefined)[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
         remote_fields?: serializers.crm.RemoteFieldRequest.Raw[] | null;

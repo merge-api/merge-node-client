@@ -10,8 +10,8 @@ export const TimeOffRequest: core.serialization.ObjectSchema<
     serializers.hris.TimeOffRequest.Raw,
     Merge.hris.TimeOffRequest
 > = core.serialization.object({
-    employee: core.serialization.string().optional(),
-    approver: core.serialization.string().optional(),
+    employee: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffRequestEmployee).optional(),
+    approver: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffRequestApprover).optional(),
     status: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffRequestStatus).optional(),
     employeeNote: core.serialization.property("employee_note", core.serialization.string().optional()),
     units: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffRequestUnits).optional(),
@@ -20,8 +20,8 @@ export const TimeOffRequest: core.serialization.ObjectSchema<
         "request_type",
         core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffRequestRequestType).optional()
     ),
-    startTime: core.serialization.property("start_time", core.serialization.string().optional()),
-    endTime: core.serialization.property("end_time", core.serialization.string().optional()),
+    startTime: core.serialization.property("start_time", core.serialization.date().optional()),
+    endTime: core.serialization.property("end_time", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -34,8 +34,8 @@ export const TimeOffRequest: core.serialization.ObjectSchema<
 
 export declare namespace TimeOffRequest {
     interface Raw {
-        employee?: string | null;
-        approver?: string | null;
+        employee?: serializers.hris.TimeOffRequestEmployee.Raw | null;
+        approver?: serializers.hris.TimeOffRequestApprover.Raw | null;
         status?: serializers.hris.TimeOffRequestStatus.Raw | null;
         employee_note?: string | null;
         units?: serializers.hris.TimeOffRequestUnits.Raw | null;

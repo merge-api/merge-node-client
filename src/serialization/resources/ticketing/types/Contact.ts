@@ -14,9 +14,9 @@ export const Contact: core.serialization.ObjectSchema<serializers.ticketing.Cont
         emailAddress: core.serialization.property("email_address", core.serialization.string().optional()),
         phoneNumber: core.serialization.property("phone_number", core.serialization.string().optional()),
         details: core.serialization.string().optional(),
-        account: core.serialization.string().optional(),
+        account: core.serialization.lazy(async () => (await import("../../..")).ticketing.ContactAccount).optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -37,7 +37,7 @@ export declare namespace Contact {
         email_address?: string | null;
         phone_number?: string | null;
         details?: string | null;
-        account?: string | null;
+        account?: serializers.ticketing.ContactAccount.Raw | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;

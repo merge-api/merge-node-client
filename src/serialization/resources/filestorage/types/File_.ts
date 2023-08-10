@@ -19,10 +19,10 @@ export const File_: core.serialization.ObjectSchema<serializers.filestorage.File
         folder: core.serialization.string().optional(),
         permissions: core.serialization.list(core.serialization.string()),
         drive: core.serialization.string().optional(),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
-        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()

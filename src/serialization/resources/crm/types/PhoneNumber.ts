@@ -10,7 +10,7 @@ export const PhoneNumber: core.serialization.ObjectSchema<serializers.crm.PhoneN
     core.serialization.object({
         phoneNumber: core.serialization.property("phone_number", core.serialization.string().optional()),
         phoneNumberType: core.serialization.property("phone_number_type", core.serialization.string().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
 export declare namespace PhoneNumber {

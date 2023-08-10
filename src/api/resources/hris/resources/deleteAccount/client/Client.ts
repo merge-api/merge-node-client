@@ -25,7 +25,7 @@ export class DeleteAccount {
     /**
      * Delete a linked account.
      */
-    public async create(requestOptions?: DeleteAccount.RequestOptions): Promise<void> {
+    public async delete(requestOptions?: DeleteAccount.RequestOptions): Promise<void> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
@@ -40,7 +40,7 @@ export class DeleteAccount {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.1",
+                "X-Fern-SDK-Version": "0.1.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

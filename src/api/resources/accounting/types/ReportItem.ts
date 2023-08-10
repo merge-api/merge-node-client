@@ -17,9 +17,9 @@ export interface ReportItem {
     name?: string;
     /** The report item's value. */
     value?: number;
-    subItems?: Record<string, unknown>;
+    subItems?: Record<string, unknown>[];
     /** The company the report item belongs to. */
     company?: string;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
 }

@@ -12,7 +12,7 @@ export const ContactRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     firstName: core.serialization.property("first_name", core.serialization.string().optional()),
     lastName: core.serialization.property("last_name", core.serialization.string().optional()),
-    account: core.serialization.string().optional(),
+    account: core.serialization.lazy(async () => (await import("../../..")).crm.ContactRequestAccount).optional(),
     addresses: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.AddressRequest))
         .optional(),
@@ -28,7 +28,7 @@ export const ContactRequest: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.PhoneNumberRequest))
             .optional()
     ),
-    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.string().optional()),
+    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -49,7 +49,7 @@ export declare namespace ContactRequest {
     interface Raw {
         first_name?: string | null;
         last_name?: string | null;
-        account?: string | null;
+        account?: serializers.crm.ContactRequestAccount.Raw | null;
         addresses?: serializers.crm.AddressRequest.Raw[] | null;
         email_addresses?: serializers.crm.EmailAddressRequest.Raw[] | null;
         phone_numbers?: serializers.crm.PhoneNumberRequest.Raw[] | null;

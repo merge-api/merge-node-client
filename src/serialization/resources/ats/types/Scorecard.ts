@@ -10,11 +10,15 @@ export const Scorecard: core.serialization.ObjectSchema<serializers.ats.Scorecar
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        application: core.serialization.string().optional(),
-        interview: core.serialization.string().optional(),
-        interviewer: core.serialization.string().optional(),
-        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.string().optional()),
-        submittedAt: core.serialization.property("submitted_at", core.serialization.string().optional()),
+        application: core.serialization
+            .lazy(async () => (await import("../../..")).ats.ScorecardApplication)
+            .optional(),
+        interview: core.serialization.lazy(async () => (await import("../../..")).ats.ScorecardInterview).optional(),
+        interviewer: core.serialization
+            .lazy(async () => (await import("../../..")).ats.ScorecardInterviewer)
+            .optional(),
+        remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+        submittedAt: core.serialization.property("submitted_at", core.serialization.date().optional()),
         overallRecommendation: core.serialization.property(
             "overall_recommendation",
             core.serialization
@@ -22,7 +26,7 @@ export const Scorecard: core.serialization.ObjectSchema<serializers.ats.Scorecar
                 .optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -39,9 +43,9 @@ export declare namespace Scorecard {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        application?: string | null;
-        interview?: string | null;
-        interviewer?: string | null;
+        application?: serializers.ats.ScorecardApplication.Raw | null;
+        interview?: serializers.ats.ScorecardInterview.Raw | null;
+        interviewer?: serializers.ats.ScorecardInterviewer.Raw | null;
         remote_created_at?: string | null;
         submitted_at?: string | null;
         overall_recommendation?: serializers.ats.ScorecardOverallRecommendation.Raw | null;

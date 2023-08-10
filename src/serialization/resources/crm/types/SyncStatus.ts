@@ -10,8 +10,8 @@ export const SyncStatus: core.serialization.ObjectSchema<serializers.crm.SyncSta
     core.serialization.object({
         modelName: core.serialization.property("model_name", core.serialization.string()),
         modelId: core.serialization.property("model_id", core.serialization.string()),
-        lastSyncStart: core.serialization.property("last_sync_start", core.serialization.string().optional()),
-        nextSyncStart: core.serialization.property("next_sync_start", core.serialization.string().optional()),
+        lastSyncStart: core.serialization.property("last_sync_start", core.serialization.date().optional()),
+        nextSyncStart: core.serialization.property("next_sync_start", core.serialization.date().optional()),
         status: core.serialization.lazy(async () => (await import("../../..")).crm.SyncStatusStatusEnum),
         isInitialSync: core.serialization.property("is_initial_sync", core.serialization.boolean()),
         selectiveSyncConfigurationsUsage: core.serialization.property(

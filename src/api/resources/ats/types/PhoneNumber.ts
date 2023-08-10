@@ -25,5 +25,5 @@ export interface PhoneNumber {
      */
     phoneNumberType?: Merge.ats.PhoneNumberPhoneNumberType;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
 }

@@ -16,23 +16,23 @@ export interface ScheduledInterview {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The application being interviewed. */
-    application?: string;
+    application?: Merge.ats.ScheduledInterviewApplication;
     /** The stage of the interview. */
-    jobInterviewStage?: string;
+    jobInterviewStage?: Merge.ats.ScheduledInterviewJobInterviewStage;
     /** The user organizing the interview. */
-    organizer?: string;
+    organizer?: Merge.ats.ScheduledInterviewOrganizer;
     /** Array of `RemoteUser` IDs. */
-    interviewers?: (string | undefined)[];
+    interviewers?: (Merge.ats.ScheduledInterviewInterviewersItem | undefined)[];
     /** The interview's location. */
     location?: string;
     /** When the interview was started. */
-    startAt?: string;
+    startAt?: Date;
     /** When the interview was ended. */
-    endAt?: string;
+    endAt?: Date;
     /** When the third party's interview was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the third party's interview was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /**
      * The interview's status.
      *
@@ -44,7 +44,7 @@ export interface ScheduledInterview {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

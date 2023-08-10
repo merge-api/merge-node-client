@@ -16,8 +16,8 @@ export const BalanceSheet: core.serialization.ObjectSchema<
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.BalanceSheetCurrency)
         .optional(),
-    company: core.serialization.string().optional(),
-    date: core.serialization.string().optional(),
+    company: core.serialization.lazy(async () => (await import("../../..")).accounting.BalanceSheetCompany).optional(),
+    date: core.serialization.date().optional(),
     netAssets: core.serialization.property("net_assets", core.serialization.number().optional()),
     assets: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.ReportItem))
@@ -28,9 +28,9 @@ export const BalanceSheet: core.serialization.ObjectSchema<
     equity: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.ReportItem))
         .optional(),
-    remoteGeneratedAt: core.serialization.property("remote_generated_at", core.serialization.string().optional()),
+    remoteGeneratedAt: core.serialization.property("remote_generated_at", core.serialization.date().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -49,7 +49,7 @@ export declare namespace BalanceSheet {
         remote_id?: string | null;
         name?: string | null;
         currency?: serializers.accounting.BalanceSheetCurrency.Raw | null;
-        company?: string | null;
+        company?: serializers.accounting.BalanceSheetCompany.Raw | null;
         date?: string | null;
         net_assets?: number | null;
         assets?: serializers.accounting.ReportItem.Raw[] | null;

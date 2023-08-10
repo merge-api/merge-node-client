@@ -30,17 +30,17 @@ export interface Item {
     /** The price at which the item is purchased from a vendor. */
     purchasePrice?: number;
     /** References the default account used to record a purchase of the item. */
-    purchaseAccount?: string;
+    purchaseAccount?: Merge.accounting.ItemPurchaseAccount;
     /** References the default account used to record a sale. */
-    salesAccount?: string;
+    salesAccount?: Merge.accounting.ItemSalesAccount;
     /** The company the item belongs to. */
-    company?: string;
+    company?: Merge.accounting.ItemCompany;
     /** When the third party's item note was updated. */
-    remoteUpdatedAt?: string;
+    remoteUpdatedAt?: Date;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

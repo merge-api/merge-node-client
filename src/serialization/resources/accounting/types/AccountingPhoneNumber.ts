@@ -12,7 +12,7 @@ export const AccountingPhoneNumber: core.serialization.ObjectSchema<
 > = core.serialization.object({
     number: core.serialization.string().optional(),
     type: core.serialization.string().optional(),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace AccountingPhoneNumber {

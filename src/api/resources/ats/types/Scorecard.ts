@@ -16,15 +16,15 @@ export interface Scorecard {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The application being scored. */
-    application?: string;
+    application?: Merge.ats.ScorecardApplication;
     /** The interview being scored. */
-    interview?: string;
+    interview?: Merge.ats.ScorecardInterview;
     /** The interviewer doing the scoring. */
-    interviewer?: string;
+    interviewer?: Merge.ats.ScorecardInterviewer;
     /** When the third party's scorecard was created. */
-    remoteCreatedAt?: string;
+    remoteCreatedAt?: Date;
     /** When the scorecard was submitted. */
-    submittedAt?: string;
+    submittedAt?: Date;
     /**
      * The inteviewer's recommendation.
      *
@@ -38,7 +38,7 @@ export interface Scorecard {
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

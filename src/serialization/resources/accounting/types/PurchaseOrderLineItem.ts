@@ -14,7 +14,9 @@ export const PurchaseOrderLineItem: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
     quantity: core.serialization.number().optional(),
-    item: core.serialization.string().optional(),
+    item: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.PurchaseOrderLineItemItem)
+        .optional(),
     account: core.serialization.string().optional(),
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
@@ -28,7 +30,7 @@ export const PurchaseOrderLineItem: core.serialization.ObjectSchema<
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     company: core.serialization.string().optional(),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace PurchaseOrderLineItem {
@@ -37,7 +39,7 @@ export declare namespace PurchaseOrderLineItem {
         description?: string | null;
         unit_price?: number | null;
         quantity?: number | null;
-        item?: string | null;
+        item?: serializers.accounting.PurchaseOrderLineItemItem.Raw | null;
         account?: string | null;
         tracking_category?: string | null;
         tracking_categories: string[];

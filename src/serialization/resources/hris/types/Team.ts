@@ -11,9 +11,12 @@ export const Team: core.serialization.ObjectSchema<serializers.hris.Team.Raw, Me
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         name: core.serialization.string().optional(),
-        parentTeam: core.serialization.property("parent_team", core.serialization.string().optional()),
+        parentTeam: core.serialization.property(
+            "parent_team",
+            core.serialization.lazy(async () => (await import("../../..")).hris.TeamParentTeam).optional()
+        ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -31,7 +34,7 @@ export declare namespace Team {
         id?: string | null;
         remote_id?: string | null;
         name?: string | null;
-        parent_team?: string | null;
+        parent_team?: serializers.hris.TeamParentTeam.Raw | null;
         remote_was_deleted?: boolean | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;

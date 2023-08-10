@@ -19,9 +19,9 @@ export interface VendorCredit {
     /** The vendor credit's number. */
     number?: string;
     /** The vendor credit's transaction date. */
-    transactionDate?: string;
+    transactionDate?: Date;
     /** The vendor that owes the gift or refund. */
-    vendor?: string;
+    vendor?: Merge.accounting.VendorCreditVendor;
     /** The vendor credit's total amount. */
     totalAmount?: number;
     /**
@@ -338,13 +338,13 @@ export interface VendorCredit {
     /** The vendor credit's exchange rate. */
     exchangeRate?: string;
     /** The company the vendor credit belongs to. */
-    company?: string;
+    company?: Merge.accounting.VendorCreditCompany;
     lines?: Merge.accounting.VendorCreditLine[];
-    trackingCategories?: (string | undefined)[];
+    trackingCategories?: (Merge.accounting.VendorCreditTrackingCategoriesItem | undefined)[];
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
     /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: string;
+    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

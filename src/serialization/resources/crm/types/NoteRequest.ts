@@ -8,11 +8,13 @@ import * as core from "../../../../core";
 
 export const NoteRequest: core.serialization.ObjectSchema<serializers.crm.NoteRequest.Raw, Merge.crm.NoteRequest> =
     core.serialization.object({
-        owner: core.serialization.string().optional(),
+        owner: core.serialization.lazy(async () => (await import("../../..")).crm.NoteRequestOwner).optional(),
         content: core.serialization.string().optional(),
-        contact: core.serialization.string().optional(),
-        account: core.serialization.string().optional(),
-        opportunity: core.serialization.string().optional(),
+        contact: core.serialization.lazy(async () => (await import("../../..")).crm.NoteRequestContact).optional(),
+        account: core.serialization.lazy(async () => (await import("../../..")).crm.NoteRequestAccount).optional(),
+        opportunity: core.serialization
+            .lazy(async () => (await import("../../..")).crm.NoteRequestOpportunity)
+            .optional(),
         integrationParams: core.serialization.property(
             "integration_params",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -31,11 +33,11 @@ export const NoteRequest: core.serialization.ObjectSchema<serializers.crm.NoteRe
 
 export declare namespace NoteRequest {
     interface Raw {
-        owner?: string | null;
+        owner?: serializers.crm.NoteRequestOwner.Raw | null;
         content?: string | null;
-        contact?: string | null;
-        account?: string | null;
-        opportunity?: string | null;
+        contact?: serializers.crm.NoteRequestContact.Raw | null;
+        account?: serializers.crm.NoteRequestAccount.Raw | null;
+        opportunity?: serializers.crm.NoteRequestOpportunity.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
         remote_fields?: serializers.crm.RemoteFieldRequest.Raw[] | null;

@@ -17,7 +17,7 @@ export const Contact: core.serialization.ObjectSchema<serializers.accounting.Con
         taxNumber: core.serialization.property("tax_number", core.serialization.string().optional()),
         status: core.serialization.lazy(async () => (await import("../../..")).accounting.ContactStatus).optional(),
         currency: core.serialization.string().optional(),
-        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.string().optional()),
+        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         company: core.serialization.string().optional(),
         addresses: core.serialization.list(core.serialization.string().optional()).optional(),
         phoneNumbers: core.serialization.property(
@@ -31,7 +31,7 @@ export const Contact: core.serialization.ObjectSchema<serializers.accounting.Con
                 .optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.string().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()

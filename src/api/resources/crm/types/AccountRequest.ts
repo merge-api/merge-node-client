@@ -13,7 +13,7 @@ import * as Merge from "../../..";
  */
 export interface AccountRequest {
     /** The account's owner. */
-    owner?: string;
+    owner?: Merge.crm.AccountRequestOwner;
     /** The account's name. */
     name?: string;
     /** The account's description. */
@@ -25,7 +25,7 @@ export interface AccountRequest {
     /** The account's number of employees. */
     numberOfEmployees?: number;
     /** The last date (either most recent or furthest in the future) of when an activity occurs in an account. */
-    lastActivityAt?: string;
+    lastActivityAt?: Date;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.crm.RemoteFieldRequest[];

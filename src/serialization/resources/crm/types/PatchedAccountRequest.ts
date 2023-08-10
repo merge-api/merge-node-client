@@ -16,7 +16,7 @@ export const PatchedAccountRequest: core.serialization.ObjectSchema<
     industry: core.serialization.string().optional(),
     website: core.serialization.string().optional(),
     numberOfEmployees: core.serialization.property("number_of_employees", core.serialization.number().optional()),
-    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.string().optional()),
+    lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
