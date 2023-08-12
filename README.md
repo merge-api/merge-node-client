@@ -57,18 +57,33 @@ import { MergeClient, Merge } from '@mergeapi/merge-node-client';
 
 const merge = new MergeClient({
   apiKey: 'YOUR_API_KEY',
-  accountToken: 'YOUR_ACCOUNT_TOKEN',
+  // `accountToken` may be omitted if necessary (e.g., during the initial Link session)
+  accountToken: 'YOUR_ACCOUNT_TOKEN', 
 });
 
 const linkTokenResponse = await merge.ats.linkToken.create({
     endUserEmailAddress: "john.smith@gmail.com",
     endUserOrganizationName: "acme",
-    endUserOrganizationId: "1234",
+    endUserOriginId: "1234",
     categories: [Merge.ats.CategoriesEnum.ATS],
     linkExpiryMins: 30,
 });
 
 console.log("Created link token", linkTokenResponse.linkToken)
+```
+
+### Retrieve Account Token Using Public Token
+
+```ts
+import { MergeClient, Merge } from '@mergeapi/merge-node-client';
+
+const merge = new MergeClient({
+  apiKey: 'YOUR_API_KEY'
+});
+
+const accountTokenResponse = await merge.ats.accountToken.retrieve(publicToken)
+
+console.log("Retrieved account token", accountTokenResponse.accountToken)
 ```
 
 ### Get Employee
