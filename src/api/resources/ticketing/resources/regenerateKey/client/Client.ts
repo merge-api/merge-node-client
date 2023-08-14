@@ -45,7 +45,7 @@ export class RegenerateKey {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.2",
+                "X-Fern-SDK-Version": "0.1.3",
             },
             contentType: "application/json",
             body: await serializers.ticketing.RemoteKeyForRegenerationRequest.jsonOrThrow(request, {

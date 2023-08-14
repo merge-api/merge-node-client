@@ -11,8 +11,8 @@ export interface RemoteFieldClass {
     description?: string;
     isCustom?: boolean;
     isRequired?: boolean;
-    fieldType?: Merge.ticketing.FieldTypeEnum;
-    fieldFormat?: Merge.ticketing.FieldFormatEnum;
-    fieldChoices?: string[];
+    fieldType?: Merge.ticketing.RemoteFieldClassFieldType;
+    fieldFormat?: Merge.ticketing.RemoteFieldClassFieldFormat;
+    fieldChoices?: Merge.ticketing.RemoteFieldClassFieldChoicesItem[];
     itemSchema?: Merge.ticketing.ItemSchema;
 }

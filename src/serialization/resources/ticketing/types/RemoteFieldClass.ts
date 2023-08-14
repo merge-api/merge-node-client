@@ -18,15 +18,21 @@ export const RemoteFieldClass: core.serialization.ObjectSchema<
     isRequired: core.serialization.property("is_required", core.serialization.boolean().optional()),
     fieldType: core.serialization.property(
         "field_type",
-        core.serialization.lazy(async () => (await import("../../..")).ticketing.FieldTypeEnum).optional()
+        core.serialization.lazy(async () => (await import("../../..")).ticketing.RemoteFieldClassFieldType).optional()
     ),
     fieldFormat: core.serialization.property(
         "field_format",
-        core.serialization.lazy(async () => (await import("../../..")).ticketing.FieldFormatEnum).optional()
+        core.serialization.lazy(async () => (await import("../../..")).ticketing.RemoteFieldClassFieldFormat).optional()
     ),
     fieldChoices: core.serialization.property(
         "field_choices",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization
+            .list(
+                core.serialization.lazyObject(
+                    async () => (await import("../../..")).ticketing.RemoteFieldClassFieldChoicesItem
+                )
+            )
+            .optional()
     ),
     itemSchema: core.serialization.property(
         "item_schema",
@@ -42,9 +48,9 @@ export declare namespace RemoteFieldClass {
         description?: string | null;
         is_custom?: boolean | null;
         is_required?: boolean | null;
-        field_type?: serializers.ticketing.FieldTypeEnum.Raw | null;
-        field_format?: serializers.ticketing.FieldFormatEnum.Raw | null;
-        field_choices?: string[] | null;
+        field_type?: serializers.ticketing.RemoteFieldClassFieldType.Raw | null;
+        field_format?: serializers.ticketing.RemoteFieldClassFieldFormat.Raw | null;
+        field_choices?: serializers.ticketing.RemoteFieldClassFieldChoicesItem.Raw[] | null;
         item_schema?: serializers.ticketing.ItemSchema.Raw | null;
     }
 }

@@ -28,7 +28,13 @@ export const RemoteFieldClassForCustomObjectClass: core.serialization.ObjectSche
     ),
     fieldChoices: core.serialization.property(
         "field_choices",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization
+            .list(
+                core.serialization.lazyObject(
+                    async () => (await import("../../..")).crm.RemoteFieldClassForCustomObjectClassFieldChoicesItem
+                )
+            )
+            .optional()
     ),
     itemSchema: core.serialization.property(
         "item_schema",
@@ -47,7 +53,7 @@ export declare namespace RemoteFieldClassForCustomObjectClass {
         is_required?: boolean | null;
         field_type?: serializers.crm.RemoteFieldClassForCustomObjectClassFieldType.Raw | null;
         field_format?: serializers.crm.RemoteFieldClassForCustomObjectClassFieldFormat.Raw | null;
-        field_choices?: (string | null | undefined)[] | null;
+        field_choices?: serializers.crm.RemoteFieldClassForCustomObjectClassFieldChoicesItem.Raw[] | null;
         item_schema?: serializers.crm.RemoteFieldClassForCustomObjectClassItemSchema.Raw | null;
         modified_at?: string | null;
     }

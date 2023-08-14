@@ -11,7 +11,7 @@ export interface RemoteFieldClassForCustomObjectClass {
     isRequired?: boolean;
     fieldType?: Merge.crm.RemoteFieldClassForCustomObjectClassFieldType;
     fieldFormat?: Merge.crm.RemoteFieldClassForCustomObjectClassFieldFormat;
-    fieldChoices?: (string | undefined)[];
+    fieldChoices?: Merge.crm.RemoteFieldClassForCustomObjectClassFieldChoicesItem[];
     itemSchema?: Merge.crm.RemoteFieldClassForCustomObjectClassItemSchema;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
