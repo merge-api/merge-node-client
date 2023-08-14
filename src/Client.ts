@@ -6,10 +6,10 @@ import * as environments from "./environments";
 import * as core from "./core";
 import { Ats } from "./api/resources/ats/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
+import { Filestorage } from "./api/resources/filestorage/client/Client";
 import { Hris } from "./api/resources/hris/client/Client";
 import { Ticketing } from "./api/resources/ticketing/client/Client";
 import { Accounting } from "./api/resources/accounting/client/Client";
-import { Filestorage } from "./api/resources/filestorage/client/Client";
 
 export declare namespace MergeClient {
     interface Options {
@@ -38,6 +38,12 @@ export class MergeClient {
         return (this._crm ??= new Crm(this._options));
     }
 
+    protected _filestorage: Filestorage | undefined;
+
+    public get filestorage(): Filestorage {
+        return (this._filestorage ??= new Filestorage(this._options));
+    }
+
     protected _hris: Hris | undefined;
 
     public get hris(): Hris {
@@ -54,11 +60,5 @@ export class MergeClient {
 
     public get accounting(): Accounting {
         return (this._accounting ??= new Accounting(this._options));
-    }
-
-    protected _filestorage: Filestorage | undefined;
-
-    public get filestorage(): Filestorage {
-        return (this._filestorage ??= new Filestorage(this._options));
     }
 }

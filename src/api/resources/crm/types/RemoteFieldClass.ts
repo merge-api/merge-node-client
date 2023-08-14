@@ -11,8 +11,8 @@ export interface RemoteFieldClass {
     description?: string;
     isCustom?: boolean;
     isRequired?: boolean;
-    fieldType?: Merge.crm.FieldTypeEnum;
-    fieldFormat?: Merge.crm.FieldFormatEnum;
-    fieldChoices?: string[];
+    fieldType?: Merge.crm.RemoteFieldClassFieldType;
+    fieldFormat?: Merge.crm.RemoteFieldClassFieldFormat;
+    fieldChoices?: Merge.crm.RemoteFieldClassFieldChoicesItem[];
     itemSchema?: Merge.crm.ItemSchema;
 }
