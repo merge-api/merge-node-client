@@ -167,6 +167,7 @@ export * from "./PhoneNumberRequest";
 export * from "./ReasonEnum";
 export * from "./RemoteData";
 export * from "./RemoteField";
+export * from "./RemoteFieldRemoteFieldClass";
 export * from "./RemoteFieldClass";
 export * from "./RemoteFieldClassFieldType";
 export * from "./RemoteFieldClassFieldFormat";
