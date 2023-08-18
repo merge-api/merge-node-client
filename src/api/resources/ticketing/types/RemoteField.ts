@@ -5,6 +5,6 @@
 import * as Merge from "../../..";
 
 export interface RemoteField {
-    remoteFieldClass: Merge.ticketing.RemoteFieldClass;
-    value?: Record<string, unknown>;
+    remoteFieldClass: Merge.ticketing.RemoteFieldRemoteFieldClass;
+    value?: unknown;
 }
