@@ -23,6 +23,10 @@ export interface Expense {
     contact?: Merge.accounting.ExpenseContact;
     /** The expense's total amount. */
     totalAmount?: number;
+    /** The expense's total amount before tax. */
+    subTotal?: number;
+    /** The expense's total tax amount. */
+    totalTaxAmount?: number;
     /**
      * The expense's currency.
      *

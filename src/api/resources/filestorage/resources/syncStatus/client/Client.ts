@@ -26,7 +26,7 @@ export class SyncStatus {
     constructor(protected readonly _options: SyncStatus.Options) {}
 
     /**
-     * Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`
+     * Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`. Learn more about sync status in our [Help Center](https://help.merge.dev/en/articles/8184193-merge-sync-statuses).
      */
     public async list(
         request: Merge.filestorage.SyncStatusListRequest = {},
@@ -56,7 +56,7 @@ export class SyncStatus {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.4",
+                "X-Fern-SDK-Version": "0.1.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

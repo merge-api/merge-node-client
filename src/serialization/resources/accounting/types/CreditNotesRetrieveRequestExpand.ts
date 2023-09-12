@@ -10,22 +10,38 @@ export const CreditNotesRetrieveRequestExpand: core.serialization.Schema<
     serializers.accounting.CreditNotesRetrieveRequestExpand.Raw,
     Merge.accounting.CreditNotesRetrieveRequestExpand
 > = core.serialization.enum_([
+    "applied_to_lines",
     "line_items",
+    "line_items,applied_to_lines",
     "line_items,tracking_categories",
+    "line_items,tracking_categories,applied_to_lines",
     "payments",
+    "payments,applied_to_lines",
     "payments,line_items",
+    "payments,line_items,applied_to_lines",
     "payments,line_items,tracking_categories",
+    "payments,line_items,tracking_categories,applied_to_lines",
     "payments,tracking_categories",
+    "payments,tracking_categories,applied_to_lines",
     "tracking_categories",
+    "tracking_categories,applied_to_lines",
 ]);
 
 export declare namespace CreditNotesRetrieveRequestExpand {
     type Raw =
+        | "applied_to_lines"
         | "line_items"
+        | "line_items,applied_to_lines"
         | "line_items,tracking_categories"
+        | "line_items,tracking_categories,applied_to_lines"
         | "payments"
+        | "payments,applied_to_lines"
         | "payments,line_items"
+        | "payments,line_items,applied_to_lines"
         | "payments,line_items,tracking_categories"
+        | "payments,line_items,tracking_categories,applied_to_lines"
         | "payments,tracking_categories"
-        | "tracking_categories";
+        | "payments,tracking_categories,applied_to_lines"
+        | "tracking_categories"
+        | "tracking_categories,applied_to_lines";
 }

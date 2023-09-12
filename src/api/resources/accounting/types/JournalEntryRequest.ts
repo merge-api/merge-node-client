@@ -334,7 +334,10 @@ export interface JournalEntryRequest {
     exchangeRate?: string;
     /** The company the journal entry belongs to. */
     company?: Merge.accounting.JournalEntryRequestCompany;
+    trackingCategories?: (Merge.accounting.JournalEntryRequestTrackingCategoriesItem | undefined)[];
     lines?: Merge.accounting.JournalLineRequest[];
+    /** Reference number for identifying journal entries. */
+    journalNumber?: string;
     /**
      * The journal's posting status.
      *

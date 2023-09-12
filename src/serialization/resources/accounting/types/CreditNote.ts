@@ -45,6 +45,12 @@ export const CreditNote: core.serialization.ObjectSchema<
         )
         .optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+    appliedToLines: core.serialization.property(
+        "applied_to_lines",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.CreditNoteApplyLine))
+            .optional()
+    ),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
@@ -77,6 +83,7 @@ export declare namespace CreditNote {
         remote_updated_at?: string | null;
         payments?: (serializers.accounting.CreditNotePaymentsItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
+        applied_to_lines?: serializers.accounting.CreditNoteApplyLine.Raw[] | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;

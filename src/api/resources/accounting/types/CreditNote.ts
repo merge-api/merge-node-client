@@ -7,8 +7,7 @@ import * as Merge from "../../..";
 /**
  * # The CreditNote Object
  * ### Description
- * The `CreditNote` object are an accounts payable transaction used when to represent a gift or refund to a customer. A credit note will contain information on the amount of credit owed, the customer, and the account.
- *
+ * The `CreditNote` object is an accounts payable transaction used when to represent a gift or refund to a customer. A credit note will contain information on the amount of credit owed, the customer, and the account.
  * ### Usage Example
  * Fetch from the `LIST CreditNotes` endpoint and view a company's credit notes.
  */
@@ -359,6 +358,7 @@ export interface CreditNote {
     payments?: (Merge.accounting.CreditNotePaymentsItem | undefined)[];
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
+    appliedToLines?: Merge.accounting.CreditNoteApplyLine[];
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

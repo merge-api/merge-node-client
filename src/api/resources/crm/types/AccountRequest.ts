@@ -24,6 +24,8 @@ export interface AccountRequest {
     website?: string;
     /** The account's number of employees. */
     numberOfEmployees?: number;
+    addresses?: Merge.crm.Address[];
+    phoneNumbers?: Merge.crm.PhoneNumber[];
     /** The last date (either most recent or furthest in the future) of when an activity occurs in an account. */
     lastActivityAt?: Date;
     integrationParams?: Record<string, unknown>;

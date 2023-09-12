@@ -33,6 +33,17 @@ export interface InvoiceRequest {
     paidOnDate?: Date;
     /** The invoice's private note. */
     memo?: string;
+    /**
+     * The status of the invoice.
+     *
+     * * `PAID` - PAID
+     * * `DRAFT` - DRAFT
+     * * `SUBMITTED` - SUBMITTED
+     * * `PARTIALLY_PAID` - PARTIALLY_PAID
+     * * `OPEN` - OPEN
+     * * `VOID` - VOID
+     */
+    status?: Merge.accounting.InvoiceRequestStatus;
     /** The company the invoice belongs to. */
     company?: Merge.accounting.InvoiceRequestCompany;
     /**

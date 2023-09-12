@@ -5,6 +5,14 @@
 export type PaymentsRetrieveRequestExpand =
     | "account"
     | "account,company"
+    | "applied_to_lines"
+    | "applied_to_lines,account"
+    | "applied_to_lines,account,company"
+    | "applied_to_lines,company"
+    | "applied_to_lines,contact"
+    | "applied_to_lines,contact,account"
+    | "applied_to_lines,contact,account,company"
+    | "applied_to_lines,contact,company"
     | "company"
     | "contact"
     | "contact,account"
@@ -13,6 +21,14 @@ export type PaymentsRetrieveRequestExpand =
     | "tracking_categories"
     | "tracking_categories,account"
     | "tracking_categories,account,company"
+    | "tracking_categories,applied_to_lines"
+    | "tracking_categories,applied_to_lines,account"
+    | "tracking_categories,applied_to_lines,account,company"
+    | "tracking_categories,applied_to_lines,company"
+    | "tracking_categories,applied_to_lines,contact"
+    | "tracking_categories,applied_to_lines,contact,account"
+    | "tracking_categories,applied_to_lines,contact,account,company"
+    | "tracking_categories,applied_to_lines,contact,company"
     | "tracking_categories,company"
     | "tracking_categories,contact"
     | "tracking_categories,contact,account"
@@ -22,6 +38,14 @@ export type PaymentsRetrieveRequestExpand =
 export const PaymentsRetrieveRequestExpand = {
     Account: "account",
     AccountCompany: "account,company",
+    AppliedToLines: "applied_to_lines",
+    AppliedToLinesAccount: "applied_to_lines,account",
+    AppliedToLinesAccountCompany: "applied_to_lines,account,company",
+    AppliedToLinesCompany: "applied_to_lines,company",
+    AppliedToLinesContact: "applied_to_lines,contact",
+    AppliedToLinesContactAccount: "applied_to_lines,contact,account",
+    AppliedToLinesContactAccountCompany: "applied_to_lines,contact,account,company",
+    AppliedToLinesContactCompany: "applied_to_lines,contact,company",
     Company: "company",
     Contact: "contact",
     ContactAccount: "contact,account",
@@ -30,6 +54,15 @@ export const PaymentsRetrieveRequestExpand = {
     TrackingCategories: "tracking_categories",
     TrackingCategoriesAccount: "tracking_categories,account",
     TrackingCategoriesAccountCompany: "tracking_categories,account,company",
+    TrackingCategoriesAppliedToLines: "tracking_categories,applied_to_lines",
+    TrackingCategoriesAppliedToLinesAccount: "tracking_categories,applied_to_lines,account",
+    TrackingCategoriesAppliedToLinesAccountCompany: "tracking_categories,applied_to_lines,account,company",
+    TrackingCategoriesAppliedToLinesCompany: "tracking_categories,applied_to_lines,company",
+    TrackingCategoriesAppliedToLinesContact: "tracking_categories,applied_to_lines,contact",
+    TrackingCategoriesAppliedToLinesContactAccount: "tracking_categories,applied_to_lines,contact,account",
+    TrackingCategoriesAppliedToLinesContactAccountCompany:
+        "tracking_categories,applied_to_lines,contact,account,company",
+    TrackingCategoriesAppliedToLinesContactCompany: "tracking_categories,applied_to_lines,contact,company",
     TrackingCategoriesCompany: "tracking_categories,company",
     TrackingCategoriesContact: "tracking_categories,contact",
     TrackingCategoriesContactAccount: "tracking_categories,contact,account",

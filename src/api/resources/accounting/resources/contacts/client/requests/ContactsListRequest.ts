@@ -34,6 +34,14 @@ export interface ContactsListRequest {
      */
     includeRemoteData?: boolean;
     /**
+     * If provided, will only return Contacts that are denoted as customers.
+     */
+    isCustomer?: string;
+    /**
+     * If provided, will only return Contacts that are denoted as suppliers.
+     */
+    isSupplier?: string;
+    /**
      * If provided, only objects synced by Merge after this date time will be returned.
      */
     modifiedAfter?: Date;

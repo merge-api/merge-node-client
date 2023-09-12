@@ -20,6 +20,10 @@ export interface ContactsListRequest {
      */
     cursor?: string;
     /**
+     * If provided, will only return contacts matching the email addresses; multiple email_addresses can be separated by commas.
+     */
+    emailAddresses?: string;
+    /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     expand?: "account";
@@ -47,6 +51,10 @@ export interface ContactsListRequest {
      * Number of results to return per page.
      */
     pageSize?: number;
+    /**
+     * If provided, will only return contacts matching the phone numbers; multiple phone numbers can be separated by commas.
+     */
+    phoneNumbers?: string;
     /**
      * The API provider's ID for the given object.
      */

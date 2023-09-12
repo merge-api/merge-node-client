@@ -29,6 +29,7 @@ export const JournalEntry: core.serialization.ObjectSchema<
     lines: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.JournalLine))
         .optional(),
+    journalNumber: core.serialization.property("journal_number", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
         core.serialization
@@ -70,6 +71,7 @@ export declare namespace JournalEntry {
         exchange_rate?: string | null;
         company?: serializers.accounting.JournalEntryCompany.Raw | null;
         lines?: serializers.accounting.JournalLine.Raw[] | null;
+        journal_number?: string | null;
         tracking_categories?:
             | (serializers.accounting.JournalEntryTrackingCategoriesItem.Raw | null | undefined)[]
             | null;

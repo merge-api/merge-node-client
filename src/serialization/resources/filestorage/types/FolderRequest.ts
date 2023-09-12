@@ -16,7 +16,9 @@ export const FolderRequest: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     parentFolder: core.serialization.property("parent_folder", core.serialization.string().optional()),
     drive: core.serialization.string().optional(),
-    permissions: core.serialization.list(core.serialization.string()),
+    permissions: core.serialization
+        .lazy(async () => (await import("../../..")).filestorage.FolderRequestPermissions)
+        .optional(),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -35,7 +37,7 @@ export declare namespace FolderRequest {
         description?: string | null;
         parent_folder?: string | null;
         drive?: string | null;
-        permissions: string[];
+        permissions?: serializers.filestorage.FolderRequestPermissions.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
     }

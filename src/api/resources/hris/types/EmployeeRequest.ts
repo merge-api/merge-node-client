@@ -21,6 +21,8 @@ export interface EmployeeRequest {
     firstName?: string;
     /** The employee's last name. */
     lastName?: string;
+    /** The employee's preferred first name. */
+    preferredName?: string;
     /** The employee's full name, to use for display purposes. If a preferred first name is available, the full name will include the preferred first name. */
     displayFullName?: string;
     /** The employee's username that appears in the remote UI. */

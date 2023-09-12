@@ -18,6 +18,8 @@ export const ExpenseRequest: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).accounting.ExpenseRequestContact)
         .optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
+    subTotal: core.serialization.property("sub_total", core.serialization.number().optional()),
+    totalTaxAmount: core.serialization.property("total_tax_amount", core.serialization.number().optional()),
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.ExpenseRequestCurrency)
         .optional(),
@@ -55,6 +57,8 @@ export declare namespace ExpenseRequest {
         account?: serializers.accounting.ExpenseRequestAccount.Raw | null;
         contact?: serializers.accounting.ExpenseRequestContact.Raw | null;
         total_amount?: number | null;
+        sub_total?: number | null;
+        total_tax_amount?: number | null;
         currency?: serializers.accounting.ExpenseRequestCurrency.Raw | null;
         exchange_rate?: string | null;
         company?: serializers.accounting.ExpenseRequestCompany.Raw | null;

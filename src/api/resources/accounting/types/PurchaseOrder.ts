@@ -25,6 +25,8 @@ export interface PurchaseOrder {
     status?: Merge.accounting.PurchaseOrderStatus;
     /** The purchase order's issue date. */
     issueDate?: Date;
+    /** The human-readable number of the purchase order. */
+    purchaseOrderNumber?: string;
     /** The purchase order's delivery date. */
     deliveryDate?: Date;
     /** The purchase order's delivery address. */

@@ -21,6 +21,7 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
         exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
         totalDiscount: core.serialization.property("total_discount", core.serialization.number().optional()),
         subTotal: core.serialization.property("sub_total", core.serialization.number().optional()),
+        status: core.serialization.lazy(async () => (await import("../../..")).accounting.InvoiceStatusEnum).optional(),
         totalTaxAmount: core.serialization.property("total_tax_amount", core.serialization.number().optional()),
         totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
         balance: core.serialization.number().optional(),
@@ -78,6 +79,7 @@ export declare namespace Invoice {
         exchange_rate?: string | null;
         total_discount?: number | null;
         sub_total?: number | null;
+        status?: serializers.accounting.InvoiceStatusEnum.Raw | null;
         total_tax_amount?: number | null;
         total_amount?: number | null;
         balance?: number | null;

@@ -26,7 +26,7 @@ export interface UsersListRequest {
     /**
      * If provided, will only return the user object for requestor.
      */
-    isMe?: boolean;
+    isMe?: string;
     /**
      * If provided, only objects synced by Merge after this date time will be returned.
      */
