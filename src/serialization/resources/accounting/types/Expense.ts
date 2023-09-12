@@ -13,6 +13,8 @@ export const Expense: core.serialization.ObjectSchema<serializers.accounting.Exp
         account: core.serialization.lazy(async () => (await import("../../..")).accounting.ExpenseAccount).optional(),
         contact: core.serialization.lazy(async () => (await import("../../..")).accounting.ExpenseContact).optional(),
         totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
+        subTotal: core.serialization.property("sub_total", core.serialization.number().optional()),
+        totalTaxAmount: core.serialization.property("total_tax_amount", core.serialization.number().optional()),
         currency: core.serialization.lazy(async () => (await import("../../..")).accounting.ExpenseCurrency).optional(),
         exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
         company: core.serialization.lazy(async () => (await import("../../..")).accounting.ExpenseCompany).optional(),
@@ -53,6 +55,8 @@ export declare namespace Expense {
         account?: serializers.accounting.ExpenseAccount.Raw | null;
         contact?: serializers.accounting.ExpenseContact.Raw | null;
         total_amount?: number | null;
+        sub_total?: number | null;
+        total_tax_amount?: number | null;
         currency?: serializers.accounting.ExpenseCurrency.Raw | null;
         exchange_rate?: string | null;
         company?: serializers.accounting.ExpenseCompany.Raw | null;

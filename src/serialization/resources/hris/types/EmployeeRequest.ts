@@ -14,6 +14,7 @@ export const EmployeeRequest: core.serialization.ObjectSchema<
     company: core.serialization.lazy(async () => (await import("../../..")).hris.EmployeeRequestCompany).optional(),
     firstName: core.serialization.property("first_name", core.serialization.string().optional()),
     lastName: core.serialization.property("last_name", core.serialization.string().optional()),
+    preferredName: core.serialization.property("preferred_name", core.serialization.string().optional()),
     displayFullName: core.serialization.property("display_full_name", core.serialization.string().optional()),
     username: core.serialization.string().optional(),
     groups: core.serialization
@@ -75,6 +76,7 @@ export declare namespace EmployeeRequest {
         company?: serializers.hris.EmployeeRequestCompany.Raw | null;
         first_name?: string | null;
         last_name?: string | null;
+        preferred_name?: string | null;
         display_full_name?: string | null;
         username?: string | null;
         groups?: (serializers.hris.EmployeeRequestGroupsItem.Raw | null | undefined)[] | null;

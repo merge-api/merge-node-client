@@ -343,6 +343,7 @@ export interface VendorCredit {
     trackingCategories?: (Merge.accounting.VendorCreditTrackingCategoriesItem | undefined)[];
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
+    appliedToLines?: Merge.accounting.VendorCreditApplyLine[];
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

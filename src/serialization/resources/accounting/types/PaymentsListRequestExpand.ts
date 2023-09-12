@@ -12,6 +12,14 @@ export const PaymentsListRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_([
     "account",
     "account,company",
+    "applied_to_lines",
+    "applied_to_lines,account",
+    "applied_to_lines,account,company",
+    "applied_to_lines,company",
+    "applied_to_lines,contact",
+    "applied_to_lines,contact,account",
+    "applied_to_lines,contact,account,company",
+    "applied_to_lines,contact,company",
     "company",
     "contact",
     "contact,account",
@@ -20,6 +28,14 @@ export const PaymentsListRequestExpand: core.serialization.Schema<
     "tracking_categories",
     "tracking_categories,account",
     "tracking_categories,account,company",
+    "tracking_categories,applied_to_lines",
+    "tracking_categories,applied_to_lines,account",
+    "tracking_categories,applied_to_lines,account,company",
+    "tracking_categories,applied_to_lines,company",
+    "tracking_categories,applied_to_lines,contact",
+    "tracking_categories,applied_to_lines,contact,account",
+    "tracking_categories,applied_to_lines,contact,account,company",
+    "tracking_categories,applied_to_lines,contact,company",
     "tracking_categories,company",
     "tracking_categories,contact",
     "tracking_categories,contact,account",
@@ -31,6 +47,14 @@ export declare namespace PaymentsListRequestExpand {
     type Raw =
         | "account"
         | "account,company"
+        | "applied_to_lines"
+        | "applied_to_lines,account"
+        | "applied_to_lines,account,company"
+        | "applied_to_lines,company"
+        | "applied_to_lines,contact"
+        | "applied_to_lines,contact,account"
+        | "applied_to_lines,contact,account,company"
+        | "applied_to_lines,contact,company"
         | "company"
         | "contact"
         | "contact,account"
@@ -39,6 +63,14 @@ export declare namespace PaymentsListRequestExpand {
         | "tracking_categories"
         | "tracking_categories,account"
         | "tracking_categories,account,company"
+        | "tracking_categories,applied_to_lines"
+        | "tracking_categories,applied_to_lines,account"
+        | "tracking_categories,applied_to_lines,account,company"
+        | "tracking_categories,applied_to_lines,company"
+        | "tracking_categories,applied_to_lines,contact"
+        | "tracking_categories,applied_to_lines,contact,account"
+        | "tracking_categories,applied_to_lines,contact,account,company"
+        | "tracking_categories,applied_to_lines,contact,company"
         | "tracking_categories,company"
         | "tracking_categories,contact"
         | "tracking_categories,contact,account"

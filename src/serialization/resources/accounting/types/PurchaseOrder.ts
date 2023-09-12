@@ -12,6 +12,7 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
 > = core.serialization.object({
     status: core.serialization.lazy(async () => (await import("../../..")).accounting.PurchaseOrderStatus).optional(),
     issueDate: core.serialization.property("issue_date", core.serialization.date().optional()),
+    purchaseOrderNumber: core.serialization.property("purchase_order_number", core.serialization.string().optional()),
     deliveryDate: core.serialization.property("delivery_date", core.serialization.date().optional()),
     deliveryAddress: core.serialization.property(
         "delivery_address",
@@ -68,6 +69,7 @@ export declare namespace PurchaseOrder {
     interface Raw {
         status?: serializers.accounting.PurchaseOrderStatus.Raw | null;
         issue_date?: string | null;
+        purchase_order_number?: string | null;
         delivery_date?: string | null;
         delivery_address?: serializers.accounting.PurchaseOrderDeliveryAddress.Raw | null;
         customer?: string | null;

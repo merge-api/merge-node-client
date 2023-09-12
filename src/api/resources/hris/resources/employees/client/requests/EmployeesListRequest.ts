@@ -34,6 +34,10 @@ export interface EmployeesListRequest {
      */
     employmentStatus?: Merge.hris.EmployeesListRequestEmploymentStatus;
     /**
+     * If provided, will only return employees that have an employment of the specified employment_type.
+     */
+    employmentType?: string;
+    /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     expand?: Merge.hris.EmployeesListRequestExpand;
@@ -46,6 +50,10 @@ export interface EmployeesListRequest {
      */
     groups?: string;
     /**
+     * If provided, will only return employees for this home location.
+     */
+    homeLocationId?: string;
+    /**
      * Whether to include data that was marked as deleted by third party webhooks.
      */
     includeDeletedData?: boolean;
@@ -57,6 +65,10 @@ export interface EmployeesListRequest {
      * Whether to include sensitive fields (such as social security numbers) in the response.
      */
     includeSensitiveFields?: boolean;
+    /**
+     * If provided, will only return employees that have an employment of the specified job_title.
+     */
+    jobTitle?: string;
     /**
      * If provided, will only return employees with this last name.
      */

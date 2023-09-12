@@ -35,6 +35,14 @@ export const PaymentRequest: core.serialization.ObjectSchema<
             )
             .optional()
     ),
+    appliedToLines: core.serialization.property(
+        "applied_to_lines",
+        core.serialization
+            .list(
+                core.serialization.lazyObject(async () => (await import("../../..")).accounting.PaymentLineItemRequest)
+            )
+            .optional()
+    ),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -57,6 +65,7 @@ export declare namespace PaymentRequest {
         tracking_categories?:
             | (serializers.accounting.PaymentRequestTrackingCategoriesItem.Raw | null | undefined)[]
             | null;
+        applied_to_lines?: serializers.accounting.PaymentLineItemRequest.Raw[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
     }

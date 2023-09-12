@@ -19,6 +19,7 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     paidOnDate: core.serialization.property("paid_on_date", core.serialization.date().optional()),
     memo: core.serialization.string().optional(),
+    status: core.serialization.lazy(async () => (await import("../../..")).accounting.InvoiceRequestStatus).optional(),
     company: core.serialization
         .lazy(async () => (await import("../../..")).accounting.InvoiceRequestCompany)
         .optional(),
@@ -75,6 +76,7 @@ export declare namespace InvoiceRequest {
         due_date?: string | null;
         paid_on_date?: string | null;
         memo?: string | null;
+        status?: serializers.accounting.InvoiceRequestStatus.Raw | null;
         company?: serializers.accounting.InvoiceRequestCompany.Raw | null;
         currency?: serializers.accounting.InvoiceRequestCurrency.Raw | null;
         exchange_rate?: string | null;

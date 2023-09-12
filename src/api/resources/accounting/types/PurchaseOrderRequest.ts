@@ -352,6 +352,7 @@ export interface PurchaseOrderRequest {
     currency?: Merge.accounting.PurchaseOrderRequestCurrency;
     /** The purchase order's exchange rate. */
     exchangeRate?: string;
+    trackingCategories?: (Merge.accounting.PurchaseOrderRequestTrackingCategoriesItem | undefined)[];
     lineItems?: Merge.accounting.PurchaseOrderLineItemRequest[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;

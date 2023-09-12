@@ -16,7 +16,9 @@ export const Folder: core.serialization.ObjectSchema<serializers.filestorage.Fol
         description: core.serialization.string().optional(),
         parentFolder: core.serialization.property("parent_folder", core.serialization.string().optional()),
         drive: core.serialization.string().optional(),
-        permissions: core.serialization.list(core.serialization.string()),
+        permissions: core.serialization
+            .lazy(async () => (await import("../../..")).filestorage.FolderPermissions)
+            .optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
@@ -43,7 +45,7 @@ export declare namespace Folder {
         description?: string | null;
         parent_folder?: string | null;
         drive?: string | null;
-        permissions: string[];
+        permissions?: serializers.filestorage.FolderPermissions.Raw | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;

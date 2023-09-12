@@ -344,6 +344,7 @@ export interface Payment {
     remoteUpdatedAt?: Date;
     /** Indicates whether or not this object has been deleted by third party webhooks. */
     remoteWasDeleted?: boolean;
+    appliedToLines?: Merge.accounting.PaymentLineItem[];
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

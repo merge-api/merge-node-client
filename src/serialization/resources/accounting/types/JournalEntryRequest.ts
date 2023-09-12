@@ -26,9 +26,20 @@ export const JournalEntryRequest: core.serialization.ObjectSchema<
     company: core.serialization
         .lazy(async () => (await import("../../..")).accounting.JournalEntryRequestCompany)
         .optional(),
+    trackingCategories: core.serialization.property(
+        "tracking_categories",
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.JournalEntryRequestTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
+    ),
     lines: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.JournalLineRequest))
         .optional(),
+    journalNumber: core.serialization.property("journal_number", core.serialization.string().optional()),
     postingStatus: core.serialization.property(
         "posting_status",
         core.serialization
@@ -53,7 +64,11 @@ export declare namespace JournalEntryRequest {
         currency?: serializers.accounting.JournalEntryRequestCurrency.Raw | null;
         exchange_rate?: string | null;
         company?: serializers.accounting.JournalEntryRequestCompany.Raw | null;
+        tracking_categories?:
+            | (serializers.accounting.JournalEntryRequestTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         lines?: serializers.accounting.JournalLineRequest.Raw[] | null;
+        journal_number?: string | null;
         posting_status?: serializers.accounting.JournalEntryRequestPostingStatus.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

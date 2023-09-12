@@ -16,6 +16,15 @@ export const AccountRequest: core.serialization.ObjectSchema<
     industry: core.serialization.string().optional(),
     website: core.serialization.string().optional(),
     numberOfEmployees: core.serialization.property("number_of_employees", core.serialization.number().optional()),
+    addresses: core.serialization
+        .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.Address))
+        .optional(),
+    phoneNumbers: core.serialization.property(
+        "phone_numbers",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.PhoneNumber))
+            .optional()
+    ),
     lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -41,6 +50,8 @@ export declare namespace AccountRequest {
         industry?: string | null;
         website?: string | null;
         number_of_employees?: number | null;
+        addresses?: serializers.crm.Address.Raw[] | null;
+        phone_numbers?: serializers.crm.PhoneNumber.Raw[] | null;
         last_activity_at?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

@@ -29,6 +29,12 @@ export const Payment: core.serialization.ObjectSchema<serializers.accounting.Pay
         ),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+        appliedToLines: core.serialization.property(
+            "applied_to_lines",
+            core.serialization
+                .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.PaymentLineItem))
+                .optional()
+        ),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -56,6 +62,7 @@ export declare namespace Payment {
         tracking_categories?: (serializers.accounting.PaymentTrackingCategoriesItem.Raw | null | undefined)[] | null;
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
+        applied_to_lines?: serializers.accounting.PaymentLineItem.Raw[] | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;

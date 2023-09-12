@@ -34,6 +34,16 @@ export const PurchaseOrderRequest: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).accounting.PurchaseOrderRequestCurrency)
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
+    trackingCategories: core.serialization.property(
+        "tracking_categories",
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.PurchaseOrderRequestTrackingCategoriesItem)
+                    .optional()
+            )
+            .optional()
+    ),
     lineItems: core.serialization.property(
         "line_items",
         core.serialization
@@ -67,6 +77,9 @@ export declare namespace PurchaseOrderRequest {
         total_amount?: number | null;
         currency?: serializers.accounting.PurchaseOrderRequestCurrency.Raw | null;
         exchange_rate?: string | null;
+        tracking_categories?:
+            | (serializers.accounting.PurchaseOrderRequestTrackingCategoriesItem.Raw | null | undefined)[]
+            | null;
         line_items?: serializers.accounting.PurchaseOrderLineItemRequest.Raw[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

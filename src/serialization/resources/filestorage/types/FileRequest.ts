@@ -17,7 +17,9 @@ export const FileRequest: core.serialization.ObjectSchema<
     mimeType: core.serialization.property("mime_type", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
     folder: core.serialization.string().optional(),
-    permissions: core.serialization.list(core.serialization.string()),
+    permissions: core.serialization
+        .lazy(async () => (await import("../../..")).filestorage.FileRequestPermissions)
+        .optional(),
     drive: core.serialization.string().optional(),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -38,7 +40,7 @@ export declare namespace FileRequest {
         mime_type?: string | null;
         description?: string | null;
         folder?: string | null;
-        permissions: string[];
+        permissions?: serializers.filestorage.FileRequestPermissions.Raw | null;
         drive?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

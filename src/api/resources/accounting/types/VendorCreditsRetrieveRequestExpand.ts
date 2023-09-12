@@ -3,16 +3,32 @@
  */
 
 export type VendorCreditsRetrieveRequestExpand =
+    | "applied_to_lines"
+    | "applied_to_lines,company"
+    | "applied_to_lines,vendor"
+    | "applied_to_lines,vendor,company"
     | "company"
     | "lines"
+    | "lines,applied_to_lines"
+    | "lines,applied_to_lines,company"
+    | "lines,applied_to_lines,vendor"
+    | "lines,applied_to_lines,vendor,company"
     | "lines,company"
     | "lines,tracking_categories"
+    | "lines,tracking_categories,applied_to_lines"
+    | "lines,tracking_categories,applied_to_lines,company"
+    | "lines,tracking_categories,applied_to_lines,vendor"
+    | "lines,tracking_categories,applied_to_lines,vendor,company"
     | "lines,tracking_categories,company"
     | "lines,tracking_categories,vendor"
     | "lines,tracking_categories,vendor,company"
     | "lines,vendor"
     | "lines,vendor,company"
     | "tracking_categories"
+    | "tracking_categories,applied_to_lines"
+    | "tracking_categories,applied_to_lines,company"
+    | "tracking_categories,applied_to_lines,vendor"
+    | "tracking_categories,applied_to_lines,vendor,company"
     | "tracking_categories,company"
     | "tracking_categories,vendor"
     | "tracking_categories,vendor,company"
@@ -20,16 +36,32 @@ export type VendorCreditsRetrieveRequestExpand =
     | "vendor,company";
 
 export const VendorCreditsRetrieveRequestExpand = {
+    AppliedToLines: "applied_to_lines",
+    AppliedToLinesCompany: "applied_to_lines,company",
+    AppliedToLinesVendor: "applied_to_lines,vendor",
+    AppliedToLinesVendorCompany: "applied_to_lines,vendor,company",
     Company: "company",
     Lines: "lines",
+    LinesAppliedToLines: "lines,applied_to_lines",
+    LinesAppliedToLinesCompany: "lines,applied_to_lines,company",
+    LinesAppliedToLinesVendor: "lines,applied_to_lines,vendor",
+    LinesAppliedToLinesVendorCompany: "lines,applied_to_lines,vendor,company",
     LinesCompany: "lines,company",
     LinesTrackingCategories: "lines,tracking_categories",
+    LinesTrackingCategoriesAppliedToLines: "lines,tracking_categories,applied_to_lines",
+    LinesTrackingCategoriesAppliedToLinesCompany: "lines,tracking_categories,applied_to_lines,company",
+    LinesTrackingCategoriesAppliedToLinesVendor: "lines,tracking_categories,applied_to_lines,vendor",
+    LinesTrackingCategoriesAppliedToLinesVendorCompany: "lines,tracking_categories,applied_to_lines,vendor,company",
     LinesTrackingCategoriesCompany: "lines,tracking_categories,company",
     LinesTrackingCategoriesVendor: "lines,tracking_categories,vendor",
     LinesTrackingCategoriesVendorCompany: "lines,tracking_categories,vendor,company",
     LinesVendor: "lines,vendor",
     LinesVendorCompany: "lines,vendor,company",
     TrackingCategories: "tracking_categories",
+    TrackingCategoriesAppliedToLines: "tracking_categories,applied_to_lines",
+    TrackingCategoriesAppliedToLinesCompany: "tracking_categories,applied_to_lines,company",
+    TrackingCategoriesAppliedToLinesVendor: "tracking_categories,applied_to_lines,vendor",
+    TrackingCategoriesAppliedToLinesVendorCompany: "tracking_categories,applied_to_lines,vendor,company",
     TrackingCategoriesCompany: "tracking_categories,company",
     TrackingCategoriesVendor: "tracking_categories,vendor",
     TrackingCategoriesVendorCompany: "tracking_categories,vendor,company",

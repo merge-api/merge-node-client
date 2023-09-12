@@ -352,6 +352,17 @@ export interface Invoice {
     totalDiscount?: number;
     /** The total amount being paid before taxes. */
     subTotal?: number;
+    /**
+     * The status of the invoice.
+     *
+     * * `PAID` - PAID
+     * * `DRAFT` - DRAFT
+     * * `SUBMITTED` - SUBMITTED
+     * * `PARTIALLY_PAID` - PARTIALLY_PAID
+     * * `OPEN` - OPEN
+     * * `VOID` - VOID
+     */
+    status?: Merge.accounting.InvoiceStatusEnum;
     /** The total amount being paid in taxes. */
     totalTaxAmount?: number;
     /** The invoice's total amount. */

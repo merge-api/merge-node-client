@@ -339,6 +339,8 @@ export interface JournalEntry {
     /** The company the journal entry belongs to. */
     company?: Merge.accounting.JournalEntryCompany;
     lines?: Merge.accounting.JournalLine[];
+    /** Reference number for identifying journal entries. */
+    journalNumber?: string;
     trackingCategories?: (Merge.accounting.JournalEntryTrackingCategoriesItem | undefined)[];
     remoteWasDeleted?: boolean;
     /**

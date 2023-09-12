@@ -17,7 +17,9 @@ export const File_: core.serialization.ObjectSchema<serializers.filestorage.File
         mimeType: core.serialization.property("mime_type", core.serialization.string().optional()),
         description: core.serialization.string().optional(),
         folder: core.serialization.string().optional(),
-        permissions: core.serialization.list(core.serialization.string()),
+        permissions: core.serialization
+            .lazy(async () => (await import("../../..")).filestorage.FilePermissions)
+            .optional(),
         drive: core.serialization.string().optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
@@ -46,7 +48,7 @@ export declare namespace File_ {
         mime_type?: string | null;
         description?: string | null;
         folder?: string | null;
-        permissions: string[];
+        permissions?: serializers.filestorage.FilePermissions.Raw | null;
         drive?: string | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
