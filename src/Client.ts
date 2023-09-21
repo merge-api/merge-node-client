@@ -4,9 +4,9 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
+import { Filestorage } from "./api/resources/filestorage/client/Client";
 import { Ats } from "./api/resources/ats/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
-import { Filestorage } from "./api/resources/filestorage/client/Client";
 import { Hris } from "./api/resources/hris/client/Client";
 import { Ticketing } from "./api/resources/ticketing/client/Client";
 import { Accounting } from "./api/resources/accounting/client/Client";
@@ -26,6 +26,12 @@ export declare namespace MergeClient {
 export class MergeClient {
     constructor(protected readonly _options: MergeClient.Options) {}
 
+    protected _filestorage: Filestorage | undefined;
+
+    public get filestorage(): Filestorage {
+        return (this._filestorage ??= new Filestorage(this._options));
+    }
+
     protected _ats: Ats | undefined;
 
     public get ats(): Ats {
@@ -36,12 +42,6 @@ export class MergeClient {
 
     public get crm(): Crm {
         return (this._crm ??= new Crm(this._options));
-    }
-
-    protected _filestorage: Filestorage | undefined;
-
-    public get filestorage(): Filestorage {
-        return (this._filestorage ??= new Filestorage(this._options));
     }
 
     protected _hris: Hris | undefined;
