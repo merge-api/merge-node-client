@@ -20,6 +20,7 @@ export const Association: core.serialization.ObjectSchema<serializers.crm.Associ
             "association_type",
             core.serialization.lazy(async () => (await import("../../..")).crm.AssociationAssociationType).optional()
         ),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
@@ -28,6 +29,7 @@ export declare namespace Association {
         source_object?: Record<string, unknown> | null;
         target_object?: Record<string, unknown> | null;
         association_type?: serializers.crm.AssociationAssociationType.Raw | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

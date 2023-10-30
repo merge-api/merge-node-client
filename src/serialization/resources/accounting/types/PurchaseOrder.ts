@@ -50,8 +50,15 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
     remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
     remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+    accountingPeriod: core.serialization.property(
+        "accounting_period",
+        core.serialization
+            .lazy(async () => (await import("../../..")).accounting.PurchaseOrderAccountingPeriod)
+            .optional()
+    ),
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
@@ -86,8 +93,10 @@ export declare namespace PurchaseOrder {
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
+        accounting_period?: serializers.accounting.PurchaseOrderAccountingPeriod.Raw | null;
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;

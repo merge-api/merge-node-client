@@ -7,7 +7,8 @@ import * as Merge from "../../..";
 /**
  * # The CreditNote Object
  * ### Description
- * The `CreditNote` object is an accounts payable transaction used when to represent a gift or refund to a customer. A credit note will contain information on the amount of credit owed, the customer, and the account.
+ * A `CreditNote` is transaction issued to a customer, indicating a reduction or cancellation of the amount owed by the customer. It is most generally used as an adjustment note used to rectify errors, returns, or overpayments related to a sales transaction. A `CreditNote` can be applied to *Accounts Receivable* Invoices to decrease the overall amount of the Invoice.
+ *
  * ### Usage Example
  * Fetch from the `LIST CreditNotes` endpoint and view a company's credit notes.
  */
@@ -28,9 +29,9 @@ export interface CreditNote {
     /** The credit note's number. */
     number?: string;
     /** The credit note's contact. */
-    contact?: string;
+    contact?: Merge.accounting.CreditNoteContact;
     /** The company the credit note belongs to. */
-    company?: string;
+    company?: Merge.accounting.CreditNoteCompany;
     /** The credit note's exchange rate. */
     exchangeRate?: string;
     /** The credit note's total amount. */
@@ -356,9 +357,11 @@ export interface CreditNote {
     remoteUpdatedAt?: Date;
     /** Array of `Payment` object IDs */
     payments?: (Merge.accounting.CreditNotePaymentsItem | undefined)[];
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    appliedToLines?: Merge.accounting.CreditNoteApplyLine[];
+    /** The accounting period that the CreditNote was generated in. */
+    accountingPeriod?: Merge.accounting.CreditNoteAccountingPeriod;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

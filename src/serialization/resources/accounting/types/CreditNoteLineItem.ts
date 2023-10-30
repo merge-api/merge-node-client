@@ -28,6 +28,7 @@ export const CreditNoteLineItem: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).accounting.CreditNoteLineItemCompany)
         .optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
@@ -46,6 +47,7 @@ export declare namespace CreditNoteLineItem {
         account?: string | null;
         company?: serializers.accounting.CreditNoteLineItemCompany.Raw | null;
         remote_id?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

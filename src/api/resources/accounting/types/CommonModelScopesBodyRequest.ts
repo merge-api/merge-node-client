@@ -5,7 +5,6 @@
 import * as Merge from "../../..";
 
 export interface CommonModelScopesBodyRequest {
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     modelId: string;
     enabledActions: Merge.accounting.EnabledActionsEnum[];
     disabledFields: string[];

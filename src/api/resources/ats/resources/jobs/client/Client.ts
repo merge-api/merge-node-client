@@ -124,7 +124,7 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -201,7 +201,7 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -209,6 +209,87 @@ export class Jobs {
         });
         if (_response.ok) {
             return await serializers.ats.Job.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Returns a list of `ScreeningQuestion` objects.
+     */
+    public async screeningQuestionsList(
+        jobId: string,
+        request: Merge.ats.JobsScreeningQuestionsListRequest = {},
+        requestOptions?: Jobs.RequestOptions
+    ): Promise<Merge.ats.PaginatedScreeningQuestionList> {
+        const { cursor, expand, includeDeletedData, includeRemoteData, pageSize } = request;
+        const _queryParams = new URLSearchParams();
+        if (cursor != null) {
+            _queryParams.append("cursor", cursor);
+        }
+
+        if (expand != null) {
+            _queryParams.append("expand", expand);
+        }
+
+        if (includeDeletedData != null) {
+            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+        }
+
+        if (includeRemoteData != null) {
+            _queryParams.append("include_remote_data", includeRemoteData.toString());
+        }
+
+        if (pageSize != null) {
+            _queryParams.append("page_size", pageSize.toString());
+        }
+
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                `api/ats/v1/jobs/${jobId}/screening-questions`
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "0.1.8",
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+        });
+        if (_response.ok) {
+            return await serializers.ats.PaginatedScreeningQuestionList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,

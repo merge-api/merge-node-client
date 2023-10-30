@@ -7,7 +7,14 @@ import * as Merge from "../../..";
 /**
  * # The Transaction Object
  * ### Description
- * The `Transaction` includes different types of transactions. The Transactions object does not cover expenses, credit notes, vendor credit, invoices, purchase orders, and journal entries. See the “transaction_type” field for more information.
+ * The `Transaction` common model includes records of all types of transactions that do not appear in other common models. The type of transaction can be identified through the type field. More specifically, it will contain all types of transactions outside of:
+ * * __Credit Notes__
+ * * __Expenses__
+ * * __Invoices__
+ * * __Journal Entries__
+ * * __Payments__
+ * * __Purchase Orders__
+ * * __Vendor Credits__
  *
  * ### Usage Example
  * Fetch from the `GET Transaction` endpoint and view a company's transactions.
@@ -342,11 +349,14 @@ export interface Transaction {
     company?: string;
     trackingCategories?: (Merge.accounting.TransactionTrackingCategoriesItem | undefined)[];
     lineItems?: Merge.accounting.TransactionLineItem[];
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    /** The accounting period that the Transaction was generated in. */
+    accountingPeriod?: Merge.accounting.TransactionAccountingPeriod;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

@@ -342,7 +342,10 @@ export interface InvoiceLineItem {
     trackingCategories?: (Merge.accounting.InvoiceLineItemTrackingCategoriesItem | undefined)[];
     /** The company the line item belongs to. */
     company?: string;
+    /** Indicates whether or not this object has been deleted in the third party platform. */
+    remoteWasDeleted?: boolean;
     id?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * # The TrackingCategory Object
  * ### Description
- * The `TrackingCategory` object is used to represent a company's tracking categories.
+ * A `TrackingCategory` object represents a categorization method used to classify transactions within an accounting platform. They are often used to group records for reporting and analysis purposes. The most common types of `TrackingCategories` are Classes and Departments.
  *
  * ### Usage Example
  * Fetch from the `GET TrackingCategory` endpoint and view a company's tracking category.
@@ -33,11 +33,12 @@ export interface TrackingCategory {
     parentCategory?: string;
     /** The company the tracking category belongs to. */
     company?: Merge.accounting.TrackingCategoryCompany;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

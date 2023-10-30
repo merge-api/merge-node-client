@@ -9,6 +9,7 @@ import { AccountToken } from "../resources/accountToken/client/Client";
 import { Accounts } from "../resources/accounts/client/Client";
 import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
 import { Attachments } from "../resources/attachments/client/Client";
+import { AuditTrail } from "../resources/auditTrail/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { Collections } from "../resources/collections/client/Client";
 import { Comments } from "../resources/comments/client/Client";
@@ -73,6 +74,12 @@ export class Ticketing {
 
     public get attachments(): Attachments {
         return (this._attachments ??= new Attachments(this._options));
+    }
+
+    protected _auditTrail: AuditTrail | undefined;
+
+    public get auditTrail(): AuditTrail {
+        return (this._auditTrail ??= new AuditTrail(this._options));
     }
 
     protected _availableActions: AvailableActions | undefined;

@@ -17,6 +17,7 @@ export const EngagementType: core.serialization.ObjectSchema<
     name: core.serialization.string().optional(),
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     remoteFields: core.serialization.property(
         "remote_fields",
@@ -32,6 +33,7 @@ export declare namespace EngagementType {
         name?: string | null;
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
         remote_fields?: serializers.crm.RemoteField.Raw[] | null;
     }

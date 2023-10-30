@@ -14,6 +14,7 @@ export interface EmailAddress {
     emailAddress?: string;
     /** The email address's type. */
     emailAddressType?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
 }

@@ -23,8 +23,9 @@ export interface Deduction {
     employeeDeduction?: number;
     /** The amount of money that is withheld on behalf of an employee by the company. */
     companyDeduction?: number;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

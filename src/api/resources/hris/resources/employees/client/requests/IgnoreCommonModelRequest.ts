@@ -6,6 +6,5 @@ import * as Merge from "../../../../../..";
 
 export interface IgnoreCommonModelRequest {
     reason: Merge.hris.IgnoreCommonModelRequestReason;
-    /** <span style="white-space: nowrap">`non-empty`</span> <span style="white-space: nowrap">`<= 256 characters`</span> */
     message?: string;
 }

@@ -23,6 +23,10 @@ export const AccountIntegration: core.serialization.ObjectSchema<
         "api_endpoints_to_documentation_urls",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
+    webhookSetupGuideUrl: core.serialization.property(
+        "webhook_setup_guide_url",
+        core.serialization.string().optional()
+    ),
 });
 
 export declare namespace AccountIntegration {
@@ -35,5 +39,6 @@ export declare namespace AccountIntegration {
         slug?: string | null;
         is_in_beta?: boolean | null;
         api_endpoints_to_documentation_urls?: Record<string, unknown> | null;
+        webhook_setup_guide_url?: string | null;
     }
 }

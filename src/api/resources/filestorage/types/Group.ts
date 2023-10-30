@@ -17,8 +17,9 @@ export interface Group {
     name?: string;
     /** The users that belong in the group. If null, this typically means it's either a domain or the third-party platform does not surface this information. */
     users: string[];
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

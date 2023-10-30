@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * # The VendorCredit Object
  * ### Description
- * The `VendorCredit` object is an accounts receivable transaction used to show that a customer is owed a gift or refund. A vendor credit will contain information on the amount of credit owed to the customer, the vendor that owes the credit, and the account.
+ * A `VendorCredit` is transaction issued by a vendor to the accounting company, indicating a reduction or cancellation of the amount owed to the vendor. It is most generally used as an adjustment note used to rectify errors, returns, or overpayments related to a purchasing transaction. A `VendorCredit` can be applied to *Accounts Payable* Invoices to decrease the overall amount of the Invoice.
  *
  * ### Usage Example
  * Fetch from the `GET VendorCredit` endpoint and view a company's vendor credits.
@@ -341,9 +341,11 @@ export interface VendorCredit {
     company?: Merge.accounting.VendorCreditCompany;
     lines?: Merge.accounting.VendorCreditLine[];
     trackingCategories?: (Merge.accounting.VendorCreditTrackingCategoriesItem | undefined)[];
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    appliedToLines?: Merge.accounting.VendorCreditApplyLine[];
+    /** The accounting period that the VendorCredit was generated in. */
+    accountingPeriod?: Merge.accounting.VendorCreditAccountingPeriod;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

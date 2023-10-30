@@ -283,6 +283,7 @@ export interface Address {
      * * `SHIPPING` - SHIPPING
      */
     addressType?: Merge.crm.AddressAddressType;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
 }

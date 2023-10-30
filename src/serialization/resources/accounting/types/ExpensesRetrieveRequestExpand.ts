@@ -11,37 +11,69 @@ export const ExpensesRetrieveRequestExpand: core.serialization.Schema<
     Merge.accounting.ExpensesRetrieveRequestExpand
 > = core.serialization.enum_([
     "account",
+    "account,accounting_period",
     "account,company",
+    "account,company,accounting_period",
     "account,contact",
+    "account,contact,accounting_period",
     "account,contact,company",
+    "account,contact,company,accounting_period",
+    "accounting_period",
     "company",
+    "company,accounting_period",
     "contact",
+    "contact,accounting_period",
     "contact,company",
+    "contact,company,accounting_period",
     "tracking_categories",
     "tracking_categories,account",
+    "tracking_categories,account,accounting_period",
     "tracking_categories,account,company",
+    "tracking_categories,account,company,accounting_period",
     "tracking_categories,account,contact",
+    "tracking_categories,account,contact,accounting_period",
     "tracking_categories,account,contact,company",
+    "tracking_categories,account,contact,company,accounting_period",
+    "tracking_categories,accounting_period",
     "tracking_categories,company",
+    "tracking_categories,company,accounting_period",
     "tracking_categories,contact",
+    "tracking_categories,contact,accounting_period",
     "tracking_categories,contact,company",
+    "tracking_categories,contact,company,accounting_period",
 ]);
 
 export declare namespace ExpensesRetrieveRequestExpand {
     type Raw =
         | "account"
+        | "account,accounting_period"
         | "account,company"
+        | "account,company,accounting_period"
         | "account,contact"
+        | "account,contact,accounting_period"
         | "account,contact,company"
+        | "account,contact,company,accounting_period"
+        | "accounting_period"
         | "company"
+        | "company,accounting_period"
         | "contact"
+        | "contact,accounting_period"
         | "contact,company"
+        | "contact,company,accounting_period"
         | "tracking_categories"
         | "tracking_categories,account"
+        | "tracking_categories,account,accounting_period"
         | "tracking_categories,account,company"
+        | "tracking_categories,account,company,accounting_period"
         | "tracking_categories,account,contact"
+        | "tracking_categories,account,contact,accounting_period"
         | "tracking_categories,account,contact,company"
+        | "tracking_categories,account,contact,company,accounting_period"
+        | "tracking_categories,accounting_period"
         | "tracking_categories,company"
+        | "tracking_categories,company,accounting_period"
         | "tracking_categories,contact"
-        | "tracking_categories,contact,company";
+        | "tracking_categories,contact,accounting_period"
+        | "tracking_categories,contact,company"
+        | "tracking_categories,contact,company,accounting_period";
 }

@@ -29,6 +29,7 @@ export interface Attachment {
     /** When the third party's attachment was created. */
     remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

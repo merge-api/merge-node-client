@@ -10,70 +10,70 @@ export const VendorCreditsListRequestExpand: core.serialization.Schema<
     serializers.accounting.VendorCreditsListRequestExpand.Raw,
     Merge.accounting.VendorCreditsListRequestExpand
 > = core.serialization.enum_([
-    "applied_to_lines",
-    "applied_to_lines,company",
-    "applied_to_lines,vendor",
-    "applied_to_lines,vendor,company",
+    "accounting_period",
     "company",
+    "company,accounting_period",
     "lines",
-    "lines,applied_to_lines",
-    "lines,applied_to_lines,company",
-    "lines,applied_to_lines,vendor",
-    "lines,applied_to_lines,vendor,company",
+    "lines,accounting_period",
     "lines,company",
+    "lines,company,accounting_period",
     "lines,tracking_categories",
-    "lines,tracking_categories,applied_to_lines",
-    "lines,tracking_categories,applied_to_lines,company",
-    "lines,tracking_categories,applied_to_lines,vendor",
-    "lines,tracking_categories,applied_to_lines,vendor,company",
+    "lines,tracking_categories,accounting_period",
     "lines,tracking_categories,company",
+    "lines,tracking_categories,company,accounting_period",
     "lines,tracking_categories,vendor",
+    "lines,tracking_categories,vendor,accounting_period",
     "lines,tracking_categories,vendor,company",
+    "lines,tracking_categories,vendor,company,accounting_period",
     "lines,vendor",
+    "lines,vendor,accounting_period",
     "lines,vendor,company",
+    "lines,vendor,company,accounting_period",
     "tracking_categories",
-    "tracking_categories,applied_to_lines",
-    "tracking_categories,applied_to_lines,company",
-    "tracking_categories,applied_to_lines,vendor",
-    "tracking_categories,applied_to_lines,vendor,company",
+    "tracking_categories,accounting_period",
     "tracking_categories,company",
+    "tracking_categories,company,accounting_period",
     "tracking_categories,vendor",
+    "tracking_categories,vendor,accounting_period",
     "tracking_categories,vendor,company",
+    "tracking_categories,vendor,company,accounting_period",
     "vendor",
+    "vendor,accounting_period",
     "vendor,company",
+    "vendor,company,accounting_period",
 ]);
 
 export declare namespace VendorCreditsListRequestExpand {
     type Raw =
-        | "applied_to_lines"
-        | "applied_to_lines,company"
-        | "applied_to_lines,vendor"
-        | "applied_to_lines,vendor,company"
+        | "accounting_period"
         | "company"
+        | "company,accounting_period"
         | "lines"
-        | "lines,applied_to_lines"
-        | "lines,applied_to_lines,company"
-        | "lines,applied_to_lines,vendor"
-        | "lines,applied_to_lines,vendor,company"
+        | "lines,accounting_period"
         | "lines,company"
+        | "lines,company,accounting_period"
         | "lines,tracking_categories"
-        | "lines,tracking_categories,applied_to_lines"
-        | "lines,tracking_categories,applied_to_lines,company"
-        | "lines,tracking_categories,applied_to_lines,vendor"
-        | "lines,tracking_categories,applied_to_lines,vendor,company"
+        | "lines,tracking_categories,accounting_period"
         | "lines,tracking_categories,company"
+        | "lines,tracking_categories,company,accounting_period"
         | "lines,tracking_categories,vendor"
+        | "lines,tracking_categories,vendor,accounting_period"
         | "lines,tracking_categories,vendor,company"
+        | "lines,tracking_categories,vendor,company,accounting_period"
         | "lines,vendor"
+        | "lines,vendor,accounting_period"
         | "lines,vendor,company"
+        | "lines,vendor,company,accounting_period"
         | "tracking_categories"
-        | "tracking_categories,applied_to_lines"
-        | "tracking_categories,applied_to_lines,company"
-        | "tracking_categories,applied_to_lines,vendor"
-        | "tracking_categories,applied_to_lines,vendor,company"
+        | "tracking_categories,accounting_period"
         | "tracking_categories,company"
+        | "tracking_categories,company,accounting_period"
         | "tracking_categories,vendor"
+        | "tracking_categories,vendor,accounting_period"
         | "tracking_categories,vendor,company"
+        | "tracking_categories,vendor,company,accounting_period"
         | "vendor"
-        | "vendor,company";
+        | "vendor,accounting_period"
+        | "vendor,company"
+        | "vendor,company,accounting_period";
 }

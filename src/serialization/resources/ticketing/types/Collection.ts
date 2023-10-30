@@ -27,6 +27,7 @@ export const Collection: core.serialization.ObjectSchema<
         "access_level",
         core.serialization.lazy(async () => (await import("../../..")).ticketing.CollectionAccessLevel).optional()
     ),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
@@ -50,6 +51,7 @@ export declare namespace Collection {
         parent_collection?: serializers.ticketing.CollectionParentCollection.Raw | null;
         remote_was_deleted?: boolean | null;
         access_level?: serializers.ticketing.CollectionAccessLevel.Raw | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ticketing.RemoteData.Raw[] | null;

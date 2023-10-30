@@ -1,6 +1,7 @@
 export * as accountDetails from "./accountDetails";
 export * as accountToken from "./accountToken";
 export * as asyncPassthrough from "./asyncPassthrough";
+export * as auditTrail from "./auditTrail";
 export * as availableActions from "./availableActions";
 export * as deleteAccount from "./deleteAccount";
 export * as drives from "./drives";
@@ -18,6 +19,7 @@ export * as syncStatus from "./syncStatus";
 export * as forceResync from "./forceResync";
 export * as users from "./users";
 export * as webhookReceivers from "./webhookReceivers";
+export * from "./auditTrail/client/requests";
 export * from "./drives/client/requests";
 export * from "./files/client/requests";
 export * from "./folders/client/requests";

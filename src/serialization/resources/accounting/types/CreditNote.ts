@@ -15,8 +15,8 @@ export const CreditNote: core.serialization.ObjectSchema<
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
     status: core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteStatus).optional(),
     number: core.serialization.string().optional(),
-    contact: core.serialization.string().optional(),
-    company: core.serialization.string().optional(),
+    contact: core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteContact).optional(),
+    company: core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteCompany).optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     remainingCredit: core.serialization.property("remaining_credit", core.serialization.number().optional()),
@@ -45,12 +45,11 @@ export const CreditNote: core.serialization.ObjectSchema<
         )
         .optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    appliedToLines: core.serialization.property(
-        "applied_to_lines",
-        core.serialization
-            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.CreditNoteApplyLine))
-            .optional()
+    accountingPeriod: core.serialization.property(
+        "accounting_period",
+        core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteAccountingPeriod).optional()
     ),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
@@ -71,8 +70,8 @@ export declare namespace CreditNote {
         transaction_date?: string | null;
         status?: serializers.accounting.CreditNoteStatus.Raw | null;
         number?: string | null;
-        contact?: string | null;
-        company?: string | null;
+        contact?: serializers.accounting.CreditNoteContact.Raw | null;
+        company?: serializers.accounting.CreditNoteCompany.Raw | null;
         exchange_rate?: string | null;
         total_amount?: number | null;
         remaining_credit?: number | null;
@@ -83,7 +82,8 @@ export declare namespace CreditNote {
         remote_updated_at?: string | null;
         payments?: (serializers.accounting.CreditNotePaymentsItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
-        applied_to_lines?: serializers.accounting.CreditNoteApplyLine.Raw[] | null;
+        accounting_period?: serializers.accounting.CreditNoteAccountingPeriod.Raw | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;

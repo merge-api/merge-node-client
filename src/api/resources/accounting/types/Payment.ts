@@ -342,9 +342,11 @@ export interface Payment {
     trackingCategories?: (Merge.accounting.PaymentTrackingCategoriesItem | undefined)[];
     /** When the third party's payment entry was updated. */
     remoteUpdatedAt?: Date;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    appliedToLines?: Merge.accounting.PaymentLineItem[];
+    /** The accounting period that the Payment was generated in. */
+    accountingPeriod?: Merge.accounting.PaymentAccountingPeriod;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

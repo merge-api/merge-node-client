@@ -6,10 +6,12 @@ import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import { AccountDetails } from "../resources/accountDetails/client/Client";
 import { AccountToken } from "../resources/accountToken/client/Client";
+import { AccountingPeriods } from "../resources/accountingPeriods/client/Client";
 import { Accounts } from "../resources/accounts/client/Client";
 import { Addresses } from "../resources/addresses/client/Client";
 import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
 import { Attachments } from "../resources/attachments/client/Client";
+import { AuditTrail } from "../resources/auditTrail/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { BalanceSheets } from "../resources/balanceSheets/client/Client";
 import { CashFlowStatements } from "../resources/cashFlowStatements/client/Client";
@@ -67,6 +69,12 @@ export class Accounting {
         return (this._accountToken ??= new AccountToken(this._options));
     }
 
+    protected _accountingPeriods: AccountingPeriods | undefined;
+
+    public get accountingPeriods(): AccountingPeriods {
+        return (this._accountingPeriods ??= new AccountingPeriods(this._options));
+    }
+
     protected _accounts: Accounts | undefined;
 
     public get accounts(): Accounts {
@@ -89,6 +97,12 @@ export class Accounting {
 
     public get attachments(): Attachments {
         return (this._attachments ??= new Attachments(this._options));
+    }
+
+    protected _auditTrail: AuditTrail | undefined;
+
+    public get auditTrail(): AuditTrail {
+        return (this._auditTrail ??= new AuditTrail(this._options));
     }
 
     protected _availableActions: AvailableActions | undefined;

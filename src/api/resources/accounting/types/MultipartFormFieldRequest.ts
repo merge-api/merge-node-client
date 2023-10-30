@@ -13,9 +13,9 @@ import * as Merge from "../../..";
  * Create a `MultipartFormField` to define a multipart form entry.
  */
 export interface MultipartFormFieldRequest {
-    /** The name of the form field <span style="white-space: nowrap">`non-empty`</span> */
+    /** The name of the form field */
     name: string;
-    /** The data for the form field. <span style="white-space: nowrap">`non-empty`</span> */
+    /** The data for the form field. */
     data: string;
     /**
      * The encoding of the value of `data`. Defaults to `RAW` if not defined.

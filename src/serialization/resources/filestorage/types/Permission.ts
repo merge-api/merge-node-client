@@ -12,12 +12,15 @@ export const Permission: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    user: core.serialization.string().optional(),
-    group: core.serialization.string().optional(),
-    type: core.serialization.lazy(async () => (await import("../../..")).filestorage.TypeEnum).optional(),
+    user: core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionUser).optional(),
+    group: core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionGroup).optional(),
+    type: core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionType).optional(),
     roles: core.serialization
-        .list(core.serialization.lazy(async () => (await import("../../..")).filestorage.RolesEnum).optional())
+        .list(
+            core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionRolesItem).optional()
+        )
         .optional(),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
@@ -25,10 +28,11 @@ export declare namespace Permission {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
-        user?: string | null;
-        group?: string | null;
-        type?: serializers.filestorage.TypeEnum.Raw | null;
-        roles?: (serializers.filestorage.RolesEnum.Raw | null | undefined)[] | null;
+        user?: serializers.filestorage.PermissionUser.Raw | null;
+        group?: serializers.filestorage.PermissionGroup.Raw | null;
+        type?: serializers.filestorage.PermissionType.Raw | null;
+        roles?: (serializers.filestorage.PermissionRolesItem.Raw | null | undefined)[] | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

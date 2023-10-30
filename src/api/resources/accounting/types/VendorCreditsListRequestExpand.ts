@@ -3,68 +3,68 @@
  */
 
 export type VendorCreditsListRequestExpand =
-    | "applied_to_lines"
-    | "applied_to_lines,company"
-    | "applied_to_lines,vendor"
-    | "applied_to_lines,vendor,company"
+    | "accounting_period"
     | "company"
+    | "company,accounting_period"
     | "lines"
-    | "lines,applied_to_lines"
-    | "lines,applied_to_lines,company"
-    | "lines,applied_to_lines,vendor"
-    | "lines,applied_to_lines,vendor,company"
+    | "lines,accounting_period"
     | "lines,company"
+    | "lines,company,accounting_period"
     | "lines,tracking_categories"
-    | "lines,tracking_categories,applied_to_lines"
-    | "lines,tracking_categories,applied_to_lines,company"
-    | "lines,tracking_categories,applied_to_lines,vendor"
-    | "lines,tracking_categories,applied_to_lines,vendor,company"
+    | "lines,tracking_categories,accounting_period"
     | "lines,tracking_categories,company"
+    | "lines,tracking_categories,company,accounting_period"
     | "lines,tracking_categories,vendor"
+    | "lines,tracking_categories,vendor,accounting_period"
     | "lines,tracking_categories,vendor,company"
+    | "lines,tracking_categories,vendor,company,accounting_period"
     | "lines,vendor"
+    | "lines,vendor,accounting_period"
     | "lines,vendor,company"
+    | "lines,vendor,company,accounting_period"
     | "tracking_categories"
-    | "tracking_categories,applied_to_lines"
-    | "tracking_categories,applied_to_lines,company"
-    | "tracking_categories,applied_to_lines,vendor"
-    | "tracking_categories,applied_to_lines,vendor,company"
+    | "tracking_categories,accounting_period"
     | "tracking_categories,company"
+    | "tracking_categories,company,accounting_period"
     | "tracking_categories,vendor"
+    | "tracking_categories,vendor,accounting_period"
     | "tracking_categories,vendor,company"
+    | "tracking_categories,vendor,company,accounting_period"
     | "vendor"
-    | "vendor,company";
+    | "vendor,accounting_period"
+    | "vendor,company"
+    | "vendor,company,accounting_period";
 
 export const VendorCreditsListRequestExpand = {
-    AppliedToLines: "applied_to_lines",
-    AppliedToLinesCompany: "applied_to_lines,company",
-    AppliedToLinesVendor: "applied_to_lines,vendor",
-    AppliedToLinesVendorCompany: "applied_to_lines,vendor,company",
+    AccountingPeriod: "accounting_period",
     Company: "company",
+    CompanyAccountingPeriod: "company,accounting_period",
     Lines: "lines",
-    LinesAppliedToLines: "lines,applied_to_lines",
-    LinesAppliedToLinesCompany: "lines,applied_to_lines,company",
-    LinesAppliedToLinesVendor: "lines,applied_to_lines,vendor",
-    LinesAppliedToLinesVendorCompany: "lines,applied_to_lines,vendor,company",
+    LinesAccountingPeriod: "lines,accounting_period",
     LinesCompany: "lines,company",
+    LinesCompanyAccountingPeriod: "lines,company,accounting_period",
     LinesTrackingCategories: "lines,tracking_categories",
-    LinesTrackingCategoriesAppliedToLines: "lines,tracking_categories,applied_to_lines",
-    LinesTrackingCategoriesAppliedToLinesCompany: "lines,tracking_categories,applied_to_lines,company",
-    LinesTrackingCategoriesAppliedToLinesVendor: "lines,tracking_categories,applied_to_lines,vendor",
-    LinesTrackingCategoriesAppliedToLinesVendorCompany: "lines,tracking_categories,applied_to_lines,vendor,company",
+    LinesTrackingCategoriesAccountingPeriod: "lines,tracking_categories,accounting_period",
     LinesTrackingCategoriesCompany: "lines,tracking_categories,company",
+    LinesTrackingCategoriesCompanyAccountingPeriod: "lines,tracking_categories,company,accounting_period",
     LinesTrackingCategoriesVendor: "lines,tracking_categories,vendor",
+    LinesTrackingCategoriesVendorAccountingPeriod: "lines,tracking_categories,vendor,accounting_period",
     LinesTrackingCategoriesVendorCompany: "lines,tracking_categories,vendor,company",
+    LinesTrackingCategoriesVendorCompanyAccountingPeriod: "lines,tracking_categories,vendor,company,accounting_period",
     LinesVendor: "lines,vendor",
+    LinesVendorAccountingPeriod: "lines,vendor,accounting_period",
     LinesVendorCompany: "lines,vendor,company",
+    LinesVendorCompanyAccountingPeriod: "lines,vendor,company,accounting_period",
     TrackingCategories: "tracking_categories",
-    TrackingCategoriesAppliedToLines: "tracking_categories,applied_to_lines",
-    TrackingCategoriesAppliedToLinesCompany: "tracking_categories,applied_to_lines,company",
-    TrackingCategoriesAppliedToLinesVendor: "tracking_categories,applied_to_lines,vendor",
-    TrackingCategoriesAppliedToLinesVendorCompany: "tracking_categories,applied_to_lines,vendor,company",
+    TrackingCategoriesAccountingPeriod: "tracking_categories,accounting_period",
     TrackingCategoriesCompany: "tracking_categories,company",
+    TrackingCategoriesCompanyAccountingPeriod: "tracking_categories,company,accounting_period",
     TrackingCategoriesVendor: "tracking_categories,vendor",
+    TrackingCategoriesVendorAccountingPeriod: "tracking_categories,vendor,accounting_period",
     TrackingCategoriesVendorCompany: "tracking_categories,vendor,company",
+    TrackingCategoriesVendorCompanyAccountingPeriod: "tracking_categories,vendor,company,accounting_period",
     Vendor: "vendor",
+    VendorAccountingPeriod: "vendor,accounting_period",
     VendorCompany: "vendor,company",
+    VendorCompanyAccountingPeriod: "vendor,company,accounting_period",
 } as const;

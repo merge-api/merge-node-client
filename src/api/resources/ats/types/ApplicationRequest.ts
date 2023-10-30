@@ -29,7 +29,6 @@ export interface ApplicationRequest {
     currentStage?: Merge.ats.ApplicationRequestCurrentStage;
     /** The application's reason for rejection. */
     rejectReason?: Merge.ats.ApplicationRequestRejectReason;
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     remoteTemplateId?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;

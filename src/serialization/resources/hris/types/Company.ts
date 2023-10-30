@@ -14,6 +14,7 @@ export const Company: core.serialization.ObjectSchema<serializers.hris.Company.R
         displayName: core.serialization.property("display_name", core.serialization.string().optional()),
         eins: core.serialization.list(core.serialization.string().optional()).optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -35,6 +36,7 @@ export declare namespace Company {
         display_name?: string | null;
         eins?: (string | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.hris.RemoteData.Raw[] | null;

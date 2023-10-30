@@ -20,6 +20,7 @@ export const ReportItem: core.serialization.ObjectSchema<
             .optional()
     ),
     company: core.serialization.string().optional(),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
@@ -30,6 +31,7 @@ export declare namespace ReportItem {
         value?: number | null;
         sub_items?: Record<string, unknown>[] | null;
         company?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

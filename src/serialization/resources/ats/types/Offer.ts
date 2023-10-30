@@ -18,6 +18,7 @@ export const Offer: core.serialization.ObjectSchema<serializers.ats.Offer.Raw, M
         startDate: core.serialization.property("start_date", core.serialization.date().optional()),
         status: core.serialization.lazy(async () => (await import("../../..")).ats.OfferStatus).optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -43,6 +44,7 @@ export declare namespace Offer {
         start_date?: string | null;
         status?: serializers.ats.OfferStatus.Raw | null;
         remote_was_deleted?: boolean | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ats.RemoteData.Raw[] | null;

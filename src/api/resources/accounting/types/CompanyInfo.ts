@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * # The CompanyInfo Object
  * ### Description
- * The `CompanyInfo` object is used to represent a company's information.
+ * The `CompanyInfo` object contains information about the company of the linked account. If the company has multiple entities (also known as subsidiaries), each entity may show up as a single `CompanyInfo` record.
  *
  * ### Usage Example
  * Fetch from the `GET CompanyInfo` endpoint and view a company's information.
@@ -343,8 +343,9 @@ export interface CompanyInfo {
     urls?: (string | undefined)[];
     addresses?: Merge.accounting.Address[];
     phoneNumbers?: Merge.accounting.AccountingPhoneNumber[];
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

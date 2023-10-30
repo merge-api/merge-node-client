@@ -12,6 +12,7 @@ export const AssociationSubType: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     originType: core.serialization.property("origin_type", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
@@ -19,6 +20,7 @@ export declare namespace AssociationSubType {
     interface Raw {
         id?: string | null;
         origin_type?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

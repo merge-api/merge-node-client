@@ -16,14 +16,15 @@ export const File_: core.serialization.ObjectSchema<serializers.filestorage.File
         size: core.serialization.number().optional(),
         mimeType: core.serialization.property("mime_type", core.serialization.string().optional()),
         description: core.serialization.string().optional(),
-        folder: core.serialization.string().optional(),
+        folder: core.serialization.lazy(async () => (await import("../../..")).filestorage.FileFolder).optional(),
         permissions: core.serialization
             .lazy(async () => (await import("../../..")).filestorage.FilePermissions)
             .optional(),
-        drive: core.serialization.string().optional(),
+        drive: core.serialization.lazy(async () => (await import("../../..")).filestorage.FileDrive).optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -47,12 +48,13 @@ export declare namespace File_ {
         size?: number | null;
         mime_type?: string | null;
         description?: string | null;
-        folder?: string | null;
+        folder?: serializers.filestorage.FileFolder.Raw | null;
         permissions?: serializers.filestorage.FilePermissions.Raw | null;
-        drive?: string | null;
+        drive?: serializers.filestorage.FileDrive.Raw | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: (Record<string, unknown> | null | undefined)[] | null;

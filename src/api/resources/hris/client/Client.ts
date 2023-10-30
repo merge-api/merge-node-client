@@ -7,6 +7,7 @@ import * as core from "../../../../core";
 import { AccountDetails } from "../resources/accountDetails/client/Client";
 import { AccountToken } from "../resources/accountToken/client/Client";
 import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
+import { AuditTrail } from "../resources/auditTrail/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { BankInfo } from "../resources/bankInfo/client/Client";
 import { Benefits } from "../resources/benefits/client/Client";
@@ -33,6 +34,7 @@ import { ForceResync } from "../resources/forceResync/client/Client";
 import { Teams } from "../resources/teams/client/Client";
 import { TimeOff } from "../resources/timeOff/client/Client";
 import { TimeOffBalances } from "../resources/timeOffBalances/client/Client";
+import { TimesheetEntries } from "../resources/timesheetEntries/client/Client";
 import { WebhookReceivers } from "../resources/webhookReceivers/client/Client";
 
 export declare namespace Hris {
@@ -66,6 +68,12 @@ export class Hris {
 
     public get asyncPassthrough(): AsyncPassthrough {
         return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
+    }
+
+    protected _auditTrail: AuditTrail | undefined;
+
+    public get auditTrail(): AuditTrail {
+        return (this._auditTrail ??= new AuditTrail(this._options));
     }
 
     protected _availableActions: AvailableActions | undefined;
@@ -222,6 +230,12 @@ export class Hris {
 
     public get timeOffBalances(): TimeOffBalances {
         return (this._timeOffBalances ??= new TimeOffBalances(this._options));
+    }
+
+    protected _timesheetEntries: TimesheetEntries | undefined;
+
+    public get timesheetEntries(): TimesheetEntries {
+        return (this._timesheetEntries ??= new TimesheetEntries(this._options));
     }
 
     protected _webhookReceivers: WebhookReceivers | undefined;

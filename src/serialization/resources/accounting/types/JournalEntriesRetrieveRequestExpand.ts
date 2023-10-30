@@ -10,38 +10,70 @@ export const JournalEntriesRetrieveRequestExpand: core.serialization.Schema<
     serializers.accounting.JournalEntriesRetrieveRequestExpand.Raw,
     Merge.accounting.JournalEntriesRetrieveRequestExpand
 > = core.serialization.enum_([
+    "accounting_period",
     "company",
+    "company,accounting_period",
     "lines",
+    "lines,accounting_period",
     "lines,company",
+    "lines,company,accounting_period",
     "lines,payments",
+    "lines,payments,accounting_period",
     "lines,payments,company",
+    "lines,payments,company,accounting_period",
     "lines,payments,tracking_categories",
+    "lines,payments,tracking_categories,accounting_period",
     "lines,payments,tracking_categories,company",
+    "lines,payments,tracking_categories,company,accounting_period",
     "lines,tracking_categories",
+    "lines,tracking_categories,accounting_period",
     "lines,tracking_categories,company",
+    "lines,tracking_categories,company,accounting_period",
     "payments",
+    "payments,accounting_period",
     "payments,company",
+    "payments,company,accounting_period",
     "payments,tracking_categories",
+    "payments,tracking_categories,accounting_period",
     "payments,tracking_categories,company",
+    "payments,tracking_categories,company,accounting_period",
     "tracking_categories",
+    "tracking_categories,accounting_period",
     "tracking_categories,company",
+    "tracking_categories,company,accounting_period",
 ]);
 
 export declare namespace JournalEntriesRetrieveRequestExpand {
     type Raw =
+        | "accounting_period"
         | "company"
+        | "company,accounting_period"
         | "lines"
+        | "lines,accounting_period"
         | "lines,company"
+        | "lines,company,accounting_period"
         | "lines,payments"
+        | "lines,payments,accounting_period"
         | "lines,payments,company"
+        | "lines,payments,company,accounting_period"
         | "lines,payments,tracking_categories"
+        | "lines,payments,tracking_categories,accounting_period"
         | "lines,payments,tracking_categories,company"
+        | "lines,payments,tracking_categories,company,accounting_period"
         | "lines,tracking_categories"
+        | "lines,tracking_categories,accounting_period"
         | "lines,tracking_categories,company"
+        | "lines,tracking_categories,company,accounting_period"
         | "payments"
+        | "payments,accounting_period"
         | "payments,company"
+        | "payments,company,accounting_period"
         | "payments,tracking_categories"
+        | "payments,tracking_categories,accounting_period"
         | "payments,tracking_categories,company"
+        | "payments,tracking_categories,company,accounting_period"
         | "tracking_categories"
-        | "tracking_categories,company";
+        | "tracking_categories,accounting_period"
+        | "tracking_categories,company"
+        | "tracking_categories,company,accounting_period";
 }

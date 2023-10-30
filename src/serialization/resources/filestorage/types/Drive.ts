@@ -14,6 +14,7 @@ export const Drive: core.serialization.ObjectSchema<serializers.filestorage.Driv
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         driveUrl: core.serialization.property("drive_url", core.serialization.string().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -35,6 +36,7 @@ export declare namespace Drive {
         remote_created_at?: string | null;
         drive_url?: string | null;
         remote_was_deleted?: boolean | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: (Record<string, unknown> | null | undefined)[] | null;

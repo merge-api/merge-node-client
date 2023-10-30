@@ -19,7 +19,13 @@ export const Contact: core.serialization.ObjectSchema<serializers.accounting.Con
         currency: core.serialization.string().optional(),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         company: core.serialization.string().optional(),
-        addresses: core.serialization.list(core.serialization.string().optional()).optional(),
+        addresses: core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.ContactAddressesItem)
+                    .optional()
+            )
+            .optional(),
         phoneNumbers: core.serialization.property(
             "phone_numbers",
             core.serialization
@@ -31,6 +37,7 @@ export const Contact: core.serialization.ObjectSchema<serializers.accounting.Con
                 .optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -57,9 +64,10 @@ export declare namespace Contact {
         currency?: string | null;
         remote_updated_at?: string | null;
         company?: string | null;
-        addresses?: (string | null | undefined)[] | null;
+        addresses?: (serializers.accounting.ContactAddressesItem.Raw | null | undefined)[] | null;
         phone_numbers?: serializers.accounting.AccountingPhoneNumber.Raw[] | null;
         remote_was_deleted?: boolean | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;

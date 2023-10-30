@@ -13,6 +13,7 @@ export interface RemoteFieldClassForCustomObjectClass {
     fieldFormat?: Merge.crm.RemoteFieldClassForCustomObjectClassFieldFormat;
     fieldChoices?: Merge.crm.RemoteFieldClassForCustomObjectClassFieldChoicesItem[];
     itemSchema?: Merge.crm.RemoteFieldClassForCustomObjectClassItemSchema;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
 }

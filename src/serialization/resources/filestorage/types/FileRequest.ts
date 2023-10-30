@@ -16,11 +16,11 @@ export const FileRequest: core.serialization.ObjectSchema<
     size: core.serialization.number().optional(),
     mimeType: core.serialization.property("mime_type", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
-    folder: core.serialization.string().optional(),
+    folder: core.serialization.lazy(async () => (await import("../../..")).filestorage.FileRequestFolder).optional(),
     permissions: core.serialization
         .lazy(async () => (await import("../../..")).filestorage.FileRequestPermissions)
         .optional(),
-    drive: core.serialization.string().optional(),
+    drive: core.serialization.lazy(async () => (await import("../../..")).filestorage.FileRequestDrive).optional(),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -39,9 +39,9 @@ export declare namespace FileRequest {
         size?: number | null;
         mime_type?: string | null;
         description?: string | null;
-        folder?: string | null;
+        folder?: serializers.filestorage.FileRequestFolder.Raw | null;
         permissions?: serializers.filestorage.FileRequestPermissions.Raw | null;
-        drive?: string | null;
+        drive?: serializers.filestorage.FileRequestDrive.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
     }

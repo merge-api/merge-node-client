@@ -12,4 +12,6 @@ export * from "./regenerateKey/client/requests";
 export * from "./selectiveSync/client/requests";
 export * as timeOff from "./timeOff";
 export * from "./timeOff/client/requests";
+export * as timesheetEntries from "./timesheetEntries";
+export * from "./timesheetEntries/client/requests";
 export * from "./webhookReceivers/client/requests";

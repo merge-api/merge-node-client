@@ -285,6 +285,7 @@ export interface Address {
     country?: Merge.accounting.AddressCountry;
     /** The address's zip code. */
     zipCode?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
 }

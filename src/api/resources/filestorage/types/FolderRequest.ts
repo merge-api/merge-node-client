@@ -21,9 +21,9 @@ export interface FolderRequest {
     /** The folder's description. */
     description?: string;
     /** The folder that the folder belongs to. */
-    parentFolder?: string;
+    parentFolder?: Merge.filestorage.FolderRequestParentFolder;
     /** The drive that the folder belongs to. */
-    drive?: string;
+    drive?: Merge.filestorage.FolderRequestDrive;
     /** The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param `expand=permissions` to see more details under `GET /folders`. */
     permissions?: Merge.filestorage.FolderRequestPermissions;
     integrationParams?: Record<string, unknown>;

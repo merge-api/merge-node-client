@@ -38,6 +38,7 @@ export class Locations {
             cursor,
             includeDeletedData,
             includeRemoteData,
+            locationType,
             modifiedAfter,
             modifiedBefore,
             pageSize,
@@ -64,6 +65,10 @@ export class Locations {
 
         if (includeRemoteData != null) {
             _queryParams.append("include_remote_data", includeRemoteData.toString());
+        }
+
+        if (locationType != null) {
+            _queryParams.append("location_type", locationType);
         }
 
         if (modifiedAfter != null) {
@@ -104,7 +109,7 @@ export class Locations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -177,7 +182,7 @@ export class Locations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

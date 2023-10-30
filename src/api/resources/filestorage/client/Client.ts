@@ -7,6 +7,7 @@ import * as core from "../../../../core";
 import { AccountDetails } from "../resources/accountDetails/client/Client";
 import { AccountToken } from "../resources/accountToken/client/Client";
 import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
+import { AuditTrail } from "../resources/auditTrail/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
 import { Drives } from "../resources/drives/client/Client";
@@ -56,6 +57,12 @@ export class Filestorage {
 
     public get asyncPassthrough(): AsyncPassthrough {
         return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
+    }
+
+    protected _auditTrail: AuditTrail | undefined;
+
+    public get auditTrail(): AuditTrail {
+        return (this._auditTrail ??= new AuditTrail(this._options));
     }
 
     protected _availableActions: AvailableActions | undefined;

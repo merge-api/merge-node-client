@@ -28,17 +28,18 @@ export interface File_ {
     /** The file's description. */
     description?: string;
     /** The folder that the file belongs to. */
-    folder?: string;
+    folder?: Merge.filestorage.FileFolder;
     /** The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param `expand=permissions` to see more details under `GET /files`. */
     permissions?: Merge.filestorage.FilePermissions;
     /** The drive that the file belongs to. */
-    drive?: string;
+    drive?: Merge.filestorage.FileDrive;
     /** When the third party's file was created. */
     remoteCreatedAt?: Date;
     /** When the third party's file was updated. */
     remoteUpdatedAt?: Date;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

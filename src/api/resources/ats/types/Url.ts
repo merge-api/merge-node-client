@@ -26,6 +26,7 @@ export interface Url {
      * * `JOB_POSTING` - JOB_POSTING
      */
     urlType?: Merge.ats.UrlUrlType;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
 }

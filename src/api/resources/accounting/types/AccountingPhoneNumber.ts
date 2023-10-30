@@ -15,6 +15,7 @@ export interface AccountingPhoneNumber {
     number?: string;
     /** The phone number's type. */
     type?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
 }
