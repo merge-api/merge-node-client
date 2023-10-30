@@ -58,8 +58,9 @@ export interface Eeoc {
      * * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
      */
     disabilityStatus?: Merge.ats.EeocDisabilityStatus;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

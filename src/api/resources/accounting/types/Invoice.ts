@@ -376,8 +376,12 @@ export interface Invoice {
     payments?: (Merge.accounting.InvoicePaymentsItem | undefined)[];
     lineItems?: Merge.accounting.InvoiceLineItem[];
     remoteWasDeleted?: boolean;
+    /** The accounting period that the Invoice was generated in. */
+    accountingPeriod?: Merge.accounting.InvoiceAccountingPeriod;
+    purchaseOrders?: (Merge.accounting.InvoicePurchaseOrdersItem | undefined)[];
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

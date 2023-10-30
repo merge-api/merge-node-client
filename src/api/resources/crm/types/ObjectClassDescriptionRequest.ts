@@ -5,7 +5,6 @@
 import * as Merge from "../../..";
 
 export interface ObjectClassDescriptionRequest {
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     id: string;
     originType: Merge.crm.OriginTypeEnum;
 }

@@ -52,8 +52,9 @@ export interface Dependent {
     isStudent?: boolean;
     /** The dependents's social security number. */
     ssn?: string;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

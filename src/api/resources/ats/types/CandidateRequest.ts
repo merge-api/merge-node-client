@@ -37,7 +37,6 @@ export interface CandidateRequest {
     applications?: (Merge.ats.CandidateRequestApplicationsItem | undefined)[];
     /** Array of `Attachment` object IDs. */
     attachments?: (Merge.ats.CandidateRequestAttachmentsItem | undefined)[];
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     remoteTemplateId?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;

@@ -16,9 +16,9 @@ export interface PermissionRequest {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     /** The user that is granted this permission. */
-    user?: string;
+    user?: Merge.filestorage.PermissionRequestUser;
     /** The group that is granted this permission. */
-    group?: string;
+    group?: Merge.filestorage.PermissionRequestGroup;
     /**
      * Denotes what type of people have access to the file.
      *
@@ -27,9 +27,9 @@ export interface PermissionRequest {
      * * `COMPANY` - COMPANY
      * * `ANYONE` - ANYONE
      */
-    type?: Merge.filestorage.TypeEnum;
+    type?: Merge.filestorage.PermissionRequestType;
     /** The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing & uploading. Possible values include: `READ`, `WRITE`, `OWNER`. In cases where there is no clear mapping, the original value passed through will be returned. */
-    roles?: (Merge.filestorage.RolesEnum | undefined)[];
+    roles?: (Merge.filestorage.PermissionRequestRolesItem | undefined)[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }

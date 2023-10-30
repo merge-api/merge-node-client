@@ -11,37 +11,69 @@ export const TransactionsRetrieveRequestExpand: core.serialization.Schema<
     Merge.accounting.TransactionsRetrieveRequestExpand
 > = core.serialization.enum_([
     "account",
+    "account,accounting_period",
+    "accounting_period",
     "contact",
     "contact,account",
+    "contact,account,accounting_period",
+    "contact,accounting_period",
     "line_items",
     "line_items,account",
+    "line_items,account,accounting_period",
+    "line_items,accounting_period",
     "line_items,contact",
     "line_items,contact,account",
+    "line_items,contact,account,accounting_period",
+    "line_items,contact,accounting_period",
     "line_items,tracking_categories",
     "line_items,tracking_categories,account",
+    "line_items,tracking_categories,account,accounting_period",
+    "line_items,tracking_categories,accounting_period",
     "line_items,tracking_categories,contact",
     "line_items,tracking_categories,contact,account",
+    "line_items,tracking_categories,contact,account,accounting_period",
+    "line_items,tracking_categories,contact,accounting_period",
     "tracking_categories",
     "tracking_categories,account",
+    "tracking_categories,account,accounting_period",
+    "tracking_categories,accounting_period",
     "tracking_categories,contact",
     "tracking_categories,contact,account",
+    "tracking_categories,contact,account,accounting_period",
+    "tracking_categories,contact,accounting_period",
 ]);
 
 export declare namespace TransactionsRetrieveRequestExpand {
     type Raw =
         | "account"
+        | "account,accounting_period"
+        | "accounting_period"
         | "contact"
         | "contact,account"
+        | "contact,account,accounting_period"
+        | "contact,accounting_period"
         | "line_items"
         | "line_items,account"
+        | "line_items,account,accounting_period"
+        | "line_items,accounting_period"
         | "line_items,contact"
         | "line_items,contact,account"
+        | "line_items,contact,account,accounting_period"
+        | "line_items,contact,accounting_period"
         | "line_items,tracking_categories"
         | "line_items,tracking_categories,account"
+        | "line_items,tracking_categories,account,accounting_period"
+        | "line_items,tracking_categories,accounting_period"
         | "line_items,tracking_categories,contact"
         | "line_items,tracking_categories,contact,account"
+        | "line_items,tracking_categories,contact,account,accounting_period"
+        | "line_items,tracking_categories,contact,accounting_period"
         | "tracking_categories"
         | "tracking_categories,account"
+        | "tracking_categories,account,accounting_period"
+        | "tracking_categories,accounting_period"
         | "tracking_categories,contact"
-        | "tracking_categories,contact,account";
+        | "tracking_categories,contact,account"
+        | "tracking_categories,contact,account,accounting_period"
+        | "tracking_categories,contact,accounting_period";
 }

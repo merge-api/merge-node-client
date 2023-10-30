@@ -100,7 +100,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -169,7 +169,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -242,7 +242,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -250,79 +250,6 @@ export class CustomObjects {
         });
         if (_response.ok) {
             return await serializers.crm.CustomObject.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MergeError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.MergeTimeoutError();
-            case "unknown":
-                throw new errors.MergeError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Updates a `CustomObject` object with the given `id`.
-     */
-    public async customObjectClassesCustomObjectsPartialUpdate(
-        customObjectClassId: string,
-        id: string,
-        request: Merge.crm.PatchedCrmCustomObjectEndpointRequest,
-        requestOptions?: CustomObjects.RequestOptions
-    ): Promise<Merge.crm.CrmCustomObjectResponse> {
-        const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
-        if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
-        }
-
-        if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
-        }
-
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/custom-objects/${id}`
-            ),
-            method: "PATCH",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            body: await serializers.crm.PatchedCrmCustomObjectEndpointRequest.jsonOrThrow(_body, {
-                unrecognizedObjectKeys: "strip",
-            }),
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-        });
-        if (_response.ok) {
-            return await serializers.crm.CrmCustomObjectResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -374,7 +301,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -431,7 +358,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -13,6 +13,7 @@ export const PhoneNumber: core.serialization.ObjectSchema<serializers.ats.PhoneN
             "phone_number_type",
             core.serialization.lazy(async () => (await import("../../..")).ats.PhoneNumberPhoneNumberType).optional()
         ),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
@@ -20,6 +21,7 @@ export declare namespace PhoneNumber {
     interface Raw {
         value?: string | null;
         phone_number_type?: serializers.ats.PhoneNumberPhoneNumberType.Raw | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

@@ -24,17 +24,18 @@ export interface Folder {
     /** The folder's description. */
     description?: string;
     /** The folder that the folder belongs to. */
-    parentFolder?: string;
+    parentFolder?: Merge.filestorage.FolderParentFolder;
     /** The drive that the folder belongs to. */
-    drive?: string;
+    drive?: Merge.filestorage.FolderDrive;
     /** The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param `expand=permissions` to see more details under `GET /folders`. */
     permissions?: Merge.filestorage.FolderPermissions;
     /** When the third party's folder was created. */
     remoteCreatedAt?: Date;
     /** When the third party's folder was updated. */
     remoteUpdatedAt?: Date;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

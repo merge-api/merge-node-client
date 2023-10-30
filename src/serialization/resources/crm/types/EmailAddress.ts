@@ -10,6 +10,7 @@ export const EmailAddress: core.serialization.ObjectSchema<serializers.crm.Email
     core.serialization.object({
         emailAddress: core.serialization.property("email_address", core.serialization.string().optional()),
         emailAddressType: core.serialization.property("email_address_type", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
@@ -17,6 +18,7 @@ export declare namespace EmailAddress {
     interface Raw {
         email_address?: string | null;
         email_address_type?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

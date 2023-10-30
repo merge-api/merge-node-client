@@ -13,6 +13,5 @@ export interface UpdateApplicationStageRequest {
     runAsync?: boolean;
     /** The interview stage to move the application to. */
     jobInterviewStage?: string;
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     remoteUserId?: string;
 }

@@ -107,6 +107,7 @@ export interface Employee {
     /** Custom fields configured for a given model. */
     customFields?: Record<string, unknown>;
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

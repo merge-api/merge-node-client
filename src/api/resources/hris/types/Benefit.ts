@@ -30,10 +30,11 @@ export interface Benefit {
     startDate?: Date;
     /** The day and time the benefit ended. */
     endDate?: Date;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
     /** The employer benefit plan the employee is enrolled in. */
     employerBenefit?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

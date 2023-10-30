@@ -10,38 +10,134 @@ export const CreditNotesRetrieveRequestExpand: core.serialization.Schema<
     serializers.accounting.CreditNotesRetrieveRequestExpand.Raw,
     Merge.accounting.CreditNotesRetrieveRequestExpand
 > = core.serialization.enum_([
-    "applied_to_lines",
+    "accounting_period",
+    "company",
+    "company,accounting_period",
+    "contact",
+    "contact,accounting_period",
+    "contact,company",
+    "contact,company,accounting_period",
     "line_items",
-    "line_items,applied_to_lines",
+    "line_items,accounting_period",
+    "line_items,company",
+    "line_items,company,accounting_period",
+    "line_items,contact",
+    "line_items,contact,accounting_period",
+    "line_items,contact,company",
+    "line_items,contact,company,accounting_period",
     "line_items,tracking_categories",
-    "line_items,tracking_categories,applied_to_lines",
+    "line_items,tracking_categories,accounting_period",
+    "line_items,tracking_categories,company",
+    "line_items,tracking_categories,company,accounting_period",
+    "line_items,tracking_categories,contact",
+    "line_items,tracking_categories,contact,accounting_period",
+    "line_items,tracking_categories,contact,company",
+    "line_items,tracking_categories,contact,company,accounting_period",
     "payments",
-    "payments,applied_to_lines",
+    "payments,accounting_period",
+    "payments,company",
+    "payments,company,accounting_period",
+    "payments,contact",
+    "payments,contact,accounting_period",
+    "payments,contact,company",
+    "payments,contact,company,accounting_period",
     "payments,line_items",
-    "payments,line_items,applied_to_lines",
+    "payments,line_items,accounting_period",
+    "payments,line_items,company",
+    "payments,line_items,company,accounting_period",
+    "payments,line_items,contact",
+    "payments,line_items,contact,accounting_period",
+    "payments,line_items,contact,company",
+    "payments,line_items,contact,company,accounting_period",
     "payments,line_items,tracking_categories",
-    "payments,line_items,tracking_categories,applied_to_lines",
+    "payments,line_items,tracking_categories,accounting_period",
+    "payments,line_items,tracking_categories,company",
+    "payments,line_items,tracking_categories,company,accounting_period",
+    "payments,line_items,tracking_categories,contact",
+    "payments,line_items,tracking_categories,contact,accounting_period",
+    "payments,line_items,tracking_categories,contact,company",
+    "payments,line_items,tracking_categories,contact,company,accounting_period",
     "payments,tracking_categories",
-    "payments,tracking_categories,applied_to_lines",
+    "payments,tracking_categories,accounting_period",
+    "payments,tracking_categories,company",
+    "payments,tracking_categories,company,accounting_period",
+    "payments,tracking_categories,contact",
+    "payments,tracking_categories,contact,accounting_period",
+    "payments,tracking_categories,contact,company",
+    "payments,tracking_categories,contact,company,accounting_period",
     "tracking_categories",
-    "tracking_categories,applied_to_lines",
+    "tracking_categories,accounting_period",
+    "tracking_categories,company",
+    "tracking_categories,company,accounting_period",
+    "tracking_categories,contact",
+    "tracking_categories,contact,accounting_period",
+    "tracking_categories,contact,company",
+    "tracking_categories,contact,company,accounting_period",
 ]);
 
 export declare namespace CreditNotesRetrieveRequestExpand {
     type Raw =
-        | "applied_to_lines"
+        | "accounting_period"
+        | "company"
+        | "company,accounting_period"
+        | "contact"
+        | "contact,accounting_period"
+        | "contact,company"
+        | "contact,company,accounting_period"
         | "line_items"
-        | "line_items,applied_to_lines"
+        | "line_items,accounting_period"
+        | "line_items,company"
+        | "line_items,company,accounting_period"
+        | "line_items,contact"
+        | "line_items,contact,accounting_period"
+        | "line_items,contact,company"
+        | "line_items,contact,company,accounting_period"
         | "line_items,tracking_categories"
-        | "line_items,tracking_categories,applied_to_lines"
+        | "line_items,tracking_categories,accounting_period"
+        | "line_items,tracking_categories,company"
+        | "line_items,tracking_categories,company,accounting_period"
+        | "line_items,tracking_categories,contact"
+        | "line_items,tracking_categories,contact,accounting_period"
+        | "line_items,tracking_categories,contact,company"
+        | "line_items,tracking_categories,contact,company,accounting_period"
         | "payments"
-        | "payments,applied_to_lines"
+        | "payments,accounting_period"
+        | "payments,company"
+        | "payments,company,accounting_period"
+        | "payments,contact"
+        | "payments,contact,accounting_period"
+        | "payments,contact,company"
+        | "payments,contact,company,accounting_period"
         | "payments,line_items"
-        | "payments,line_items,applied_to_lines"
+        | "payments,line_items,accounting_period"
+        | "payments,line_items,company"
+        | "payments,line_items,company,accounting_period"
+        | "payments,line_items,contact"
+        | "payments,line_items,contact,accounting_period"
+        | "payments,line_items,contact,company"
+        | "payments,line_items,contact,company,accounting_period"
         | "payments,line_items,tracking_categories"
-        | "payments,line_items,tracking_categories,applied_to_lines"
+        | "payments,line_items,tracking_categories,accounting_period"
+        | "payments,line_items,tracking_categories,company"
+        | "payments,line_items,tracking_categories,company,accounting_period"
+        | "payments,line_items,tracking_categories,contact"
+        | "payments,line_items,tracking_categories,contact,accounting_period"
+        | "payments,line_items,tracking_categories,contact,company"
+        | "payments,line_items,tracking_categories,contact,company,accounting_period"
         | "payments,tracking_categories"
-        | "payments,tracking_categories,applied_to_lines"
+        | "payments,tracking_categories,accounting_period"
+        | "payments,tracking_categories,company"
+        | "payments,tracking_categories,company,accounting_period"
+        | "payments,tracking_categories,contact"
+        | "payments,tracking_categories,contact,accounting_period"
+        | "payments,tracking_categories,contact,company"
+        | "payments,tracking_categories,contact,company,accounting_period"
         | "tracking_categories"
-        | "tracking_categories,applied_to_lines";
+        | "tracking_categories,accounting_period"
+        | "tracking_categories,company"
+        | "tracking_categories,company,accounting_period"
+        | "tracking_categories,contact"
+        | "tracking_categories,contact,accounting_period"
+        | "tracking_categories,contact,company"
+        | "tracking_categories,contact,company,accounting_period";
 }

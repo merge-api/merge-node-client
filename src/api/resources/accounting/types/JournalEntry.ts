@@ -7,7 +7,11 @@ import * as Merge from "../../..";
 /**
  * # The JournalEntry Object
  * ### Description
- * The `JournalEntry` object is used to get a record of all manually created entries made in a company’s general ledger. The journal line items for each journal entry should sum to zero.
+ * A `JournalEntry` is a record of a transaction or event that is entered into a company's accounting system.
+ *
+ * The `JournalEntry` common model contains records that are automatically created as a result of a certain type of transaction, like an Invoice, and records that are manually created against a company’s ledger.
+ *
+ * The lines of a given `JournalEntry` object should always sum to 0. A positive `net_amount` means the line represents a debit and a negative net_amount represents a credit.
  *
  * ### Usage Example
  * Fetch from the `GET JournalEntry` endpoint and view a company's journey entry.
@@ -350,9 +354,12 @@ export interface JournalEntry {
      * * `POSTED` - POSTED
      */
     postingStatus?: Merge.accounting.JournalEntryPostingStatus;
+    /** The accounting period that the JournalEntry was generated in. */
+    accountingPeriod?: Merge.accounting.JournalEntryAccountingPeriod;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

@@ -64,6 +64,7 @@ export const Employee: core.serialization.ObjectSchema<serializers.hris.Employee
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -111,6 +112,7 @@ export declare namespace Employee {
         avatar?: string | null;
         custom_fields?: Record<string, unknown> | null;
         remote_was_deleted?: boolean | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.hris.RemoteData.Raw[] | null;

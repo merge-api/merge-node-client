@@ -41,6 +41,12 @@ export const ExpenseRequest: core.serialization.ObjectSchema<
             )
             .optional()
     ),
+    accountingPeriod: core.serialization.property(
+        "accounting_period",
+        core.serialization
+            .lazy(async () => (await import("../../..")).accounting.ExpenseRequestAccountingPeriod)
+            .optional()
+    ),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -67,6 +73,7 @@ export declare namespace ExpenseRequest {
         tracking_categories?:
             | (serializers.accounting.ExpenseRequestTrackingCategoriesItem.Raw | null | undefined)[]
             | null;
+        accounting_period?: serializers.accounting.ExpenseRequestAccountingPeriod.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
     }

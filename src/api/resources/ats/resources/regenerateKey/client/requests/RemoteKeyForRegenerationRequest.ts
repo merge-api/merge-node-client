@@ -3,6 +3,5 @@
  */
 
 export interface RemoteKeyForRegenerationRequest {
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     name: string;
 }

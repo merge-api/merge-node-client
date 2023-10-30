@@ -21,8 +21,9 @@ export interface JobInterviewStage {
     job?: Merge.ats.JobInterviewStageJob;
     /** The stage’s order, with the lowest values ordered first. If the third-party does not return details on the order of stages, this field will not be populated. */
     stageOrder?: number;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

@@ -30,7 +30,7 @@ export interface Collection {
     collectionType?: Merge.ticketing.CollectionCollectionType;
     /** The parent collection for this collection. */
     parentCollection?: Merge.ticketing.CollectionParentCollection;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
     /**
      * The level of access a User has to the Collection and its sub-objects.
@@ -40,6 +40,7 @@ export interface Collection {
      * * `PUBLIC` - PUBLIC
      */
     accessLevel?: Merge.ticketing.CollectionAccessLevel;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

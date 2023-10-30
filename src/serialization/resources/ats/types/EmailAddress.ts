@@ -13,6 +13,7 @@ export const EmailAddress: core.serialization.ObjectSchema<serializers.ats.Email
             "email_address_type",
             core.serialization.lazy(async () => (await import("../../..")).ats.EmailAddressEmailAddressType).optional()
         ),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
@@ -20,6 +21,7 @@ export declare namespace EmailAddress {
     interface Raw {
         value?: string | null;
         email_address_type?: serializers.ats.EmailAddressEmailAddressType.Raw | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

@@ -35,14 +35,13 @@ export const VendorCredit: core.serialization.ObjectSchema<
             .optional()
     ),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    appliedToLines: core.serialization.property(
-        "applied_to_lines",
+    accountingPeriod: core.serialization.property(
+        "accounting_period",
         core.serialization
-            .list(
-                core.serialization.lazyObject(async () => (await import("../../..")).accounting.VendorCreditApplyLine)
-            )
+            .lazy(async () => (await import("../../..")).accounting.VendorCreditAccountingPeriod)
             .optional()
     ),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
@@ -72,7 +71,8 @@ export declare namespace VendorCredit {
             | (serializers.accounting.VendorCreditTrackingCategoriesItem.Raw | null | undefined)[]
             | null;
         remote_was_deleted?: boolean | null;
-        applied_to_lines?: serializers.accounting.VendorCreditApplyLine.Raw[] | null;
+        accounting_period?: serializers.accounting.VendorCreditAccountingPeriod.Raw | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;

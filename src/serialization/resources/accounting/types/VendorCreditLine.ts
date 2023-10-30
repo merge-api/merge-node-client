@@ -23,6 +23,7 @@ export const VendorCreditLine: core.serialization.ObjectSchema<
         .optional(),
     company: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
@@ -36,6 +37,7 @@ export declare namespace VendorCreditLine {
         account?: serializers.accounting.VendorCreditLineAccount.Raw | null;
         company?: string | null;
         exchange_rate?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

@@ -10,6 +10,7 @@ import { Activities } from "../resources/activities/client/Client";
 import { Applications } from "../resources/applications/client/Client";
 import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
 import { Attachments } from "../resources/attachments/client/Client";
+import { AuditTrail } from "../resources/auditTrail/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { Candidates } from "../resources/candidates/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
@@ -84,6 +85,12 @@ export class Ats {
 
     public get attachments(): Attachments {
         return (this._attachments ??= new Attachments(this._options));
+    }
+
+    protected _auditTrail: AuditTrail | undefined;
+
+    public get auditTrail(): AuditTrail {
+        return (this._auditTrail ??= new AuditTrail(this._options));
     }
 
     protected _availableActions: AvailableActions | undefined;

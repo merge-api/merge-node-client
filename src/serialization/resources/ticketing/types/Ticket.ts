@@ -48,6 +48,7 @@ export const Ticket: core.serialization.ObjectSchema<serializers.ticketing.Ticke
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
         priority: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketPriority).optional(),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -90,6 +91,7 @@ export declare namespace Ticket {
         remote_was_deleted?: boolean | null;
         ticket_url?: string | null;
         priority?: serializers.ticketing.TicketPriority.Raw | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ticketing.RemoteData.Raw[] | null;

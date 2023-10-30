@@ -5,15 +5,15 @@
 import * as Merge from "../../../../../..";
 
 export interface EndUserDetailsRequest {
-    /** Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent. <span style="white-space: nowrap">`non-empty`</span> <span style="white-space: nowrap">`<= 100 characters`</span> */
+    /** Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent. */
     endUserEmailAddress: string;
-    /** Your end user's organization. <span style="white-space: nowrap">`non-empty`</span> <span style="white-space: nowrap">`<= 100 characters`</span> */
+    /** Your end user's organization. */
     endUserOrganizationName: string;
-    /** This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers. <span style="white-space: nowrap">`non-empty`</span> <span style="white-space: nowrap">`<= 100 characters`</span> */
+    /** This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers. */
     endUserOriginId: string;
     /** The integration categories to show in Merge Link. */
     categories: Merge.filestorage.CategoriesEnum[];
-    /** The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/. */
+    /** The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://docs.merge.dev/guides/merge-link/single-integration/. */
     integration?: string;
     /** An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30. */
     linkExpiryMins?: number;

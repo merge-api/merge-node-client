@@ -37,7 +37,6 @@ export interface PatchedCandidateRequest {
     applications?: (string | undefined)[];
     /** Array of `Attachment` object IDs. */
     attachments?: (string | undefined)[];
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     remoteTemplateId?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;

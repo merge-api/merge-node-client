@@ -14,11 +14,8 @@ import * as Merge from "../../..";
  */
 export interface DataPassthroughRequest {
     method: Merge.filestorage.MethodEnum;
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     path: string;
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     baseUrlOverride?: string;
-    /** <span style="white-space: nowrap">`non-empty`</span> */
     data?: string;
     /** Pass an array of `MultipartFormField` objects in here instead of using the `data` param if `request_format` is set to `MULTIPART`. */
     multipartFormData?: Merge.filestorage.MultipartFormFieldRequest[];

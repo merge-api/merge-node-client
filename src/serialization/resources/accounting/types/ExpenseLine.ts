@@ -35,6 +35,8 @@ export const ExpenseLine: core.serialization.ObjectSchema<
     contact: core.serialization.lazy(async () => (await import("../../..")).accounting.ExpenseLineContact).optional(),
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
+    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
@@ -53,6 +55,8 @@ export declare namespace ExpenseLine {
         contact?: serializers.accounting.ExpenseLineContact.Raw | null;
         description?: string | null;
         exchange_rate?: string | null;
+        remote_was_deleted?: boolean | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

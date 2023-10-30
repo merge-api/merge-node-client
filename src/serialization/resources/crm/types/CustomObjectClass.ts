@@ -28,6 +28,7 @@ export const CustomObjectClass: core.serialization.ObjectSchema<
     ),
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
@@ -40,6 +41,7 @@ export declare namespace CustomObjectClass {
         association_types?: Record<string, unknown>[] | null;
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

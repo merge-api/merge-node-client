@@ -28,6 +28,7 @@ export const AssociationType: core.serialization.ObjectSchema<
     isRequired: core.serialization.property("is_required", core.serialization.boolean().optional()),
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
@@ -41,6 +42,7 @@ export declare namespace AssociationType {
         is_required?: boolean | null;
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

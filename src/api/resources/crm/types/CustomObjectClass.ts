@@ -20,5 +20,6 @@ export interface CustomObjectClass {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
     modifiedAt?: Date;
 }

@@ -42,6 +42,7 @@ export interface Opportunity {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

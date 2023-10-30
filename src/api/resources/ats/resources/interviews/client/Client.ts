@@ -40,6 +40,7 @@ export class Interviews {
             expand,
             includeDeletedData,
             includeRemoteData,
+            jobId,
             jobInterviewStageId,
             modifiedAfter,
             modifiedBefore,
@@ -76,6 +77,10 @@ export class Interviews {
 
         if (includeRemoteData != null) {
             _queryParams.append("include_remote_data", includeRemoteData.toString());
+        }
+
+        if (jobId != null) {
+            _queryParams.append("job_id", jobId);
         }
 
         if (jobInterviewStageId != null) {
@@ -124,7 +129,7 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -192,7 +197,7 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -272,7 +277,7 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -327,7 +332,7 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "0.1.7",
+                "X-Fern-SDK-Version": "0.1.8",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

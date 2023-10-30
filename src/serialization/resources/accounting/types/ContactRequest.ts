@@ -18,7 +18,13 @@ export const ContactRequest: core.serialization.ObjectSchema<
     status: core.serialization.lazy(async () => (await import("../../..")).accounting.ContactRequestStatus).optional(),
     currency: core.serialization.string().optional(),
     company: core.serialization.string().optional(),
-    addresses: core.serialization.list(core.serialization.string().optional()).optional(),
+    addresses: core.serialization
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).accounting.ContactRequestAddressesItem)
+                .optional()
+        )
+        .optional(),
     phoneNumbers: core.serialization.property(
         "phone_numbers",
         core.serialization
@@ -49,7 +55,7 @@ export declare namespace ContactRequest {
         status?: serializers.accounting.ContactRequestStatus.Raw | null;
         currency?: string | null;
         company?: string | null;
-        addresses?: (string | null | undefined)[] | null;
+        addresses?: (serializers.accounting.ContactRequestAddressesItem.Raw | null | undefined)[] | null;
         phone_numbers?: serializers.accounting.AccountingPhoneNumberRequest.Raw[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

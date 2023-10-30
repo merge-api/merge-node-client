@@ -18,6 +18,7 @@ export const Address: core.serialization.ObjectSchema<serializers.crm.Address.Ra
             "address_type",
             core.serialization.lazy(async () => (await import("../../..")).crm.AddressAddressType).optional()
         ),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
@@ -30,6 +31,7 @@ export declare namespace Address {
         postal_code?: string | null;
         country?: serializers.crm.AddressCountry.Raw | null;
         address_type?: serializers.crm.AddressAddressType.Raw | null;
+        created_at?: string | null;
         modified_at?: string | null;
     }
 }

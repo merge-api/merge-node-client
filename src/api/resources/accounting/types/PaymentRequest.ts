@@ -337,7 +337,8 @@ export interface PaymentRequest {
     /** The total amount of money being paid to the supplier, or customer, after taxes. */
     totalAmount?: number;
     trackingCategories?: (Merge.accounting.PaymentRequestTrackingCategoriesItem | undefined)[];
-    appliedToLines?: Merge.accounting.PaymentLineItemRequest[];
+    /** The accounting period that the Payment was generated in. */
+    accountingPeriod?: Merge.accounting.PaymentRequestAccountingPeriod;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }

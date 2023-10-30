@@ -22,6 +22,7 @@ export interface EmailAddress {
      * * `OTHER` - OTHER
      */
     emailAddressType?: Merge.ats.EmailAddressEmailAddressType;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
 }

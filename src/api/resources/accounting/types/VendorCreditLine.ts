@@ -29,6 +29,7 @@ export interface VendorCreditLine {
     company?: string;
     /** The vendor credit line item's exchange rate. */
     exchangeRate?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
 }

@@ -5,7 +5,7 @@
 export interface LinkedAccountConditionRequest {
     /** The ID indicating which condition schema to use for a specific condition. */
     conditionSchemaId: string;
-    /** The operator for a specific condition. <span style="white-space: nowrap">`non-empty`</span> */
+    /** The operator for a specific condition. */
     operator: string;
     value?: unknown;
 }

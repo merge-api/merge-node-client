@@ -8,6 +8,7 @@ import { AccountDetails } from "../resources/accountDetails/client/Client";
 import { AccountToken } from "../resources/accountToken/client/Client";
 import { Accounts } from "../resources/accounts/client/Client";
 import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
+import { AuditTrail } from "../resources/auditTrail/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { Contacts } from "../resources/contacts/client/Client";
 import { CustomObjectClasses } from "../resources/customObjectClasses/client/Client";
@@ -71,6 +72,12 @@ export class Crm {
 
     public get asyncPassthrough(): AsyncPassthrough {
         return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
+    }
+
+    protected _auditTrail: AuditTrail | undefined;
+
+    public get auditTrail(): AuditTrail {
+        return (this._auditTrail ??= new AuditTrail(this._options));
     }
 
     protected _availableActions: AvailableActions | undefined;

@@ -7,7 +7,9 @@ import * as Merge from "../../..";
 /**
  * # The Expense Object
  * ### Description
- * The `Expense` object is used to represent a purchase made from a business which can be made with a check, credit card, or cash. Each expense object is dedicated to a grouping of expenses, with each expense recorded in the lines object.
+ * The `Expense` object is used to represent a direct purchase by a business, typically made with a check, credit card, or cash. Each `Expense` object is dedicated to a grouping of expenses, with each expense recorded in the lines object.
+ *
+ * The `Expense` object is used also used to represent refunds to direct purchases. Refunds can be distinguished from purchases by the amount sign of the records. Expense objects with a negative amount are purchases and `Expense` objects with a positive amount are refunds to those purchases.
  *
  * ### Usage Example
  * Fetch from the `GET Expense` endpoint and view a company's expense.
@@ -344,6 +346,8 @@ export interface ExpenseRequest {
     memo?: string;
     lines?: Merge.accounting.ExpenseLineRequest[];
     trackingCategories?: (Merge.accounting.ExpenseRequestTrackingCategoriesItem | undefined)[];
+    /** The accounting period that the Expense was generated in. */
+    accountingPeriod?: Merge.accounting.ExpenseRequestAccountingPeriod;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }

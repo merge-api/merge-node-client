@@ -4,35 +4,68 @@
 
 export type TransactionsListRequestExpand =
     | "account"
+    | "account,accounting_period"
+    | "accounting_period"
     | "contact"
     | "contact,account"
+    | "contact,account,accounting_period"
+    | "contact,accounting_period"
     | "line_items"
     | "line_items,account"
+    | "line_items,account,accounting_period"
+    | "line_items,accounting_period"
     | "line_items,contact"
     | "line_items,contact,account"
+    | "line_items,contact,account,accounting_period"
+    | "line_items,contact,accounting_period"
     | "line_items,tracking_categories"
     | "line_items,tracking_categories,account"
+    | "line_items,tracking_categories,account,accounting_period"
+    | "line_items,tracking_categories,accounting_period"
     | "line_items,tracking_categories,contact"
     | "line_items,tracking_categories,contact,account"
+    | "line_items,tracking_categories,contact,account,accounting_period"
+    | "line_items,tracking_categories,contact,accounting_period"
     | "tracking_categories"
     | "tracking_categories,account"
+    | "tracking_categories,account,accounting_period"
+    | "tracking_categories,accounting_period"
     | "tracking_categories,contact"
-    | "tracking_categories,contact,account";
+    | "tracking_categories,contact,account"
+    | "tracking_categories,contact,account,accounting_period"
+    | "tracking_categories,contact,accounting_period";
 
 export const TransactionsListRequestExpand = {
     Account: "account",
+    AccountAccountingPeriod: "account,accounting_period",
+    AccountingPeriod: "accounting_period",
     Contact: "contact",
     ContactAccount: "contact,account",
+    ContactAccountAccountingPeriod: "contact,account,accounting_period",
+    ContactAccountingPeriod: "contact,accounting_period",
     LineItems: "line_items",
     LineItemsAccount: "line_items,account",
+    LineItemsAccountAccountingPeriod: "line_items,account,accounting_period",
+    LineItemsAccountingPeriod: "line_items,accounting_period",
     LineItemsContact: "line_items,contact",
     LineItemsContactAccount: "line_items,contact,account",
+    LineItemsContactAccountAccountingPeriod: "line_items,contact,account,accounting_period",
+    LineItemsContactAccountingPeriod: "line_items,contact,accounting_period",
     LineItemsTrackingCategories: "line_items,tracking_categories",
     LineItemsTrackingCategoriesAccount: "line_items,tracking_categories,account",
+    LineItemsTrackingCategoriesAccountAccountingPeriod: "line_items,tracking_categories,account,accounting_period",
+    LineItemsTrackingCategoriesAccountingPeriod: "line_items,tracking_categories,accounting_period",
     LineItemsTrackingCategoriesContact: "line_items,tracking_categories,contact",
     LineItemsTrackingCategoriesContactAccount: "line_items,tracking_categories,contact,account",
+    LineItemsTrackingCategoriesContactAccountAccountingPeriod:
+        "line_items,tracking_categories,contact,account,accounting_period",
+    LineItemsTrackingCategoriesContactAccountingPeriod: "line_items,tracking_categories,contact,accounting_period",
     TrackingCategories: "tracking_categories",
     TrackingCategoriesAccount: "tracking_categories,account",
+    TrackingCategoriesAccountAccountingPeriod: "tracking_categories,account,accounting_period",
+    TrackingCategoriesAccountingPeriod: "tracking_categories,accounting_period",
     TrackingCategoriesContact: "tracking_categories,contact",
     TrackingCategoriesContactAccount: "tracking_categories,contact,account",
+    TrackingCategoriesContactAccountAccountingPeriod: "tracking_categories,contact,account,accounting_period",
+    TrackingCategoriesContactAccountingPeriod: "tracking_categories,contact,accounting_period",
 } as const;

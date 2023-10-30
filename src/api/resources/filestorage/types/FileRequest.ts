@@ -25,11 +25,11 @@ export interface FileRequest {
     /** The file's description. */
     description?: string;
     /** The folder that the file belongs to. */
-    folder?: string;
+    folder?: Merge.filestorage.FileRequestFolder;
     /** The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param `expand=permissions` to see more details under `GET /files`. */
     permissions?: Merge.filestorage.FileRequestPermissions;
     /** The drive that the file belongs to. */
-    drive?: string;
+    drive?: Merge.filestorage.FileRequestDrive;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }

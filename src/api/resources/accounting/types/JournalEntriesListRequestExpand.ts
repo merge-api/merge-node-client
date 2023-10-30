@@ -3,36 +3,69 @@
  */
 
 export type JournalEntriesListRequestExpand =
+    | "accounting_period"
     | "company"
+    | "company,accounting_period"
     | "lines"
+    | "lines,accounting_period"
     | "lines,company"
+    | "lines,company,accounting_period"
     | "lines,payments"
+    | "lines,payments,accounting_period"
     | "lines,payments,company"
+    | "lines,payments,company,accounting_period"
     | "lines,payments,tracking_categories"
+    | "lines,payments,tracking_categories,accounting_period"
     | "lines,payments,tracking_categories,company"
+    | "lines,payments,tracking_categories,company,accounting_period"
     | "lines,tracking_categories"
+    | "lines,tracking_categories,accounting_period"
     | "lines,tracking_categories,company"
+    | "lines,tracking_categories,company,accounting_period"
     | "payments"
+    | "payments,accounting_period"
     | "payments,company"
+    | "payments,company,accounting_period"
     | "payments,tracking_categories"
+    | "payments,tracking_categories,accounting_period"
     | "payments,tracking_categories,company"
+    | "payments,tracking_categories,company,accounting_period"
     | "tracking_categories"
-    | "tracking_categories,company";
+    | "tracking_categories,accounting_period"
+    | "tracking_categories,company"
+    | "tracking_categories,company,accounting_period";
 
 export const JournalEntriesListRequestExpand = {
+    AccountingPeriod: "accounting_period",
     Company: "company",
+    CompanyAccountingPeriod: "company,accounting_period",
     Lines: "lines",
+    LinesAccountingPeriod: "lines,accounting_period",
     LinesCompany: "lines,company",
+    LinesCompanyAccountingPeriod: "lines,company,accounting_period",
     LinesPayments: "lines,payments",
+    LinesPaymentsAccountingPeriod: "lines,payments,accounting_period",
     LinesPaymentsCompany: "lines,payments,company",
+    LinesPaymentsCompanyAccountingPeriod: "lines,payments,company,accounting_period",
     LinesPaymentsTrackingCategories: "lines,payments,tracking_categories",
+    LinesPaymentsTrackingCategoriesAccountingPeriod: "lines,payments,tracking_categories,accounting_period",
     LinesPaymentsTrackingCategoriesCompany: "lines,payments,tracking_categories,company",
+    LinesPaymentsTrackingCategoriesCompanyAccountingPeriod:
+        "lines,payments,tracking_categories,company,accounting_period",
     LinesTrackingCategories: "lines,tracking_categories",
+    LinesTrackingCategoriesAccountingPeriod: "lines,tracking_categories,accounting_period",
     LinesTrackingCategoriesCompany: "lines,tracking_categories,company",
+    LinesTrackingCategoriesCompanyAccountingPeriod: "lines,tracking_categories,company,accounting_period",
     Payments: "payments",
+    PaymentsAccountingPeriod: "payments,accounting_period",
     PaymentsCompany: "payments,company",
+    PaymentsCompanyAccountingPeriod: "payments,company,accounting_period",
     PaymentsTrackingCategories: "payments,tracking_categories",
+    PaymentsTrackingCategoriesAccountingPeriod: "payments,tracking_categories,accounting_period",
     PaymentsTrackingCategoriesCompany: "payments,tracking_categories,company",
+    PaymentsTrackingCategoriesCompanyAccountingPeriod: "payments,tracking_categories,company,accounting_period",
     TrackingCategories: "tracking_categories",
+    TrackingCategoriesAccountingPeriod: "tracking_categories,accounting_period",
     TrackingCategoriesCompany: "tracking_categories,company",
+    TrackingCategoriesCompanyAccountingPeriod: "tracking_categories,company,accounting_period",
 } as const;

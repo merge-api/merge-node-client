@@ -23,6 +23,7 @@ export const Eeoc: core.serialization.ObjectSchema<serializers.ats.Eeoc.Raw, Mer
             core.serialization.lazy(async () => (await import("../../..")).ats.EeocDisabilityStatus).optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -47,6 +48,7 @@ export declare namespace Eeoc {
         veteran_status?: serializers.ats.EeocVeteranStatus.Raw | null;
         disability_status?: serializers.ats.EeocDisabilityStatus.Raw | null;
         remote_was_deleted?: boolean | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ats.RemoteData.Raw[] | null;

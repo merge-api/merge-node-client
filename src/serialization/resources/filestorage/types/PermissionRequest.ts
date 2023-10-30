@@ -11,11 +11,17 @@ export const PermissionRequest: core.serialization.ObjectSchema<
     Merge.filestorage.PermissionRequest
 > = core.serialization.object({
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    user: core.serialization.string().optional(),
-    group: core.serialization.string().optional(),
-    type: core.serialization.lazy(async () => (await import("../../..")).filestorage.TypeEnum).optional(),
+    user: core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionRequestUser).optional(),
+    group: core.serialization
+        .lazy(async () => (await import("../../..")).filestorage.PermissionRequestGroup)
+        .optional(),
+    type: core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionRequestType).optional(),
     roles: core.serialization
-        .list(core.serialization.lazy(async () => (await import("../../..")).filestorage.RolesEnum).optional())
+        .list(
+            core.serialization
+                .lazy(async () => (await import("../../..")).filestorage.PermissionRequestRolesItem)
+                .optional()
+        )
         .optional(),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -30,10 +36,10 @@ export const PermissionRequest: core.serialization.ObjectSchema<
 export declare namespace PermissionRequest {
     interface Raw {
         remote_id?: string | null;
-        user?: string | null;
-        group?: string | null;
-        type?: serializers.filestorage.TypeEnum.Raw | null;
-        roles?: (serializers.filestorage.RolesEnum.Raw | null | undefined)[] | null;
+        user?: serializers.filestorage.PermissionRequestUser.Raw | null;
+        group?: serializers.filestorage.PermissionRequestGroup.Raw | null;
+        type?: serializers.filestorage.PermissionRequestType.Raw | null;
+        roles?: (serializers.filestorage.PermissionRequestRolesItem.Raw | null | undefined)[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
     }

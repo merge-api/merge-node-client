@@ -34,6 +34,10 @@ export interface InterviewsListRequest {
      */
     includeRemoteData?: boolean;
     /**
+     * If provided, wll only return interviews organized for this job.
+     */
+    jobId?: string;
+    /**
      * If provided, will only return interviews at this stage.
      */
     jobInterviewStageId?: string;

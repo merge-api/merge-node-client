@@ -7,7 +7,9 @@ import * as Merge from "../../..";
 /**
  * # The PurchaseOrder Object
  * ### Description
- * The `PurchaseOrder` object is a record of request for a product or service between a buyer and seller.
+ * A `PurchaseOrder` represents a request to purchase goods or services from a vendor. It outlines the details of the purchase, such as the items or services requested, quantities, prices, and delivery details.
+ *
+ * A `PurchaseOrder` is a crucial component of the procurement process, but does not typically result in any impact on the company’s general ledger. The general ledger is typically only affected when the `PurchaseOrder` is fulfilled as an *Accounts Payable* Invoice object.
  *
  * ### Usage Example
  * Fetch from the `LIST PurchaseOrders` endpoint and view a company's purchase orders.
@@ -360,11 +362,14 @@ export interface PurchaseOrder {
     remoteCreatedAt?: Date;
     /** When the third party's purchase order note was updated. */
     remoteUpdatedAt?: Date;
-    /** Indicates whether or not this object has been deleted by third party webhooks. */
+    /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    /** The accounting period that the PurchaseOrder was generated in. */
+    accountingPeriod?: Merge.accounting.PurchaseOrderAccountingPeriod;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;

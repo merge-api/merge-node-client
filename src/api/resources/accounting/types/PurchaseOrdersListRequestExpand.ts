@@ -3,69 +3,142 @@
  */
 
 export type PurchaseOrdersListRequestExpand =
+    | "accounting_period"
     | "company"
+    | "company,accounting_period"
     | "delivery_address"
+    | "delivery_address,accounting_period"
     | "delivery_address,company"
+    | "delivery_address,company,accounting_period"
     | "delivery_address,vendor"
+    | "delivery_address,vendor,accounting_period"
     | "delivery_address,vendor,company"
+    | "delivery_address,vendor,company,accounting_period"
     | "line_items"
+    | "line_items,accounting_period"
     | "line_items,company"
+    | "line_items,company,accounting_period"
     | "line_items,delivery_address"
+    | "line_items,delivery_address,accounting_period"
     | "line_items,delivery_address,company"
+    | "line_items,delivery_address,company,accounting_period"
     | "line_items,delivery_address,vendor"
+    | "line_items,delivery_address,vendor,accounting_period"
     | "line_items,delivery_address,vendor,company"
+    | "line_items,delivery_address,vendor,company,accounting_period"
     | "line_items,tracking_categories"
+    | "line_items,tracking_categories,accounting_period"
     | "line_items,tracking_categories,company"
+    | "line_items,tracking_categories,company,accounting_period"
     | "line_items,tracking_categories,delivery_address"
+    | "line_items,tracking_categories,delivery_address,accounting_period"
     | "line_items,tracking_categories,delivery_address,company"
+    | "line_items,tracking_categories,delivery_address,company,accounting_period"
     | "line_items,tracking_categories,delivery_address,vendor"
+    | "line_items,tracking_categories,delivery_address,vendor,accounting_period"
     | "line_items,tracking_categories,delivery_address,vendor,company"
+    | "line_items,tracking_categories,delivery_address,vendor,company,accounting_period"
     | "line_items,tracking_categories,vendor"
+    | "line_items,tracking_categories,vendor,accounting_period"
     | "line_items,tracking_categories,vendor,company"
+    | "line_items,tracking_categories,vendor,company,accounting_period"
     | "line_items,vendor"
+    | "line_items,vendor,accounting_period"
     | "line_items,vendor,company"
+    | "line_items,vendor,company,accounting_period"
     | "tracking_categories"
+    | "tracking_categories,accounting_period"
     | "tracking_categories,company"
+    | "tracking_categories,company,accounting_period"
     | "tracking_categories,delivery_address"
+    | "tracking_categories,delivery_address,accounting_period"
     | "tracking_categories,delivery_address,company"
+    | "tracking_categories,delivery_address,company,accounting_period"
     | "tracking_categories,delivery_address,vendor"
+    | "tracking_categories,delivery_address,vendor,accounting_period"
     | "tracking_categories,delivery_address,vendor,company"
+    | "tracking_categories,delivery_address,vendor,company,accounting_period"
     | "tracking_categories,vendor"
+    | "tracking_categories,vendor,accounting_period"
     | "tracking_categories,vendor,company"
+    | "tracking_categories,vendor,company,accounting_period"
     | "vendor"
-    | "vendor,company";
+    | "vendor,accounting_period"
+    | "vendor,company"
+    | "vendor,company,accounting_period";
 
 export const PurchaseOrdersListRequestExpand = {
+    AccountingPeriod: "accounting_period",
     Company: "company",
+    CompanyAccountingPeriod: "company,accounting_period",
     DeliveryAddress: "delivery_address",
+    DeliveryAddressAccountingPeriod: "delivery_address,accounting_period",
     DeliveryAddressCompany: "delivery_address,company",
+    DeliveryAddressCompanyAccountingPeriod: "delivery_address,company,accounting_period",
     DeliveryAddressVendor: "delivery_address,vendor",
+    DeliveryAddressVendorAccountingPeriod: "delivery_address,vendor,accounting_period",
     DeliveryAddressVendorCompany: "delivery_address,vendor,company",
+    DeliveryAddressVendorCompanyAccountingPeriod: "delivery_address,vendor,company,accounting_period",
     LineItems: "line_items",
+    LineItemsAccountingPeriod: "line_items,accounting_period",
     LineItemsCompany: "line_items,company",
+    LineItemsCompanyAccountingPeriod: "line_items,company,accounting_period",
     LineItemsDeliveryAddress: "line_items,delivery_address",
+    LineItemsDeliveryAddressAccountingPeriod: "line_items,delivery_address,accounting_period",
     LineItemsDeliveryAddressCompany: "line_items,delivery_address,company",
+    LineItemsDeliveryAddressCompanyAccountingPeriod: "line_items,delivery_address,company,accounting_period",
     LineItemsDeliveryAddressVendor: "line_items,delivery_address,vendor",
+    LineItemsDeliveryAddressVendorAccountingPeriod: "line_items,delivery_address,vendor,accounting_period",
     LineItemsDeliveryAddressVendorCompany: "line_items,delivery_address,vendor,company",
+    LineItemsDeliveryAddressVendorCompanyAccountingPeriod:
+        "line_items,delivery_address,vendor,company,accounting_period",
     LineItemsTrackingCategories: "line_items,tracking_categories",
+    LineItemsTrackingCategoriesAccountingPeriod: "line_items,tracking_categories,accounting_period",
     LineItemsTrackingCategoriesCompany: "line_items,tracking_categories,company",
+    LineItemsTrackingCategoriesCompanyAccountingPeriod: "line_items,tracking_categories,company,accounting_period",
     LineItemsTrackingCategoriesDeliveryAddress: "line_items,tracking_categories,delivery_address",
+    LineItemsTrackingCategoriesDeliveryAddressAccountingPeriod:
+        "line_items,tracking_categories,delivery_address,accounting_period",
     LineItemsTrackingCategoriesDeliveryAddressCompany: "line_items,tracking_categories,delivery_address,company",
+    LineItemsTrackingCategoriesDeliveryAddressCompanyAccountingPeriod:
+        "line_items,tracking_categories,delivery_address,company,accounting_period",
     LineItemsTrackingCategoriesDeliveryAddressVendor: "line_items,tracking_categories,delivery_address,vendor",
+    LineItemsTrackingCategoriesDeliveryAddressVendorAccountingPeriod:
+        "line_items,tracking_categories,delivery_address,vendor,accounting_period",
     LineItemsTrackingCategoriesDeliveryAddressVendorCompany:
         "line_items,tracking_categories,delivery_address,vendor,company",
+    LineItemsTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod:
+        "line_items,tracking_categories,delivery_address,vendor,company,accounting_period",
     LineItemsTrackingCategoriesVendor: "line_items,tracking_categories,vendor",
+    LineItemsTrackingCategoriesVendorAccountingPeriod: "line_items,tracking_categories,vendor,accounting_period",
     LineItemsTrackingCategoriesVendorCompany: "line_items,tracking_categories,vendor,company",
+    LineItemsTrackingCategoriesVendorCompanyAccountingPeriod:
+        "line_items,tracking_categories,vendor,company,accounting_period",
     LineItemsVendor: "line_items,vendor",
+    LineItemsVendorAccountingPeriod: "line_items,vendor,accounting_period",
     LineItemsVendorCompany: "line_items,vendor,company",
+    LineItemsVendorCompanyAccountingPeriod: "line_items,vendor,company,accounting_period",
     TrackingCategories: "tracking_categories",
+    TrackingCategoriesAccountingPeriod: "tracking_categories,accounting_period",
     TrackingCategoriesCompany: "tracking_categories,company",
+    TrackingCategoriesCompanyAccountingPeriod: "tracking_categories,company,accounting_period",
     TrackingCategoriesDeliveryAddress: "tracking_categories,delivery_address",
+    TrackingCategoriesDeliveryAddressAccountingPeriod: "tracking_categories,delivery_address,accounting_period",
     TrackingCategoriesDeliveryAddressCompany: "tracking_categories,delivery_address,company",
+    TrackingCategoriesDeliveryAddressCompanyAccountingPeriod:
+        "tracking_categories,delivery_address,company,accounting_period",
     TrackingCategoriesDeliveryAddressVendor: "tracking_categories,delivery_address,vendor",
+    TrackingCategoriesDeliveryAddressVendorAccountingPeriod:
+        "tracking_categories,delivery_address,vendor,accounting_period",
     TrackingCategoriesDeliveryAddressVendorCompany: "tracking_categories,delivery_address,vendor,company",
+    TrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod:
+        "tracking_categories,delivery_address,vendor,company,accounting_period",
     TrackingCategoriesVendor: "tracking_categories,vendor",
+    TrackingCategoriesVendorAccountingPeriod: "tracking_categories,vendor,accounting_period",
     TrackingCategoriesVendorCompany: "tracking_categories,vendor,company",
+    TrackingCategoriesVendorCompanyAccountingPeriod: "tracking_categories,vendor,company,accounting_period",
     Vendor: "vendor",
+    VendorAccountingPeriod: "vendor,accounting_period",
     VendorCompany: "vendor,company",
+    VendorCompanyAccountingPeriod: "vendor,company,accounting_period",
 } as const;

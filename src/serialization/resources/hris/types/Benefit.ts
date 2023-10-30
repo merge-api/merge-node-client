@@ -25,6 +25,7 @@ export const Benefit: core.serialization.ObjectSchema<serializers.hris.Benefit.R
         endDate: core.serialization.property("end_date", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         employerBenefit: core.serialization.property("employer_benefit", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -51,6 +52,7 @@ export declare namespace Benefit {
         end_date?: string | null;
         remote_was_deleted?: boolean | null;
         employer_benefit?: string | null;
+        created_at?: string | null;
         modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.hris.RemoteData.Raw[] | null;
