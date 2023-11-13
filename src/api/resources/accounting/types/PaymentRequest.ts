@@ -339,6 +339,7 @@ export interface PaymentRequest {
     trackingCategories?: (Merge.accounting.PaymentRequestTrackingCategoriesItem | undefined)[];
     /** The accounting period that the Payment was generated in. */
     accountingPeriod?: Merge.accounting.PaymentRequestAccountingPeriod;
+    appliedToLines?: Merge.accounting.PaymentRequestAppliedToLinesItem[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }

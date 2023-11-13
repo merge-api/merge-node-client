@@ -346,6 +346,7 @@ export interface Payment {
     remoteWasDeleted?: boolean;
     /** The accounting period that the Payment was generated in. */
     accountingPeriod?: Merge.accounting.PaymentAccountingPeriod;
+    appliedToLines?: Merge.accounting.PaymentAppliedToLinesItem[];
     createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;

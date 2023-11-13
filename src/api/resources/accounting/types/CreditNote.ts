@@ -357,6 +357,8 @@ export interface CreditNote {
     remoteUpdatedAt?: Date;
     /** Array of `Payment` object IDs */
     payments?: (Merge.accounting.CreditNotePaymentsItem | undefined)[];
+    /** Array of `PaymentLineItems` object IDs. */
+    appliedPayments?: (Merge.accounting.CreditNoteAppliedPaymentsItem | undefined)[];
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
     /** The accounting period that the CreditNote was generated in. */

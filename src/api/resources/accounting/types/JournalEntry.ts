@@ -25,6 +25,8 @@ export interface JournalEntry {
     remoteUpdatedAt?: Date;
     /** Array of `Payment` object IDs. */
     payments?: (Merge.accounting.JournalEntryPaymentsItem | undefined)[];
+    /** Array of `PaymentLineItems` object IDs. */
+    appliedPayments?: (Merge.accounting.JournalEntryAppliedPaymentsItem | undefined)[];
     /** The journal entry's private note. */
     memo?: string;
     /**

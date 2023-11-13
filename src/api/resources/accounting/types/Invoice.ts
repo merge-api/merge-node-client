@@ -374,6 +374,8 @@ export interface Invoice {
     trackingCategories?: (Merge.accounting.InvoiceTrackingCategoriesItem | undefined)[];
     /** Array of `Payment` object IDs. */
     payments?: (Merge.accounting.InvoicePaymentsItem | undefined)[];
+    /** Array of `PaymentLineItems` object IDs. */
+    appliedPayments?: (Merge.accounting.InvoiceAppliedPaymentsItem | undefined)[];
     lineItems?: Merge.accounting.InvoiceLineItem[];
     remoteWasDeleted?: boolean;
     /** The accounting period that the Invoice was generated in. */
