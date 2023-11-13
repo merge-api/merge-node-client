@@ -331,6 +331,8 @@ export interface JournalLine {
      * * `ZWL` - Zimbabwean Dollar (2009)
      */
     currency?: Merge.accounting.JournalLineCurrency;
+    /** The company the journal entry belongs to. */
+    company?: string;
     contact?: string;
     /** The line's description. */
     description?: string;

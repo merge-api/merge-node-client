@@ -20,6 +20,16 @@ export const JournalEntry: core.serialization.ObjectSchema<
                 .optional()
         )
         .optional(),
+    appliedPayments: core.serialization.property(
+        "applied_payments",
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.JournalEntryAppliedPaymentsItem)
+                    .optional()
+            )
+            .optional()
+    ),
     memo: core.serialization.string().optional(),
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.JournalEntryCurrency)
@@ -73,6 +83,7 @@ export declare namespace JournalEntry {
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
         payments?: (serializers.accounting.JournalEntryPaymentsItem.Raw | null | undefined)[] | null;
+        applied_payments?: (serializers.accounting.JournalEntryAppliedPaymentsItem.Raw | null | undefined)[] | null;
         memo?: string | null;
         currency?: serializers.accounting.JournalEntryCurrency.Raw | null;
         exchange_rate?: string | null;

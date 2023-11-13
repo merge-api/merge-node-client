@@ -4,14 +4,38 @@
 
 export type JournalEntriesListRequestExpand =
     | "accounting_period"
+    | "applied_payments"
+    | "applied_payments,accounting_period"
+    | "applied_payments,company"
+    | "applied_payments,company,accounting_period"
+    | "applied_payments,tracking_categories"
+    | "applied_payments,tracking_categories,accounting_period"
+    | "applied_payments,tracking_categories,company"
+    | "applied_payments,tracking_categories,company,accounting_period"
     | "company"
     | "company,accounting_period"
     | "lines"
     | "lines,accounting_period"
+    | "lines,applied_payments"
+    | "lines,applied_payments,accounting_period"
+    | "lines,applied_payments,company"
+    | "lines,applied_payments,company,accounting_period"
+    | "lines,applied_payments,tracking_categories"
+    | "lines,applied_payments,tracking_categories,accounting_period"
+    | "lines,applied_payments,tracking_categories,company"
+    | "lines,applied_payments,tracking_categories,company,accounting_period"
     | "lines,company"
     | "lines,company,accounting_period"
     | "lines,payments"
     | "lines,payments,accounting_period"
+    | "lines,payments,applied_payments"
+    | "lines,payments,applied_payments,accounting_period"
+    | "lines,payments,applied_payments,company"
+    | "lines,payments,applied_payments,company,accounting_period"
+    | "lines,payments,applied_payments,tracking_categories"
+    | "lines,payments,applied_payments,tracking_categories,accounting_period"
+    | "lines,payments,applied_payments,tracking_categories,company"
+    | "lines,payments,applied_payments,tracking_categories,company,accounting_period"
     | "lines,payments,company"
     | "lines,payments,company,accounting_period"
     | "lines,payments,tracking_categories"
@@ -24,6 +48,14 @@ export type JournalEntriesListRequestExpand =
     | "lines,tracking_categories,company,accounting_period"
     | "payments"
     | "payments,accounting_period"
+    | "payments,applied_payments"
+    | "payments,applied_payments,accounting_period"
+    | "payments,applied_payments,company"
+    | "payments,applied_payments,company,accounting_period"
+    | "payments,applied_payments,tracking_categories"
+    | "payments,applied_payments,tracking_categories,accounting_period"
+    | "payments,applied_payments,tracking_categories,company"
+    | "payments,applied_payments,tracking_categories,company,accounting_period"
     | "payments,company"
     | "payments,company,accounting_period"
     | "payments,tracking_categories"
@@ -37,14 +69,44 @@ export type JournalEntriesListRequestExpand =
 
 export const JournalEntriesListRequestExpand = {
     AccountingPeriod: "accounting_period",
+    AppliedPayments: "applied_payments",
+    AppliedPaymentsAccountingPeriod: "applied_payments,accounting_period",
+    AppliedPaymentsCompany: "applied_payments,company",
+    AppliedPaymentsCompanyAccountingPeriod: "applied_payments,company,accounting_period",
+    AppliedPaymentsTrackingCategories: "applied_payments,tracking_categories",
+    AppliedPaymentsTrackingCategoriesAccountingPeriod: "applied_payments,tracking_categories,accounting_period",
+    AppliedPaymentsTrackingCategoriesCompany: "applied_payments,tracking_categories,company",
+    AppliedPaymentsTrackingCategoriesCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,company,accounting_period",
     Company: "company",
     CompanyAccountingPeriod: "company,accounting_period",
     Lines: "lines",
     LinesAccountingPeriod: "lines,accounting_period",
+    LinesAppliedPayments: "lines,applied_payments",
+    LinesAppliedPaymentsAccountingPeriod: "lines,applied_payments,accounting_period",
+    LinesAppliedPaymentsCompany: "lines,applied_payments,company",
+    LinesAppliedPaymentsCompanyAccountingPeriod: "lines,applied_payments,company,accounting_period",
+    LinesAppliedPaymentsTrackingCategories: "lines,applied_payments,tracking_categories",
+    LinesAppliedPaymentsTrackingCategoriesAccountingPeriod:
+        "lines,applied_payments,tracking_categories,accounting_period",
+    LinesAppliedPaymentsTrackingCategoriesCompany: "lines,applied_payments,tracking_categories,company",
+    LinesAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod:
+        "lines,applied_payments,tracking_categories,company,accounting_period",
     LinesCompany: "lines,company",
     LinesCompanyAccountingPeriod: "lines,company,accounting_period",
     LinesPayments: "lines,payments",
     LinesPaymentsAccountingPeriod: "lines,payments,accounting_period",
+    LinesPaymentsAppliedPayments: "lines,payments,applied_payments",
+    LinesPaymentsAppliedPaymentsAccountingPeriod: "lines,payments,applied_payments,accounting_period",
+    LinesPaymentsAppliedPaymentsCompany: "lines,payments,applied_payments,company",
+    LinesPaymentsAppliedPaymentsCompanyAccountingPeriod: "lines,payments,applied_payments,company,accounting_period",
+    LinesPaymentsAppliedPaymentsTrackingCategories: "lines,payments,applied_payments,tracking_categories",
+    LinesPaymentsAppliedPaymentsTrackingCategoriesAccountingPeriod:
+        "lines,payments,applied_payments,tracking_categories,accounting_period",
+    LinesPaymentsAppliedPaymentsTrackingCategoriesCompany:
+        "lines,payments,applied_payments,tracking_categories,company",
+    LinesPaymentsAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod:
+        "lines,payments,applied_payments,tracking_categories,company,accounting_period",
     LinesPaymentsCompany: "lines,payments,company",
     LinesPaymentsCompanyAccountingPeriod: "lines,payments,company,accounting_period",
     LinesPaymentsTrackingCategories: "lines,payments,tracking_categories",
@@ -58,6 +120,16 @@ export const JournalEntriesListRequestExpand = {
     LinesTrackingCategoriesCompanyAccountingPeriod: "lines,tracking_categories,company,accounting_period",
     Payments: "payments",
     PaymentsAccountingPeriod: "payments,accounting_period",
+    PaymentsAppliedPayments: "payments,applied_payments",
+    PaymentsAppliedPaymentsAccountingPeriod: "payments,applied_payments,accounting_period",
+    PaymentsAppliedPaymentsCompany: "payments,applied_payments,company",
+    PaymentsAppliedPaymentsCompanyAccountingPeriod: "payments,applied_payments,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategories: "payments,applied_payments,tracking_categories",
+    PaymentsAppliedPaymentsTrackingCategoriesAccountingPeriod:
+        "payments,applied_payments,tracking_categories,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesCompany: "payments,applied_payments,tracking_categories,company",
+    PaymentsAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,company,accounting_period",
     PaymentsCompany: "payments,company",
     PaymentsCompanyAccountingPeriod: "payments,company,accounting_period",
     PaymentsTrackingCategories: "payments,tracking_categories",

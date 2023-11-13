@@ -30,6 +30,8 @@ export interface CreditNoteLineItem {
     company?: Merge.accounting.CreditNoteLineItemCompany;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    /** Indicates whether or not this object has been deleted in the third party platform. */
+    remoteWasDeleted?: boolean;
     createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;

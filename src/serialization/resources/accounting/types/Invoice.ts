@@ -43,6 +43,16 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
                     .optional()
             )
             .optional(),
+        appliedPayments: core.serialization.property(
+            "applied_payments",
+            core.serialization
+                .list(
+                    core.serialization
+                        .lazy(async () => (await import("../../..")).accounting.InvoiceAppliedPaymentsItem)
+                        .optional()
+                )
+                .optional()
+        ),
         lineItems: core.serialization.property(
             "line_items",
             core.serialization
@@ -103,6 +113,7 @@ export declare namespace Invoice {
         remote_updated_at?: string | null;
         tracking_categories?: (serializers.accounting.InvoiceTrackingCategoriesItem.Raw | null | undefined)[] | null;
         payments?: (serializers.accounting.InvoicePaymentsItem.Raw | null | undefined)[] | null;
+        applied_payments?: (serializers.accounting.InvoiceAppliedPaymentsItem.Raw | null | undefined)[] | null;
         line_items?: serializers.accounting.InvoiceLineItem.Raw[] | null;
         remote_was_deleted?: boolean | null;
         accounting_period?: serializers.accounting.InvoiceAccountingPeriod.Raw | null;

@@ -30,6 +30,7 @@ export const JournalLine: core.serialization.ObjectSchema<
             .optional()
     ),
     currency: core.serialization.lazy(async () => (await import("../../..")).accounting.JournalLineCurrency).optional(),
+    company: core.serialization.string().optional(),
     contact: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
@@ -48,6 +49,7 @@ export declare namespace JournalLine {
             | (serializers.accounting.JournalLineTrackingCategoriesItem.Raw | null | undefined)[]
             | null;
         currency?: serializers.accounting.JournalLineCurrency.Raw | null;
+        company?: string | null;
         contact?: string | null;
         description?: string | null;
         exchange_rate?: string | null;

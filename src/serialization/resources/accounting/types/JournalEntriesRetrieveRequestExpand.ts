@@ -11,14 +11,38 @@ export const JournalEntriesRetrieveRequestExpand: core.serialization.Schema<
     Merge.accounting.JournalEntriesRetrieveRequestExpand
 > = core.serialization.enum_([
     "accounting_period",
+    "applied_payments",
+    "applied_payments,accounting_period",
+    "applied_payments,company",
+    "applied_payments,company,accounting_period",
+    "applied_payments,tracking_categories",
+    "applied_payments,tracking_categories,accounting_period",
+    "applied_payments,tracking_categories,company",
+    "applied_payments,tracking_categories,company,accounting_period",
     "company",
     "company,accounting_period",
     "lines",
     "lines,accounting_period",
+    "lines,applied_payments",
+    "lines,applied_payments,accounting_period",
+    "lines,applied_payments,company",
+    "lines,applied_payments,company,accounting_period",
+    "lines,applied_payments,tracking_categories",
+    "lines,applied_payments,tracking_categories,accounting_period",
+    "lines,applied_payments,tracking_categories,company",
+    "lines,applied_payments,tracking_categories,company,accounting_period",
     "lines,company",
     "lines,company,accounting_period",
     "lines,payments",
     "lines,payments,accounting_period",
+    "lines,payments,applied_payments",
+    "lines,payments,applied_payments,accounting_period",
+    "lines,payments,applied_payments,company",
+    "lines,payments,applied_payments,company,accounting_period",
+    "lines,payments,applied_payments,tracking_categories",
+    "lines,payments,applied_payments,tracking_categories,accounting_period",
+    "lines,payments,applied_payments,tracking_categories,company",
+    "lines,payments,applied_payments,tracking_categories,company,accounting_period",
     "lines,payments,company",
     "lines,payments,company,accounting_period",
     "lines,payments,tracking_categories",
@@ -31,6 +55,14 @@ export const JournalEntriesRetrieveRequestExpand: core.serialization.Schema<
     "lines,tracking_categories,company,accounting_period",
     "payments",
     "payments,accounting_period",
+    "payments,applied_payments",
+    "payments,applied_payments,accounting_period",
+    "payments,applied_payments,company",
+    "payments,applied_payments,company,accounting_period",
+    "payments,applied_payments,tracking_categories",
+    "payments,applied_payments,tracking_categories,accounting_period",
+    "payments,applied_payments,tracking_categories,company",
+    "payments,applied_payments,tracking_categories,company,accounting_period",
     "payments,company",
     "payments,company,accounting_period",
     "payments,tracking_categories",
@@ -46,14 +78,38 @@ export const JournalEntriesRetrieveRequestExpand: core.serialization.Schema<
 export declare namespace JournalEntriesRetrieveRequestExpand {
     type Raw =
         | "accounting_period"
+        | "applied_payments"
+        | "applied_payments,accounting_period"
+        | "applied_payments,company"
+        | "applied_payments,company,accounting_period"
+        | "applied_payments,tracking_categories"
+        | "applied_payments,tracking_categories,accounting_period"
+        | "applied_payments,tracking_categories,company"
+        | "applied_payments,tracking_categories,company,accounting_period"
         | "company"
         | "company,accounting_period"
         | "lines"
         | "lines,accounting_period"
+        | "lines,applied_payments"
+        | "lines,applied_payments,accounting_period"
+        | "lines,applied_payments,company"
+        | "lines,applied_payments,company,accounting_period"
+        | "lines,applied_payments,tracking_categories"
+        | "lines,applied_payments,tracking_categories,accounting_period"
+        | "lines,applied_payments,tracking_categories,company"
+        | "lines,applied_payments,tracking_categories,company,accounting_period"
         | "lines,company"
         | "lines,company,accounting_period"
         | "lines,payments"
         | "lines,payments,accounting_period"
+        | "lines,payments,applied_payments"
+        | "lines,payments,applied_payments,accounting_period"
+        | "lines,payments,applied_payments,company"
+        | "lines,payments,applied_payments,company,accounting_period"
+        | "lines,payments,applied_payments,tracking_categories"
+        | "lines,payments,applied_payments,tracking_categories,accounting_period"
+        | "lines,payments,applied_payments,tracking_categories,company"
+        | "lines,payments,applied_payments,tracking_categories,company,accounting_period"
         | "lines,payments,company"
         | "lines,payments,company,accounting_period"
         | "lines,payments,tracking_categories"
@@ -66,6 +122,14 @@ export declare namespace JournalEntriesRetrieveRequestExpand {
         | "lines,tracking_categories,company,accounting_period"
         | "payments"
         | "payments,accounting_period"
+        | "payments,applied_payments"
+        | "payments,applied_payments,accounting_period"
+        | "payments,applied_payments,company"
+        | "payments,applied_payments,company,accounting_period"
+        | "payments,applied_payments,tracking_categories"
+        | "payments,applied_payments,tracking_categories,accounting_period"
+        | "payments,applied_payments,tracking_categories,company"
+        | "payments,applied_payments,tracking_categories,company,accounting_period"
         | "payments,company"
         | "payments,company,accounting_period"
         | "payments,tracking_categories"

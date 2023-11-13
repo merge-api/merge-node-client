@@ -4,6 +4,70 @@
 
 export type InvoicesListRequestExpand =
     | "accounting_period"
+    | "applied_payments"
+    | "applied_payments,accounting_period"
+    | "applied_payments,company"
+    | "applied_payments,company,accounting_period"
+    | "applied_payments,contact"
+    | "applied_payments,contact,accounting_period"
+    | "applied_payments,contact,company"
+    | "applied_payments,contact,company,accounting_period"
+    | "applied_payments,line_items"
+    | "applied_payments,line_items,accounting_period"
+    | "applied_payments,line_items,company"
+    | "applied_payments,line_items,company,accounting_period"
+    | "applied_payments,line_items,contact"
+    | "applied_payments,line_items,contact,accounting_period"
+    | "applied_payments,line_items,contact,company"
+    | "applied_payments,line_items,contact,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders"
+    | "applied_payments,line_items,purchase_orders,accounting_period"
+    | "applied_payments,line_items,purchase_orders,company"
+    | "applied_payments,line_items,purchase_orders,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders,contact"
+    | "applied_payments,line_items,purchase_orders,contact,accounting_period"
+    | "applied_payments,line_items,purchase_orders,contact,company"
+    | "applied_payments,line_items,purchase_orders,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories"
+    | "applied_payments,line_items,tracking_categories,accounting_period"
+    | "applied_payments,line_items,tracking_categories,company"
+    | "applied_payments,line_items,tracking_categories,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,contact"
+    | "applied_payments,line_items,tracking_categories,contact,accounting_period"
+    | "applied_payments,line_items,tracking_categories,contact,company"
+    | "applied_payments,line_items,tracking_categories,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,company"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,contact"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,contact,company"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "applied_payments,purchase_orders"
+    | "applied_payments,purchase_orders,accounting_period"
+    | "applied_payments,purchase_orders,company"
+    | "applied_payments,purchase_orders,company,accounting_period"
+    | "applied_payments,purchase_orders,contact"
+    | "applied_payments,purchase_orders,contact,accounting_period"
+    | "applied_payments,purchase_orders,contact,company"
+    | "applied_payments,purchase_orders,contact,company,accounting_period"
+    | "applied_payments,tracking_categories"
+    | "applied_payments,tracking_categories,accounting_period"
+    | "applied_payments,tracking_categories,company"
+    | "applied_payments,tracking_categories,company,accounting_period"
+    | "applied_payments,tracking_categories,contact"
+    | "applied_payments,tracking_categories,contact,accounting_period"
+    | "applied_payments,tracking_categories,contact,company"
+    | "applied_payments,tracking_categories,contact,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders"
+    | "applied_payments,tracking_categories,purchase_orders,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,company"
+    | "applied_payments,tracking_categories,purchase_orders,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,contact"
+    | "applied_payments,tracking_categories,purchase_orders,contact,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,contact,company"
+    | "applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period"
     | "company"
     | "company,accounting_period"
     | "contact"
@@ -44,6 +108,70 @@ export type InvoicesListRequestExpand =
     | "line_items,tracking_categories,purchase_orders,contact,company,accounting_period"
     | "payments"
     | "payments,accounting_period"
+    | "payments,applied_payments"
+    | "payments,applied_payments,accounting_period"
+    | "payments,applied_payments,company"
+    | "payments,applied_payments,company,accounting_period"
+    | "payments,applied_payments,contact"
+    | "payments,applied_payments,contact,accounting_period"
+    | "payments,applied_payments,contact,company"
+    | "payments,applied_payments,contact,company,accounting_period"
+    | "payments,applied_payments,line_items"
+    | "payments,applied_payments,line_items,accounting_period"
+    | "payments,applied_payments,line_items,company"
+    | "payments,applied_payments,line_items,company,accounting_period"
+    | "payments,applied_payments,line_items,contact"
+    | "payments,applied_payments,line_items,contact,accounting_period"
+    | "payments,applied_payments,line_items,contact,company"
+    | "payments,applied_payments,line_items,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders"
+    | "payments,applied_payments,line_items,purchase_orders,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,company"
+    | "payments,applied_payments,line_items,purchase_orders,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,contact"
+    | "payments,applied_payments,line_items,purchase_orders,contact,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,contact,company"
+    | "payments,applied_payments,line_items,purchase_orders,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories"
+    | "payments,applied_payments,line_items,tracking_categories,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,company"
+    | "payments,applied_payments,line_items,tracking_categories,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,contact"
+    | "payments,applied_payments,line_items,tracking_categories,contact,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,contact,company"
+    | "payments,applied_payments,line_items,tracking_categories,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,company"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "payments,applied_payments,purchase_orders"
+    | "payments,applied_payments,purchase_orders,accounting_period"
+    | "payments,applied_payments,purchase_orders,company"
+    | "payments,applied_payments,purchase_orders,company,accounting_period"
+    | "payments,applied_payments,purchase_orders,contact"
+    | "payments,applied_payments,purchase_orders,contact,accounting_period"
+    | "payments,applied_payments,purchase_orders,contact,company"
+    | "payments,applied_payments,purchase_orders,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories"
+    | "payments,applied_payments,tracking_categories,accounting_period"
+    | "payments,applied_payments,tracking_categories,company"
+    | "payments,applied_payments,tracking_categories,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,contact"
+    | "payments,applied_payments,tracking_categories,contact,accounting_period"
+    | "payments,applied_payments,tracking_categories,contact,company"
+    | "payments,applied_payments,tracking_categories,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders"
+    | "payments,applied_payments,tracking_categories,purchase_orders,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,company"
+    | "payments,applied_payments,tracking_categories,purchase_orders,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,contact"
+    | "payments,applied_payments,tracking_categories,purchase_orders,contact,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,contact,company"
+    | "payments,applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period"
     | "payments,company"
     | "payments,company,accounting_period"
     | "payments,contact"
@@ -133,6 +261,99 @@ export type InvoicesListRequestExpand =
 
 export const InvoicesListRequestExpand = {
     AccountingPeriod: "accounting_period",
+    AppliedPayments: "applied_payments",
+    AppliedPaymentsAccountingPeriod: "applied_payments,accounting_period",
+    AppliedPaymentsCompany: "applied_payments,company",
+    AppliedPaymentsCompanyAccountingPeriod: "applied_payments,company,accounting_period",
+    AppliedPaymentsContact: "applied_payments,contact",
+    AppliedPaymentsContactAccountingPeriod: "applied_payments,contact,accounting_period",
+    AppliedPaymentsContactCompany: "applied_payments,contact,company",
+    AppliedPaymentsContactCompanyAccountingPeriod: "applied_payments,contact,company,accounting_period",
+    AppliedPaymentsLineItems: "applied_payments,line_items",
+    AppliedPaymentsLineItemsAccountingPeriod: "applied_payments,line_items,accounting_period",
+    AppliedPaymentsLineItemsCompany: "applied_payments,line_items,company",
+    AppliedPaymentsLineItemsCompanyAccountingPeriod: "applied_payments,line_items,company,accounting_period",
+    AppliedPaymentsLineItemsContact: "applied_payments,line_items,contact",
+    AppliedPaymentsLineItemsContactAccountingPeriod: "applied_payments,line_items,contact,accounting_period",
+    AppliedPaymentsLineItemsContactCompany: "applied_payments,line_items,contact,company",
+    AppliedPaymentsLineItemsContactCompanyAccountingPeriod:
+        "applied_payments,line_items,contact,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrders: "applied_payments,line_items,purchase_orders",
+    AppliedPaymentsLineItemsPurchaseOrdersAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersCompany: "applied_payments,line_items,purchase_orders,company",
+    AppliedPaymentsLineItemsPurchaseOrdersCompanyAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersContact: "applied_payments,line_items,purchase_orders,contact",
+    AppliedPaymentsLineItemsPurchaseOrdersContactAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,contact,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersContactCompany: "applied_payments,line_items,purchase_orders,contact,company",
+    AppliedPaymentsLineItemsPurchaseOrdersContactCompanyAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategories: "applied_payments,line_items,tracking_categories",
+    AppliedPaymentsLineItemsTrackingCategoriesAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesCompany: "applied_payments,line_items,tracking_categories,company",
+    AppliedPaymentsLineItemsTrackingCategoriesCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesContact: "applied_payments,line_items,tracking_categories,contact",
+    AppliedPaymentsLineItemsTrackingCategoriesContactAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,contact,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesContactCompany:
+        "applied_payments,line_items,tracking_categories,contact,company",
+    AppliedPaymentsLineItemsTrackingCategoriesContactCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrders:
+        "applied_payments,line_items,tracking_categories,purchase_orders",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompany:
+        "applied_payments,line_items,tracking_categories,purchase_orders,company",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContact:
+        "applied_payments,line_items,tracking_categories,purchase_orders,contact",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompany:
+        "applied_payments,line_items,tracking_categories,purchase_orders,contact,company",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
+    AppliedPaymentsPurchaseOrders: "applied_payments,purchase_orders",
+    AppliedPaymentsPurchaseOrdersAccountingPeriod: "applied_payments,purchase_orders,accounting_period",
+    AppliedPaymentsPurchaseOrdersCompany: "applied_payments,purchase_orders,company",
+    AppliedPaymentsPurchaseOrdersCompanyAccountingPeriod: "applied_payments,purchase_orders,company,accounting_period",
+    AppliedPaymentsPurchaseOrdersContact: "applied_payments,purchase_orders,contact",
+    AppliedPaymentsPurchaseOrdersContactAccountingPeriod: "applied_payments,purchase_orders,contact,accounting_period",
+    AppliedPaymentsPurchaseOrdersContactCompany: "applied_payments,purchase_orders,contact,company",
+    AppliedPaymentsPurchaseOrdersContactCompanyAccountingPeriod:
+        "applied_payments,purchase_orders,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategories: "applied_payments,tracking_categories",
+    AppliedPaymentsTrackingCategoriesAccountingPeriod: "applied_payments,tracking_categories,accounting_period",
+    AppliedPaymentsTrackingCategoriesCompany: "applied_payments,tracking_categories,company",
+    AppliedPaymentsTrackingCategoriesCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesContact: "applied_payments,tracking_categories,contact",
+    AppliedPaymentsTrackingCategoriesContactAccountingPeriod:
+        "applied_payments,tracking_categories,contact,accounting_period",
+    AppliedPaymentsTrackingCategoriesContactCompany: "applied_payments,tracking_categories,contact,company",
+    AppliedPaymentsTrackingCategoriesContactCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrders: "applied_payments,tracking_categories,purchase_orders",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersCompany:
+        "applied_payments,tracking_categories,purchase_orders,company",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersContact:
+        "applied_payments,tracking_categories,purchase_orders,contact",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,contact,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompany:
+        "applied_payments,tracking_categories,purchase_orders,contact,company",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period",
     Company: "company",
     CompanyAccountingPeriod: "company,accounting_period",
     Contact: "contact",
@@ -180,6 +401,113 @@ export const InvoicesListRequestExpand = {
         "line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
     Payments: "payments",
     PaymentsAccountingPeriod: "payments,accounting_period",
+    PaymentsAppliedPayments: "payments,applied_payments",
+    PaymentsAppliedPaymentsAccountingPeriod: "payments,applied_payments,accounting_period",
+    PaymentsAppliedPaymentsCompany: "payments,applied_payments,company",
+    PaymentsAppliedPaymentsCompanyAccountingPeriod: "payments,applied_payments,company,accounting_period",
+    PaymentsAppliedPaymentsContact: "payments,applied_payments,contact",
+    PaymentsAppliedPaymentsContactAccountingPeriod: "payments,applied_payments,contact,accounting_period",
+    PaymentsAppliedPaymentsContactCompany: "payments,applied_payments,contact,company",
+    PaymentsAppliedPaymentsContactCompanyAccountingPeriod:
+        "payments,applied_payments,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItems: "payments,applied_payments,line_items",
+    PaymentsAppliedPaymentsLineItemsAccountingPeriod: "payments,applied_payments,line_items,accounting_period",
+    PaymentsAppliedPaymentsLineItemsCompany: "payments,applied_payments,line_items,company",
+    PaymentsAppliedPaymentsLineItemsCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsContact: "payments,applied_payments,line_items,contact",
+    PaymentsAppliedPaymentsLineItemsContactAccountingPeriod:
+        "payments,applied_payments,line_items,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsContactCompany: "payments,applied_payments,line_items,contact,company",
+    PaymentsAppliedPaymentsLineItemsContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrders: "payments,applied_payments,line_items,purchase_orders",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersCompany:
+        "payments,applied_payments,line_items,purchase_orders,company",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersContact:
+        "payments,applied_payments,line_items,purchase_orders,contact",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersContactAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersContactCompany:
+        "payments,applied_payments,line_items,purchase_orders,contact,company",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategories: "payments,applied_payments,line_items,tracking_categories",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesCompany:
+        "payments,applied_payments,line_items,tracking_categories,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesContact:
+        "payments,applied_payments,line_items,tracking_categories,contact",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesContactAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesContactCompany:
+        "payments,applied_payments,line_items,tracking_categories,contact,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrders:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompany:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContact:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompany:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrders: "payments,applied_payments,purchase_orders",
+    PaymentsAppliedPaymentsPurchaseOrdersAccountingPeriod:
+        "payments,applied_payments,purchase_orders,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersCompany: "payments,applied_payments,purchase_orders,company",
+    PaymentsAppliedPaymentsPurchaseOrdersCompanyAccountingPeriod:
+        "payments,applied_payments,purchase_orders,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersContact: "payments,applied_payments,purchase_orders,contact",
+    PaymentsAppliedPaymentsPurchaseOrdersContactAccountingPeriod:
+        "payments,applied_payments,purchase_orders,contact,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersContactCompany: "payments,applied_payments,purchase_orders,contact,company",
+    PaymentsAppliedPaymentsPurchaseOrdersContactCompanyAccountingPeriod:
+        "payments,applied_payments,purchase_orders,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategories: "payments,applied_payments,tracking_categories",
+    PaymentsAppliedPaymentsTrackingCategoriesAccountingPeriod:
+        "payments,applied_payments,tracking_categories,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesCompany: "payments,applied_payments,tracking_categories,company",
+    PaymentsAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesContact: "payments,applied_payments,tracking_categories,contact",
+    PaymentsAppliedPaymentsTrackingCategoriesContactAccountingPeriod:
+        "payments,applied_payments,tracking_categories,contact,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesContactCompany:
+        "payments,applied_payments,tracking_categories,contact,company",
+    PaymentsAppliedPaymentsTrackingCategoriesContactCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrders:
+        "payments,applied_payments,tracking_categories,purchase_orders",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersCompany:
+        "payments,applied_payments,tracking_categories,purchase_orders,company",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContact:
+        "payments,applied_payments,tracking_categories,purchase_orders,contact",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,contact,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompany:
+        "payments,applied_payments,tracking_categories,purchase_orders,contact,company",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period",
     PaymentsCompany: "payments,company",
     PaymentsCompanyAccountingPeriod: "payments,company,accounting_period",
     PaymentsContact: "payments,contact",
