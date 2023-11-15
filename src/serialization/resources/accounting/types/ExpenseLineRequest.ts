@@ -30,7 +30,9 @@ export const ExpenseLineRequest: core.serialization.ObjectSchema<
             .optional()
     ),
     company: core.serialization.string().optional(),
-    currency: core.serialization.lazy(async () => (await import("../../..")).accounting.CurrencyEnum).optional(),
+    currency: core.serialization
+        .lazy(async () => (await import("../../..")).accounting.ExpenseLineRequestCurrency)
+        .optional(),
     account: core.serialization
         .lazy(async () => (await import("../../..")).accounting.ExpenseLineRequestAccount)
         .optional(),
@@ -59,7 +61,7 @@ export declare namespace ExpenseLineRequest {
             | (serializers.accounting.ExpenseLineRequestTrackingCategoriesItem.Raw | null | undefined)[]
             | null;
         company?: string | null;
-        currency?: serializers.accounting.CurrencyEnum.Raw | null;
+        currency?: serializers.accounting.ExpenseLineRequestCurrency.Raw | null;
         account?: serializers.accounting.ExpenseLineRequestAccount.Raw | null;
         contact?: serializers.accounting.ExpenseLineRequestContact.Raw | null;
         description?: string | null;

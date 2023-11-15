@@ -45,7 +45,7 @@ export class LinkToken {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.0",
+                "X-Fern-SDK-Version": "1.0.1",
             },
             contentType: "application/json",
             body: await serializers.ats.EndUserDetailsRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),

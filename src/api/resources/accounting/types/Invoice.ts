@@ -362,7 +362,7 @@ export interface Invoice {
      * * `OPEN` - OPEN
      * * `VOID` - VOID
      */
-    status?: Merge.accounting.InvoiceStatusEnum;
+    status?: Merge.accounting.InvoiceStatus;
     /** The total amount being paid in taxes. */
     totalTaxAmount?: number;
     /** The invoice's total amount. */
