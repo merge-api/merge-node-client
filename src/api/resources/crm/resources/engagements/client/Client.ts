@@ -44,6 +44,8 @@ export class Engagements {
             modifiedBefore,
             pageSize,
             remoteId,
+            startedAfter,
+            startedBefore,
         } = request;
         const _queryParams = new URLSearchParams();
         if (createdAfter != null) {
@@ -90,10 +92,18 @@ export class Engagements {
             _queryParams.append("remote_id", remoteId);
         }
 
+        if (startedAfter != null) {
+            _queryParams.append("started_after", startedAfter.toISOString());
+        }
+
+        if (startedBefore != null) {
+            _queryParams.append("started_before", startedBefore.toISOString());
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagements"
+                "engagements"
             ),
             method: "GET",
             headers: {
@@ -104,7 +114,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -161,7 +171,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagements"
+                "engagements"
             ),
             method: "POST",
             headers: {
@@ -172,7 +182,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -237,7 +247,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/engagements/${id}`
+                `engagements/${id}`
             ),
             method: "GET",
             headers: {
@@ -248,7 +258,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -306,7 +316,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/engagements/${id}`
+                `engagements/${id}`
             ),
             method: "PATCH",
             headers: {
@@ -317,7 +327,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -367,7 +377,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/engagements/meta/patch/${id}`
+                `engagements/meta/patch/${id}`
             ),
             method: "GET",
             headers: {
@@ -378,7 +388,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -421,7 +431,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagements/meta/post"
+                "engagements/meta/post"
             ),
             method: "GET",
             headers: {
@@ -432,7 +442,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -500,7 +510,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagements/remote-field-classes"
+                "engagements/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -511,7 +521,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

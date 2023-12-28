@@ -7,8 +7,8 @@ import * as Merge from "../../..";
 /**
  * The account's status.
  *
- * * `ACTIVE` - ACTIVE
- * * `PENDING` - PENDING
- * * `INACTIVE` - INACTIVE
+ * - `ACTIVE` - ACTIVE
+ * - `PENDING` - PENDING
+ * - `INACTIVE` - INACTIVE
  */
 export type AccountStatus = Merge.accounting.AccountStatusEnum | string;

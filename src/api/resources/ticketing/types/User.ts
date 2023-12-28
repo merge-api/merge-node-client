@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The User Object
+ *
  * ### Description
+ *
  * The `User` object is used to represent an employee within a company.
  *
  * ### Usage Example
+ *
  * TODO
  */
 export interface User {
@@ -23,6 +26,7 @@ export interface User {
     /** Whether or not the user is active. */
     isActive?: boolean;
     teams?: (Merge.ticketing.UserTeamsItem | undefined)[];
+    roles?: (Merge.ticketing.UserRolesItem | undefined)[];
     /** The user's avatar picture. */
     avatar?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. */

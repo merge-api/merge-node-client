@@ -3,9 +3,9 @@
  */
 
 /**
- * * `COMPLETE` - COMPLETE
- * * `INCOMPLETE` - INCOMPLETE
- * * `RELINK_NEEDED` - RELINK_NEEDED
+ * - `COMPLETE` - COMPLETE
+ * - `INCOMPLETE` - INCOMPLETE
+ * - `RELINK_NEEDED` - RELINK_NEEDED
  */
 export type AccountDetailsAndActionsStatusEnum = "COMPLETE" | "INCOMPLETE" | "RELINK_NEEDED";
 

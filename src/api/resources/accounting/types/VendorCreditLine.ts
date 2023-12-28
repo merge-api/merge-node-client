@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The VendorCreditLine Object
+ *
  * ### Description
+ *
  * The `VendorCreditLine` object is used to represent a vendor credit's line items.
  *
  * ### Usage Example
+ *
  * Fetch from the `GET VendorCredit` endpoint and view the vendor credit's line items.
  */
 export interface VendorCreditLine {
@@ -31,6 +34,7 @@ export interface VendorCreditLine {
     exchangeRate?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    id?: string;
     createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;

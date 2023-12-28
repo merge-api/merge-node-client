@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Folder Object
+ *
  * ### Description
+ *
  * The `Folder` object is used to represent a collection of files and/or folders in the workspace. Could be within a drive, if it exists.
+ *
  * ### Usage Example
+ *
  * Fetch from the `GET /api/filestorage/v1/folders` endpoint and view their folders.
  */
 export interface Folder {

@@ -104,7 +104,7 @@ export class Files {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/files"
+                "files"
             ),
             method: "GET",
             headers: {
@@ -115,7 +115,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -172,7 +172,7 @@ export class Files {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/files"
+                "files"
             ),
             method: "POST",
             headers: {
@@ -183,7 +183,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -244,7 +244,7 @@ export class Files {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/filestorage/v1/files/${id}`
+                `files/${id}`
             ),
             method: "GET",
             headers: {
@@ -255,7 +255,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -295,11 +295,21 @@ export class Files {
     /**
      * Returns a `File` object with the given `id`.
      */
-    public async downloadRetrieve(id: string, requestOptions?: Files.RequestOptions): Promise<stream.Readable> {
+    public async downloadRetrieve(
+        id: string,
+        request: Merge.filestorage.FilesDownloadRetrieveRequest = {},
+        requestOptions?: Files.RequestOptions
+    ): Promise<stream.Readable> {
+        const { mimeType } = request;
+        const _queryParams = new URLSearchParams();
+        if (mimeType != null) {
+            _queryParams.append("mime_type", mimeType);
+        }
+
         const _response = await core.streamingFetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/filestorage/v1/files/${id}/download`
+                `files/${id}/download`
             ),
             method: "GET",
             headers: {
@@ -310,8 +320,9 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
+            queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             onError: (error) => {
                 throw new errors.MergeError({
@@ -329,7 +340,7 @@ export class Files {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/files/meta/post"
+                "files/meta/post"
             ),
             method: "GET",
             headers: {
@@ -340,7 +351,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

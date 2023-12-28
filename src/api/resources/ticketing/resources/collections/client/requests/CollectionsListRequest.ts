@@ -8,8 +8,8 @@ export interface CollectionsListRequest {
     /**
      * If provided, will only return collections of the given type.
      *
-     * * `LIST` - LIST
-     * * `PROJECT` - PROJECT
+     * - `LIST` - LIST
+     * - `PROJECT` - PROJECT
      */
     collectionType?: Merge.ticketing.CollectionsListRequestCollectionType;
     /**

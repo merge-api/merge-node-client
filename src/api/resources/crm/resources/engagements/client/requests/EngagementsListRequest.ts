@@ -49,4 +49,12 @@ export interface EngagementsListRequest {
      * The API provider's ID for the given object.
      */
     remoteId?: string;
+    /**
+     * If provided, will only return engagements started after this datetime.
+     */
+    startedAfter?: Date;
+    /**
+     * If provided, will only return engagements started before this datetime.
+     */
+    startedBefore?: Date;
 }

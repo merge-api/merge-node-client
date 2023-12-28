@@ -3,12 +3,12 @@
  */
 
 /**
- * * `ADMIN` - ADMIN
- * * `DEVELOPER` - DEVELOPER
- * * `MEMBER` - MEMBER
- * * `API` - API
- * * `SYSTEM` - SYSTEM
- * * `MERGE_TEAM` - MERGE_TEAM
+ * - `ADMIN` - ADMIN
+ * - `DEVELOPER` - DEVELOPER
+ * - `MEMBER` - MEMBER
+ * - `API` - API
+ * - `SYSTEM` - SYSTEM
+ * - `MERGE_TEAM` - MERGE_TEAM
  */
 export type RoleEnum = "ADMIN" | "DEVELOPER" | "MEMBER" | "API" | "SYSTEM" | "MERGE_TEAM";
 

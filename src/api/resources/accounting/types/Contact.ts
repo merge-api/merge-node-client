@@ -6,12 +6,16 @@ import * as Merge from "../../..";
 
 /**
  * # The Contact Object
+ *
  * ### Description
+ *
  * A `Contact` is an individual or business entity to which products and services are sold to or purchased from. The `Contact` model contains both Customers, in which products and services are sold to, and Vendors (or Suppliers), in which products and services are purchased from.
- * * A `Contact` is a Vendor/Supplier if the `is_supplier` property is true.
- * * A `Contact` is a customer if the `is_customer` property is true.
+ *
+ * - A `Contact` is a Vendor/Supplier if the `is_supplier` property is true.
+ * - A `Contact` is a customer if the `is_customer` property is true.
  *
  * ### Usage Example
+ *
  * Fetch from the `LIST Contacts` endpoint and view a company's contacts.
  */
 export interface Contact {
@@ -31,8 +35,8 @@ export interface Contact {
     /**
      * The contact's status
      *
-     * * `ACTIVE` - ACTIVE
-     * * `ARCHIVED` - ARCHIVED
+     * - `ACTIVE` - ACTIVE
+     * - `ARCHIVED` - ARCHIVED
      */
     status?: Merge.accounting.ContactStatus;
     /** The currency the contact's transactions are in. */

@@ -108,7 +108,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/contacts"
+                "contacts"
             ),
             method: "GET",
             headers: {
@@ -119,7 +119,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -176,7 +176,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/contacts"
+                "contacts"
             ),
             method: "POST",
             headers: {
@@ -187,7 +187,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -252,7 +252,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/contacts/${id}`
+                `contacts/${id}`
             ),
             method: "GET",
             headers: {
@@ -263,7 +263,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -321,7 +321,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/contacts/${id}`
+                `contacts/${id}`
             ),
             method: "PATCH",
             headers: {
@@ -332,7 +332,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -383,7 +383,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/contacts/ignore/${modelId}`
+                `contacts/ignore/${modelId}`
             ),
             method: "POST",
             headers: {
@@ -394,7 +394,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             body: await serializers.crm.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -438,7 +438,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/contacts/meta/patch/${id}`
+                `contacts/meta/patch/${id}`
             ),
             method: "GET",
             headers: {
@@ -449,7 +449,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -492,7 +492,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/contacts/meta/post"
+                "contacts/meta/post"
             ),
             method: "GET",
             headers: {
@@ -503,7 +503,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -571,7 +571,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/contacts/remote-field-classes"
+                "contacts/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -582,7 +582,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

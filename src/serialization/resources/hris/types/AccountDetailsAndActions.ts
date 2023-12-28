@@ -22,6 +22,7 @@ export const AccountDetailsAndActions: core.serialization.ObjectSchema<
     integration: core.serialization
         .lazyObject(async () => (await import("../../..")).hris.AccountDetailsAndActionsIntegration)
         .optional(),
+    accountType: core.serialization.property("account_type", core.serialization.string()),
 });
 
 export declare namespace AccountDetailsAndActions {
@@ -36,5 +37,6 @@ export declare namespace AccountDetailsAndActions {
         webhook_listener_url: string;
         is_duplicate?: boolean | null;
         integration?: serializers.hris.AccountDetailsAndActionsIntegration.Raw | null;
+        account_type: string;
     }
 }

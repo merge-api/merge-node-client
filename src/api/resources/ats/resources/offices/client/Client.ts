@@ -83,7 +83,7 @@ export class Offices {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/offices"
+                "offices"
             ),
             method: "GET",
             headers: {
@@ -94,7 +94,7 @@ export class Offices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -148,7 +148,7 @@ export class Offices {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/offices/${id}`
+                `offices/${id}`
             ),
             method: "GET",
             headers: {
@@ -159,7 +159,7 @@ export class Offices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -3,11 +3,11 @@
  */
 
 /**
- * * `FULL_TIME` - FULL_TIME
- * * `PART_TIME` - PART_TIME
- * * `INTERN` - INTERN
- * * `CONTRACTOR` - CONTRACTOR
- * * `FREELANCE` - FREELANCE
+ * - `FULL_TIME` - FULL_TIME
+ * - `PART_TIME` - PART_TIME
+ * - `INTERN` - INTERN
+ * - `CONTRACTOR` - CONTRACTOR
+ * - `FREELANCE` - FREELANCE
  */
 export type EmploymentTypeEnum = "FULL_TIME" | "PART_TIME" | "INTERN" | "CONTRACTOR" | "FREELANCE";
 

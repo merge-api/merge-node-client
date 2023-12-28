@@ -4,10 +4,13 @@
 
 /**
  * # The ModelOperation Object
+ *
  * ### Description
+ *
  * The `ModelOperation` object is used to represent the operations that are currently supported for a given model.
  *
  * ### Usage Example
+ *
  * View what operations are supported for the `Candidate` endpoint.
  */
 export interface ModelOperation {

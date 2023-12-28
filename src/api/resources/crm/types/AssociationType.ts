@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The AssociationType Object
+ *
  * ### Description
+ *
  * The `Association Type` object represents the relationship between two objects.
+ *
  * ### Usage Example
+ *
  * TODO
  */
 export interface AssociationType {

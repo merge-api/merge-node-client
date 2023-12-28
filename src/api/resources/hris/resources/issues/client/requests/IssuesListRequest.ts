@@ -47,8 +47,8 @@ export interface IssuesListRequest {
     /**
      * Status of the issue. Options: ('ONGOING', 'RESOLVED')
      *
-     * * `ONGOING` - ONGOING
-     * * `RESOLVED` - RESOLVED
+     * - `ONGOING` - ONGOING
+     * - `RESOLVED` - RESOLVED
      */
     status?: Merge.hris.IssuesListRequestStatus;
 }

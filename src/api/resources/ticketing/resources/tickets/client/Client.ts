@@ -193,7 +193,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/tickets"
+                "tickets"
             ),
             method: "GET",
             headers: {
@@ -204,7 +204,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -261,7 +261,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/tickets"
+                "tickets"
             ),
             method: "POST",
             headers: {
@@ -272,7 +272,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -345,7 +345,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/tickets/${id}`
+                `tickets/${id}`
             ),
             method: "GET",
             headers: {
@@ -356,7 +356,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -414,7 +414,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/tickets/${id}`
+                `tickets/${id}`
             ),
             method: "PATCH",
             headers: {
@@ -425,7 +425,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -498,7 +498,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/tickets/${parentId}/collaborators`
+                `tickets/${parentId}/collaborators`
             ),
             method: "GET",
             headers: {
@@ -509,7 +509,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -556,7 +556,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/tickets/meta/patch/${id}`
+                `tickets/meta/patch/${id}`
             ),
             method: "GET",
             headers: {
@@ -567,7 +567,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -610,7 +610,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/tickets/meta/post"
+                "tickets/meta/post"
             ),
             method: "GET",
             headers: {
@@ -621,7 +621,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -685,7 +685,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/tickets/remote-field-classes"
+                "tickets/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -696,7 +696,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

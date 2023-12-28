@@ -40,6 +40,10 @@ export interface AccountsListRequest {
      */
     modifiedBefore?: Date;
     /**
+     * If provided, will only return accounts with this name.
+     */
+    name?: string;
+    /**
      * If provided, will only return accounts with this owner.
      */
     ownerId?: string;

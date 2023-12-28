@@ -84,10 +84,10 @@ export interface TicketsListRequest {
     /**
      * If provided, will only return tickets of this priority.
      *
-     * * `URGENT` - URGENT
-     * * `HIGH` - HIGH
-     * * `NORMAL` - NORMAL
-     * * `LOW` - LOW
+     * - `URGENT` - URGENT
+     * - `HIGH` - HIGH
+     * - `NORMAL` - NORMAL
+     * - `LOW` - LOW
      */
     priority?: Merge.ticketing.TicketsListRequestPriority;
     /**
@@ -125,10 +125,10 @@ export interface TicketsListRequest {
     /**
      * If provided, will only return tickets of this status.
      *
-     * * `OPEN` - OPEN
-     * * `CLOSED` - CLOSED
-     * * `IN_PROGRESS` - IN_PROGRESS
-     * * `ON_HOLD` - ON_HOLD
+     * - `OPEN` - OPEN
+     * - `CLOSED` - CLOSED
+     * - `IN_PROGRESS` - IN_PROGRESS
+     * - `ON_HOLD` - ON_HOLD
      */
     status?: Merge.ticketing.TicketsListRequestStatus;
     /**

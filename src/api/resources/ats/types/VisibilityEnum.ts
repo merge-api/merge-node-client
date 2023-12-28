@@ -3,9 +3,9 @@
  */
 
 /**
- * * `ADMIN_ONLY` - ADMIN_ONLY
- * * `PUBLIC` - PUBLIC
- * * `PRIVATE` - PRIVATE
+ * - `ADMIN_ONLY` - ADMIN_ONLY
+ * - `PUBLIC` - PUBLIC
+ * - `PRIVATE` - PRIVATE
  */
 export type VisibilityEnum = "ADMIN_ONLY" | "PUBLIC" | "PRIVATE";
 

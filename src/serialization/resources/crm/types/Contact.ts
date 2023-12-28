@@ -11,6 +11,7 @@ export const Contact: core.serialization.ObjectSchema<serializers.crm.Contact.Ra
         firstName: core.serialization.property("first_name", core.serialization.string().optional()),
         lastName: core.serialization.property("last_name", core.serialization.string().optional()),
         account: core.serialization.lazy(async () => (await import("../../..")).crm.ContactAccount).optional(),
+        owner: core.serialization.lazy(async () => (await import("../../..")).crm.ContactOwner).optional(),
         addresses: core.serialization
             .list(core.serialization.lazyObject(async () => (await import("../../..")).crm.Address))
             .optional(),
@@ -56,6 +57,7 @@ export declare namespace Contact {
         first_name?: string | null;
         last_name?: string | null;
         account?: serializers.crm.ContactAccount.Raw | null;
+        owner?: serializers.crm.ContactOwner.Raw | null;
         addresses?: serializers.crm.Address.Raw[] | null;
         email_addresses?: serializers.crm.EmailAddress.Raw[] | null;
         phone_numbers?: serializers.crm.PhoneNumber.Raw[] | null;

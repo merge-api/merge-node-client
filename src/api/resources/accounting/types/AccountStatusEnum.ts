@@ -3,9 +3,9 @@
  */
 
 /**
- * * `ACTIVE` - ACTIVE
- * * `PENDING` - PENDING
- * * `INACTIVE` - INACTIVE
+ * - `ACTIVE` - ACTIVE
+ * - `PENDING` - PENDING
+ * - `INACTIVE` - INACTIVE
  */
 export type AccountStatusEnum = "ACTIVE" | "PENDING" | "INACTIVE";
 

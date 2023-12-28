@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The User Object
+ *
  * ### Description
+ *
  * The `User` object is used to represent a user with a login to the CRM system.
+ *
  * ### Usage Example
+ *
  * TODO
  */
 export interface User {

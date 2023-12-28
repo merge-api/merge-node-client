@@ -3,8 +3,8 @@
  */
 
 /**
- * * `HOME` - HOME
- * * `WORK` - WORK
+ * - `HOME` - HOME
+ * - `WORK` - WORK
  */
 export type LocationTypeEnum = "HOME" | "WORK";
 

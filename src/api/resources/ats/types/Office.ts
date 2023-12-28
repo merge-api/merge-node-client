@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Office Object
+ *
  * ### Description
+ *
  * The `Office` object is used to represent an office within a company. A given `Job` has the `Office` ID in its offices field.
+ *
  * ### Usage Example
+ *
  * Fetch from the `LIST Offices` endpoint and view the offices within a company.
  */
 export interface Office {

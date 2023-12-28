@@ -7,8 +7,8 @@ import * as Merge from "../../..";
 /**
  * The employment status of the employee.
  *
- * * `ACTIVE` - ACTIVE
- * * `PENDING` - PENDING
- * * `INACTIVE` - INACTIVE
+ * - `ACTIVE` - ACTIVE
+ * - `PENDING` - PENDING
+ * - `INACTIVE` - INACTIVE
  */
 export type EmployeeEmploymentStatus = Merge.hris.EmploymentStatusEnum | string;

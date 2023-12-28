@@ -3,8 +3,8 @@
  */
 
 /**
- * * `LIST` - LIST
- * * `PROJECT` - PROJECT
+ * - `LIST` - LIST
+ * - `PROJECT` - PROJECT
  */
 export type CollectionTypeEnum = "LIST" | "PROJECT";
 

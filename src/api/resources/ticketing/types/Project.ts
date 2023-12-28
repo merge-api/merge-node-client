@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Project Object
+ *
  * ### Description
- * The `Project` object is used to represent all projects within a company.
+ *
+ * Please use the `Collection` model. This model will be fully deprecated on 3/30/2024.
  *
  * ### Usage Example
+ *
  * TODO
  */
 export interface Project {

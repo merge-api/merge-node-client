@@ -42,7 +42,7 @@ export class PhoneNumbers {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/phone-numbers/${id}`
+                `phone-numbers/${id}`
             ),
             method: "GET",
             headers: {
@@ -53,7 +53,7 @@ export class PhoneNumbers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
