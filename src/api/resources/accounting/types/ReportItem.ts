@@ -4,10 +4,13 @@
 
 /**
  * # The ReportItem Object
+ *
  * ### Description
+ *
  * The `ReportItem` object is used to represent a report item for a Balance Sheet, Cash Flow Statement or Profit and Loss Report.
  *
  * ### Usage Example
+ *
  * Fetch from the `GET BalanceSheet` endpoint and view the balance sheet's report items.
  */
 export interface ReportItem {

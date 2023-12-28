@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The address type.
  *
- * * `BILLING` - BILLING
- * * `SHIPPING` - SHIPPING
+ * - `BILLING` - BILLING
+ * - `SHIPPING` - SHIPPING
  */
 export type AddressRequestAddressType = Merge.crm.AddressTypeEnum | string;

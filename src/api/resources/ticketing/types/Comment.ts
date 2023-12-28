@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Comment Object
+ *
  * ### Description
+ *
  * The `Comment` object is used to represent a comment on a ticket.
  *
  * ### Usage Example
+ *
  * TODO
  */
 export interface Comment {

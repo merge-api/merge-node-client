@@ -18,7 +18,7 @@ export interface FilesListRequest {
      */
     cursor?: string;
     /**
-     * If provided, will only return files in this drive. If null, will return files in the top level drive.
+     * Specifying a drive id returns only the files in that drive. Specifying null returns only the files outside the top-level drive.
      */
     driveId?: string;
     /**
@@ -26,7 +26,7 @@ export interface FilesListRequest {
      */
     expand?: Merge.filestorage.FilesListRequestExpand;
     /**
-     * If provided, will only return files in this folder. If null, will return files in root directory.
+     * Specifying a folder id returns only the files in that folder. Specifying null returns only the files in root directory.
      */
     folderId?: string;
     /**

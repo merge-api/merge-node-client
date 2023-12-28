@@ -28,9 +28,9 @@ export interface EmployeesListRequest {
     /**
      * If provided, will only return employees with this employment status.
      *
-     * * `ACTIVE` - ACTIVE
-     * * `PENDING` - PENDING
-     * * `INACTIVE` - INACTIVE
+     * - `ACTIVE` - ACTIVE
+     * - `PENDING` - PENDING
+     * - `INACTIVE` - INACTIVE
      */
     employmentStatus?: Merge.hris.EmployeesListRequestEmploymentStatus;
     /**

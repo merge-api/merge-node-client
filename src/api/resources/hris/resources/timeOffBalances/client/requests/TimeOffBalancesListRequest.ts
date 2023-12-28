@@ -48,12 +48,12 @@ export interface TimeOffBalancesListRequest {
     /**
      * If provided, will only return TimeOffBalance with this policy type. Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY', 'VOLUNTEER', 'BEREAVEMENT')
      *
-     * * `VACATION` - VACATION
-     * * `SICK` - SICK
-     * * `PERSONAL` - PERSONAL
-     * * `JURY_DUTY` - JURY_DUTY
-     * * `VOLUNTEER` - VOLUNTEER
-     * * `BEREAVEMENT` - BEREAVEMENT
+     * - `VACATION` - VACATION
+     * - `SICK` - SICK
+     * - `PERSONAL` - PERSONAL
+     * - `JURY_DUTY` - JURY_DUTY
+     * - `VOLUNTEER` - VOLUNTEER
+     * - `BEREAVEMENT` - BEREAVEMENT
      */
     policyType?: Merge.hris.TimeOffBalancesListRequestPolicyType;
     /**

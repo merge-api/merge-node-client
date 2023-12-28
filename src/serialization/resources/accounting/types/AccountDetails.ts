@@ -23,6 +23,7 @@ export const AccountDetails: core.serialization.ObjectSchema<
     status: core.serialization.string().optional(),
     webhookListenerUrl: core.serialization.property("webhook_listener_url", core.serialization.string().optional()),
     isDuplicate: core.serialization.property("is_duplicate", core.serialization.boolean().optional()),
+    accountType: core.serialization.property("account_type", core.serialization.string().optional()),
 });
 
 export declare namespace AccountDetails {
@@ -37,5 +38,6 @@ export declare namespace AccountDetails {
         status?: string | null;
         webhook_listener_url?: string | null;
         is_duplicate?: boolean | null;
+        account_type?: string | null;
     }
 }

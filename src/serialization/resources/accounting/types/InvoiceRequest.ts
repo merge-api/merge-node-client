@@ -57,6 +57,16 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
             )
             .optional()
     ),
+    purchaseOrders: core.serialization.property(
+        "purchase_orders",
+        core.serialization
+            .list(
+                core.serialization
+                    .lazy(async () => (await import("../../..")).accounting.InvoiceRequestPurchaseOrdersItem)
+                    .optional()
+            )
+            .optional()
+    ),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -90,6 +100,7 @@ export declare namespace InvoiceRequest {
             | (serializers.accounting.InvoiceRequestTrackingCategoriesItem.Raw | null | undefined)[]
             | null;
         line_items?: serializers.accounting.InvoiceLineItemRequest.Raw[] | null;
+        purchase_orders?: (serializers.accounting.InvoiceRequestPurchaseOrdersItem.Raw | null | undefined)[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
     }

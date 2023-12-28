@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Employee Object
+ *
  * ### Description
+ *
  * The `Employee` object is used to represent any person who has been employed by a company.
  *
  * ### Usage Example
+ *
  * Fetch from the `LIST Employee` endpoint and filter by `ID` to show all employees.
  */
 export interface EmployeeRequest {
@@ -51,34 +54,34 @@ export interface EmployeeRequest {
     /**
      * The employee's gender.
      *
-     * * `MALE` - MALE
-     * * `FEMALE` - FEMALE
-     * * `NON-BINARY` - NON-BINARY
-     * * `OTHER` - OTHER
-     * * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
+     * - `MALE` - MALE
+     * - `FEMALE` - FEMALE
+     * - `NON-BINARY` - NON-BINARY
+     * - `OTHER` - OTHER
+     * - `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
      */
     gender?: Merge.hris.EmployeeRequestGender;
     /**
      * The employee's ethnicity.
      *
-     * * `AMERICAN_INDIAN_OR_ALASKA_NATIVE` - AMERICAN_INDIAN_OR_ALASKA_NATIVE
-     * * `ASIAN_OR_INDIAN_SUBCONTINENT` - ASIAN_OR_INDIAN_SUBCONTINENT
-     * * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN
-     * * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO
-     * * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
-     * * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES
-     * * `WHITE` - WHITE
-     * * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
+     * - `AMERICAN_INDIAN_OR_ALASKA_NATIVE` - AMERICAN_INDIAN_OR_ALASKA_NATIVE
+     * - `ASIAN_OR_INDIAN_SUBCONTINENT` - ASIAN_OR_INDIAN_SUBCONTINENT
+     * - `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN
+     * - `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO
+     * - `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
+     * - `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES
+     * - `WHITE` - WHITE
+     * - `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
      */
     ethnicity?: Merge.hris.EmployeeRequestEthnicity;
     /**
      * The employee's filing status as related to marital status.
      *
-     * * `SINGLE` - SINGLE
-     * * `MARRIED_FILING_JOINTLY` - MARRIED_FILING_JOINTLY
-     * * `MARRIED_FILING_SEPARATELY` - MARRIED_FILING_SEPARATELY
-     * * `HEAD_OF_HOUSEHOLD` - HEAD_OF_HOUSEHOLD
-     * * `QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD` - QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD
+     * - `SINGLE` - SINGLE
+     * - `MARRIED_FILING_JOINTLY` - MARRIED_FILING_JOINTLY
+     * - `MARRIED_FILING_SEPARATELY` - MARRIED_FILING_SEPARATELY
+     * - `HEAD_OF_HOUSEHOLD` - HEAD_OF_HOUSEHOLD
+     * - `QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD` - QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD
      */
     maritalStatus?: Merge.hris.EmployeeRequestMaritalStatus;
     /** The employee's date of birth. */
@@ -90,9 +93,9 @@ export interface EmployeeRequest {
     /**
      * The employment status of the employee.
      *
-     * * `ACTIVE` - ACTIVE
-     * * `PENDING` - PENDING
-     * * `INACTIVE` - INACTIVE
+     * - `ACTIVE` - ACTIVE
+     * - `PENDING` - PENDING
+     * - `INACTIVE` - INACTIVE
      */
     employmentStatus?: Merge.hris.EmployeeRequestEmploymentStatus;
     /** The employee's termination date. */

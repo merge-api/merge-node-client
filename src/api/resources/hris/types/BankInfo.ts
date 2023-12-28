@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The BankInfo Object
+ *
  * ### Description
+ *
  * The `BankInfo` object is used to represent the Bank Account information for an Employee.
  *
  * ### Usage Example
+ *
  * Fetch from the `LIST BankInfo` endpoint and filter by `ID` to show all bank information.
  */
 export interface BankInfo {
@@ -27,8 +30,8 @@ export interface BankInfo {
     /**
      * The bank account type
      *
-     * * `SAVINGS` - SAVINGS
-     * * `CHECKING` - CHECKING
+     * - `SAVINGS` - SAVINGS
+     * - `CHECKING` - CHECKING
      */
     accountType?: Merge.hris.BankInfoAccountType;
     /** When the matching bank object was created in the third party system. */

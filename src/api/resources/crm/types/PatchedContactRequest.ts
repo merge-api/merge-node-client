@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Contact Object
+ *
  * ### Description
+ *
  * The `Contact` object is used to represent an existing point of contact at a company in a CRM system.
+ *
  * ### Usage Example
+ *
  * TODO
  */
 export interface PatchedContactRequest {
@@ -18,6 +22,8 @@ export interface PatchedContactRequest {
     lastName?: string;
     /** The contact's account. */
     account?: string;
+    /** The contact's owner. */
+    owner?: Merge.crm.PatchedContactRequestOwner;
     addresses?: Merge.crm.AddressRequest[];
     emailAddresses?: Merge.crm.EmailAddressRequest[];
     phoneNumbers?: Merge.crm.PhoneNumberRequest[];

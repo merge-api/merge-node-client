@@ -34,7 +34,7 @@ export class SelectiveSync {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/selective-sync/configurations"
+                "selective-sync/configurations"
             ),
             method: "GET",
             headers: {
@@ -45,7 +45,7 @@ export class SelectiveSync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -94,7 +94,7 @@ export class SelectiveSync {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/selective-sync/configurations"
+                "selective-sync/configurations"
             ),
             method: "PUT",
             headers: {
@@ -105,7 +105,7 @@ export class SelectiveSync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             body: await serializers.filestorage.LinkedAccountSelectiveSyncConfigurationListRequest.jsonOrThrow(
@@ -172,7 +172,7 @@ export class SelectiveSync {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/selective-sync/meta"
+                "selective-sync/meta"
             ),
             method: "GET",
             headers: {
@@ -183,7 +183,7 @@ export class SelectiveSync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.1",
+                "X-Fern-SDK-Version": "1.0.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

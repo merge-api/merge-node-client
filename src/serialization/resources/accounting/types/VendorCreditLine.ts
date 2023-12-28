@@ -24,6 +24,7 @@ export const VendorCreditLine: core.serialization.ObjectSchema<
     company: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+    id: core.serialization.string().optional(),
     createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
@@ -39,6 +40,7 @@ export declare namespace VendorCreditLine {
         company?: string | null;
         exchange_rate?: string | null;
         remote_was_deleted?: boolean | null;
+        id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
     }

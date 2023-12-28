@@ -16,6 +16,9 @@ export const User: core.serialization.ObjectSchema<serializers.ticketing.User.Ra
         teams: core.serialization
             .list(core.serialization.lazy(async () => (await import("../../..")).ticketing.UserTeamsItem).optional())
             .optional(),
+        roles: core.serialization
+            .list(core.serialization.lazy(async () => (await import("../../..")).ticketing.UserRolesItem).optional())
+            .optional(),
         avatar: core.serialization.string().optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
@@ -40,6 +43,7 @@ export declare namespace User {
         email_address?: string | null;
         is_active?: boolean | null;
         teams?: (serializers.ticketing.UserTeamsItem.Raw | null | undefined)[] | null;
+        roles?: (serializers.ticketing.UserRolesItem.Raw | null | undefined)[] | null;
         avatar?: string | null;
         remote_was_deleted?: boolean | null;
         created_at?: string | null;

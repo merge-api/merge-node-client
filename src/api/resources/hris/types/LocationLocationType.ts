@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The location's type. Can be either WORK or HOME
  *
- * * `HOME` - HOME
- * * `WORK` - WORK
+ * - `HOME` - HOME
+ * - `WORK` - WORK
  */
 export type LocationLocationType = Merge.hris.LocationTypeEnum | string;

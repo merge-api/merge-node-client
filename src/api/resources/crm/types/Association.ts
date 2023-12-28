@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Association Object
+ *
  * ### Description
+ *
  * The `Association` record refers to an instance of an Association Type.
+ *
  * ### Usage Example
+ *
  * TODO
  */
 export interface Association {

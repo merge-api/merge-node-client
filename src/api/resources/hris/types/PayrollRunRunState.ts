@@ -7,10 +7,10 @@ import * as Merge from "../../..";
 /**
  * The state of the payroll run
  *
- * * `PAID` - PAID
- * * `DRAFT` - DRAFT
- * * `APPROVED` - APPROVED
- * * `FAILED` - FAILED
- * * `CLOSED` - CLOSED
+ * - `PAID` - PAID
+ * - `DRAFT` - DRAFT
+ * - `APPROVED` - APPROVED
+ * - `FAILED` - FAILED
+ * - `CLOSED` - CLOSED
  */
 export type PayrollRunRunState = Merge.hris.RunStateEnum | string;

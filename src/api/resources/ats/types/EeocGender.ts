@@ -7,10 +7,10 @@ import * as Merge from "../../..";
 /**
  * The candidate's gender.
  *
- * * `MALE` - MALE
- * * `FEMALE` - FEMALE
- * * `NON-BINARY` - NON-BINARY
- * * `OTHER` - OTHER
- * * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
+ * - `MALE` - MALE
+ * - `FEMALE` - FEMALE
+ * - `NON-BINARY` - NON-BINARY
+ * - `OTHER` - OTHER
+ * - `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
  */
 export type EeocGender = Merge.ats.GenderEnum | string;
