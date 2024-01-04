@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The tracking category's status.
  *
- * - `ACTIVE` - ACTIVE
- * - `ARCHIVED` - ARCHIVED
+ * * `ACTIVE` - ACTIVE
+ * * `ARCHIVED` - ARCHIVED
  */
 export type TrackingCategoryStatus = Merge.accounting.Status7D1Enum | string;

@@ -3,9 +3,9 @@
  */
 
 /**
- * - `CHILD` - CHILD
- * - `SPOUSE` - SPOUSE
- * - `DOMESTIC_PARTNER` - DOMESTIC_PARTNER
+ * * `CHILD` - CHILD
+ * * `SPOUSE` - SPOUSE
+ * * `DOMESTIC_PARTNER` - DOMESTIC_PARTNER
  */
 export type RelationshipEnum = "CHILD" | "SPOUSE" | "DOMESTIC_PARTNER";
 

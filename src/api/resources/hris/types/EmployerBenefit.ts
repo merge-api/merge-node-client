@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The EmployerBenefit Object
- *
  * ### Description
- *
  * The `Employer Benefit` object is used to represent a benefit plan offered by a company.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST EmployerBenefits` endpoint and filter by `ID` to show all EmployerBenefits.
  */
 export interface EmployerBenefit {
@@ -22,11 +19,11 @@ export interface EmployerBenefit {
     /**
      * The type of benefit plan.
      *
-     * - `MEDICAL` - MEDICAL
-     * - `HEALTH_SAVINGS` - HEALTH_SAVINGS
-     * - `INSURANCE` - INSURANCE
-     * - `RETIREMENT` - RETIREMENT
-     * - `OTHER` - OTHER
+     * * `MEDICAL` - MEDICAL
+     * * `HEALTH_SAVINGS` - HEALTH_SAVINGS
+     * * `INSURANCE` - INSURANCE
+     * * `RETIREMENT` - RETIREMENT
+     * * `OTHER` - OTHER
      */
     benefitPlanType?: Merge.hris.EmployerBenefitBenefitPlanType;
     /** The employer benefit's name - typically the carrier or network name. */

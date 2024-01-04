@@ -3,9 +3,9 @@
  */
 
 /**
- * - `NOTE` - NOTE
- * - `EMAIL` - EMAIL
- * - `OTHER` - OTHER
+ * * `NOTE` - NOTE
+ * * `EMAIL` - EMAIL
+ * * `OTHER` - OTHER
  */
 export type ActivityTypeEnum = "NOTE" | "EMAIL" | "OTHER";
 

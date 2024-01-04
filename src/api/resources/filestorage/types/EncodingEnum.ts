@@ -3,9 +3,9 @@
  */
 
 /**
- * - `RAW` - RAW
- * - `BASE64` - BASE64
- * - `GZIP_BASE64` - GZIP_BASE64
+ * * `RAW` - RAW
+ * * `BASE64` - BASE64
+ * * `GZIP_BASE64` - GZIP_BASE64
  */
 export type EncodingEnum = "RAW" | "BASE64" | "GZIP_BASE64";
 

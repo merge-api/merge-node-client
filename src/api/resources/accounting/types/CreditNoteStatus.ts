@@ -7,8 +7,8 @@ import * as Merge from "../../..";
 /**
  * The credit note's status.
  *
- * - `SUBMITTED` - SUBMITTED
- * - `AUTHORIZED` - AUTHORIZED
- * - `PAID` - PAID
+ * * `SUBMITTED` - SUBMITTED
+ * * `AUTHORIZED` - AUTHORIZED
+ * * `PAID` - PAID
  */
 export type CreditNoteStatus = Merge.accounting.CreditNoteStatusEnum | string;

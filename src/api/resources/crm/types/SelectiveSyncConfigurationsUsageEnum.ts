@@ -3,8 +3,8 @@
  */
 
 /**
- * - `IN_NEXT_SYNC` - IN_NEXT_SYNC
- * - `IN_LAST_SYNC` - IN_LAST_SYNC
+ * * `IN_NEXT_SYNC` - IN_NEXT_SYNC
+ * * `IN_LAST_SYNC` - IN_LAST_SYNC
  */
 export type SelectiveSyncConfigurationsUsageEnum = "IN_NEXT_SYNC" | "IN_LAST_SYNC";
 

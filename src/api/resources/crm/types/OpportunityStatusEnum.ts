@@ -3,9 +3,9 @@
  */
 
 /**
- * - `OPEN` - OPEN
- * - `WON` - WON
- * - `LOST` - LOST
+ * * `OPEN` - OPEN
+ * * `WON` - WON
+ * * `LOST` - LOST
  */
 export type OpportunityStatusEnum = "OPEN" | "WON" | "LOST";
 

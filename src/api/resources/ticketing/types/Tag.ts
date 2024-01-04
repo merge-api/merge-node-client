@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The Tag Object
- *
  * ### Description
- *
  * The `Tag` object is used to represent a tag or label for a ticket.
  *
  * ### Usage Example
- *
  * TODO
  */
 export interface Tag {

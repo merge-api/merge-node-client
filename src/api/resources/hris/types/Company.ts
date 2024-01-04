@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The Company Object
- *
  * ### Description
- *
  * The `Company` object is used to represent a company within the HRIS / Payroll system.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST Companies` endpoint and filter by `ID` to show all companies.
  */
 export interface Company {

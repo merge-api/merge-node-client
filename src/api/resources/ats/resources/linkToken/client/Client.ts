@@ -34,7 +34,7 @@ export class LinkToken {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "link-token"
+                "api/ats/v1/link-token"
             ),
             method: "POST",
             headers: {
@@ -45,7 +45,7 @@ export class LinkToken {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             body: await serializers.ats.EndUserDetailsRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),

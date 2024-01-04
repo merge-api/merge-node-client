@@ -108,7 +108,7 @@ export class Candidates {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "candidates"
+                "api/ats/v1/candidates"
             ),
             method: "GET",
             headers: {
@@ -119,7 +119,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -176,7 +176,7 @@ export class Candidates {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "candidates"
+                "api/ats/v1/candidates"
             ),
             method: "POST",
             headers: {
@@ -187,7 +187,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -248,7 +248,7 @@ export class Candidates {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `candidates/${id}`
+                `api/ats/v1/candidates/${id}`
             ),
             method: "GET",
             headers: {
@@ -259,7 +259,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -317,7 +317,7 @@ export class Candidates {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `candidates/${id}`
+                `api/ats/v1/candidates/${id}`
             ),
             method: "PATCH",
             headers: {
@@ -328,7 +328,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -379,7 +379,7 @@ export class Candidates {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `candidates/ignore/${modelId}`
+                `api/ats/v1/candidates/ignore/${modelId}`
             ),
             method: "POST",
             headers: {
@@ -390,7 +390,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             body: await serializers.ats.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -434,7 +434,7 @@ export class Candidates {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `candidates/meta/patch/${id}`
+                `api/ats/v1/candidates/meta/patch/${id}`
             ),
             method: "GET",
             headers: {
@@ -445,7 +445,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -488,7 +488,7 @@ export class Candidates {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "candidates/meta/post"
+                "api/ats/v1/candidates/meta/post"
             ),
             method: "GET",
             headers: {
@@ -499,7 +499,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

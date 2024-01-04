@@ -3,11 +3,11 @@
  */
 
 /**
- * - `PAID` - PAID
- * - `DRAFT` - DRAFT
- * - `APPROVED` - APPROVED
- * - `FAILED` - FAILED
- * - `CLOSED` - CLOSED
+ * * `PAID` - PAID
+ * * `DRAFT` - DRAFT
+ * * `APPROVED` - APPROVED
+ * * `FAILED` - FAILED
+ * * `CLOSED` - CLOSED
  */
 export type RunStateEnum = "PAID" | "DRAFT" | "APPROVED" | "FAILED" | "CLOSED";
 

@@ -83,7 +83,7 @@ export class Tags {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "tags"
+                "api/ticketing/v1/tags"
             ),
             method: "GET",
             headers: {
@@ -94,7 +94,7 @@ export class Tags {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -148,7 +148,7 @@ export class Tags {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `tags/${id}`
+                `api/ticketing/v1/tags/${id}`
             ),
             method: "GET",
             headers: {
@@ -159,7 +159,7 @@ export class Tags {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -7,8 +7,8 @@ import * as Merge from "../../..";
 /**
  * The opportunity's status.
  *
- * - `OPEN` - OPEN
- * - `WON` - WON
- * - `LOST` - LOST
+ * * `OPEN` - OPEN
+ * * `WON` - WON
+ * * `LOST` - LOST
  */
 export type OpportunityStatus = Merge.crm.OpportunityStatusEnum | string;

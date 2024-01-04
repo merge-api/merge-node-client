@@ -6,13 +6,9 @@ import * as Merge from "../../..";
 
 /**
  * # The JobInterviewStage Object
- *
  * ### Description
- *
  * The `JobInterviewStage` object is used to represent a particular recruiting stage for an `Application`. A given `Application` typically has the `JobInterviewStage` object represented in the current_stage field.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST JobInterviewStages` endpoint and view the job interview stages used by a company.
  */
 export interface JobInterviewStage {

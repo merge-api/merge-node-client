@@ -3,9 +3,9 @@
  */
 
 /**
- * - `READ` - READ
- * - `WRITE` - WRITE
- * - `OWNER` - OWNER
+ * * `READ` - READ
+ * * `WRITE` - WRITE
+ * * `OWNER` - OWNER
  */
 export type RolesEnum = "READ" | "WRITE" | "OWNER";
 

@@ -7,9 +7,9 @@ import * as Merge from "../../..";
 /**
  * The position's FLSA status.
  *
- * - `EXEMPT` - EXEMPT
- * - `SALARIED_NONEXEMPT` - SALARIED_NONEXEMPT
- * - `NONEXEMPT` - NONEXEMPT
- * - `OWNER` - OWNER
+ * * `EXEMPT` - EXEMPT
+ * * `SALARIED_NONEXEMPT` - SALARIED_NONEXEMPT
+ * * `NONEXEMPT` - NONEXEMPT
+ * * `OWNER` - OWNER
  */
 export type EmploymentFlsaStatus = Merge.hris.FlsaStatusEnum | string;

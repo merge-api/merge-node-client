@@ -3,11 +3,11 @@
  */
 
 /**
- * - `HOME` - HOME
- * - `WORK` - WORK
- * - `MOBILE` - MOBILE
- * - `SKYPE` - SKYPE
- * - `OTHER` - OTHER
+ * * `HOME` - HOME
+ * * `WORK` - WORK
+ * * `MOBILE` - MOBILE
+ * * `SKYPE` - SKYPE
+ * * `OTHER` - OTHER
  */
 export type PhoneNumberTypeEnum = "HOME" | "WORK" | "MOBILE" | "SKYPE" | "OTHER";
 

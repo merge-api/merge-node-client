@@ -7,8 +7,8 @@ import * as Merge from "../../..";
 /**
  * The permissions that the user or group has for the File or Folder.
  *
- * - `READ` - READ
- * - `WRITE` - WRITE
- * - `OWNER` - OWNER
+ * * `READ` - READ
+ * * `WRITE` - WRITE
+ * * `OWNER` - OWNER
  */
 export type PermissionRolesItem = Merge.filestorage.RolesEnum | string;

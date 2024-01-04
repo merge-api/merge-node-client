@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The contact's status
  *
- * - `ACTIVE` - ACTIVE
- * - `ARCHIVED` - ARCHIVED
+ * * `ACTIVE` - ACTIVE
+ * * `ARCHIVED` - ARCHIVED
  */
 export type ContactStatus = Merge.accounting.Status7D1Enum | string;

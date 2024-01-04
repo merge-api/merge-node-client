@@ -3,12 +3,12 @@
  */
 
 /**
- * - `string` - uuid
- * - `number` - url
- * - `date` - email
- * - `datetime` - phone
- * - `bool` - currency
- * - `list` - decimal
+ * * `string` - uuid
+ * * `number` - url
+ * * `date` - email
+ * * `datetime` - phone
+ * * `bool` - currency
+ * * `list` - decimal
  */
 export type ItemFormatEnum = "string" | "number" | "date" | "datetime" | "bool" | "list";
 

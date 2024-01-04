@@ -34,7 +34,7 @@ export class RegenerateKey {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "regenerate-key"
+                "api/ats/v1/regenerate-key"
             ),
             method: "POST",
             headers: {
@@ -45,7 +45,7 @@ export class RegenerateKey {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             body: await serializers.ats.RemoteKeyForRegenerationRequest.jsonOrThrow(request, {

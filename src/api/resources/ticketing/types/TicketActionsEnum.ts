@@ -3,12 +3,12 @@
  */
 
 /**
- * - `VIEW` - VIEW
- * - `CREATE` - CREATE
- * - `EDIT` - EDIT
- * - `DELETE` - DELETE
- * - `CLOSE` - CLOSE
- * - `ASSIGN` - ASSIGN
+ * * `VIEW` - VIEW
+ * * `CREATE` - CREATE
+ * * `EDIT` - EDIT
+ * * `DELETE` - DELETE
+ * * `CLOSE` - CLOSE
+ * * `ASSIGN` - ASSIGN
  */
 export type TicketActionsEnum = "VIEW" | "CREATE" | "EDIT" | "DELETE" | "CLOSE" | "ASSIGN";
 

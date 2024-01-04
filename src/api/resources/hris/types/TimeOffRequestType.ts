@@ -7,11 +7,11 @@ import * as Merge from "../../..";
 /**
  * The type of time off request.
  *
- * - `VACATION` - VACATION
- * - `SICK` - SICK
- * - `PERSONAL` - PERSONAL
- * - `JURY_DUTY` - JURY_DUTY
- * - `VOLUNTEER` - VOLUNTEER
- * - `BEREAVEMENT` - BEREAVEMENT
+ * * `VACATION` - VACATION
+ * * `SICK` - SICK
+ * * `PERSONAL` - PERSONAL
+ * * `JURY_DUTY` - JURY_DUTY
+ * * `VOLUNTEER` - VOLUNTEER
+ * * `BEREAVEMENT` - BEREAVEMENT
  */
 export type TimeOffRequestType = Merge.hris.RequestTypeEnum | string;

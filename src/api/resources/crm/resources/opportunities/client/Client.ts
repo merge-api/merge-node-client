@@ -123,7 +123,7 @@ export class Opportunities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "opportunities"
+                "api/crm/v1/opportunities"
             ),
             method: "GET",
             headers: {
@@ -134,7 +134,7 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -191,7 +191,7 @@ export class Opportunities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "opportunities"
+                "api/crm/v1/opportunities"
             ),
             method: "POST",
             headers: {
@@ -202,7 +202,7 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -275,7 +275,7 @@ export class Opportunities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `opportunities/${id}`
+                `api/crm/v1/opportunities/${id}`
             ),
             method: "GET",
             headers: {
@@ -286,7 +286,7 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -344,7 +344,7 @@ export class Opportunities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `opportunities/${id}`
+                `api/crm/v1/opportunities/${id}`
             ),
             method: "PATCH",
             headers: {
@@ -355,7 +355,7 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -405,7 +405,7 @@ export class Opportunities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `opportunities/meta/patch/${id}`
+                `api/crm/v1/opportunities/meta/patch/${id}`
             ),
             method: "GET",
             headers: {
@@ -416,7 +416,7 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -459,7 +459,7 @@ export class Opportunities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "opportunities/meta/post"
+                "api/crm/v1/opportunities/meta/post"
             ),
             method: "GET",
             headers: {
@@ -470,7 +470,7 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -538,7 +538,7 @@ export class Opportunities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "opportunities/remote-field-classes"
+                "api/crm/v1/opportunities/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -549,7 +549,7 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

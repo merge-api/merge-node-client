@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The EmployeePayrollRun Object
- *
  * ### Description
- *
  * The `EmployeePayrollRun` object is used to represent an employee's pay statement for a specific payroll run.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST EmployeePayrollRun` endpoint and filter by `ID` to show all employee payroll runs.
  */
 export interface EmployeePayrollRun {

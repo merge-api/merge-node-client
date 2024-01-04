@@ -6,15 +6,12 @@ import * as Merge from "../../..";
 
 /**
  * # The Account Object
- *
  * ### Description
- *
  * The `Account` object is used to represent the account that a ticket is associated with.
  *
  * The account is a company that may be a customer. This does not represent the company that is receiving the ticket.
  *
  * ### Usage Example
- *
  * TODO
  */
 export interface Account {

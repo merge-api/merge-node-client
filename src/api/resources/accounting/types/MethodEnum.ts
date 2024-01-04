@@ -3,13 +3,13 @@
  */
 
 /**
- * - `GET` - GET
- * - `OPTIONS` - OPTIONS
- * - `HEAD` - HEAD
- * - `POST` - POST
- * - `PUT` - PUT
- * - `PATCH` - PATCH
- * - `DELETE` - DELETE
+ * * `GET` - GET
+ * * `OPTIONS` - OPTIONS
+ * * `HEAD` - HEAD
+ * * `POST` - POST
+ * * `PUT` - PUT
+ * * `PATCH` - PATCH
+ * * `DELETE` - DELETE
  */
 export type MethodEnum = "GET" | "OPTIONS" | "HEAD" | "POST" | "PUT" | "PATCH" | "DELETE";
 
