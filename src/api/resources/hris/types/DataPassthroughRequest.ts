@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The DataPassthrough Object
- *
  * ### Description
- *
  * The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.
  *
  * ### Usage Example
- *
  * Create a `DataPassthrough` to get team hierarchies from your Rippling integration.
  */
 export interface DataPassthroughRequest {

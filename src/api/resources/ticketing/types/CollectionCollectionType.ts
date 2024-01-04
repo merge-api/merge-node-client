@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The collection's type.
  *
- * - `LIST` - LIST
- * - `PROJECT` - PROJECT
+ * * `LIST` - LIST
+ * * `PROJECT` - PROJECT
  */
 export type CollectionCollectionType = Merge.ticketing.CollectionTypeEnum | string;

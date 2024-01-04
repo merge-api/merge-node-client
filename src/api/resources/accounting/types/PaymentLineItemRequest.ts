@@ -4,13 +4,10 @@
 
 /**
  * # The PaymentLineItem Object
- *
  * ### Description
- *
  * The `PaymentLineItem` object is an applied-to-line on a `Payment` that can either be a `Invoice`, `CreditNote`, or `JournalEntry`.
  *
  * ### Usage Example
- *
  * `Payment` will have a field called `applied-to-lines` which will be an array of `PaymentLineItemInternalMappingSerializer` objects that can either be a `Invoice`, `CreditNote`, or `JournalEntry`.
  */
 export interface PaymentLineItemRequest {

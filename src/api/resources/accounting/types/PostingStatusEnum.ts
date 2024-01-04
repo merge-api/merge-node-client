@@ -3,8 +3,8 @@
  */
 
 /**
- * - `UNPOSTED` - UNPOSTED
- * - `POSTED` - POSTED
+ * * `UNPOSTED` - UNPOSTED
+ * * `POSTED` - POSTED
  */
 export type PostingStatusEnum = "UNPOSTED" | "POSTED";
 

@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The Earning Object
- *
  * ### Description
- *
  * The `Earning` object is used to represent an array of different compensations that an employee receives within specific wage categories.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST Earnings` endpoint and filter by `ID` to show all earnings.
  */
 export interface Earning {
@@ -25,10 +22,10 @@ export interface Earning {
     /**
      * The type of earning.
      *
-     * - `SALARY` - SALARY
-     * - `REIMBURSEMENT` - REIMBURSEMENT
-     * - `OVERTIME` - OVERTIME
-     * - `BONUS` - BONUS
+     * * `SALARY` - SALARY
+     * * `REIMBURSEMENT` - REIMBURSEMENT
+     * * `OVERTIME` - OVERTIME
+     * * `BONUS` - BONUS
      */
     type?: Merge.hris.EarningType;
     /** Indicates whether or not this object has been deleted in the third party platform. */

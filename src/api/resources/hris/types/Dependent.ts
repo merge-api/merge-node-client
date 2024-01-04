@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The Dependent Object
- *
  * ### Description
- *
  * The `Dependent` object is used to represent a dependent (e.g. child, spouse, domestic partner, etc) of an `Employee`
  *
  * ### Usage Example
- *
  * Fetch from the `LIST Dependents` endpoint and filter by `ID` to show all dependents.
  */
 export interface Dependent {
@@ -28,9 +25,9 @@ export interface Dependent {
     /**
      * The dependent's relationship to the employee.
      *
-     * - `CHILD` - CHILD
-     * - `SPOUSE` - SPOUSE
-     * - `DOMESTIC_PARTNER` - DOMESTIC_PARTNER
+     * * `CHILD` - CHILD
+     * * `SPOUSE` - SPOUSE
+     * * `DOMESTIC_PARTNER` - DOMESTIC_PARTNER
      */
     relationship?: Merge.hris.DependentRelationship;
     /** The employee this person is a dependent of. */
@@ -40,11 +37,11 @@ export interface Dependent {
     /**
      * The dependent's gender.
      *
-     * - `MALE` - MALE
-     * - `FEMALE` - FEMALE
-     * - `NON-BINARY` - NON-BINARY
-     * - `OTHER` - OTHER
-     * - `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
+     * * `MALE` - MALE
+     * * `FEMALE` - FEMALE
+     * * `NON-BINARY` - NON-BINARY
+     * * `OTHER` - OTHER
+     * * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
      */
     gender?: Merge.hris.DependentGender;
     /** The dependent's phone number. */

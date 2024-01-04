@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The task's status.
  *
- * - `OPEN` - OPEN
- * - `CLOSED` - CLOSED
+ * * `OPEN` - OPEN
+ * * `CLOSED` - CLOSED
  */
 export type PatchedTaskRequestStatus = Merge.crm.TaskStatusEnum | string;

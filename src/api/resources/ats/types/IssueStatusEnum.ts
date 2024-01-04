@@ -3,8 +3,8 @@
  */
 
 /**
- * - `ONGOING` - ONGOING
- * - `RESOLVED` - RESOLVED
+ * * `ONGOING` - ONGOING
+ * * `RESOLVED` - RESOLVED
  */
 export type IssueStatusEnum = "ONGOING" | "RESOLVED";
 

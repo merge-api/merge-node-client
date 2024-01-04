@@ -53,7 +53,7 @@ export class AccountingPeriods {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting-periods"
+                "api/accounting/v1/accounting-periods"
             ),
             method: "GET",
             headers: {
@@ -64,7 +64,7 @@ export class AccountingPeriods {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -118,7 +118,7 @@ export class AccountingPeriods {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting-periods/${id}`
+                `api/accounting/v1/accounting-periods/${id}`
             ),
             method: "GET",
             headers: {
@@ -129,7 +129,7 @@ export class AccountingPeriods {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

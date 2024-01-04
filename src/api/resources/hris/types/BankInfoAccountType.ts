@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The bank account type
  *
- * - `SAVINGS` - SAVINGS
- * - `CHECKING` - CHECKING
+ * * `SAVINGS` - SAVINGS
+ * * `CHECKING` - CHECKING
  */
 export type BankInfoAccountType = Merge.hris.AccountTypeEnum | string;

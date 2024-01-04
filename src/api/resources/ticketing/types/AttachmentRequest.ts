@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The Attachment Object
- *
  * ### Description
- *
  * The `Attachment` object is used to represent an attachment for a ticket.
  *
  * ### Usage Example
- *
  * TODO
  */
 export interface AttachmentRequest {

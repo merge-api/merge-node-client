@@ -3,8 +3,8 @@
  */
 
 /**
- * - `CLASS` - CLASS
- * - `DEPARTMENT` - DEPARTMENT
+ * * `CLASS` - CLASS
+ * * `DEPARTMENT` - DEPARTMENT
  */
 export type CategoryTypeEnum = "CLASS" | "DEPARTMENT";
 

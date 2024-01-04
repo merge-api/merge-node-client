@@ -3,8 +3,8 @@
  */
 
 /**
- * - `ACTIVE` - ACTIVE
- * - `INACTIVE` - INACTIVE
+ * * `ACTIVE` - ACTIVE
+ * * `INACTIVE` - INACTIVE
  */
 export type AccountingPeriodStatusEnum = "ACTIVE" | "INACTIVE";
 

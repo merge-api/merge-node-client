@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The journal's posting status.
  *
- * - `UNPOSTED` - UNPOSTED
- * - `POSTED` - POSTED
+ * * `UNPOSTED` - UNPOSTED
+ * * `POSTED` - POSTED
  */
 export type JournalEntryPostingStatus = Merge.accounting.PostingStatusEnum | string;

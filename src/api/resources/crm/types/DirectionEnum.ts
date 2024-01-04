@@ -3,8 +3,8 @@
  */
 
 /**
- * - `INBOUND` - INBOUND
- * - `OUTBOUND` - OUTBOUND
+ * * `INBOUND` - INBOUND
+ * * `OUTBOUND` - OUTBOUND
  */
 export type DirectionEnum = "INBOUND" | "OUTBOUND";
 

@@ -61,7 +61,7 @@ export class AuditTrail {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "audit-trail"
+                "api/hris/v1/audit-trail"
             ),
             method: "GET",
             headers: {
@@ -72,7 +72,7 @@ export class AuditTrail {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

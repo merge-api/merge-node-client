@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The LinkedAccount Object
- *
  * ### Description
- *
  * The `LinkedAccount` object is used to represent an end user's link with a specific integration.
  *
  * ### Usage Example
- *
  * View a list of your organization's `LinkedAccount` objects.
  */
 export interface AccountDetailsAndActions {

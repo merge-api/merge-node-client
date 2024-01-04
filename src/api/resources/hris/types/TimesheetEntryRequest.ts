@@ -4,13 +4,11 @@
 
 /**
  * # The Timesheet Entry Object
- *
  * ### Description
- *
  * The `Timesheet Entry` object is used to track coverage for hours worked by an 'Employee'.
  *
- * ### Usage Example
  *
+ * ### Usage Example
  * GET and POST Timesheet Entries
  */
 export interface TimesheetEntryRequest {

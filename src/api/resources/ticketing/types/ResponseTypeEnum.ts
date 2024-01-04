@@ -3,8 +3,8 @@
  */
 
 /**
- * - `JSON` - JSON
- * - `BASE64_GZIP` - BASE64_GZIP
+ * * `JSON` - JSON
+ * * `BASE64_GZIP` - BASE64_GZIP
  */
 export type ResponseTypeEnum = "JSON" | "BASE64_GZIP";
 

@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The measurement that the third-party integration uses to count time requested.
  *
- * - `HOURS` - HOURS
- * - `DAYS` - DAYS
+ * * `HOURS` - HOURS
+ * * `DAYS` - DAYS
  */
 export type TimeOffRequestUnits = Merge.hris.UnitsEnum | string;

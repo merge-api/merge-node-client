@@ -83,7 +83,7 @@ export class EmployerBenefits {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "employer-benefits"
+                "api/hris/v1/employer-benefits"
             ),
             method: "GET",
             headers: {
@@ -94,7 +94,7 @@ export class EmployerBenefits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -148,7 +148,7 @@ export class EmployerBenefits {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `employer-benefits/${id}`
+                `api/hris/v1/employer-benefits/${id}`
             ),
             method: "GET",
             headers: {
@@ -159,7 +159,7 @@ export class EmployerBenefits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

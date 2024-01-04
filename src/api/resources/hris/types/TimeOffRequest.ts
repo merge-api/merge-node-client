@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The TimeOff Object
- *
  * ### Description
- *
  * The `TimeOff` object is used to represent all employees' Time Off entries.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST TimeOffs` endpoint and filter by `ID` to show all time off requests.
  */
 export interface TimeOffRequest {
@@ -23,11 +20,11 @@ export interface TimeOffRequest {
     /**
      * The status of this time off request.
      *
-     * - `REQUESTED` - REQUESTED
-     * - `APPROVED` - APPROVED
-     * - `DECLINED` - DECLINED
-     * - `CANCELLED` - CANCELLED
-     * - `DELETED` - DELETED
+     * * `REQUESTED` - REQUESTED
+     * * `APPROVED` - APPROVED
+     * * `DECLINED` - DECLINED
+     * * `CANCELLED` - CANCELLED
+     * * `DELETED` - DELETED
      */
     status?: Merge.hris.TimeOffRequestStatus;
     /** The employee note for this time off request. */
@@ -35,8 +32,8 @@ export interface TimeOffRequest {
     /**
      * The measurement that the third-party integration uses to count time requested.
      *
-     * - `HOURS` - HOURS
-     * - `DAYS` - DAYS
+     * * `HOURS` - HOURS
+     * * `DAYS` - DAYS
      */
     units?: Merge.hris.TimeOffRequestUnits;
     /** The time off quantity measured by the prescribed “units”. */
@@ -44,12 +41,12 @@ export interface TimeOffRequest {
     /**
      * The type of time off request.
      *
-     * - `VACATION` - VACATION
-     * - `SICK` - SICK
-     * - `PERSONAL` - PERSONAL
-     * - `JURY_DUTY` - JURY_DUTY
-     * - `VOLUNTEER` - VOLUNTEER
-     * - `BEREAVEMENT` - BEREAVEMENT
+     * * `VACATION` - VACATION
+     * * `SICK` - SICK
+     * * `PERSONAL` - PERSONAL
+     * * `JURY_DUTY` - JURY_DUTY
+     * * `VOLUNTEER` - VOLUNTEER
+     * * `BEREAVEMENT` - BEREAVEMENT
      */
     requestType?: Merge.hris.TimeOffRequestRequestType;
     /** The day and time of the start of the time requested off. */

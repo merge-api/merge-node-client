@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The TaxRate Object
- *
  * ### Description
- *
  * The `TaxRate` object is used to represent a tax rate.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST TaxRates` endpoint and view tax rates relevant to a company.
  */
 export interface TaxRate {

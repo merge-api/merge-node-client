@@ -3,8 +3,8 @@
  */
 
 /**
- * - `READ` - READ
- * - `WRITE` - WRITE
+ * * `READ` - READ
+ * * `WRITE` - WRITE
  */
 export type EnabledActionsEnum = "READ" | "WRITE";
 

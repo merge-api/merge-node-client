@@ -6,13 +6,9 @@ import * as Merge from "../../..";
 
 /**
  * # The RejectReason Object
- *
  * ### Description
- *
  * The `RejectReason` object is used to represent a reason for rejecting an application. These can typically be configured within an ATS system.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show all reasons.
  */
 export interface RejectReason {

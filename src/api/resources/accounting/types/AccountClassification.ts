@@ -7,10 +7,10 @@ import * as Merge from "../../..";
 /**
  * The account's broadest grouping.
  *
- * - `ASSET` - ASSET
- * - `EQUITY` - EQUITY
- * - `EXPENSE` - EXPENSE
- * - `LIABILITY` - LIABILITY
- * - `REVENUE` - REVENUE
+ * * `ASSET` - ASSET
+ * * `EQUITY` - EQUITY
+ * * `EXPENSE` - EXPENSE
+ * * `LIABILITY` - LIABILITY
+ * * `REVENUE` - REVENUE
  */
 export type AccountClassification = Merge.accounting.ClassificationEnum | string;

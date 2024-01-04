@@ -64,11 +64,11 @@ export interface JobsListRequest {
     /**
      * If provided, will only return jobs with this status. Options: ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING')
      *
-     * - `OPEN` - OPEN
-     * - `CLOSED` - CLOSED
-     * - `DRAFT` - DRAFT
-     * - `ARCHIVED` - ARCHIVED
-     * - `PENDING` - PENDING
+     * * `OPEN` - OPEN
+     * * `CLOSED` - CLOSED
+     * * `DRAFT` - DRAFT
+     * * `ARCHIVED` - ARCHIVED
+     * * `PENDING` - PENDING
      */
     status?: Merge.ats.JobsListRequestStatus;
 }

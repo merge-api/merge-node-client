@@ -7,9 +7,9 @@ import * as Merge from "../../..";
 /**
  * The type of earning.
  *
- * - `SALARY` - SALARY
- * - `REIMBURSEMENT` - REIMBURSEMENT
- * - `OVERTIME` - OVERTIME
- * - `BONUS` - BONUS
+ * * `SALARY` - SALARY
+ * * `REIMBURSEMENT` - REIMBURSEMENT
+ * * `OVERTIME` - OVERTIME
+ * * `BONUS` - BONUS
  */
 export type EarningType = Merge.hris.EarningTypeEnum | string;

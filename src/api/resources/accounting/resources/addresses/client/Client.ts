@@ -50,7 +50,7 @@ export class Addresses {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `addresses/${id}`
+                `api/accounting/v1/addresses/${id}`
             ),
             method: "GET",
             headers: {
@@ -61,7 +61,7 @@ export class Addresses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

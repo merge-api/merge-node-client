@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The PayGroup Object
- *
  * ### Description
- *
  * The `PayGroup` object is used to represent a subset of employees that are put together for payroll processing purposes.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST PayGroup` endpoint and filter by `ID` to show all pay group information.
  */
 export interface PayGroup {

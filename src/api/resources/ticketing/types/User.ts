@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The User Object
- *
  * ### Description
- *
  * The `User` object is used to represent an employee within a company.
  *
  * ### Usage Example
- *
  * TODO
  */
 export interface User {

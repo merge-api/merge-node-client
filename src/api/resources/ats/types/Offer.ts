@@ -6,13 +6,9 @@ import * as Merge from "../../..";
 
 /**
  * # The Offer Object
- *
  * ### Description
- *
  * The `Offer` object is used to represent an offer for a candidate's application specific to a job.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.
  */
 export interface Offer {
@@ -34,15 +30,15 @@ export interface Offer {
     /**
      * The offer's status.
      *
-     * - `DRAFT` - DRAFT
-     * - `APPROVAL-SENT` - APPROVAL-SENT
-     * - `APPROVED` - APPROVED
-     * - `SENT` - SENT
-     * - `SENT-MANUALLY` - SENT-MANUALLY
-     * - `OPENED` - OPENED
-     * - `DENIED` - DENIED
-     * - `SIGNED` - SIGNED
-     * - `DEPRECATED` - DEPRECATED
+     * * `DRAFT` - DRAFT
+     * * `APPROVAL-SENT` - APPROVAL-SENT
+     * * `APPROVED` - APPROVED
+     * * `SENT` - SENT
+     * * `SENT-MANUALLY` - SENT-MANUALLY
+     * * `OPENED` - OPENED
+     * * `DENIED` - DENIED
+     * * `SIGNED` - SIGNED
+     * * `DEPRECATED` - DEPRECATED
      */
     status?: Merge.ats.OfferStatus;
     /** Indicates whether or not this object has been deleted in the third party platform. */

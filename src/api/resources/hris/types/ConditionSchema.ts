@@ -9,7 +9,7 @@ export interface ConditionSchema {
     id: string;
     /** The common model for which a condition schema is defined. */
     commonModel?: string;
-    /** User-facing _native condition_ name. e.g. "Skip Manager". */
+    /** User-facing *native condition* name. e.g. "Skip Manager". */
     nativeName?: string;
     /** The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. "location_type". */
     fieldName?: string;
@@ -18,13 +18,13 @@ export interface ConditionSchema {
     /**
      * The type of value(s) that can be set for this condition.
      *
-     * - `BOOLEAN` - BOOLEAN
-     * - `DATE` - DATE
-     * - `DATE_TIME` - DATE_TIME
-     * - `INTEGER` - INTEGER
-     * - `FLOAT` - FLOAT
-     * - `STRING` - STRING
-     * - `LIST_OF_STRINGS` - LIST_OF_STRINGS
+     * * `BOOLEAN` - BOOLEAN
+     * * `DATE` - DATE
+     * * `DATE_TIME` - DATE_TIME
+     * * `INTEGER` - INTEGER
+     * * `FLOAT` - FLOAT
+     * * `STRING` - STRING
+     * * `LIST_OF_STRINGS` - LIST_OF_STRINGS
      */
     conditionType: Merge.hris.ConditionSchemaConditionType;
     /** The schemas for the operators that can be used on a condition. */

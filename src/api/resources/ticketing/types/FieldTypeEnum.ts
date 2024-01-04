@@ -3,12 +3,12 @@
  */
 
 /**
- * - `string` - string
- * - `number` - number
- * - `date` - date
- * - `datetime` - datetime
- * - `bool` - bool
- * - `list` - list
+ * * `string` - string
+ * * `number` - number
+ * * `date` - date
+ * * `datetime` - datetime
+ * * `bool` - bool
+ * * `list` - list
  */
 export type FieldTypeEnum = "string" | "number" | "date" | "datetime" | "bool" | "list";
 

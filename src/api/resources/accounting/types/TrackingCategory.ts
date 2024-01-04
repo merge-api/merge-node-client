@@ -6,13 +6,10 @@ import * as Merge from "../../..";
 
 /**
  * # The TrackingCategory Object
- *
  * ### Description
- *
  * A `TrackingCategory` object represents a categorization method used to classify transactions within an accounting platform. They are often used to group records for reporting and analysis purposes. The most common types of `TrackingCategories` are Classes and Departments.
  *
  * ### Usage Example
- *
  * Fetch from the `GET TrackingCategory` endpoint and view a company's tracking category.
  */
 export interface TrackingCategory {
@@ -21,15 +18,15 @@ export interface TrackingCategory {
     /**
      * The tracking category's status.
      *
-     * - `ACTIVE` - ACTIVE
-     * - `ARCHIVED` - ARCHIVED
+     * * `ACTIVE` - ACTIVE
+     * * `ARCHIVED` - ARCHIVED
      */
     status?: Merge.accounting.TrackingCategoryStatus;
     /**
      * The tracking category’s type.
      *
-     * - `CLASS` - CLASS
-     * - `DEPARTMENT` - DEPARTMENT
+     * * `CLASS` - CLASS
+     * * `DEPARTMENT` - DEPARTMENT
      */
     categoryType?: Merge.accounting.TrackingCategoryCategoryType;
     /** ID of the parent tracking category. */

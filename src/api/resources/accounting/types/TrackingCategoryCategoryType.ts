@@ -7,7 +7,7 @@ import * as Merge from "../../..";
 /**
  * The tracking category’s type.
  *
- * - `CLASS` - CLASS
- * - `DEPARTMENT` - DEPARTMENT
+ * * `CLASS` - CLASS
+ * * `DEPARTMENT` - DEPARTMENT
  */
 export type TrackingCategoryCategoryType = Merge.accounting.CategoryTypeEnum | string;

@@ -3,8 +3,8 @@
  */
 
 /**
- * - `HOURS` - HOURS
- * - `DAYS` - DAYS
+ * * `HOURS` - HOURS
+ * * `DAYS` - DAYS
  */
 export type UnitsEnum = "HOURS" | "DAYS";
 

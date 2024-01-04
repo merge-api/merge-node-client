@@ -6,13 +6,9 @@ import * as Merge from "../../..";
 
 /**
  * # The ScheduledInterview Object
- *
  * ### Description
- *
  * The `ScheduledInterview` object is used to represent a scheduled interview for a given candidate’s application to a job. An `Application` can have multiple `ScheduledInterview`s depending on the particular hiring process.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.
  */
 export interface ScheduledInterviewRequest {
@@ -33,9 +29,9 @@ export interface ScheduledInterviewRequest {
     /**
      * The interview's status.
      *
-     * - `SCHEDULED` - SCHEDULED
-     * - `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
-     * - `COMPLETE` - COMPLETE
+     * * `SCHEDULED` - SCHEDULED
+     * * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
+     * * `COMPLETE` - COMPLETE
      */
     status?: Merge.ats.ScheduledInterviewRequestStatus;
     integrationParams?: Record<string, unknown>;
