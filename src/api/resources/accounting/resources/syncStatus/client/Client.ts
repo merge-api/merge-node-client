@@ -56,7 +56,7 @@ export class SyncStatus {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.3",
+                "X-Fern-SDK-Version": "1.0.4",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

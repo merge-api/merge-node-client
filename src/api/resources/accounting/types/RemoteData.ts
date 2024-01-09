@@ -4,5 +4,5 @@
 
 export interface RemoteData {
     path: string;
-    data?: Record<string, unknown>;
+    data?: unknown;
 }

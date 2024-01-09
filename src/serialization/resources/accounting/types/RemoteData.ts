@@ -11,12 +11,12 @@ export const RemoteData: core.serialization.ObjectSchema<
     Merge.accounting.RemoteData
 > = core.serialization.object({
     path: core.serialization.string(),
-    data: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    data: core.serialization.unknown().optional(),
 });
 
 export declare namespace RemoteData {
     interface Raw {
         path: string;
-        data?: Record<string, unknown> | null;
+        data?: unknown | null;
     }
 }
