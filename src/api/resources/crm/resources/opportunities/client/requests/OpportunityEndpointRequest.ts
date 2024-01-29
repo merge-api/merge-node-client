@@ -4,6 +4,18 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             name: "Needs Integrations",
+ *             description: "Needs a Unified API for Integrations!",
+ *             amount: 100000,
+ *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z"),
+ *             closeDate: new Date("2022-02-10T00:00:00.000Z")
+ *         }
+ *     }
+ */
 export interface OpportunityEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

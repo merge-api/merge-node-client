@@ -4,6 +4,21 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             lines: [{
+ *                     remoteId: "121222",
+ *                     netAmount: 25.54,
+ *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+ *                     contact: "d2d5ea3c-b032-11ec-b909-0242ac120002",
+ *                     description: "Cash payment for lunch",
+ *                     exchangeRate: "2.9"
+ *                 }]
+ *         }
+ *     }
+ */
 export interface JournalEntryEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

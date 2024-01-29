@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.crm.NotesListRequestExpand.Account
+ *     }
+ */
 export interface NotesListRequest {
     /**
      * If provided, will only return notes with this account.

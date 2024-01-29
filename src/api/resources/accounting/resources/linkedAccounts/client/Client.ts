@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace LinkedAccounts {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class LinkedAccounts {
 
     /**
      * List linked accounts for your organization.
+     *
+     * @example
+     *     await merge.accounting.linkedAccounts.list({
+     *         category: Merge.accounting.LinkedAccountsListRequestCategory.Accounting
+     *     })
      */
     public async list(
         request: Merge.accounting.LinkedAccountsListRequest = {},
@@ -47,57 +52,57 @@ export class LinkedAccounts {
             pageSize,
             status,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (category != null) {
-            _queryParams.append("category", category);
+            _queryParams["category"] = category;
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (endUserEmailAddress != null) {
-            _queryParams.append("end_user_email_address", endUserEmailAddress);
+            _queryParams["end_user_email_address"] = endUserEmailAddress;
         }
 
         if (endUserOrganizationName != null) {
-            _queryParams.append("end_user_organization_name", endUserOrganizationName);
+            _queryParams["end_user_organization_name"] = endUserOrganizationName;
         }
 
         if (endUserOriginId != null) {
-            _queryParams.append("end_user_origin_id", endUserOriginId);
+            _queryParams["end_user_origin_id"] = endUserOriginId;
         }
 
         if (endUserOriginIds != null) {
-            _queryParams.append("end_user_origin_ids", endUserOriginIds);
+            _queryParams["end_user_origin_ids"] = endUserOriginIds;
         }
 
         if (id != null) {
-            _queryParams.append("id", id);
+            _queryParams["id"] = id;
         }
 
         if (ids != null) {
-            _queryParams.append("ids", ids);
+            _queryParams["ids"] = ids;
         }
 
         if (includeDuplicates != null) {
-            _queryParams.append("include_duplicates", includeDuplicates.toString());
+            _queryParams["include_duplicates"] = includeDuplicates.toString();
         }
 
         if (integrationName != null) {
-            _queryParams.append("integration_name", integrationName);
+            _queryParams["integration_name"] = integrationName;
         }
 
         if (isTestAccount != null) {
-            _queryParams.append("is_test_account", isTestAccount);
+            _queryParams["is_test_account"] = isTestAccount;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (status != null) {
-            _queryParams.append("status", status);
+            _queryParams["status"] = status;
         }
 
         const _response = await core.fetcher({
@@ -114,11 +119,12 @@ export class LinkedAccounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.PaginatedAccountDetailsAndActionsList.parseOrThrow(_response.body, {

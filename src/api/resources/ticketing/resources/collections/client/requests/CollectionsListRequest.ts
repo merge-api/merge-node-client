@@ -4,12 +4,21 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         collectionType: Merge.ticketing.CollectionsListRequestCollectionType.List,
+ *         expand: "parent_collection",
+ *         remoteFields: "collection_type",
+ *         showEnumOrigins: "collection_type"
+ *     }
+ */
 export interface CollectionsListRequest {
     /**
      * If provided, will only return collections of the given type.
      *
-     * * `LIST` - LIST
-     * * `PROJECT` - PROJECT
+     * - `LIST` - LIST
+     * - `PROJECT` - PROJECT
      */
     collectionType?: Merge.ticketing.CollectionsListRequestCollectionType;
     /**

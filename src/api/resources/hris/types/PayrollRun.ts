@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The PayrollRun Object
+ *
  * ### Description
+ *
  * The `PayrollRun` object is used to represent a group of pay statements for a specific pay schedule.
  *
  * ### Usage Example
+ *
  * Fetch from the `LIST PayrollRuns` endpoint and filter by `ID` to show all payroll runs.
  */
 export interface PayrollRun {
@@ -19,21 +22,21 @@ export interface PayrollRun {
     /**
      * The state of the payroll run
      *
-     * * `PAID` - PAID
-     * * `DRAFT` - DRAFT
-     * * `APPROVED` - APPROVED
-     * * `FAILED` - FAILED
-     * * `CLOSED` - CLOSED
+     * - `PAID` - PAID
+     * - `DRAFT` - DRAFT
+     * - `APPROVED` - APPROVED
+     * - `FAILED` - FAILED
+     * - `CLOSED` - CLOSED
      */
     runState?: Merge.hris.PayrollRunRunState;
     /**
      * The type of the payroll run
      *
-     * * `REGULAR` - REGULAR
-     * * `OFF_CYCLE` - OFF_CYCLE
-     * * `CORRECTION` - CORRECTION
-     * * `TERMINATION` - TERMINATION
-     * * `SIGN_ON_BONUS` - SIGN_ON_BONUS
+     * - `REGULAR` - REGULAR
+     * - `OFF_CYCLE` - OFF_CYCLE
+     * - `CORRECTION` - CORRECTION
+     * - `TERMINATION` - TERMINATION
+     * - `SIGN_ON_BONUS` - SIGN_ON_BONUS
      */
     runType?: Merge.hris.PayrollRunRunType;
     /** The day and time the payroll run started. */

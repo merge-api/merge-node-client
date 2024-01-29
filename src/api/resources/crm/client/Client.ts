@@ -44,6 +44,7 @@ export declare namespace Crm {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 

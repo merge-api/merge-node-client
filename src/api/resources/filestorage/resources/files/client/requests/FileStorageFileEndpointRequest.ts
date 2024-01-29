@@ -4,6 +4,19 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             name: "omg_common_model_scope.docx",
+ *             fileUrl: "https://drive.com/1234",
+ *             fileThumbnailUrl: "https://drive.com/1234/thumbnail.png",
+ *             size: 254,
+ *             mimeType: ".docx",
+ *             description: "This file is OP"
+ *         }
+ *     }
+ */
 export interface FileStorageFileEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

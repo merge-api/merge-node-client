@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.ats.ScorecardsRetrieveRequestExpand.Application,
+ *         remoteFields: "overall_recommendation",
+ *         showEnumOrigins: "overall_recommendation"
+ *     }
+ */
 export interface ScorecardsRetrieveRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.

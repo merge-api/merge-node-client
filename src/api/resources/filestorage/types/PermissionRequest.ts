@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Permission Object
+ *
  * ### Description
+ *
  * The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default.
  *
  * ### Usage Example
+ *
  * Fetch from the `GET Files` or `GET Folders` endpoint. Permissions are unexpanded by default. Use the query param `expand=permissions` to see more details.
  */
 export interface PermissionRequest {
@@ -22,10 +25,10 @@ export interface PermissionRequest {
     /**
      * Denotes what type of people have access to the file.
      *
-     * * `USER` - USER
-     * * `GROUP` - GROUP
-     * * `COMPANY` - COMPANY
-     * * `ANYONE` - ANYONE
+     * - `USER` - USER
+     * - `GROUP` - GROUP
+     * - `COMPANY` - COMPANY
+     * - `ANYONE` - ANYONE
      */
     type?: Merge.filestorage.PermissionRequestType;
     /** The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing & uploading. Possible values include: `READ`, `WRITE`, `OWNER`. In cases where there is no clear mapping, the original value passed through will be returned. */

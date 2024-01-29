@@ -4,9 +4,13 @@
 
 /**
  * # The Drive Object
+ *
  * ### Description
+ *
  * The `Drive` object is used to represent a drive that contains the folders and files in the user's workspace.
+ *
  * ### Usage Example
+ *
  * Fetch from the `GET /api/filestorage/v1/drives` endpoint and view their drives.
  */
 export interface Drive {

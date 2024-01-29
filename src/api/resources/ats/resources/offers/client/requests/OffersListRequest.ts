@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.ats.OffersListRequestExpand.Application,
+ *         remoteFields: "status",
+ *         showEnumOrigins: "status"
+ *     }
+ */
 export interface OffersListRequest {
     /**
      * If provided, will only return offers for this application.

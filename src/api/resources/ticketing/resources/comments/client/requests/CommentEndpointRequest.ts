@@ -4,6 +4,15 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             body: "When will these integrations be done? You all should use Merge.",
+ *             htmlBody: "When will these integrations be done? You all should use <b>Merge<b>."
+ *         }
+ *     }
+ */
 export interface CommentEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

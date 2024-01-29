@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace CustomObjects {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,9 @@ export class CustomObjects {
 
     /**
      * Returns a list of `CustomObject` objects.
+     *
+     * @example
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsList("custom-object-class-id", {})
      */
     public async customObjectClassesCustomObjectsList(
         customObjectClassId: string,
@@ -45,45 +48,45 @@ export class CustomObjects {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         const _response = await core.fetcher({
@@ -100,11 +103,12 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedCustomObjectList.parseOrThrow(_response.body, {
@@ -139,6 +143,13 @@ export class CustomObjects {
 
     /**
      * Creates a `CustomObject` object with the given values.
+     *
+     * @example
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsCreate("custom-object-class-id", {
+     *         model: {
+     *             fields: {}
+     *         }
+     *     })
      */
     public async customObjectClassesCustomObjectsCreate(
         customObjectClassId: string,
@@ -146,13 +157,13 @@ export class CustomObjects {
         requestOptions?: CustomObjects.RequestOptions
     ): Promise<Merge.crm.CrmCustomObjectResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -169,7 +180,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -177,6 +188,7 @@ export class CustomObjects {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.CrmCustomObjectResponse.parseOrThrow(_response.body, {
@@ -211,6 +223,9 @@ export class CustomObjects {
 
     /**
      * Returns a `CustomObject` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsRetrieve("custom-object-class-id", "id", {})
      */
     public async customObjectClassesCustomObjectsRetrieve(
         customObjectClassId: string,
@@ -219,13 +234,13 @@ export class CustomObjects {
         requestOptions?: CustomObjects.RequestOptions
     ): Promise<Merge.crm.CustomObject> {
         const { includeRemoteData, includeRemoteFields } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         const _response = await core.fetcher({
@@ -242,11 +257,12 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.CustomObject.parseOrThrow(_response.body, {
@@ -281,6 +297,9 @@ export class CustomObjects {
 
     /**
      * Returns metadata for `CRMCustomObject` PATCHs.
+     *
+     * @example
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsMetaPatchRetrieve("custom-object-class-id", "id")
      */
     public async customObjectClassesCustomObjectsMetaPatchRetrieve(
         customObjectClassId: string,
@@ -301,10 +320,11 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -339,6 +359,9 @@ export class CustomObjects {
 
     /**
      * Returns metadata for `CRMCustomObject` POSTs.
+     *
+     * @example
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsMetaPostRetrieve("custom-object-class-id")
      */
     public async customObjectClassesCustomObjectsMetaPostRetrieve(
         customObjectClassId: string,
@@ -358,10 +381,11 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {

@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Engagement Object
+ *
  * ### Description
+ *
  * The `Engagement` object is used to represent an interaction noted in a CRM system.
+ *
  * ### Usage Example
+ *
  * TODO
  */
 export interface EngagementRequest {
@@ -21,8 +25,8 @@ export interface EngagementRequest {
     /**
      * The engagement's direction.
      *
-     * * `INBOUND` - INBOUND
-     * * `OUTBOUND` - OUTBOUND
+     * - `INBOUND` - INBOUND
+     * - `OUTBOUND` - OUTBOUND
      */
     direction?: Merge.crm.EngagementRequestDirection;
     /** The engagement type of the engagement. */

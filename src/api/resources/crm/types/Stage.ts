@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Stage Object
+ *
  * ### Description
+ *
  * The `Stage` object is used to represent the stage of an opportunity.
+ *
  * ### Usage Example
+ *
  * TODO
  */
 export interface Stage {

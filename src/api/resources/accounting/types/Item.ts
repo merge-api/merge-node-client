@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Item Object
+ *
  * ### Description
+ *
  * The `Item` object refers to the goods involved in a transaction.
  *
  * ### Usage Example
+ *
  * Fetch from the `LIST Items` endpoint and view a company's items.
  */
 export interface Item {
@@ -21,8 +24,8 @@ export interface Item {
     /**
      * The item's status.
      *
-     * * `ACTIVE` - ACTIVE
-     * * `ARCHIVED` - ARCHIVED
+     * - `ACTIVE` - ACTIVE
+     * - `ARCHIVED` - ARCHIVED
      */
     status?: Merge.accounting.ItemStatus;
     /** The item's unit price. */

@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The CustomObject Object
+ *
  * ### Description
+ *
  * The `Custom Object` record refers to an instance of a Custom Object Class.
+ *
  * ### Usage Example
+ *
  * TODO
  */
 export interface CustomObject {

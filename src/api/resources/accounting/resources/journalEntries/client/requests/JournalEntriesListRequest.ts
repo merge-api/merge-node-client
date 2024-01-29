@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.accounting.JournalEntriesListRequestExpand.AccountingPeriod
+ *     }
+ */
 export interface JournalEntriesListRequest {
     /**
      * If provided, will only return journal entries for this company.

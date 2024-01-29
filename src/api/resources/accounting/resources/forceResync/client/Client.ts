@@ -18,6 +18,7 @@ export declare namespace ForceResync {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -26,6 +27,9 @@ export class ForceResync {
 
     /**
      * Force re-sync of all models. This is available for all organizations via the dashboard. Force re-sync is also available programmatically via API for monthly, quarterly, and highest sync frequency customers on the Core, Professional, or Enterprise plans. Doing so will consume a sync credit for the relevant linked account.
+     *
+     * @example
+     *     await merge.accounting.forceResync.syncStatusResyncCreate()
      */
     public async syncStatusResyncCreate(
         requestOptions?: ForceResync.RequestOptions
@@ -44,10 +48,11 @@ export class ForceResync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.forceResync.syncStatusResyncCreate.Response.parseOrThrow(

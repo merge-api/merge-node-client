@@ -7,10 +7,10 @@ import * as Merge from "../../..";
 /**
  * The purchase order's status.
  *
- * * `DRAFT` - DRAFT
- * * `SUBMITTED` - SUBMITTED
- * * `AUTHORIZED` - AUTHORIZED
- * * `BILLED` - BILLED
- * * `DELETED` - DELETED
+ * - `DRAFT` - DRAFT
+ * - `SUBMITTED` - SUBMITTED
+ * - `AUTHORIZED` - AUTHORIZED
+ * - `BILLED` - BILLED
+ * - `DELETED` - DELETED
  */
 export type PurchaseOrderRequestStatus = Merge.accounting.PurchaseOrderStatusEnum | string;

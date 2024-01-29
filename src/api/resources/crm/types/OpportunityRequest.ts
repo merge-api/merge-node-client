@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Opportunity Object
+ *
  * ### Description
+ *
  * The `Opportunity` object is used to represent a deal opportunity in a CRM system.
+ *
  * ### Usage Example
+ *
  * TODO
  */
 export interface OpportunityRequest {
@@ -27,9 +31,9 @@ export interface OpportunityRequest {
     /**
      * The opportunity's status.
      *
-     * * `OPEN` - OPEN
-     * * `WON` - WON
-     * * `LOST` - LOST
+     * - `OPEN` - OPEN
+     * - `WON` - WON
+     * - `LOST` - LOST
      */
     status?: Merge.crm.OpportunityRequestStatus;
     /** When the opportunity's last activity occurred. */

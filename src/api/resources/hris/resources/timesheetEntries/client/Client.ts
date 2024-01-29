@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace TimesheetEntries {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class TimesheetEntries {
 
     /**
      * Returns a list of `TimesheetEntry` objects.
+     *
+     * @example
+     *     await merge.hris.timesheetEntries.list({
+     *         orderBy: Merge.hris.TimesheetEntriesListRequestOrderBy.StartTimeDescending
+     *     })
      */
     public async list(
         request: Merge.hris.TimesheetEntriesListRequest = {},
@@ -49,65 +54,65 @@ export class TimesheetEntries {
             startedAfter,
             startedBefore,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (employeeId != null) {
-            _queryParams.append("employee_id", employeeId);
+            _queryParams["employee_id"] = employeeId;
         }
 
         if (endedAfter != null) {
-            _queryParams.append("ended_after", endedAfter);
+            _queryParams["ended_after"] = endedAfter;
         }
 
         if (endedBefore != null) {
-            _queryParams.append("ended_before", endedBefore);
+            _queryParams["ended_before"] = endedBefore;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (orderBy != null) {
-            _queryParams.append("order_by", orderBy);
+            _queryParams["order_by"] = orderBy;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (startedAfter != null) {
-            _queryParams.append("started_after", startedAfter);
+            _queryParams["started_after"] = startedAfter;
         }
 
         if (startedBefore != null) {
-            _queryParams.append("started_before", startedBefore);
+            _queryParams["started_before"] = startedBefore;
         }
 
         const _response = await core.fetcher({
@@ -124,11 +129,12 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.hris.PaginatedTimesheetEntryList.parseOrThrow(_response.body, {
@@ -163,19 +169,29 @@ export class TimesheetEntries {
 
     /**
      * Creates a `TimesheetEntry` object with the given values.
+     *
+     * @example
+     *     await merge.hris.timesheetEntries.create({
+     *         model: {
+     *             employee: "d2f972d0-2526-434b-9409-4c3b468e08f0",
+     *             hoursWorked: 10,
+     *             startTime: new Date("2020-11-10T00:00:00.000Z"),
+     *             endTime: new Date("2020-11-10T00:10:00.000Z")
+     *         }
+     *     })
      */
     public async create(
         request: Merge.hris.TimesheetEntryEndpointRequest,
         requestOptions?: TimesheetEntries.RequestOptions
     ): Promise<Merge.hris.TimesheetEntryResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -192,7 +208,7 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -200,6 +216,7 @@ export class TimesheetEntries {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.hris.TimesheetEntryResponse.parseOrThrow(_response.body, {
@@ -234,6 +251,9 @@ export class TimesheetEntries {
 
     /**
      * Returns a `TimesheetEntry` object with the given `id`.
+     *
+     * @example
+     *     await merge.hris.timesheetEntries.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -241,9 +261,9 @@ export class TimesheetEntries {
         requestOptions?: TimesheetEntries.RequestOptions
     ): Promise<Merge.hris.TimesheetEntry> {
         const { includeRemoteData } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         const _response = await core.fetcher({
@@ -260,11 +280,12 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.hris.TimesheetEntry.parseOrThrow(_response.body, {
@@ -299,6 +320,9 @@ export class TimesheetEntries {
 
     /**
      * Returns metadata for `TimesheetEntry` POSTs.
+     *
+     * @example
+     *     await merge.hris.timesheetEntries.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: TimesheetEntries.RequestOptions): Promise<Merge.hris.MetaResponse> {
         const _response = await core.fetcher({
@@ -315,10 +339,11 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.hris.MetaResponse.parseOrThrow(_response.body, {

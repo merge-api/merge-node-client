@@ -4,6 +4,15 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         employmentStatus: Merge.hris.EmployeesListRequestEmploymentStatus.Active,
+ *         expand: Merge.hris.EmployeesListRequestExpand.Company,
+ *         remoteFields: Merge.hris.EmployeesListRequestRemoteFields.EmploymentStatus,
+ *         showEnumOrigins: Merge.hris.EmployeesListRequestShowEnumOrigins.EmploymentStatus
+ *     }
+ */
 export interface EmployeesListRequest {
     /**
      * If provided, will only return employees for this company.
@@ -28,9 +37,9 @@ export interface EmployeesListRequest {
     /**
      * If provided, will only return employees with this employment status.
      *
-     * * `ACTIVE` - ACTIVE
-     * * `PENDING` - PENDING
-     * * `INACTIVE` - INACTIVE
+     * - `ACTIVE` - ACTIVE
+     * - `PENDING` - PENDING
+     * - `INACTIVE` - INACTIVE
      */
     employmentStatus?: Merge.hris.EmployeesListRequestEmploymentStatus;
     /**

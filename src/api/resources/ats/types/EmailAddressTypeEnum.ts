@@ -3,9 +3,9 @@
  */
 
 /**
- * * `PERSONAL` - PERSONAL
- * * `WORK` - WORK
- * * `OTHER` - OTHER
+ * - `PERSONAL` - PERSONAL
+ * - `WORK` - WORK
+ * - `OTHER` - OTHER
  */
 export type EmailAddressTypeEnum = "PERSONAL" | "WORK" | "OTHER";
 

@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             fields: {}
+ *         }
+ *     }
+ */
 export interface CrmCustomObjectEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

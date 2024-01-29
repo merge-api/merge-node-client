@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Leads {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class Leads {
 
     /**
      * Returns a list of `Lead` objects.
+     *
+     * @example
+     *     await merge.crm.leads.list({
+     *         expand: Merge.crm.LeadsListRequestExpand.ConvertedAccount
+     *     })
      */
     public async list(
         request: Merge.crm.LeadsListRequest = {},
@@ -50,69 +55,69 @@ export class Leads {
             phoneNumbers,
             remoteId,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (convertedAccountId != null) {
-            _queryParams.append("converted_account_id", convertedAccountId);
+            _queryParams["converted_account_id"] = convertedAccountId;
         }
 
         if (convertedContactId != null) {
-            _queryParams.append("converted_contact_id", convertedContactId);
+            _queryParams["converted_contact_id"] = convertedContactId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (emailAddresses != null) {
-            _queryParams.append("email_addresses", emailAddresses);
+            _queryParams["email_addresses"] = emailAddresses;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (ownerId != null) {
-            _queryParams.append("owner_id", ownerId);
+            _queryParams["owner_id"] = ownerId;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (phoneNumbers != null) {
-            _queryParams.append("phone_numbers", phoneNumbers);
+            _queryParams["phone_numbers"] = phoneNumbers;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         const _response = await core.fetcher({
@@ -129,11 +134,12 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedLeadList.parseOrThrow(_response.body, {
@@ -168,19 +174,46 @@ export class Leads {
 
     /**
      * Creates a `Lead` object with the given values.
+     *
+     * @example
+     *     await merge.crm.leads.create({
+     *         model: {
+     *             leadSource: "API Blogger",
+     *             title: "Co-Founder",
+     *             company: "Merge API",
+     *             firstName: "Gil",
+     *             lastName: "Feig",
+     *             addresses: [{
+     *                     street1: "50 Bowling Green Dr",
+     *                     street2: "Golden Gate Park",
+     *                     city: "San Francisco",
+     *                     state: "CA",
+     *                     postalCode: "94122"
+     *                 }],
+     *             emailAddresses: [{
+     *                     emailAddress: "merge_is_hiring@merge.dev",
+     *                     emailAddressType: "Work"
+     *                 }],
+     *             phoneNumbers: [{
+     *                     phoneNumber: "+3198675309",
+     *                     phoneNumberType: "Mobile"
+     *                 }],
+     *             convertedDate: new Date("2022-03-10T00:00:00.000Z")
+     *         }
+     *     })
      */
     public async create(
         request: Merge.crm.LeadEndpointRequest,
         requestOptions?: Leads.RequestOptions
     ): Promise<Merge.crm.LeadResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -197,12 +230,13 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             body: await serializers.crm.LeadEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.LeadResponse.parseOrThrow(_response.body, {
@@ -237,6 +271,11 @@ export class Leads {
 
     /**
      * Returns a `Lead` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.leads.retrieve("id", {
+     *         expand: Merge.crm.LeadsRetrieveRequestExpand.ConvertedAccount
+     *     })
      */
     public async retrieve(
         id: string,
@@ -244,17 +283,17 @@ export class Leads {
         requestOptions?: Leads.RequestOptions
     ): Promise<Merge.crm.Lead> {
         const { expand, includeRemoteData, includeRemoteFields } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         const _response = await core.fetcher({
@@ -271,11 +310,12 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.Lead.parseOrThrow(_response.body, {
@@ -310,6 +350,9 @@ export class Leads {
 
     /**
      * Returns metadata for `Lead` POSTs.
+     *
+     * @example
+     *     await merge.crm.leads.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Leads.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await core.fetcher({
@@ -326,10 +369,11 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -364,31 +408,34 @@ export class Leads {
 
     /**
      * Returns a list of `RemoteFieldClass` objects.
+     *
+     * @example
+     *     await merge.crm.leads.remoteFieldClassesList({})
      */
     public async remoteFieldClassesList(
         request: Merge.crm.LeadsRemoteFieldClassesListRequest = {},
         requestOptions?: Leads.RequestOptions
     ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeRemoteFields, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -405,11 +452,12 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {

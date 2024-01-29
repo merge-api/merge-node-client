@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: "company",
+ *         remoteFields: Merge.accounting.AccountsRetrieveRequestRemoteFields.Classification,
+ *         showEnumOrigins: Merge.accounting.AccountsRetrieveRequestShowEnumOrigins.Classification
+ *     }
+ */
 export interface AccountsRetrieveRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.

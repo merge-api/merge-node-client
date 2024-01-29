@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.hris.TimeOffRetrieveRequestExpand.Approver,
+ *         remoteFields: Merge.hris.TimeOffRetrieveRequestRemoteFields.RequestType,
+ *         showEnumOrigins: Merge.hris.TimeOffRetrieveRequestShowEnumOrigins.RequestType
+ *     }
+ */
 export interface TimeOffRetrieveRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.

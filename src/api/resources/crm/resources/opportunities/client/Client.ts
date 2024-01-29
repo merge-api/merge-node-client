@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Opportunities {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,14 @@ export class Opportunities {
 
     /**
      * Returns a list of `Opportunity` objects.
+     *
+     * @example
+     *     await merge.crm.opportunities.list({
+     *         expand: Merge.crm.OpportunitiesListRequestExpand.Account,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status",
+     *         status: Merge.crm.OpportunitiesListRequestStatus.Lost
+     *     })
      */
     public async list(
         request: Merge.crm.OpportunitiesListRequest = {},
@@ -51,73 +59,73 @@ export class Opportunities {
             stageId,
             status,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (accountId != null) {
-            _queryParams.append("account_id", accountId);
+            _queryParams["account_id"] = accountId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (ownerId != null) {
-            _queryParams.append("owner_id", ownerId);
+            _queryParams["owner_id"] = ownerId;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         if (stageId != null) {
-            _queryParams.append("stage_id", stageId);
+            _queryParams["stage_id"] = stageId;
         }
 
         if (status != null) {
-            _queryParams.append("status", status);
+            _queryParams["status"] = status;
         }
 
         const _response = await core.fetcher({
@@ -134,11 +142,12 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedOpportunityList.parseOrThrow(_response.body, {
@@ -173,19 +182,30 @@ export class Opportunities {
 
     /**
      * Creates an `Opportunity` object with the given values.
+     *
+     * @example
+     *     await merge.crm.opportunities.create({
+     *         model: {
+     *             name: "Needs Integrations",
+     *             description: "Needs a Unified API for Integrations!",
+     *             amount: 100000,
+     *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z"),
+     *             closeDate: new Date("2022-02-10T00:00:00.000Z")
+     *         }
+     *     })
      */
     public async create(
         request: Merge.crm.OpportunityEndpointRequest,
         requestOptions?: Opportunities.RequestOptions
     ): Promise<Merge.crm.OpportunityResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -202,7 +222,7 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -210,6 +230,7 @@ export class Opportunities {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.OpportunityResponse.parseOrThrow(_response.body, {
@@ -244,6 +265,13 @@ export class Opportunities {
 
     /**
      * Returns an `Opportunity` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.opportunities.retrieve("id", {
+     *         expand: Merge.crm.OpportunitiesRetrieveRequestExpand.Account,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status"
+     *     })
      */
     public async retrieve(
         id: string,
@@ -251,25 +279,25 @@ export class Opportunities {
         requestOptions?: Opportunities.RequestOptions
     ): Promise<Merge.crm.Opportunity> {
         const { expand, includeRemoteData, includeRemoteFields, remoteFields, showEnumOrigins } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -286,11 +314,12 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.Opportunity.parseOrThrow(_response.body, {
@@ -325,6 +354,20 @@ export class Opportunities {
 
     /**
      * Updates an `Opportunity` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.opportunities.partialUpdate("id", {
+     *         model: {
+     *             name: "Needs Integrations",
+     *             description: "Needs a Unified API for Integrations!",
+     *             amount: 100000,
+     *             owner: "0358cbc6-2040-430a-848e-aafacbadf3aa",
+     *             account: "0958cbc6-6040-430a-848e-aafacbadf4ae",
+     *             stage: "1968cbc6-6040-430a-848e-aafacbadf4ad",
+     *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z"),
+     *             closeDate: new Date("2022-02-10T00:00:00.000Z")
+     *         }
+     *     })
      */
     public async partialUpdate(
         id: string,
@@ -332,13 +375,13 @@ export class Opportunities {
         requestOptions?: Opportunities.RequestOptions
     ): Promise<Merge.crm.OpportunityResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -355,7 +398,7 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -363,6 +406,7 @@ export class Opportunities {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.OpportunityResponse.parseOrThrow(_response.body, {
@@ -397,6 +441,9 @@ export class Opportunities {
 
     /**
      * Returns metadata for `Opportunity` PATCHs.
+     *
+     * @example
+     *     await merge.crm.opportunities.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -416,10 +463,11 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -454,6 +502,9 @@ export class Opportunities {
 
     /**
      * Returns metadata for `Opportunity` POSTs.
+     *
+     * @example
+     *     await merge.crm.opportunities.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Opportunities.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await core.fetcher({
@@ -470,10 +521,11 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -508,31 +560,34 @@ export class Opportunities {
 
     /**
      * Returns a list of `RemoteFieldClass` objects.
+     *
+     * @example
+     *     await merge.crm.opportunities.remoteFieldClassesList({})
      */
     public async remoteFieldClassesList(
         request: Merge.crm.OpportunitiesRemoteFieldClassesListRequest = {},
         requestOptions?: Opportunities.RequestOptions
     ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeRemoteFields, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -549,11 +604,12 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {

@@ -7,14 +7,14 @@ import * as Merge from "../../..";
 /**
  * The position's pay frequency.
  *
- * * `WEEKLY` - WEEKLY
- * * `BIWEEKLY` - BIWEEKLY
- * * `MONTHLY` - MONTHLY
- * * `QUARTERLY` - QUARTERLY
- * * `SEMIANNUALLY` - SEMIANNUALLY
- * * `ANNUALLY` - ANNUALLY
- * * `THIRTEEN-MONTHLY` - THIRTEEN-MONTHLY
- * * `PRO_RATA` - PRO_RATA
- * * `SEMIMONTHLY` - SEMIMONTHLY
+ * - `WEEKLY` - WEEKLY
+ * - `BIWEEKLY` - BIWEEKLY
+ * - `MONTHLY` - MONTHLY
+ * - `QUARTERLY` - QUARTERLY
+ * - `SEMIANNUALLY` - SEMIANNUALLY
+ * - `ANNUALLY` - ANNUALLY
+ * - `THIRTEEN-MONTHLY` - THIRTEEN-MONTHLY
+ * - `PRO_RATA` - PRO_RATA
+ * - `SEMIMONTHLY` - SEMIMONTHLY
  */
 export type EmploymentPayFrequency = Merge.hris.PayFrequencyEnum | string;

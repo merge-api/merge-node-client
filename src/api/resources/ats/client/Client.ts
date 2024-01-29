@@ -45,6 +45,7 @@ export declare namespace Ats {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 

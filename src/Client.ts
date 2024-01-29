@@ -20,6 +20,7 @@ export declare namespace MergeClient {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 

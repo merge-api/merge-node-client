@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Employees {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,14 @@ export class Employees {
 
     /**
      * Returns a list of `Employee` objects.
+     *
+     * @example
+     *     await merge.hris.employees.list({
+     *         employmentStatus: Merge.hris.EmployeesListRequestEmploymentStatus.Active,
+     *         expand: Merge.hris.EmployeesListRequestExpand.Company,
+     *         remoteFields: Merge.hris.EmployeesListRequestRemoteFields.EmploymentStatus,
+     *         showEnumOrigins: Merge.hris.EmployeesListRequestShowEnumOrigins.EmploymentStatus
+     *     })
      */
     public async list(
         request: Merge.hris.EmployeesListRequest = {},
@@ -66,133 +74,133 @@ export class Employees {
             workEmail,
             workLocationId,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (companyId != null) {
-            _queryParams.append("company_id", companyId);
+            _queryParams["company_id"] = companyId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (displayFullName != null) {
-            _queryParams.append("display_full_name", displayFullName);
+            _queryParams["display_full_name"] = displayFullName;
         }
 
         if (employmentStatus != null) {
-            _queryParams.append("employment_status", employmentStatus);
+            _queryParams["employment_status"] = employmentStatus;
         }
 
         if (employmentType != null) {
-            _queryParams.append("employment_type", employmentType);
+            _queryParams["employment_type"] = employmentType;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (firstName != null) {
-            _queryParams.append("first_name", firstName);
+            _queryParams["first_name"] = firstName;
         }
 
         if (groups != null) {
-            _queryParams.append("groups", groups);
+            _queryParams["groups"] = groups;
         }
 
         if (homeLocationId != null) {
-            _queryParams.append("home_location_id", homeLocationId);
+            _queryParams["home_location_id"] = homeLocationId;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeSensitiveFields != null) {
-            _queryParams.append("include_sensitive_fields", includeSensitiveFields.toString());
+            _queryParams["include_sensitive_fields"] = includeSensitiveFields.toString();
         }
 
         if (jobTitle != null) {
-            _queryParams.append("job_title", jobTitle);
+            _queryParams["job_title"] = jobTitle;
         }
 
         if (lastName != null) {
-            _queryParams.append("last_name", lastName);
+            _queryParams["last_name"] = lastName;
         }
 
         if (managerId != null) {
-            _queryParams.append("manager_id", managerId);
+            _queryParams["manager_id"] = managerId;
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (payGroupId != null) {
-            _queryParams.append("pay_group_id", payGroupId);
+            _queryParams["pay_group_id"] = payGroupId;
         }
 
         if (personalEmail != null) {
-            _queryParams.append("personal_email", personalEmail);
+            _queryParams["personal_email"] = personalEmail;
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         if (startedAfter != null) {
-            _queryParams.append("started_after", startedAfter.toISOString());
+            _queryParams["started_after"] = startedAfter.toISOString();
         }
 
         if (startedBefore != null) {
-            _queryParams.append("started_before", startedBefore.toISOString());
+            _queryParams["started_before"] = startedBefore.toISOString();
         }
 
         if (teamId != null) {
-            _queryParams.append("team_id", teamId);
+            _queryParams["team_id"] = teamId;
         }
 
         if (terminatedAfter != null) {
-            _queryParams.append("terminated_after", terminatedAfter.toISOString());
+            _queryParams["terminated_after"] = terminatedAfter.toISOString();
         }
 
         if (terminatedBefore != null) {
-            _queryParams.append("terminated_before", terminatedBefore.toISOString());
+            _queryParams["terminated_before"] = terminatedBefore.toISOString();
         }
 
         if (workEmail != null) {
-            _queryParams.append("work_email", workEmail);
+            _queryParams["work_email"] = workEmail;
         }
 
         if (workLocationId != null) {
-            _queryParams.append("work_location_id", workLocationId);
+            _queryParams["work_location_id"] = workLocationId;
         }
 
         const _response = await core.fetcher({
@@ -209,11 +217,12 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.hris.PaginatedEmployeeList.parseOrThrow(_response.body, {
@@ -248,19 +257,40 @@ export class Employees {
 
     /**
      * Creates an `Employee` object with the given values.
+     *
+     * @example
+     *     await merge.hris.employees.create({
+     *         model: {
+     *             employeeNumber: "2",
+     *             firstName: "Greg",
+     *             lastName: "Hirsch",
+     *             preferredName: "Greg the egg",
+     *             displayFullName: "Cousin Greg Hirsch",
+     *             username: "cousingreg",
+     *             workEmail: "greg@merge.dev",
+     *             personalEmail: "greg@gmail.com",
+     *             mobilePhoneNumber: "+1234567890",
+     *             ssn: "1234567890",
+     *             dateOfBirth: new Date("1990-11-10T00:00:00.000Z"),
+     *             hireDate: new Date("2020-10-10T00:00:00.000Z"),
+     *             startDate: new Date("2020-10-11T00:00:00.000Z"),
+     *             terminationDate: new Date("2021-10-12T00:00:00.000Z"),
+     *             avatar: "http://alturl.com/h2h8m"
+     *         }
+     *     })
      */
     public async create(
         request: Merge.hris.EmployeeEndpointRequest,
         requestOptions?: Employees.RequestOptions
     ): Promise<Merge.hris.EmployeeResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -277,7 +307,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -285,6 +315,7 @@ export class Employees {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.hris.EmployeeResponse.parseOrThrow(_response.body, {
@@ -319,6 +350,13 @@ export class Employees {
 
     /**
      * Returns an `Employee` object with the given `id`.
+     *
+     * @example
+     *     await merge.hris.employees.retrieve("id", {
+     *         expand: Merge.hris.EmployeesRetrieveRequestExpand.Company,
+     *         remoteFields: Merge.hris.EmployeesRetrieveRequestRemoteFields.EmploymentStatus,
+     *         showEnumOrigins: Merge.hris.EmployeesRetrieveRequestShowEnumOrigins.EmploymentStatus
+     *     })
      */
     public async retrieve(
         id: string,
@@ -326,25 +364,25 @@ export class Employees {
         requestOptions?: Employees.RequestOptions
     ): Promise<Merge.hris.Employee> {
         const { expand, includeRemoteData, includeSensitiveFields, remoteFields, showEnumOrigins } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeSensitiveFields != null) {
-            _queryParams.append("include_sensitive_fields", includeSensitiveFields.toString());
+            _queryParams["include_sensitive_fields"] = includeSensitiveFields.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -361,11 +399,12 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.hris.Employee.parseOrThrow(_response.body, {
@@ -420,13 +459,14 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             body: await serializers.hris.IgnoreCommonModelRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return;
@@ -456,6 +496,9 @@ export class Employees {
 
     /**
      * Returns metadata for `Employee` POSTs.
+     *
+     * @example
+     *     await merge.hris.employees.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Employees.RequestOptions): Promise<Merge.hris.MetaResponse> {
         const _response = await core.fetcher({
@@ -472,10 +515,11 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.hris.MetaResponse.parseOrThrow(_response.body, {

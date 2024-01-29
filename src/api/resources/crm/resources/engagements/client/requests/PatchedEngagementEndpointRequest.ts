@@ -4,6 +4,20 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             owner: "0358cbc6-2040-430a-848e-aafacbadf3aa",
+ *             content: "Call for negotiation",
+ *             subject: "Call from customer",
+ *             engagementType: "0358cbc6-2040-430a-848e-aafacbadf3aa",
+ *             startTime: new Date("2022-02-10T00:00:00.000Z"),
+ *             endTime: new Date("2022-02-10T00:05:00.000Z"),
+ *             account: "025fjlc6-6000-430a-848e-aafacbadf4fe"
+ *         }
+ *     }
+ */
 export interface PatchedEngagementEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

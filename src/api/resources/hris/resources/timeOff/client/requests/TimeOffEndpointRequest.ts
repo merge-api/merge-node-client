@@ -4,6 +4,17 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             employeeNote: "Moving into the new apartment Kendall Roy gave me!",
+ *             amount: 3,
+ *             startTime: new Date("2020-11-10T00:00:00.000Z"),
+ *             endTime: new Date("2020-11-17T00:00:00.000Z")
+ *         }
+ *     }
+ */
 export interface TimeOffEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

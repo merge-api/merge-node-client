@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.hris.EmployeePayrollRunsRetrieveRequestExpand.Employee
+ *     }
+ */
 export interface EmployeePayrollRunsRetrieveRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.

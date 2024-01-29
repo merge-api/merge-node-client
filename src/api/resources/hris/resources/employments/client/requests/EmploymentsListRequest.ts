@@ -4,6 +4,15 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.hris.EmploymentsListRequestExpand.Employee,
+ *         orderBy: Merge.hris.EmploymentsListRequestOrderBy.EffectiveDateDescending,
+ *         remoteFields: Merge.hris.EmploymentsListRequestRemoteFields.EmploymentType,
+ *         showEnumOrigins: Merge.hris.EmploymentsListRequestShowEnumOrigins.EmploymentType
+ *     }
+ */
 export interface EmploymentsListRequest {
     /**
      * If provided, will only return objects created after this datetime.

@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Team Object
+ *
  * ### Description
+ *
  * The `Team` object is used to represent a team within the company receiving the ticket.
  *
  * ### Usage Example
+ *
  * TODO
  */
 export interface Team {

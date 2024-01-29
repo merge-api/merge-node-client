@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: "user",
+ *         remoteFields: Merge.ats.ActivitiesRetrieveRequestRemoteFields.ActivityType,
+ *         showEnumOrigins: Merge.ats.ActivitiesRetrieveRequestShowEnumOrigins.ActivityType
+ *     }
+ */
 export interface ActivitiesRetrieveRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.

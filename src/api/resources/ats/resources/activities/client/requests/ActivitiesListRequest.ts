@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: "user",
+ *         remoteFields: Merge.ats.ActivitiesListRequestRemoteFields.ActivityType,
+ *         showEnumOrigins: Merge.ats.ActivitiesListRequestShowEnumOrigins.ActivityType
+ *     }
+ */
 export interface ActivitiesListRequest {
     /**
      * If provided, will only return objects created after this datetime.

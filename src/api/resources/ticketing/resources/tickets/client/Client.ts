@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Tickets {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,15 @@ export class Tickets {
 
     /**
      * Returns a list of `Ticket` objects.
+     *
+     * @example
+     *     await merge.ticketing.tickets.list({
+     *         expand: Merge.ticketing.TicketsListRequestExpand.Account,
+     *         priority: Merge.ticketing.TicketsListRequestPriority.High,
+     *         remoteFields: Merge.ticketing.TicketsListRequestRemoteFields.Priority,
+     *         showEnumOrigins: Merge.ticketing.TicketsListRequestShowEnumOrigins.Priority,
+     *         status: Merge.ticketing.TicketsListRequestStatus.Closed
+     *     })
      */
     public async list(
         request: Merge.ticketing.TicketsListRequest = {},
@@ -65,129 +74,129 @@ export class Tickets {
             tags,
             ticketType,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (accountId != null) {
-            _queryParams.append("account_id", accountId);
+            _queryParams["account_id"] = accountId;
         }
 
         if (assigneeIds != null) {
-            _queryParams.append("assignee_ids", assigneeIds);
+            _queryParams["assignee_ids"] = assigneeIds;
         }
 
         if (collectionIds != null) {
-            _queryParams.append("collection_ids", collectionIds);
+            _queryParams["collection_ids"] = collectionIds;
         }
 
         if (completedAfter != null) {
-            _queryParams.append("completed_after", completedAfter.toISOString());
+            _queryParams["completed_after"] = completedAfter.toISOString();
         }
 
         if (completedBefore != null) {
-            _queryParams.append("completed_before", completedBefore.toISOString());
+            _queryParams["completed_before"] = completedBefore.toISOString();
         }
 
         if (contactId != null) {
-            _queryParams.append("contact_id", contactId);
+            _queryParams["contact_id"] = contactId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (dueAfter != null) {
-            _queryParams.append("due_after", dueAfter.toISOString());
+            _queryParams["due_after"] = dueAfter.toISOString();
         }
 
         if (dueBefore != null) {
-            _queryParams.append("due_before", dueBefore.toISOString());
+            _queryParams["due_before"] = dueBefore.toISOString();
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (parentTicketId != null) {
-            _queryParams.append("parent_ticket_id", parentTicketId);
+            _queryParams["parent_ticket_id"] = parentTicketId;
         }
 
         if (priority != null) {
-            _queryParams.append("priority", priority);
+            _queryParams["priority"] = priority;
         }
 
         if (projectId != null) {
-            _queryParams.append("project_id", projectId);
+            _queryParams["project_id"] = projectId;
         }
 
         if (remoteCreatedAfter != null) {
-            _queryParams.append("remote_created_after", remoteCreatedAfter.toISOString());
+            _queryParams["remote_created_after"] = remoteCreatedAfter.toISOString();
         }
 
         if (remoteCreatedBefore != null) {
-            _queryParams.append("remote_created_before", remoteCreatedBefore.toISOString());
+            _queryParams["remote_created_before"] = remoteCreatedBefore.toISOString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (remoteUpdatedAfter != null) {
-            _queryParams.append("remote_updated_after", remoteUpdatedAfter.toISOString());
+            _queryParams["remote_updated_after"] = remoteUpdatedAfter.toISOString();
         }
 
         if (remoteUpdatedBefore != null) {
-            _queryParams.append("remote_updated_before", remoteUpdatedBefore.toISOString());
+            _queryParams["remote_updated_before"] = remoteUpdatedBefore.toISOString();
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         if (status != null) {
-            _queryParams.append("status", status);
+            _queryParams["status"] = status;
         }
 
         if (tags != null) {
-            _queryParams.append("tags", tags);
+            _queryParams["tags"] = tags;
         }
 
         if (ticketType != null) {
-            _queryParams.append("ticket_type", ticketType);
+            _queryParams["ticket_type"] = ticketType;
         }
 
         const _response = await core.fetcher({
@@ -204,11 +213,12 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.PaginatedTicketList.parseOrThrow(_response.body, {
@@ -243,19 +253,31 @@ export class Tickets {
 
     /**
      * Creates a `Ticket` object with the given values.
+     *
+     * @example
+     *     await merge.ticketing.tickets.create({
+     *         model: {
+     *             name: "Please add more integrations",
+     *             dueDate: new Date("2022-10-11T00:00:00.000Z"),
+     *             description: "Can you please add more integrations? It'll make syncing data much easier!",
+     *             ticketType: "incident",
+     *             completedAt: new Date("2021-12-09T00:00:00.000Z"),
+     *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1"
+     *         }
+     *     })
      */
     public async create(
         request: Merge.ticketing.TicketEndpointRequest,
         requestOptions?: Tickets.RequestOptions
     ): Promise<Merge.ticketing.TicketResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -272,7 +294,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -280,6 +302,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.TicketResponse.parseOrThrow(_response.body, {
@@ -314,6 +337,13 @@ export class Tickets {
 
     /**
      * Returns a `Ticket` object with the given `id`.
+     *
+     * @example
+     *     await merge.ticketing.tickets.retrieve("id", {
+     *         expand: Merge.ticketing.TicketsRetrieveRequestExpand.Account,
+     *         remoteFields: Merge.ticketing.TicketsRetrieveRequestRemoteFields.Priority,
+     *         showEnumOrigins: Merge.ticketing.TicketsRetrieveRequestShowEnumOrigins.Priority
+     *     })
      */
     public async retrieve(
         id: string,
@@ -321,25 +351,25 @@ export class Tickets {
         requestOptions?: Tickets.RequestOptions
     ): Promise<Merge.ticketing.Ticket> {
         const { expand, includeRemoteData, includeRemoteFields, remoteFields, showEnumOrigins } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -356,11 +386,12 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.Ticket.parseOrThrow(_response.body, {
@@ -395,6 +426,21 @@ export class Tickets {
 
     /**
      * Updates a `Ticket` object with the given `id`.
+     *
+     * @example
+     *     await merge.ticketing.tickets.partialUpdate("id", {
+     *         model: {
+     *             name: "Please add more integrations",
+     *             dueDate: new Date("2022-10-11T00:00:00.000Z"),
+     *             description: "Can you please add more integrations? It'll make syncing data much easier!",
+     *             ticketType: "incident",
+     *             account: "0958cbc6-6040-430a-848e-aafacbadf4ae",
+     *             contact: "65c345ba-6870-4974-87ba-dd31509c367a",
+     *             parentTicket: "75b33d04-30d2-4f3e-be45-27838bc94342",
+     *             completedAt: new Date("2021-12-09T00:00:00.000Z"),
+     *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1"
+     *         }
+     *     })
      */
     public async partialUpdate(
         id: string,
@@ -402,13 +448,13 @@ export class Tickets {
         requestOptions?: Tickets.RequestOptions
     ): Promise<Merge.ticketing.TicketResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -425,7 +471,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -433,6 +479,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.TicketResponse.parseOrThrow(_response.body, {
@@ -467,6 +514,11 @@ export class Tickets {
 
     /**
      * Returns a list of `User` objects.
+     *
+     * @example
+     *     await merge.ticketing.tickets.collaboratorsList("parent-id", {
+     *         expand: Merge.ticketing.TicketsCollaboratorsListRequestExpand.Roles
+     *     })
      */
     public async collaboratorsList(
         parentId: string,
@@ -474,25 +526,25 @@ export class Tickets {
         requestOptions?: Tickets.RequestOptions
     ): Promise<Merge.ticketing.PaginatedUserList> {
         const { cursor, expand, includeDeletedData, includeRemoteData, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -509,11 +561,12 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.PaginatedUserList.parseOrThrow(_response.body, {
@@ -548,6 +601,9 @@ export class Tickets {
 
     /**
      * Returns metadata for `Ticket` PATCHs.
+     *
+     * @example
+     *     await merge.ticketing.tickets.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -567,10 +623,11 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {
@@ -605,6 +662,9 @@ export class Tickets {
 
     /**
      * Returns metadata for `Ticket` POSTs.
+     *
+     * @example
+     *     await merge.ticketing.tickets.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Tickets.RequestOptions): Promise<Merge.ticketing.MetaResponse> {
         const _response = await core.fetcher({
@@ -621,10 +681,11 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {
@@ -659,27 +720,30 @@ export class Tickets {
 
     /**
      * Returns a list of `RemoteFieldClass` objects.
+     *
+     * @example
+     *     await merge.ticketing.tickets.remoteFieldClassesList({})
      */
     public async remoteFieldClassesList(
         request: Merge.ticketing.TicketsRemoteFieldClassesListRequest = {},
         requestOptions?: Tickets.RequestOptions
     ): Promise<Merge.ticketing.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -696,11 +760,12 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {

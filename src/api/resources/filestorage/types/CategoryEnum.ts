@@ -3,13 +3,13 @@
  */
 
 /**
- * * `hris` - hris
- * * `ats` - ats
- * * `accounting` - accounting
- * * `ticketing` - ticketing
- * * `crm` - crm
- * * `mktg` - mktg
- * * `filestorage` - filestorage
+ * - `hris` - hris
+ * - `ats` - ats
+ * - `accounting` - accounting
+ * - `ticketing` - ticketing
+ * - `crm` - crm
+ * - `mktg` - mktg
+ * - `filestorage` - filestorage
  */
 export type CategoryEnum = "hris" | "ats" | "accounting" | "ticketing" | "crm" | "mktg" | "filestorage";
 

@@ -4,6 +4,15 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.crm.OpportunitiesListRequestExpand.Account,
+ *         remoteFields: "status",
+ *         showEnumOrigins: "status",
+ *         status: Merge.crm.OpportunitiesListRequestStatus.Lost
+ *     }
+ */
 export interface OpportunitiesListRequest {
     /**
      * If provided, will only return opportunities with this account.
@@ -72,9 +81,9 @@ export interface OpportunitiesListRequest {
     /**
      * If provided, will only return opportunities with this status. Options: ('OPEN', 'WON', 'LOST')
      *
-     * * `OPEN` - OPEN
-     * * `WON` - WON
-     * * `LOST` - LOST
+     * - `OPEN` - OPEN
+     * - `WON` - WON
+     * - `LOST` - LOST
      */
     status?: Merge.crm.OpportunitiesListRequestStatus;
 }

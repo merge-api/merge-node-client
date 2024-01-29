@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Contacts {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class Contacts {
 
     /**
      * Returns a list of `Contact` objects.
+     *
+     * @example
+     *     await merge.crm.contacts.list({
+     *         expand: Merge.crm.ContactsListRequestExpand.Account
+     *     })
      */
     public async list(
         request: Merge.crm.ContactsListRequest = {},
@@ -48,61 +53,61 @@ export class Contacts {
             phoneNumbers,
             remoteId,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (accountId != null) {
-            _queryParams.append("account_id", accountId);
+            _queryParams["account_id"] = accountId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (emailAddresses != null) {
-            _queryParams.append("email_addresses", emailAddresses);
+            _queryParams["email_addresses"] = emailAddresses;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (phoneNumbers != null) {
-            _queryParams.append("phone_numbers", phoneNumbers);
+            _queryParams["phone_numbers"] = phoneNumbers;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         const _response = await core.fetcher({
@@ -119,11 +124,12 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedContactList.parseOrThrow(_response.body, {
@@ -158,19 +164,43 @@ export class Contacts {
 
     /**
      * Creates a `Contact` object with the given values.
+     *
+     * @example
+     *     await merge.crm.contacts.create({
+     *         model: {
+     *             firstName: "Gil",
+     *             lastName: "Feig",
+     *             addresses: [{
+     *                     street1: "50 Bowling Green Dr",
+     *                     street2: "Golden Gate Park",
+     *                     city: "San Francisco",
+     *                     state: "CA",
+     *                     postalCode: "94122"
+     *                 }],
+     *             emailAddresses: [{
+     *                     emailAddress: "merge_is_hiring@merge.dev",
+     *                     emailAddressType: "Work"
+     *                 }],
+     *             phoneNumbers: [{
+     *                     phoneNumber: "+3198675309",
+     *                     phoneNumberType: "Mobile"
+     *                 }],
+     *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
+     *         }
+     *     })
      */
     public async create(
         request: Merge.crm.CrmContactEndpointRequest,
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.crm.CrmContactResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -187,7 +217,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -195,6 +225,7 @@ export class Contacts {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.CrmContactResponse.parseOrThrow(_response.body, {
@@ -229,6 +260,11 @@ export class Contacts {
 
     /**
      * Returns a `Contact` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.contacts.retrieve("id", {
+     *         expand: Merge.crm.ContactsRetrieveRequestExpand.Account
+     *     })
      */
     public async retrieve(
         id: string,
@@ -236,17 +272,17 @@ export class Contacts {
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.crm.Contact> {
         const { expand, includeRemoteData, includeRemoteFields } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         const _response = await core.fetcher({
@@ -263,11 +299,12 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.Contact.parseOrThrow(_response.body, {
@@ -302,6 +339,31 @@ export class Contacts {
 
     /**
      * Updates a `Contact` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.contacts.partialUpdate("id", {
+     *         model: {
+     *             firstName: "Gil",
+     *             lastName: "Feig",
+     *             account: "0958cbc6-6040-430a-848e-aafacbadf4ae",
+     *             addresses: [{
+     *                     street1: "50 Bowling Green Dr",
+     *                     street2: "Golden Gate Park",
+     *                     city: "San Francisco",
+     *                     state: "CA",
+     *                     postalCode: "94122"
+     *                 }],
+     *             emailAddresses: [{
+     *                     emailAddress: "merge_is_hiring@merge.dev",
+     *                     emailAddressType: "Work"
+     *                 }],
+     *             phoneNumbers: [{
+     *                     phoneNumber: "+3198675309",
+     *                     phoneNumberType: "Mobile"
+     *                 }],
+     *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
+     *         }
+     *     })
      */
     public async partialUpdate(
         id: string,
@@ -309,13 +371,13 @@ export class Contacts {
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.crm.CrmContactResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -332,7 +394,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -340,6 +402,7 @@ export class Contacts {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.CrmContactResponse.parseOrThrow(_response.body, {
@@ -374,6 +437,12 @@ export class Contacts {
 
     /**
      * Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
+     *
+     * @example
+     *     await merge.crm.contacts.ignoreCreate("model-id", {
+     *         reason: Merge.crm.ReasonEnum.GeneralCustomerRequest,
+     *         message: "deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"
+     *     })
      */
     public async ignoreCreate(
         modelId: string,
@@ -394,13 +463,14 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             body: await serializers.crm.IgnoreCommonModelRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return;
@@ -430,6 +500,9 @@ export class Contacts {
 
     /**
      * Returns metadata for `CRMContact` PATCHs.
+     *
+     * @example
+     *     await merge.crm.contacts.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -449,10 +522,11 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -487,6 +561,9 @@ export class Contacts {
 
     /**
      * Returns metadata for `CRMContact` POSTs.
+     *
+     * @example
+     *     await merge.crm.contacts.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Contacts.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await core.fetcher({
@@ -503,10 +580,11 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -541,31 +619,34 @@ export class Contacts {
 
     /**
      * Returns a list of `RemoteFieldClass` objects.
+     *
+     * @example
+     *     await merge.crm.contacts.remoteFieldClassesList({})
      */
     public async remoteFieldClassesList(
         request: Merge.crm.ContactsRemoteFieldClassesListRequest = {},
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeRemoteFields, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -582,11 +663,12 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {

@@ -7,10 +7,10 @@ import * as Merge from "../../..";
 /**
  * The type of phone number.
  *
- * * `HOME` - HOME
- * * `WORK` - WORK
- * * `MOBILE` - MOBILE
- * * `SKYPE` - SKYPE
- * * `OTHER` - OTHER
+ * - `HOME` - HOME
+ * - `WORK` - WORK
+ * - `MOBILE` - MOBILE
+ * - `SKYPE` - SKYPE
+ * - `OTHER` - OTHER
  */
 export type PhoneNumberRequestPhoneNumberType = Merge.ats.PhoneNumberTypeEnum | string;

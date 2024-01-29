@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Contacts {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,13 @@ export class Contacts {
 
     /**
      * Returns a list of `Contact` objects.
+     *
+     * @example
+     *     await merge.accounting.contacts.list({
+     *         expand: Merge.accounting.ContactsListRequestExpand.Addresses,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status"
+     *     })
      */
     public async list(
         request: Merge.accounting.ContactsListRequest = {},
@@ -49,65 +56,65 @@ export class Contacts {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (companyId != null) {
-            _queryParams.append("company_id", companyId);
+            _queryParams["company_id"] = companyId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (isCustomer != null) {
-            _queryParams.append("is_customer", isCustomer);
+            _queryParams["is_customer"] = isCustomer;
         }
 
         if (isSupplier != null) {
-            _queryParams.append("is_supplier", isSupplier);
+            _queryParams["is_supplier"] = isSupplier;
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -124,11 +131,12 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.PaginatedContactList.parseOrThrow(_response.body, {
@@ -163,19 +171,35 @@ export class Contacts {
 
     /**
      * Creates a `Contact` object with the given values.
+     *
+     * @example
+     *     await merge.accounting.contacts.create({
+     *         model: {
+     *             name: "Gil Feig's Pickleball Team",
+     *             isCustomer: true,
+     *             emailAddress: "pickleball@merge.dev",
+     *             taxNumber: "12-3456789",
+     *             currency: "USD",
+     *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+     *             phoneNumbers: [{
+     *                     number: "+3198675309",
+     *                     type: "Mobile"
+     *                 }]
+     *         }
+     *     })
      */
     public async create(
         request: Merge.accounting.ContactEndpointRequest,
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.accounting.ContactResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -192,7 +216,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -200,6 +224,7 @@ export class Contacts {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.ContactResponse.parseOrThrow(_response.body, {
@@ -234,6 +259,13 @@ export class Contacts {
 
     /**
      * Returns a `Contact` object with the given `id`.
+     *
+     * @example
+     *     await merge.accounting.contacts.retrieve("id", {
+     *         expand: Merge.accounting.ContactsRetrieveRequestExpand.Addresses,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status"
+     *     })
      */
     public async retrieve(
         id: string,
@@ -241,21 +273,21 @@ export class Contacts {
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.accounting.Contact> {
         const { expand, includeRemoteData, remoteFields, showEnumOrigins } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -272,11 +304,12 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.Contact.parseOrThrow(_response.body, {
@@ -311,6 +344,9 @@ export class Contacts {
 
     /**
      * Returns metadata for `Contact` POSTs.
+     *
+     * @example
+     *     await merge.accounting.contacts.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Contacts.RequestOptions): Promise<Merge.accounting.MetaResponse> {
         const _response = await core.fetcher({
@@ -327,10 +363,11 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.MetaResponse.parseOrThrow(_response.body, {

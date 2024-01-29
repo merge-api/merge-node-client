@@ -7,10 +7,10 @@ import * as Merge from "../../..";
 /**
  * The status of this time off request.
  *
- * * `REQUESTED` - REQUESTED
- * * `APPROVED` - APPROVED
- * * `DECLINED` - DECLINED
- * * `CANCELLED` - CANCELLED
- * * `DELETED` - DELETED
+ * - `REQUESTED` - REQUESTED
+ * - `APPROVED` - APPROVED
+ * - `DECLINED` - DECLINED
+ * - `CANCELLED` - CANCELLED
+ * - `DELETED` - DELETED
  */
 export type TimeOffStatus = Merge.hris.TimeOffStatusEnum | string;

@@ -6,10 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Project Object
+ *
  * ### Description
+ *
  * Please use the `Collection` model. This model will be fully deprecated on 3/30/2024.
  *
  * ### Usage Example
+ *
  * TODO
  */
 export interface Project {

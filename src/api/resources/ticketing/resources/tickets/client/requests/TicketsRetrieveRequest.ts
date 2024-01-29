@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.ticketing.TicketsRetrieveRequestExpand.Account,
+ *         remoteFields: Merge.ticketing.TicketsRetrieveRequestRemoteFields.Priority,
+ *         showEnumOrigins: Merge.ticketing.TicketsRetrieveRequestShowEnumOrigins.Priority
+ *     }
+ */
 export interface TicketsRetrieveRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.

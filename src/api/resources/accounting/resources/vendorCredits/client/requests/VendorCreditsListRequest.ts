@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.accounting.VendorCreditsListRequestExpand.AccountingPeriod
+ *     }
+ */
 export interface VendorCreditsListRequest {
     /**
      * If provided, will only return vendor credits for this company.

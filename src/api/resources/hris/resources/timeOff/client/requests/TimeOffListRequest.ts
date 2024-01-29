@@ -4,6 +4,16 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.hris.TimeOffListRequestExpand.Approver,
+ *         remoteFields: Merge.hris.TimeOffListRequestRemoteFields.RequestType,
+ *         requestType: Merge.hris.TimeOffListRequestRequestType.Bereavement,
+ *         showEnumOrigins: Merge.hris.TimeOffListRequestShowEnumOrigins.RequestType,
+ *         status: Merge.hris.TimeOffListRequestStatus.Approved
+ *     }
+ */
 export interface TimeOffListRequest {
     /**
      * If provided, will only return time off for this approver.
@@ -60,12 +70,12 @@ export interface TimeOffListRequest {
     /**
      * If provided, will only return TimeOff with this request type. Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY', 'VOLUNTEER', 'BEREAVEMENT')
      *
-     * * `VACATION` - VACATION
-     * * `SICK` - SICK
-     * * `PERSONAL` - PERSONAL
-     * * `JURY_DUTY` - JURY_DUTY
-     * * `VOLUNTEER` - VOLUNTEER
-     * * `BEREAVEMENT` - BEREAVEMENT
+     * - `VACATION` - VACATION
+     * - `SICK` - SICK
+     * - `PERSONAL` - PERSONAL
+     * - `JURY_DUTY` - JURY_DUTY
+     * - `VOLUNTEER` - VOLUNTEER
+     * - `BEREAVEMENT` - BEREAVEMENT
      */
     requestType?: Merge.hris.TimeOffListRequestRequestType;
     /**
@@ -75,11 +85,11 @@ export interface TimeOffListRequest {
     /**
      * If provided, will only return TimeOff with this status. Options: ('REQUESTED', 'APPROVED', 'DECLINED', 'CANCELLED', 'DELETED')
      *
-     * * `REQUESTED` - REQUESTED
-     * * `APPROVED` - APPROVED
-     * * `DECLINED` - DECLINED
-     * * `CANCELLED` - CANCELLED
-     * * `DELETED` - DELETED
+     * - `REQUESTED` - REQUESTED
+     * - `APPROVED` - APPROVED
+     * - `DECLINED` - DECLINED
+     * - `CANCELLED` - CANCELLED
+     * - `DELETED` - DELETED
      */
     status?: Merge.hris.TimeOffListRequestStatus;
 }

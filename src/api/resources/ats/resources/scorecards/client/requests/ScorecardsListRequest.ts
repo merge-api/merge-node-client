@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.ats.ScorecardsListRequestExpand.Application,
+ *         remoteFields: "overall_recommendation",
+ *         showEnumOrigins: "overall_recommendation"
+ *     }
+ */
 export interface ScorecardsListRequest {
     /**
      * If provided, will only return scorecards for this application.

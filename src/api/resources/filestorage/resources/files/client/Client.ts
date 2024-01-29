@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -20,6 +19,7 @@ export declare namespace Files {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -28,6 +28,11 @@ export class Files {
 
     /**
      * Returns a list of `File` objects.
+     *
+     * @example
+     *     await merge.filestorage.files.list({
+     *         expand: Merge.filestorage.FilesListRequestExpand.Drive
+     *     })
      */
     public async list(
         request: Merge.filestorage.FilesListRequest = {},
@@ -48,57 +53,57 @@ export class Files {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (driveId != null) {
-            _queryParams.append("drive_id", driveId);
+            _queryParams["drive_id"] = driveId;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (folderId != null) {
-            _queryParams.append("folder_id", folderId);
+            _queryParams["folder_id"] = folderId;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (name != null) {
-            _queryParams.append("name", name);
+            _queryParams["name"] = name;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         const _response = await core.fetcher({
@@ -115,11 +120,12 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.filestorage.PaginatedFileList.parseOrThrow(_response.body, {
@@ -154,19 +160,31 @@ export class Files {
 
     /**
      * Creates a `File` object with the given values.
+     *
+     * @example
+     *     await merge.filestorage.files.create({
+     *         model: {
+     *             name: "omg_common_model_scope.docx",
+     *             fileUrl: "https://drive.com/1234",
+     *             fileThumbnailUrl: "https://drive.com/1234/thumbnail.png",
+     *             size: 254,
+     *             mimeType: ".docx",
+     *             description: "This file is OP"
+     *         }
+     *     })
      */
     public async create(
         request: Merge.filestorage.FileStorageFileEndpointRequest,
         requestOptions?: Files.RequestOptions
     ): Promise<Merge.filestorage.FileStorageFileResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -183,7 +201,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -191,6 +209,7 @@ export class Files {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.filestorage.FileStorageFileResponse.parseOrThrow(_response.body, {
@@ -225,6 +244,11 @@ export class Files {
 
     /**
      * Returns a `File` object with the given `id`.
+     *
+     * @example
+     *     await merge.filestorage.files.retrieve("id", {
+     *         expand: Merge.filestorage.FilesRetrieveRequestExpand.Drive
+     *     })
      */
     public async retrieve(
         id: string,
@@ -232,13 +256,13 @@ export class Files {
         requestOptions?: Files.RequestOptions
     ): Promise<Merge.filestorage.File_> {
         const { expand, includeRemoteData } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         const _response = await core.fetcher({
@@ -255,11 +279,12 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.filestorage.File_.parseOrThrow(_response.body, {
@@ -301,12 +326,12 @@ export class Files {
         requestOptions?: Files.RequestOptions
     ): Promise<stream.Readable> {
         const { mimeType } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (mimeType != null) {
-            _queryParams.append("mime_type", mimeType);
+            _queryParams["mime_type"] = mimeType;
         }
 
-        const _response = await core.streamingFetcher({
+        const _response = await core.fetcher<stream.Readable>({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `api/filestorage/v1/files/${id}/download`
@@ -320,21 +345,45 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
+            contentType: "application/json",
             queryParameters: _queryParams,
+            responseType: "streaming",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            onError: (error) => {
-                throw new errors.MergeError({
-                    message: (error as any)?.message,
-                });
-            },
+            maxRetries: requestOptions?.maxRetries,
         });
-        return _response.data;
+        if (_response.ok) {
+            return _response.body;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
     }
 
     /**
      * Returns metadata for `FileStorageFile` POSTs.
+     *
+     * @example
+     *     await merge.filestorage.files.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Files.RequestOptions): Promise<Merge.filestorage.MetaResponse> {
         const _response = await core.fetcher({
@@ -351,10 +400,11 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.filestorage.MetaResponse.parseOrThrow(_response.body, {

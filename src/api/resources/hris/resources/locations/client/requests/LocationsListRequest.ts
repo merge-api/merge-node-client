@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         locationType: Merge.hris.LocationsListRequestLocationType.Home,
+ *         remoteFields: "location_type",
+ *         showEnumOrigins: "location_type"
+ *     }
+ */
 export interface LocationsListRequest {
     /**
      * If provided, will only return objects created after this datetime.
@@ -28,8 +36,8 @@ export interface LocationsListRequest {
     /**
      * If provided, will only return locations with this location_type
      *
-     * * `HOME` - HOME
-     * * `WORK` - WORK
+     * - `HOME` - HOME
+     * - `WORK` - WORK
      */
     locationType?: Merge.hris.LocationsListRequestLocationType;
     /**
