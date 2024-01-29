@@ -4,6 +4,17 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             employee: "d2f972d0-2526-434b-9409-4c3b468e08f0",
+ *             hoursWorked: 10,
+ *             startTime: new Date("2020-11-10T00:00:00.000Z"),
+ *             endTime: new Date("2020-11-10T00:10:00.000Z")
+ *         }
+ *     }
+ */
 export interface TimesheetEntryEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

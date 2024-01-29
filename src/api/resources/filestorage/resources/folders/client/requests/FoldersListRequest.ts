@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.filestorage.FoldersListRequestExpand.Drive
+ *     }
+ */
 export interface FoldersListRequest {
     /**
      * If provided, will only return objects created after this datetime.

@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         syncConfigurations: [{
+ *                 linkedAccountConditions: []
+ *             }]
+ *     }
+ */
 export interface LinkedAccountSelectiveSyncConfigurationListRequest {
     /** The selective syncs associated with a linked account. */
     syncConfigurations: Merge.ticketing.LinkedAccountSelectiveSyncConfigurationRequest[];

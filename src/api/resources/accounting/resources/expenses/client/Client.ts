@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Expenses {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class Expenses {
 
     /**
      * Returns a list of `Expense` objects.
+     *
+     * @example
+     *     await merge.accounting.expenses.list({
+     *         expand: Merge.accounting.ExpensesListRequestExpand.Account
+     *     })
      */
     public async list(
         request: Merge.accounting.ExpensesListRequest = {},
@@ -47,57 +52,57 @@ export class Expenses {
             transactionDateAfter,
             transactionDateBefore,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (companyId != null) {
-            _queryParams.append("company_id", companyId);
+            _queryParams["company_id"] = companyId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (transactionDateAfter != null) {
-            _queryParams.append("transaction_date_after", transactionDateAfter.toISOString());
+            _queryParams["transaction_date_after"] = transactionDateAfter.toISOString();
         }
 
         if (transactionDateBefore != null) {
-            _queryParams.append("transaction_date_before", transactionDateBefore.toISOString());
+            _queryParams["transaction_date_before"] = transactionDateBefore.toISOString();
         }
 
         const _response = await core.fetcher({
@@ -114,11 +119,12 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.PaginatedExpenseList.parseOrThrow(_response.body, {
@@ -153,19 +159,35 @@ export class Expenses {
 
     /**
      * Creates an `Expense` object with the given values.
+     *
+     * @example
+     *     await merge.accounting.expenses.create({
+     *         model: {
+     *             totalAmount: 10000,
+     *             exchangeRate: "2.9",
+     *             memo: "New employee supplies",
+     *             lines: [{
+     *                     remoteId: "121222",
+     *                     netAmount: 25.54,
+     *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+     *                     description: "MacBook Pro",
+     *                     exchangeRate: "2.9"
+     *                 }]
+     *         }
+     *     })
      */
     public async create(
         request: Merge.accounting.ExpenseEndpointRequest,
         requestOptions?: Expenses.RequestOptions
     ): Promise<Merge.accounting.ExpenseResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -182,7 +204,7 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -190,6 +212,7 @@ export class Expenses {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.ExpenseResponse.parseOrThrow(_response.body, {
@@ -224,6 +247,11 @@ export class Expenses {
 
     /**
      * Returns an `Expense` object with the given `id`.
+     *
+     * @example
+     *     await merge.accounting.expenses.retrieve("id", {
+     *         expand: Merge.accounting.ExpensesRetrieveRequestExpand.Account
+     *     })
      */
     public async retrieve(
         id: string,
@@ -231,13 +259,13 @@ export class Expenses {
         requestOptions?: Expenses.RequestOptions
     ): Promise<Merge.accounting.Expense> {
         const { expand, includeRemoteData } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         const _response = await core.fetcher({
@@ -254,11 +282,12 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.Expense.parseOrThrow(_response.body, {
@@ -293,6 +322,9 @@ export class Expenses {
 
     /**
      * Returns metadata for `Expense` POSTs.
+     *
+     * @example
+     *     await merge.accounting.expenses.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Expenses.RequestOptions): Promise<Merge.accounting.MetaResponse> {
         const _response = await core.fetcher({
@@ -309,10 +341,11 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.MetaResponse.parseOrThrow(_response.body, {

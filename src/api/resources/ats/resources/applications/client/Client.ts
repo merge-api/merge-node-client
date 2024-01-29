@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Applications {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class Applications {
 
     /**
      * Returns a list of `Application` objects.
+     *
+     * @example
+     *     await merge.ats.applications.list({
+     *         expand: Merge.ats.ApplicationsListRequestExpand.Candidate
+     *     })
      */
     public async list(
         request: Merge.ats.ApplicationsListRequest = {},
@@ -50,69 +55,69 @@ export class Applications {
             remoteId,
             source,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (candidateId != null) {
-            _queryParams.append("candidate_id", candidateId);
+            _queryParams["candidate_id"] = candidateId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (creditedToId != null) {
-            _queryParams.append("credited_to_id", creditedToId);
+            _queryParams["credited_to_id"] = creditedToId;
         }
 
         if (currentStageId != null) {
-            _queryParams.append("current_stage_id", currentStageId);
+            _queryParams["current_stage_id"] = currentStageId;
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (jobId != null) {
-            _queryParams.append("job_id", jobId);
+            _queryParams["job_id"] = jobId;
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (rejectReasonId != null) {
-            _queryParams.append("reject_reason_id", rejectReasonId);
+            _queryParams["reject_reason_id"] = rejectReasonId;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (source != null) {
-            _queryParams.append("source", source);
+            _queryParams["source"] = source;
         }
 
         const _response = await core.fetcher({
@@ -129,11 +134,12 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.PaginatedApplicationList.parseOrThrow(_response.body, {
@@ -174,13 +180,13 @@ export class Applications {
         requestOptions?: Applications.RequestOptions
     ): Promise<Merge.ats.ApplicationResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -197,7 +203,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -205,6 +211,7 @@ export class Applications {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.ApplicationResponse.parseOrThrow(_response.body, {
@@ -239,6 +246,11 @@ export class Applications {
 
     /**
      * Returns an `Application` object with the given `id`.
+     *
+     * @example
+     *     await merge.ats.applications.retrieve("id", {
+     *         expand: Merge.ats.ApplicationsRetrieveRequestExpand.Candidate
+     *     })
      */
     public async retrieve(
         id: string,
@@ -246,13 +258,13 @@ export class Applications {
         requestOptions?: Applications.RequestOptions
     ): Promise<Merge.ats.Application> {
         const { expand, includeRemoteData } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         const _response = await core.fetcher({
@@ -269,11 +281,12 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.Application.parseOrThrow(_response.body, {
@@ -308,6 +321,9 @@ export class Applications {
 
     /**
      * Updates the `current_stage` field of an `Application` object
+     *
+     * @example
+     *     await merge.ats.applications.changeStageCreate("id", {})
      */
     public async changeStageCreate(
         id: string,
@@ -315,13 +331,13 @@ export class Applications {
         requestOptions?: Applications.RequestOptions
     ): Promise<Merge.ats.ApplicationResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -338,7 +354,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -346,6 +362,7 @@ export class Applications {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.ApplicationResponse.parseOrThrow(_response.body, {
@@ -380,15 +397,18 @@ export class Applications {
 
     /**
      * Returns metadata for `Application` POSTs.
+     *
+     * @example
+     *     await merge.ats.applications.metaPostRetrieve({})
      */
     public async metaPostRetrieve(
         request: Merge.ats.ApplicationsMetaPostRetrieveRequest = {},
         requestOptions?: Applications.RequestOptions
     ): Promise<Merge.ats.MetaResponse> {
         const { applicationRemoteTemplateId } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (applicationRemoteTemplateId != null) {
-            _queryParams.append("application_remote_template_id", applicationRemoteTemplateId);
+            _queryParams["application_remote_template_id"] = applicationRemoteTemplateId;
         }
 
         const _response = await core.fetcher({
@@ -405,11 +425,12 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.MetaResponse.parseOrThrow(_response.body, {

@@ -18,6 +18,7 @@ export declare namespace GenerateKey {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -26,6 +27,11 @@ export class GenerateKey {
 
     /**
      * Create a remote key.
+     *
+     * @example
+     *     await merge.filestorage.generateKey.create({
+     *         name: "Remote Deployment Key 1"
+     *     })
      */
     public async create(
         request: Merge.filestorage.GenerateRemoteKeyRequest,
@@ -45,13 +51,14 @@ export class GenerateKey {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             body: await serializers.filestorage.GenerateRemoteKeyRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.filestorage.RemoteKey.parseOrThrow(_response.body, {

@@ -51,6 +51,7 @@ export declare namespace Accounting {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 

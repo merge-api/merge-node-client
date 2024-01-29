@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.crm.EngagementsListRequestExpand.Account
+ *     }
+ */
 export interface EngagementsListRequest {
     /**
      * If provided, will only return objects created after this datetime.

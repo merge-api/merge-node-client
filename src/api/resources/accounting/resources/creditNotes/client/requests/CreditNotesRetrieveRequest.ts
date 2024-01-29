@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.accounting.CreditNotesRetrieveRequestExpand.AccountingPeriod,
+ *         remoteFields: Merge.accounting.CreditNotesRetrieveRequestRemoteFields.Status,
+ *         showEnumOrigins: Merge.accounting.CreditNotesRetrieveRequestShowEnumOrigins.Status
+ *     }
+ */
 export interface CreditNotesRetrieveRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.

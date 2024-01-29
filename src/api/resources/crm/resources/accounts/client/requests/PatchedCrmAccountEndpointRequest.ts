@@ -4,6 +4,20 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             owner: "0258cbc6-6020-430a-848e-aafacbadf4ae",
+ *             name: "Merge API",
+ *             description: "One API for all integrations",
+ *             industry: "API's",
+ *             website: "https://merge.dev/",
+ *             numberOfEmployees: 276000,
+ *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
+ *         }
+ *     }
+ */
 export interface PatchedCrmAccountEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

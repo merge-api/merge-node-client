@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Issues {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class Issues {
 
     /**
      * Gets issues.
+     *
+     * @example
+     *     await merge.accounting.issues.list({
+     *         status: Merge.accounting.IssuesListRequestStatus.Ongoing
+     *     })
      */
     public async list(
         request: Merge.accounting.IssuesListRequest = {},
@@ -47,57 +52,57 @@ export class Issues {
             startDate,
             status,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (accountToken != null) {
-            _queryParams.append("account_token", accountToken);
+            _queryParams["account_token"] = accountToken;
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (endDate != null) {
-            _queryParams.append("end_date", endDate);
+            _queryParams["end_date"] = endDate;
         }
 
         if (endUserOrganizationName != null) {
-            _queryParams.append("end_user_organization_name", endUserOrganizationName);
+            _queryParams["end_user_organization_name"] = endUserOrganizationName;
         }
 
         if (firstIncidentTimeAfter != null) {
-            _queryParams.append("first_incident_time_after", firstIncidentTimeAfter.toISOString());
+            _queryParams["first_incident_time_after"] = firstIncidentTimeAfter.toISOString();
         }
 
         if (firstIncidentTimeBefore != null) {
-            _queryParams.append("first_incident_time_before", firstIncidentTimeBefore.toISOString());
+            _queryParams["first_incident_time_before"] = firstIncidentTimeBefore.toISOString();
         }
 
         if (includeMuted != null) {
-            _queryParams.append("include_muted", includeMuted);
+            _queryParams["include_muted"] = includeMuted;
         }
 
         if (integrationName != null) {
-            _queryParams.append("integration_name", integrationName);
+            _queryParams["integration_name"] = integrationName;
         }
 
         if (lastIncidentTimeAfter != null) {
-            _queryParams.append("last_incident_time_after", lastIncidentTimeAfter.toISOString());
+            _queryParams["last_incident_time_after"] = lastIncidentTimeAfter.toISOString();
         }
 
         if (lastIncidentTimeBefore != null) {
-            _queryParams.append("last_incident_time_before", lastIncidentTimeBefore.toISOString());
+            _queryParams["last_incident_time_before"] = lastIncidentTimeBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (startDate != null) {
-            _queryParams.append("start_date", startDate);
+            _queryParams["start_date"] = startDate;
         }
 
         if (status != null) {
-            _queryParams.append("status", status);
+            _queryParams["status"] = status;
         }
 
         const _response = await core.fetcher({
@@ -114,11 +119,12 @@ export class Issues {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.PaginatedIssueList.parseOrThrow(_response.body, {
@@ -153,6 +159,9 @@ export class Issues {
 
     /**
      * Get a specific issue.
+     *
+     * @example
+     *     await merge.accounting.issues.retrieve("id")
      */
     public async retrieve(id: string, requestOptions?: Issues.RequestOptions): Promise<Merge.accounting.Issue> {
         const _response = await core.fetcher({
@@ -169,10 +178,11 @@ export class Issues {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.Issue.parseOrThrow(_response.body, {

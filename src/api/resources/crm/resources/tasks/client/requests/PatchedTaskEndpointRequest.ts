@@ -4,6 +4,20 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             subject: "Contact about Integration Strategy",
+ *             content: "Follow up to see whether they need integrations",
+ *             owner: "0358cbc6-2040-430a-848e-aafacbadf3aa",
+ *             account: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+ *             opportunity: "03455bc6-6040-430a-848e-aafacbfdf4fg",
+ *             completedDate: new Date("2022-02-11T00:00:00.000Z"),
+ *             dueDate: new Date("2022-02-10T00:00:00.000Z")
+ *         }
+ *     }
+ */
 export interface PatchedTaskEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

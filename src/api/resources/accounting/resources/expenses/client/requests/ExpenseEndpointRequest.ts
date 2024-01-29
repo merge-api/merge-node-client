@@ -4,6 +4,23 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             totalAmount: 10000,
+ *             exchangeRate: "2.9",
+ *             memo: "New employee supplies",
+ *             lines: [{
+ *                     remoteId: "121222",
+ *                     netAmount: 25.54,
+ *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+ *                     description: "MacBook Pro",
+ *                     exchangeRate: "2.9"
+ *                 }]
+ *         }
+ *     }
+ */
 export interface ExpenseEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

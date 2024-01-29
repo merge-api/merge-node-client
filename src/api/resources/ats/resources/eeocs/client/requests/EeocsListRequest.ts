@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: "candidate",
+ *         remoteFields: Merge.ats.EeocsListRequestRemoteFields.DisabilityStatus,
+ *         showEnumOrigins: Merge.ats.EeocsListRequestShowEnumOrigins.DisabilityStatus
+ *     }
+ */
 export interface EeocsListRequest {
     /**
      * If provided, will only return EEOC info for this candidate.

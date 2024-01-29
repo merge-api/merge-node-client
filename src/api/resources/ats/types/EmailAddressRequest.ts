@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The EmailAddress Object
+ *
  * ### Description
+ *
  * The `EmailAddress` object is used to represent a candidate's email address.
+ *
  * ### Usage Example
+ *
  * Fetch from the `GET Candidate` endpoint and view their email addresses.
  */
 export interface EmailAddressRequest {
@@ -17,9 +21,9 @@ export interface EmailAddressRequest {
     /**
      * The type of email address.
      *
-     * * `PERSONAL` - PERSONAL
-     * * `WORK` - WORK
-     * * `OTHER` - OTHER
+     * - `PERSONAL` - PERSONAL
+     * - `WORK` - WORK
+     * - `OTHER` - OTHER
      */
     emailAddressType?: Merge.ats.EmailAddressRequestEmailAddressType;
     integrationParams?: Record<string, unknown>;

@@ -4,17 +4,23 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         category: Merge.ticketing.LinkedAccountsListRequestCategory.Accounting
+ *     }
+ */
 export interface LinkedAccountsListRequest {
     /**
      * Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage')
      *
-     * * `hris` - hris
-     * * `ats` - ats
-     * * `accounting` - accounting
-     * * `ticketing` - ticketing
-     * * `crm` - crm
-     * * `mktg` - mktg
-     * * `filestorage` - filestorage
+     * - `hris` - hris
+     * - `ats` - ats
+     * - `accounting` - accounting
+     * - `ticketing` - ticketing
+     * - `crm` - crm
+     * - `mktg` - mktg
+     * - `filestorage` - filestorage
      */
     category?: Merge.ticketing.LinkedAccountsListRequestCategory;
     /**

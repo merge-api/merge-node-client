@@ -35,6 +35,7 @@ export declare namespace Filestorage {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 

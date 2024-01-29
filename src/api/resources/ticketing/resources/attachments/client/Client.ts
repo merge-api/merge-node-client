@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -20,6 +19,7 @@ export declare namespace Attachments {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -28,6 +28,11 @@ export class Attachments {
 
     /**
      * Returns a list of `Attachment` objects.
+     *
+     * @example
+     *     await merge.ticketing.attachments.list({
+     *         expand: "ticket"
+     *     })
      */
     public async list(
         request: Merge.ticketing.AttachmentsListRequest = {},
@@ -47,53 +52,53 @@ export class Attachments {
             remoteId,
             ticketId,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteCreatedAfter != null) {
-            _queryParams.append("remote_created_after", remoteCreatedAfter.toISOString());
+            _queryParams["remote_created_after"] = remoteCreatedAfter.toISOString();
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (ticketId != null) {
-            _queryParams.append("ticket_id", ticketId);
+            _queryParams["ticket_id"] = ticketId;
         }
 
         const _response = await core.fetcher({
@@ -110,11 +115,12 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.PaginatedAttachmentList.parseOrThrow(_response.body, {
@@ -149,19 +155,29 @@ export class Attachments {
 
     /**
      * Creates an `Attachment` object with the given values.
+     *
+     * @example
+     *     await merge.ticketing.attachments.create({
+     *         model: {
+     *             fileName: "Screenshot.png",
+     *             fileUrl: "http://alturl.com/p749b",
+     *             contentType: "jpeg",
+     *             uploadedBy: "28b54125-287f-494d-965e-3c5b330c9a68"
+     *         }
+     *     })
      */
     public async create(
         request: Merge.ticketing.TicketingAttachmentEndpointRequest,
         requestOptions?: Attachments.RequestOptions
     ): Promise<Merge.ticketing.TicketingAttachmentResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -178,7 +194,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -186,6 +202,7 @@ export class Attachments {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.TicketingAttachmentResponse.parseOrThrow(_response.body, {
@@ -220,6 +237,11 @@ export class Attachments {
 
     /**
      * Returns an `Attachment` object with the given `id`.
+     *
+     * @example
+     *     await merge.ticketing.attachments.retrieve("id", {
+     *         expand: "ticket"
+     *     })
      */
     public async retrieve(
         id: string,
@@ -227,13 +249,13 @@ export class Attachments {
         requestOptions?: Attachments.RequestOptions
     ): Promise<Merge.ticketing.Attachment> {
         const { expand, includeRemoteData } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         const _response = await core.fetcher({
@@ -250,11 +272,12 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.Attachment.parseOrThrow(_response.body, {
@@ -296,12 +319,12 @@ export class Attachments {
         requestOptions?: Attachments.RequestOptions
     ): Promise<stream.Readable> {
         const { mimeType } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (mimeType != null) {
-            _queryParams.append("mime_type", mimeType);
+            _queryParams["mime_type"] = mimeType;
         }
 
-        const _response = await core.streamingFetcher({
+        const _response = await core.fetcher<stream.Readable>({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `api/ticketing/v1/attachments/${id}/download`
@@ -315,21 +338,45 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
+            contentType: "application/json",
             queryParameters: _queryParams,
+            responseType: "streaming",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            onError: (error) => {
-                throw new errors.MergeError({
-                    message: (error as any)?.message,
-                });
-            },
+            maxRetries: requestOptions?.maxRetries,
         });
-        return _response.data;
+        if (_response.ok) {
+            return _response.body;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
     }
 
     /**
      * Returns metadata for `TicketingAttachment` POSTs.
+     *
+     * @example
+     *     await merge.ticketing.attachments.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Attachments.RequestOptions): Promise<Merge.ticketing.MetaResponse> {
         const _response = await core.fetcher({
@@ -346,10 +393,11 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {

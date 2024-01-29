@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace PhoneNumbers {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,9 @@ export class PhoneNumbers {
 
     /**
      * Returns an `AccountingPhoneNumber` object with the given `id`.
+     *
+     * @example
+     *     await merge.accounting.phoneNumbers.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -34,9 +37,9 @@ export class PhoneNumbers {
         requestOptions?: PhoneNumbers.RequestOptions
     ): Promise<Merge.accounting.AccountingPhoneNumber> {
         const { includeRemoteData } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         const _response = await core.fetcher({
@@ -53,11 +56,12 @@ export class PhoneNumbers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.AccountingPhoneNumber.parseOrThrow(_response.body, {

@@ -4,6 +4,17 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             name: "Platform",
+ *             folderUrl: "https://drive.com/1234",
+ *             size: 2738000,
+ *             description: "This is a wild folder."
+ *         }
+ *     }
+ */
 export interface FileStorageFolderEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

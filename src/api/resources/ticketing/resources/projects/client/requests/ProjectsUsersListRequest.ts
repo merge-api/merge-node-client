@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.ticketing.ProjectsUsersListRequestExpand.Roles
+ *     }
+ */
 export interface ProjectsUsersListRequest {
     /**
      * The pagination cursor value.

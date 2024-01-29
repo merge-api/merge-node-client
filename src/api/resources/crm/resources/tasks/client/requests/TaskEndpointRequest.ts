@@ -4,6 +4,17 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             subject: "Contact about Integration Strategy",
+ *             content: "Follow up to see whether they need integrations",
+ *             completedDate: new Date("2022-02-11T00:00:00.000Z"),
+ *             dueDate: new Date("2022-02-10T00:00:00.000Z")
+ *         }
+ *     }
+ */
 export interface TaskEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

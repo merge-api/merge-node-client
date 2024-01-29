@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Engagements {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class Engagements {
 
     /**
      * Returns a list of `Engagement` objects.
+     *
+     * @example
+     *     await merge.crm.engagements.list({
+     *         expand: Merge.crm.EngagementsListRequestExpand.Account
+     *     })
      */
     public async list(
         request: Merge.crm.EngagementsListRequest = {},
@@ -47,57 +52,57 @@ export class Engagements {
             startedAfter,
             startedBefore,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (startedAfter != null) {
-            _queryParams.append("started_after", startedAfter.toISOString());
+            _queryParams["started_after"] = startedAfter.toISOString();
         }
 
         if (startedBefore != null) {
-            _queryParams.append("started_before", startedBefore.toISOString());
+            _queryParams["started_before"] = startedBefore.toISOString();
         }
 
         const _response = await core.fetcher({
@@ -114,11 +119,12 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedEngagementList.parseOrThrow(_response.body, {
@@ -153,19 +159,29 @@ export class Engagements {
 
     /**
      * Creates an `Engagement` object with the given values.
+     *
+     * @example
+     *     await merge.crm.engagements.create({
+     *         model: {
+     *             content: "Call for negotiation",
+     *             subject: "Call from customer",
+     *             startTime: new Date("2022-02-10T00:00:00.000Z"),
+     *             endTime: new Date("2022-02-10T00:05:00.000Z")
+     *         }
+     *     })
      */
     public async create(
         request: Merge.crm.EngagementEndpointRequest,
         requestOptions?: Engagements.RequestOptions
     ): Promise<Merge.crm.EngagementResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -182,7 +198,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -190,6 +206,7 @@ export class Engagements {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
@@ -224,6 +241,11 @@ export class Engagements {
 
     /**
      * Returns an `Engagement` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.engagements.retrieve("id", {
+     *         expand: Merge.crm.EngagementsRetrieveRequestExpand.Account
+     *     })
      */
     public async retrieve(
         id: string,
@@ -231,17 +253,17 @@ export class Engagements {
         requestOptions?: Engagements.RequestOptions
     ): Promise<Merge.crm.Engagement> {
         const { expand, includeRemoteData, includeRemoteFields } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         const _response = await core.fetcher({
@@ -258,11 +280,12 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.Engagement.parseOrThrow(_response.body, {
@@ -297,6 +320,19 @@ export class Engagements {
 
     /**
      * Updates an `Engagement` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.engagements.partialUpdate("id", {
+     *         model: {
+     *             owner: "0358cbc6-2040-430a-848e-aafacbadf3aa",
+     *             content: "Call for negotiation",
+     *             subject: "Call from customer",
+     *             engagementType: "0358cbc6-2040-430a-848e-aafacbadf3aa",
+     *             startTime: new Date("2022-02-10T00:00:00.000Z"),
+     *             endTime: new Date("2022-02-10T00:05:00.000Z"),
+     *             account: "025fjlc6-6000-430a-848e-aafacbadf4fe"
+     *         }
+     *     })
      */
     public async partialUpdate(
         id: string,
@@ -304,13 +340,13 @@ export class Engagements {
         requestOptions?: Engagements.RequestOptions
     ): Promise<Merge.crm.EngagementResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -327,7 +363,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -335,6 +371,7 @@ export class Engagements {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
@@ -369,6 +406,9 @@ export class Engagements {
 
     /**
      * Returns metadata for `Engagement` PATCHs.
+     *
+     * @example
+     *     await merge.crm.engagements.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -388,10 +428,11 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -426,6 +467,9 @@ export class Engagements {
 
     /**
      * Returns metadata for `Engagement` POSTs.
+     *
+     * @example
+     *     await merge.crm.engagements.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Engagements.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await core.fetcher({
@@ -442,10 +486,11 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -480,31 +525,34 @@ export class Engagements {
 
     /**
      * Returns a list of `RemoteFieldClass` objects.
+     *
+     * @example
+     *     await merge.crm.engagements.remoteFieldClassesList({})
      */
     public async remoteFieldClassesList(
         request: Merge.crm.EngagementsRemoteFieldClassesListRequest = {},
         requestOptions?: Engagements.RequestOptions
     ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeRemoteFields, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -521,11 +569,12 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {

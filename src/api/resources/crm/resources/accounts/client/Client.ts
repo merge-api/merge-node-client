@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Accounts {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class Accounts {
 
     /**
      * Returns a list of `Account` objects.
+     *
+     * @example
+     *     await merge.crm.accounts.list({
+     *         expand: "owner"
+     *     })
      */
     public async list(
         request: Merge.crm.AccountsListRequest = {},
@@ -47,57 +52,57 @@ export class Accounts {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (name != null) {
-            _queryParams.append("name", name);
+            _queryParams["name"] = name;
         }
 
         if (ownerId != null) {
-            _queryParams.append("owner_id", ownerId);
+            _queryParams["owner_id"] = ownerId;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         const _response = await core.fetcher({
@@ -114,11 +119,12 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedAccountList.parseOrThrow(_response.body, {
@@ -153,19 +159,31 @@ export class Accounts {
 
     /**
      * Creates an `Account` object with the given values.
+     *
+     * @example
+     *     await merge.crm.accounts.create({
+     *         model: {
+     *             name: "Merge API",
+     *             description: "One API for all integrations",
+     *             industry: "API's",
+     *             website: "https://merge.dev/",
+     *             numberOfEmployees: 276000,
+     *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
+     *         }
+     *     })
      */
     public async create(
         request: Merge.crm.CrmAccountEndpointRequest,
         requestOptions?: Accounts.RequestOptions
     ): Promise<Merge.crm.CrmAccountResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -182,7 +200,7 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -190,6 +208,7 @@ export class Accounts {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.CrmAccountResponse.parseOrThrow(_response.body, {
@@ -224,6 +243,11 @@ export class Accounts {
 
     /**
      * Returns an `Account` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.accounts.retrieve("id", {
+     *         expand: "owner"
+     *     })
      */
     public async retrieve(
         id: string,
@@ -231,17 +255,17 @@ export class Accounts {
         requestOptions?: Accounts.RequestOptions
     ): Promise<Merge.crm.Account> {
         const { expand, includeRemoteData, includeRemoteFields } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         const _response = await core.fetcher({
@@ -258,11 +282,12 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.Account.parseOrThrow(_response.body, {
@@ -297,6 +322,19 @@ export class Accounts {
 
     /**
      * Updates an `Account` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.accounts.partialUpdate("id", {
+     *         model: {
+     *             owner: "0258cbc6-6020-430a-848e-aafacbadf4ae",
+     *             name: "Merge API",
+     *             description: "One API for all integrations",
+     *             industry: "API's",
+     *             website: "https://merge.dev/",
+     *             numberOfEmployees: 276000,
+     *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
+     *         }
+     *     })
      */
     public async partialUpdate(
         id: string,
@@ -304,13 +342,13 @@ export class Accounts {
         requestOptions?: Accounts.RequestOptions
     ): Promise<Merge.crm.CrmAccountResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -327,7 +365,7 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -335,6 +373,7 @@ export class Accounts {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.CrmAccountResponse.parseOrThrow(_response.body, {
@@ -369,6 +408,9 @@ export class Accounts {
 
     /**
      * Returns metadata for `CRMAccount` PATCHs.
+     *
+     * @example
+     *     await merge.crm.accounts.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -388,10 +430,11 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -426,6 +469,9 @@ export class Accounts {
 
     /**
      * Returns metadata for `CRMAccount` POSTs.
+     *
+     * @example
+     *     await merge.crm.accounts.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Accounts.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await core.fetcher({
@@ -442,10 +488,11 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -480,31 +527,34 @@ export class Accounts {
 
     /**
      * Returns a list of `RemoteFieldClass` objects.
+     *
+     * @example
+     *     await merge.crm.accounts.remoteFieldClassesList({})
      */
     public async remoteFieldClassesList(
         request: Merge.crm.AccountsRemoteFieldClassesListRequest = {},
         requestOptions?: Accounts.RequestOptions
     ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeRemoteFields, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -521,11 +571,12 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {

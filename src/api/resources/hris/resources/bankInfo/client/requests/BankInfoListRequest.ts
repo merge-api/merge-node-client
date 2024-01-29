@@ -4,12 +4,22 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         accountType: Merge.hris.BankInfoListRequestAccountType.Checking,
+ *         expand: "employee",
+ *         orderBy: Merge.hris.BankInfoListRequestOrderBy.RemoteCreatedAtDescending,
+ *         remoteFields: "account_type",
+ *         showEnumOrigins: "account_type"
+ *     }
+ */
 export interface BankInfoListRequest {
     /**
      * If provided, will only return BankInfo's with this account type. Options: ('SAVINGS', 'CHECKING')
      *
-     * * `SAVINGS` - SAVINGS
-     * * `CHECKING` - CHECKING
+     * - `SAVINGS` - SAVINGS
+     * - `CHECKING` - CHECKING
      */
     accountType?: Merge.hris.BankInfoListRequestAccountType;
     /**

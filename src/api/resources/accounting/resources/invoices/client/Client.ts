@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Invoices {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,14 @@ export class Invoices {
 
     /**
      * Returns a list of `Invoice` objects.
+     *
+     * @example
+     *     await merge.accounting.invoices.list({
+     *         expand: Merge.accounting.InvoicesListRequestExpand.AccountingPeriod,
+     *         remoteFields: "type",
+     *         showEnumOrigins: "type",
+     *         type: Merge.accounting.InvoicesListRequestType.AccountsPayable
+     *     })
      */
     public async list(
         request: Merge.accounting.InvoicesListRequest = {},
@@ -51,73 +59,73 @@ export class Invoices {
             showEnumOrigins,
             type: type_,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (companyId != null) {
-            _queryParams.append("company_id", companyId);
+            _queryParams["company_id"] = companyId;
         }
 
         if (contactId != null) {
-            _queryParams.append("contact_id", contactId);
+            _queryParams["contact_id"] = contactId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (issueDateAfter != null) {
-            _queryParams.append("issue_date_after", issueDateAfter.toISOString());
+            _queryParams["issue_date_after"] = issueDateAfter.toISOString();
         }
 
         if (issueDateBefore != null) {
-            _queryParams.append("issue_date_before", issueDateBefore.toISOString());
+            _queryParams["issue_date_before"] = issueDateBefore.toISOString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         if (type_ != null) {
-            _queryParams.append("type", type_);
+            _queryParams["type"] = type_;
         }
 
         const _response = await core.fetcher({
@@ -134,11 +142,12 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.PaginatedInvoiceList.parseOrThrow(_response.body, {
@@ -173,19 +182,34 @@ export class Invoices {
 
     /**
      * Creates an `Invoice` object with the given values.
+     *
+     * @example
+     *     await merge.accounting.invoices.create({
+     *         model: {
+     *             lineItems: [{
+     *                     remoteId: "8765432",
+     *                     description: "Pickleball lessons",
+     *                     unitPrice: 50,
+     *                     quantity: 1,
+     *                     totalAmount: 50,
+     *                     exchangeRate: "2.9",
+     *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
+     *                 }]
+     *         }
+     *     })
      */
     public async create(
         request: Merge.accounting.InvoiceEndpointRequest,
         requestOptions?: Invoices.RequestOptions
     ): Promise<Merge.accounting.InvoiceResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -202,7 +226,7 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -210,6 +234,7 @@ export class Invoices {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.InvoiceResponse.parseOrThrow(_response.body, {
@@ -244,6 +269,13 @@ export class Invoices {
 
     /**
      * Returns an `Invoice` object with the given `id`.
+     *
+     * @example
+     *     await merge.accounting.invoices.retrieve("id", {
+     *         expand: Merge.accounting.InvoicesRetrieveRequestExpand.AccountingPeriod,
+     *         remoteFields: "type",
+     *         showEnumOrigins: "type"
+     *     })
      */
     public async retrieve(
         id: string,
@@ -251,21 +283,21 @@ export class Invoices {
         requestOptions?: Invoices.RequestOptions
     ): Promise<Merge.accounting.Invoice> {
         const { expand, includeRemoteData, remoteFields, showEnumOrigins } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -282,11 +314,12 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.Invoice.parseOrThrow(_response.body, {
@@ -321,6 +354,9 @@ export class Invoices {
 
     /**
      * Returns metadata for `Invoice` POSTs.
+     *
+     * @example
+     *     await merge.accounting.invoices.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Invoices.RequestOptions): Promise<Merge.accounting.MetaResponse> {
         const _response = await core.fetcher({
@@ -337,10 +373,11 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.MetaResponse.parseOrThrow(_response.body, {

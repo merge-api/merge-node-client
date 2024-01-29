@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Comments {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class Comments {
 
     /**
      * Returns a list of `Comment` objects.
+     *
+     * @example
+     *     await merge.ticketing.comments.list({
+     *         expand: Merge.ticketing.CommentsListRequestExpand.Contact
+     *     })
      */
     public async list(
         request: Merge.ticketing.CommentsListRequest = {},
@@ -46,53 +51,53 @@ export class Comments {
             remoteId,
             ticketId,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteCreatedAfter != null) {
-            _queryParams.append("remote_created_after", remoteCreatedAfter.toISOString());
+            _queryParams["remote_created_after"] = remoteCreatedAfter.toISOString();
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (ticketId != null) {
-            _queryParams.append("ticket_id", ticketId);
+            _queryParams["ticket_id"] = ticketId;
         }
 
         const _response = await core.fetcher({
@@ -109,11 +114,12 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.PaginatedCommentList.parseOrThrow(_response.body, {
@@ -148,19 +154,27 @@ export class Comments {
 
     /**
      * Creates a `Comment` object with the given values.
+     *
+     * @example
+     *     await merge.ticketing.comments.create({
+     *         model: {
+     *             body: "When will these integrations be done? You all should use Merge.",
+     *             htmlBody: "When will these integrations be done? You all should use <b>Merge<b>."
+     *         }
+     *     })
      */
     public async create(
         request: Merge.ticketing.CommentEndpointRequest,
         requestOptions?: Comments.RequestOptions
     ): Promise<Merge.ticketing.CommentResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -177,7 +191,7 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -185,6 +199,7 @@ export class Comments {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.CommentResponse.parseOrThrow(_response.body, {
@@ -219,6 +234,11 @@ export class Comments {
 
     /**
      * Returns a `Comment` object with the given `id`.
+     *
+     * @example
+     *     await merge.ticketing.comments.retrieve("id", {
+     *         expand: Merge.ticketing.CommentsRetrieveRequestExpand.Contact
+     *     })
      */
     public async retrieve(
         id: string,
@@ -226,13 +246,13 @@ export class Comments {
         requestOptions?: Comments.RequestOptions
     ): Promise<Merge.ticketing.Comment> {
         const { expand, includeRemoteData } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         const _response = await core.fetcher({
@@ -249,11 +269,12 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.Comment.parseOrThrow(_response.body, {
@@ -288,6 +309,9 @@ export class Comments {
 
     /**
      * Returns metadata for `Comment` POSTs.
+     *
+     * @example
+     *     await merge.ticketing.comments.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Comments.RequestOptions): Promise<Merge.ticketing.MetaResponse> {
         const _response = await core.fetcher({
@@ -304,10 +328,11 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {

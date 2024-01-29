@@ -7,8 +7,8 @@ import * as Merge from "../../..";
 /**
  * The interview's status.
  *
- * * `SCHEDULED` - SCHEDULED
- * * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
- * * `COMPLETE` - COMPLETE
+ * - `SCHEDULED` - SCHEDULED
+ * - `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
+ * - `COMPLETE` - COMPLETE
  */
 export type ScheduledInterviewStatus = Merge.ats.ScheduledInterviewStatusEnum | string;

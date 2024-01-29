@@ -4,6 +4,19 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             name: "Please add more integrations",
+ *             dueDate: new Date("2022-10-11T00:00:00.000Z"),
+ *             description: "Can you please add more integrations? It'll make syncing data much easier!",
+ *             ticketType: "incident",
+ *             completedAt: new Date("2021-12-09T00:00:00.000Z"),
+ *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1"
+ *         }
+ *     }
+ */
 export interface TicketEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

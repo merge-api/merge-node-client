@@ -18,6 +18,7 @@ export declare namespace AsyncPassthrough {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -26,6 +27,20 @@ export class AsyncPassthrough {
 
     /**
      * Asynchronously pull data from an endpoint not currently supported by Merge.
+     *
+     * @example
+     *     await merge.crm.asyncPassthrough.create({
+     *         method: Merge.crm.MethodEnum.Get,
+     *         path: "/scooters",
+     *         data: "{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}",
+     *         multipartFormData: [{
+     *                 name: "resume",
+     *                 data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
+     *                 fileName: "resume.pdf",
+     *                 contentType: "application/pdf"
+     *             }],
+     *         requestFormat: Merge.crm.RequestFormatEnum.Json
+     *     })
      */
     public async create(
         request: Merge.crm.DataPassthroughRequest,
@@ -45,13 +60,14 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             body: await serializers.crm.DataPassthroughRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.AsyncPassthroughReciept.parseOrThrow(_response.body, {
@@ -105,10 +121,11 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.RemoteResponse.parseOrThrow(_response.body, {

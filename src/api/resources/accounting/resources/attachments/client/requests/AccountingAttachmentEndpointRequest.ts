@@ -4,6 +4,16 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             fileName: "invoice.png",
+ *             fileUrl: "https://merge-brand.s3.amazonaws.com/20210315/rect-logo-270x80%402x.png",
+ *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
+ *         }
+ *     }
+ */
 export interface AccountingAttachmentEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

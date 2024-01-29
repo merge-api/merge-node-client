@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         status: Merge.ticketing.IssuesListRequestStatus.Ongoing
+ *     }
+ */
 export interface IssuesListRequest {
     accountToken?: string;
     /**
@@ -47,8 +53,8 @@ export interface IssuesListRequest {
     /**
      * Status of the issue. Options: ('ONGOING', 'RESOLVED')
      *
-     * * `ONGOING` - ONGOING
-     * * `RESOLVED` - RESOLVED
+     * - `ONGOING` - ONGOING
+     * - `RESOLVED` - RESOLVED
      */
     status?: Merge.ticketing.IssuesListRequestStatus;
 }

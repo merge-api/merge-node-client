@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.crm.LeadsListRequestExpand.ConvertedAccount
+ *     }
+ */
 export interface LeadsListRequest {
     /**
      * If provided, will only return leads with this account.

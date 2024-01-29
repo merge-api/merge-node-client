@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Collections {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,14 @@ export class Collections {
 
     /**
      * Returns a list of `Collection` objects.
+     *
+     * @example
+     *     await merge.ticketing.collections.list({
+     *         collectionType: Merge.ticketing.CollectionsListRequestCollectionType.List,
+     *         expand: "parent_collection",
+     *         remoteFields: "collection_type",
+     *         showEnumOrigins: "collection_type"
+     *     })
      */
     public async list(
         request: Merge.ticketing.CollectionsListRequest = {},
@@ -48,61 +56,61 @@ export class Collections {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (collectionType != null) {
-            _queryParams.append("collection_type", collectionType);
+            _queryParams["collection_type"] = collectionType;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (parentCollectionId != null) {
-            _queryParams.append("parent_collection_id", parentCollectionId);
+            _queryParams["parent_collection_id"] = parentCollectionId;
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -119,11 +127,12 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.PaginatedCollectionList.parseOrThrow(_response.body, {
@@ -158,6 +167,13 @@ export class Collections {
 
     /**
      * Returns a `Collection` object with the given `id`.
+     *
+     * @example
+     *     await merge.ticketing.collections.retrieve("id", {
+     *         expand: "parent_collection",
+     *         remoteFields: "collection_type",
+     *         showEnumOrigins: "collection_type"
+     *     })
      */
     public async retrieve(
         id: string,
@@ -165,21 +181,21 @@ export class Collections {
         requestOptions?: Collections.RequestOptions
     ): Promise<Merge.ticketing.Collection> {
         const { expand, includeRemoteData, remoteFields, showEnumOrigins } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -196,11 +212,12 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.Collection.parseOrThrow(_response.body, {
@@ -235,6 +252,11 @@ export class Collections {
 
     /**
      * Returns a list of `User` objects.
+     *
+     * @example
+     *     await merge.ticketing.collections.usersList("parent-id", {
+     *         expand: Merge.ticketing.CollectionsUsersListRequestExpand.Roles
+     *     })
      */
     public async usersList(
         parentId: string,
@@ -242,25 +264,25 @@ export class Collections {
         requestOptions?: Collections.RequestOptions
     ): Promise<Merge.ticketing.PaginatedUserList> {
         const { cursor, expand, includeDeletedData, includeRemoteData, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -277,11 +299,12 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.PaginatedUserList.parseOrThrow(_response.body, {

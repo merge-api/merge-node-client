@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Jobs {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,14 @@ export class Jobs {
 
     /**
      * Returns a list of `Job` objects.
+     *
+     * @example
+     *     await merge.ats.jobs.list({
+     *         expand: Merge.ats.JobsListRequestExpand.Departments,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status",
+     *         status: Merge.ats.JobsListRequestStatus.Archived
+     *     })
      */
     public async list(
         request: Merge.ats.JobsListRequest = {},
@@ -49,65 +57,65 @@ export class Jobs {
             showEnumOrigins,
             status,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (code != null) {
-            _queryParams.append("code", code);
+            _queryParams["code"] = code;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (offices != null) {
-            _queryParams.append("offices", offices);
+            _queryParams["offices"] = offices;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         if (status != null) {
-            _queryParams.append("status", status);
+            _queryParams["status"] = status;
         }
 
         const _response = await core.fetcher({
@@ -124,11 +132,12 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.PaginatedJobList.parseOrThrow(_response.body, {
@@ -163,6 +172,13 @@ export class Jobs {
 
     /**
      * Returns a `Job` object with the given `id`.
+     *
+     * @example
+     *     await merge.ats.jobs.retrieve("id", {
+     *         expand: Merge.ats.JobsRetrieveRequestExpand.Departments,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status"
+     *     })
      */
     public async retrieve(
         id: string,
@@ -170,21 +186,21 @@ export class Jobs {
         requestOptions?: Jobs.RequestOptions
     ): Promise<Merge.ats.Job> {
         const { expand, includeRemoteData, remoteFields, showEnumOrigins } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -201,11 +217,12 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.Job.parseOrThrow(_response.body, {
@@ -240,6 +257,11 @@ export class Jobs {
 
     /**
      * Returns a list of `ScreeningQuestion` objects.
+     *
+     * @example
+     *     await merge.ats.jobs.screeningQuestionsList("job-id", {
+     *         expand: Merge.ats.JobsScreeningQuestionsListRequestExpand.Job
+     *     })
      */
     public async screeningQuestionsList(
         jobId: string,
@@ -247,25 +269,25 @@ export class Jobs {
         requestOptions?: Jobs.RequestOptions
     ): Promise<Merge.ats.PaginatedScreeningQuestionList> {
         const { cursor, expand, includeDeletedData, includeRemoteData, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -282,11 +304,12 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.PaginatedScreeningQuestionList.parseOrThrow(_response.body, {

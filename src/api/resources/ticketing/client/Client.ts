@@ -41,6 +41,7 @@ export declare namespace Ticketing {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 

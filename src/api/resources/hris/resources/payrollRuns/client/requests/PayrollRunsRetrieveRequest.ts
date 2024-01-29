@@ -4,6 +4,13 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         remoteFields: Merge.hris.PayrollRunsRetrieveRequestRemoteFields.RunState,
+ *         showEnumOrigins: Merge.hris.PayrollRunsRetrieveRequestShowEnumOrigins.RunState
+ *     }
+ */
 export interface PayrollRunsRetrieveRequest {
     /**
      * Whether to include the original data Merge fetched from the third-party to produce these models.

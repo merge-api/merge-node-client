@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The PhoneNumber Object
+ *
  * ### Description
+ *
  * The `PhoneNumber` object is used to represent a candidate's phone number.
+ *
  * ### Usage Example
+ *
  * Fetch from the `GET Candidate` endpoint and view their phone numbers.
  */
 export interface PhoneNumberRequest {
@@ -17,11 +21,11 @@ export interface PhoneNumberRequest {
     /**
      * The type of phone number.
      *
-     * * `HOME` - HOME
-     * * `WORK` - WORK
-     * * `MOBILE` - MOBILE
-     * * `SKYPE` - SKYPE
-     * * `OTHER` - OTHER
+     * - `HOME` - HOME
+     * - `WORK` - WORK
+     * - `MOBILE` - MOBILE
+     * - `SKYPE` - SKYPE
+     * - `OTHER` - OTHER
      */
     phoneNumberType?: Merge.ats.PhoneNumberRequestPhoneNumberType;
     integrationParams?: Record<string, unknown>;

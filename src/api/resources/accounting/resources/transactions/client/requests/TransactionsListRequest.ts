@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.accounting.TransactionsListRequestExpand.Account
+ *     }
+ */
 export interface TransactionsListRequest {
     /**
      * If provided, will only return accounting transactions for this company.

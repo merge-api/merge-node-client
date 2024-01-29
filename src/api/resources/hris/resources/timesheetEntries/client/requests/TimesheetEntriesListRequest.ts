@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         orderBy: Merge.hris.TimesheetEntriesListRequestOrderBy.StartTimeDescending
+ *     }
+ */
 export interface TimesheetEntriesListRequest {
     /**
      * If provided, will only return objects created after this datetime.

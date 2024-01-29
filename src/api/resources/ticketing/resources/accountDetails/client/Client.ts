@@ -18,6 +18,7 @@ export declare namespace AccountDetails {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -26,6 +27,9 @@ export class AccountDetails {
 
     /**
      * Get details for a linked account.
+     *
+     * @example
+     *     await merge.ticketing.accountDetails.retrieve()
      */
     public async retrieve(requestOptions?: AccountDetails.RequestOptions): Promise<Merge.ticketing.AccountDetails> {
         const _response = await core.fetcher({
@@ -42,10 +46,11 @@ export class AccountDetails {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ticketing.AccountDetails.parseOrThrow(_response.body, {

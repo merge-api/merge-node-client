@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.crm.OpportunitiesRetrieveRequestExpand.Account,
+ *         remoteFields: "status",
+ *         showEnumOrigins: "status"
+ *     }
+ */
 export interface OpportunitiesRetrieveRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.

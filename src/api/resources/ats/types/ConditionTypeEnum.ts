@@ -3,13 +3,13 @@
  */
 
 /**
- * * `BOOLEAN` - BOOLEAN
- * * `DATE` - DATE
- * * `DATE_TIME` - DATE_TIME
- * * `INTEGER` - INTEGER
- * * `FLOAT` - FLOAT
- * * `STRING` - STRING
- * * `LIST_OF_STRINGS` - LIST_OF_STRINGS
+ * - `BOOLEAN` - BOOLEAN
+ * - `DATE` - DATE
+ * - `DATE_TIME` - DATE_TIME
+ * - `INTEGER` - INTEGER
+ * - `FLOAT` - FLOAT
+ * - `STRING` - STRING
+ * - `LIST_OF_STRINGS` - LIST_OF_STRINGS
  */
 export type ConditionTypeEnum = "BOOLEAN" | "DATE" | "DATE_TIME" | "INTEGER" | "FLOAT" | "STRING" | "LIST_OF_STRINGS";
 

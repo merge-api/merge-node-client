@@ -7,11 +7,11 @@ import * as Merge from "../../..";
 /**
  * The policy type of this time off balance.
  *
- * * `VACATION` - VACATION
- * * `SICK` - SICK
- * * `PERSONAL` - PERSONAL
- * * `JURY_DUTY` - JURY_DUTY
- * * `VOLUNTEER` - VOLUNTEER
- * * `BEREAVEMENT` - BEREAVEMENT
+ * - `VACATION` - VACATION
+ * - `SICK` - SICK
+ * - `PERSONAL` - PERSONAL
+ * - `JURY_DUTY` - JURY_DUTY
+ * - `VOLUNTEER` - VOLUNTEER
+ * - `BEREAVEMENT` - BEREAVEMENT
  */
 export type TimeOffBalancePolicyType = Merge.hris.PolicyTypeEnum | string;

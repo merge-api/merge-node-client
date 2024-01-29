@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.crm.ContactsListRequestExpand.Account
+ *     }
+ */
 export interface ContactsListRequest {
     /**
      * If provided, will only return contacts with this account.

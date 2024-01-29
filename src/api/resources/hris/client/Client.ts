@@ -46,6 +46,7 @@ export declare namespace Hris {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 

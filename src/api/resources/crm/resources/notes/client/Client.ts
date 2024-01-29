@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Notes {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,11 @@ export class Notes {
 
     /**
      * Returns a list of `Note` objects.
+     *
+     * @example
+     *     await merge.crm.notes.list({
+     *         expand: Merge.crm.NotesListRequestExpand.Account
+     *     })
      */
     public async list(
         request: Merge.crm.NotesListRequest = {},
@@ -49,65 +54,65 @@ export class Notes {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (accountId != null) {
-            _queryParams.append("account_id", accountId);
+            _queryParams["account_id"] = accountId;
         }
 
         if (contactId != null) {
-            _queryParams.append("contact_id", contactId);
+            _queryParams["contact_id"] = contactId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (opportunityId != null) {
-            _queryParams.append("opportunity_id", opportunityId);
+            _queryParams["opportunity_id"] = opportunityId;
         }
 
         if (ownerId != null) {
-            _queryParams.append("owner_id", ownerId);
+            _queryParams["owner_id"] = ownerId;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         const _response = await core.fetcher({
@@ -124,11 +129,12 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedNoteList.parseOrThrow(_response.body, {
@@ -163,19 +169,26 @@ export class Notes {
 
     /**
      * Creates a `Note` object with the given values.
+     *
+     * @example
+     *     await merge.crm.notes.create({
+     *         model: {
+     *             content: "Merge is hiring!"
+     *         }
+     *     })
      */
     public async create(
         request: Merge.crm.NoteEndpointRequest,
         requestOptions?: Notes.RequestOptions
     ): Promise<Merge.crm.NoteResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -192,12 +205,13 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             body: await serializers.crm.NoteEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.NoteResponse.parseOrThrow(_response.body, {
@@ -232,6 +246,11 @@ export class Notes {
 
     /**
      * Returns a `Note` object with the given `id`.
+     *
+     * @example
+     *     await merge.crm.notes.retrieve("id", {
+     *         expand: Merge.crm.NotesRetrieveRequestExpand.Account
+     *     })
      */
     public async retrieve(
         id: string,
@@ -239,17 +258,17 @@ export class Notes {
         requestOptions?: Notes.RequestOptions
     ): Promise<Merge.crm.Note> {
         const { expand, includeRemoteData, includeRemoteFields } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         const _response = await core.fetcher({
@@ -266,11 +285,12 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.Note.parseOrThrow(_response.body, {
@@ -305,6 +325,9 @@ export class Notes {
 
     /**
      * Returns metadata for `Note` POSTs.
+     *
+     * @example
+     *     await merge.crm.notes.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Notes.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await core.fetcher({
@@ -321,10 +344,11 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
@@ -359,31 +383,34 @@ export class Notes {
 
     /**
      * Returns a list of `RemoteFieldClass` objects.
+     *
+     * @example
+     *     await merge.crm.notes.remoteFieldClassesList({})
      */
     public async remoteFieldClassesList(
         request: Merge.crm.NotesRemoteFieldClassesListRequest = {},
         requestOptions?: Notes.RequestOptions
     ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeRemoteFields, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (includeRemoteFields != null) {
-            _queryParams.append("include_remote_fields", includeRemoteFields.toString());
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -400,11 +427,12 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {

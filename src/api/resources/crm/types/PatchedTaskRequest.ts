@@ -6,9 +6,13 @@ import * as Merge from "../../..";
 
 /**
  * # The Task Object
+ *
  * ### Description
+ *
  * The `Task` object is used to represent a task, such as a to-do item.
+ *
  * ### Usage Example
+ *
  * TODO
  */
 export interface PatchedTaskRequest {
@@ -29,8 +33,8 @@ export interface PatchedTaskRequest {
     /**
      * The task's status.
      *
-     * * `OPEN` - OPEN
-     * * `CLOSED` - CLOSED
+     * - `OPEN` - OPEN
+     * - `CLOSED` - CLOSED
      */
     status?: Merge.crm.PatchedTaskRequestStatus;
     integrationParams?: Record<string, unknown>;

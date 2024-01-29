@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.accounting.CompanyInfoListRequestExpand.Addresses
+ *     }
+ */
 export interface CompanyInfoListRequest {
     /**
      * If provided, will only return objects created after this datetime.

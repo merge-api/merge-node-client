@@ -6,11 +6,14 @@ import * as Merge from "../../..";
 
 /**
  * # The Collection Object
+ *
  * ### Description
+ *
  * The `Collection` object is used to represent collections of tickets. Collections may include other collections as
  * sub collections.
  *
  * ### Usage Example
+ *
  * TODO
  */
 export interface Collection {
@@ -24,8 +27,8 @@ export interface Collection {
     /**
      * The collection's type.
      *
-     * * `LIST` - LIST
-     * * `PROJECT` - PROJECT
+     * - `LIST` - LIST
+     * - `PROJECT` - PROJECT
      */
     collectionType?: Merge.ticketing.CollectionCollectionType;
     /** The parent collection for this collection. */
@@ -35,9 +38,9 @@ export interface Collection {
     /**
      * The level of access a User has to the Collection and its sub-objects.
      *
-     * * `PRIVATE` - PRIVATE
-     * * `COMPANY` - COMPANY
-     * * `PUBLIC` - PUBLIC
+     * - `PRIVATE` - PRIVATE
+     * - `COMPANY` - COMPANY
+     * - `PUBLIC` - PUBLIC
      */
     accessLevel?: Merge.ticketing.CollectionAccessLevel;
     createdAt?: Date;

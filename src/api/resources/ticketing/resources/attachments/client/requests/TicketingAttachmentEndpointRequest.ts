@@ -4,6 +4,17 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             fileName: "Screenshot.png",
+ *             fileUrl: "http://alturl.com/p749b",
+ *             contentType: "jpeg",
+ *             uploadedBy: "28b54125-287f-494d-965e-3c5b330c9a68"
+ *         }
+ *     }
+ */
 export interface TicketingAttachmentEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

@@ -3,10 +3,10 @@
  */
 
 /**
- * * `OPEN` - OPEN
- * * `CLOSED` - CLOSED
- * * `IN_PROGRESS` - IN_PROGRESS
- * * `ON_HOLD` - ON_HOLD
+ * - `OPEN` - OPEN
+ * - `CLOSED` - CLOSED
+ * - `IN_PROGRESS` - IN_PROGRESS
+ * - `ON_HOLD` - ON_HOLD
  */
 export type TicketStatusEnum = "OPEN" | "CLOSED" | "IN_PROGRESS" | "ON_HOLD";
 

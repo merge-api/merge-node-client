@@ -3,10 +3,10 @@
  */
 
 /**
- * * `USER` - USER
- * * `GROUP` - GROUP
- * * `COMPANY` - COMPANY
- * * `ANYONE` - ANYONE
+ * - `USER` - USER
+ * - `GROUP` - GROUP
+ * - `COMPANY` - COMPANY
+ * - `ANYONE` - ANYONE
  */
 export type TypeEnum = "USER" | "GROUP" | "COMPANY" | "ANYONE";
 

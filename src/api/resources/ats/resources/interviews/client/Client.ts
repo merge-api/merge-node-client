@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Interviews {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,13 @@ export class Interviews {
 
     /**
      * Returns a list of `ScheduledInterview` objects.
+     *
+     * @example
+     *     await merge.ats.interviews.list({
+     *         expand: Merge.ats.InterviewsListRequestExpand.Application,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status"
+     *     })
      */
     public async list(
         request: Merge.ats.InterviewsListRequest = {},
@@ -50,69 +57,69 @@ export class Interviews {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (applicationId != null) {
-            _queryParams.append("application_id", applicationId);
+            _queryParams["application_id"] = applicationId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (jobId != null) {
-            _queryParams.append("job_id", jobId);
+            _queryParams["job_id"] = jobId;
         }
 
         if (jobInterviewStageId != null) {
-            _queryParams.append("job_interview_stage_id", jobInterviewStageId);
+            _queryParams["job_interview_stage_id"] = jobInterviewStageId;
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (organizerId != null) {
-            _queryParams.append("organizer_id", organizerId);
+            _queryParams["organizer_id"] = organizerId;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -129,11 +136,12 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.PaginatedScheduledInterviewList.parseOrThrow(_response.body, {
@@ -174,13 +182,13 @@ export class Interviews {
         requestOptions?: Interviews.RequestOptions
     ): Promise<Merge.ats.ScheduledInterviewResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (isDebugMode != null) {
-            _queryParams.append("is_debug_mode", isDebugMode.toString());
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
 
         if (runAsync != null) {
-            _queryParams.append("run_async", runAsync.toString());
+            _queryParams["run_async"] = runAsync.toString();
         }
 
         const _response = await core.fetcher({
@@ -197,7 +205,7 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -205,6 +213,7 @@ export class Interviews {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.ScheduledInterviewResponse.parseOrThrow(_response.body, {
@@ -239,6 +248,13 @@ export class Interviews {
 
     /**
      * Returns a `ScheduledInterview` object with the given `id`.
+     *
+     * @example
+     *     await merge.ats.interviews.retrieve("id", {
+     *         expand: Merge.ats.InterviewsRetrieveRequestExpand.Application,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status"
+     *     })
      */
     public async retrieve(
         id: string,
@@ -246,21 +262,21 @@ export class Interviews {
         requestOptions?: Interviews.RequestOptions
     ): Promise<Merge.ats.ScheduledInterview> {
         const { expand, includeRemoteData, remoteFields, showEnumOrigins } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -277,11 +293,12 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.ScheduledInterview.parseOrThrow(_response.body, {
@@ -316,6 +333,9 @@ export class Interviews {
 
     /**
      * Returns metadata for `ScheduledInterview` POSTs.
+     *
+     * @example
+     *     await merge.ats.interviews.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Interviews.RequestOptions): Promise<Merge.ats.MetaResponse> {
         const _response = await core.fetcher({
@@ -332,10 +352,11 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.ats.MetaResponse.parseOrThrow(_response.body, {

@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.accounting.CreditNotesListRequestExpand.AccountingPeriod,
+ *         remoteFields: Merge.accounting.CreditNotesListRequestRemoteFields.Status,
+ *         showEnumOrigins: Merge.accounting.CreditNotesListRequestShowEnumOrigins.Status
+ *     }
+ */
 export interface CreditNotesListRequest {
     /**
      * If provided, will only return credit notes for this company.

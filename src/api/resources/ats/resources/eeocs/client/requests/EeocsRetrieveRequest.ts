@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: "candidate",
+ *         remoteFields: Merge.ats.EeocsRetrieveRequestRemoteFields.DisabilityStatus,
+ *         showEnumOrigins: Merge.ats.EeocsRetrieveRequestShowEnumOrigins.DisabilityStatus
+ *     }
+ */
 export interface EeocsRetrieveRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.

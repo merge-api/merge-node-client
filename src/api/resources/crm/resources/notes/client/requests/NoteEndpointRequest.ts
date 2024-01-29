@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             content: "Merge is hiring!"
+ *         }
+ *     }
+ */
 export interface NoteEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

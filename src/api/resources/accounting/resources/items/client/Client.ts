@@ -5,7 +5,6 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../..";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
@@ -19,6 +18,7 @@ export declare namespace Items {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,13 @@ export class Items {
 
     /**
      * Returns a list of `Item` objects.
+     *
+     * @example
+     *     await merge.accounting.items.list({
+     *         expand: Merge.accounting.ItemsListRequestExpand.Company,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status"
+     *     })
      */
     public async list(
         request: Merge.accounting.ItemsListRequest = {},
@@ -47,57 +54,57 @@ export class Items {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (companyId != null) {
-            _queryParams.append("company_id", companyId);
+            _queryParams["company_id"] = companyId;
         }
 
         if (createdAfter != null) {
-            _queryParams.append("created_after", createdAfter.toISOString());
+            _queryParams["created_after"] = createdAfter.toISOString();
         }
 
         if (createdBefore != null) {
-            _queryParams.append("created_before", createdBefore.toISOString());
+            _queryParams["created_before"] = createdBefore.toISOString();
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
-            _queryParams.append("include_deleted_data", includeDeletedData.toString());
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (modifiedAfter != null) {
-            _queryParams.append("modified_after", modifiedAfter.toISOString());
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
 
         if (modifiedBefore != null) {
-            _queryParams.append("modified_before", modifiedBefore.toISOString());
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (remoteId != null) {
-            _queryParams.append("remote_id", remoteId);
+            _queryParams["remote_id"] = remoteId;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -114,11 +121,12 @@ export class Items {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.PaginatedItemList.parseOrThrow(_response.body, {
@@ -153,6 +161,13 @@ export class Items {
 
     /**
      * Returns an `Item` object with the given `id`.
+     *
+     * @example
+     *     await merge.accounting.items.retrieve("id", {
+     *         expand: Merge.accounting.ItemsRetrieveRequestExpand.Company,
+     *         remoteFields: "status",
+     *         showEnumOrigins: "status"
+     *     })
      */
     public async retrieve(
         id: string,
@@ -160,21 +175,21 @@ export class Items {
         requestOptions?: Items.RequestOptions
     ): Promise<Merge.accounting.Item> {
         const { expand, includeRemoteData, remoteFields, showEnumOrigins } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (expand != null) {
-            _queryParams.append("expand", expand);
+            _queryParams["expand"] = expand;
         }
 
         if (includeRemoteData != null) {
-            _queryParams.append("include_remote_data", includeRemoteData.toString());
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
         if (remoteFields != null) {
-            _queryParams.append("remote_fields", remoteFields);
+            _queryParams["remote_fields"] = remoteFields;
         }
 
         if (showEnumOrigins != null) {
-            _queryParams.append("show_enum_origins", showEnumOrigins);
+            _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
         const _response = await core.fetcher({
@@ -191,11 +206,12 @@ export class Items {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.Item.parseOrThrow(_response.body, {

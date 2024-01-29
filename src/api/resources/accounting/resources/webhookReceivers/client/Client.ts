@@ -18,6 +18,7 @@ export declare namespace WebhookReceivers {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -26,6 +27,9 @@ export class WebhookReceivers {
 
     /**
      * Returns a list of `WebhookReceiver` objects.
+     *
+     * @example
+     *     await merge.accounting.webhookReceivers.list()
      */
     public async list(requestOptions?: WebhookReceivers.RequestOptions): Promise<Merge.accounting.WebhookReceiver[]> {
         const _response = await core.fetcher({
@@ -42,10 +46,11 @@ export class WebhookReceivers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.webhookReceivers.list.Response.parseOrThrow(_response.body, {
@@ -99,13 +104,14 @@ export class WebhookReceivers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             body: await serializers.accounting.WebhookReceiverRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.accounting.WebhookReceiver.parseOrThrow(_response.body, {

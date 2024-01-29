@@ -8,7 +8,6 @@ import * as Merge from "../../../../..";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
-import { default as URLSearchParams } from "@ungap/url-search-params";
 
 export declare namespace SelectiveSync {
     interface Options {
@@ -19,6 +18,7 @@ export declare namespace SelectiveSync {
 
     interface RequestOptions {
         timeoutInSeconds?: number;
+        maxRetries?: number;
     }
 }
 
@@ -27,6 +27,9 @@ export class SelectiveSync {
 
     /**
      * Get a linked account's selective syncs.
+     *
+     * @example
+     *     await merge.filestorage.selectiveSync.configurationsList()
      */
     public async configurationsList(
         requestOptions?: SelectiveSync.RequestOptions
@@ -45,10 +48,11 @@ export class SelectiveSync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.filestorage.selectiveSync.configurationsList.Response.parseOrThrow(
@@ -86,6 +90,13 @@ export class SelectiveSync {
 
     /**
      * Replace a linked account's selective syncs.
+     *
+     * @example
+     *     await merge.filestorage.selectiveSync.configurationsUpdate({
+     *         syncConfigurations: [{
+     *                 linkedAccountConditions: []
+     *             }]
+     *     })
      */
     public async configurationsUpdate(
         request: Merge.filestorage.LinkedAccountSelectiveSyncConfigurationListRequest,
@@ -105,7 +116,7 @@ export class SelectiveSync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             body: await serializers.filestorage.LinkedAccountSelectiveSyncConfigurationListRequest.jsonOrThrow(
@@ -113,6 +124,7 @@ export class SelectiveSync {
                 { unrecognizedObjectKeys: "strip" }
             ),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.filestorage.selectiveSync.configurationsUpdate.Response.parseOrThrow(
@@ -150,23 +162,26 @@ export class SelectiveSync {
 
     /**
      * Get metadata for the conditions available to a linked account.
+     *
+     * @example
+     *     await merge.filestorage.selectiveSync.metaList({})
      */
     public async metaList(
         request: Merge.filestorage.SelectiveSyncMetaListRequest = {},
         requestOptions?: SelectiveSync.RequestOptions
     ): Promise<Merge.filestorage.PaginatedConditionSchemaList> {
         const { commonModel, cursor, pageSize } = request;
-        const _queryParams = new URLSearchParams();
+        const _queryParams: Record<string, string | string[]> = {};
         if (commonModel != null) {
-            _queryParams.append("common_model", commonModel);
+            _queryParams["common_model"] = commonModel;
         }
 
         if (cursor != null) {
-            _queryParams.append("cursor", cursor);
+            _queryParams["cursor"] = cursor;
         }
 
         if (pageSize != null) {
-            _queryParams.append("page_size", pageSize.toString());
+            _queryParams["page_size"] = pageSize.toString();
         }
 
         const _response = await core.fetcher({
@@ -183,11 +198,12 @@ export class SelectiveSync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
             return await serializers.filestorage.PaginatedConditionSchemaList.parseOrThrow(_response.body, {

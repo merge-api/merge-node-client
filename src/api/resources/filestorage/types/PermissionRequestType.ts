@@ -7,9 +7,9 @@ import * as Merge from "../../..";
 /**
  * Denotes what type of people have access to the file.
  *
- * * `USER` - USER
- * * `GROUP` - GROUP
- * * `COMPANY` - COMPANY
- * * `ANYONE` - ANYONE
+ * - `USER` - USER
+ * - `GROUP` - GROUP
+ * - `COMPANY` - COMPANY
+ * - `ANYONE` - ANYONE
  */
 export type PermissionRequestType = Merge.filestorage.TypeEnum | string;

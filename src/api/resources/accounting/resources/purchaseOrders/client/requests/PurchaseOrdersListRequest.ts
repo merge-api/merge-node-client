@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.accounting.PurchaseOrdersListRequestExpand.AccountingPeriod,
+ *         remoteFields: "status",
+ *         showEnumOrigins: "status"
+ *     }
+ */
 export interface PurchaseOrdersListRequest {
     /**
      * If provided, will only return purchase orders for this company.

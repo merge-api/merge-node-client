@@ -4,6 +4,14 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: "company",
+ *         remoteFields: Merge.accounting.AccountsListRequestRemoteFields.Classification,
+ *         showEnumOrigins: Merge.accounting.AccountsListRequestShowEnumOrigins.Classification
+ *     }
+ */
 export interface AccountsListRequest {
     /**
      * If provided, will only return accounts for this company.

@@ -4,6 +4,15 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.accounting.InvoicesListRequestExpand.AccountingPeriod,
+ *         remoteFields: "type",
+ *         showEnumOrigins: "type",
+ *         type: Merge.accounting.InvoicesListRequestType.AccountsPayable
+ *     }
+ */
 export interface InvoicesListRequest {
     /**
      * If provided, will only return invoices for this company.
@@ -72,8 +81,8 @@ export interface InvoicesListRequest {
     /**
      * If provided, will only return Invoices with this type
      *
-     * * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
-     * * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
+     * - `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
+     * - `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
      */
     type?: Merge.accounting.InvoicesListRequestType;
 }

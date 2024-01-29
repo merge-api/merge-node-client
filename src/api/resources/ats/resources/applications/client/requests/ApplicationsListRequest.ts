@@ -4,6 +4,12 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: Merge.ats.ApplicationsListRequestExpand.Candidate
+ *     }
+ */
 export interface ApplicationsListRequest {
     /**
      * If provided, will only return applications for this candidate.

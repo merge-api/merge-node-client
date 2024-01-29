@@ -4,6 +4,19 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             name: "Cash",
+ *             description: "Cash",
+ *             type: "Asset",
+ *             accountNumber: "X12Y9AB",
+ *             parentAccount: "22d92d6c-22f9-11ed-861d-0242ac120002",
+ *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
+ *         }
+ *     }
+ */
 export interface AccountEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

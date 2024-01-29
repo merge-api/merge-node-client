@@ -7,14 +7,14 @@ import * as Merge from "../../..";
 /**
  * The offer's status.
  *
- * * `DRAFT` - DRAFT
- * * `APPROVAL-SENT` - APPROVAL-SENT
- * * `APPROVED` - APPROVED
- * * `SENT` - SENT
- * * `SENT-MANUALLY` - SENT-MANUALLY
- * * `OPENED` - OPENED
- * * `DENIED` - DENIED
- * * `SIGNED` - SIGNED
- * * `DEPRECATED` - DEPRECATED
+ * - `DRAFT` - DRAFT
+ * - `APPROVAL-SENT` - APPROVAL-SENT
+ * - `APPROVED` - APPROVED
+ * - `SENT` - SENT
+ * - `SENT-MANUALLY` - SENT-MANUALLY
+ * - `OPENED` - OPENED
+ * - `DENIED` - DENIED
+ * - `SIGNED` - SIGNED
+ * - `DEPRECATED` - DEPRECATED
  */
 export type OfferStatus = Merge.ats.OfferStatusEnum | string;

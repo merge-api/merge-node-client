@@ -4,6 +4,15 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         expand: "employee",
+ *         policyType: Merge.hris.TimeOffBalancesListRequestPolicyType.Bereavement,
+ *         remoteFields: "policy_type",
+ *         showEnumOrigins: "policy_type"
+ *     }
+ */
 export interface TimeOffBalancesListRequest {
     /**
      * If provided, will only return objects created after this datetime.
@@ -48,12 +57,12 @@ export interface TimeOffBalancesListRequest {
     /**
      * If provided, will only return TimeOffBalance with this policy type. Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY', 'VOLUNTEER', 'BEREAVEMENT')
      *
-     * * `VACATION` - VACATION
-     * * `SICK` - SICK
-     * * `PERSONAL` - PERSONAL
-     * * `JURY_DUTY` - JURY_DUTY
-     * * `VOLUNTEER` - VOLUNTEER
-     * * `BEREAVEMENT` - BEREAVEMENT
+     * - `VACATION` - VACATION
+     * - `SICK` - SICK
+     * - `PERSONAL` - PERSONAL
+     * - `JURY_DUTY` - JURY_DUTY
+     * - `VOLUNTEER` - VOLUNTEER
+     * - `BEREAVEMENT` - BEREAVEMENT
      */
     policyType?: Merge.hris.TimeOffBalancesListRequestPolicyType;
     /**
