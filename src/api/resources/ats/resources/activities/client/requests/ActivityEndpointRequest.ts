@@ -4,6 +4,19 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             activityType: undefined,
+ *             subject: "Gil Feig's interview",
+ *             body: "Candidate loves integrations!!.",
+ *             visibility: undefined,
+ *             candidate: "03455bc6-6040-430a-848e-aafacbfdf4fg"
+ *         },
+ *         remoteUserId: "string"
+ *     }
+ */
 export interface ActivityEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

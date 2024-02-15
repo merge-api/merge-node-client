@@ -132,7 +132,7 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -174,7 +174,7 @@ export class Jobs {
      * Returns a `Job` object with the given `id`.
      *
      * @example
-     *     await merge.ats.jobs.retrieve("id", {
+     *     await merge.ats.jobs.retrieve("string", {
      *         expand: Merge.ats.JobsRetrieveRequestExpand.Departments,
      *         remoteFields: "status",
      *         showEnumOrigins: "status"
@@ -217,7 +217,7 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -259,7 +259,7 @@ export class Jobs {
      * Returns a list of `ScreeningQuestion` objects.
      *
      * @example
-     *     await merge.ats.jobs.screeningQuestionsList("job-id", {
+     *     await merge.ats.jobs.screeningQuestionsList("string", {
      *         expand: Merge.ats.JobsScreeningQuestionsListRequestExpand.Job
      *     })
      */
@@ -304,7 +304,7 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

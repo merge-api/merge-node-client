@@ -27,6 +27,14 @@ export class Passthrough {
 
     /**
      * Pull data from an endpoint not currently supported by Merge.
+     *
+     * @example
+     *     await merge.accounting.passthrough.create({
+     *         method: Merge.accounting.MethodEnum.Get,
+     *         path: "/scooters",
+     *         data: "{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}",
+     *         requestFormat: Merge.accounting.RequestFormatEnum.Json
+     *     })
      */
     public async create(
         request: Merge.accounting.DataPassthroughRequest,
@@ -46,7 +54,7 @@ export class Passthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             body: await serializers.accounting.DataPassthroughRequest.jsonOrThrow(request, {

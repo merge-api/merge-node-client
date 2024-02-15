@@ -131,7 +131,7 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -175,16 +175,8 @@ export class PurchaseOrders {
      * @example
      *     await merge.accounting.purchaseOrders.create({
      *         model: {
-     *             lineItems: [{
-     *                     remoteId: "121222",
-     *                     description: "Pickleball paddles",
-     *                     unitPrice: 25,
-     *                     quantity: 10,
-     *                     trackingCategory: "f1214c24-2702-4617-b74b-3ddecfc0d384",
-     *                     trackingCategories: [],
-     *                     exchangeRate: "2.9",
-     *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
-     *                 }]
+     *             status: undefined,
+     *             currency: undefined
      *         }
      *     })
      */
@@ -216,7 +208,7 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -261,7 +253,7 @@ export class PurchaseOrders {
      * Returns a `PurchaseOrder` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.purchaseOrders.retrieve("id", {
+     *     await merge.accounting.purchaseOrders.retrieve("string", {
      *         expand: Merge.accounting.PurchaseOrdersRetrieveRequestExpand.AccountingPeriod,
      *         remoteFields: "status",
      *         showEnumOrigins: "status"
@@ -304,7 +296,7 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -365,7 +357,7 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

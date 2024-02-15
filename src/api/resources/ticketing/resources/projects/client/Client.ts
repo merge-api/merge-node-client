@@ -97,7 +97,7 @@ export class Projects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -139,7 +139,7 @@ export class Projects {
      * Returns a `Project` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.projects.retrieve("id", {})
+     *     await merge.ticketing.projects.retrieve("string", {})
      */
     public async retrieve(
         id: string,
@@ -166,7 +166,7 @@ export class Projects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -208,7 +208,7 @@ export class Projects {
      * Returns a list of `User` objects.
      *
      * @example
-     *     await merge.ticketing.projects.usersList("parent-id", {
+     *     await merge.ticketing.projects.usersList("string", {
      *         expand: Merge.ticketing.ProjectsUsersListRequestExpand.Roles
      *     })
      */
@@ -253,7 +253,7 @@ export class Projects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

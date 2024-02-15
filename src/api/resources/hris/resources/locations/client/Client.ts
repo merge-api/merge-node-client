@@ -116,7 +116,7 @@ export class Locations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -158,7 +158,7 @@ export class Locations {
      * Returns a `Location` object with the given `id`.
      *
      * @example
-     *     await merge.hris.locations.retrieve("id", {
+     *     await merge.hris.locations.retrieve("string", {
      *         remoteFields: "location_type",
      *         showEnumOrigins: "location_type"
      *     })
@@ -196,7 +196,7 @@ export class Locations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

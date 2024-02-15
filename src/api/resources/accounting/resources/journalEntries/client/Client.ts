@@ -119,7 +119,7 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -163,14 +163,8 @@ export class JournalEntries {
      * @example
      *     await merge.accounting.journalEntries.create({
      *         model: {
-     *             lines: [{
-     *                     remoteId: "121222",
-     *                     netAmount: 25.54,
-     *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
-     *                     contact: "d2d5ea3c-b032-11ec-b909-0242ac120002",
-     *                     description: "Cash payment for lunch",
-     *                     exchangeRate: "2.9"
-     *                 }]
+     *             currency: undefined,
+     *             postingStatus: undefined
      *         }
      *     })
      */
@@ -202,7 +196,7 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -247,7 +241,7 @@ export class JournalEntries {
      * Returns a `JournalEntry` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.journalEntries.retrieve("id", {
+     *     await merge.accounting.journalEntries.retrieve("string", {
      *         expand: Merge.accounting.JournalEntriesRetrieveRequestExpand.AccountingPeriod
      *     })
      */
@@ -280,7 +274,7 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -341,7 +335,7 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -4,6 +4,18 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             appliedAt: new Date("2021-10-15T00:00:00.000Z"),
+ *             rejectedAt: new Date("2021-11-15T00:00:00.000Z"),
+ *             source: "Campus recruiting event",
+ *             remoteTemplateId: "92830948203"
+ *         },
+ *         remoteUserId: "string"
+ *     }
+ */
 export interface ApplicationEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

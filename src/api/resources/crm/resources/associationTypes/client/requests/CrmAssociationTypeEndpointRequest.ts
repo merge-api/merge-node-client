@@ -4,6 +4,20 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             sourceObjectClass: {
+ *                 id: "string",
+ *                 originType: Merge.crm.OriginTypeEnum.CustomObject
+ *             },
+ *             targetObjectClasses: [],
+ *             remoteKeyName: "string",
+ *             cardinality: Merge.crm.CardinalityEnum.OneToOne
+ *         }
+ *     }
+ */
 export interface CrmAssociationTypeEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.
