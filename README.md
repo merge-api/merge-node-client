@@ -64,7 +64,7 @@ const linkTokenResponse = await merge.ats.linkToken.create({
     endUserEmailAddress: "john.smith@gmail.com",
     endUserOrganizationName: "acme",
     endUserOriginId: "1234",
-    categories: [Merge.ats.CategoriesEnum.ATS],
+    categories: [Merge.ats.CategoriesEnum.Ats],
     linkExpiryMins: 30,
 });
 
@@ -111,7 +111,8 @@ const merge = new MergeClient({
 
 
 candidate = await merge.ats.candidates.retrieve(
-    id="521b18c2-4d01-4297-b451-19858d07c133")
+  "521b18c2-4d01-4297-b451-19858d07c133"
+)
 ```
 
 ### Filter Candidate
@@ -125,7 +126,7 @@ const merge = new MergeClient({
 });
 
 const candidatesResponse = await merge.ats.candidates.list({
-    created_after="2030-01-01"
+  created_after: "2030-01-01"
 })
 
 console.log(candidatesResponse.results)
@@ -142,13 +143,14 @@ const merge = new MergeClient({
 });
 
 contact = await merge.accounting.contacts.retrieve(
-  "c640b80b-fac9-409f-aa19-1f9221aec445")
+  "c640b80b-fac9-409f-aa19-1f9221aec445"
+)
 ```
 
 ### Create Ticket
 
 ```typescript
-import { MergeClient, Merge } from '@mergeapi/merge-node-client';
+import { MergeClient, Merge, TicketStatusEnum } from '@mergeapi/merge-node-client';
 
 const merge = new MergeClient({
   apiKey: 'YOUR_API_KEY',
@@ -159,9 +161,9 @@ await merge.ticketing.tickets.create({
   model: {
     name: "Please add more integrations",
     assignees: ["17a54124-287f-494d-965e-3c5b330c9a68"],
-    creator="3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    due_date="2022-10-11T00:00:00Z",
-    status=merge.ticketing.TicketStatusEnum.Open,
+    creator: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    due_date: "2022-10-11T00:00:00Z",
+    status: TicketStatusEnum.Open,
   },
 })
 ```
