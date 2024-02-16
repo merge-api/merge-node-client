@@ -121,7 +121,9 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -161,6 +163,18 @@ export class Activities {
 
     /**
      * Creates an `Activity` object with the given values.
+     *
+     * @example
+     *     await merge.ats.activities.create({
+     *         model: {
+     *             activityType: undefined,
+     *             subject: "Gil Feig's interview",
+     *             body: "Candidate loves integrations!!.",
+     *             visibility: undefined,
+     *             candidate: "03455bc6-6040-430a-848e-aafacbfdf4fg"
+     *         },
+     *         remoteUserId: "string"
+     *     })
      */
     public async create(
         request: Merge.ats.ActivityEndpointRequest,
@@ -190,7 +204,9 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -233,7 +249,7 @@ export class Activities {
      * Returns an `Activity` object with the given `id`.
      *
      * @example
-     *     await merge.ats.activities.retrieve("id", {
+     *     await merge.ats.activities.retrieve("string", {
      *         expand: "user",
      *         remoteFields: Merge.ats.ActivitiesRetrieveRequestRemoteFields.ActivityType,
      *         showEnumOrigins: Merge.ats.ActivitiesRetrieveRequestShowEnumOrigins.ActivityType
@@ -276,7 +292,9 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -335,7 +353,9 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

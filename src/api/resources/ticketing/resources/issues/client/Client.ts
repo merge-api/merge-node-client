@@ -119,7 +119,9 @@ export class Issues {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -161,7 +163,7 @@ export class Issues {
      * Get a specific issue.
      *
      * @example
-     *     await merge.ticketing.issues.retrieve("id")
+     *     await merge.ticketing.issues.retrieve("string")
      */
     public async retrieve(id: string, requestOptions?: Issues.RequestOptions): Promise<Merge.ticketing.Issue> {
         const _response = await core.fetcher({
@@ -178,7 +180,9 @@ export class Issues {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

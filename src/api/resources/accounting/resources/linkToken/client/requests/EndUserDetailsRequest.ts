@@ -4,6 +4,15 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         endUserEmailAddress: "string",
+ *         endUserOrganizationName: "string",
+ *         endUserOriginId: "string",
+ *         categories: []
+ *     }
+ */
 export interface EndUserDetailsRequest {
     /** Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent. */
     endUserEmailAddress: string;

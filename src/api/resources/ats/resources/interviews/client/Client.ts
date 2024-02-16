@@ -136,7 +136,9 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -176,6 +178,17 @@ export class Interviews {
 
     /**
      * Creates a `ScheduledInterview` object with the given values.
+     *
+     * @example
+     *     await merge.ats.interviews.create({
+     *         model: {
+     *             location: "Embarcadero Center 2",
+     *             startAt: new Date("2021-10-15T00:00:00.000Z"),
+     *             endAt: new Date("2021-10-15T02:00:00.000Z"),
+     *             status: undefined
+     *         },
+     *         remoteUserId: "string"
+     *     })
      */
     public async create(
         request: Merge.ats.ScheduledInterviewEndpointRequest,
@@ -205,7 +218,9 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -250,7 +265,7 @@ export class Interviews {
      * Returns a `ScheduledInterview` object with the given `id`.
      *
      * @example
-     *     await merge.ats.interviews.retrieve("id", {
+     *     await merge.ats.interviews.retrieve("string", {
      *         expand: Merge.ats.InterviewsRetrieveRequestExpand.Application,
      *         remoteFields: "status",
      *         showEnumOrigins: "status"
@@ -293,7 +308,9 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -352,7 +369,9 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

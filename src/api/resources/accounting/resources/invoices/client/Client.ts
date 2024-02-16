@@ -142,7 +142,9 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -186,15 +188,9 @@ export class Invoices {
      * @example
      *     await merge.accounting.invoices.create({
      *         model: {
-     *             lineItems: [{
-     *                     remoteId: "8765432",
-     *                     description: "Pickleball lessons",
-     *                     unitPrice: 50,
-     *                     quantity: 1,
-     *                     totalAmount: 50,
-     *                     exchangeRate: "2.9",
-     *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
-     *                 }]
+     *             type: undefined,
+     *             status: undefined,
+     *             currency: undefined
      *         }
      *     })
      */
@@ -226,7 +222,9 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -271,7 +269,7 @@ export class Invoices {
      * Returns an `Invoice` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.invoices.retrieve("id", {
+     *     await merge.accounting.invoices.retrieve("string", {
      *         expand: Merge.accounting.InvoicesRetrieveRequestExpand.AccountingPeriod,
      *         remoteFields: "type",
      *         showEnumOrigins: "type"
@@ -314,7 +312,9 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -373,7 +373,9 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

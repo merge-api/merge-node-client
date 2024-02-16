@@ -121,7 +121,9 @@ export class TrackingCategories {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -163,7 +165,7 @@ export class TrackingCategories {
      * Returns a `TrackingCategory` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.trackingCategories.retrieve("id", {
+     *     await merge.accounting.trackingCategories.retrieve("string", {
      *         expand: "company",
      *         remoteFields: "status",
      *         showEnumOrigins: "status"
@@ -206,7 +208,9 @@ export class TrackingCategories {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -10,10 +10,12 @@ import * as Merge from "../../../../../..";
  *         model: {
  *             name: "Please add more integrations",
  *             dueDate: new Date("2022-10-11T00:00:00.000Z"),
+ *             status: undefined,
  *             description: "Can you please add more integrations? It'll make syncing data much easier!",
  *             ticketType: "incident",
  *             completedAt: new Date("2021-12-09T00:00:00.000Z"),
- *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1"
+ *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1",
+ *             priority: undefined
  *         }
  *     }
  */

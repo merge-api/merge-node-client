@@ -119,7 +119,9 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -167,7 +169,7 @@ export class Accounts {
      *             description: "One API for all integrations",
      *             industry: "API's",
      *             website: "https://merge.dev/",
-     *             numberOfEmployees: 276000,
+     *             numberOfEmployees: 1,
      *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
      *         }
      *     })
@@ -200,7 +202,9 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -245,7 +249,7 @@ export class Accounts {
      * Returns an `Account` object with the given `id`.
      *
      * @example
-     *     await merge.crm.accounts.retrieve("id", {
+     *     await merge.crm.accounts.retrieve("string", {
      *         expand: "owner"
      *     })
      */
@@ -282,7 +286,9 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -324,14 +330,14 @@ export class Accounts {
      * Updates an `Account` object with the given `id`.
      *
      * @example
-     *     await merge.crm.accounts.partialUpdate("id", {
+     *     await merge.crm.accounts.partialUpdate("string", {
      *         model: {
      *             owner: "0258cbc6-6020-430a-848e-aafacbadf4ae",
      *             name: "Merge API",
      *             description: "One API for all integrations",
      *             industry: "API's",
      *             website: "https://merge.dev/",
-     *             numberOfEmployees: 276000,
+     *             numberOfEmployees: 1,
      *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
      *         }
      *     })
@@ -365,7 +371,9 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -410,7 +418,7 @@ export class Accounts {
      * Returns metadata for `CRMAccount` PATCHs.
      *
      * @example
-     *     await merge.crm.accounts.metaPatchRetrieve("id")
+     *     await merge.crm.accounts.metaPatchRetrieve("string")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -430,7 +438,9 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -488,7 +498,9 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -571,7 +583,9 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,

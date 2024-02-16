@@ -8,15 +8,9 @@ import * as Merge from "../../../../../..";
  * @example
  *     {
  *         model: {
- *             lineItems: [{
- *                     remoteId: "8765432",
- *                     description: "Pickleball lessons",
- *                     unitPrice: 50,
- *                     quantity: 1,
- *                     totalAmount: 50,
- *                     exchangeRate: "2.9",
- *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
- *                 }]
+ *             type: undefined,
+ *             status: undefined,
+ *             currency: undefined
  *         }
  *     }
  */

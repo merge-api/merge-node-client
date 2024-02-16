@@ -29,7 +29,7 @@ export class AssociationTypes {
      * Returns a list of `AssociationType` objects.
      *
      * @example
-     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesList("custom-object-class-id", {
+     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesList("string", {
      *         expand: "target_object_classes"
      *     })
      */
@@ -105,7 +105,9 @@ export class AssociationTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -145,6 +147,19 @@ export class AssociationTypes {
 
     /**
      * Creates an `AssociationType` object with the given values.
+     *
+     * @example
+     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesCreate("string", {
+     *         model: {
+     *             sourceObjectClass: {
+     *                 id: "string",
+     *                 originType: Merge.crm.OriginTypeEnum.CustomObject
+     *             },
+     *             targetObjectClasses: [],
+     *             remoteKeyName: "string",
+     *             cardinality: Merge.crm.CardinalityEnum.OneToOne
+     *         }
+     *     })
      */
     public async customObjectClassesAssociationTypesCreate(
         customObjectClassId: string,
@@ -175,7 +190,9 @@ export class AssociationTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -220,7 +237,7 @@ export class AssociationTypes {
      * Returns an `AssociationType` object with the given `id`.
      *
      * @example
-     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesRetrieve("custom-object-class-id", "id", {
+     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesRetrieve("string", "string", {
      *         expand: "target_object_classes"
      *     })
      */
@@ -254,7 +271,9 @@ export class AssociationTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -296,7 +315,7 @@ export class AssociationTypes {
      * Returns metadata for `CRMAssociationType` POSTs.
      *
      * @example
-     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesMetaPostRetrieve("custom-object-class-id")
+     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesMetaPostRetrieve("string")
      */
     public async customObjectClassesAssociationTypesMetaPostRetrieve(
         customObjectClassId: string,
@@ -316,7 +335,9 @@ export class AssociationTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

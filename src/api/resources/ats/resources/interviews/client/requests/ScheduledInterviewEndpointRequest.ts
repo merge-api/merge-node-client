@@ -4,6 +4,18 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             location: "Embarcadero Center 2",
+ *             startAt: new Date("2021-10-15T00:00:00.000Z"),
+ *             endAt: new Date("2021-10-15T02:00:00.000Z"),
+ *             status: undefined
+ *         },
+ *         remoteUserId: "string"
+ *     }
+ */
 export interface ScheduledInterviewEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

@@ -119,7 +119,9 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -165,6 +167,7 @@ export class Engagements {
      *         model: {
      *             content: "Call for negotiation",
      *             subject: "Call from customer",
+     *             direction: undefined,
      *             startTime: new Date("2022-02-10T00:00:00.000Z"),
      *             endTime: new Date("2022-02-10T00:05:00.000Z")
      *         }
@@ -198,7 +201,9 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -243,7 +248,7 @@ export class Engagements {
      * Returns an `Engagement` object with the given `id`.
      *
      * @example
-     *     await merge.crm.engagements.retrieve("id", {
+     *     await merge.crm.engagements.retrieve("string", {
      *         expand: Merge.crm.EngagementsRetrieveRequestExpand.Account
      *     })
      */
@@ -280,7 +285,9 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -322,11 +329,12 @@ export class Engagements {
      * Updates an `Engagement` object with the given `id`.
      *
      * @example
-     *     await merge.crm.engagements.partialUpdate("id", {
+     *     await merge.crm.engagements.partialUpdate("string", {
      *         model: {
      *             owner: "0358cbc6-2040-430a-848e-aafacbadf3aa",
      *             content: "Call for negotiation",
      *             subject: "Call from customer",
+     *             direction: undefined,
      *             engagementType: "0358cbc6-2040-430a-848e-aafacbadf3aa",
      *             startTime: new Date("2022-02-10T00:00:00.000Z"),
      *             endTime: new Date("2022-02-10T00:05:00.000Z"),
@@ -363,7 +371,9 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -408,7 +418,7 @@ export class Engagements {
      * Returns metadata for `Engagement` PATCHs.
      *
      * @example
-     *     await merge.crm.engagements.metaPatchRetrieve("id")
+     *     await merge.crm.engagements.metaPatchRetrieve("string")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -428,7 +438,9 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -486,7 +498,9 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -569,7 +583,9 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,

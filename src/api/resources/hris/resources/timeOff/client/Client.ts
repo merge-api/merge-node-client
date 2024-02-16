@@ -138,7 +138,9 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -182,8 +184,11 @@ export class TimeOff {
      * @example
      *     await merge.hris.timeOff.create({
      *         model: {
+     *             status: undefined,
      *             employeeNote: "Moving into the new apartment Kendall Roy gave me!",
+     *             units: undefined,
      *             amount: 3,
+     *             requestType: undefined,
      *             startTime: new Date("2020-11-10T00:00:00.000Z"),
      *             endTime: new Date("2020-11-17T00:00:00.000Z")
      *         }
@@ -217,7 +222,9 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -260,7 +267,7 @@ export class TimeOff {
      * Returns a `TimeOff` object with the given `id`.
      *
      * @example
-     *     await merge.hris.timeOff.retrieve("id", {
+     *     await merge.hris.timeOff.retrieve("string", {
      *         expand: Merge.hris.TimeOffRetrieveRequestExpand.Approver,
      *         remoteFields: Merge.hris.TimeOffRetrieveRequestRemoteFields.RequestType,
      *         showEnumOrigins: Merge.hris.TimeOffRetrieveRequestShowEnumOrigins.RequestType
@@ -303,7 +310,9 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -362,7 +371,9 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

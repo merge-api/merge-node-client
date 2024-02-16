@@ -14,7 +14,8 @@ import * as Merge from "../../../../../..";
  *             account: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
  *             opportunity: "03455bc6-6040-430a-848e-aafacbfdf4fg",
  *             completedDate: new Date("2022-02-11T00:00:00.000Z"),
- *             dueDate: new Date("2022-02-10T00:00:00.000Z")
+ *             dueDate: new Date("2022-02-10T00:00:00.000Z"),
+ *             status: undefined
  *         }
  *     }
  */

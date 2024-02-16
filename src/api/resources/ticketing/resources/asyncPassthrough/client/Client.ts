@@ -33,12 +33,6 @@ export class AsyncPassthrough {
      *         method: Merge.ticketing.MethodEnum.Get,
      *         path: "/scooters",
      *         data: "{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}",
-     *         multipartFormData: [{
-     *                 name: "resume",
-     *                 data: "SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=",
-     *                 fileName: "resume.pdf",
-     *                 contentType: "application/pdf"
-     *             }],
      *         requestFormat: Merge.ticketing.RequestFormatEnum.Json
      *     })
      */
@@ -60,7 +54,9 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             body: await serializers.ticketing.DataPassthroughRequest.jsonOrThrow(request, {
@@ -102,6 +98,9 @@ export class AsyncPassthrough {
 
     /**
      * Retrieves data from earlier async-passthrough POST request
+     *
+     * @example
+     *     await merge.ticketing.asyncPassthrough.retrieve("string")
      */
     public async retrieve(
         asyncPassthroughReceiptId: string,
@@ -121,7 +120,9 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

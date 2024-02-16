@@ -119,7 +119,9 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -164,15 +166,9 @@ export class Expenses {
      *     await merge.accounting.expenses.create({
      *         model: {
      *             totalAmount: 10000,
+     *             currency: undefined,
      *             exchangeRate: "2.9",
-     *             memo: "New employee supplies",
-     *             lines: [{
-     *                     remoteId: "121222",
-     *                     netAmount: 25.54,
-     *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
-     *                     description: "MacBook Pro",
-     *                     exchangeRate: "2.9"
-     *                 }]
+     *             memo: "New employee supplies"
      *         }
      *     })
      */
@@ -204,7 +200,9 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -249,7 +247,7 @@ export class Expenses {
      * Returns an `Expense` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.expenses.retrieve("id", {
+     *     await merge.accounting.expenses.retrieve("string", {
      *         expand: Merge.accounting.ExpensesRetrieveRequestExpand.Account
      *     })
      */
@@ -282,7 +280,9 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -341,7 +341,9 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

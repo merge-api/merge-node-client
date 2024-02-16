@@ -134,7 +134,9 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -174,6 +176,17 @@ export class Applications {
 
     /**
      * Creates an `Application` object with the given values.
+     *
+     * @example
+     *     await merge.ats.applications.create({
+     *         model: {
+     *             appliedAt: new Date("2021-10-15T00:00:00.000Z"),
+     *             rejectedAt: new Date("2021-11-15T00:00:00.000Z"),
+     *             source: "Campus recruiting event",
+     *             remoteTemplateId: "92830948203"
+     *         },
+     *         remoteUserId: "string"
+     *     })
      */
     public async create(
         request: Merge.ats.ApplicationEndpointRequest,
@@ -203,7 +216,9 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -248,7 +263,7 @@ export class Applications {
      * Returns an `Application` object with the given `id`.
      *
      * @example
-     *     await merge.ats.applications.retrieve("id", {
+     *     await merge.ats.applications.retrieve("string", {
      *         expand: Merge.ats.ApplicationsRetrieveRequestExpand.Candidate
      *     })
      */
@@ -281,7 +296,9 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -323,7 +340,7 @@ export class Applications {
      * Updates the `current_stage` field of an `Application` object
      *
      * @example
-     *     await merge.ats.applications.changeStageCreate("id", {})
+     *     await merge.ats.applications.changeStageCreate("string", {})
      */
     public async changeStageCreate(
         id: string,
@@ -354,7 +371,9 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -425,7 +444,9 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -142,7 +142,9 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -188,7 +190,8 @@ export class Opportunities {
      *         model: {
      *             name: "Needs Integrations",
      *             description: "Needs a Unified API for Integrations!",
-     *             amount: 100000,
+     *             amount: 1,
+     *             status: undefined,
      *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z"),
      *             closeDate: new Date("2022-02-10T00:00:00.000Z")
      *         }
@@ -222,7 +225,9 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -267,7 +272,7 @@ export class Opportunities {
      * Returns an `Opportunity` object with the given `id`.
      *
      * @example
-     *     await merge.crm.opportunities.retrieve("id", {
+     *     await merge.crm.opportunities.retrieve("string", {
      *         expand: Merge.crm.OpportunitiesRetrieveRequestExpand.Account,
      *         remoteFields: "status",
      *         showEnumOrigins: "status"
@@ -314,7 +319,9 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -356,14 +363,15 @@ export class Opportunities {
      * Updates an `Opportunity` object with the given `id`.
      *
      * @example
-     *     await merge.crm.opportunities.partialUpdate("id", {
+     *     await merge.crm.opportunities.partialUpdate("string", {
      *         model: {
      *             name: "Needs Integrations",
      *             description: "Needs a Unified API for Integrations!",
-     *             amount: 100000,
+     *             amount: 1,
      *             owner: "0358cbc6-2040-430a-848e-aafacbadf3aa",
      *             account: "0958cbc6-6040-430a-848e-aafacbadf4ae",
      *             stage: "1968cbc6-6040-430a-848e-aafacbadf4ad",
+     *             status: undefined,
      *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z"),
      *             closeDate: new Date("2022-02-10T00:00:00.000Z")
      *         }
@@ -398,7 +406,9 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -443,7 +453,7 @@ export class Opportunities {
      * Returns metadata for `Opportunity` PATCHs.
      *
      * @example
-     *     await merge.crm.opportunities.metaPatchRetrieve("id")
+     *     await merge.crm.opportunities.metaPatchRetrieve("string")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -463,7 +473,9 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -521,7 +533,9 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -604,7 +618,9 @@ export class Opportunities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,

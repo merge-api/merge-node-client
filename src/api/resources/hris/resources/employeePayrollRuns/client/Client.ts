@@ -134,7 +134,9 @@ export class EmployeePayrollRuns {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -176,7 +178,7 @@ export class EmployeePayrollRuns {
      * Returns an `EmployeePayrollRun` object with the given `id`.
      *
      * @example
-     *     await merge.hris.employeePayrollRuns.retrieve("id", {
+     *     await merge.hris.employeePayrollRuns.retrieve("string", {
      *         expand: Merge.hris.EmployeePayrollRunsRetrieveRequestExpand.Employee
      *     })
      */
@@ -209,7 +211,9 @@ export class EmployeePayrollRuns {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,

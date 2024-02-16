@@ -217,7 +217,9 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -271,9 +273,13 @@ export class Employees {
      *             personalEmail: "greg@gmail.com",
      *             mobilePhoneNumber: "+1234567890",
      *             ssn: "1234567890",
+     *             gender: undefined,
+     *             ethnicity: undefined,
+     *             maritalStatus: undefined,
      *             dateOfBirth: new Date("1990-11-10T00:00:00.000Z"),
      *             hireDate: new Date("2020-10-10T00:00:00.000Z"),
      *             startDate: new Date("2020-10-11T00:00:00.000Z"),
+     *             employmentStatus: undefined,
      *             terminationDate: new Date("2021-10-12T00:00:00.000Z"),
      *             avatar: "http://alturl.com/h2h8m"
      *         }
@@ -307,7 +313,9 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -352,7 +360,7 @@ export class Employees {
      * Returns an `Employee` object with the given `id`.
      *
      * @example
-     *     await merge.hris.employees.retrieve("id", {
+     *     await merge.hris.employees.retrieve("string", {
      *         expand: Merge.hris.EmployeesRetrieveRequestExpand.Company,
      *         remoteFields: Merge.hris.EmployeesRetrieveRequestRemoteFields.EmploymentStatus,
      *         showEnumOrigins: Merge.hris.EmployeesRetrieveRequestShowEnumOrigins.EmploymentStatus
@@ -399,7 +407,9 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -439,6 +449,11 @@ export class Employees {
 
     /**
      * Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
+     *
+     * @example
+     *     await merge.hris.employees.ignoreCreate("string", {
+     *         message: "deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"
+     *     })
      */
     public async ignoreCreate(
         modelId: string,
@@ -459,7 +474,9 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             body: await serializers.hris.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -515,7 +532,9 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

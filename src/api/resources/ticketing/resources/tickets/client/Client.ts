@@ -213,7 +213,9 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -259,10 +261,12 @@ export class Tickets {
      *         model: {
      *             name: "Please add more integrations",
      *             dueDate: new Date("2022-10-11T00:00:00.000Z"),
+     *             status: undefined,
      *             description: "Can you please add more integrations? It'll make syncing data much easier!",
      *             ticketType: "incident",
      *             completedAt: new Date("2021-12-09T00:00:00.000Z"),
-     *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1"
+     *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1",
+     *             priority: undefined
      *         }
      *     })
      */
@@ -294,7 +298,9 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -339,7 +345,7 @@ export class Tickets {
      * Returns a `Ticket` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.tickets.retrieve("id", {
+     *     await merge.ticketing.tickets.retrieve("string", {
      *         expand: Merge.ticketing.TicketsRetrieveRequestExpand.Account,
      *         remoteFields: Merge.ticketing.TicketsRetrieveRequestRemoteFields.Priority,
      *         showEnumOrigins: Merge.ticketing.TicketsRetrieveRequestShowEnumOrigins.Priority
@@ -386,7 +392,9 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -428,17 +436,19 @@ export class Tickets {
      * Updates a `Ticket` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.tickets.partialUpdate("id", {
+     *     await merge.ticketing.tickets.partialUpdate("string", {
      *         model: {
      *             name: "Please add more integrations",
      *             dueDate: new Date("2022-10-11T00:00:00.000Z"),
+     *             status: undefined,
      *             description: "Can you please add more integrations? It'll make syncing data much easier!",
      *             ticketType: "incident",
      *             account: "0958cbc6-6040-430a-848e-aafacbadf4ae",
      *             contact: "65c345ba-6870-4974-87ba-dd31509c367a",
      *             parentTicket: "75b33d04-30d2-4f3e-be45-27838bc94342",
      *             completedAt: new Date("2021-12-09T00:00:00.000Z"),
-     *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1"
+     *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1",
+     *             priority: undefined
      *         }
      *     })
      */
@@ -471,7 +481,9 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -516,7 +528,7 @@ export class Tickets {
      * Returns a list of `User` objects.
      *
      * @example
-     *     await merge.ticketing.tickets.collaboratorsList("parent-id", {
+     *     await merge.ticketing.tickets.collaboratorsList("string", {
      *         expand: Merge.ticketing.TicketsCollaboratorsListRequestExpand.Roles
      *     })
      */
@@ -561,7 +573,9 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -603,7 +617,7 @@ export class Tickets {
      * Returns metadata for `Ticket` PATCHs.
      *
      * @example
-     *     await merge.ticketing.tickets.metaPatchRetrieve("id")
+     *     await merge.ticketing.tickets.metaPatchRetrieve("string")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -623,7 +637,9 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -681,7 +697,9 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -760,7 +778,9 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,

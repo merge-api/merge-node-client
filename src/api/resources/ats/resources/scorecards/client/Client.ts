@@ -131,7 +131,9 @@ export class Scorecards {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -173,7 +175,7 @@ export class Scorecards {
      * Returns a `Scorecard` object with the given `id`.
      *
      * @example
-     *     await merge.ats.scorecards.retrieve("id", {
+     *     await merge.ats.scorecards.retrieve("string", {
      *         expand: Merge.ats.ScorecardsRetrieveRequestExpand.Application,
      *         remoteFields: "overall_recommendation",
      *         showEnumOrigins: "overall_recommendation"
@@ -216,7 +218,9 @@ export class Scorecards {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,

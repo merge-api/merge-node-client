@@ -12,12 +12,9 @@ import * as Merge from "../../../../../..";
  *             isCustomer: true,
  *             emailAddress: "pickleball@merge.dev",
  *             taxNumber: "12-3456789",
+ *             status: undefined,
  *             currency: "USD",
- *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
- *             phoneNumbers: [{
- *                     number: "+3198675309",
- *                     type: "Mobile"
- *                 }]
+ *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
  *         }
  *     }
  */

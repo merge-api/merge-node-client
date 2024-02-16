@@ -29,7 +29,7 @@ export class CustomObjects {
      * Returns a list of `CustomObject` objects.
      *
      * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsList("custom-object-class-id", {})
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsList("string", {})
      */
     public async customObjectClassesCustomObjectsList(
         customObjectClassId: string,
@@ -103,7 +103,9 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -145,9 +147,11 @@ export class CustomObjects {
      * Creates a `CustomObject` object with the given values.
      *
      * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsCreate("custom-object-class-id", {
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsCreate("string", {
      *         model: {
-     *             fields: {}
+     *             fields: {
+     *                 "string": {}
+     *             }
      *         }
      *     })
      */
@@ -180,7 +184,9 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -225,7 +231,7 @@ export class CustomObjects {
      * Returns a `CustomObject` object with the given `id`.
      *
      * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsRetrieve("custom-object-class-id", "id", {})
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsRetrieve("string", "string", {})
      */
     public async customObjectClassesCustomObjectsRetrieve(
         customObjectClassId: string,
@@ -257,7 +263,9 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -299,7 +307,7 @@ export class CustomObjects {
      * Returns metadata for `CRMCustomObject` PATCHs.
      *
      * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsMetaPatchRetrieve("custom-object-class-id", "id")
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsMetaPatchRetrieve("string", "string")
      */
     public async customObjectClassesCustomObjectsMetaPatchRetrieve(
         customObjectClassId: string,
@@ -320,7 +328,9 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -361,7 +371,7 @@ export class CustomObjects {
      * Returns metadata for `CRMCustomObject` POSTs.
      *
      * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsMetaPostRetrieve("custom-object-class-id")
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsMetaPostRetrieve("string")
      */
     public async customObjectClassesCustomObjectsMetaPostRetrieve(
         customObjectClassId: string,
@@ -381,7 +391,9 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
