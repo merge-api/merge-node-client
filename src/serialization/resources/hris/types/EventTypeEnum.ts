@@ -19,6 +19,7 @@ export const EventTypeEnum: core.serialization.Schema<serializers.hris.EventType
         "DELETED_LINKED_ACCOUNT",
         "CREATED_DESTINATION",
         "DELETED_DESTINATION",
+        "CHANGED_DESTINATION",
         "CHANGED_SCOPES",
         "CHANGED_PERSONAL_INFORMATION",
         "CHANGED_ORGANIZATION_SETTINGS",
@@ -53,6 +54,7 @@ export declare namespace EventTypeEnum {
         | "DELETED_LINKED_ACCOUNT"
         | "CREATED_DESTINATION"
         | "DELETED_DESTINATION"
+        | "CHANGED_DESTINATION"
         | "CHANGED_SCOPES"
         | "CHANGED_PERSONAL_INFORMATION"
         | "CHANGED_ORGANIZATION_SETTINGS"

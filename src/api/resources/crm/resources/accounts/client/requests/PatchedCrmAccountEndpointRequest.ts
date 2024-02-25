@@ -13,7 +13,7 @@ import * as Merge from "../../../../../..";
  *             description: "One API for all integrations",
  *             industry: "API's",
  *             website: "https://merge.dev/",
- *             numberOfEmployees: 276000,
+ *             numberOfEmployees: 1,
  *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
  *         }
  *     }

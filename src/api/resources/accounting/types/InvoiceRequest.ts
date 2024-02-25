@@ -17,7 +17,7 @@ import * as Merge from "../../..";
  */
 export interface InvoiceRequest {
     /**
-     * Whether the invoice is an accounts receivable or accounts payable. If `type` is `accounts_payable`, the invoice is a bill. If `type` is `accounts_receivable`, it is an invoice.
+     * Whether the invoice is an accounts receivable or accounts payable. If `type` is `ACCOUNTS_PAYABLE`, the invoice is a bill. If `type` is `ACCOUNTS_RECEIVABLE`, it is an invoice.
      *
      * - `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
      * - `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE

@@ -27,6 +27,9 @@ export class AvailableActions {
 
     /**
      * Returns a list of models and actions available for an account.
+     *
+     * @example
+     *     await merge.accounting.availableActions.retrieve()
      */
     public async retrieve(
         requestOptions?: AvailableActions.RequestOptions
@@ -45,7 +48,7 @@ export class AvailableActions {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

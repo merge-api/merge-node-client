@@ -18,7 +18,6 @@ export const AccountIntegration: core.serialization.ObjectSchema<
     squareImage: core.serialization.property("square_image", core.serialization.string().optional()),
     color: core.serialization.string().optional(),
     slug: core.serialization.string().optional(),
-    isInBeta: core.serialization.property("is_in_beta", core.serialization.boolean().optional()),
     apiEndpointsToDocumentationUrls: core.serialization.property(
         "api_endpoints_to_documentation_urls",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -26,6 +25,10 @@ export const AccountIntegration: core.serialization.ObjectSchema<
     webhookSetupGuideUrl: core.serialization.property(
         "webhook_setup_guide_url",
         core.serialization.string().optional()
+    ),
+    categoryBetaStatus: core.serialization.property(
+        "category_beta_status",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
 });
 
@@ -37,8 +40,8 @@ export declare namespace AccountIntegration {
         square_image?: string | null;
         color?: string | null;
         slug?: string | null;
-        is_in_beta?: boolean | null;
         api_endpoints_to_documentation_urls?: Record<string, unknown> | null;
         webhook_setup_guide_url?: string | null;
+        category_beta_status?: Record<string, unknown> | null;
     }
 }

@@ -12,12 +12,14 @@ import { AvailableActions } from "../resources/availableActions/client/Client";
 import { BankInfo } from "../resources/bankInfo/client/Client";
 import { Benefits } from "../resources/benefits/client/Client";
 import { Companies } from "../resources/companies/client/Client";
+import { Scopes } from "../resources/scopes/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
 import { Dependents } from "../resources/dependents/client/Client";
 import { EmployeePayrollRuns } from "../resources/employeePayrollRuns/client/Client";
 import { Employees } from "../resources/employees/client/Client";
 import { EmployerBenefits } from "../resources/employerBenefits/client/Client";
 import { Employments } from "../resources/employments/client/Client";
+import { FieldMapping } from "../resources/fieldMapping/client/Client";
 import { GenerateKey } from "../resources/generateKey/client/Client";
 import { Groups } from "../resources/groups/client/Client";
 import { Issues } from "../resources/issues/client/Client";
@@ -101,6 +103,12 @@ export class Hris {
         return (this._companies ??= new Companies(this._options));
     }
 
+    protected _scopes: Scopes | undefined;
+
+    public get scopes(): Scopes {
+        return (this._scopes ??= new Scopes(this._options));
+    }
+
     protected _deleteAccount: DeleteAccount | undefined;
 
     public get deleteAccount(): DeleteAccount {
@@ -135,6 +143,12 @@ export class Hris {
 
     public get employments(): Employments {
         return (this._employments ??= new Employments(this._options));
+    }
+
+    protected _fieldMapping: FieldMapping | undefined;
+
+    public get fieldMapping(): FieldMapping {
+        return (this._fieldMapping ??= new FieldMapping(this._options));
     }
 
     protected _generateKey: GenerateKey | undefined;

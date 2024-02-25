@@ -9,6 +9,7 @@ import * as Merge from "../../../../../..";
  *     {
  *         model: {
  *             transactionDate: new Date("2020-03-31T00:00:00.000Z"),
+ *             currency: undefined,
  *             exchangeRate: "2.9",
  *             totalAmount: 50
  *         }

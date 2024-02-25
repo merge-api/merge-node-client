@@ -121,7 +121,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -161,6 +161,17 @@ export class Attachments {
 
     /**
      * Creates an `Attachment` object with the given values.
+     *
+     * @example
+     *     await merge.ats.attachments.create({
+     *         model: {
+     *             fileName: "Candidate Resume",
+     *             fileUrl: "http://alturl.com/p749b",
+     *             candidate: "2872ba14-4084-492b-be96-e5eee6fc33ef",
+     *             attachmentType: undefined
+     *         },
+     *         remoteUserId: "string"
+     *     })
      */
     public async create(
         request: Merge.ats.AttachmentEndpointRequest,
@@ -190,7 +201,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -235,7 +246,7 @@ export class Attachments {
      * Returns an `Attachment` object with the given `id`.
      *
      * @example
-     *     await merge.ats.attachments.retrieve("id", {
+     *     await merge.ats.attachments.retrieve("string", {
      *         expand: "candidate",
      *         remoteFields: "attachment_type",
      *         showEnumOrigins: "attachment_type"
@@ -278,7 +289,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -337,7 +348,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -13,9 +13,11 @@ import { Attachments } from "../resources/attachments/client/Client";
 import { AuditTrail } from "../resources/auditTrail/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { Candidates } from "../resources/candidates/client/Client";
+import { Scopes } from "../resources/scopes/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
 import { Departments } from "../resources/departments/client/Client";
 import { Eeocs } from "../resources/eeocs/client/Client";
+import { FieldMapping } from "../resources/fieldMapping/client/Client";
 import { GenerateKey } from "../resources/generateKey/client/Client";
 import { Interviews } from "../resources/interviews/client/Client";
 import { Issues } from "../resources/issues/client/Client";
@@ -106,6 +108,12 @@ export class Ats {
         return (this._candidates ??= new Candidates(this._options));
     }
 
+    protected _scopes: Scopes | undefined;
+
+    public get scopes(): Scopes {
+        return (this._scopes ??= new Scopes(this._options));
+    }
+
     protected _deleteAccount: DeleteAccount | undefined;
 
     public get deleteAccount(): DeleteAccount {
@@ -122,6 +130,12 @@ export class Ats {
 
     public get eeocs(): Eeocs {
         return (this._eeocs ??= new Eeocs(this._options));
+    }
+
+    protected _fieldMapping: FieldMapping | undefined;
+
+    public get fieldMapping(): FieldMapping {
+        return (this._fieldMapping ??= new FieldMapping(this._options));
     }
 
     protected _generateKey: GenerateKey | undefined;

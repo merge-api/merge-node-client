@@ -36,6 +36,14 @@ export interface TimeOffListRequest {
      */
     employeeId?: string;
     /**
+     * If provided, will only return employees that ended after this datetime.
+     */
+    endedAfter?: Date;
+    /**
+     * If provided, will only return time-offs that ended before this datetime.
+     */
+    endedBefore?: Date;
+    /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     expand?: Merge.hris.TimeOffListRequestExpand;
@@ -82,6 +90,14 @@ export interface TimeOffListRequest {
      * Which fields should be returned in non-normalized form.
      */
     showEnumOrigins?: Merge.hris.TimeOffListRequestShowEnumOrigins;
+    /**
+     * If provided, will only return time-offs that started after this datetime.
+     */
+    startedAfter?: Date;
+    /**
+     * If provided, will only return time-offs that started before this datetime.
+     */
+    startedBefore?: Date;
     /**
      * If provided, will only return TimeOff with this status. Options: ('REQUESTED', 'APPROVED', 'DECLINED', 'CANCELLED', 'DELETED')
      *

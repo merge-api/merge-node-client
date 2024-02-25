@@ -4,6 +4,22 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         model: {
+ *             firstName: "Gil",
+ *             lastName: "Feig",
+ *             company: "Columbia Dining App.",
+ *             title: "Software Engineer",
+ *             lastInteractionAt: new Date("2021-10-17T00:00:00.000Z"),
+ *             isPrivate: true,
+ *             canEmail: true,
+ *             remoteTemplateId: "92830948203"
+ *         },
+ *         remoteUserId: "string"
+ *     }
+ */
 export interface PatchedCandidateEndpointRequest {
     /**
      * Whether to include debug fields (such as log file links) in the response.

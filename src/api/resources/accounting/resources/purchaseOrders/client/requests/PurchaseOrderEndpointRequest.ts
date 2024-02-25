@@ -8,16 +8,8 @@ import * as Merge from "../../../../../..";
  * @example
  *     {
  *         model: {
- *             lineItems: [{
- *                     remoteId: "121222",
- *                     description: "Pickleball paddles",
- *                     unitPrice: 25,
- *                     quantity: 10,
- *                     trackingCategory: "f1214c24-2702-4617-b74b-3ddecfc0d384",
- *                     trackingCategories: [],
- *                     exchangeRate: "2.9",
- *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
- *                 }]
+ *             status: undefined,
+ *             currency: undefined
  *         }
  *     }
  */

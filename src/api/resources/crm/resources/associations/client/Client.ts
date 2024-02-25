@@ -29,7 +29,7 @@ export class Associations {
      * Returns a list of `Association` objects.
      *
      * @example
-     *     await merge.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom-object-class-id", "object-id", {
+     *     await merge.crm.associations.customObjectClassesCustomObjectsAssociationsList("string", "string", {
      *         expand: "association_type"
      *     })
      */
@@ -111,7 +111,7 @@ export class Associations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -153,7 +153,7 @@ export class Associations {
      * Creates an Association between `source_object_id` and `target_object_id` of type `association_type_id`.
      *
      * @example
-     *     await merge.crm.associations.customObjectClassesCustomObjectsAssociationsUpdate("association-type-id", "source-class-id", "source-object-id", "target-class-id", "target-object-id", {})
+     *     await merge.crm.associations.customObjectClassesCustomObjectsAssociationsUpdate("string", "string", "string", "string", "string", {})
      */
     public async customObjectClassesCustomObjectsAssociationsUpdate(
         associationTypeId: string,
@@ -188,7 +188,7 @@ export class Associations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

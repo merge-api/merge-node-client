@@ -10,21 +10,6 @@ import * as Merge from "../../../../../..";
  *         model: {
  *             firstName: "Gil",
  *             lastName: "Feig",
- *             addresses: [{
- *                     street1: "50 Bowling Green Dr",
- *                     street2: "Golden Gate Park",
- *                     city: "San Francisco",
- *                     state: "CA",
- *                     postalCode: "94122"
- *                 }],
- *             emailAddresses: [{
- *                     emailAddress: "merge_is_hiring@merge.dev",
- *                     emailAddressType: "Work"
- *                 }],
- *             phoneNumbers: [{
- *                     phoneNumber: "+3198675309",
- *                     phoneNumberType: "Mobile"
- *                 }],
  *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
  *         }
  *     }

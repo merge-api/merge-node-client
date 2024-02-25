@@ -6,5 +6,5 @@ import * as Merge from "../../..";
 
 export interface RemoteField {
     remoteFieldClass: Merge.crm.RemoteFieldRemoteFieldClass;
-    value?: unknown;
+    value?: Record<string, unknown>;
 }

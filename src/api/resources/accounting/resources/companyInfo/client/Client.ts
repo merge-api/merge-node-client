@@ -104,7 +104,7 @@ export class CompanyInfo {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -146,7 +146,7 @@ export class CompanyInfo {
      * Returns a `CompanyInfo` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.companyInfo.retrieve("id", {
+     *     await merge.accounting.companyInfo.retrieve("string", {
      *         expand: Merge.accounting.CompanyInfoRetrieveRequestExpand.Addresses
      *     })
      */
@@ -179,7 +179,7 @@ export class CompanyInfo {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

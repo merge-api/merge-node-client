@@ -9,15 +9,9 @@ import * as Merge from "../../../../../..";
  *     {
  *         model: {
  *             totalAmount: 10000,
+ *             currency: undefined,
  *             exchangeRate: "2.9",
- *             memo: "New employee supplies",
- *             lines: [{
- *                     remoteId: "121222",
- *                     netAmount: 25.54,
- *                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
- *                     description: "MacBook Pro",
- *                     exchangeRate: "2.9"
- *                 }]
+ *             memo: "New employee supplies"
  *         }
  *     }
  */

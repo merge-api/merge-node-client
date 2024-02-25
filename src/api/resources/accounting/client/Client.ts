@@ -18,8 +18,10 @@ import { CashFlowStatements } from "../resources/cashFlowStatements/client/Clien
 import { CompanyInfo } from "../resources/companyInfo/client/Client";
 import { Contacts } from "../resources/contacts/client/Client";
 import { CreditNotes } from "../resources/creditNotes/client/Client";
+import { Scopes } from "../resources/scopes/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
 import { Expenses } from "../resources/expenses/client/Client";
+import { FieldMapping } from "../resources/fieldMapping/client/Client";
 import { GenerateKey } from "../resources/generateKey/client/Client";
 import { IncomeStatements } from "../resources/incomeStatements/client/Client";
 import { Invoices } from "../resources/invoices/client/Client";
@@ -142,6 +144,12 @@ export class Accounting {
         return (this._creditNotes ??= new CreditNotes(this._options));
     }
 
+    protected _scopes: Scopes | undefined;
+
+    public get scopes(): Scopes {
+        return (this._scopes ??= new Scopes(this._options));
+    }
+
     protected _deleteAccount: DeleteAccount | undefined;
 
     public get deleteAccount(): DeleteAccount {
@@ -152,6 +160,12 @@ export class Accounting {
 
     public get expenses(): Expenses {
         return (this._expenses ??= new Expenses(this._options));
+    }
+
+    protected _fieldMapping: FieldMapping | undefined;
+
+    public get fieldMapping(): FieldMapping {
+        return (this._fieldMapping ??= new FieldMapping(this._options));
     }
 
     protected _generateKey: GenerateKey | undefined;

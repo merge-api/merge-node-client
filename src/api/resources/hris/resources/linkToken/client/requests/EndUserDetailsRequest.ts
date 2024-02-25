@@ -4,6 +4,16 @@
 
 import * as Merge from "../../../../../..";
 
+/**
+ * @example
+ *     {
+ *         endUserEmailAddress: "example@gmail.com",
+ *         endUserOrganizationName: "Test Organization",
+ *         endUserOriginId: "12345",
+ *         categories: [],
+ *         integration: "bamboohr"
+ *     }
+ */
 export interface EndUserDetailsRequest {
     /** Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent. */
     endUserEmailAddress: string;
@@ -21,4 +31,6 @@ export interface EndUserDetailsRequest {
     shouldCreateMagicLinkUrl?: boolean;
     /** An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account. */
     commonModels?: Merge.hris.CommonModelScopesBodyRequest[];
+    /** When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings. */
+    categoryCommonModelScopes?: Record<string, Merge.hris.IndividualCommonModelScopeDeserializerRequest[] | undefined>;
 }

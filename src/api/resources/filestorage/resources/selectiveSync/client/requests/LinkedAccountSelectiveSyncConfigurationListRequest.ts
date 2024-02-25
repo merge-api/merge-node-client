@@ -7,9 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         syncConfigurations: [{
- *                 linkedAccountConditions: []
- *             }]
+ *         syncConfigurations: []
  *     }
  */
 export interface LinkedAccountSelectiveSyncConfigurationListRequest {

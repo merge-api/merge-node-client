@@ -32,6 +32,22 @@ export const EndUserDetailsRequest: core.serialization.Schema<
             )
             .optional()
     ),
+    categoryCommonModelScopes: core.serialization.property(
+        "category_common_model_scopes",
+        core.serialization
+            .record(
+                core.serialization.string(),
+                core.serialization
+                    .list(
+                        core.serialization.lazyObject(
+                            async () =>
+                                (await import("../../../../../..")).ats.IndividualCommonModelScopeDeserializerRequest
+                        )
+                    )
+                    .optional()
+            )
+            .optional()
+    ),
 });
 
 export declare namespace EndUserDetailsRequest {
@@ -44,5 +60,9 @@ export declare namespace EndUserDetailsRequest {
         link_expiry_mins?: number | null;
         should_create_magic_link_url?: boolean | null;
         common_models?: serializers.ats.CommonModelScopesBodyRequest.Raw[] | null;
+        category_common_model_scopes?: Record<
+            string,
+            serializers.ats.IndividualCommonModelScopeDeserializerRequest.Raw[] | null | undefined
+        > | null;
     }
 }

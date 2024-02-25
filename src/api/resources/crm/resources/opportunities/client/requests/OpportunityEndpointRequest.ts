@@ -10,7 +10,8 @@ import * as Merge from "../../../../../..";
  *         model: {
  *             name: "Needs Integrations",
  *             description: "Needs a Unified API for Integrations!",
- *             amount: 100000,
+ *             amount: 1,
+ *             status: undefined,
  *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z"),
  *             closeDate: new Date("2022-02-10T00:00:00.000Z")
  *         }

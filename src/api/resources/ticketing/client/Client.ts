@@ -14,7 +14,9 @@ import { AvailableActions } from "../resources/availableActions/client/Client";
 import { Collections } from "../resources/collections/client/Client";
 import { Comments } from "../resources/comments/client/Client";
 import { Contacts } from "../resources/contacts/client/Client";
+import { Scopes } from "../resources/scopes/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
+import { FieldMapping } from "../resources/fieldMapping/client/Client";
 import { GenerateKey } from "../resources/generateKey/client/Client";
 import { Issues } from "../resources/issues/client/Client";
 import { LinkToken } from "../resources/linkToken/client/Client";
@@ -108,10 +110,22 @@ export class Ticketing {
         return (this._contacts ??= new Contacts(this._options));
     }
 
+    protected _scopes: Scopes | undefined;
+
+    public get scopes(): Scopes {
+        return (this._scopes ??= new Scopes(this._options));
+    }
+
     protected _deleteAccount: DeleteAccount | undefined;
 
     public get deleteAccount(): DeleteAccount {
         return (this._deleteAccount ??= new DeleteAccount(this._options));
+    }
+
+    protected _fieldMapping: FieldMapping | undefined;
+
+    public get fieldMapping(): FieldMapping {
+        return (this._fieldMapping ??= new FieldMapping(this._options));
     }
 
     protected _generateKey: GenerateKey | undefined;

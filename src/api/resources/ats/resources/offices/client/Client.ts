@@ -97,7 +97,7 @@ export class Offices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -139,7 +139,7 @@ export class Offices {
      * Returns an `Office` object with the given `id`.
      *
      * @example
-     *     await merge.ats.offices.retrieve("id", {})
+     *     await merge.ats.offices.retrieve("string", {})
      */
     public async retrieve(
         id: string,
@@ -166,7 +166,7 @@ export class Offices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

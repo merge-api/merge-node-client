@@ -15,9 +15,11 @@ import { CustomObjectClasses } from "../resources/customObjectClasses/client/Cli
 import { AssociationTypes } from "../resources/associationTypes/client/Client";
 import { CustomObjects } from "../resources/customObjects/client/Client";
 import { Associations } from "../resources/associations/client/Client";
+import { Scopes } from "../resources/scopes/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
 import { EngagementTypes } from "../resources/engagementTypes/client/Client";
 import { Engagements } from "../resources/engagements/client/Client";
+import { FieldMapping } from "../resources/fieldMapping/client/Client";
 import { GenerateKey } from "../resources/generateKey/client/Client";
 import { Issues } from "../resources/issues/client/Client";
 import { Leads } from "../resources/leads/client/Client";
@@ -117,6 +119,12 @@ export class Crm {
         return (this._associations ??= new Associations(this._options));
     }
 
+    protected _scopes: Scopes | undefined;
+
+    public get scopes(): Scopes {
+        return (this._scopes ??= new Scopes(this._options));
+    }
+
     protected _deleteAccount: DeleteAccount | undefined;
 
     public get deleteAccount(): DeleteAccount {
@@ -133,6 +141,12 @@ export class Crm {
 
     public get engagements(): Engagements {
         return (this._engagements ??= new Engagements(this._options));
+    }
+
+    protected _fieldMapping: FieldMapping | undefined;
+
+    public get fieldMapping(): FieldMapping {
+        return (this._fieldMapping ??= new FieldMapping(this._options));
     }
 
     protected _generateKey: GenerateKey | undefined;

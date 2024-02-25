@@ -114,7 +114,7 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -191,7 +191,7 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -236,7 +236,7 @@ export class Comments {
      * Returns a `Comment` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.comments.retrieve("id", {
+     *     await merge.ticketing.comments.retrieve("string", {
      *         expand: Merge.ticketing.CommentsRetrieveRequestExpand.Contact
      *     })
      */
@@ -269,7 +269,7 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -328,7 +328,7 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
