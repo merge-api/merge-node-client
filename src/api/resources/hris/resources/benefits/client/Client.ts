@@ -109,7 +109,7 @@ export class Benefits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -151,7 +151,7 @@ export class Benefits {
      * Returns a `Benefit` object with the given `id`.
      *
      * @example
-     *     await merge.hris.benefits.retrieve("id", {
+     *     await merge.hris.benefits.retrieve("string", {
      *         expand: "employee"
      *     })
      */
@@ -184,7 +184,7 @@ export class Benefits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

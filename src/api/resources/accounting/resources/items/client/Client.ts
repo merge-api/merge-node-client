@@ -121,7 +121,7 @@ export class Items {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -163,7 +163,7 @@ export class Items {
      * Returns an `Item` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.items.retrieve("id", {
+     *     await merge.accounting.items.retrieve("string", {
      *         expand: Merge.accounting.ItemsRetrieveRequestExpand.Company,
      *         remoteFields: "status",
      *         showEnumOrigins: "status"
@@ -206,7 +206,7 @@ export class Items {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

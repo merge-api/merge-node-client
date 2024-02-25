@@ -129,7 +129,7 @@ export class Payments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -174,6 +174,7 @@ export class Payments {
      *     await merge.accounting.payments.create({
      *         model: {
      *             transactionDate: new Date("2020-03-31T00:00:00.000Z"),
+     *             currency: undefined,
      *             exchangeRate: "2.9",
      *             totalAmount: 50
      *         }
@@ -207,7 +208,7 @@ export class Payments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -252,7 +253,7 @@ export class Payments {
      * Returns a `Payment` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.payments.retrieve("id", {
+     *     await merge.accounting.payments.retrieve("string", {
      *         expand: Merge.accounting.PaymentsRetrieveRequestExpand.Account
      *     })
      */
@@ -285,7 +286,7 @@ export class Payments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -344,7 +345,7 @@ export class Payments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

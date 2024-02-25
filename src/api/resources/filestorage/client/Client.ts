@@ -9,8 +9,10 @@ import { AccountToken } from "../resources/accountToken/client/Client";
 import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
 import { AuditTrail } from "../resources/auditTrail/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
+import { Scopes } from "../resources/scopes/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
 import { Drives } from "../resources/drives/client/Client";
+import { FieldMapping } from "../resources/fieldMapping/client/Client";
 import { Files } from "../resources/files/client/Client";
 import { Folders } from "../resources/folders/client/Client";
 import { GenerateKey } from "../resources/generateKey/client/Client";
@@ -72,6 +74,12 @@ export class Filestorage {
         return (this._availableActions ??= new AvailableActions(this._options));
     }
 
+    protected _scopes: Scopes | undefined;
+
+    public get scopes(): Scopes {
+        return (this._scopes ??= new Scopes(this._options));
+    }
+
     protected _deleteAccount: DeleteAccount | undefined;
 
     public get deleteAccount(): DeleteAccount {
@@ -82,6 +90,12 @@ export class Filestorage {
 
     public get drives(): Drives {
         return (this._drives ??= new Drives(this._options));
+    }
+
+    protected _fieldMapping: FieldMapping | undefined;
+
+    public get fieldMapping(): FieldMapping {
+        return (this._fieldMapping ??= new FieldMapping(this._options));
     }
 
     protected _files: Files | undefined;

@@ -97,7 +97,7 @@ export class Departments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -139,7 +139,7 @@ export class Departments {
      * Returns a `Department` object with the given `id`.
      *
      * @example
-     *     await merge.ats.departments.retrieve("id", {})
+     *     await merge.ats.departments.retrieve("string", {})
      */
     public async retrieve(
         id: string,
@@ -166,7 +166,7 @@ export class Departments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

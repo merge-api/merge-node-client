@@ -10,7 +10,7 @@ import * as Merge from "../../../../../..";
  *         model: {
  *             name: "Platform",
  *             folderUrl: "https://drive.com/1234",
- *             size: 2738000,
+ *             size: 1,
  *             description: "This is a wild folder."
  *         }
  *     }

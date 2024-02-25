@@ -27,6 +27,15 @@ export class LinkToken {
 
     /**
      * Creates a link token to be used when linking a new end user.
+     *
+     * @example
+     *     await merge.accounting.linkToken.create({
+     *         endUserEmailAddress: "example@gmail.com",
+     *         endUserOrganizationName: "Test Organization",
+     *         endUserOriginId: "12345",
+     *         categories: [],
+     *         integration: "bamboohr"
+     *     })
      */
     public async create(
         request: Merge.accounting.EndUserDetailsRequest,
@@ -46,7 +55,7 @@ export class LinkToken {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             body: await serializers.accounting.EndUserDetailsRequest.jsonOrThrow(request, {

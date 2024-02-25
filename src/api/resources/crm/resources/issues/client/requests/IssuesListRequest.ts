@@ -30,7 +30,7 @@ export interface IssuesListRequest {
      */
     firstIncidentTimeBefore?: Date;
     /**
-     * If True, will include muted issues
+     * If true, will include muted issues
      */
     includeMuted?: string;
     integrationName?: string;

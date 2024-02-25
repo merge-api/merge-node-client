@@ -30,7 +30,6 @@ export class Collections {
      *
      * @example
      *     await merge.ticketing.collections.list({
-     *         collectionType: Merge.ticketing.CollectionsListRequestCollectionType.List,
      *         expand: "parent_collection",
      *         remoteFields: "collection_type",
      *         showEnumOrigins: "collection_type"
@@ -127,7 +126,7 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -169,7 +168,7 @@ export class Collections {
      * Returns a `Collection` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.collections.retrieve("id", {
+     *     await merge.ticketing.collections.retrieve("string", {
      *         expand: "parent_collection",
      *         remoteFields: "collection_type",
      *         showEnumOrigins: "collection_type"
@@ -212,7 +211,7 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -254,7 +253,7 @@ export class Collections {
      * Returns a list of `User` objects.
      *
      * @example
-     *     await merge.ticketing.collections.usersList("parent-id", {
+     *     await merge.ticketing.collections.usersList("string", {
      *         expand: Merge.ticketing.CollectionsUsersListRequestExpand.Roles
      *     })
      */
@@ -299,7 +298,7 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

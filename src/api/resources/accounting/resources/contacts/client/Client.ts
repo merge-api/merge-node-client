@@ -131,7 +131,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -179,12 +179,9 @@ export class Contacts {
      *             isCustomer: true,
      *             emailAddress: "pickleball@merge.dev",
      *             taxNumber: "12-3456789",
+     *             status: undefined,
      *             currency: "USD",
-     *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
-     *             phoneNumbers: [{
-     *                     number: "+3198675309",
-     *                     type: "Mobile"
-     *                 }]
+     *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
      *         }
      *     })
      */
@@ -216,7 +213,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -261,7 +258,7 @@ export class Contacts {
      * Returns a `Contact` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.contacts.retrieve("id", {
+     *     await merge.accounting.contacts.retrieve("string", {
      *         expand: Merge.accounting.ContactsRetrieveRequestExpand.Addresses,
      *         remoteFields: "status",
      *         showEnumOrigins: "status"
@@ -304,7 +301,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -363,7 +360,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -11,12 +11,15 @@ export const FilePermissions: core.serialization.Schema<
     Merge.filestorage.FilePermissions
 > = core.serialization.undiscriminatedUnion([
     core.serialization.string(),
-    core.serialization.unknown(),
+    core.serialization.lazyObject(async () => (await import("../../..")).filestorage.PermissionRequest),
     core.serialization.list(
         core.serialization.lazy(async () => (await import("../../..")).filestorage.FilePermissionsItem)
     ),
 ]);
 
 export declare namespace FilePermissions {
-    type Raw = string | unknown | serializers.filestorage.FilePermissionsItem.Raw[];
+    type Raw =
+        | string
+        | serializers.filestorage.PermissionRequest.Raw
+        | serializers.filestorage.FilePermissionsItem.Raw[];
 }

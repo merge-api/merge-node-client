@@ -134,7 +134,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -183,21 +183,6 @@ export class Leads {
      *             company: "Merge API",
      *             firstName: "Gil",
      *             lastName: "Feig",
-     *             addresses: [{
-     *                     street1: "50 Bowling Green Dr",
-     *                     street2: "Golden Gate Park",
-     *                     city: "San Francisco",
-     *                     state: "CA",
-     *                     postalCode: "94122"
-     *                 }],
-     *             emailAddresses: [{
-     *                     emailAddress: "merge_is_hiring@merge.dev",
-     *                     emailAddressType: "Work"
-     *                 }],
-     *             phoneNumbers: [{
-     *                     phoneNumber: "+3198675309",
-     *                     phoneNumberType: "Mobile"
-     *                 }],
      *             convertedDate: new Date("2022-03-10T00:00:00.000Z")
      *         }
      *     })
@@ -230,7 +215,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -273,7 +258,7 @@ export class Leads {
      * Returns a `Lead` object with the given `id`.
      *
      * @example
-     *     await merge.crm.leads.retrieve("id", {
+     *     await merge.crm.leads.retrieve("string", {
      *         expand: Merge.crm.LeadsRetrieveRequestExpand.ConvertedAccount
      *     })
      */
@@ -310,7 +295,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -369,7 +354,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -452,7 +437,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

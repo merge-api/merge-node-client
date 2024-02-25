@@ -10,7 +10,10 @@ import * as Merge from "../../../../../..";
  *         model: {
  *             name: "Cash",
  *             description: "Cash",
+ *             classification: undefined,
  *             type: "Asset",
+ *             status: undefined,
+ *             currency: undefined,
  *             accountNumber: "X12Y9AB",
  *             parentAccount: "22d92d6c-22f9-11ed-861d-0242ac120002",
  *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"

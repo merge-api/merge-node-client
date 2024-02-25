@@ -121,7 +121,7 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -167,7 +167,10 @@ export class Accounts {
      *         model: {
      *             name: "Cash",
      *             description: "Cash",
+     *             classification: undefined,
      *             type: "Asset",
+     *             status: undefined,
+     *             currency: undefined,
      *             accountNumber: "X12Y9AB",
      *             parentAccount: "22d92d6c-22f9-11ed-861d-0242ac120002",
      *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
@@ -202,7 +205,7 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -247,7 +250,7 @@ export class Accounts {
      * Returns an `Account` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.accounts.retrieve("id", {
+     *     await merge.accounting.accounts.retrieve("string", {
      *         expand: "company",
      *         remoteFields: Merge.accounting.AccountsRetrieveRequestRemoteFields.Classification,
      *         showEnumOrigins: Merge.accounting.AccountsRetrieveRequestShowEnumOrigins.Classification
@@ -290,7 +293,7 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -349,7 +352,7 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
