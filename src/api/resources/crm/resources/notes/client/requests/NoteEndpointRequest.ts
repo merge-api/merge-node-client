@@ -7,9 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             content: "Merge is hiring!"
- *         }
+ *         model: {}
  *     }
  */
 export interface NoteEndpointRequest {

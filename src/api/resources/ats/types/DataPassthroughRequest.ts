@@ -17,8 +17,11 @@ import * as Merge from "../../..";
  */
 export interface DataPassthroughRequest {
     method: Merge.ats.MethodEnum;
+    /** The path of the request in the third party's platform. */
     path: string;
+    /** An optional override of the third party's base url for the request. */
     baseUrlOverride?: string;
+    /** The data with the request. You must include a `request_format` parameter matching the data's format */
     data?: string;
     /** Pass an array of `MultipartFormField` objects in here instead of using the `data` param if `request_format` is set to `MULTIPART`. */
     multipartFormData?: Merge.ats.MultipartFormFieldRequest[];

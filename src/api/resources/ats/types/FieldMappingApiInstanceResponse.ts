@@ -13,6 +13,7 @@ export interface FieldMappingApiInstanceResponse {
     eeoc?: Merge.ats.FieldMappingApiInstance[];
     scheduledInterview?: Merge.ats.FieldMappingApiInstance[];
     job?: Merge.ats.FieldMappingApiInstance[];
+    jobPosting?: Merge.ats.FieldMappingApiInstance[];
     jobInterviewStage?: Merge.ats.FieldMappingApiInstance[];
     offer?: Merge.ats.FieldMappingApiInstance[];
     office?: Merge.ats.FieldMappingApiInstance[];

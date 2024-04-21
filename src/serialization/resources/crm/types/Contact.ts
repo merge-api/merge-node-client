@@ -8,6 +8,10 @@ import * as core from "../../../../core";
 
 export const Contact: core.serialization.ObjectSchema<serializers.crm.Contact.Raw, Merge.crm.Contact> =
     core.serialization.object({
+        id: core.serialization.string().optional(),
+        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         firstName: core.serialization.property("first_name", core.serialization.string().optional()),
         lastName: core.serialization.property("last_name", core.serialization.string().optional()),
         account: core.serialization.lazy(async () => (await import("../../..")).crm.ContactAccount).optional(),
@@ -30,10 +34,6 @@ export const Contact: core.serialization.ObjectSchema<serializers.crm.Contact.Ra
         lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        id: core.serialization.string().optional(),
-        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -54,6 +54,10 @@ export const Contact: core.serialization.ObjectSchema<serializers.crm.Contact.Ra
 
 export declare namespace Contact {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         first_name?: string | null;
         last_name?: string | null;
         account?: serializers.crm.ContactAccount.Raw | null;
@@ -64,10 +68,6 @@ export declare namespace Contact {
         last_activity_at?: string | null;
         remote_created_at?: string | null;
         remote_was_deleted?: boolean | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.crm.RemoteData.Raw[] | null;
         remote_fields?: serializers.crm.RemoteField.Raw[] | null;

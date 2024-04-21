@@ -9,12 +9,14 @@ import * as Merge from "../../../../../..";
  *     {
  *         model: {
  *             sourceObjectClass: {
- *                 id: "string",
+ *                 id: "id",
  *                 originType: Merge.crm.OriginTypeEnum.CustomObject
  *             },
- *             targetObjectClasses: [],
- *             remoteKeyName: "string",
- *             cardinality: Merge.crm.CardinalityEnum.OneToOne
+ *             targetObjectClasses: [{
+ *                     id: "id",
+ *                     originType: Merge.crm.OriginTypeEnum.CustomObject
+ *                 }],
+ *             remoteKeyName: "remote_key_name"
  *         }
  *     }
  */

@@ -29,11 +29,7 @@ export class TrackingCategories {
      * Returns a list of `TrackingCategory` objects.
      *
      * @example
-     *     await merge.accounting.trackingCategories.list({
-     *         expand: "company",
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.accounting.trackingCategories.list({})
      */
     public async list(
         request: Merge.accounting.TrackingCategoriesListRequest = {},
@@ -110,7 +106,7 @@ export class TrackingCategories {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/tracking-categories"
+                "accounting/v1/tracking-categories"
             ),
             method: "GET",
             headers: {
@@ -121,7 +117,7 @@ export class TrackingCategories {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -163,11 +159,7 @@ export class TrackingCategories {
      * Returns a `TrackingCategory` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.trackingCategories.retrieve("string", {
-     *         expand: "company",
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.accounting.trackingCategories.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -195,7 +187,7 @@ export class TrackingCategories {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/tracking-categories/${id}`
+                `accounting/v1/tracking-categories/${id}`
             ),
             method: "GET",
             headers: {
@@ -206,7 +198,7 @@ export class TrackingCategories {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

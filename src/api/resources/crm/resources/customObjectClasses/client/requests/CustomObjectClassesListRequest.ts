@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "fields"
- *     }
+ *     {}
  */
 export interface CustomObjectClassesListRequest {
     /**

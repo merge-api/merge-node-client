@@ -5,6 +5,12 @@
 import * as Merge from "../../..";
 
 export interface CreditNoteLineItem {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     item?: Merge.accounting.CreditNoteLineItemItem;
     /** The credit note line item's name. */
     name?: string;
@@ -28,12 +34,6 @@ export interface CreditNoteLineItem {
     account?: string;
     /** The company the credit note belongs to. */
     company?: Merge.accounting.CreditNoteLineItemCompany;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    id?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

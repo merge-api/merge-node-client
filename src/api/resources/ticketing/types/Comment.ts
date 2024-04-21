@@ -19,6 +19,9 @@ export interface Comment {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The author of the Comment, if the author is a User. */
     user?: Merge.ticketing.CommentUser;
     /** The author of the Comment, if the author is a Contact. */
@@ -34,9 +37,6 @@ export interface Comment {
     /** When the third party's comment was created. */
     remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
 }

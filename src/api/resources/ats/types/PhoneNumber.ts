@@ -16,6 +16,9 @@ import * as Merge from "../../..";
  * Fetch from the `GET Candidate` endpoint and view their phone numbers.
  */
 export interface PhoneNumber {
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The phone number. */
     value?: string;
     /**
@@ -28,7 +31,4 @@ export interface PhoneNumber {
      * - `OTHER` - OTHER
      */
     phoneNumberType?: Merge.ats.PhoneNumberPhoneNumberType;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

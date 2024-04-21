@@ -37,7 +37,7 @@ export class FieldMapping {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/field-mappings"
+                "ats/v1/field-mappings"
             ),
             method: "GET",
             headers: {
@@ -48,7 +48,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -105,7 +105,7 @@ export class FieldMapping {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/field-mappings"
+                "ats/v1/field-mappings"
             ),
             method: "POST",
             headers: {
@@ -116,7 +116,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.ats.CreateFieldMappingRequest.jsonOrThrow(request, {
@@ -160,7 +160,7 @@ export class FieldMapping {
      * Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
      *
      * @example
-     *     await merge.ats.fieldMapping.fieldMappingsDestroy("string")
+     *     await merge.ats.fieldMapping.fieldMappingsDestroy("field_mapping_id")
      */
     public async fieldMappingsDestroy(
         fieldMappingId: string,
@@ -169,7 +169,7 @@ export class FieldMapping {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/field-mappings/${fieldMappingId}`
+                `ats/v1/field-mappings/${fieldMappingId}`
             ),
             method: "DELETE",
             headers: {
@@ -180,7 +180,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -221,7 +221,7 @@ export class FieldMapping {
      * Create or update existing Field Mappings for a Linked Account. Changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
      *
      * @example
-     *     await merge.ats.fieldMapping.fieldMappingsPartialUpdate("string", {
+     *     await merge.ats.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
      *         remoteMethod: "GET",
      *         remoteUrlPath: "/example-url-path"
      *     })
@@ -234,7 +234,7 @@ export class FieldMapping {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/field-mappings/${fieldMappingId}`
+                `ats/v1/field-mappings/${fieldMappingId}`
             ),
             method: "PATCH",
             headers: {
@@ -245,7 +245,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.ats.PatchedEditFieldMappingRequest.jsonOrThrow(request, {
@@ -308,7 +308,7 @@ export class FieldMapping {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/remote-fields"
+                "ats/v1/remote-fields"
             ),
             method: "GET",
             headers: {
@@ -319,7 +319,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -369,7 +369,7 @@ export class FieldMapping {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/target-fields"
+                "ats/v1/target-fields"
             ),
             method: "GET",
             headers: {
@@ -380,7 +380,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

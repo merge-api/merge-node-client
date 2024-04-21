@@ -18,6 +18,12 @@ import * as Merge from "../../..";
  * Fetch from the `GET Expense` endpoint and view a company's expense.
  */
 export interface Expense {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** When the transaction occurred. */
     transactionDate?: Date;
     /** When the expense was created. */
@@ -355,12 +361,6 @@ export interface Expense {
     remoteWasDeleted?: boolean;
     /** The accounting period that the Expense was generated in. */
     accountingPeriod?: Merge.accounting.ExpenseAccountingPeriod;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

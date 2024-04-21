@@ -86,7 +86,7 @@ export class PayGroups {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/pay-groups"
+                "hris/v1/pay-groups"
             ),
             method: "GET",
             headers: {
@@ -97,7 +97,7 @@ export class PayGroups {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -139,7 +139,7 @@ export class PayGroups {
      * Returns a `PayGroup` object with the given `id`.
      *
      * @example
-     *     await merge.hris.payGroups.retrieve("string", {})
+     *     await merge.hris.payGroups.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -155,7 +155,7 @@ export class PayGroups {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/pay-groups/${id}`
+                `hris/v1/pay-groups/${id}`
             ),
             method: "GET",
             headers: {
@@ -166,7 +166,7 @@ export class PayGroups {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

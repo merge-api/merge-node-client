@@ -31,9 +31,7 @@ export class AsyncPassthrough {
      * @example
      *     await merge.ticketing.asyncPassthrough.create({
      *         method: Merge.ticketing.MethodEnum.Get,
-     *         path: "/scooters",
-     *         data: "{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}",
-     *         requestFormat: Merge.ticketing.RequestFormatEnum.Json
+     *         path: "/scooters"
      *     })
      */
     public async create(
@@ -43,7 +41,7 @@ export class AsyncPassthrough {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/async-passthrough"
+                "ticketing/v1/async-passthrough"
             ),
             method: "POST",
             headers: {
@@ -54,7 +52,7 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.ticketing.DataPassthroughRequest.jsonOrThrow(request, {
@@ -98,7 +96,7 @@ export class AsyncPassthrough {
      * Retrieves data from earlier async-passthrough POST request
      *
      * @example
-     *     await merge.ticketing.asyncPassthrough.retrieve("string")
+     *     await merge.ticketing.asyncPassthrough.retrieve("async_passthrough_receipt_id")
      */
     public async retrieve(
         asyncPassthroughReceiptId: string,
@@ -107,7 +105,7 @@ export class AsyncPassthrough {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/async-passthrough/${asyncPassthroughReceiptId}`
+                `ticketing/v1/async-passthrough/${asyncPassthroughReceiptId}`
             ),
             method: "GET",
             headers: {
@@ -118,7 +116,7 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

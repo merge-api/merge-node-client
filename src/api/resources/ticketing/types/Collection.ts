@@ -20,6 +20,9 @@ export interface Collection {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The collection's name. */
     name?: string;
     /** The collection's description. */
@@ -43,9 +46,6 @@ export interface Collection {
      * - `PUBLIC` - PUBLIC
      */
     accessLevel?: Merge.ticketing.CollectionAccessLevel;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
 }

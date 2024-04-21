@@ -58,6 +58,12 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).ats.RemoteFieldApi))
             .optional()
     ),
+    jobPosting: core.serialization.property(
+        "JobPosting",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).ats.RemoteFieldApi))
+            .optional()
+    ),
     jobInterviewStage: core.serialization.property(
         "JobInterviewStage",
         core.serialization
@@ -112,6 +118,7 @@ export declare namespace RemoteFieldApiResponse {
         EEOC?: serializers.ats.RemoteFieldApi.Raw[] | null;
         ScheduledInterview?: serializers.ats.RemoteFieldApi.Raw[] | null;
         Job?: serializers.ats.RemoteFieldApi.Raw[] | null;
+        JobPosting?: serializers.ats.RemoteFieldApi.Raw[] | null;
         JobInterviewStage?: serializers.ats.RemoteFieldApi.Raw[] | null;
         Offer?: serializers.ats.RemoteFieldApi.Raw[] | null;
         Office?: serializers.ats.RemoteFieldApi.Raw[] | null;

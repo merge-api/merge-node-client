@@ -29,7 +29,7 @@ export class PhoneNumbers {
      * Returns an `AccountingPhoneNumber` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.phoneNumbers.retrieve("string", {})
+     *     await merge.accounting.phoneNumbers.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -45,7 +45,7 @@ export class PhoneNumbers {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/phone-numbers/${id}`
+                `accounting/v1/phone-numbers/${id}`
             ),
             method: "GET",
             headers: {
@@ -56,7 +56,7 @@ export class PhoneNumbers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

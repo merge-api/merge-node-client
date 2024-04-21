@@ -19,6 +19,9 @@ export interface Application {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The candidate applying. */
     candidate?: Merge.ats.ApplicationCandidate;
     /** The job being applied for. */
@@ -27,6 +30,7 @@ export interface Application {
     appliedAt?: Date;
     /** When the application was rejected. */
     rejectedAt?: Date;
+    offers?: (Merge.ats.ApplicationOffersItem | undefined)[];
     /** The application's source. */
     source?: string;
     /** The user credited for this application. */
@@ -36,9 +40,6 @@ export interface Application {
     /** The application's reason for rejection. */
     rejectReason?: Merge.ats.ApplicationRejectReason;
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

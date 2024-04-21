@@ -16,6 +16,12 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Contact {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The contact's first name. */
     firstName?: string;
     /** The contact's last name. */
@@ -32,12 +38,6 @@ export interface Contact {
     /** When the third party's contact was created. */
     remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

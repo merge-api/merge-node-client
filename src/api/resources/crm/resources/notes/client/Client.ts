@@ -29,9 +29,7 @@ export class Notes {
      * Returns a list of `Note` objects.
      *
      * @example
-     *     await merge.crm.notes.list({
-     *         expand: Merge.crm.NotesListRequestExpand.Account
-     *     })
+     *     await merge.crm.notes.list({})
      */
     public async list(
         request: Merge.crm.NotesListRequest = {},
@@ -118,7 +116,7 @@ export class Notes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/notes"
+                "crm/v1/notes"
             ),
             method: "GET",
             headers: {
@@ -129,7 +127,7 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -172,9 +170,7 @@ export class Notes {
      *
      * @example
      *     await merge.crm.notes.create({
-     *         model: {
-     *             content: "Merge is hiring!"
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -194,7 +190,7 @@ export class Notes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/notes"
+                "crm/v1/notes"
             ),
             method: "POST",
             headers: {
@@ -205,7 +201,7 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -248,9 +244,7 @@ export class Notes {
      * Returns a `Note` object with the given `id`.
      *
      * @example
-     *     await merge.crm.notes.retrieve("string", {
-     *         expand: Merge.crm.NotesRetrieveRequestExpand.Account
-     *     })
+     *     await merge.crm.notes.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -274,7 +268,7 @@ export class Notes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/notes/${id}`
+                `crm/v1/notes/${id}`
             ),
             method: "GET",
             headers: {
@@ -285,7 +279,7 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -333,7 +327,7 @@ export class Notes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/notes/meta/post"
+                "crm/v1/notes/meta/post"
             ),
             method: "GET",
             headers: {
@@ -344,7 +338,7 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -416,7 +410,7 @@ export class Notes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/notes/remote-field-classes"
+                "crm/v1/notes/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -427,7 +421,7 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

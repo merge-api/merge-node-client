@@ -19,6 +19,9 @@ export interface Candidate {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The candidate's first name. */
     firstName?: string;
     /** The candidate's last name. */
@@ -49,9 +52,6 @@ export interface Candidate {
     /** Array of `Attachment` object IDs. */
     attachments?: (Merge.ats.CandidateAttachmentsItem | undefined)[];
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

@@ -29,9 +29,7 @@ export class Applications {
      * Returns a list of `Application` objects.
      *
      * @example
-     *     await merge.ats.applications.list({
-     *         expand: Merge.ats.ApplicationsListRequestExpand.Candidate
-     *     })
+     *     await merge.ats.applications.list({})
      */
     public async list(
         request: Merge.ats.ApplicationsListRequest = {},
@@ -123,7 +121,7 @@ export class Applications {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/applications"
+                "ats/v1/applications"
             ),
             method: "GET",
             headers: {
@@ -134,7 +132,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -177,13 +175,8 @@ export class Applications {
      *
      * @example
      *     await merge.ats.applications.create({
-     *         model: {
-     *             appliedAt: new Date("2021-10-15T00:00:00.000Z"),
-     *             rejectedAt: new Date("2021-11-15T00:00:00.000Z"),
-     *             source: "Campus recruiting event",
-     *             remoteTemplateId: "92830948203"
-     *         },
-     *         remoteUserId: "string"
+     *         model: {},
+     *         remoteUserId: "remote_user_id"
      *     })
      */
     public async create(
@@ -203,7 +196,7 @@ export class Applications {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/applications"
+                "ats/v1/applications"
             ),
             method: "POST",
             headers: {
@@ -214,7 +207,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -259,9 +252,7 @@ export class Applications {
      * Returns an `Application` object with the given `id`.
      *
      * @example
-     *     await merge.ats.applications.retrieve("string", {
-     *         expand: Merge.ats.ApplicationsRetrieveRequestExpand.Candidate
-     *     })
+     *     await merge.ats.applications.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -281,7 +272,7 @@ export class Applications {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/applications/${id}`
+                `ats/v1/applications/${id}`
             ),
             method: "GET",
             headers: {
@@ -292,7 +283,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -334,7 +325,7 @@ export class Applications {
      * Updates the `current_stage` field of an `Application` object
      *
      * @example
-     *     await merge.ats.applications.changeStageCreate("string", {})
+     *     await merge.ats.applications.changeStageCreate("id", {})
      */
     public async changeStageCreate(
         id: string,
@@ -354,7 +345,7 @@ export class Applications {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/applications/${id}/change-stage`
+                `ats/v1/applications/${id}/change-stage`
             ),
             method: "POST",
             headers: {
@@ -365,7 +356,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -425,7 +416,7 @@ export class Applications {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/applications/meta/post"
+                "ats/v1/applications/meta/post"
             ),
             method: "GET",
             headers: {
@@ -436,7 +427,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

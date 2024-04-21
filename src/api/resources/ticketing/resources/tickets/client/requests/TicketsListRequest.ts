@@ -6,13 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.ticketing.TicketsListRequestExpand.Account,
- *         priority: Merge.ticketing.TicketsListRequestPriority.High,
- *         remoteFields: Merge.ticketing.TicketsListRequestRemoteFields.Priority,
- *         showEnumOrigins: Merge.ticketing.TicketsListRequestShowEnumOrigins.Priority,
- *         status: Merge.ticketing.TicketsListRequestStatus.Closed
- *     }
+ *     {}
  */
 export interface TicketsListRequest {
     /**
@@ -101,10 +95,6 @@ export interface TicketsListRequest {
      */
     priority?: Merge.ticketing.TicketsListRequestPriority;
     /**
-     * If provided, will only return tickets for this project.
-     */
-    projectId?: string;
-    /**
      * If provided, will only return tickets created in the third party platform after this datetime.
      */
     remoteCreatedAfter?: Date;
@@ -129,7 +119,7 @@ export interface TicketsListRequest {
      */
     remoteUpdatedBefore?: Date;
     /**
-     * Which fields should be returned in non-normalized form.
+     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: Merge.ticketing.TicketsListRequestShowEnumOrigins;
     /**

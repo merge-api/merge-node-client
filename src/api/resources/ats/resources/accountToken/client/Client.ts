@@ -29,7 +29,7 @@ export class AccountToken {
      * Returns the account token for the end user with the provided public token.
      *
      * @example
-     *     await merge.ats.accountToken.retrieve("string")
+     *     await merge.ats.accountToken.retrieve("public_token")
      */
     public async retrieve(
         publicToken: string,
@@ -38,7 +38,7 @@ export class AccountToken {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/account-token/${publicToken}`
+                `ats/v1/account-token/${publicToken}`
             ),
             method: "GET",
             headers: {
@@ -49,7 +49,7 @@ export class AccountToken {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

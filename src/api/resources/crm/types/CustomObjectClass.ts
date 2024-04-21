@@ -16,14 +16,14 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface CustomObjectClass {
-    name?: string;
-    description?: string;
-    labels?: Record<string, string | undefined>;
-    fields?: Merge.crm.RemoteFieldClassForCustomObjectClass[];
-    associationTypes?: Record<string, unknown>[];
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     createdAt?: Date;
     modifiedAt?: Date;
+    name?: string;
+    description?: string;
+    labels?: Record<string, string | undefined>;
+    fields?: Merge.crm.RemoteFieldClassForCustomObjectClass[];
+    associationTypes?: Record<string, unknown>[];
 }

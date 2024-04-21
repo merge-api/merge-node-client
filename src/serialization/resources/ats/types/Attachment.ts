@@ -10,6 +10,8 @@ export const Attachment: core.serialization.ObjectSchema<serializers.ats.Attachm
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fileName: core.serialization.property("file_name", core.serialization.string().optional()),
         fileUrl: core.serialization.property("file_url", core.serialization.string().optional()),
         candidate: core.serialization.string().optional(),
@@ -18,8 +20,6 @@ export const Attachment: core.serialization.ObjectSchema<serializers.ats.Attachm
             core.serialization.lazy(async () => (await import("../../..")).ats.AttachmentAttachmentType).optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -36,13 +36,13 @@ export declare namespace Attachment {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         file_name?: string | null;
         file_url?: string | null;
         candidate?: string | null;
         attachment_type?: serializers.ats.AttachmentAttachmentType.Raw | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ats.RemoteData.Raw[] | null;
     }

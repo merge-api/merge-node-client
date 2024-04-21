@@ -14,11 +14,11 @@
  * Fetch from the `GET CompanyInfo` endpoint and view the company's phone numbers.
  */
 export interface AccountingPhoneNumber {
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The phone number. */
     number?: string;
     /** The phone number's type. */
     type?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

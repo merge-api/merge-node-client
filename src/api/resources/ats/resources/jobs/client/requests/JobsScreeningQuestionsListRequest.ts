@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.ats.JobsScreeningQuestionsListRequestExpand.Job
- *     }
+ *     {}
  */
 export interface JobsScreeningQuestionsListRequest {
     /**

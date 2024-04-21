@@ -29,9 +29,7 @@ export class AssociationTypes {
      * Returns a list of `AssociationType` objects.
      *
      * @example
-     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesList("string", {
-     *         expand: "target_object_classes"
-     *     })
+     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesList("custom_object_class_id", {})
      */
     public async customObjectClassesAssociationTypesList(
         customObjectClassId: string,
@@ -94,7 +92,7 @@ export class AssociationTypes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/association-types`
+                `crm/v1/custom-object-classes/${customObjectClassId}/association-types`
             ),
             method: "GET",
             headers: {
@@ -105,7 +103,7 @@ export class AssociationTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -147,15 +145,17 @@ export class AssociationTypes {
      * Creates an `AssociationType` object with the given values.
      *
      * @example
-     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesCreate("string", {
+     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesCreate("custom_object_class_id", {
      *         model: {
      *             sourceObjectClass: {
-     *                 id: "string",
+     *                 id: "id",
      *                 originType: Merge.crm.OriginTypeEnum.CustomObject
      *             },
-     *             targetObjectClasses: [],
-     *             remoteKeyName: "string",
-     *             cardinality: Merge.crm.CardinalityEnum.OneToOne
+     *             targetObjectClasses: [{
+     *                     id: "id",
+     *                     originType: Merge.crm.OriginTypeEnum.CustomObject
+     *                 }],
+     *             remoteKeyName: "remote_key_name"
      *         }
      *     })
      */
@@ -177,7 +177,7 @@ export class AssociationTypes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/association-types`
+                `crm/v1/custom-object-classes/${customObjectClassId}/association-types`
             ),
             method: "POST",
             headers: {
@@ -188,7 +188,7 @@ export class AssociationTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -233,9 +233,7 @@ export class AssociationTypes {
      * Returns an `AssociationType` object with the given `id`.
      *
      * @example
-     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesRetrieve("string", "string", {
-     *         expand: "target_object_classes"
-     *     })
+     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesRetrieve("custom_object_class_id", "id", {})
      */
     public async customObjectClassesAssociationTypesRetrieve(
         customObjectClassId: string,
@@ -256,7 +254,7 @@ export class AssociationTypes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/association-types/${id}`
+                `crm/v1/custom-object-classes/${customObjectClassId}/association-types/${id}`
             ),
             method: "GET",
             headers: {
@@ -267,7 +265,7 @@ export class AssociationTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -309,7 +307,7 @@ export class AssociationTypes {
      * Returns metadata for `CRMAssociationType` POSTs.
      *
      * @example
-     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesMetaPostRetrieve("string")
+     *     await merge.crm.associationTypes.customObjectClassesAssociationTypesMetaPostRetrieve("custom_object_class_id")
      */
     public async customObjectClassesAssociationTypesMetaPostRetrieve(
         customObjectClassId: string,
@@ -318,7 +316,7 @@ export class AssociationTypes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/association-types/meta/post`
+                `crm/v1/custom-object-classes/${customObjectClassId}/association-types/meta/post`
             ),
             method: "GET",
             headers: {
@@ -329,7 +327,7 @@ export class AssociationTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

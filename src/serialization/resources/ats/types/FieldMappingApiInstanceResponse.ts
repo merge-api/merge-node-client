@@ -58,6 +58,12 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).ats.FieldMappingApiInstance))
             .optional()
     ),
+    jobPosting: core.serialization.property(
+        "JobPosting",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).ats.FieldMappingApiInstance))
+            .optional()
+    ),
     jobInterviewStage: core.serialization.property(
         "JobInterviewStage",
         core.serialization
@@ -112,6 +118,7 @@ export declare namespace FieldMappingApiInstanceResponse {
         EEOC?: serializers.ats.FieldMappingApiInstance.Raw[] | null;
         ScheduledInterview?: serializers.ats.FieldMappingApiInstance.Raw[] | null;
         Job?: serializers.ats.FieldMappingApiInstance.Raw[] | null;
+        JobPosting?: serializers.ats.FieldMappingApiInstance.Raw[] | null;
         JobInterviewStage?: serializers.ats.FieldMappingApiInstance.Raw[] | null;
         Offer?: serializers.ats.FieldMappingApiInstance.Raw[] | null;
         Office?: serializers.ats.FieldMappingApiInstance.Raw[] | null;

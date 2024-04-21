@@ -23,6 +23,8 @@ export interface AccountDetailsAndActions {
     endUserOriginId?: string;
     endUserOrganizationName: string;
     endUserEmailAddress: string;
+    /** The tenant or domain the customer has provided access to. */
+    subdomain?: string;
     webhookListenerUrl: string;
     /** Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is `null` for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets. */
     isDuplicate?: boolean;

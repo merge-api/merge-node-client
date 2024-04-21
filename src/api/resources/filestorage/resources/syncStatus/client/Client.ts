@@ -48,7 +48,7 @@ export class SyncStatus {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/sync-status"
+                "filestorage/v1/sync-status"
             ),
             method: "GET",
             headers: {
@@ -59,7 +59,7 @@ export class SyncStatus {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

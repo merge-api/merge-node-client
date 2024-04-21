@@ -8,9 +8,7 @@ import * as Merge from "../../../../../..";
  * @example
  *     {
  *         model: {
- *             fields: {
- *                 "string": {}
- *             }
+ *             fields: {}
  *         }
  *     }
  */

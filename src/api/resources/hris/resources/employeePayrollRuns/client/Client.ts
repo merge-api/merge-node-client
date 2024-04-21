@@ -29,9 +29,7 @@ export class EmployeePayrollRuns {
      * Returns a list of `EmployeePayrollRun` objects.
      *
      * @example
-     *     await merge.hris.employeePayrollRuns.list({
-     *         expand: Merge.hris.EmployeePayrollRunsListRequestExpand.Employee
-     *     })
+     *     await merge.hris.employeePayrollRuns.list({})
      */
     public async list(
         request: Merge.hris.EmployeePayrollRunsListRequest = {},
@@ -123,7 +121,7 @@ export class EmployeePayrollRuns {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/employee-payroll-runs"
+                "hris/v1/employee-payroll-runs"
             ),
             method: "GET",
             headers: {
@@ -134,7 +132,7 @@ export class EmployeePayrollRuns {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -176,9 +174,7 @@ export class EmployeePayrollRuns {
      * Returns an `EmployeePayrollRun` object with the given `id`.
      *
      * @example
-     *     await merge.hris.employeePayrollRuns.retrieve("string", {
-     *         expand: Merge.hris.EmployeePayrollRunsRetrieveRequestExpand.Employee
-     *     })
+     *     await merge.hris.employeePayrollRuns.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -198,7 +194,7 @@ export class EmployeePayrollRuns {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/employee-payroll-runs/${id}`
+                `hris/v1/employee-payroll-runs/${id}`
             ),
             method: "GET",
             headers: {
@@ -209,7 +205,7 @@ export class EmployeePayrollRuns {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

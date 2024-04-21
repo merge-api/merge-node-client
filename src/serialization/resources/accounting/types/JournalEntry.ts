@@ -10,6 +10,10 @@ export const JournalEntry: core.serialization.ObjectSchema<
     serializers.accounting.JournalEntry.Raw,
     Merge.accounting.JournalEntry
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
+    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
     remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
     remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
@@ -61,10 +65,6 @@ export const JournalEntry: core.serialization.ObjectSchema<
             .lazy(async () => (await import("../../..")).accounting.JournalEntryAccountingPeriod)
             .optional()
     ),
-    id: core.serialization.string().optional(),
-    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -79,6 +79,10 @@ export const JournalEntry: core.serialization.ObjectSchema<
 
 export declare namespace JournalEntry {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         transaction_date?: string | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
@@ -96,10 +100,6 @@ export declare namespace JournalEntry {
         remote_was_deleted?: boolean | null;
         posting_status?: serializers.accounting.JournalEntryPostingStatus.Raw | null;
         accounting_period?: serializers.accounting.JournalEntryAccountingPeriod.Raw | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }

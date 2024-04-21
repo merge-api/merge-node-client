@@ -29,11 +29,7 @@ export class Locations {
      * Returns a list of `Location` objects.
      *
      * @example
-     *     await merge.hris.locations.list({
-     *         locationType: Merge.hris.LocationsListRequestLocationType.Home,
-     *         remoteFields: "location_type",
-     *         showEnumOrigins: "location_type"
-     *     })
+     *     await merge.hris.locations.list({})
      */
     public async list(
         request: Merge.hris.LocationsListRequest = {},
@@ -105,7 +101,7 @@ export class Locations {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/locations"
+                "hris/v1/locations"
             ),
             method: "GET",
             headers: {
@@ -116,7 +112,7 @@ export class Locations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -158,10 +154,7 @@ export class Locations {
      * Returns a `Location` object with the given `id`.
      *
      * @example
-     *     await merge.hris.locations.retrieve("string", {
-     *         remoteFields: "location_type",
-     *         showEnumOrigins: "location_type"
-     *     })
+     *     await merge.hris.locations.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -185,7 +178,7 @@ export class Locations {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/locations/${id}`
+                `hris/v1/locations/${id}`
             ),
             method: "GET",
             headers: {
@@ -196,7 +189,7 @@ export class Locations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

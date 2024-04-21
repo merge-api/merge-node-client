@@ -10,6 +10,10 @@ export const Transaction: core.serialization.ObjectSchema<
     serializers.accounting.Transaction.Raw,
     Merge.accounting.Transaction
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
+    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     transactionType: core.serialization.property("transaction_type", core.serialization.string().optional()),
     number: core.serialization.string().optional(),
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
@@ -42,10 +46,6 @@ export const Transaction: core.serialization.ObjectSchema<
             .lazy(async () => (await import("../../..")).accounting.TransactionAccountingPeriod)
             .optional()
     ),
-    id: core.serialization.string().optional(),
-    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -60,6 +60,10 @@ export const Transaction: core.serialization.ObjectSchema<
 
 export declare namespace Transaction {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         transaction_type?: string | null;
         number?: string | null;
         transaction_date?: string | null;
@@ -75,10 +79,6 @@ export declare namespace Transaction {
         line_items?: serializers.accounting.TransactionLineItem.Raw[] | null;
         remote_was_deleted?: boolean | null;
         accounting_period?: serializers.accounting.TransactionAccountingPeriod.Raw | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }

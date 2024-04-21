@@ -16,6 +16,9 @@ import * as Merge from "../../..";
  * Fetch from the `GET Candidate` endpoint and view their website urls.
  */
 export interface Url {
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The site's url. */
     value?: string;
     /**
@@ -30,7 +33,4 @@ export interface Url {
      * - `JOB_POSTING` - JOB_POSTING
      */
     urlType?: Merge.ats.UrlUrlType;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

@@ -8,12 +8,12 @@ import * as core from "../../../../core";
 
 export const Stage: core.serialization.ObjectSchema<serializers.crm.Stage.Raw, Merge.crm.Stage> =
     core.serialization.object({
-        name: core.serialization.string().optional(),
-        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
+        name: core.serialization.string().optional(),
+        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -34,12 +34,12 @@ export const Stage: core.serialization.ObjectSchema<serializers.crm.Stage.Raw, M
 
 export declare namespace Stage {
     interface Raw {
-        name?: string | null;
-        remote_was_deleted?: boolean | null;
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
+        name?: string | null;
+        remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.crm.RemoteData.Raw[] | null;
         remote_fields?: serializers.crm.RemoteField.Raw[] | null;

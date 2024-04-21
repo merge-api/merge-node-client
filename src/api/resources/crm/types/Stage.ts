@@ -16,16 +16,16 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Stage {
-    /** The stage's name. */
-    name?: string;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
-    remoteWasDeleted?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
+    /** The stage's name. */
+    name?: string;
+    /** Indicates whether or not this object has been deleted in the third party platform. */
+    remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

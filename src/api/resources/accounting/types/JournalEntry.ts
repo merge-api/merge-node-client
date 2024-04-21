@@ -20,6 +20,12 @@ import * as Merge from "../../..";
  * Fetch from the `GET JournalEntry` endpoint and view a company's journey entry.
  */
 export interface JournalEntry {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The journal entry's transaction date. */
     transactionDate?: Date;
     /** When the third party's journal entry was created. */
@@ -361,12 +367,6 @@ export interface JournalEntry {
     postingStatus?: Merge.accounting.JournalEntryPostingStatus;
     /** The accounting period that the JournalEntry was generated in. */
     accountingPeriod?: Merge.accounting.JournalEntryAccountingPeriod;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

@@ -100,6 +100,12 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).hris.RemoteFieldApi))
             .optional()
     ),
+    timesheetEntry: core.serialization.property(
+        "TimesheetEntry",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).hris.RemoteFieldApi))
+            .optional()
+    ),
 });
 
 export declare namespace RemoteFieldApiResponse {
@@ -119,5 +125,6 @@ export declare namespace RemoteFieldApiResponse {
         PayGroup?: serializers.hris.RemoteFieldApi.Raw[] | null;
         Group?: serializers.hris.RemoteFieldApi.Raw[] | null;
         Dependent?: serializers.hris.RemoteFieldApi.Raw[] | null;
+        TimesheetEntry?: serializers.hris.RemoteFieldApi.Raw[] | null;
     }
 }

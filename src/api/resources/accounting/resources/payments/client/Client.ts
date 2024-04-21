@@ -29,9 +29,7 @@ export class Payments {
      * Returns a list of `Payment` objects.
      *
      * @example
-     *     await merge.accounting.payments.list({
-     *         expand: Merge.accounting.PaymentsListRequestExpand.Account
-     *     })
+     *     await merge.accounting.payments.list({})
      */
     public async list(
         request: Merge.accounting.PaymentsListRequest = {},
@@ -118,7 +116,7 @@ export class Payments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/payments"
+                "accounting/v1/payments"
             ),
             method: "GET",
             headers: {
@@ -129,7 +127,7 @@ export class Payments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -172,12 +170,7 @@ export class Payments {
      *
      * @example
      *     await merge.accounting.payments.create({
-     *         model: {
-     *             transactionDate: new Date("2020-03-31T00:00:00.000Z"),
-     *             currency: undefined,
-     *             exchangeRate: "2.9",
-     *             totalAmount: 50
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -197,7 +190,7 @@ export class Payments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/payments"
+                "accounting/v1/payments"
             ),
             method: "POST",
             headers: {
@@ -208,7 +201,7 @@ export class Payments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -253,9 +246,7 @@ export class Payments {
      * Returns a `Payment` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.payments.retrieve("string", {
-     *         expand: Merge.accounting.PaymentsRetrieveRequestExpand.Account
-     *     })
+     *     await merge.accounting.payments.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -275,7 +266,7 @@ export class Payments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/payments/${id}`
+                `accounting/v1/payments/${id}`
             ),
             method: "GET",
             headers: {
@@ -286,7 +277,7 @@ export class Payments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -295,6 +286,145 @@ export class Payments {
         });
         if (_response.ok) {
             return await serializers.accounting.Payment.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Updates a `Payment` object with the given `id`.
+     *
+     * @example
+     *     await merge.accounting.payments.partialUpdate("id", {
+     *         model: {}
+     *     })
+     */
+    public async partialUpdate(
+        id: string,
+        request: Merge.accounting.PatchedPaymentEndpointRequest,
+        requestOptions?: Payments.RequestOptions
+    ): Promise<Merge.accounting.PaymentResponse> {
+        const { isDebugMode, runAsync, ..._body } = request;
+        const _queryParams: Record<string, string | string[]> = {};
+        if (isDebugMode != null) {
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
+        }
+
+        if (runAsync != null) {
+            _queryParams["run_async"] = runAsync.toString();
+        }
+
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                `accounting/v1/payments/${id}`
+            ),
+            method: "PATCH",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.0.7",
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            body: await serializers.accounting.PatchedPaymentEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.accounting.PaymentResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Returns metadata for `Payment` PATCHs.
+     *
+     * @example
+     *     await merge.accounting.payments.metaPatchRetrieve("id")
+     */
+    public async metaPatchRetrieve(
+        id: string,
+        requestOptions?: Payments.RequestOptions
+    ): Promise<Merge.accounting.MetaResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                `accounting/v1/payments/meta/patch/${id}`
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.0.7",
+            },
+            contentType: "application/json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -334,7 +464,7 @@ export class Payments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/payments/meta/post"
+                "accounting/v1/payments/meta/post"
             ),
             method: "GET",
             headers: {
@@ -345,7 +475,7 @@ export class Payments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

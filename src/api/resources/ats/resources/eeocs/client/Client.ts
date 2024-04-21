@@ -29,11 +29,7 @@ export class Eeocs {
      * Returns a list of `EEOC` objects.
      *
      * @example
-     *     await merge.ats.eeocs.list({
-     *         expand: "candidate",
-     *         remoteFields: Merge.ats.EeocsListRequestRemoteFields.DisabilityStatus,
-     *         showEnumOrigins: Merge.ats.EeocsListRequestShowEnumOrigins.DisabilityStatus
-     *     })
+     *     await merge.ats.eeocs.list({})
      */
     public async list(
         request: Merge.ats.EeocsListRequest = {},
@@ -110,7 +106,7 @@ export class Eeocs {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/eeocs"
+                "ats/v1/eeocs"
             ),
             method: "GET",
             headers: {
@@ -121,7 +117,7 @@ export class Eeocs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -163,11 +159,7 @@ export class Eeocs {
      * Returns an `EEOC` object with the given `id`.
      *
      * @example
-     *     await merge.ats.eeocs.retrieve("string", {
-     *         expand: "candidate",
-     *         remoteFields: Merge.ats.EeocsRetrieveRequestRemoteFields.DisabilityStatus,
-     *         showEnumOrigins: Merge.ats.EeocsRetrieveRequestShowEnumOrigins.DisabilityStatus
-     *     })
+     *     await merge.ats.eeocs.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -195,7 +187,7 @@ export class Eeocs {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/eeocs/${id}`
+                `ats/v1/eeocs/${id}`
             ),
             method: "GET",
             headers: {
@@ -206,7 +198,7 @@ export class Eeocs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

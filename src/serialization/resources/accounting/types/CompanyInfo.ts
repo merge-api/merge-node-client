@@ -12,6 +12,8 @@ export const CompanyInfo: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     name: core.serialization.string().optional(),
     legalName: core.serialization.property("legal_name", core.serialization.string().optional()),
     taxNumber: core.serialization.property("tax_number", core.serialization.string().optional()),
@@ -32,8 +34,6 @@ export const CompanyInfo: core.serialization.ObjectSchema<
             .optional()
     ),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -50,6 +50,8 @@ export declare namespace CompanyInfo {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         legal_name?: string | null;
         tax_number?: string | null;
@@ -61,8 +63,6 @@ export declare namespace CompanyInfo {
         addresses?: serializers.accounting.Address.Raw[] | null;
         phone_numbers?: serializers.accounting.AccountingPhoneNumber.Raw[] | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }

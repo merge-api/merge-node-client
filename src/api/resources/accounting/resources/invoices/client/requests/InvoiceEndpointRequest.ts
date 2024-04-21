@@ -7,11 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             type: undefined,
- *             status: undefined,
- *             currency: undefined
- *         }
+ *         model: {}
  *     }
  */
 export interface InvoiceEndpointRequest {

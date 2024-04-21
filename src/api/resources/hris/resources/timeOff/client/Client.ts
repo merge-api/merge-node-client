@@ -29,13 +29,7 @@ export class TimeOff {
      * Returns a list of `TimeOff` objects.
      *
      * @example
-     *     await merge.hris.timeOff.list({
-     *         expand: Merge.hris.TimeOffListRequestExpand.Approver,
-     *         remoteFields: Merge.hris.TimeOffListRequestRemoteFields.RequestType,
-     *         requestType: Merge.hris.TimeOffListRequestRequestType.Bereavement,
-     *         showEnumOrigins: Merge.hris.TimeOffListRequestShowEnumOrigins.RequestType,
-     *         status: Merge.hris.TimeOffListRequestStatus.Approved
-     *     })
+     *     await merge.hris.timeOff.list({})
      */
     public async list(
         request: Merge.hris.TimeOffListRequest = {},
@@ -147,7 +141,7 @@ export class TimeOff {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/time-off"
+                "hris/v1/time-off"
             ),
             method: "GET",
             headers: {
@@ -158,7 +152,7 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -201,15 +195,7 @@ export class TimeOff {
      *
      * @example
      *     await merge.hris.timeOff.create({
-     *         model: {
-     *             status: undefined,
-     *             employeeNote: "Moving into the new apartment Kendall Roy gave me!",
-     *             units: undefined,
-     *             amount: 3,
-     *             requestType: undefined,
-     *             startTime: new Date("2020-11-10T00:00:00.000Z"),
-     *             endTime: new Date("2020-11-17T00:00:00.000Z")
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -229,7 +215,7 @@ export class TimeOff {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/time-off"
+                "hris/v1/time-off"
             ),
             method: "POST",
             headers: {
@@ -240,7 +226,7 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -283,11 +269,7 @@ export class TimeOff {
      * Returns a `TimeOff` object with the given `id`.
      *
      * @example
-     *     await merge.hris.timeOff.retrieve("string", {
-     *         expand: Merge.hris.TimeOffRetrieveRequestExpand.Approver,
-     *         remoteFields: Merge.hris.TimeOffRetrieveRequestRemoteFields.RequestType,
-     *         showEnumOrigins: Merge.hris.TimeOffRetrieveRequestShowEnumOrigins.RequestType
-     *     })
+     *     await merge.hris.timeOff.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -315,7 +297,7 @@ export class TimeOff {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/time-off/${id}`
+                `hris/v1/time-off/${id}`
             ),
             method: "GET",
             headers: {
@@ -326,7 +308,7 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -374,7 +356,7 @@ export class TimeOff {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/time-off/meta/post"
+                "hris/v1/time-off/meta/post"
             ),
             method: "GET",
             headers: {
@@ -385,7 +367,7 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

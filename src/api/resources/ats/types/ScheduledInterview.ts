@@ -19,6 +19,9 @@ export interface ScheduledInterview {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The application being interviewed. */
     application?: Merge.ats.ScheduledInterviewApplication;
     /** The stage of the interview. */
@@ -47,9 +50,6 @@ export interface ScheduledInterview {
     status?: Merge.ats.ScheduledInterviewStatus;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

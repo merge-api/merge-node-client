@@ -86,7 +86,7 @@ export class Departments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/departments"
+                "ats/v1/departments"
             ),
             method: "GET",
             headers: {
@@ -97,7 +97,7 @@ export class Departments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -139,7 +139,7 @@ export class Departments {
      * Returns a `Department` object with the given `id`.
      *
      * @example
-     *     await merge.ats.departments.retrieve("string", {})
+     *     await merge.ats.departments.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -155,7 +155,7 @@ export class Departments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/departments/${id}`
+                `ats/v1/departments/${id}`
             ),
             method: "GET",
             headers: {
@@ -166,7 +166,7 @@ export class Departments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

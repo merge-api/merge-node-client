@@ -7,15 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             name: "Gil Feig's Pickleball Team",
- *             isCustomer: true,
- *             emailAddress: "pickleball@merge.dev",
- *             taxNumber: "12-3456789",
- *             status: undefined,
- *             currency: "USD",
- *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
- *         }
+ *         model: {}
  *     }
  */
 export interface ContactEndpointRequest {

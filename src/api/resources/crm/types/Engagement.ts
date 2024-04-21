@@ -16,6 +16,12 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Engagement {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The engagement's owner. */
     owner?: Merge.crm.EngagementOwner;
     /** The engagement's content. */
@@ -40,12 +46,6 @@ export interface Engagement {
     contacts?: (Merge.crm.EngagementContactsItem | undefined)[];
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

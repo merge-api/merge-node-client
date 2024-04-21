@@ -24,6 +24,12 @@ import * as Merge from "../../..";
  * Fetch from the `GET Transaction` endpoint and view a company's transactions.
  */
 export interface Transaction {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The type of transaction, which can by any transaction object not already included in Merge’s common model. */
     transactionType?: string;
     /** The transaction's number used for identifying purposes. */
@@ -357,12 +363,6 @@ export interface Transaction {
     remoteWasDeleted?: boolean;
     /** The accounting period that the Transaction was generated in. */
     accountingPeriod?: Merge.accounting.TransactionAccountingPeriod;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

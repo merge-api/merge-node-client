@@ -29,13 +29,7 @@ export class Tickets {
      * Returns a list of `Ticket` objects.
      *
      * @example
-     *     await merge.ticketing.tickets.list({
-     *         expand: Merge.ticketing.TicketsListRequestExpand.Account,
-     *         priority: Merge.ticketing.TicketsListRequestPriority.High,
-     *         remoteFields: Merge.ticketing.TicketsListRequestRemoteFields.Priority,
-     *         showEnumOrigins: Merge.ticketing.TicketsListRequestShowEnumOrigins.Priority,
-     *         status: Merge.ticketing.TicketsListRequestStatus.Closed
-     *     })
+     *     await merge.ticketing.tickets.list({})
      */
     public async list(
         request: Merge.ticketing.TicketsListRequest = {},
@@ -62,7 +56,6 @@ export class Tickets {
             pageSize,
             parentTicketId,
             priority,
-            projectId,
             remoteCreatedAfter,
             remoteCreatedBefore,
             remoteFields,
@@ -155,10 +148,6 @@ export class Tickets {
             _queryParams["priority"] = priority;
         }
 
-        if (projectId != null) {
-            _queryParams["project_id"] = projectId;
-        }
-
         if (remoteCreatedAfter != null) {
             _queryParams["remote_created_after"] = remoteCreatedAfter.toISOString();
         }
@@ -202,7 +191,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/tickets"
+                "ticketing/v1/tickets"
             ),
             method: "GET",
             headers: {
@@ -213,7 +202,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -256,16 +245,7 @@ export class Tickets {
      *
      * @example
      *     await merge.ticketing.tickets.create({
-     *         model: {
-     *             name: "Please add more integrations",
-     *             dueDate: new Date("2022-10-11T00:00:00.000Z"),
-     *             status: undefined,
-     *             description: "Can you please add more integrations? It'll make syncing data much easier!",
-     *             ticketType: "incident",
-     *             completedAt: new Date("2021-12-09T00:00:00.000Z"),
-     *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1",
-     *             priority: undefined
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -285,7 +265,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/tickets"
+                "ticketing/v1/tickets"
             ),
             method: "POST",
             headers: {
@@ -296,7 +276,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -341,11 +321,7 @@ export class Tickets {
      * Returns a `Ticket` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.tickets.retrieve("string", {
-     *         expand: Merge.ticketing.TicketsRetrieveRequestExpand.Account,
-     *         remoteFields: Merge.ticketing.TicketsRetrieveRequestRemoteFields.Priority,
-     *         showEnumOrigins: Merge.ticketing.TicketsRetrieveRequestShowEnumOrigins.Priority
-     *     })
+     *     await merge.ticketing.tickets.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -377,7 +353,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/tickets/${id}`
+                `ticketing/v1/tickets/${id}`
             ),
             method: "GET",
             headers: {
@@ -388,7 +364,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -430,20 +406,8 @@ export class Tickets {
      * Updates a `Ticket` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.tickets.partialUpdate("string", {
-     *         model: {
-     *             name: "Please add more integrations",
-     *             dueDate: new Date("2022-10-11T00:00:00.000Z"),
-     *             status: undefined,
-     *             description: "Can you please add more integrations? It'll make syncing data much easier!",
-     *             ticketType: "incident",
-     *             account: "0958cbc6-6040-430a-848e-aafacbadf4ae",
-     *             contact: "65c345ba-6870-4974-87ba-dd31509c367a",
-     *             parentTicket: "75b33d04-30d2-4f3e-be45-27838bc94342",
-     *             completedAt: new Date("2021-12-09T00:00:00.000Z"),
-     *             ticketUrl: "https://thirdpartysoftware.com/project/3/issue/1",
-     *             priority: undefined
-     *         }
+     *     await merge.ticketing.tickets.partialUpdate("id", {
+     *         model: {}
      *     })
      */
     public async partialUpdate(
@@ -464,7 +428,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/tickets/${id}`
+                `ticketing/v1/tickets/${id}`
             ),
             method: "PATCH",
             headers: {
@@ -475,7 +439,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -520,9 +484,7 @@ export class Tickets {
      * Returns a list of `User` objects.
      *
      * @example
-     *     await merge.ticketing.tickets.collaboratorsList("string", {
-     *         expand: Merge.ticketing.TicketsCollaboratorsListRequestExpand.Roles
-     *     })
+     *     await merge.ticketing.tickets.collaboratorsList("parent_id", {})
      */
     public async collaboratorsList(
         parentId: string,
@@ -554,7 +516,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/tickets/${parentId}/collaborators`
+                `ticketing/v1/tickets/${parentId}/collaborators`
             ),
             method: "GET",
             headers: {
@@ -565,7 +527,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -607,7 +569,7 @@ export class Tickets {
      * Returns metadata for `Ticket` PATCHs.
      *
      * @example
-     *     await merge.ticketing.tickets.metaPatchRetrieve("string")
+     *     await merge.ticketing.tickets.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -616,7 +578,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/tickets/meta/patch/${id}`
+                `ticketing/v1/tickets/meta/patch/${id}`
             ),
             method: "GET",
             headers: {
@@ -627,7 +589,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -674,7 +636,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/tickets/meta/post"
+                "ticketing/v1/tickets/meta/post"
             ),
             method: "GET",
             headers: {
@@ -685,7 +647,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -753,7 +715,7 @@ export class Tickets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/tickets/remote-field-classes"
+                "ticketing/v1/tickets/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -764,7 +726,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

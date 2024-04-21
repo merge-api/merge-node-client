@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.ats.ApplicationsRetrieveRequestExpand.Candidate
- *     }
+ *     {}
  */
 export interface ApplicationsRetrieveRequest {
     /**

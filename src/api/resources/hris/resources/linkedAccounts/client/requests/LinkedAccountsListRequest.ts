@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         category: Merge.hris.LinkedAccountsListRequestCategory.Accounting
- *     }
+ *     {}
  */
 export interface LinkedAccountsListRequest {
     /**

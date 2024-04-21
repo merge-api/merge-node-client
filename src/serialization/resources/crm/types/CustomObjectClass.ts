@@ -10,6 +10,10 @@ export const CustomObjectClass: core.serialization.ObjectSchema<
     serializers.crm.CustomObjectClass.Raw,
     Merge.crm.CustomObjectClass
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
+    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     name: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
     labels: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
@@ -26,22 +30,18 @@ export const CustomObjectClass: core.serialization.ObjectSchema<
             .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()))
             .optional()
     ),
-    id: core.serialization.string().optional(),
-    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace CustomObjectClass {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         description?: string | null;
         labels?: Record<string, string | null | undefined> | null;
         fields?: serializers.crm.RemoteFieldClassForCustomObjectClass.Raw[] | null;
         association_types?: Record<string, unknown>[] | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

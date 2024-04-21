@@ -29,12 +29,7 @@ export class Jobs {
      * Returns a list of `Job` objects.
      *
      * @example
-     *     await merge.ats.jobs.list({
-     *         expand: Merge.ats.JobsListRequestExpand.Departments,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status",
-     *         status: Merge.ats.JobsListRequestStatus.Archived
-     *     })
+     *     await merge.ats.jobs.list({})
      */
     public async list(
         request: Merge.ats.JobsListRequest = {},
@@ -121,7 +116,7 @@ export class Jobs {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/jobs"
+                "ats/v1/jobs"
             ),
             method: "GET",
             headers: {
@@ -132,7 +127,7 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -174,11 +169,7 @@ export class Jobs {
      * Returns a `Job` object with the given `id`.
      *
      * @example
-     *     await merge.ats.jobs.retrieve("string", {
-     *         expand: Merge.ats.JobsRetrieveRequestExpand.Departments,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.ats.jobs.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -206,7 +197,7 @@ export class Jobs {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/jobs/${id}`
+                `ats/v1/jobs/${id}`
             ),
             method: "GET",
             headers: {
@@ -217,7 +208,7 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -259,9 +250,7 @@ export class Jobs {
      * Returns a list of `ScreeningQuestion` objects.
      *
      * @example
-     *     await merge.ats.jobs.screeningQuestionsList("string", {
-     *         expand: Merge.ats.JobsScreeningQuestionsListRequestExpand.Job
-     *     })
+     *     await merge.ats.jobs.screeningQuestionsList("job_id", {})
      */
     public async screeningQuestionsList(
         jobId: string,
@@ -293,7 +282,7 @@ export class Jobs {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/jobs/${jobId}/screening-questions`
+                `ats/v1/jobs/${jobId}/screening-questions`
             ),
             method: "GET",
             headers: {
@@ -304,7 +293,7 @@ export class Jobs {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

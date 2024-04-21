@@ -8,6 +8,10 @@ import * as core from "../../../../core";
 
 export const Expense: core.serialization.ObjectSchema<serializers.accounting.Expense.Raw, Merge.accounting.Expense> =
     core.serialization.object({
+        id: core.serialization.string().optional(),
+        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         account: core.serialization.lazy(async () => (await import("../../..")).accounting.ExpenseAccount).optional(),
@@ -39,10 +43,6 @@ export const Expense: core.serialization.ObjectSchema<serializers.accounting.Exp
                 .lazy(async () => (await import("../../..")).accounting.ExpenseAccountingPeriod)
                 .optional()
         ),
-        id: core.serialization.string().optional(),
-        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -57,6 +57,10 @@ export const Expense: core.serialization.ObjectSchema<serializers.accounting.Exp
 
 export declare namespace Expense {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         transaction_date?: string | null;
         remote_created_at?: string | null;
         account?: serializers.accounting.ExpenseAccount.Raw | null;
@@ -72,10 +76,6 @@ export declare namespace Expense {
         tracking_categories?: (serializers.accounting.ExpenseTrackingCategoriesItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
         accounting_period?: serializers.accounting.ExpenseAccountingPeriod.Raw | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }

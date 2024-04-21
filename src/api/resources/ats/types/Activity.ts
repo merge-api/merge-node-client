@@ -19,6 +19,9 @@ export interface Activity {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The user that performed the action. */
     user?: Merge.ats.ActivityUser;
     /** When the third party's activity was created. */
@@ -47,9 +50,6 @@ export interface Activity {
     candidate?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

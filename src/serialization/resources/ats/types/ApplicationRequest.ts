@@ -16,6 +16,11 @@ export const ApplicationRequest: core.serialization.ObjectSchema<
     job: core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationRequestJob).optional(),
     appliedAt: core.serialization.property("applied_at", core.serialization.date().optional()),
     rejectedAt: core.serialization.property("rejected_at", core.serialization.date().optional()),
+    offers: core.serialization
+        .list(
+            core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationRequestOffersItem).optional()
+        )
+        .optional(),
     source: core.serialization.string().optional(),
     creditedTo: core.serialization.property(
         "credited_to",
@@ -46,6 +51,7 @@ export declare namespace ApplicationRequest {
         job?: serializers.ats.ApplicationRequestJob.Raw | null;
         applied_at?: string | null;
         rejected_at?: string | null;
+        offers?: (serializers.ats.ApplicationRequestOffersItem.Raw | null | undefined)[] | null;
         source?: string | null;
         credited_to?: serializers.ats.ApplicationRequestCreditedTo.Raw | null;
         current_stage?: serializers.ats.ApplicationRequestCurrentStage.Raw | null;

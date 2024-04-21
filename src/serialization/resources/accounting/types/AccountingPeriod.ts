@@ -10,25 +10,25 @@ export const AccountingPeriod: core.serialization.ObjectSchema<
     serializers.accounting.AccountingPeriod.Raw,
     Merge.accounting.AccountingPeriod
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     startDate: core.serialization.property("start_date", core.serialization.date().optional()),
     endDate: core.serialization.property("end_date", core.serialization.date().optional()),
     status: core.serialization
         .lazy(async () => (await import("../../..")).accounting.AccountingPeriodStatus)
         .optional(),
     name: core.serialization.string().optional(),
-    id: core.serialization.string().optional(),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace AccountingPeriod {
     interface Raw {
+        id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         start_date?: string | null;
         end_date?: string | null;
         status?: serializers.accounting.AccountingPeriodStatus.Raw | null;
         name?: string | null;
-        id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

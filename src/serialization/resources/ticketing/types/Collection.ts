@@ -12,6 +12,8 @@ export const Collection: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     name: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
     collectionType: core.serialization.property(
@@ -27,8 +29,6 @@ export const Collection: core.serialization.ObjectSchema<
         "access_level",
         core.serialization.lazy(async () => (await import("../../..")).ticketing.CollectionAccessLevel).optional()
     ),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -45,14 +45,14 @@ export declare namespace Collection {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         description?: string | null;
         collection_type?: serializers.ticketing.CollectionCollectionType.Raw | null;
         parent_collection?: serializers.ticketing.CollectionParentCollection.Raw | null;
         remote_was_deleted?: boolean | null;
         access_level?: serializers.ticketing.CollectionAccessLevel.Raw | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ticketing.RemoteData.Raw[] | null;
     }

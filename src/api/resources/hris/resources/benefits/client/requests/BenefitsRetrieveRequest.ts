@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "employee"
- *     }
+ *     {}
  */
 export interface BenefitsRetrieveRequest {
     /**

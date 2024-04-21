@@ -19,6 +19,9 @@ export interface ScreeningQuestion {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The job associated with the screening question. */
     job?: Merge.ats.ScreeningQuestionJob;
     /** The description of the screening question */
@@ -41,7 +44,4 @@ export interface ScreeningQuestion {
     /** Whether or not the screening question is required. */
     required?: boolean;
     options?: unknown[];
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

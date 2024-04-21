@@ -7,14 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             name: "Merge API",
- *             description: "One API for all integrations",
- *             industry: "API's",
- *             website: "https://merge.dev/",
- *             numberOfEmployees: 1,
- *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
- *         }
+ *         model: {}
  *     }
  */
 export interface CrmAccountEndpointRequest {

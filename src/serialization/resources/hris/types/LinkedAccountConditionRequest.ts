@@ -10,6 +10,7 @@ export const LinkedAccountConditionRequest: core.serialization.ObjectSchema<
     serializers.hris.LinkedAccountConditionRequest.Raw,
     Merge.hris.LinkedAccountConditionRequest
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
     conditionSchemaId: core.serialization.property("condition_schema_id", core.serialization.string()),
     operator: core.serialization.string(),
     value: core.serialization.unknown(),
@@ -17,6 +18,7 @@ export const LinkedAccountConditionRequest: core.serialization.ObjectSchema<
 
 export declare namespace LinkedAccountConditionRequest {
     interface Raw {
+        id?: string | null;
         condition_schema_id: string;
         operator: string;
         value?: unknown;

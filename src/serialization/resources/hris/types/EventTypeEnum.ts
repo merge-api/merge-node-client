@@ -39,6 +39,9 @@ export const EventTypeEnum: core.serialization.Schema<serializers.hris.EventType
         "CHANGED_LINKED_ACCOUNT_FIELD_MAPPING",
         "DELETED_INTEGRATION_WIDE_FIELD_MAPPING",
         "DELETED_LINKED_ACCOUNT_FIELD_MAPPING",
+        "FORCED_LINKED_ACCOUNT_RESYNC",
+        "MUTED_ISSUE",
+        "GENERATED_MAGIC_LINK",
     ]);
 
 export declare namespace EventTypeEnum {
@@ -73,5 +76,8 @@ export declare namespace EventTypeEnum {
         | "CHANGED_INTEGRATION_WIDE_FIELD_MAPPING"
         | "CHANGED_LINKED_ACCOUNT_FIELD_MAPPING"
         | "DELETED_INTEGRATION_WIDE_FIELD_MAPPING"
-        | "DELETED_LINKED_ACCOUNT_FIELD_MAPPING";
+        | "DELETED_LINKED_ACCOUNT_FIELD_MAPPING"
+        | "FORCED_LINKED_ACCOUNT_RESYNC"
+        | "MUTED_ISSUE"
+        | "GENERATED_MAGIC_LINK";
 }

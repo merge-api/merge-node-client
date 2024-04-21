@@ -29,12 +29,7 @@ export class Employments {
      * Returns a list of `Employment` objects.
      *
      * @example
-     *     await merge.hris.employments.list({
-     *         expand: Merge.hris.EmploymentsListRequestExpand.Employee,
-     *         orderBy: Merge.hris.EmploymentsListRequestOrderBy.EffectiveDateDescending,
-     *         remoteFields: Merge.hris.EmploymentsListRequestRemoteFields.EmploymentType,
-     *         showEnumOrigins: Merge.hris.EmploymentsListRequestShowEnumOrigins.EmploymentType
-     *     })
+     *     await merge.hris.employments.list({})
      */
     public async list(
         request: Merge.hris.EmploymentsListRequest = {},
@@ -116,7 +111,7 @@ export class Employments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/employments"
+                "hris/v1/employments"
             ),
             method: "GET",
             headers: {
@@ -127,7 +122,7 @@ export class Employments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -169,11 +164,7 @@ export class Employments {
      * Returns an `Employment` object with the given `id`.
      *
      * @example
-     *     await merge.hris.employments.retrieve("string", {
-     *         expand: Merge.hris.EmploymentsRetrieveRequestExpand.Employee,
-     *         remoteFields: Merge.hris.EmploymentsRetrieveRequestRemoteFields.EmploymentType,
-     *         showEnumOrigins: Merge.hris.EmploymentsRetrieveRequestShowEnumOrigins.EmploymentType
-     *     })
+     *     await merge.hris.employments.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -201,7 +192,7 @@ export class Employments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/employments/${id}`
+                `hris/v1/employments/${id}`
             ),
             method: "GET",
             headers: {
@@ -212,7 +203,7 @@ export class Employments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

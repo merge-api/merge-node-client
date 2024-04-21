@@ -7,12 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             totalAmount: 10000,
- *             currency: undefined,
- *             exchangeRate: "2.9",
- *             memo: "New employee supplies"
- *         }
+ *         model: {}
  *     }
  */
 export interface ExpenseEndpointRequest {

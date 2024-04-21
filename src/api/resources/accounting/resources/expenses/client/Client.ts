@@ -29,9 +29,7 @@ export class Expenses {
      * Returns a list of `Expense` objects.
      *
      * @example
-     *     await merge.accounting.expenses.list({
-     *         expand: Merge.accounting.ExpensesListRequestExpand.Account
-     *     })
+     *     await merge.accounting.expenses.list({})
      */
     public async list(
         request: Merge.accounting.ExpensesListRequest = {},
@@ -108,7 +106,7 @@ export class Expenses {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/expenses"
+                "accounting/v1/expenses"
             ),
             method: "GET",
             headers: {
@@ -119,7 +117,7 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -162,12 +160,7 @@ export class Expenses {
      *
      * @example
      *     await merge.accounting.expenses.create({
-     *         model: {
-     *             totalAmount: 10000,
-     *             currency: undefined,
-     *             exchangeRate: "2.9",
-     *             memo: "New employee supplies"
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -187,7 +180,7 @@ export class Expenses {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/expenses"
+                "accounting/v1/expenses"
             ),
             method: "POST",
             headers: {
@@ -198,7 +191,7 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -243,9 +236,7 @@ export class Expenses {
      * Returns an `Expense` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.expenses.retrieve("string", {
-     *         expand: Merge.accounting.ExpensesRetrieveRequestExpand.Account
-     *     })
+     *     await merge.accounting.expenses.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -265,7 +256,7 @@ export class Expenses {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/expenses/${id}`
+                `accounting/v1/expenses/${id}`
             ),
             method: "GET",
             headers: {
@@ -276,7 +267,7 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -324,7 +315,7 @@ export class Expenses {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/expenses/meta/post"
+                "accounting/v1/expenses/meta/post"
             ),
             method: "GET",
             headers: {
@@ -335,7 +326,7 @@ export class Expenses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

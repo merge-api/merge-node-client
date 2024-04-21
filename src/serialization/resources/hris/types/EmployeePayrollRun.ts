@@ -12,6 +12,8 @@ export const EmployeePayrollRun: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     employee: core.serialization
         .lazy(async () => (await import("../../..")).hris.EmployeePayrollRunEmployee)
         .optional(),
@@ -34,8 +36,6 @@ export const EmployeePayrollRun: core.serialization.ObjectSchema<
         .list(core.serialization.lazyObject(async () => (await import("../../..")).hris.Tax))
         .optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -52,6 +52,8 @@ export declare namespace EmployeePayrollRun {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         employee?: serializers.hris.EmployeePayrollRunEmployee.Raw | null;
         payroll_run?: serializers.hris.EmployeePayrollRunPayrollRun.Raw | null;
         gross_pay?: number | null;
@@ -63,8 +65,6 @@ export declare namespace EmployeePayrollRun {
         deductions?: serializers.hris.Deduction.Raw[] | null;
         taxes?: serializers.hris.Tax.Raw[] | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.hris.RemoteData.Raw[] | null;
     }

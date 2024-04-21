@@ -10,6 +10,8 @@ export const Comment: core.serialization.ObjectSchema<serializers.ticketing.Comm
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         user: core.serialization.lazy(async () => (await import("../../..")).ticketing.CommentUser).optional(),
         contact: core.serialization.lazy(async () => (await import("../../..")).ticketing.CommentContact).optional(),
         body: core.serialization.string().optional(),
@@ -18,8 +20,6 @@ export const Comment: core.serialization.ObjectSchema<serializers.ticketing.Comm
         isPrivate: core.serialization.property("is_private", core.serialization.boolean().optional()),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -36,6 +36,8 @@ export declare namespace Comment {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         user?: serializers.ticketing.CommentUser.Raw | null;
         contact?: serializers.ticketing.CommentContact.Raw | null;
         body?: string | null;
@@ -44,8 +46,6 @@ export declare namespace Comment {
         is_private?: boolean | null;
         remote_created_at?: string | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ticketing.RemoteData.Raw[] | null;
     }

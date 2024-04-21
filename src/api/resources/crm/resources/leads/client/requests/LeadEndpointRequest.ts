@@ -7,14 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             leadSource: "API Blogger",
- *             title: "Co-Founder",
- *             company: "Merge API",
- *             firstName: "Gil",
- *             lastName: "Feig",
- *             convertedDate: new Date("2022-03-10T00:00:00.000Z")
- *         }
+ *         model: {}
  *     }
  */
 export interface LeadEndpointRequest {

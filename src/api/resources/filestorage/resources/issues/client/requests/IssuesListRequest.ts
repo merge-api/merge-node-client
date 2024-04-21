@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         status: Merge.filestorage.IssuesListRequestStatus.Ongoing
- *     }
+ *     {}
  */
 export interface IssuesListRequest {
     accountToken?: string;

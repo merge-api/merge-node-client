@@ -9,5 +9,6 @@
  *     }
  */
 export interface GenerateRemoteKeyRequest {
+    /** The name of the remote key */
     name: string;
 }

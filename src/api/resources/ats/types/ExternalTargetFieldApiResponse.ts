@@ -13,6 +13,7 @@ export interface ExternalTargetFieldApiResponse {
     eeoc?: Merge.ats.ExternalTargetFieldApi[];
     scheduledInterview?: Merge.ats.ExternalTargetFieldApi[];
     job?: Merge.ats.ExternalTargetFieldApi[];
+    jobPosting?: Merge.ats.ExternalTargetFieldApi[];
     jobInterviewStage?: Merge.ats.ExternalTargetFieldApi[];
     offer?: Merge.ats.ExternalTargetFieldApi[];
     office?: Merge.ats.ExternalTargetFieldApi[];

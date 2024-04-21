@@ -86,7 +86,7 @@ export class EmployerBenefits {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/employer-benefits"
+                "hris/v1/employer-benefits"
             ),
             method: "GET",
             headers: {
@@ -97,7 +97,7 @@ export class EmployerBenefits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -139,7 +139,7 @@ export class EmployerBenefits {
      * Returns an `EmployerBenefit` object with the given `id`.
      *
      * @example
-     *     await merge.hris.employerBenefits.retrieve("string", {})
+     *     await merge.hris.employerBenefits.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -155,7 +155,7 @@ export class EmployerBenefits {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/employer-benefits/${id}`
+                `hris/v1/employer-benefits/${id}`
             ),
             method: "GET",
             headers: {
@@ -166,7 +166,7 @@ export class EmployerBenefits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

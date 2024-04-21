@@ -8,6 +8,8 @@ import * as core from "../../../../core";
 
 export const Address: core.serialization.ObjectSchema<serializers.crm.Address.Raw, Merge.crm.Address> =
     core.serialization.object({
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         street1: core.serialization.property("street_1", core.serialization.string().optional()),
         street2: core.serialization.property("street_2", core.serialization.string().optional()),
         city: core.serialization.string().optional(),
@@ -18,12 +20,12 @@ export const Address: core.serialization.ObjectSchema<serializers.crm.Address.Ra
             "address_type",
             core.serialization.lazy(async () => (await import("../../..")).crm.AddressAddressType).optional()
         ),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
 export declare namespace Address {
     interface Raw {
+        created_at?: string | null;
+        modified_at?: string | null;
         street_1?: string | null;
         street_2?: string | null;
         city?: string | null;
@@ -31,7 +33,5 @@ export declare namespace Address {
         postal_code?: string | null;
         country?: serializers.crm.AddressCountry.Raw | null;
         address_type?: serializers.crm.AddressAddressType.Raw | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

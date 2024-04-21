@@ -29,9 +29,7 @@ export class Leads {
      * Returns a list of `Lead` objects.
      *
      * @example
-     *     await merge.crm.leads.list({
-     *         expand: Merge.crm.LeadsListRequestExpand.ConvertedAccount
-     *     })
+     *     await merge.crm.leads.list({})
      */
     public async list(
         request: Merge.crm.LeadsListRequest = {},
@@ -123,7 +121,7 @@ export class Leads {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/leads"
+                "crm/v1/leads"
             ),
             method: "GET",
             headers: {
@@ -134,7 +132,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -177,14 +175,7 @@ export class Leads {
      *
      * @example
      *     await merge.crm.leads.create({
-     *         model: {
-     *             leadSource: "API Blogger",
-     *             title: "Co-Founder",
-     *             company: "Merge API",
-     *             firstName: "Gil",
-     *             lastName: "Feig",
-     *             convertedDate: new Date("2022-03-10T00:00:00.000Z")
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -204,7 +195,7 @@ export class Leads {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/leads"
+                "crm/v1/leads"
             ),
             method: "POST",
             headers: {
@@ -215,7 +206,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -258,9 +249,7 @@ export class Leads {
      * Returns a `Lead` object with the given `id`.
      *
      * @example
-     *     await merge.crm.leads.retrieve("string", {
-     *         expand: Merge.crm.LeadsRetrieveRequestExpand.ConvertedAccount
-     *     })
+     *     await merge.crm.leads.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -284,7 +273,7 @@ export class Leads {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/leads/${id}`
+                `crm/v1/leads/${id}`
             ),
             method: "GET",
             headers: {
@@ -295,7 +284,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -343,7 +332,7 @@ export class Leads {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/leads/meta/post"
+                "crm/v1/leads/meta/post"
             ),
             method: "GET",
             headers: {
@@ -354,7 +343,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -426,7 +415,7 @@ export class Leads {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/leads/remote-field-classes"
+                "crm/v1/leads/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -437,7 +426,7 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

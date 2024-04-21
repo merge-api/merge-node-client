@@ -3,9 +3,9 @@
  */
 
 export const MergeEnvironment = {
-    Production: "https://api.merge.dev",
-    Sandbox: "https://api-sandbox.merge.dev",
-    ProductionEu: "https://api-eu.merge.dev",
+    Production: "https://api.merge.dev/api",
+    Sandbox: "https://api-sandbox.merge.dev/api",
+    ProductionEu: "https://api-eu.merge.dev/api",
 } as const;
 
 export type MergeEnvironment =

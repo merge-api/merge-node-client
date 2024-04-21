@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "account"
- *     }
+ *     {}
  */
 export interface ContactsListRequest {
     /**

@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "owner"
- *     }
+ *     {}
  */
 export interface AccountsRetrieveRequest {
     /**

@@ -10,6 +10,8 @@ export * as interviews from "./interviews";
 export * from "./interviews/types";
 export * as issues from "./issues";
 export * from "./issues/types";
+export * as jobPostings from "./jobPostings";
+export * from "./jobPostings/types";
 export * as jobs from "./jobs";
 export * from "./jobs/types";
 export * as linkedAccounts from "./linkedAccounts";

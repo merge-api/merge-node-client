@@ -6,11 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.ticketing.TicketsRetrieveRequestExpand.Account,
- *         remoteFields: Merge.ticketing.TicketsRetrieveRequestRemoteFields.Priority,
- *         showEnumOrigins: Merge.ticketing.TicketsRetrieveRequestShowEnumOrigins.Priority
- *     }
+ *     {}
  */
 export interface TicketsRetrieveRequest {
     /**
@@ -30,7 +26,7 @@ export interface TicketsRetrieveRequest {
      */
     remoteFields?: Merge.ticketing.TicketsRetrieveRequestRemoteFields;
     /**
-     * Which fields should be returned in non-normalized form.
+     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: Merge.ticketing.TicketsRetrieveRequestShowEnumOrigins;
 }

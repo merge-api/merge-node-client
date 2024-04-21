@@ -16,6 +16,12 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface EngagementType {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /**
      * The engagement type's activity type.
      *
@@ -26,11 +32,5 @@ export interface EngagementType {
     activityType?: Merge.crm.EngagementTypeActivityType;
     /** The engagement type's name. */
     name?: string;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     remoteFields?: Merge.crm.RemoteField[];
 }

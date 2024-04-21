@@ -29,11 +29,7 @@ export class Contacts {
      * Returns a list of `Contact` objects.
      *
      * @example
-     *     await merge.accounting.contacts.list({
-     *         expand: Merge.accounting.ContactsListRequestExpand.Addresses,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.accounting.contacts.list({})
      */
     public async list(
         request: Merge.accounting.ContactsListRequest = {},
@@ -120,7 +116,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/contacts"
+                "accounting/v1/contacts"
             ),
             method: "GET",
             headers: {
@@ -131,7 +127,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -174,15 +170,7 @@ export class Contacts {
      *
      * @example
      *     await merge.accounting.contacts.create({
-     *         model: {
-     *             name: "Gil Feig's Pickleball Team",
-     *             isCustomer: true,
-     *             emailAddress: "pickleball@merge.dev",
-     *             taxNumber: "12-3456789",
-     *             status: undefined,
-     *             currency: "USD",
-     *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -202,7 +190,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/contacts"
+                "accounting/v1/contacts"
             ),
             method: "POST",
             headers: {
@@ -213,7 +201,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -258,11 +246,7 @@ export class Contacts {
      * Returns a `Contact` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.contacts.retrieve("string", {
-     *         expand: Merge.accounting.ContactsRetrieveRequestExpand.Addresses,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.accounting.contacts.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -290,7 +274,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/contacts/${id}`
+                `accounting/v1/contacts/${id}`
             ),
             method: "GET",
             headers: {
@@ -301,7 +285,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -349,7 +333,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/contacts/meta/post"
+                "accounting/v1/contacts/meta/post"
             ),
             method: "GET",
             headers: {
@@ -360,7 +344,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -11,6 +11,8 @@ export const ReportItem: core.serialization.ObjectSchema<
     Merge.accounting.ReportItem
 > = core.serialization.object({
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     name: core.serialization.string().optional(),
     value: core.serialization.number().optional(),
     subItems: core.serialization.property(
@@ -20,18 +22,16 @@ export const ReportItem: core.serialization.ObjectSchema<
             .optional()
     ),
     company: core.serialization.string().optional(),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace ReportItem {
     interface Raw {
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         value?: number | null;
         sub_items?: Record<string, unknown>[] | null;
         company?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

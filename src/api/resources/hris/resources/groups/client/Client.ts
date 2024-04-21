@@ -29,10 +29,7 @@ export class Groups {
      * Returns a list of `Group` objects.
      *
      * @example
-     *     await merge.hris.groups.list({
-     *         remoteFields: "type",
-     *         showEnumOrigins: "type"
-     *     })
+     *     await merge.hris.groups.list({})
      */
     public async list(
         request: Merge.hris.GroupsListRequest = {},
@@ -46,6 +43,7 @@ export class Groups {
             includeRemoteData,
             modifiedAfter,
             modifiedBefore,
+            names,
             pageSize,
             remoteFields,
             remoteId,
@@ -81,6 +79,10 @@ export class Groups {
             _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
+        if (names != null) {
+            _queryParams["names"] = names;
+        }
+
         if (pageSize != null) {
             _queryParams["page_size"] = pageSize.toString();
         }
@@ -104,7 +106,7 @@ export class Groups {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/groups"
+                "hris/v1/groups"
             ),
             method: "GET",
             headers: {
@@ -115,7 +117,7 @@ export class Groups {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -157,10 +159,7 @@ export class Groups {
      * Returns a `Group` object with the given `id`.
      *
      * @example
-     *     await merge.hris.groups.retrieve("string", {
-     *         remoteFields: "type",
-     *         showEnumOrigins: "type"
-     *     })
+     *     await merge.hris.groups.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -184,7 +183,7 @@ export class Groups {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/groups/${id}`
+                `hris/v1/groups/${id}`
             ),
             method: "GET",
             headers: {
@@ -195,7 +194,7 @@ export class Groups {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

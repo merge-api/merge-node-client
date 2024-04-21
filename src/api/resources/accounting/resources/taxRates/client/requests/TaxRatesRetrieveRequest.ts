@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "company"
- *     }
+ *     {}
  */
 export interface TaxRatesRetrieveRequest {
     /**

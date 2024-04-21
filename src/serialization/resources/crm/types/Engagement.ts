@@ -8,6 +8,10 @@ import * as core from "../../../../core";
 
 export const Engagement: core.serialization.ObjectSchema<serializers.crm.Engagement.Raw, Merge.crm.Engagement> =
     core.serialization.object({
+        id: core.serialization.string().optional(),
+        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         owner: core.serialization.lazy(async () => (await import("../../..")).crm.EngagementOwner).optional(),
         content: core.serialization.string().optional(),
         subject: core.serialization.string().optional(),
@@ -23,10 +27,6 @@ export const Engagement: core.serialization.ObjectSchema<serializers.crm.Engagem
             .list(core.serialization.lazy(async () => (await import("../../..")).crm.EngagementContactsItem).optional())
             .optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        id: core.serialization.string().optional(),
-        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -47,6 +47,10 @@ export const Engagement: core.serialization.ObjectSchema<serializers.crm.Engagem
 
 export declare namespace Engagement {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         owner?: serializers.crm.EngagementOwner.Raw | null;
         content?: string | null;
         subject?: string | null;
@@ -57,10 +61,6 @@ export declare namespace Engagement {
         account?: serializers.crm.EngagementAccount.Raw | null;
         contacts?: (serializers.crm.EngagementContactsItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.crm.RemoteData.Raw[] | null;
         remote_fields?: serializers.crm.RemoteField.Raw[] | null;

@@ -91,7 +91,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/users"
+                "crm/v1/users"
             ),
             method: "GET",
             headers: {
@@ -102,7 +102,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -144,7 +144,7 @@ export class Users {
      * Returns a `User` object with the given `id`.
      *
      * @example
-     *     await merge.crm.users.retrieve("string", {})
+     *     await merge.crm.users.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -164,7 +164,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/users/${id}`
+                `crm/v1/users/${id}`
             ),
             method: "GET",
             headers: {
@@ -175,7 +175,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -217,7 +217,7 @@ export class Users {
      * Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
      *
      * @example
-     *     await merge.crm.users.ignoreCreate("string", {
+     *     await merge.crm.users.ignoreCreate("model_id", {
      *         reason: Merge.crm.ReasonEnum.GeneralCustomerRequest,
      *         message: "deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"
      *     })
@@ -230,7 +230,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/users/ignore/${modelId}`
+                `crm/v1/users/ignore/${modelId}`
             ),
             method: "POST",
             headers: {
@@ -241,7 +241,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.crm.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -311,7 +311,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/users/remote-field-classes"
+                "crm/v1/users/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -322,7 +322,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

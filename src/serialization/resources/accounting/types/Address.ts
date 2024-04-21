@@ -8,6 +8,8 @@ import * as core from "../../../../core";
 
 export const Address: core.serialization.ObjectSchema<serializers.accounting.Address.Raw, Merge.accounting.Address> =
     core.serialization.object({
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         type: core.serialization.lazy(async () => (await import("../../..")).accounting.AddressType).optional(),
         street1: core.serialization.property("street_1", core.serialization.string().optional()),
         street2: core.serialization.property("street_2", core.serialization.string().optional()),
@@ -16,12 +18,12 @@ export const Address: core.serialization.ObjectSchema<serializers.accounting.Add
         countrySubdivision: core.serialization.property("country_subdivision", core.serialization.string().optional()),
         country: core.serialization.lazy(async () => (await import("../../..")).accounting.AddressCountry).optional(),
         zipCode: core.serialization.property("zip_code", core.serialization.string().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
 export declare namespace Address {
     interface Raw {
+        created_at?: string | null;
+        modified_at?: string | null;
         type?: serializers.accounting.AddressType.Raw | null;
         street_1?: string | null;
         street_2?: string | null;
@@ -30,7 +32,5 @@ export declare namespace Address {
         country_subdivision?: string | null;
         country?: serializers.accounting.AddressCountry.Raw | null;
         zip_code?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

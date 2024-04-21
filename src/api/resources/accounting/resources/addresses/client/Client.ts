@@ -29,10 +29,7 @@ export class Addresses {
      * Returns an `Address` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.addresses.retrieve("string", {
-     *         remoteFields: "type",
-     *         showEnumOrigins: "type"
-     *     })
+     *     await merge.accounting.addresses.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -56,7 +53,7 @@ export class Addresses {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/addresses/${id}`
+                `accounting/v1/addresses/${id}`
             ),
             method: "GET",
             headers: {
@@ -67,7 +64,7 @@ export class Addresses {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -29,13 +29,7 @@ export class BankInfo {
      * Returns a list of `BankInfo` objects.
      *
      * @example
-     *     await merge.hris.bankInfo.list({
-     *         accountType: Merge.hris.BankInfoListRequestAccountType.Checking,
-     *         expand: "employee",
-     *         orderBy: Merge.hris.BankInfoListRequestOrderBy.RemoteCreatedAtDescending,
-     *         remoteFields: "account_type",
-     *         showEnumOrigins: "account_type"
-     *     })
+     *     await merge.hris.bankInfo.list({})
      */
     public async list(
         request: Merge.hris.BankInfoListRequest = {},
@@ -127,7 +121,7 @@ export class BankInfo {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/bank-info"
+                "hris/v1/bank-info"
             ),
             method: "GET",
             headers: {
@@ -138,7 +132,7 @@ export class BankInfo {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -180,11 +174,7 @@ export class BankInfo {
      * Returns a `BankInfo` object with the given `id`.
      *
      * @example
-     *     await merge.hris.bankInfo.retrieve("string", {
-     *         expand: "employee",
-     *         remoteFields: "account_type",
-     *         showEnumOrigins: "account_type"
-     *     })
+     *     await merge.hris.bankInfo.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -212,7 +202,7 @@ export class BankInfo {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/bank-info/${id}`
+                `hris/v1/bank-info/${id}`
             ),
             method: "GET",
             headers: {
@@ -223,7 +213,7 @@ export class BankInfo {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

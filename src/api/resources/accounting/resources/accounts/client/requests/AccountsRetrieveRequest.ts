@@ -6,11 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: "company",
- *         remoteFields: Merge.accounting.AccountsRetrieveRequestRemoteFields.Classification,
- *         showEnumOrigins: Merge.accounting.AccountsRetrieveRequestShowEnumOrigins.Classification
- *     }
+ *     {}
  */
 export interface AccountsRetrieveRequest {
     /**
@@ -26,7 +22,7 @@ export interface AccountsRetrieveRequest {
      */
     remoteFields?: Merge.accounting.AccountsRetrieveRequestRemoteFields;
     /**
-     * Which fields should be returned in non-normalized form.
+     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: Merge.accounting.AccountsRetrieveRequestShowEnumOrigins;
 }

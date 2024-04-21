@@ -29,9 +29,7 @@ export class JournalEntries {
      * Returns a list of `JournalEntry` objects.
      *
      * @example
-     *     await merge.accounting.journalEntries.list({
-     *         expand: Merge.accounting.JournalEntriesListRequestExpand.AccountingPeriod
-     *     })
+     *     await merge.accounting.journalEntries.list({})
      */
     public async list(
         request: Merge.accounting.JournalEntriesListRequest = {},
@@ -108,7 +106,7 @@ export class JournalEntries {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/journal-entries"
+                "accounting/v1/journal-entries"
             ),
             method: "GET",
             headers: {
@@ -119,7 +117,7 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -162,10 +160,7 @@ export class JournalEntries {
      *
      * @example
      *     await merge.accounting.journalEntries.create({
-     *         model: {
-     *             currency: undefined,
-     *             postingStatus: undefined
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -185,7 +180,7 @@ export class JournalEntries {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/journal-entries"
+                "accounting/v1/journal-entries"
             ),
             method: "POST",
             headers: {
@@ -196,7 +191,7 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -241,9 +236,7 @@ export class JournalEntries {
      * Returns a `JournalEntry` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.journalEntries.retrieve("string", {
-     *         expand: Merge.accounting.JournalEntriesRetrieveRequestExpand.AccountingPeriod
-     *     })
+     *     await merge.accounting.journalEntries.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -263,7 +256,7 @@ export class JournalEntries {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/journal-entries/${id}`
+                `accounting/v1/journal-entries/${id}`
             ),
             method: "GET",
             headers: {
@@ -274,7 +267,7 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -324,7 +317,7 @@ export class JournalEntries {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/journal-entries/meta/post"
+                "accounting/v1/journal-entries/meta/post"
             ),
             method: "GET",
             headers: {
@@ -335,7 +328,7 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

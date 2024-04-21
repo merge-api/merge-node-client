@@ -4,10 +4,7 @@
 
 /**
  * @example
- *     {
- *         remoteFields: "type",
- *         showEnumOrigins: "type"
- *     }
+ *     {}
  */
 export interface GroupsListRequest {
     /**
@@ -39,6 +36,10 @@ export interface GroupsListRequest {
      */
     modifiedBefore?: Date;
     /**
+     * If provided, will only return groups with these names. Multiple values can be separated by commas.
+     */
+    names?: string;
+    /**
      * Number of results to return per page.
      */
     pageSize?: number;
@@ -51,7 +52,7 @@ export interface GroupsListRequest {
      */
     remoteId?: string;
     /**
-     * Which fields should be returned in non-normalized form.
+     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: "type";
     /**

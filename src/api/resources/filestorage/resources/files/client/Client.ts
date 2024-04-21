@@ -30,9 +30,7 @@ export class Files {
      * Returns a list of `File` objects.
      *
      * @example
-     *     await merge.filestorage.files.list({
-     *         expand: Merge.filestorage.FilesListRequestExpand.Drive
-     *     })
+     *     await merge.filestorage.files.list({})
      */
     public async list(
         request: Merge.filestorage.FilesListRequest = {},
@@ -47,6 +45,7 @@ export class Files {
             folderId,
             includeDeletedData,
             includeRemoteData,
+            mimeType,
             modifiedAfter,
             modifiedBefore,
             name,
@@ -86,6 +85,10 @@ export class Files {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
+        if (mimeType != null) {
+            _queryParams["mime_type"] = mimeType;
+        }
+
         if (modifiedAfter != null) {
             _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
@@ -109,7 +112,7 @@ export class Files {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/files"
+                "filestorage/v1/files"
             ),
             method: "GET",
             headers: {
@@ -120,7 +123,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -163,14 +166,7 @@ export class Files {
      *
      * @example
      *     await merge.filestorage.files.create({
-     *         model: {
-     *             name: "omg_common_model_scope.docx",
-     *             fileUrl: "https://drive.com/1234",
-     *             fileThumbnailUrl: "https://drive.com/1234/thumbnail.png",
-     *             size: 1,
-     *             mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-     *             description: "This file is OP"
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -190,7 +186,7 @@ export class Files {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/files"
+                "filestorage/v1/files"
             ),
             method: "POST",
             headers: {
@@ -201,7 +197,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -246,9 +242,7 @@ export class Files {
      * Returns a `File` object with the given `id`.
      *
      * @example
-     *     await merge.filestorage.files.retrieve("string", {
-     *         expand: Merge.filestorage.FilesRetrieveRequestExpand.Drive
-     *     })
+     *     await merge.filestorage.files.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -268,7 +262,7 @@ export class Files {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/filestorage/v1/files/${id}`
+                `filestorage/v1/files/${id}`
             ),
             method: "GET",
             headers: {
@@ -279,7 +273,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -334,7 +328,7 @@ export class Files {
         const _response = await core.fetcher<stream.Readable>({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/filestorage/v1/files/${id}/download`
+                `filestorage/v1/files/${id}/download`
             ),
             method: "GET",
             headers: {
@@ -345,7 +339,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -389,7 +383,7 @@ export class Files {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/files/meta/post"
+                "filestorage/v1/files/meta/post"
             ),
             method: "GET",
             headers: {
@@ -400,7 +394,7 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

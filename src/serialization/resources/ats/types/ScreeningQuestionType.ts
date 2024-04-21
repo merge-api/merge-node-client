@@ -10,10 +10,10 @@ export const ScreeningQuestionType: core.serialization.Schema<
     serializers.ats.ScreeningQuestionType.Raw,
     Merge.ats.ScreeningQuestionType
 > = core.serialization.undiscriminatedUnion([
-    core.serialization.lazy(async () => (await import("../../..")).ats.TypeEnum),
+    core.serialization.lazy(async () => (await import("../../..")).ats.ScreeningQuestionTypeEnum),
     core.serialization.string(),
 ]);
 
 export declare namespace ScreeningQuestionType {
-    type Raw = serializers.ats.TypeEnum.Raw | string;
+    type Raw = serializers.ats.ScreeningQuestionTypeEnum.Raw | string;
 }

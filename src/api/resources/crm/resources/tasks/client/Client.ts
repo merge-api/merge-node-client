@@ -29,9 +29,7 @@ export class Tasks {
      * Returns a list of `Task` objects.
      *
      * @example
-     *     await merge.crm.tasks.list({
-     *         expand: Merge.crm.TasksListRequestExpand.Account
-     *     })
+     *     await merge.crm.tasks.list({})
      */
     public async list(
         request: Merge.crm.TasksListRequest = {},
@@ -98,7 +96,7 @@ export class Tasks {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/tasks"
+                "crm/v1/tasks"
             ),
             method: "GET",
             headers: {
@@ -109,7 +107,7 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -152,13 +150,7 @@ export class Tasks {
      *
      * @example
      *     await merge.crm.tasks.create({
-     *         model: {
-     *             subject: "Contact about Integration Strategy",
-     *             content: "Follow up to see whether they need integrations",
-     *             completedDate: new Date("2022-02-11T00:00:00.000Z"),
-     *             dueDate: new Date("2022-02-10T00:00:00.000Z"),
-     *             status: undefined
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -178,7 +170,7 @@ export class Tasks {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/tasks"
+                "crm/v1/tasks"
             ),
             method: "POST",
             headers: {
@@ -189,7 +181,7 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -232,9 +224,7 @@ export class Tasks {
      * Returns a `Task` object with the given `id`.
      *
      * @example
-     *     await merge.crm.tasks.retrieve("string", {
-     *         expand: Merge.crm.TasksRetrieveRequestExpand.Account
-     *     })
+     *     await merge.crm.tasks.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -258,7 +248,7 @@ export class Tasks {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/tasks/${id}`
+                `crm/v1/tasks/${id}`
             ),
             method: "GET",
             headers: {
@@ -269,7 +259,7 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -311,17 +301,8 @@ export class Tasks {
      * Updates a `Task` object with the given `id`.
      *
      * @example
-     *     await merge.crm.tasks.partialUpdate("string", {
-     *         model: {
-     *             subject: "Contact about Integration Strategy",
-     *             content: "Follow up to see whether they need integrations",
-     *             owner: "0358cbc6-2040-430a-848e-aafacbadf3aa",
-     *             account: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-     *             opportunity: "550e8400-e29b-41d4-a716-446655440000",
-     *             completedDate: new Date("2022-02-11T00:00:00.000Z"),
-     *             dueDate: new Date("2022-02-10T00:00:00.000Z"),
-     *             status: undefined
-     *         }
+     *     await merge.crm.tasks.partialUpdate("id", {
+     *         model: {}
      *     })
      */
     public async partialUpdate(
@@ -342,7 +323,7 @@ export class Tasks {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/tasks/${id}`
+                `crm/v1/tasks/${id}`
             ),
             method: "PATCH",
             headers: {
@@ -353,7 +334,7 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -398,13 +379,13 @@ export class Tasks {
      * Returns metadata for `Task` PATCHs.
      *
      * @example
-     *     await merge.crm.tasks.metaPatchRetrieve("string")
+     *     await merge.crm.tasks.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(id: string, requestOptions?: Tasks.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/tasks/meta/patch/${id}`
+                `crm/v1/tasks/meta/patch/${id}`
             ),
             method: "GET",
             headers: {
@@ -415,7 +396,7 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -462,7 +443,7 @@ export class Tasks {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/tasks/meta/post"
+                "crm/v1/tasks/meta/post"
             ),
             method: "GET",
             headers: {
@@ -473,7 +454,7 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -545,7 +526,7 @@ export class Tasks {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/tasks/remote-field-classes"
+                "crm/v1/tasks/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -556,7 +537,7 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

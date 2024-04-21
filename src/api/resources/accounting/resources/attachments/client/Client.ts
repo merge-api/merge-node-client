@@ -91,7 +91,7 @@ export class Attachments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/attachments"
+                "accounting/v1/attachments"
             ),
             method: "GET",
             headers: {
@@ -102,7 +102,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -145,11 +145,7 @@ export class Attachments {
      *
      * @example
      *     await merge.accounting.attachments.create({
-     *         model: {
-     *             fileName: "invoice.png",
-     *             fileUrl: "https://merge-brand.s3.amazonaws.com/20210315/rect-logo-270x80%402x.png",
-     *             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5"
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -169,7 +165,7 @@ export class Attachments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/attachments"
+                "accounting/v1/attachments"
             ),
             method: "POST",
             headers: {
@@ -180,7 +176,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -225,7 +221,7 @@ export class Attachments {
      * Returns an `AccountingAttachment` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.attachments.retrieve("string", {})
+     *     await merge.accounting.attachments.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -241,7 +237,7 @@ export class Attachments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/attachments/${id}`
+                `accounting/v1/attachments/${id}`
             ),
             method: "GET",
             headers: {
@@ -252,7 +248,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -300,7 +296,7 @@ export class Attachments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/attachments/meta/post"
+                "accounting/v1/attachments/meta/post"
             ),
             method: "GET",
             headers: {
@@ -311,7 +307,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

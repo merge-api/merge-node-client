@@ -29,12 +29,7 @@ export class TimeOffBalances {
      * Returns a list of `TimeOffBalance` objects.
      *
      * @example
-     *     await merge.hris.timeOffBalances.list({
-     *         expand: "employee",
-     *         policyType: Merge.hris.TimeOffBalancesListRequestPolicyType.Bereavement,
-     *         remoteFields: "policy_type",
-     *         showEnumOrigins: "policy_type"
-     *     })
+     *     await merge.hris.timeOffBalances.list({})
      */
     public async list(
         request: Merge.hris.TimeOffBalancesListRequest = {},
@@ -116,7 +111,7 @@ export class TimeOffBalances {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/time-off-balances"
+                "hris/v1/time-off-balances"
             ),
             method: "GET",
             headers: {
@@ -127,7 +122,7 @@ export class TimeOffBalances {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -169,11 +164,7 @@ export class TimeOffBalances {
      * Returns a `TimeOffBalance` object with the given `id`.
      *
      * @example
-     *     await merge.hris.timeOffBalances.retrieve("string", {
-     *         expand: "employee",
-     *         remoteFields: "policy_type",
-     *         showEnumOrigins: "policy_type"
-     *     })
+     *     await merge.hris.timeOffBalances.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -201,7 +192,7 @@ export class TimeOffBalances {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/time-off-balances/${id}`
+                `hris/v1/time-off-balances/${id}`
             ),
             method: "GET",
             headers: {
@@ -212,7 +203,7 @@ export class TimeOffBalances {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

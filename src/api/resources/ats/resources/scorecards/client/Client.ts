@@ -29,11 +29,7 @@ export class Scorecards {
      * Returns a list of `Scorecard` objects.
      *
      * @example
-     *     await merge.ats.scorecards.list({
-     *         expand: Merge.ats.ScorecardsListRequestExpand.Application,
-     *         remoteFields: "overall_recommendation",
-     *         showEnumOrigins: "overall_recommendation"
-     *     })
+     *     await merge.ats.scorecards.list({})
      */
     public async list(
         request: Merge.ats.ScorecardsListRequest = {},
@@ -120,7 +116,7 @@ export class Scorecards {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/scorecards"
+                "ats/v1/scorecards"
             ),
             method: "GET",
             headers: {
@@ -131,7 +127,7 @@ export class Scorecards {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -173,11 +169,7 @@ export class Scorecards {
      * Returns a `Scorecard` object with the given `id`.
      *
      * @example
-     *     await merge.ats.scorecards.retrieve("string", {
-     *         expand: Merge.ats.ScorecardsRetrieveRequestExpand.Application,
-     *         remoteFields: "overall_recommendation",
-     *         showEnumOrigins: "overall_recommendation"
-     *     })
+     *     await merge.ats.scorecards.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -205,7 +197,7 @@ export class Scorecards {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/scorecards/${id}`
+                `ats/v1/scorecards/${id}`
             ),
             method: "GET",
             headers: {
@@ -216,7 +208,7 @@ export class Scorecards {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

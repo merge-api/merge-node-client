@@ -7,12 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             firstName: "Gil",
- *             lastName: "Feig",
- *             account: "0958cbc6-6040-430a-848e-aafacbadf4ae",
- *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
- *         }
+ *         model: {}
  *     }
  */
 export interface PatchedCrmContactEndpointRequest {

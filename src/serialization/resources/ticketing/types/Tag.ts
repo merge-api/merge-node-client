@@ -9,10 +9,10 @@ import * as core from "../../../../core";
 export const Tag: core.serialization.ObjectSchema<serializers.ticketing.Tag.Raw, Merge.ticketing.Tag> =
     core.serialization.object({
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        name: core.serialization.string().optional(),
-        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
+        name: core.serialization.string().optional(),
+        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -28,10 +28,10 @@ export const Tag: core.serialization.ObjectSchema<serializers.ticketing.Tag.Raw,
 export declare namespace Tag {
     interface Raw {
         remote_id?: string | null;
-        name?: string | null;
-        remote_was_deleted?: boolean | null;
         created_at?: string | null;
         modified_at?: string | null;
+        name?: string | null;
+        remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ticketing.RemoteData.Raw[] | null;
     }

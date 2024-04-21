@@ -29,9 +29,7 @@ export class TimesheetEntries {
      * Returns a list of `TimesheetEntry` objects.
      *
      * @example
-     *     await merge.hris.timesheetEntries.list({
-     *         orderBy: Merge.hris.TimesheetEntriesListRequestOrderBy.StartTimeDescending
-     *     })
+     *     await merge.hris.timesheetEntries.list({})
      */
     public async list(
         request: Merge.hris.TimesheetEntriesListRequest = {},
@@ -118,7 +116,7 @@ export class TimesheetEntries {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/timesheet-entries"
+                "hris/v1/timesheet-entries"
             ),
             method: "GET",
             headers: {
@@ -129,7 +127,7 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -172,12 +170,7 @@ export class TimesheetEntries {
      *
      * @example
      *     await merge.hris.timesheetEntries.create({
-     *         model: {
-     *             employee: "d2f972d0-2526-434b-9409-4c3b468e08f0",
-     *             hoursWorked: 10,
-     *             startTime: new Date("2020-11-10T00:00:00.000Z"),
-     *             endTime: new Date("2020-11-10T00:10:00.000Z")
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -197,7 +190,7 @@ export class TimesheetEntries {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/timesheet-entries"
+                "hris/v1/timesheet-entries"
             ),
             method: "POST",
             headers: {
@@ -208,7 +201,7 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -253,7 +246,7 @@ export class TimesheetEntries {
      * Returns a `TimesheetEntry` object with the given `id`.
      *
      * @example
-     *     await merge.hris.timesheetEntries.retrieve("string", {})
+     *     await merge.hris.timesheetEntries.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -269,7 +262,7 @@ export class TimesheetEntries {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/timesheet-entries/${id}`
+                `hris/v1/timesheet-entries/${id}`
             ),
             method: "GET",
             headers: {
@@ -280,7 +273,7 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -328,7 +321,7 @@ export class TimesheetEntries {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/timesheet-entries/meta/post"
+                "hris/v1/timesheet-entries/meta/post"
             ),
             method: "GET",
             headers: {
@@ -339,7 +332,7 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -10,6 +10,8 @@ export const Activity: core.serialization.ObjectSchema<serializers.ats.Activity.
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         user: core.serialization.lazy(async () => (await import("../../..")).ats.ActivityUser).optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         activityType: core.serialization.property(
@@ -21,8 +23,6 @@ export const Activity: core.serialization.ObjectSchema<serializers.ats.Activity.
         visibility: core.serialization.lazy(async () => (await import("../../..")).ats.ActivityVisibility).optional(),
         candidate: core.serialization.string().optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -39,6 +39,8 @@ export declare namespace Activity {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         user?: serializers.ats.ActivityUser.Raw | null;
         remote_created_at?: string | null;
         activity_type?: serializers.ats.ActivityActivityType.Raw | null;
@@ -47,8 +49,6 @@ export declare namespace Activity {
         visibility?: serializers.ats.ActivityVisibility.Raw | null;
         candidate?: string | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ats.RemoteData.Raw[] | null;
     }

@@ -7,11 +7,9 @@ export interface LinkedAccountCondition {
     conditionSchemaId: string;
     /** The common model for a specific condition. */
     commonModel?: string;
-    /** User-facing _native condition_ name. e.g. "Skip Manager". */
     nativeName?: string;
     /** The operator for a specific condition. */
     operator: string;
     value?: unknown;
-    /** The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. "location_type". */
     fieldName?: string;
 }

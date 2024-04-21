@@ -29,12 +29,7 @@ export class Employees {
      * Returns a list of `Employee` objects.
      *
      * @example
-     *     await merge.hris.employees.list({
-     *         employmentStatus: Merge.hris.EmployeesListRequestEmploymentStatus.Active,
-     *         expand: Merge.hris.EmployeesListRequestExpand.Company,
-     *         remoteFields: Merge.hris.EmployeesListRequestRemoteFields.EmploymentStatus,
-     *         showEnumOrigins: Merge.hris.EmployeesListRequestShowEnumOrigins.EmploymentStatus
-     *     })
+     *     await merge.hris.employees.list({})
      */
     public async list(
         request: Merge.hris.EmployeesListRequest = {},
@@ -206,7 +201,7 @@ export class Employees {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/employees"
+                "hris/v1/employees"
             ),
             method: "GET",
             headers: {
@@ -217,7 +212,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -260,27 +255,7 @@ export class Employees {
      *
      * @example
      *     await merge.hris.employees.create({
-     *         model: {
-     *             employeeNumber: "2",
-     *             firstName: "Greg",
-     *             lastName: "Hirsch",
-     *             preferredName: "Greg the egg",
-     *             displayFullName: "Cousin Greg Hirsch",
-     *             username: "cousingreg",
-     *             workEmail: "greg@merge.dev",
-     *             personalEmail: "greg@gmail.com",
-     *             mobilePhoneNumber: "+1234567890",
-     *             ssn: "1234567890",
-     *             gender: undefined,
-     *             ethnicity: undefined,
-     *             maritalStatus: undefined,
-     *             dateOfBirth: new Date("1990-11-10T00:00:00.000Z"),
-     *             hireDate: new Date("2020-10-10T00:00:00.000Z"),
-     *             startDate: new Date("2020-10-11T00:00:00.000Z"),
-     *             employmentStatus: undefined,
-     *             terminationDate: new Date("2021-10-12T00:00:00.000Z"),
-     *             avatar: "http://alturl.com/h2h8m"
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -300,7 +275,7 @@ export class Employees {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/employees"
+                "hris/v1/employees"
             ),
             method: "POST",
             headers: {
@@ -311,7 +286,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -356,11 +331,7 @@ export class Employees {
      * Returns an `Employee` object with the given `id`.
      *
      * @example
-     *     await merge.hris.employees.retrieve("string", {
-     *         expand: Merge.hris.EmployeesRetrieveRequestExpand.Company,
-     *         remoteFields: Merge.hris.EmployeesRetrieveRequestRemoteFields.EmploymentStatus,
-     *         showEnumOrigins: Merge.hris.EmployeesRetrieveRequestShowEnumOrigins.EmploymentStatus
-     *     })
+     *     await merge.hris.employees.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -392,7 +363,7 @@ export class Employees {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/employees/${id}`
+                `hris/v1/employees/${id}`
             ),
             method: "GET",
             headers: {
@@ -403,7 +374,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -445,7 +416,7 @@ export class Employees {
      * Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
      *
      * @example
-     *     await merge.hris.employees.ignoreCreate("string", {
+     *     await merge.hris.employees.ignoreCreate("model_id", {
      *         message: "deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"
      *     })
      */
@@ -457,7 +428,7 @@ export class Employees {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/employees/ignore/${modelId}`
+                `hris/v1/employees/ignore/${modelId}`
             ),
             method: "POST",
             headers: {
@@ -468,7 +439,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.hris.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -513,7 +484,7 @@ export class Employees {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/employees/meta/post"
+                "hris/v1/employees/meta/post"
             ),
             method: "GET",
             headers: {
@@ -524,7 +495,7 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

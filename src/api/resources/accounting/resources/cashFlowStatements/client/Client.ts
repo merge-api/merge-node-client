@@ -29,9 +29,7 @@ export class CashFlowStatements {
      * Returns a list of `CashFlowStatement` objects.
      *
      * @example
-     *     await merge.accounting.cashFlowStatements.list({
-     *         expand: "company"
-     *     })
+     *     await merge.accounting.cashFlowStatements.list({})
      */
     public async list(
         request: Merge.accounting.CashFlowStatementsListRequest = {},
@@ -98,7 +96,7 @@ export class CashFlowStatements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/cash-flow-statements"
+                "accounting/v1/cash-flow-statements"
             ),
             method: "GET",
             headers: {
@@ -109,7 +107,7 @@ export class CashFlowStatements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -151,9 +149,7 @@ export class CashFlowStatements {
      * Returns a `CashFlowStatement` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.cashFlowStatements.retrieve("string", {
-     *         expand: "company"
-     *     })
+     *     await merge.accounting.cashFlowStatements.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -173,7 +169,7 @@ export class CashFlowStatements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/cash-flow-statements/${id}`
+                `accounting/v1/cash-flow-statements/${id}`
             ),
             method: "GET",
             headers: {
@@ -184,7 +180,7 @@ export class CashFlowStatements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

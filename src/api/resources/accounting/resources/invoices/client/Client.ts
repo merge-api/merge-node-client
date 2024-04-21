@@ -29,12 +29,7 @@ export class Invoices {
      * Returns a list of `Invoice` objects.
      *
      * @example
-     *     await merge.accounting.invoices.list({
-     *         expand: Merge.accounting.InvoicesListRequestExpand.AccountingPeriod,
-     *         remoteFields: "type",
-     *         showEnumOrigins: "type",
-     *         type: Merge.accounting.InvoicesListRequestType.AccountsPayable
-     *     })
+     *     await merge.accounting.invoices.list({})
      */
     public async list(
         request: Merge.accounting.InvoicesListRequest = {},
@@ -131,7 +126,7 @@ export class Invoices {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/invoices"
+                "accounting/v1/invoices"
             ),
             method: "GET",
             headers: {
@@ -142,7 +137,7 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -185,11 +180,7 @@ export class Invoices {
      *
      * @example
      *     await merge.accounting.invoices.create({
-     *         model: {
-     *             type: undefined,
-     *             status: undefined,
-     *             currency: undefined
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -209,7 +200,7 @@ export class Invoices {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/invoices"
+                "accounting/v1/invoices"
             ),
             method: "POST",
             headers: {
@@ -220,7 +211,7 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -265,11 +256,7 @@ export class Invoices {
      * Returns an `Invoice` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.invoices.retrieve("string", {
-     *         expand: Merge.accounting.InvoicesRetrieveRequestExpand.AccountingPeriod,
-     *         remoteFields: "type",
-     *         showEnumOrigins: "type"
-     *     })
+     *     await merge.accounting.invoices.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -297,7 +284,7 @@ export class Invoices {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/invoices/${id}`
+                `accounting/v1/invoices/${id}`
             ),
             method: "GET",
             headers: {
@@ -308,7 +295,7 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -317,6 +304,145 @@ export class Invoices {
         });
         if (_response.ok) {
             return await serializers.accounting.Invoice.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Updates an `Invoice` object with the given `id`.
+     *
+     * @example
+     *     await merge.accounting.invoices.partialUpdate("id", {
+     *         model: {}
+     *     })
+     */
+    public async partialUpdate(
+        id: string,
+        request: Merge.accounting.PatchedInvoiceEndpointRequest,
+        requestOptions?: Invoices.RequestOptions
+    ): Promise<Merge.accounting.InvoiceResponse> {
+        const { isDebugMode, runAsync, ..._body } = request;
+        const _queryParams: Record<string, string | string[]> = {};
+        if (isDebugMode != null) {
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
+        }
+
+        if (runAsync != null) {
+            _queryParams["run_async"] = runAsync.toString();
+        }
+
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                `accounting/v1/invoices/${id}`
+            ),
+            method: "PATCH",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.0.7",
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            body: await serializers.accounting.PatchedInvoiceEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.accounting.InvoiceResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Returns metadata for `Invoice` PATCHs.
+     *
+     * @example
+     *     await merge.accounting.invoices.metaPatchRetrieve("id")
+     */
+    public async metaPatchRetrieve(
+        id: string,
+        requestOptions?: Invoices.RequestOptions
+    ): Promise<Merge.accounting.MetaResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                `accounting/v1/invoices/meta/patch/${id}`
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.0.7",
+            },
+            contentType: "application/json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -356,7 +482,7 @@ export class Invoices {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/invoices/meta/post"
+                "accounting/v1/invoices/meta/post"
             ),
             method: "GET",
             headers: {
@@ -367,7 +493,7 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

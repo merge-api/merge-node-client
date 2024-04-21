@@ -29,9 +29,7 @@ export class Contacts {
      * Returns a list of `Contact` objects.
      *
      * @example
-     *     await merge.crm.contacts.list({
-     *         expand: Merge.crm.ContactsListRequestExpand.Account
-     *     })
+     *     await merge.crm.contacts.list({})
      */
     public async list(
         request: Merge.crm.ContactsListRequest = {},
@@ -113,7 +111,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/contacts"
+                "crm/v1/contacts"
             ),
             method: "GET",
             headers: {
@@ -124,7 +122,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -167,11 +165,7 @@ export class Contacts {
      *
      * @example
      *     await merge.crm.contacts.create({
-     *         model: {
-     *             firstName: "Gil",
-     *             lastName: "Feig",
-     *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -191,7 +185,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/contacts"
+                "crm/v1/contacts"
             ),
             method: "POST",
             headers: {
@@ -202,7 +196,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -247,9 +241,7 @@ export class Contacts {
      * Returns a `Contact` object with the given `id`.
      *
      * @example
-     *     await merge.crm.contacts.retrieve("string", {
-     *         expand: Merge.crm.ContactsRetrieveRequestExpand.Account
-     *     })
+     *     await merge.crm.contacts.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -273,7 +265,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/contacts/${id}`
+                `crm/v1/contacts/${id}`
             ),
             method: "GET",
             headers: {
@@ -284,7 +276,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -326,13 +318,8 @@ export class Contacts {
      * Updates a `Contact` object with the given `id`.
      *
      * @example
-     *     await merge.crm.contacts.partialUpdate("string", {
-     *         model: {
-     *             firstName: "Gil",
-     *             lastName: "Feig",
-     *             account: "0958cbc6-6040-430a-848e-aafacbadf4ae",
-     *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
-     *         }
+     *     await merge.crm.contacts.partialUpdate("id", {
+     *         model: {}
      *     })
      */
     public async partialUpdate(
@@ -353,7 +340,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/contacts/${id}`
+                `crm/v1/contacts/${id}`
             ),
             method: "PATCH",
             headers: {
@@ -364,7 +351,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -409,7 +396,7 @@ export class Contacts {
      * Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
      *
      * @example
-     *     await merge.crm.contacts.ignoreCreate("string", {
+     *     await merge.crm.contacts.ignoreCreate("model_id", {
      *         reason: Merge.crm.ReasonEnum.GeneralCustomerRequest,
      *         message: "deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"
      *     })
@@ -422,7 +409,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/contacts/ignore/${modelId}`
+                `crm/v1/contacts/ignore/${modelId}`
             ),
             method: "POST",
             headers: {
@@ -433,7 +420,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.crm.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -472,7 +459,7 @@ export class Contacts {
      * Returns metadata for `CRMContact` PATCHs.
      *
      * @example
-     *     await merge.crm.contacts.metaPatchRetrieve("string")
+     *     await merge.crm.contacts.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -481,7 +468,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/contacts/meta/patch/${id}`
+                `crm/v1/contacts/meta/patch/${id}`
             ),
             method: "GET",
             headers: {
@@ -492,7 +479,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -539,7 +526,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/contacts/meta/post"
+                "crm/v1/contacts/meta/post"
             ),
             method: "GET",
             headers: {
@@ -550,7 +537,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -622,7 +609,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/contacts/remote-field-classes"
+                "crm/v1/contacts/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -633,7 +620,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

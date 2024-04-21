@@ -10,7 +10,10 @@ export const TransactionLineItem: core.serialization.ObjectSchema<
     serializers.accounting.TransactionLineItem.Raw,
     Merge.accounting.TransactionLineItem
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     memo: core.serialization.string().optional(),
     unitPrice: core.serialization.property("unit_price", core.serialization.string().optional()),
     quantity: core.serialization.string().optional(),
@@ -29,14 +32,14 @@ export const TransactionLineItem: core.serialization.ObjectSchema<
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     company: core.serialization.string().optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    id: core.serialization.string().optional(),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace TransactionLineItem {
     interface Raw {
+        id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         memo?: string | null;
         unit_price?: string | null;
         quantity?: string | null;
@@ -50,8 +53,5 @@ export declare namespace TransactionLineItem {
         exchange_rate?: string | null;
         company?: string | null;
         remote_was_deleted?: boolean | null;
-        id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

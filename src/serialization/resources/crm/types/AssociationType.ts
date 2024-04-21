@@ -10,6 +10,10 @@ export const AssociationType: core.serialization.ObjectSchema<
     serializers.crm.AssociationType.Raw,
     Merge.crm.AssociationType
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
+    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     sourceObjectClass: core.serialization.property(
         "source_object_class",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -26,23 +30,19 @@ export const AssociationType: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).crm.AssociationTypeCardinality)
         .optional(),
     isRequired: core.serialization.property("is_required", core.serialization.boolean().optional()),
-    id: core.serialization.string().optional(),
-    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace AssociationType {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         source_object_class?: Record<string, unknown> | null;
         target_object_classes?: serializers.crm.AssociationSubType.Raw[] | null;
         remote_key_name?: string | null;
         display_name?: string | null;
         cardinality?: serializers.crm.AssociationTypeCardinality.Raw | null;
         is_required?: boolean | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

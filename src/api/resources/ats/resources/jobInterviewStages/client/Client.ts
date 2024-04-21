@@ -29,9 +29,7 @@ export class JobInterviewStages {
      * Returns a list of `JobInterviewStage` objects.
      *
      * @example
-     *     await merge.ats.jobInterviewStages.list({
-     *         expand: "job"
-     *     })
+     *     await merge.ats.jobInterviewStages.list({})
      */
     public async list(
         request: Merge.ats.JobInterviewStagesListRequest = {},
@@ -98,7 +96,7 @@ export class JobInterviewStages {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/job-interview-stages"
+                "ats/v1/job-interview-stages"
             ),
             method: "GET",
             headers: {
@@ -109,7 +107,7 @@ export class JobInterviewStages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -151,9 +149,7 @@ export class JobInterviewStages {
      * Returns a `JobInterviewStage` object with the given `id`.
      *
      * @example
-     *     await merge.ats.jobInterviewStages.retrieve("string", {
-     *         expand: "job"
-     *     })
+     *     await merge.ats.jobInterviewStages.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -173,7 +169,7 @@ export class JobInterviewStages {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/job-interview-stages/${id}`
+                `ats/v1/job-interview-stages/${id}`
             ),
             method: "GET",
             headers: {
@@ -184,7 +180,7 @@ export class JobInterviewStages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

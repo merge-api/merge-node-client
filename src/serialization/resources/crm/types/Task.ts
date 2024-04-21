@@ -8,6 +8,10 @@ import * as core from "../../../../core";
 
 export const Task: core.serialization.ObjectSchema<serializers.crm.Task.Raw, Merge.crm.Task> =
     core.serialization.object({
+        id: core.serialization.string().optional(),
+        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         subject: core.serialization.string().optional(),
         content: core.serialization.string().optional(),
         owner: core.serialization.lazy(async () => (await import("../../..")).crm.TaskOwner).optional(),
@@ -17,10 +21,6 @@ export const Task: core.serialization.ObjectSchema<serializers.crm.Task.Raw, Mer
         dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
         status: core.serialization.lazy(async () => (await import("../../..")).crm.TaskStatus).optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        id: core.serialization.string().optional(),
-        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -41,6 +41,10 @@ export const Task: core.serialization.ObjectSchema<serializers.crm.Task.Raw, Mer
 
 export declare namespace Task {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         subject?: string | null;
         content?: string | null;
         owner?: serializers.crm.TaskOwner.Raw | null;
@@ -50,10 +54,6 @@ export declare namespace Task {
         due_date?: string | null;
         status?: serializers.crm.TaskStatus.Raw | null;
         remote_was_deleted?: boolean | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.crm.RemoteData.Raw[] | null;
         remote_fields?: serializers.crm.RemoteField.Raw[] | null;

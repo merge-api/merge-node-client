@@ -14,11 +14,11 @@
  * Fetch from the `GET Contact` endpoint and view their email addresses.
  */
 export interface EmailAddress {
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The email address. */
     emailAddress?: string;
     /** The email address's type. */
     emailAddressType?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

@@ -10,6 +10,8 @@ export const Employment: core.serialization.ObjectSchema<serializers.hris.Employ
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         employee: core.serialization.lazy(async () => (await import("../../..")).hris.EmploymentEmployee).optional(),
         jobTitle: core.serialization.property("job_title", core.serialization.string().optional()),
         payRate: core.serialization.property("pay_rate", core.serialization.number().optional()),
@@ -39,8 +41,6 @@ export const Employment: core.serialization.ObjectSchema<serializers.hris.Employ
             core.serialization.lazy(async () => (await import("../../..")).hris.EmploymentEmploymentType).optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -57,6 +57,8 @@ export declare namespace Employment {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         employee?: serializers.hris.EmploymentEmployee.Raw | null;
         job_title?: string | null;
         pay_rate?: number | null;
@@ -68,8 +70,6 @@ export declare namespace Employment {
         effective_date?: string | null;
         employment_type?: serializers.hris.EmploymentEmploymentType.Raw | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.hris.RemoteData.Raw[] | null;
     }

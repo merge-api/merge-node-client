@@ -37,7 +37,7 @@ export class SelectiveSync {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/selective-sync/configurations"
+                "ats/v1/selective-sync/configurations"
             ),
             method: "GET",
             headers: {
@@ -48,7 +48,7 @@ export class SelectiveSync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -90,7 +90,9 @@ export class SelectiveSync {
      *
      * @example
      *     await merge.ats.selectiveSync.configurationsUpdate({
-     *         syncConfigurations: []
+     *         syncConfigurations: [{
+     *                 linkedAccountConditions: []
+     *             }]
      *     })
      */
     public async configurationsUpdate(
@@ -100,7 +102,7 @@ export class SelectiveSync {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/selective-sync/configurations"
+                "ats/v1/selective-sync/configurations"
             ),
             method: "PUT",
             headers: {
@@ -111,7 +113,7 @@ export class SelectiveSync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.ats.LinkedAccountSelectiveSyncConfigurationListRequest.jsonOrThrow(request, {
@@ -178,7 +180,7 @@ export class SelectiveSync {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/selective-sync/meta"
+                "ats/v1/selective-sync/meta"
             ),
             method: "GET",
             headers: {
@@ -189,7 +191,7 @@ export class SelectiveSync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

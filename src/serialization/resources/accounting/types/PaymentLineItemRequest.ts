@@ -10,9 +10,9 @@ export const PaymentLineItemRequest: core.serialization.ObjectSchema<
     serializers.accounting.PaymentLineItemRequest.Raw,
     Merge.accounting.PaymentLineItemRequest
 > = core.serialization.object({
+    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
     appliedAmount: core.serialization.property("applied_amount", core.serialization.string().optional()),
     appliedDate: core.serialization.property("applied_date", core.serialization.date().optional()),
-    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
     relatedObjectId: core.serialization.property("related_object_id", core.serialization.string().optional()),
     relatedObjectType: core.serialization.property("related_object_type", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
@@ -27,9 +27,9 @@ export const PaymentLineItemRequest: core.serialization.ObjectSchema<
 
 export declare namespace PaymentLineItemRequest {
     interface Raw {
+        remote_id?: string | null;
         applied_amount?: string | null;
         applied_date?: string | null;
-        remote_id?: string | null;
         related_object_id?: string | null;
         related_object_type?: string | null;
         integration_params?: Record<string, unknown> | null;

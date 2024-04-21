@@ -19,6 +19,9 @@ export interface Employee {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The employee's number that appears in the third-party integration's UI. */
     employeeNumber?: string;
     /** The ID of the employee's company. */
@@ -110,9 +113,6 @@ export interface Employee {
     /** Custom fields configured for a given model. */
     customFields?: Record<string, unknown>;
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

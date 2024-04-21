@@ -19,6 +19,9 @@ export interface Job {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The job's name. */
     name?: string;
     /** The job's description. */
@@ -35,6 +38,16 @@ export interface Job {
      * - `PENDING` - PENDING
      */
     status?: Merge.ats.JobStatus;
+    /**
+     * The job's type.
+     *
+     * - `POSTING` - POSTING
+     * - `REQUISITION` - REQUISITION
+     * - `PROFILE` - PROFILE
+     */
+    type?: Merge.ats.JobTypeEnum;
+    /** IDs of `JobPosting` objects that serve as job postings for this `Job`. */
+    jobPostings?: (string | undefined)[];
     jobPostingUrls?: Merge.ats.Url[];
     /** When the third party's job was created. */
     remoteCreatedAt?: Date;
@@ -52,9 +65,6 @@ export interface Job {
     recruiters?: (Merge.ats.JobRecruitersItem | undefined)[];
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

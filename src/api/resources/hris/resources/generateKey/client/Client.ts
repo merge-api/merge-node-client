@@ -40,7 +40,7 @@ export class GenerateKey {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/generate-key"
+                "hris/v1/generate-key"
             ),
             method: "POST",
             headers: {
@@ -51,7 +51,7 @@ export class GenerateKey {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.hris.GenerateRemoteKeyRequest.jsonOrThrow(request, {

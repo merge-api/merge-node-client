@@ -19,6 +19,9 @@ export interface CreditNote {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The credit note's transaction date. */
     transactionDate?: Date;
     /**
@@ -366,9 +369,6 @@ export interface CreditNote {
     remoteWasDeleted?: boolean;
     /** The accounting period that the CreditNote was generated in. */
     accountingPeriod?: Merge.accounting.CreditNoteAccountingPeriod;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

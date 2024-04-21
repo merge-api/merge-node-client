@@ -7,13 +7,8 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             location: "Embarcadero Center 2",
- *             startAt: new Date("2021-10-15T00:00:00.000Z"),
- *             endAt: new Date("2021-10-15T02:00:00.000Z"),
- *             status: undefined
- *         },
- *         remoteUserId: "string"
+ *         model: {},
+ *         remoteUserId: "remote_user_id"
  *     }
  */
 export interface ScheduledInterviewEndpointRequest {

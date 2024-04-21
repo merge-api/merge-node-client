@@ -10,8 +10,7 @@ import * as Merge from "../../../../../..";
  *         endUserEmailAddress: "example@gmail.com",
  *         endUserOrganizationName: "Test Organization",
  *         endUserOriginId: "12345",
- *         categories: [],
- *         integration: "bamboohr"
+ *         categories: [Merge.hris.CategoriesEnum.Hris]
  *     }
  */
 export interface EndUserDetailsRequest {
@@ -33,4 +32,6 @@ export interface EndUserDetailsRequest {
     commonModels?: Merge.hris.CommonModelScopesBodyRequest[];
     /** When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings. */
     categoryCommonModelScopes?: Record<string, Merge.hris.IndividualCommonModelScopeDeserializerRequest[] | undefined>;
+    /** The language code for the language to localize Merge Link to. */
+    language?: string;
 }

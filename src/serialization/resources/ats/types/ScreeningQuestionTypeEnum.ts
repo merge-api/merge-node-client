@@ -6,19 +6,21 @@ import * as serializers from "../../..";
 import * as Merge from "../../../../api";
 import * as core from "../../../../core";
 
-export const TypeEnum: core.serialization.Schema<serializers.ats.TypeEnum.Raw, Merge.ats.TypeEnum> =
-    core.serialization.enum_([
-        "DATE",
-        "FILE",
-        "SINGLE_SELECT",
-        "MULTI_SELECT",
-        "SINGLE_LINE_TEXT",
-        "MULTI_LINE_TEXT",
-        "NUMERIC",
-        "BOOLEAN",
-    ]);
+export const ScreeningQuestionTypeEnum: core.serialization.Schema<
+    serializers.ats.ScreeningQuestionTypeEnum.Raw,
+    Merge.ats.ScreeningQuestionTypeEnum
+> = core.serialization.enum_([
+    "DATE",
+    "FILE",
+    "SINGLE_SELECT",
+    "MULTI_SELECT",
+    "SINGLE_LINE_TEXT",
+    "MULTI_LINE_TEXT",
+    "NUMERIC",
+    "BOOLEAN",
+]);
 
-export declare namespace TypeEnum {
+export declare namespace ScreeningQuestionTypeEnum {
     type Raw =
         | "DATE"
         | "FILE"

@@ -16,8 +16,12 @@ import * as Merge from "../../..";
  * Fetch from the `GET TransactionLineItem` endpoint and view the transaction's line items.
  */
 export interface TransactionLineItem {
+    id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** An internal note used by the business to clarify purpose of the transaction. */
     memo?: string;
     /** The line item's unit price. */
@@ -352,8 +356,4 @@ export interface TransactionLineItem {
     company?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    id?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

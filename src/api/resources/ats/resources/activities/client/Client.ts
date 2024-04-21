@@ -29,11 +29,7 @@ export class Activities {
      * Returns a list of `Activity` objects.
      *
      * @example
-     *     await merge.ats.activities.list({
-     *         expand: "user",
-     *         remoteFields: Merge.ats.ActivitiesListRequestRemoteFields.ActivityType,
-     *         showEnumOrigins: Merge.ats.ActivitiesListRequestShowEnumOrigins.ActivityType
-     *     })
+     *     await merge.ats.activities.list({})
      */
     public async list(
         request: Merge.ats.ActivitiesListRequest = {},
@@ -110,7 +106,7 @@ export class Activities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/activities"
+                "ats/v1/activities"
             ),
             method: "GET",
             headers: {
@@ -121,7 +117,7 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -164,14 +160,8 @@ export class Activities {
      *
      * @example
      *     await merge.ats.activities.create({
-     *         model: {
-     *             activityType: undefined,
-     *             subject: "Gil Feig's interview",
-     *             body: "Candidate loves integrations!",
-     *             visibility: undefined,
-     *             candidate: "550e8400-e29b-41d4-a716-446655440000"
-     *         },
-     *         remoteUserId: "string"
+     *         model: {},
+     *         remoteUserId: "remote_user_id"
      *     })
      */
     public async create(
@@ -191,7 +181,7 @@ export class Activities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/activities"
+                "ats/v1/activities"
             ),
             method: "POST",
             headers: {
@@ -202,7 +192,7 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -245,11 +235,7 @@ export class Activities {
      * Returns an `Activity` object with the given `id`.
      *
      * @example
-     *     await merge.ats.activities.retrieve("string", {
-     *         expand: "user",
-     *         remoteFields: Merge.ats.ActivitiesRetrieveRequestRemoteFields.ActivityType,
-     *         showEnumOrigins: Merge.ats.ActivitiesRetrieveRequestShowEnumOrigins.ActivityType
-     *     })
+     *     await merge.ats.activities.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -277,7 +263,7 @@ export class Activities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/activities/${id}`
+                `ats/v1/activities/${id}`
             ),
             method: "GET",
             headers: {
@@ -288,7 +274,7 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -336,7 +322,7 @@ export class Activities {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/activities/meta/post"
+                "ats/v1/activities/meta/post"
             ),
             method: "GET",
             headers: {
@@ -347,7 +333,7 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

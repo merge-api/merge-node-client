@@ -10,19 +10,19 @@ export const ScreeningQuestionOption: core.serialization.ObjectSchema<
     serializers.ats.ScreeningQuestionOption.Raw,
     Merge.ats.ScreeningQuestionOption
 > = core.serialization.object({
-    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    label: core.serialization.string().optional(),
     id: core.serialization.string().optional(),
+    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
+    label: core.serialization.string().optional(),
 });
 
 export declare namespace ScreeningQuestionOption {
     interface Raw {
-        remote_id?: string | null;
-        label?: string | null;
         id?: string | null;
+        remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
+        label?: string | null;
     }
 }

@@ -29,10 +29,7 @@ export class Users {
      * Returns a list of `RemoteUser` objects.
      *
      * @example
-     *     await merge.ats.users.list({
-     *         remoteFields: "access_role",
-     *         showEnumOrigins: "access_role"
-     *     })
+     *     await merge.ats.users.list({})
      */
     public async list(
         request: Merge.ats.UsersListRequest = {},
@@ -104,7 +101,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/users"
+                "ats/v1/users"
             ),
             method: "GET",
             headers: {
@@ -115,7 +112,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -157,10 +154,7 @@ export class Users {
      * Returns a `RemoteUser` object with the given `id`.
      *
      * @example
-     *     await merge.ats.users.retrieve("string", {
-     *         remoteFields: "access_role",
-     *         showEnumOrigins: "access_role"
-     *     })
+     *     await merge.ats.users.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -184,7 +178,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/users/${id}`
+                `ats/v1/users/${id}`
             ),
             method: "GET",
             headers: {
@@ -195,7 +189,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
