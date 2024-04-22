@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.hris.EmployeePayrollRunsListRequestExpand.Employee
- *     }
+ *     {}
  */
 export interface EmployeePayrollRunsListRequest {
     /**

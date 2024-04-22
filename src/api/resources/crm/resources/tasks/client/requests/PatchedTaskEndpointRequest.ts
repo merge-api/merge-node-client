@@ -7,16 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             subject: "Contact about Integration Strategy",
- *             content: "Follow up to see whether they need integrations",
- *             owner: "0358cbc6-2040-430a-848e-aafacbadf3aa",
- *             account: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
- *             opportunity: "550e8400-e29b-41d4-a716-446655440000",
- *             completedDate: new Date("2022-02-11T00:00:00.000Z"),
- *             dueDate: new Date("2022-02-10T00:00:00.000Z"),
- *             status: undefined
- *         }
+ *         model: {}
  *     }
  */
 export interface PatchedTaskEndpointRequest {

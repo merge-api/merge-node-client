@@ -18,6 +18,12 @@ import * as Merge from "../../..";
  * Fetch from the `LIST PurchaseOrders` endpoint and view a company's purchase orders.
  */
 export interface PurchaseOrder {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /**
      * The purchase order's status.
      *
@@ -369,12 +375,6 @@ export interface PurchaseOrder {
     remoteWasDeleted?: boolean;
     /** The accounting period that the PurchaseOrder was generated in. */
     accountingPeriod?: Merge.accounting.PurchaseOrderAccountingPeriod;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

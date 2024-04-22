@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.filestorage.FilesListRequestExpand.Drive
- *     }
+ *     {}
  */
 export interface FilesListRequest {
     /**
@@ -43,6 +41,10 @@ export interface FilesListRequest {
      * Whether to include the original data Merge fetched from the third-party to produce these models.
      */
     includeRemoteData?: boolean;
+    /**
+     * If provided, will only return files with these mime_types. Multiple values can be separated by commas.
+     */
+    mimeType?: string;
     /**
      * If provided, only objects synced by Merge after this date time will be returned.
      */

@@ -20,4 +20,5 @@ export interface FieldMappingApiInstanceResponse {
     payGroup?: Merge.hris.FieldMappingApiInstance[];
     group?: Merge.hris.FieldMappingApiInstance[];
     dependent?: Merge.hris.FieldMappingApiInstance[];
+    timesheetEntry?: Merge.hris.FieldMappingApiInstance[];
 }

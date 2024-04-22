@@ -12,6 +12,8 @@ export const Permission: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     user: core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionUser).optional(),
     group: core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionGroup).optional(),
     type: core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionType).optional(),
@@ -20,19 +22,17 @@ export const Permission: core.serialization.ObjectSchema<
             core.serialization.lazy(async () => (await import("../../..")).filestorage.PermissionRolesItem).optional()
         )
         .optional(),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace Permission {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         user?: serializers.filestorage.PermissionUser.Raw | null;
         group?: serializers.filestorage.PermissionGroup.Raw | null;
         type?: serializers.filestorage.PermissionType.Raw | null;
         roles?: (serializers.filestorage.PermissionRolesItem.Raw | null | undefined)[] | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

@@ -7,7 +7,9 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         commonModels: []
+ *         commonModels: [{
+ *                 modelName: "model_name"
+ *             }]
  *     }
  */
 export interface LinkedAccountCommonModelScopeDeserializerRequest {

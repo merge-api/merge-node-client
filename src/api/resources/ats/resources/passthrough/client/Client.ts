@@ -31,9 +31,7 @@ export class Passthrough {
      * @example
      *     await merge.ats.passthrough.create({
      *         method: Merge.ats.MethodEnum.Get,
-     *         path: "/scooters",
-     *         data: "{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}",
-     *         requestFormat: Merge.ats.RequestFormatEnum.Json
+     *         path: "/scooters"
      *     })
      */
     public async create(
@@ -43,7 +41,7 @@ export class Passthrough {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/passthrough"
+                "ats/v1/passthrough"
             ),
             method: "POST",
             headers: {
@@ -54,7 +52,7 @@ export class Passthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.ats.DataPassthroughRequest.jsonOrThrow(request, {

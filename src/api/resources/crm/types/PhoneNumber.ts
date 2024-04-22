@@ -14,11 +14,11 @@
  * Fetch from the `GET Contact` endpoint and view their phone numbers.
  */
 export interface PhoneNumber {
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The phone number. */
     phoneNumber?: string;
     /** The phone number's type. */
     phoneNumberType?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

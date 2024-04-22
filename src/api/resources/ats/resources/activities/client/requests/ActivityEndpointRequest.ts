@@ -7,14 +7,8 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             activityType: undefined,
- *             subject: "Gil Feig's interview",
- *             body: "Candidate loves integrations!",
- *             visibility: undefined,
- *             candidate: "550e8400-e29b-41d4-a716-446655440000"
- *         },
- *         remoteUserId: "string"
+ *         model: {},
+ *         remoteUserId: "remote_user_id"
  *     }
  */
 export interface ActivityEndpointRequest {

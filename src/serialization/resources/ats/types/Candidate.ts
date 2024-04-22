@@ -10,6 +10,8 @@ export const Candidate: core.serialization.ObjectSchema<serializers.ats.Candidat
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         firstName: core.serialization.property("first_name", core.serialization.string().optional()),
         lastName: core.serialization.property("last_name", core.serialization.string().optional()),
         company: core.serialization.string().optional(),
@@ -47,8 +49,6 @@ export const Candidate: core.serialization.ObjectSchema<serializers.ats.Candidat
             )
             .optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -65,6 +65,8 @@ export declare namespace Candidate {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         first_name?: string | null;
         last_name?: string | null;
         company?: string | null;
@@ -82,8 +84,6 @@ export declare namespace Candidate {
         applications?: (serializers.ats.CandidateApplicationsItem.Raw | null | undefined)[] | null;
         attachments?: (serializers.ats.CandidateAttachmentsItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ats.RemoteData.Raw[] | null;
     }

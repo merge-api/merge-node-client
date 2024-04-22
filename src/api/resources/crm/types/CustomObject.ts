@@ -16,13 +16,13 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface CustomObject {
-    objectClass?: string;
-    fields?: Record<string, unknown>;
+    id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
-    id?: string;
     createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
+    objectClass?: string;
+    fields?: Record<string, unknown>;
     remoteFields?: Merge.crm.RemoteField[];
 }

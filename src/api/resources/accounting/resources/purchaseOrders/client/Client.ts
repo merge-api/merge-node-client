@@ -29,11 +29,7 @@ export class PurchaseOrders {
      * Returns a list of `PurchaseOrder` objects.
      *
      * @example
-     *     await merge.accounting.purchaseOrders.list({
-     *         expand: Merge.accounting.PurchaseOrdersListRequestExpand.AccountingPeriod,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.accounting.purchaseOrders.list({})
      */
     public async list(
         request: Merge.accounting.PurchaseOrdersListRequest = {},
@@ -120,7 +116,7 @@ export class PurchaseOrders {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/purchase-orders"
+                "accounting/v1/purchase-orders"
             ),
             method: "GET",
             headers: {
@@ -131,7 +127,7 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -174,10 +170,7 @@ export class PurchaseOrders {
      *
      * @example
      *     await merge.accounting.purchaseOrders.create({
-     *         model: {
-     *             status: undefined,
-     *             currency: undefined
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -197,7 +190,7 @@ export class PurchaseOrders {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/purchase-orders"
+                "accounting/v1/purchase-orders"
             ),
             method: "POST",
             headers: {
@@ -208,7 +201,7 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -253,11 +246,7 @@ export class PurchaseOrders {
      * Returns a `PurchaseOrder` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.purchaseOrders.retrieve("string", {
-     *         expand: Merge.accounting.PurchaseOrdersRetrieveRequestExpand.AccountingPeriod,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.accounting.purchaseOrders.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -285,7 +274,7 @@ export class PurchaseOrders {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/purchase-orders/${id}`
+                `accounting/v1/purchase-orders/${id}`
             ),
             method: "GET",
             headers: {
@@ -296,7 +285,7 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -346,7 +335,7 @@ export class PurchaseOrders {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/purchase-orders/meta/post"
+                "accounting/v1/purchase-orders/meta/post"
             ),
             method: "GET",
             headers: {
@@ -357,7 +346,7 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

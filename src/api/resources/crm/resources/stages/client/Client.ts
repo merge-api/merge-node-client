@@ -91,7 +91,7 @@ export class Stages {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/stages"
+                "crm/v1/stages"
             ),
             method: "GET",
             headers: {
@@ -102,7 +102,7 @@ export class Stages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -144,7 +144,7 @@ export class Stages {
      * Returns a `Stage` object with the given `id`.
      *
      * @example
-     *     await merge.crm.stages.retrieve("string", {})
+     *     await merge.crm.stages.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -164,7 +164,7 @@ export class Stages {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/stages/${id}`
+                `crm/v1/stages/${id}`
             ),
             method: "GET",
             headers: {
@@ -175,7 +175,7 @@ export class Stages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -248,7 +248,7 @@ export class Stages {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/stages/remote-field-classes"
+                "crm/v1/stages/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -259,7 +259,7 @@ export class Stages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -33,6 +33,38 @@ export type ApplicationsRetrieveRequestExpand =
     | "job,current_stage"
     | "job,current_stage,reject_reason"
     | "job,reject_reason"
+    | "offers"
+    | "offers,candidate"
+    | "offers,candidate,credited_to"
+    | "offers,candidate,credited_to,current_stage"
+    | "offers,candidate,credited_to,current_stage,reject_reason"
+    | "offers,candidate,credited_to,reject_reason"
+    | "offers,candidate,current_stage"
+    | "offers,candidate,current_stage,reject_reason"
+    | "offers,candidate,job"
+    | "offers,candidate,job,credited_to"
+    | "offers,candidate,job,credited_to,current_stage"
+    | "offers,candidate,job,credited_to,current_stage,reject_reason"
+    | "offers,candidate,job,credited_to,reject_reason"
+    | "offers,candidate,job,current_stage"
+    | "offers,candidate,job,current_stage,reject_reason"
+    | "offers,candidate,job,reject_reason"
+    | "offers,candidate,reject_reason"
+    | "offers,credited_to"
+    | "offers,credited_to,current_stage"
+    | "offers,credited_to,current_stage,reject_reason"
+    | "offers,credited_to,reject_reason"
+    | "offers,current_stage"
+    | "offers,current_stage,reject_reason"
+    | "offers,job"
+    | "offers,job,credited_to"
+    | "offers,job,credited_to,current_stage"
+    | "offers,job,credited_to,current_stage,reject_reason"
+    | "offers,job,credited_to,reject_reason"
+    | "offers,job,current_stage"
+    | "offers,job,current_stage,reject_reason"
+    | "offers,job,reject_reason"
+    | "offers,reject_reason"
     | "reject_reason";
 
 export const ApplicationsRetrieveRequestExpand = {
@@ -66,5 +98,38 @@ export const ApplicationsRetrieveRequestExpand = {
     JobCurrentStage: "job,current_stage",
     JobCurrentStageRejectReason: "job,current_stage,reject_reason",
     JobRejectReason: "job,reject_reason",
+    Offers: "offers",
+    OffersCandidate: "offers,candidate",
+    OffersCandidateCreditedTo: "offers,candidate,credited_to",
+    OffersCandidateCreditedToCurrentStage: "offers,candidate,credited_to,current_stage",
+    OffersCandidateCreditedToCurrentStageRejectReason: "offers,candidate,credited_to,current_stage,reject_reason",
+    OffersCandidateCreditedToRejectReason: "offers,candidate,credited_to,reject_reason",
+    OffersCandidateCurrentStage: "offers,candidate,current_stage",
+    OffersCandidateCurrentStageRejectReason: "offers,candidate,current_stage,reject_reason",
+    OffersCandidateJob: "offers,candidate,job",
+    OffersCandidateJobCreditedTo: "offers,candidate,job,credited_to",
+    OffersCandidateJobCreditedToCurrentStage: "offers,candidate,job,credited_to,current_stage",
+    OffersCandidateJobCreditedToCurrentStageRejectReason:
+        "offers,candidate,job,credited_to,current_stage,reject_reason",
+    OffersCandidateJobCreditedToRejectReason: "offers,candidate,job,credited_to,reject_reason",
+    OffersCandidateJobCurrentStage: "offers,candidate,job,current_stage",
+    OffersCandidateJobCurrentStageRejectReason: "offers,candidate,job,current_stage,reject_reason",
+    OffersCandidateJobRejectReason: "offers,candidate,job,reject_reason",
+    OffersCandidateRejectReason: "offers,candidate,reject_reason",
+    OffersCreditedTo: "offers,credited_to",
+    OffersCreditedToCurrentStage: "offers,credited_to,current_stage",
+    OffersCreditedToCurrentStageRejectReason: "offers,credited_to,current_stage,reject_reason",
+    OffersCreditedToRejectReason: "offers,credited_to,reject_reason",
+    OffersCurrentStage: "offers,current_stage",
+    OffersCurrentStageRejectReason: "offers,current_stage,reject_reason",
+    OffersJob: "offers,job",
+    OffersJobCreditedTo: "offers,job,credited_to",
+    OffersJobCreditedToCurrentStage: "offers,job,credited_to,current_stage",
+    OffersJobCreditedToCurrentStageRejectReason: "offers,job,credited_to,current_stage,reject_reason",
+    OffersJobCreditedToRejectReason: "offers,job,credited_to,reject_reason",
+    OffersJobCurrentStage: "offers,job,current_stage",
+    OffersJobCurrentStageRejectReason: "offers,job,current_stage,reject_reason",
+    OffersJobRejectReason: "offers,job,reject_reason",
+    OffersRejectReason: "offers,reject_reason",
     RejectReason: "reject_reason",
 } as const;

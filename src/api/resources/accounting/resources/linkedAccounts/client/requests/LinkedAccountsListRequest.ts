@@ -6,13 +6,11 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         category: Merge.accounting.LinkedAccountsListRequestCategory.Accounting
- *     }
+ *     {}
  */
 export interface LinkedAccountsListRequest {
     /**
-     * Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage')
+     * Options: `accounting`, `ats`, `crm`, `filestorage`, `hris`, `mktg`, `ticketing`
      *
      * - `hris` - hris
      * - `ats` - ats

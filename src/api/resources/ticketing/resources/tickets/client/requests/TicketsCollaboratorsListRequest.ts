@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.ticketing.TicketsCollaboratorsListRequestExpand.Roles
- *     }
+ *     {}
  */
 export interface TicketsCollaboratorsListRequest {
     /**

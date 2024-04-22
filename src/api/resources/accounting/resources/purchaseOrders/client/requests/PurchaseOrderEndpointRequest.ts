@@ -7,10 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             status: undefined,
- *             currency: undefined
- *         }
+ *         model: {}
  *     }
  */
 export interface PurchaseOrderEndpointRequest {

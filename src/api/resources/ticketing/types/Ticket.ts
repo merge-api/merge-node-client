@@ -19,6 +19,9 @@ export interface Ticket {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The ticket's name. */
     name?: string;
     assignees?: (Merge.ticketing.TicketAssigneesItem | undefined)[];
@@ -38,7 +41,7 @@ export interface Ticket {
     /** The ticket’s description. HTML version of description is mapped if supported by the third-party platform. */
     description?: string;
     collections?: (Merge.ticketing.TicketCollectionsItem | undefined)[];
-    /** The ticket's type. */
+    /** The sub category of the ticket within the 3rd party system. Examples include incident, task, subtask or to-do. */
     ticketType?: string;
     /** The account associated with the ticket. */
     account?: Merge.ticketing.TicketAccount;
@@ -66,9 +69,6 @@ export interface Ticket {
      * - `LOW` - LOW
      */
     priority?: Merge.ticketing.TicketPriority;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
     remoteFields?: Merge.ticketing.RemoteField[];

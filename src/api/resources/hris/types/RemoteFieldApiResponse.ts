@@ -20,4 +20,5 @@ export interface RemoteFieldApiResponse {
     payGroup?: Merge.hris.RemoteFieldApi[];
     group?: Merge.hris.RemoteFieldApi[];
     dependent?: Merge.hris.RemoteFieldApi[];
+    timesheetEntry?: Merge.hris.RemoteFieldApi[];
 }

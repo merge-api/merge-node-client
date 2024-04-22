@@ -16,4 +16,4 @@ import * as Merge from "../../..";
  * - `NUMERIC` - NUMERIC
  * - `BOOLEAN` - BOOLEAN
  */
-export type ScreeningQuestionType = Merge.ats.TypeEnum | string;
+export type ScreeningQuestionType = Merge.ats.ScreeningQuestionTypeEnum | string;

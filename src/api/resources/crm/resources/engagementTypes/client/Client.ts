@@ -91,7 +91,7 @@ export class EngagementTypes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagement-types"
+                "crm/v1/engagement-types"
             ),
             method: "GET",
             headers: {
@@ -102,7 +102,7 @@ export class EngagementTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -144,7 +144,7 @@ export class EngagementTypes {
      * Returns an `EngagementType` object with the given `id`.
      *
      * @example
-     *     await merge.crm.engagementTypes.retrieve("string", {})
+     *     await merge.crm.engagementTypes.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -164,7 +164,7 @@ export class EngagementTypes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/engagement-types/${id}`
+                `crm/v1/engagement-types/${id}`
             ),
             method: "GET",
             headers: {
@@ -175,7 +175,7 @@ export class EngagementTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -248,7 +248,7 @@ export class EngagementTypes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagement-types/remote-field-classes"
+                "crm/v1/engagement-types/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -259,7 +259,7 @@ export class EngagementTypes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

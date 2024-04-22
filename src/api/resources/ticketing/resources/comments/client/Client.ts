@@ -29,9 +29,7 @@ export class Comments {
      * Returns a list of `Comment` objects.
      *
      * @example
-     *     await merge.ticketing.comments.list({
-     *         expand: Merge.ticketing.CommentsListRequestExpand.Contact
-     *     })
+     *     await merge.ticketing.comments.list({})
      */
     public async list(
         request: Merge.ticketing.CommentsListRequest = {},
@@ -103,7 +101,7 @@ export class Comments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/comments"
+                "ticketing/v1/comments"
             ),
             method: "GET",
             headers: {
@@ -114,7 +112,7 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -157,10 +155,7 @@ export class Comments {
      *
      * @example
      *     await merge.ticketing.comments.create({
-     *         model: {
-     *             body: "When will these integrations be done? You all should use Merge.",
-     *             htmlBody: "When will these integrations be done? You all should use <b>Merge<b>."
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -180,7 +175,7 @@ export class Comments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/comments"
+                "ticketing/v1/comments"
             ),
             method: "POST",
             headers: {
@@ -191,7 +186,7 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -236,9 +231,7 @@ export class Comments {
      * Returns a `Comment` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.comments.retrieve("string", {
-     *         expand: Merge.ticketing.CommentsRetrieveRequestExpand.Contact
-     *     })
+     *     await merge.ticketing.comments.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -258,7 +251,7 @@ export class Comments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/comments/${id}`
+                `ticketing/v1/comments/${id}`
             ),
             method: "GET",
             headers: {
@@ -269,7 +262,7 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -317,7 +310,7 @@ export class Comments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/comments/meta/post"
+                "ticketing/v1/comments/meta/post"
             ),
             method: "GET",
             headers: {
@@ -328,7 +321,7 @@ export class Comments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

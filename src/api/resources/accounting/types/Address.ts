@@ -16,6 +16,9 @@ import * as Merge from "../../..";
  * Fetch from the `GET CompanyInfo` endpoint and view the company's addresses.
  */
 export interface Address {
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /**
      * The address type.
      *
@@ -288,7 +291,4 @@ export interface Address {
     country?: Merge.accounting.AddressCountry;
     /** The address's zip code. */
     zipCode?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

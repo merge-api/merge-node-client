@@ -29,9 +29,7 @@ export class CompanyInfo {
      * Returns a list of `CompanyInfo` objects.
      *
      * @example
-     *     await merge.accounting.companyInfo.list({
-     *         expand: Merge.accounting.CompanyInfoListRequestExpand.Addresses
-     *     })
+     *     await merge.accounting.companyInfo.list({})
      */
     public async list(
         request: Merge.accounting.CompanyInfoListRequest = {},
@@ -93,7 +91,7 @@ export class CompanyInfo {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/company-info"
+                "accounting/v1/company-info"
             ),
             method: "GET",
             headers: {
@@ -104,7 +102,7 @@ export class CompanyInfo {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -146,9 +144,7 @@ export class CompanyInfo {
      * Returns a `CompanyInfo` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.companyInfo.retrieve("string", {
-     *         expand: Merge.accounting.CompanyInfoRetrieveRequestExpand.Addresses
-     *     })
+     *     await merge.accounting.companyInfo.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -168,7 +164,7 @@ export class CompanyInfo {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/company-info/${id}`
+                `accounting/v1/company-info/${id}`
             ),
             method: "GET",
             headers: {
@@ -179,7 +175,7 @@ export class CompanyInfo {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

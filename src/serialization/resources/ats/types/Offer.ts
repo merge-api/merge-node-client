@@ -10,6 +10,8 @@ export const Offer: core.serialization.ObjectSchema<serializers.ats.Offer.Raw, M
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         application: core.serialization.lazy(async () => (await import("../../..")).ats.OfferApplication).optional(),
         creator: core.serialization.lazy(async () => (await import("../../..")).ats.OfferCreator).optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
@@ -18,8 +20,6 @@ export const Offer: core.serialization.ObjectSchema<serializers.ats.Offer.Raw, M
         startDate: core.serialization.property("start_date", core.serialization.date().optional()),
         status: core.serialization.lazy(async () => (await import("../../..")).ats.OfferStatus).optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -36,6 +36,8 @@ export declare namespace Offer {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         application?: serializers.ats.OfferApplication.Raw | null;
         creator?: serializers.ats.OfferCreator.Raw | null;
         remote_created_at?: string | null;
@@ -44,8 +46,6 @@ export declare namespace Offer {
         start_date?: string | null;
         status?: serializers.ats.OfferStatus.Raw | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ats.RemoteData.Raw[] | null;
     }

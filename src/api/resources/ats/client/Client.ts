@@ -22,6 +22,7 @@ import { GenerateKey } from "../resources/generateKey/client/Client";
 import { Interviews } from "../resources/interviews/client/Client";
 import { Issues } from "../resources/issues/client/Client";
 import { JobInterviewStages } from "../resources/jobInterviewStages/client/Client";
+import { JobPostings } from "../resources/jobPostings/client/Client";
 import { Jobs } from "../resources/jobs/client/Client";
 import { LinkToken } from "../resources/linkToken/client/Client";
 import { LinkedAccounts } from "../resources/linkedAccounts/client/Client";
@@ -160,6 +161,12 @@ export class Ats {
 
     public get jobInterviewStages(): JobInterviewStages {
         return (this._jobInterviewStages ??= new JobInterviewStages(this._options));
+    }
+
+    protected _jobPostings: JobPostings | undefined;
+
+    public get jobPostings(): JobPostings {
+        return (this._jobPostings ??= new JobPostings(this._options));
     }
 
     protected _jobs: Jobs | undefined;

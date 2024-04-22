@@ -16,6 +16,12 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Task {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The task's subject. */
     subject?: string;
     /** The task's content. */
@@ -39,12 +45,6 @@ export interface Task {
     status?: Merge.crm.TaskStatus;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

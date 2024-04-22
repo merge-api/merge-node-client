@@ -16,6 +16,9 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Address {
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** Line 1 of the address's street. */
     street1?: string;
     /** Line 2 of the address's street. */
@@ -287,7 +290,4 @@ export interface Address {
      * - `SHIPPING` - SHIPPING
      */
     addressType?: Merge.crm.AddressAddressType;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

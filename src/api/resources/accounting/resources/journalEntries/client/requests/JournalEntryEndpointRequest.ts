@@ -7,10 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             currency: undefined,
- *             postingStatus: undefined
- *         }
+ *         model: {}
  *     }
  */
 export interface JournalEntryEndpointRequest {

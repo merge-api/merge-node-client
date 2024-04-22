@@ -6,11 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         remoteFields: Merge.hris.PayrollRunsListRequestRemoteFields.RunState,
- *         runType: Merge.hris.PayrollRunsListRequestRunType.Correction,
- *         showEnumOrigins: Merge.hris.PayrollRunsListRequestShowEnumOrigins.RunState
- *     }
+ *     {}
  */
 export interface PayrollRunsListRequest {
     /**
@@ -72,7 +68,7 @@ export interface PayrollRunsListRequest {
      */
     runType?: Merge.hris.PayrollRunsListRequestRunType;
     /**
-     * Which fields should be returned in non-normalized form.
+     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: Merge.hris.PayrollRunsListRequestShowEnumOrigins;
     /**

@@ -6,11 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.accounting.CreditNotesRetrieveRequestExpand.AccountingPeriod,
- *         remoteFields: Merge.accounting.CreditNotesRetrieveRequestRemoteFields.Status,
- *         showEnumOrigins: Merge.accounting.CreditNotesRetrieveRequestShowEnumOrigins.Status
- *     }
+ *     {}
  */
 export interface CreditNotesRetrieveRequest {
     /**
@@ -26,7 +22,7 @@ export interface CreditNotesRetrieveRequest {
      */
     remoteFields?: Merge.accounting.CreditNotesRetrieveRequestRemoteFields;
     /**
-     * Which fields should be returned in non-normalized form.
+     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: Merge.accounting.CreditNotesRetrieveRequestShowEnumOrigins;
 }

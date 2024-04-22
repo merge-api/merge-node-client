@@ -29,9 +29,7 @@ export class Folders {
      * Returns a list of `Folder` objects.
      *
      * @example
-     *     await merge.filestorage.folders.list({
-     *         expand: Merge.filestorage.FoldersListRequestExpand.Drive
-     *     })
+     *     await merge.filestorage.folders.list({})
      */
     public async list(
         request: Merge.filestorage.FoldersListRequest = {},
@@ -108,7 +106,7 @@ export class Folders {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/folders"
+                "filestorage/v1/folders"
             ),
             method: "GET",
             headers: {
@@ -119,7 +117,7 @@ export class Folders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -162,12 +160,7 @@ export class Folders {
      *
      * @example
      *     await merge.filestorage.folders.create({
-     *         model: {
-     *             name: "Platform",
-     *             folderUrl: "https://drive.com/1234",
-     *             size: 1,
-     *             description: "This is a wild folder."
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -187,7 +180,7 @@ export class Folders {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/folders"
+                "filestorage/v1/folders"
             ),
             method: "POST",
             headers: {
@@ -198,7 +191,7 @@ export class Folders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -243,9 +236,7 @@ export class Folders {
      * Returns a `Folder` object with the given `id`.
      *
      * @example
-     *     await merge.filestorage.folders.retrieve("string", {
-     *         expand: Merge.filestorage.FoldersRetrieveRequestExpand.Drive
-     *     })
+     *     await merge.filestorage.folders.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -265,7 +256,7 @@ export class Folders {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/filestorage/v1/folders/${id}`
+                `filestorage/v1/folders/${id}`
             ),
             method: "GET",
             headers: {
@@ -276,7 +267,7 @@ export class Folders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -324,7 +315,7 @@ export class Folders {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/folders/meta/post"
+                "filestorage/v1/folders/meta/post"
             ),
             method: "GET",
             headers: {
@@ -335,7 +326,7 @@ export class Folders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

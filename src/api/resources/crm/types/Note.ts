@@ -16,6 +16,12 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Note {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The note's owner. */
     owner?: Merge.crm.NoteOwner;
     /** The note's content. */
@@ -31,12 +37,6 @@ export interface Note {
     /** When the third party's lead was created. */
     remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

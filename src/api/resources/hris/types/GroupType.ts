@@ -5,7 +5,7 @@
 import * as Merge from "../../..";
 
 /**
- * The group type
+ * The Group type returned directly from the third-party.
  *
  * - `TEAM` - TEAM
  * - `DEPARTMENT` - DEPARTMENT

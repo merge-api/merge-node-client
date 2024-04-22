@@ -29,9 +29,7 @@ export class LinkedAccounts {
      * List linked accounts for your organization.
      *
      * @example
-     *     await merge.hris.linkedAccounts.list({
-     *         category: Merge.hris.LinkedAccountsListRequestCategory.Accounting
-     *     })
+     *     await merge.hris.linkedAccounts.list({})
      */
     public async list(
         request: Merge.hris.LinkedAccountsListRequest = {},
@@ -108,7 +106,7 @@ export class LinkedAccounts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/linked-accounts"
+                "hris/v1/linked-accounts"
             ),
             method: "GET",
             headers: {
@@ -119,7 +117,7 @@ export class LinkedAccounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

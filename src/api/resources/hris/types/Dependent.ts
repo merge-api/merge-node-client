@@ -19,6 +19,9 @@ export interface Dependent {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The dependents's first name. */
     firstName?: string;
     /** The dependents's middle name. */
@@ -57,9 +60,6 @@ export interface Dependent {
     ssn?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

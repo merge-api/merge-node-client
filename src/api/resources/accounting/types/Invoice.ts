@@ -17,6 +17,11 @@ import * as Merge from "../../..";
  */
 export interface Invoice {
     id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /**
      * Whether the invoice is an accounts receivable or accounts payable. If `type` is `ACCOUNTS_PAYABLE`, the invoice is a bill. If `type` is `ACCOUNTS_RECEIVABLE`, it is an invoice.
      *
@@ -384,11 +389,6 @@ export interface Invoice {
     /** The accounting period that the Invoice was generated in. */
     accountingPeriod?: Merge.accounting.InvoiceAccountingPeriod;
     purchaseOrders?: (Merge.accounting.InvoicePurchaseOrdersItem | undefined)[];
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

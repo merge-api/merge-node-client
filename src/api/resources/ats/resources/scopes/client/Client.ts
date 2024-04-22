@@ -26,7 +26,7 @@ export class Scopes {
     constructor(protected readonly _options: Scopes.Options) {}
 
     /**
-     * Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. [Learn More](https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes).
+     * Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. [Learn more](https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes).
      *
      * @example
      *     await merge.ats.scopes.defaultScopesRetrieve()
@@ -35,7 +35,7 @@ export class Scopes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/default-scopes"
+                "ats/v1/default-scopes"
             ),
             method: "GET",
             headers: {
@@ -46,7 +46,7 @@ export class Scopes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -84,7 +84,7 @@ export class Scopes {
     }
 
     /**
-     * Get all available permissions for Merge Common Models and fields for a single Linked Account. [Learn More](https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes).
+     * Get all available permissions for Merge Common Models and fields for a single Linked Account. [Learn more](https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes).
      *
      * @example
      *     await merge.ats.scopes.linkedAccountScopesRetrieve()
@@ -95,7 +95,7 @@ export class Scopes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/linked-account-scopes"
+                "ats/v1/linked-account-scopes"
             ),
             method: "GET",
             headers: {
@@ -106,7 +106,7 @@ export class Scopes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -144,11 +144,13 @@ export class Scopes {
     }
 
     /**
-     * Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. [Learn More](https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes)
+     * Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. [Learn more](https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes)
      *
      * @example
      *     await merge.ats.scopes.linkedAccountScopesCreate({
-     *         commonModels: []
+     *         commonModels: [{
+     *                 modelName: "model_name"
+     *             }]
      *     })
      */
     public async linkedAccountScopesCreate(
@@ -158,7 +160,7 @@ export class Scopes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/linked-account-scopes"
+                "ats/v1/linked-account-scopes"
             ),
             method: "POST",
             headers: {
@@ -169,7 +171,7 @@ export class Scopes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.ats.LinkedAccountCommonModelScopeDeserializerRequest.jsonOrThrow(request, {

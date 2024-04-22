@@ -17,6 +17,9 @@ export interface User {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The user's name. */
     name?: string;
     /** The user's email address. This is typically used to identify a user across linked accounts. */
@@ -25,9 +28,6 @@ export interface User {
     isMe?: boolean;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: (Record<string, unknown> | undefined)[];
 }

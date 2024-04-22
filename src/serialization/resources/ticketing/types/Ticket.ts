@@ -10,6 +10,8 @@ export const Ticket: core.serialization.ObjectSchema<serializers.ticketing.Ticke
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         name: core.serialization.string().optional(),
         assignees: core.serialization
             .list(
@@ -48,8 +50,6 @@ export const Ticket: core.serialization.ObjectSchema<serializers.ticketing.Ticke
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
         priority: core.serialization.lazy(async () => (await import("../../..")).ticketing.TicketPriority).optional(),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -72,6 +72,8 @@ export declare namespace Ticket {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         assignees?: (serializers.ticketing.TicketAssigneesItem.Raw | null | undefined)[] | null;
         creator?: serializers.ticketing.TicketCreator.Raw | null;
@@ -91,8 +93,6 @@ export declare namespace Ticket {
         remote_was_deleted?: boolean | null;
         ticket_url?: string | null;
         priority?: serializers.ticketing.TicketPriority.Raw | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ticketing.RemoteData.Raw[] | null;
         remote_fields?: serializers.ticketing.RemoteField.Raw[] | null;

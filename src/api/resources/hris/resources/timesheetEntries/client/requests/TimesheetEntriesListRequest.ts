@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         orderBy: Merge.hris.TimesheetEntriesListRequestOrderBy.StartTimeDescending
- *     }
+ *     {}
  */
 export interface TimesheetEntriesListRequest {
     /**

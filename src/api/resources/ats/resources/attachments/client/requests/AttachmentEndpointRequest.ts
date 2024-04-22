@@ -7,13 +7,8 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             fileName: "Candidate Resume",
- *             fileUrl: "http://alturl.com/p749b",
- *             candidate: "2872ba14-4084-492b-be96-e5eee6fc33ef",
- *             attachmentType: undefined
- *         },
- *         remoteUserId: "string"
+ *         model: {},
+ *         remoteUserId: "remote_user_id"
  *     }
  */
 export interface AttachmentEndpointRequest {

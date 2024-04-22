@@ -9,9 +9,7 @@ export interface ConditionSchema {
     id: string;
     /** The common model for which a condition schema is defined. */
     commonModel?: string;
-    /** User-facing _native condition_ name. e.g. "Skip Manager". */
     nativeName?: string;
-    /** The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. "location_type". */
     fieldName?: string;
     /** Whether this condition can only be applied once. If false, the condition can be AND'd together multiple times. */
     isUnique?: boolean;

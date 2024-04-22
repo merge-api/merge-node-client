@@ -12,6 +12,8 @@ export const IncomeStatement: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     name: core.serialization.string().optional(),
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.IncomeStatementCurrency)
@@ -46,8 +48,6 @@ export const IncomeStatement: core.serialization.ObjectSchema<
     ),
     netIncome: core.serialization.property("net_income", core.serialization.number().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -64,6 +64,8 @@ export declare namespace IncomeStatement {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         currency?: serializers.accounting.IncomeStatementCurrency.Raw | null;
         company?: serializers.accounting.IncomeStatementCompany.Raw | null;
@@ -77,8 +79,6 @@ export declare namespace IncomeStatement {
         non_operating_expenses?: serializers.accounting.ReportItem.Raw[] | null;
         net_income?: number | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }

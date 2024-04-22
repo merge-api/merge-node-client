@@ -9,5 +9,6 @@
  *     }
  */
 export interface RemoteKeyForRegenerationRequest {
+    /** The name of the remote key */
     name: string;
 }

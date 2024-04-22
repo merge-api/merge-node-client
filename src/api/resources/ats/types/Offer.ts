@@ -19,6 +19,9 @@ export interface Offer {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The application who is receiving the offer. */
     application?: Merge.ats.OfferApplication;
     /** The user who created the offer. */
@@ -47,9 +50,6 @@ export interface Offer {
     status?: Merge.ats.OfferStatus;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

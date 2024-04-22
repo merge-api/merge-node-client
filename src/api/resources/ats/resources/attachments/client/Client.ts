@@ -29,11 +29,7 @@ export class Attachments {
      * Returns a list of `Attachment` objects.
      *
      * @example
-     *     await merge.ats.attachments.list({
-     *         expand: "candidate",
-     *         remoteFields: "attachment_type",
-     *         showEnumOrigins: "attachment_type"
-     *     })
+     *     await merge.ats.attachments.list({})
      */
     public async list(
         request: Merge.ats.AttachmentsListRequest = {},
@@ -110,7 +106,7 @@ export class Attachments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/attachments"
+                "ats/v1/attachments"
             ),
             method: "GET",
             headers: {
@@ -121,7 +117,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -164,13 +160,8 @@ export class Attachments {
      *
      * @example
      *     await merge.ats.attachments.create({
-     *         model: {
-     *             fileName: "Candidate Resume",
-     *             fileUrl: "http://alturl.com/p749b",
-     *             candidate: "2872ba14-4084-492b-be96-e5eee6fc33ef",
-     *             attachmentType: undefined
-     *         },
-     *         remoteUserId: "string"
+     *         model: {},
+     *         remoteUserId: "remote_user_id"
      *     })
      */
     public async create(
@@ -190,7 +181,7 @@ export class Attachments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/attachments"
+                "ats/v1/attachments"
             ),
             method: "POST",
             headers: {
@@ -201,7 +192,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -246,11 +237,7 @@ export class Attachments {
      * Returns an `Attachment` object with the given `id`.
      *
      * @example
-     *     await merge.ats.attachments.retrieve("string", {
-     *         expand: "candidate",
-     *         remoteFields: "attachment_type",
-     *         showEnumOrigins: "attachment_type"
-     *     })
+     *     await merge.ats.attachments.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -278,7 +265,7 @@ export class Attachments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/attachments/${id}`
+                `ats/v1/attachments/${id}`
             ),
             method: "GET",
             headers: {
@@ -289,7 +276,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -337,7 +324,7 @@ export class Attachments {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/attachments/meta/post"
+                "ats/v1/attachments/meta/post"
             ),
             method: "GET",
             headers: {
@@ -348,7 +335,7 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

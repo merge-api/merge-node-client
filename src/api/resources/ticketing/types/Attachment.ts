@@ -19,6 +19,9 @@ export interface Attachment {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The attachment's name. It is required to include the file extension in the attachment's name. */
     fileName?: string;
     /** The ticket associated with the attachment. */
@@ -32,9 +35,6 @@ export interface Attachment {
     /** When the third party's attachment was created. */
     remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
 }

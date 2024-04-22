@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "parent_team"
- *     }
+ *     {}
  */
 export interface TeamsListRequest {
     /**

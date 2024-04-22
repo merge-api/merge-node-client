@@ -8,6 +8,8 @@ import * as core from "../../../../core";
 
 export const Association: core.serialization.ObjectSchema<serializers.crm.Association.Raw, Merge.crm.Association> =
     core.serialization.object({
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         sourceObject: core.serialization.property(
             "source_object",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -20,16 +22,14 @@ export const Association: core.serialization.ObjectSchema<serializers.crm.Associ
             "association_type",
             core.serialization.lazy(async () => (await import("../../..")).crm.AssociationAssociationType).optional()
         ),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     });
 
 export declare namespace Association {
     interface Raw {
+        created_at?: string | null;
+        modified_at?: string | null;
         source_object?: Record<string, unknown> | null;
         target_object?: Record<string, unknown> | null;
         association_type?: serializers.crm.AssociationAssociationType.Raw | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

@@ -7,20 +7,20 @@ import * as Merge from "../../../../api";
 import * as core from "../../../../core";
 
 export const Url: core.serialization.ObjectSchema<serializers.ats.Url.Raw, Merge.ats.Url> = core.serialization.object({
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     value: core.serialization.string().optional(),
     urlType: core.serialization.property(
         "url_type",
         core.serialization.lazy(async () => (await import("../../..")).ats.UrlUrlType).optional()
     ),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace Url {
     interface Raw {
-        value?: string | null;
-        url_type?: serializers.ats.UrlUrlType.Raw | null;
         created_at?: string | null;
         modified_at?: string | null;
+        value?: string | null;
+        url_type?: serializers.ats.UrlUrlType.Raw | null;
     }
 }

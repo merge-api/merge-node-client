@@ -100,6 +100,12 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).hris.ExternalTargetFieldApi))
             .optional()
     ),
+    timesheetEntry: core.serialization.property(
+        "TimesheetEntry",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).hris.ExternalTargetFieldApi))
+            .optional()
+    ),
 });
 
 export declare namespace ExternalTargetFieldApiResponse {
@@ -119,5 +125,6 @@ export declare namespace ExternalTargetFieldApiResponse {
         PayGroup?: serializers.hris.ExternalTargetFieldApi.Raw[] | null;
         Group?: serializers.hris.ExternalTargetFieldApi.Raw[] | null;
         Dependent?: serializers.hris.ExternalTargetFieldApi.Raw[] | null;
+        TimesheetEntry?: serializers.hris.ExternalTargetFieldApi.Raw[] | null;
     }
 }

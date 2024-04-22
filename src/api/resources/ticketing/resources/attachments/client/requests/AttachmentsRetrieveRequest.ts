@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "ticket"
- *     }
+ *     {}
  */
 export interface AttachmentsRetrieveRequest {
     /**

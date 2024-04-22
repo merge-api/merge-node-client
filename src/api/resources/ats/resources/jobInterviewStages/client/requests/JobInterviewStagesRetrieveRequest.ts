@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "job"
- *     }
+ *     {}
  */
 export interface JobInterviewStagesRetrieveRequest {
     /**

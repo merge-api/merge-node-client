@@ -7,27 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             employeeNumber: "2",
- *             firstName: "Greg",
- *             lastName: "Hirsch",
- *             preferredName: "Greg the egg",
- *             displayFullName: "Cousin Greg Hirsch",
- *             username: "cousingreg",
- *             workEmail: "greg@merge.dev",
- *             personalEmail: "greg@gmail.com",
- *             mobilePhoneNumber: "+1234567890",
- *             ssn: "1234567890",
- *             gender: undefined,
- *             ethnicity: undefined,
- *             maritalStatus: undefined,
- *             dateOfBirth: new Date("1990-11-10T00:00:00.000Z"),
- *             hireDate: new Date("2020-10-10T00:00:00.000Z"),
- *             startDate: new Date("2020-10-11T00:00:00.000Z"),
- *             employmentStatus: undefined,
- *             terminationDate: new Date("2021-10-12T00:00:00.000Z"),
- *             avatar: "http://alturl.com/h2h8m"
- *         }
+ *         model: {}
  *     }
  */
 export interface EmployeeEndpointRequest {

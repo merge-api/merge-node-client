@@ -19,6 +19,9 @@ export interface VendorCredit {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The vendor credit's number. */
     number?: string;
     /** The vendor credit's transaction date. */
@@ -348,9 +351,6 @@ export interface VendorCredit {
     remoteWasDeleted?: boolean;
     /** The accounting period that the VendorCredit was generated in. */
     accountingPeriod?: Merge.accounting.VendorCreditAccountingPeriod;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

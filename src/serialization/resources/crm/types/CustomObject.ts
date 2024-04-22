@@ -8,12 +8,12 @@ import * as core from "../../../../core";
 
 export const CustomObject: core.serialization.ObjectSchema<serializers.crm.CustomObject.Raw, Merge.crm.CustomObject> =
     core.serialization.object({
-        objectClass: core.serialization.property("object_class", core.serialization.string().optional()),
-        fields: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         id: core.serialization.string().optional(),
+        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
+        objectClass: core.serialization.property("object_class", core.serialization.string().optional()),
+        fields: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         remoteFields: core.serialization.property(
             "remote_fields",
             core.serialization
@@ -24,12 +24,12 @@ export const CustomObject: core.serialization.ObjectSchema<serializers.crm.Custo
 
 export declare namespace CustomObject {
     interface Raw {
-        object_class?: string | null;
-        fields?: Record<string, unknown> | null;
-        remote_id?: string | null;
         id?: string | null;
+        remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
+        object_class?: string | null;
+        fields?: Record<string, unknown> | null;
         remote_fields?: serializers.crm.RemoteField.Raw[] | null;
     }
 }

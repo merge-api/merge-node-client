@@ -48,6 +48,7 @@ export const EndUserDetailsRequest: core.serialization.Schema<
             )
             .optional()
     ),
+    language: core.serialization.string().optional(),
 });
 
 export declare namespace EndUserDetailsRequest {
@@ -64,5 +65,6 @@ export declare namespace EndUserDetailsRequest {
             string,
             serializers.crm.IndividualCommonModelScopeDeserializerRequest.Raw[] | null | undefined
         > | null;
+        language?: string | null;
     }
 }

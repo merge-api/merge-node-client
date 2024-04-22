@@ -6,11 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.accounting.PurchaseOrdersListRequestExpand.AccountingPeriod,
- *         remoteFields: "status",
- *         showEnumOrigins: "status"
- *     }
+ *     {}
  */
 export interface PurchaseOrdersListRequest {
     /**
@@ -70,7 +66,7 @@ export interface PurchaseOrdersListRequest {
      */
     remoteId?: string;
     /**
-     * Which fields should be returned in non-normalized form.
+     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: "status";
 }

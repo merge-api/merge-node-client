@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         status: Merge.accounting.IssuesListRequestStatus.Ongoing
- *     }
+ *     {}
  */
 export interface IssuesListRequest {
     accountToken?: string;

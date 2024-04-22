@@ -16,6 +16,9 @@
 export interface ReportItem {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The report item's name. */
     name?: string;
     /** The report item's value. */
@@ -23,7 +26,4 @@ export interface ReportItem {
     subItems?: Record<string, unknown>[];
     /** The company the report item belongs to. */
     company?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

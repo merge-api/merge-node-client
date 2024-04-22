@@ -12,23 +12,37 @@ export const TimesheetEntry: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     employee: core.serialization.string().optional(),
     hoursWorked: core.serialization.property("hours_worked", core.serialization.number().optional()),
     startTime: core.serialization.property("start_time", core.serialization.date().optional()),
     endTime: core.serialization.property("end_time", core.serialization.date().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
+    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+    fieldMappings: core.serialization.property(
+        "field_mappings",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
+    remoteData: core.serialization.property(
+        "remote_data",
+        core.serialization
+            .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional())
+            .optional()
+    ),
 });
 
 export declare namespace TimesheetEntry {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         employee?: string | null;
         hours_worked?: number | null;
         start_time?: string | null;
         end_time?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
+        remote_was_deleted?: boolean | null;
+        field_mappings?: Record<string, unknown> | null;
+        remote_data?: (Record<string, unknown> | null | undefined)[] | null;
     }
 }

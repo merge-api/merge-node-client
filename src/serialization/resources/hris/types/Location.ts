@@ -10,6 +10,8 @@ export const Location: core.serialization.ObjectSchema<serializers.hris.Location
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         name: core.serialization.string().optional(),
         phoneNumber: core.serialization.property("phone_number", core.serialization.string().optional()),
         street1: core.serialization.property("street_1", core.serialization.string().optional()),
@@ -23,8 +25,6 @@ export const Location: core.serialization.ObjectSchema<serializers.hris.Location
             core.serialization.lazy(async () => (await import("../../..")).hris.LocationLocationType).optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -41,6 +41,8 @@ export declare namespace Location {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         phone_number?: string | null;
         street_1?: string | null;
@@ -51,8 +53,6 @@ export declare namespace Location {
         country?: serializers.hris.LocationCountry.Raw | null;
         location_type?: serializers.hris.LocationLocationType.Raw | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.hris.RemoteData.Raw[] | null;
     }

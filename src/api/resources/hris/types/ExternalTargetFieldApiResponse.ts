@@ -20,4 +20,5 @@ export interface ExternalTargetFieldApiResponse {
     payGroup?: Merge.hris.ExternalTargetFieldApi[];
     group?: Merge.hris.ExternalTargetFieldApi[];
     dependent?: Merge.hris.ExternalTargetFieldApi[];
+    timesheetEntry?: Merge.hris.ExternalTargetFieldApi[];
 }

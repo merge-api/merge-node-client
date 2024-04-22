@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "target_object_classes"
- *     }
+ *     {}
  */
 export interface CustomObjectClassesAssociationTypesRetrieveRequest {
     /**

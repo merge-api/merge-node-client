@@ -19,6 +19,9 @@ export interface TimeOff {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The employee requesting time off. */
     employee?: Merge.hris.TimeOffEmployee;
     /** The Merge ID of the employee with the ability to approve the time off request. */
@@ -60,9 +63,6 @@ export interface TimeOff {
     /** The day and time of the end of the time requested off. */
     endTime?: Date;
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

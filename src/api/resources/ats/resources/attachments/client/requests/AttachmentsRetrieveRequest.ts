@@ -4,11 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "candidate",
- *         remoteFields: "attachment_type",
- *         showEnumOrigins: "attachment_type"
- *     }
+ *     {}
  */
 export interface AttachmentsRetrieveRequest {
     /**
@@ -24,7 +20,7 @@ export interface AttachmentsRetrieveRequest {
      */
     remoteFields?: "attachment_type";
     /**
-     * Which fields should be returned in non-normalized form.
+     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: "attachment_type";
 }

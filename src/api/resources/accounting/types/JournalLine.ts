@@ -16,8 +16,12 @@ import * as Merge from "../../..";
  * Fetch from the `GET JournalEntry` endpoint and view the journal entry's line items.
  */
 export interface JournalLine {
+    id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     account?: Merge.accounting.JournalLineAccount;
     /** The value of the line item including taxes and other fees. */
     netAmount?: number;
@@ -343,8 +347,4 @@ export interface JournalLine {
     exchangeRate?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    id?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

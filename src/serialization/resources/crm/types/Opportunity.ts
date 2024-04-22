@@ -8,6 +8,10 @@ import * as core from "../../../../core";
 
 export const Opportunity: core.serialization.ObjectSchema<serializers.crm.Opportunity.Raw, Merge.crm.Opportunity> =
     core.serialization.object({
+        id: core.serialization.string().optional(),
+        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         name: core.serialization.string().optional(),
         description: core.serialization.string().optional(),
         amount: core.serialization.number().optional(),
@@ -19,10 +23,6 @@ export const Opportunity: core.serialization.ObjectSchema<serializers.crm.Opport
         closeDate: core.serialization.property("close_date", core.serialization.date().optional()),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        id: core.serialization.string().optional(),
-        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -43,6 +43,10 @@ export const Opportunity: core.serialization.ObjectSchema<serializers.crm.Opport
 
 export declare namespace Opportunity {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         description?: string | null;
         amount?: number | null;
@@ -54,10 +58,6 @@ export declare namespace Opportunity {
         close_date?: string | null;
         remote_created_at?: string | null;
         remote_was_deleted?: boolean | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.crm.RemoteData.Raw[] | null;
         remote_fields?: serializers.crm.RemoteField.Raw[] | null;

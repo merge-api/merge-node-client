@@ -7,12 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             name: "Platform",
- *             folderUrl: "https://drive.com/1234",
- *             size: 1,
- *             description: "This is a wild folder."
- *         }
+ *         model: {}
  *     }
  */
 export interface FileStorageFolderEndpointRequest {

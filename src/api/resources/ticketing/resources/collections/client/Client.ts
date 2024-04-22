@@ -29,11 +29,7 @@ export class Collections {
      * Returns a list of `Collection` objects.
      *
      * @example
-     *     await merge.ticketing.collections.list({
-     *         expand: "parent_collection",
-     *         remoteFields: "collection_type",
-     *         showEnumOrigins: "collection_type"
-     *     })
+     *     await merge.ticketing.collections.list({})
      */
     public async list(
         request: Merge.ticketing.CollectionsListRequest = {},
@@ -115,7 +111,7 @@ export class Collections {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/collections"
+                "ticketing/v1/collections"
             ),
             method: "GET",
             headers: {
@@ -126,7 +122,7 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -168,11 +164,7 @@ export class Collections {
      * Returns a `Collection` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.collections.retrieve("string", {
-     *         expand: "parent_collection",
-     *         remoteFields: "collection_type",
-     *         showEnumOrigins: "collection_type"
-     *     })
+     *     await merge.ticketing.collections.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -200,7 +192,7 @@ export class Collections {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/collections/${id}`
+                `ticketing/v1/collections/${id}`
             ),
             method: "GET",
             headers: {
@@ -211,7 +203,7 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -253,9 +245,7 @@ export class Collections {
      * Returns a list of `User` objects.
      *
      * @example
-     *     await merge.ticketing.collections.usersList("string", {
-     *         expand: Merge.ticketing.CollectionsUsersListRequestExpand.Roles
-     *     })
+     *     await merge.ticketing.collections.usersList("parent_id", {})
      */
     public async usersList(
         parentId: string,
@@ -287,7 +277,7 @@ export class Collections {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/collections/${parentId}/users`
+                `ticketing/v1/collections/${parentId}/users`
             ),
             method: "GET",
             headers: {
@@ -298,7 +288,7 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

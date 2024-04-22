@@ -19,6 +19,9 @@ export interface EmployeePayrollRun {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The employee whose payroll is being run. */
     employee?: Merge.hris.EmployeePayrollRunEmployee;
     /** The payroll being run. */
@@ -38,9 +41,6 @@ export interface EmployeePayrollRun {
     taxes?: Merge.hris.Tax[];
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

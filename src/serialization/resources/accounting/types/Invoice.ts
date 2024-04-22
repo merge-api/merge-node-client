@@ -9,6 +9,9 @@ import * as core from "../../../../core";
 export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Invoice.Raw, Merge.accounting.Invoice> =
     core.serialization.object({
         id: core.serialization.string().optional(),
+        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         type: core.serialization.lazy(async () => (await import("../../..")).accounting.InvoiceType).optional(),
         contact: core.serialization.lazy(async () => (await import("../../..")).accounting.InvoiceContact).optional(),
         number: core.serialization.string().optional(),
@@ -76,9 +79,6 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
                 )
                 .optional()
         ),
-        remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -94,6 +94,9 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
 export declare namespace Invoice {
     interface Raw {
         id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         type?: serializers.accounting.InvoiceType.Raw | null;
         contact?: serializers.accounting.InvoiceContact.Raw | null;
         number?: string | null;
@@ -118,9 +121,6 @@ export declare namespace Invoice {
         remote_was_deleted?: boolean | null;
         accounting_period?: serializers.accounting.InvoiceAccountingPeriod.Raw | null;
         purchase_orders?: (serializers.accounting.InvoicePurchaseOrdersItem.Raw | null | undefined)[] | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }

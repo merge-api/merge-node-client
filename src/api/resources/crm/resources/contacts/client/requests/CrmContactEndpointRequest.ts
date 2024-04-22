@@ -7,11 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             firstName: "Gil",
- *             lastName: "Feig",
- *             lastActivityAt: new Date("2022-02-10T00:00:00.000Z")
- *         }
+ *         model: {}
  *     }
  */
 export interface CrmContactEndpointRequest {

@@ -6,13 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.hris.TimeOffListRequestExpand.Approver,
- *         remoteFields: Merge.hris.TimeOffListRequestRemoteFields.RequestType,
- *         requestType: Merge.hris.TimeOffListRequestRequestType.Bereavement,
- *         showEnumOrigins: Merge.hris.TimeOffListRequestShowEnumOrigins.RequestType,
- *         status: Merge.hris.TimeOffListRequestStatus.Approved
- *     }
+ *     {}
  */
 export interface TimeOffListRequest {
     /**
@@ -87,7 +81,7 @@ export interface TimeOffListRequest {
      */
     requestType?: Merge.hris.TimeOffListRequestRequestType;
     /**
-     * Which fields should be returned in non-normalized form.
+     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: Merge.hris.TimeOffListRequestShowEnumOrigins;
     /**

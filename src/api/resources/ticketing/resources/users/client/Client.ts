@@ -29,9 +29,7 @@ export class Users {
      * Returns a list of `User` objects.
      *
      * @example
-     *     await merge.ticketing.users.list({
-     *         expand: Merge.ticketing.UsersListRequestExpand.Roles
-     *     })
+     *     await merge.ticketing.users.list({})
      */
     public async list(
         request: Merge.ticketing.UsersListRequest = {},
@@ -98,7 +96,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/users"
+                "ticketing/v1/users"
             ),
             method: "GET",
             headers: {
@@ -109,7 +107,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -151,9 +149,7 @@ export class Users {
      * Returns a `User` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.users.retrieve("string", {
-     *         expand: Merge.ticketing.UsersRetrieveRequestExpand.Roles
-     *     })
+     *     await merge.ticketing.users.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -173,7 +169,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/users/${id}`
+                `ticketing/v1/users/${id}`
             ),
             method: "GET",
             headers: {
@@ -184,7 +180,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

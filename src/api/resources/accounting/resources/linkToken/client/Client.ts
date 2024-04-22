@@ -33,8 +33,7 @@ export class LinkToken {
      *         endUserEmailAddress: "example@gmail.com",
      *         endUserOrganizationName: "Test Organization",
      *         endUserOriginId: "12345",
-     *         categories: [],
-     *         integration: "bamboohr"
+     *         categories: [Merge.accounting.CategoriesEnum.Hris]
      *     })
      */
     public async create(
@@ -44,7 +43,7 @@ export class LinkToken {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/link-token"
+                "accounting/v1/link-token"
             ),
             method: "POST",
             headers: {
@@ -55,7 +54,7 @@ export class LinkToken {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.accounting.EndUserDetailsRequest.jsonOrThrow(request, {

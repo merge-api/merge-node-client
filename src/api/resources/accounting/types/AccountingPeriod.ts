@@ -16,6 +16,10 @@ import * as Merge from "../../..";
  * Common models like `Invoice` and `Transaction` will have `AccountingPeriod` objects which will denote when they occurred.
  */
 export interface AccountingPeriod {
+    id?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** Beginning date of the period */
     startDate?: Date;
     /** End date of the period */
@@ -23,8 +27,4 @@ export interface AccountingPeriod {
     status?: Merge.accounting.AccountingPeriodStatus;
     /** Name of the accounting period. */
     name?: string;
-    id?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

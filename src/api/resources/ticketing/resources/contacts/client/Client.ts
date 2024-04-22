@@ -29,9 +29,7 @@ export class Contacts {
      * Returns a list of `Contact` objects.
      *
      * @example
-     *     await merge.ticketing.contacts.list({
-     *         expand: "account"
-     *     })
+     *     await merge.ticketing.contacts.list({})
      */
     public async list(
         request: Merge.ticketing.ContactsListRequest = {},
@@ -93,7 +91,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ticketing/v1/contacts"
+                "ticketing/v1/contacts"
             ),
             method: "GET",
             headers: {
@@ -104,7 +102,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -146,9 +144,7 @@ export class Contacts {
      * Returns a `Contact` object with the given `id`.
      *
      * @example
-     *     await merge.ticketing.contacts.retrieve("string", {
-     *         expand: "account"
-     *     })
+     *     await merge.ticketing.contacts.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -168,7 +164,7 @@ export class Contacts {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ticketing/v1/contacts/${id}`
+                `ticketing/v1/contacts/${id}`
             ),
             method: "GET",
             headers: {
@@ -179,7 +175,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -8,17 +8,17 @@ import * as core from "../../../../core";
 
 export const PhoneNumber: core.serialization.ObjectSchema<serializers.crm.PhoneNumber.Raw, Merge.crm.PhoneNumber> =
     core.serialization.object({
-        phoneNumber: core.serialization.property("phone_number", core.serialization.string().optional()),
-        phoneNumberType: core.serialization.property("phone_number_type", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
+        phoneNumber: core.serialization.property("phone_number", core.serialization.string().optional()),
+        phoneNumberType: core.serialization.property("phone_number_type", core.serialization.string().optional()),
     });
 
 export declare namespace PhoneNumber {
     interface Raw {
-        phone_number?: string | null;
-        phone_number_type?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
+        phone_number?: string | null;
+        phone_number_type?: string | null;
     }
 }

@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         expand: "association_type"
- *     }
+ *     {}
  */
 export interface CustomObjectClassesCustomObjectsAssociationsListRequest {
     /**

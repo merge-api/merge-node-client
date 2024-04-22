@@ -100,6 +100,12 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).hris.FieldMappingApiInstance))
             .optional()
     ),
+    timesheetEntry: core.serialization.property(
+        "TimesheetEntry",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).hris.FieldMappingApiInstance))
+            .optional()
+    ),
 });
 
 export declare namespace FieldMappingApiInstanceResponse {
@@ -119,5 +125,6 @@ export declare namespace FieldMappingApiInstanceResponse {
         PayGroup?: serializers.hris.FieldMappingApiInstance.Raw[] | null;
         Group?: serializers.hris.FieldMappingApiInstance.Raw[] | null;
         Dependent?: serializers.hris.FieldMappingApiInstance.Raw[] | null;
+        TimesheetEntry?: serializers.hris.FieldMappingApiInstance.Raw[] | null;
     }
 }

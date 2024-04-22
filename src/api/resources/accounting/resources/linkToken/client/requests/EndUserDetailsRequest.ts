@@ -10,8 +10,7 @@ import * as Merge from "../../../../../..";
  *         endUserEmailAddress: "example@gmail.com",
  *         endUserOrganizationName: "Test Organization",
  *         endUserOriginId: "12345",
- *         categories: [],
- *         integration: "bamboohr"
+ *         categories: [Merge.accounting.CategoriesEnum.Hris]
  *     }
  */
 export interface EndUserDetailsRequest {
@@ -36,4 +35,6 @@ export interface EndUserDetailsRequest {
         string,
         Merge.accounting.IndividualCommonModelScopeDeserializerRequest[] | undefined
     >;
+    /** The language code for the language to localize Merge Link to. */
+    language?: string;
 }

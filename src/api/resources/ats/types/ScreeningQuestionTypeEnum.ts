@@ -12,7 +12,7 @@
  * - `NUMERIC` - NUMERIC
  * - `BOOLEAN` - BOOLEAN
  */
-export type TypeEnum =
+export type ScreeningQuestionTypeEnum =
     | "DATE"
     | "FILE"
     | "SINGLE_SELECT"
@@ -22,7 +22,7 @@ export type TypeEnum =
     | "NUMERIC"
     | "BOOLEAN";
 
-export const TypeEnum = {
+export const ScreeningQuestionTypeEnum = {
     Date: "DATE",
     File: "FILE",
     SingleSelect: "SINGLE_SELECT",

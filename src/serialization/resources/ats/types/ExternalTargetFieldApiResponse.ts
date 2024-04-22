@@ -58,6 +58,12 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).ats.ExternalTargetFieldApi))
             .optional()
     ),
+    jobPosting: core.serialization.property(
+        "JobPosting",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).ats.ExternalTargetFieldApi))
+            .optional()
+    ),
     jobInterviewStage: core.serialization.property(
         "JobInterviewStage",
         core.serialization
@@ -112,6 +118,7 @@ export declare namespace ExternalTargetFieldApiResponse {
         EEOC?: serializers.ats.ExternalTargetFieldApi.Raw[] | null;
         ScheduledInterview?: serializers.ats.ExternalTargetFieldApi.Raw[] | null;
         Job?: serializers.ats.ExternalTargetFieldApi.Raw[] | null;
+        JobPosting?: serializers.ats.ExternalTargetFieldApi.Raw[] | null;
         JobInterviewStage?: serializers.ats.ExternalTargetFieldApi.Raw[] | null;
         Offer?: serializers.ats.ExternalTargetFieldApi.Raw[] | null;
         Office?: serializers.ats.ExternalTargetFieldApi.Raw[] | null;

@@ -19,6 +19,9 @@ export interface Permission {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The user that is granted this permission. */
     user?: Merge.filestorage.PermissionUser;
     /** The group that is granted this permission. */
@@ -34,7 +37,4 @@ export interface Permission {
     type?: Merge.filestorage.PermissionType;
     /** The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing & uploading. Possible values include: `READ`, `WRITE`, `OWNER`. In cases where there is no clear mapping, the original value passed through will be returned. */
     roles?: (Merge.filestorage.PermissionRolesItem | undefined)[];
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
 }

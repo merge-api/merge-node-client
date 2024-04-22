@@ -10,14 +10,14 @@ export const Contact: core.serialization.ObjectSchema<serializers.ticketing.Cont
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         name: core.serialization.string().optional(),
         emailAddress: core.serialization.property("email_address", core.serialization.string().optional()),
         phoneNumber: core.serialization.property("phone_number", core.serialization.string().optional()),
         details: core.serialization.string().optional(),
         account: core.serialization.lazy(async () => (await import("../../..")).ticketing.ContactAccount).optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -34,14 +34,14 @@ export declare namespace Contact {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         email_address?: string | null;
         phone_number?: string | null;
         details?: string | null;
         account?: serializers.ticketing.ContactAccount.Raw | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ticketing.RemoteData.Raw[] | null;
     }

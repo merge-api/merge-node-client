@@ -17,6 +17,7 @@ export const AccountDetailsAndActions: core.serialization.ObjectSchema<
     endUserOriginId: core.serialization.property("end_user_origin_id", core.serialization.string().optional()),
     endUserOrganizationName: core.serialization.property("end_user_organization_name", core.serialization.string()),
     endUserEmailAddress: core.serialization.property("end_user_email_address", core.serialization.string()),
+    subdomain: core.serialization.string().optional(),
     webhookListenerUrl: core.serialization.property("webhook_listener_url", core.serialization.string()),
     isDuplicate: core.serialization.property("is_duplicate", core.serialization.boolean().optional()),
     integration: core.serialization
@@ -34,6 +35,7 @@ export declare namespace AccountDetailsAndActions {
         end_user_origin_id?: string | null;
         end_user_organization_name: string;
         end_user_email_address: string;
+        subdomain?: string | null;
         webhook_listener_url: string;
         is_duplicate?: boolean | null;
         integration?: serializers.crm.AccountDetailsAndActionsIntegration.Raw | null;

@@ -24,6 +24,7 @@ export interface ApplicationRequest {
     appliedAt?: Date;
     /** When the application was rejected. */
     rejectedAt?: Date;
+    offers?: (Merge.ats.ApplicationRequestOffersItem | undefined)[];
     /** The application's source. */
     source?: string;
     /** The user credited for this application. */

@@ -29,7 +29,7 @@ export class CustomObjects {
      * Returns a list of `CustomObject` objects.
      *
      * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsList("string", {})
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsList("custom_object_class_id", {})
      */
     public async customObjectClassesCustomObjectsList(
         customObjectClassId: string,
@@ -92,7 +92,7 @@ export class CustomObjects {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/custom-objects`
+                `crm/v1/custom-object-classes/${customObjectClassId}/custom-objects`
             ),
             method: "GET",
             headers: {
@@ -103,7 +103,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -145,11 +145,9 @@ export class CustomObjects {
      * Creates a `CustomObject` object with the given values.
      *
      * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsCreate("string", {
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsCreate("custom_object_class_id", {
      *         model: {
-     *             fields: {
-     *                 "string": {}
-     *             }
+     *             fields: {}
      *         }
      *     })
      */
@@ -171,7 +169,7 @@ export class CustomObjects {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/custom-objects`
+                `crm/v1/custom-object-classes/${customObjectClassId}/custom-objects`
             ),
             method: "POST",
             headers: {
@@ -182,7 +180,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -227,7 +225,7 @@ export class CustomObjects {
      * Returns a `CustomObject` object with the given `id`.
      *
      * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsRetrieve("string", "string", {})
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsRetrieve("custom_object_class_id", "id", {})
      */
     public async customObjectClassesCustomObjectsRetrieve(
         customObjectClassId: string,
@@ -248,7 +246,7 @@ export class CustomObjects {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/custom-objects/${id}`
+                `crm/v1/custom-object-classes/${customObjectClassId}/custom-objects/${id}`
             ),
             method: "GET",
             headers: {
@@ -259,7 +257,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -298,72 +296,10 @@ export class CustomObjects {
     }
 
     /**
-     * Returns metadata for `CRMCustomObject` PATCHs.
-     *
-     * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsMetaPatchRetrieve("string", "string")
-     */
-    public async customObjectClassesCustomObjectsMetaPatchRetrieve(
-        customObjectClassId: string,
-        id: string,
-        requestOptions?: CustomObjects.RequestOptions
-    ): Promise<Merge.crm.MetaResponse> {
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/custom-objects/meta/patch/${id}`
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
-            },
-            contentType: "application/json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-        });
-        if (_response.ok) {
-            return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MergeError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.MergeTimeoutError();
-            case "unknown":
-                throw new errors.MergeError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
      * Returns metadata for `CRMCustomObject` POSTs.
      *
      * @example
-     *     await merge.crm.customObjects.customObjectClassesCustomObjectsMetaPostRetrieve("string")
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsMetaPostRetrieve("custom_object_class_id")
      */
     public async customObjectClassesCustomObjectsMetaPostRetrieve(
         customObjectClassId: string,
@@ -372,7 +308,7 @@ export class CustomObjects {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/custom-object-classes/${customObjectClassId}/custom-objects/meta/post`
+                `crm/v1/custom-object-classes/${customObjectClassId}/custom-objects/meta/post`
             ),
             method: "GET",
             headers: {
@@ -383,7 +319,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

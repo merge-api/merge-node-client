@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.crm.NotesRetrieveRequestExpand.Account
- *     }
+ *     {}
  */
 export interface NotesRetrieveRequest {
     /**

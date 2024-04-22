@@ -19,6 +19,9 @@ export interface JobInterviewStage {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** Standard stage names are offered by ATS systems but can be modified by users. */
     name?: string;
     /** This field is populated only if the stage is specific to a particular job. If the stage is generic, this field will not be populated. */
@@ -27,9 +30,6 @@ export interface JobInterviewStage {
     stageOrder?: number;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

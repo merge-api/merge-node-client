@@ -29,11 +29,7 @@ export class Offers {
      * Returns a list of `Offer` objects.
      *
      * @example
-     *     await merge.ats.offers.list({
-     *         expand: Merge.ats.OffersListRequestExpand.Application,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.ats.offers.list({})
      */
     public async list(
         request: Merge.ats.OffersListRequest = {},
@@ -115,7 +111,7 @@ export class Offers {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/offers"
+                "ats/v1/offers"
             ),
             method: "GET",
             headers: {
@@ -126,7 +122,7 @@ export class Offers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -168,11 +164,7 @@ export class Offers {
      * Returns an `Offer` object with the given `id`.
      *
      * @example
-     *     await merge.ats.offers.retrieve("string", {
-     *         expand: Merge.ats.OffersRetrieveRequestExpand.Application,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.ats.offers.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -200,7 +192,7 @@ export class Offers {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/offers/${id}`
+                `ats/v1/offers/${id}`
             ),
             method: "GET",
             headers: {
@@ -211,7 +203,7 @@ export class Offers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -10,6 +10,8 @@ export const TimeOff: core.serialization.ObjectSchema<serializers.hris.TimeOff.R
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         employee: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffEmployee).optional(),
         approver: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffApprover).optional(),
         status: core.serialization.lazy(async () => (await import("../../..")).hris.TimeOffStatus).optional(),
@@ -23,8 +25,6 @@ export const TimeOff: core.serialization.ObjectSchema<serializers.hris.TimeOff.R
         startTime: core.serialization.property("start_time", core.serialization.date().optional()),
         endTime: core.serialization.property("end_time", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -41,6 +41,8 @@ export declare namespace TimeOff {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         employee?: serializers.hris.TimeOffEmployee.Raw | null;
         approver?: serializers.hris.TimeOffApprover.Raw | null;
         status?: serializers.hris.TimeOffStatus.Raw | null;
@@ -51,8 +53,6 @@ export declare namespace TimeOff {
         start_time?: string | null;
         end_time?: string | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.hris.RemoteData.Raw[] | null;
     }

@@ -10,6 +10,8 @@ export const RemoteFieldClassForCustomObjectClass: core.serialization.ObjectSche
     serializers.crm.RemoteFieldClassForCustomObjectClass.Raw,
     Merge.crm.RemoteFieldClassForCustomObjectClass
 > = core.serialization.object({
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     remoteKeyName: core.serialization.property("remote_key_name", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
@@ -42,12 +44,12 @@ export const RemoteFieldClassForCustomObjectClass: core.serialization.ObjectSche
             .lazyObject(async () => (await import("../../..")).crm.RemoteFieldClassForCustomObjectClassItemSchema)
             .optional()
     ),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace RemoteFieldClassForCustomObjectClass {
     interface Raw {
+        created_at?: string | null;
+        modified_at?: string | null;
         display_name?: string | null;
         remote_key_name?: string | null;
         description?: string | null;
@@ -56,7 +58,5 @@ export declare namespace RemoteFieldClassForCustomObjectClass {
         field_format?: serializers.crm.RemoteFieldClassForCustomObjectClassFieldFormat.Raw | null;
         field_choices?: serializers.crm.RemoteFieldClassForCustomObjectClassFieldChoicesItem.Raw[] | null;
         item_schema?: serializers.crm.RemoteFieldClassForCustomObjectClassItemSchema.Raw | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

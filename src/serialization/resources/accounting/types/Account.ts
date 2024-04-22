@@ -10,6 +10,8 @@ export const Account: core.serialization.ObjectSchema<serializers.accounting.Acc
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         name: core.serialization.string().optional(),
         description: core.serialization.string().optional(),
         classification: core.serialization
@@ -23,8 +25,6 @@ export const Account: core.serialization.ObjectSchema<serializers.accounting.Acc
         parentAccount: core.serialization.property("parent_account", core.serialization.string().optional()),
         company: core.serialization.string().optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -41,6 +41,8 @@ export declare namespace Account {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         description?: string | null;
         classification?: serializers.accounting.AccountClassification.Raw | null;
@@ -52,8 +54,6 @@ export declare namespace Account {
         parent_account?: string | null;
         company?: string | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }

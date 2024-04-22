@@ -35,7 +35,7 @@ export interface PatchedTicketRequest {
     /** The ticket’s description. HTML version of description is mapped if supported by the third-party platform. */
     description?: string;
     collections?: (string | undefined)[];
-    /** The ticket's type. */
+    /** The sub category of the ticket within the 3rd party system. Examples include incident, task, subtask or to-do. */
     ticketType?: string;
     /** The account associated with the ticket. */
     account?: string;

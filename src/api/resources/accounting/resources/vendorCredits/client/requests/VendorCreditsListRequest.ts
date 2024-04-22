@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.accounting.VendorCreditsListRequestExpand.AccountingPeriod
- *     }
+ *     {}
  */
 export interface VendorCreditsListRequest {
     /**

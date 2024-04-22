@@ -5,7 +5,7 @@
 /**
  * @example
  *     {
- *         event: "string",
+ *         event: "event",
  *         isActive: true
  *     }
  */

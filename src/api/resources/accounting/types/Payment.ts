@@ -19,6 +19,9 @@ export interface Payment {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The payment's transaction date. */
     transactionDate?: Date;
     /** The supplier, or customer involved in the payment. */
@@ -351,9 +354,6 @@ export interface Payment {
     accountingPeriod?: Merge.accounting.PaymentAccountingPeriod;
     /** A list of “Payment Applied to Lines” objects. */
     appliedToLines?: Merge.accounting.PaymentAppliedToLinesItem[];
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

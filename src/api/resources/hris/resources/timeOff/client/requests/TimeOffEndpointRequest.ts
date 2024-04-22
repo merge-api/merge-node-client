@@ -7,15 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             status: undefined,
- *             employeeNote: "Moving into the new apartment Kendall Roy gave me!",
- *             units: undefined,
- *             amount: 3,
- *             requestType: undefined,
- *             startTime: new Date("2020-11-10T00:00:00.000Z"),
- *             endTime: new Date("2020-11-17T00:00:00.000Z")
- *         }
+ *         model: {}
  *     }
  */
 export interface TimeOffEndpointRequest {

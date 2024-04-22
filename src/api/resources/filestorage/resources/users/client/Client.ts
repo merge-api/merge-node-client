@@ -91,7 +91,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/users"
+                "filestorage/v1/users"
             ),
             method: "GET",
             headers: {
@@ -102,7 +102,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -144,7 +144,7 @@ export class Users {
      * Returns a `User` object with the given `id`.
      *
      * @example
-     *     await merge.filestorage.users.retrieve("string", {})
+     *     await merge.filestorage.users.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -160,7 +160,7 @@ export class Users {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/filestorage/v1/users/${id}`
+                `filestorage/v1/users/${id}`
             ),
             method: "GET",
             headers: {
@@ -171,7 +171,7 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -10,6 +10,8 @@ export const Eeoc: core.serialization.ObjectSchema<serializers.ats.Eeoc.Raw, Mer
     core.serialization.object({
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         candidate: core.serialization.lazy(async () => (await import("../../..")).ats.EeocCandidate).optional(),
         submittedAt: core.serialization.property("submitted_at", core.serialization.date().optional()),
         race: core.serialization.lazy(async () => (await import("../../..")).ats.EeocRace).optional(),
@@ -23,8 +25,6 @@ export const Eeoc: core.serialization.ObjectSchema<serializers.ats.Eeoc.Raw, Mer
             core.serialization.lazy(async () => (await import("../../..")).ats.EeocDisabilityStatus).optional()
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -41,6 +41,8 @@ export declare namespace Eeoc {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         candidate?: serializers.ats.EeocCandidate.Raw | null;
         submitted_at?: string | null;
         race?: serializers.ats.EeocRace.Raw | null;
@@ -48,8 +50,6 @@ export declare namespace Eeoc {
         veteran_status?: serializers.ats.EeocVeteranStatus.Raw | null;
         disability_status?: serializers.ats.EeocDisabilityStatus.Raw | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ats.RemoteData.Raw[] | null;
     }

@@ -16,16 +16,16 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface AssociationType {
-    sourceObjectClass?: Record<string, unknown>;
-    targetObjectClasses?: Merge.crm.AssociationSubType[];
-    remoteKeyName?: string;
-    displayName?: string;
-    cardinality?: Merge.crm.AssociationTypeCardinality;
-    isRequired?: boolean;
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
     createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
+    sourceObjectClass?: Record<string, unknown>;
+    targetObjectClasses?: Merge.crm.AssociationSubType[];
+    remoteKeyName?: string;
+    displayName?: string;
+    cardinality?: Merge.crm.AssociationTypeCardinality;
+    isRequired?: boolean;
 }

@@ -12,6 +12,8 @@ export const CreditNote: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
     status: core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteStatus).optional(),
     number: core.serialization.string().optional(),
@@ -59,8 +61,6 @@ export const CreditNote: core.serialization.ObjectSchema<
         "accounting_period",
         core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteAccountingPeriod).optional()
     ),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -77,6 +77,8 @@ export declare namespace CreditNote {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         transaction_date?: string | null;
         status?: serializers.accounting.CreditNoteStatus.Raw | null;
         number?: string | null;
@@ -94,8 +96,6 @@ export declare namespace CreditNote {
         applied_payments?: (serializers.accounting.CreditNoteAppliedPaymentsItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
         accounting_period?: serializers.accounting.CreditNoteAccountingPeriod.Raw | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }

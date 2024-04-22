@@ -16,6 +16,12 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Opportunity {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The opportunity's name. */
     name?: string;
     /** The opportunity's description. */
@@ -43,12 +49,6 @@ export interface Opportunity {
     /** When the third party's opportunity was created. */
     remoteCreatedAt?: Date;
     remoteWasDeleted?: boolean;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

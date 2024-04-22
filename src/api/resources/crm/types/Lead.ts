@@ -16,6 +16,12 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Lead {
+    id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The lead's owner. */
     owner?: Merge.crm.LeadOwner;
     /** The lead's source. */
@@ -42,12 +48,6 @@ export interface Lead {
     /** The account of the converted lead. */
     convertedAccount?: Merge.crm.LeadConvertedAccount;
     remoteWasDeleted?: boolean;
-    id?: string;
-    /** The third-party API ID of the matching object. */
-    remoteId?: string;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];
     remoteFields?: Merge.crm.RemoteField[];

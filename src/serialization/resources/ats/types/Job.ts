@@ -9,10 +9,17 @@ import * as core from "../../../../core";
 export const Job: core.serialization.ObjectSchema<serializers.ats.Job.Raw, Merge.ats.Job> = core.serialization.object({
     id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     name: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
     code: core.serialization.string().optional(),
     status: core.serialization.lazy(async () => (await import("../../..")).ats.JobStatus).optional(),
+    type: core.serialization.lazy(async () => (await import("../../..")).ats.JobTypeEnum).optional(),
+    jobPostings: core.serialization.property(
+        "job_postings",
+        core.serialization.list(core.serialization.string().optional()).optional()
+    ),
     jobPostingUrls: core.serialization.property(
         "job_posting_urls",
         core.serialization
@@ -38,8 +45,6 @@ export const Job: core.serialization.ObjectSchema<serializers.ats.Job.Raw, Merge
         .list(core.serialization.lazy(async () => (await import("../../..")).ats.JobRecruitersItem).optional())
         .optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -56,10 +61,14 @@ export declare namespace Job {
     interface Raw {
         id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         name?: string | null;
         description?: string | null;
         code?: string | null;
         status?: serializers.ats.JobStatus.Raw | null;
+        type?: serializers.ats.JobTypeEnum.Raw | null;
+        job_postings?: (string | null | undefined)[] | null;
         job_posting_urls?: serializers.ats.Url.Raw[] | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
@@ -69,8 +78,6 @@ export declare namespace Job {
         hiring_managers?: (serializers.ats.JobHiringManagersItem.Raw | null | undefined)[] | null;
         recruiters?: (serializers.ats.JobRecruitersItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.ats.RemoteData.Raw[] | null;
     }

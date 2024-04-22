@@ -10,7 +10,10 @@ export const VendorCreditLine: core.serialization.ObjectSchema<
     serializers.accounting.VendorCreditLine.Raw,
     Merge.accounting.VendorCreditLine
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     netAmount: core.serialization.property("net_amount", core.serialization.number().optional()),
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
@@ -24,14 +27,14 @@ export const VendorCreditLine: core.serialization.ObjectSchema<
     company: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    id: core.serialization.string().optional(),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace VendorCreditLine {
     interface Raw {
+        id?: string | null;
         remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         net_amount?: number | null;
         tracking_category?: string | null;
         tracking_categories: string[];
@@ -40,8 +43,5 @@ export declare namespace VendorCreditLine {
         company?: string | null;
         exchange_rate?: string | null;
         remote_was_deleted?: boolean | null;
-        id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

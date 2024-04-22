@@ -19,6 +19,9 @@ export interface Attachment {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The attachment's name. */
     fileName?: string;
     /** The attachment's url. */
@@ -35,9 +38,6 @@ export interface Attachment {
      */
     attachmentType?: Merge.ats.AttachmentAttachmentType;
     remoteWasDeleted?: boolean;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];
 }

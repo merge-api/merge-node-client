@@ -10,6 +10,10 @@ export const CreditNoteLineItem: core.serialization.ObjectSchema<
     serializers.accounting.CreditNoteLineItem.Raw,
     Merge.accounting.CreditNoteLineItem
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
+    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     item: core.serialization.lazy(async () => (await import("../../..")).accounting.CreditNoteLineItemItem).optional(),
     name: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
@@ -27,15 +31,15 @@ export const CreditNoteLineItem: core.serialization.ObjectSchema<
     company: core.serialization
         .lazy(async () => (await import("../../..")).accounting.CreditNoteLineItemCompany)
         .optional(),
-    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-    id: core.serialization.string().optional(),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
 });
 
 export declare namespace CreditNoteLineItem {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         item?: serializers.accounting.CreditNoteLineItemItem.Raw | null;
         name?: string | null;
         description?: string | null;
@@ -48,10 +52,6 @@ export declare namespace CreditNoteLineItem {
         tracking_categories: string[];
         account?: string | null;
         company?: serializers.accounting.CreditNoteLineItemCompany.Raw | null;
-        remote_id?: string | null;
         remote_was_deleted?: boolean | null;
-        id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
     }
 }

@@ -3,6 +3,8 @@
  */
 
 export interface LinkedAccountConditionRequest {
+    /** The ID indicating which Linked Account Condition this is. */
+    id?: string;
     /** The ID indicating which condition schema to use for a specific condition. */
     conditionSchemaId: string;
     /** The operator for a specific condition. */

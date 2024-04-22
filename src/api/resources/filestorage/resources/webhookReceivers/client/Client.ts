@@ -35,7 +35,7 @@ export class WebhookReceivers {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/webhook-receivers"
+                "filestorage/v1/webhook-receivers"
             ),
             method: "GET",
             headers: {
@@ -46,7 +46,7 @@ export class WebhookReceivers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -88,7 +88,7 @@ export class WebhookReceivers {
      *
      * @example
      *     await merge.filestorage.webhookReceivers.create({
-     *         event: "string",
+     *         event: "event",
      *         isActive: true
      *     })
      */
@@ -99,7 +99,7 @@ export class WebhookReceivers {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/filestorage/v1/webhook-receivers"
+                "filestorage/v1/webhook-receivers"
             ),
             method: "POST",
             headers: {
@@ -110,7 +110,7 @@ export class WebhookReceivers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             body: await serializers.filestorage.WebhookReceiverRequest.jsonOrThrow(request, {

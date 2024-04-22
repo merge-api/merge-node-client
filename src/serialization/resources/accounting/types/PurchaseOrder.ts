@@ -10,6 +10,10 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
     serializers.accounting.PurchaseOrder.Raw,
     Merge.accounting.PurchaseOrder
 > = core.serialization.object({
+    id: core.serialization.string().optional(),
+    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
+    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     status: core.serialization.lazy(async () => (await import("../../..")).accounting.PurchaseOrderStatus).optional(),
     issueDate: core.serialization.property("issue_date", core.serialization.date().optional()),
     purchaseOrderNumber: core.serialization.property("purchase_order_number", core.serialization.string().optional()),
@@ -56,10 +60,6 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
             .lazy(async () => (await import("../../..")).accounting.PurchaseOrderAccountingPeriod)
             .optional()
     ),
-    id: core.serialization.string().optional(),
-    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -74,6 +74,10 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
 
 export declare namespace PurchaseOrder {
     interface Raw {
+        id?: string | null;
+        remote_id?: string | null;
+        created_at?: string | null;
+        modified_at?: string | null;
         status?: serializers.accounting.PurchaseOrderStatus.Raw | null;
         issue_date?: string | null;
         purchase_order_number?: string | null;
@@ -94,10 +98,6 @@ export declare namespace PurchaseOrder {
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
         accounting_period?: serializers.accounting.PurchaseOrderAccountingPeriod.Raw | null;
-        id?: string | null;
-        remote_id?: string | null;
-        created_at?: string | null;
-        modified_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }

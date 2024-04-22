@@ -29,9 +29,7 @@ export class Engagements {
      * Returns a list of `Engagement` objects.
      *
      * @example
-     *     await merge.crm.engagements.list({
-     *         expand: Merge.crm.EngagementsListRequestExpand.Account
-     *     })
+     *     await merge.crm.engagements.list({})
      */
     public async list(
         request: Merge.crm.EngagementsListRequest = {},
@@ -108,7 +106,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagements"
+                "crm/v1/engagements"
             ),
             method: "GET",
             headers: {
@@ -119,7 +117,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -162,13 +160,7 @@ export class Engagements {
      *
      * @example
      *     await merge.crm.engagements.create({
-     *         model: {
-     *             content: "Call for negotiation",
-     *             subject: "Call from customer",
-     *             direction: undefined,
-     *             startTime: new Date("2022-02-10T00:00:00.000Z"),
-     *             endTime: new Date("2022-02-10T00:05:00.000Z")
-     *         }
+     *         model: {}
      *     })
      */
     public async create(
@@ -188,7 +180,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagements"
+                "crm/v1/engagements"
             ),
             method: "POST",
             headers: {
@@ -199,7 +191,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -244,9 +236,7 @@ export class Engagements {
      * Returns an `Engagement` object with the given `id`.
      *
      * @example
-     *     await merge.crm.engagements.retrieve("string", {
-     *         expand: Merge.crm.EngagementsRetrieveRequestExpand.Account
-     *     })
+     *     await merge.crm.engagements.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -270,7 +260,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/engagements/${id}`
+                `crm/v1/engagements/${id}`
             ),
             method: "GET",
             headers: {
@@ -281,7 +271,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -323,17 +313,8 @@ export class Engagements {
      * Updates an `Engagement` object with the given `id`.
      *
      * @example
-     *     await merge.crm.engagements.partialUpdate("string", {
-     *         model: {
-     *             owner: "0358cbc6-2040-430a-848e-aafacbadf3aa",
-     *             content: "Call for negotiation",
-     *             subject: "Call from customer",
-     *             direction: undefined,
-     *             engagementType: "0358cbc6-2040-430a-848e-aafacbadf3aa",
-     *             startTime: new Date("2022-02-10T00:00:00.000Z"),
-     *             endTime: new Date("2022-02-10T00:05:00.000Z"),
-     *             account: "025fjlc6-6000-430a-848e-aafacbadf4fe"
-     *         }
+     *     await merge.crm.engagements.partialUpdate("id", {
+     *         model: {}
      *     })
      */
     public async partialUpdate(
@@ -354,7 +335,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/engagements/${id}`
+                `crm/v1/engagements/${id}`
             ),
             method: "PATCH",
             headers: {
@@ -365,7 +346,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -410,7 +391,7 @@ export class Engagements {
      * Returns metadata for `Engagement` PATCHs.
      *
      * @example
-     *     await merge.crm.engagements.metaPatchRetrieve("string")
+     *     await merge.crm.engagements.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -419,7 +400,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/crm/v1/engagements/meta/patch/${id}`
+                `crm/v1/engagements/meta/patch/${id}`
             ),
             method: "GET",
             headers: {
@@ -430,7 +411,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -477,7 +458,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagements/meta/post"
+                "crm/v1/engagements/meta/post"
             ),
             method: "GET",
             headers: {
@@ -488,7 +469,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -560,7 +541,7 @@ export class Engagements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/crm/v1/engagements/remote-field-classes"
+                "crm/v1/engagements/remote-field-classes"
             ),
             method: "GET",
             headers: {
@@ -571,7 +552,7 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

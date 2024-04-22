@@ -13,6 +13,7 @@ export interface RemoteFieldApiResponse {
     eeoc?: Merge.ats.RemoteFieldApi[];
     scheduledInterview?: Merge.ats.RemoteFieldApi[];
     job?: Merge.ats.RemoteFieldApi[];
+    jobPosting?: Merge.ats.RemoteFieldApi[];
     jobInterviewStage?: Merge.ats.RemoteFieldApi[];
     offer?: Merge.ats.RemoteFieldApi[];
     office?: Merge.ats.RemoteFieldApi[];

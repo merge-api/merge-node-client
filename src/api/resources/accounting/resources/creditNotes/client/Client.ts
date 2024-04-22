@@ -29,11 +29,7 @@ export class CreditNotes {
      * Returns a list of `CreditNote` objects.
      *
      * @example
-     *     await merge.accounting.creditNotes.list({
-     *         expand: Merge.accounting.CreditNotesListRequestExpand.AccountingPeriod,
-     *         remoteFields: Merge.accounting.CreditNotesListRequestRemoteFields.Status,
-     *         showEnumOrigins: Merge.accounting.CreditNotesListRequestShowEnumOrigins.Status
-     *     })
+     *     await merge.accounting.creditNotes.list({})
      */
     public async list(
         request: Merge.accounting.CreditNotesListRequest = {},
@@ -120,7 +116,7 @@ export class CreditNotes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/credit-notes"
+                "accounting/v1/credit-notes"
             ),
             method: "GET",
             headers: {
@@ -131,7 +127,7 @@ export class CreditNotes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -173,11 +169,7 @@ export class CreditNotes {
      * Returns a `CreditNote` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.creditNotes.retrieve("string", {
-     *         expand: Merge.accounting.CreditNotesRetrieveRequestExpand.AccountingPeriod,
-     *         remoteFields: Merge.accounting.CreditNotesRetrieveRequestRemoteFields.Status,
-     *         showEnumOrigins: Merge.accounting.CreditNotesRetrieveRequestShowEnumOrigins.Status
-     *     })
+     *     await merge.accounting.creditNotes.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -205,7 +197,7 @@ export class CreditNotes {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/credit-notes/${id}`
+                `accounting/v1/credit-notes/${id}`
             ),
             method: "GET",
             headers: {
@@ -216,7 +208,7 @@ export class CreditNotes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

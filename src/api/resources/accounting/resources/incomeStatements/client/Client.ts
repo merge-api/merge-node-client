@@ -29,9 +29,7 @@ export class IncomeStatements {
      * Returns a list of `IncomeStatement` objects.
      *
      * @example
-     *     await merge.accounting.incomeStatements.list({
-     *         expand: "company"
-     *     })
+     *     await merge.accounting.incomeStatements.list({})
      */
     public async list(
         request: Merge.accounting.IncomeStatementsListRequest = {},
@@ -98,7 +96,7 @@ export class IncomeStatements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/income-statements"
+                "accounting/v1/income-statements"
             ),
             method: "GET",
             headers: {
@@ -109,7 +107,7 @@ export class IncomeStatements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -151,9 +149,7 @@ export class IncomeStatements {
      * Returns an `IncomeStatement` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.incomeStatements.retrieve("string", {
-     *         expand: "company"
-     *     })
+     *     await merge.accounting.incomeStatements.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -173,7 +169,7 @@ export class IncomeStatements {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/income-statements/${id}`
+                `accounting/v1/income-statements/${id}`
             ),
             method: "GET",
             headers: {
@@ -184,7 +180,7 @@ export class IncomeStatements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

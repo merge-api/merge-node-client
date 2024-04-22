@@ -29,11 +29,7 @@ export class PayrollRuns {
      * Returns a list of `PayrollRun` objects.
      *
      * @example
-     *     await merge.hris.payrollRuns.list({
-     *         remoteFields: Merge.hris.PayrollRunsListRequestRemoteFields.RunState,
-     *         runType: Merge.hris.PayrollRunsListRequestRunType.Correction,
-     *         showEnumOrigins: Merge.hris.PayrollRunsListRequestShowEnumOrigins.RunState
-     *     })
+     *     await merge.hris.payrollRuns.list({})
      */
     public async list(
         request: Merge.hris.PayrollRunsListRequest = {},
@@ -125,7 +121,7 @@ export class PayrollRuns {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/payroll-runs"
+                "hris/v1/payroll-runs"
             ),
             method: "GET",
             headers: {
@@ -136,7 +132,7 @@ export class PayrollRuns {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -178,10 +174,7 @@ export class PayrollRuns {
      * Returns a `PayrollRun` object with the given `id`.
      *
      * @example
-     *     await merge.hris.payrollRuns.retrieve("string", {
-     *         remoteFields: Merge.hris.PayrollRunsRetrieveRequestRemoteFields.RunState,
-     *         showEnumOrigins: Merge.hris.PayrollRunsRetrieveRequestShowEnumOrigins.RunState
-     *     })
+     *     await merge.hris.payrollRuns.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -205,7 +198,7 @@ export class PayrollRuns {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/payroll-runs/${id}`
+                `hris/v1/payroll-runs/${id}`
             ),
             method: "GET",
             headers: {
@@ -216,7 +209,7 @@ export class PayrollRuns {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

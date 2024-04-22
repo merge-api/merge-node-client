@@ -14,12 +14,12 @@
  * TODO
  */
 export interface ScreeningQuestionOption {
+    id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
-    /** Available response options */
-    label?: string;
-    id?: string;
     createdAt?: Date;
     /** This is the datetime that this object was last updated by Merge */
     modifiedAt?: Date;
+    /** Available response options */
+    label?: string;
 }

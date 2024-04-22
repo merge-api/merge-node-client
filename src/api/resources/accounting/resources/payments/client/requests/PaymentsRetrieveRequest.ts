@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.accounting.PaymentsRetrieveRequestExpand.Account
- *     }
+ *     {}
  */
 export interface PaymentsRetrieveRequest {
     /**

@@ -29,9 +29,7 @@ export class VendorCredits {
      * Returns a list of `VendorCredit` objects.
      *
      * @example
-     *     await merge.accounting.vendorCredits.list({
-     *         expand: Merge.accounting.VendorCreditsListRequestExpand.AccountingPeriod
-     *     })
+     *     await merge.accounting.vendorCredits.list({})
      */
     public async list(
         request: Merge.accounting.VendorCreditsListRequest = {},
@@ -108,7 +106,7 @@ export class VendorCredits {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/vendor-credits"
+                "accounting/v1/vendor-credits"
             ),
             method: "GET",
             headers: {
@@ -119,7 +117,7 @@ export class VendorCredits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -161,9 +159,7 @@ export class VendorCredits {
      * Returns a `VendorCredit` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.vendorCredits.retrieve("string", {
-     *         expand: Merge.accounting.VendorCreditsRetrieveRequestExpand.AccountingPeriod
-     *     })
+     *     await merge.accounting.vendorCredits.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -183,7 +179,7 @@ export class VendorCredits {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/vendor-credits/${id}`
+                `accounting/v1/vendor-credits/${id}`
             ),
             method: "GET",
             headers: {
@@ -194,7 +190,7 @@ export class VendorCredits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

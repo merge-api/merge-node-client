@@ -8,14 +8,14 @@ import * as core from "../../../../core";
 
 export const User: core.serialization.ObjectSchema<serializers.crm.User.Raw, Merge.crm.User> =
     core.serialization.object({
-        name: core.serialization.string().optional(),
-        email: core.serialization.string().optional(),
-        isActive: core.serialization.property("is_active", core.serialization.boolean().optional()),
-        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         id: core.serialization.string().optional(),
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
+        name: core.serialization.string().optional(),
+        email: core.serialization.string().optional(),
+        isActive: core.serialization.property("is_active", core.serialization.boolean().optional()),
+        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -36,14 +36,14 @@ export const User: core.serialization.ObjectSchema<serializers.crm.User.Raw, Mer
 
 export declare namespace User {
     interface Raw {
-        name?: string | null;
-        email?: string | null;
-        is_active?: boolean | null;
-        remote_was_deleted?: boolean | null;
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
+        name?: string | null;
+        email?: string | null;
+        is_active?: boolean | null;
+        remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.crm.RemoteData.Raw[] | null;
         remote_fields?: serializers.crm.RemoteField.Raw[] | null;

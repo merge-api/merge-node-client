@@ -29,9 +29,7 @@ export class Benefits {
      * Returns a list of `Benefit` objects.
      *
      * @example
-     *     await merge.hris.benefits.list({
-     *         expand: "employee"
-     *     })
+     *     await merge.hris.benefits.list({})
      */
     public async list(
         request: Merge.hris.BenefitsListRequest = {},
@@ -98,7 +96,7 @@ export class Benefits {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/hris/v1/benefits"
+                "hris/v1/benefits"
             ),
             method: "GET",
             headers: {
@@ -109,7 +107,7 @@ export class Benefits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -151,9 +149,7 @@ export class Benefits {
      * Returns a `Benefit` object with the given `id`.
      *
      * @example
-     *     await merge.hris.benefits.retrieve("string", {
-     *         expand: "employee"
-     *     })
+     *     await merge.hris.benefits.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -173,7 +169,7 @@ export class Benefits {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/hris/v1/benefits/${id}`
+                `hris/v1/benefits/${id}`
             ),
             method: "GET",
             headers: {
@@ -184,7 +180,7 @@ export class Benefits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

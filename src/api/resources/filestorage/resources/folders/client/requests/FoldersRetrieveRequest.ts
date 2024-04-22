@@ -6,9 +6,7 @@ import * as Merge from "../../../../../..";
 
 /**
  * @example
- *     {
- *         expand: Merge.filestorage.FoldersRetrieveRequestExpand.Drive
- *     }
+ *     {}
  */
 export interface FoldersRetrieveRequest {
     /**

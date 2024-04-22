@@ -7,14 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         model: {
- *             name: "omg_common_model_scope.docx",
- *             fileUrl: "https://drive.com/1234",
- *             fileThumbnailUrl: "https://drive.com/1234/thumbnail.png",
- *             size: 1,
- *             mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
- *             description: "This file is OP"
- *         }
+ *         model: {}
  *     }
  */
 export interface FileStorageFileEndpointRequest {

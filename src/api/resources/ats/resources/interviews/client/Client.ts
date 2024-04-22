@@ -29,11 +29,7 @@ export class Interviews {
      * Returns a list of `ScheduledInterview` objects.
      *
      * @example
-     *     await merge.ats.interviews.list({
-     *         expand: Merge.ats.InterviewsListRequestExpand.Application,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.ats.interviews.list({})
      */
     public async list(
         request: Merge.ats.InterviewsListRequest = {},
@@ -125,7 +121,7 @@ export class Interviews {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/interviews"
+                "ats/v1/interviews"
             ),
             method: "GET",
             headers: {
@@ -136,7 +132,7 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -179,13 +175,8 @@ export class Interviews {
      *
      * @example
      *     await merge.ats.interviews.create({
-     *         model: {
-     *             location: "Embarcadero Center 2",
-     *             startAt: new Date("2021-10-15T00:00:00.000Z"),
-     *             endAt: new Date("2021-10-15T02:00:00.000Z"),
-     *             status: undefined
-     *         },
-     *         remoteUserId: "string"
+     *         model: {},
+     *         remoteUserId: "remote_user_id"
      *     })
      */
     public async create(
@@ -205,7 +196,7 @@ export class Interviews {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/interviews"
+                "ats/v1/interviews"
             ),
             method: "POST",
             headers: {
@@ -216,7 +207,7 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -261,11 +252,7 @@ export class Interviews {
      * Returns a `ScheduledInterview` object with the given `id`.
      *
      * @example
-     *     await merge.ats.interviews.retrieve("string", {
-     *         expand: Merge.ats.InterviewsRetrieveRequestExpand.Application,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await merge.ats.interviews.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -293,7 +280,7 @@ export class Interviews {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/ats/v1/interviews/${id}`
+                `ats/v1/interviews/${id}`
             ),
             method: "GET",
             headers: {
@@ -304,7 +291,7 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -352,7 +339,7 @@ export class Interviews {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/ats/v1/interviews/meta/post"
+                "ats/v1/interviews/meta/post"
             ),
             method: "GET",
             headers: {
@@ -363,7 +350,7 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

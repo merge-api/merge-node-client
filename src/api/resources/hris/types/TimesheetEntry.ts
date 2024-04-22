@@ -17,6 +17,9 @@ export interface TimesheetEntry {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    createdAt?: Date;
+    /** This is the datetime that this object was last updated by Merge */
+    modifiedAt?: Date;
     /** The employee the timesheet entry is for. */
     employee?: string;
     /** The number of hours logged by the employee. */
@@ -25,7 +28,8 @@ export interface TimesheetEntry {
     startTime?: Date;
     /** The time at which the employee ended work. */
     endTime?: Date;
-    createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
-    modifiedAt?: Date;
+    /** Indicates whether or not this object has been deleted in the third party platform. */
+    remoteWasDeleted?: boolean;
+    fieldMappings?: Record<string, unknown>;
+    remoteData?: (Record<string, unknown> | undefined)[];
 }

@@ -29,9 +29,7 @@ export class BalanceSheets {
      * Returns a list of `BalanceSheet` objects.
      *
      * @example
-     *     await merge.accounting.balanceSheets.list({
-     *         expand: "company"
-     *     })
+     *     await merge.accounting.balanceSheets.list({})
      */
     public async list(
         request: Merge.accounting.BalanceSheetsListRequest = {},
@@ -98,7 +96,7 @@ export class BalanceSheets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "api/accounting/v1/balance-sheets"
+                "accounting/v1/balance-sheets"
             ),
             method: "GET",
             headers: {
@@ -109,7 +107,7 @@ export class BalanceSheets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -151,9 +149,7 @@ export class BalanceSheets {
      * Returns a `BalanceSheet` object with the given `id`.
      *
      * @example
-     *     await merge.accounting.balanceSheets.retrieve("string", {
-     *         expand: "company"
-     *     })
+     *     await merge.accounting.balanceSheets.retrieve("id", {})
      */
     public async retrieve(
         id: string,
@@ -173,7 +169,7 @@ export class BalanceSheets {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `api/accounting/v1/balance-sheets/${id}`
+                `accounting/v1/balance-sheets/${id}`
             ),
             method: "GET",
             headers: {
@@ -184,7 +180,7 @@ export class BalanceSheets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.6",
+                "X-Fern-SDK-Version": "1.0.7",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
