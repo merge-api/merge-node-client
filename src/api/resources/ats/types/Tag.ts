@@ -16,8 +16,9 @@
 export interface Tag {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     /** The tag's name. */
     name?: string;

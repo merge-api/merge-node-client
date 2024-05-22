@@ -10,4 +10,5 @@ export interface RemoteFieldApi {
     remoteEndpointInfo: Merge.crm.RemoteEndpointInfo;
     exampleValues: unknown[];
     advancedMetadata?: Merge.crm.AdvancedMetadata;
+    coverage?: Merge.crm.RemoteFieldApiCoverage;
 }

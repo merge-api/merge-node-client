@@ -39,6 +39,7 @@ export class JobPostings {
             createdAfter,
             createdBefore,
             cursor,
+            expand,
             includeDeletedData,
             includeRemoteData,
             modifiedAfter,
@@ -58,6 +59,10 @@ export class JobPostings {
 
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
+        }
+
+        if (expand != null) {
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
@@ -102,7 +107,7 @@ export class JobPostings {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -151,8 +156,12 @@ export class JobPostings {
         request: Merge.ats.JobPostingsRetrieveRequest = {},
         requestOptions?: JobPostings.RequestOptions
     ): Promise<Merge.ats.JobPosting> {
-        const { includeRemoteData } = request;
+        const { expand, includeRemoteData } = request;
         const _queryParams: Record<string, string | string[]> = {};
+        if (expand != null) {
+            _queryParams["expand"] = expand;
+        }
+
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
@@ -171,7 +180,7 @@ export class JobPostings {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

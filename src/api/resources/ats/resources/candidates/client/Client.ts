@@ -122,7 +122,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -197,7 +197,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -273,7 +273,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -349,7 +349,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -395,8 +395,7 @@ export class Candidates {
      *
      * @example
      *     await merge.ats.candidates.ignoreCreate("model_id", {
-     *         reason: Merge.ats.ReasonEnum.GeneralCustomerRequest,
-     *         message: "deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"
+     *         reason: Merge.ats.ReasonEnum.GeneralCustomerRequest
      *     })
      */
     public async ignoreCreate(
@@ -418,7 +417,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             body: await serializers.ats.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -477,7 +476,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -535,7 +534,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -16,10 +16,12 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Association {
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     sourceObject?: Record<string, unknown>;
     targetObject?: Record<string, unknown>;
+    /** The association type the association belongs to. */
     associationType?: Merge.crm.AssociationAssociationType;
 }

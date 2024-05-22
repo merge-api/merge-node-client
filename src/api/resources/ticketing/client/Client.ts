@@ -25,7 +25,6 @@ import { Passthrough } from "../resources/passthrough/client/Client";
 import { Projects } from "../resources/projects/client/Client";
 import { RegenerateKey } from "../resources/regenerateKey/client/Client";
 import { Roles } from "../resources/roles/client/Client";
-import { SelectiveSync } from "../resources/selectiveSync/client/Client";
 import { SyncStatus } from "../resources/syncStatus/client/Client";
 import { ForceResync } from "../resources/forceResync/client/Client";
 import { Tags } from "../resources/tags/client/Client";
@@ -174,12 +173,6 @@ export class Ticketing {
 
     public get roles(): Roles {
         return (this._roles ??= new Roles(this._options));
-    }
-
-    protected _selectiveSync: SelectiveSync | undefined;
-
-    public get selectiveSync(): SelectiveSync {
-        return (this._selectiveSync ??= new SelectiveSync(this._options));
     }
 
     protected _syncStatus: SyncStatus | undefined;

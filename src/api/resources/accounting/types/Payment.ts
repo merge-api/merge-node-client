@@ -19,8 +19,9 @@ export interface Payment {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     /** The payment's transaction date. */
     transactionDate?: Date;
@@ -345,6 +346,13 @@ export interface Payment {
     company?: Merge.accounting.PaymentCompany;
     /** The total amount of money being paid to the supplier, or customer, after taxes. */
     totalAmount?: number;
+    /**
+     * The type of the invoice.
+     *
+     * - `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
+     * - `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
+     */
+    type?: Merge.accounting.PaymentType;
     trackingCategories?: (Merge.accounting.PaymentTrackingCategoriesItem | undefined)[];
     /** When the third party's payment entry was updated. */
     remoteUpdatedAt?: Date;

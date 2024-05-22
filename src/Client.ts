@@ -6,8 +6,8 @@ import * as environments from "./environments";
 import * as core from "./core";
 import { Filestorage } from "./api/resources/filestorage/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
-import { Ticketing } from "./api/resources/ticketing/client/Client";
 import { Hris } from "./api/resources/hris/client/Client";
+import { Ticketing } from "./api/resources/ticketing/client/Client";
 import { Ats } from "./api/resources/ats/client/Client";
 import { Accounting } from "./api/resources/accounting/client/Client";
 
@@ -39,16 +39,16 @@ export class MergeClient {
         return (this._crm ??= new Crm(this._options));
     }
 
-    protected _ticketing: Ticketing | undefined;
-
-    public get ticketing(): Ticketing {
-        return (this._ticketing ??= new Ticketing(this._options));
-    }
-
     protected _hris: Hris | undefined;
 
     public get hris(): Hris {
         return (this._hris ??= new Hris(this._options));
+    }
+
+    protected _ticketing: Ticketing | undefined;
+
+    public get ticketing(): Ticketing {
+        return (this._ticketing ??= new Ticketing(this._options));
     }
 
     protected _ats: Ats | undefined;

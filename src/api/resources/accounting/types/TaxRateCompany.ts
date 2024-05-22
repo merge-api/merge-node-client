@@ -5,6 +5,6 @@
 import * as Merge from "../../..";
 
 /**
- * The company the tax rate belongs to.
+ * The subsidiary that the tax rate belongs to (in the case of multi-entity systems).
  */
 export type TaxRateCompany = string | Merge.accounting.CompanyInfo;

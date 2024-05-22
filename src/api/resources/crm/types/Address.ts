@@ -16,8 +16,9 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface Address {
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     /** Line 1 of the address's street. */
     street1?: string;

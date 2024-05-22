@@ -21,9 +21,13 @@ export interface CustomObjectClass {
     remoteId?: string;
     createdAt?: Date;
     modifiedAt?: Date;
+    /** The custom object class's name. */
     name?: string;
+    /** The custom object class's description. */
     description?: string;
+    /** The custom object class's singular and plural labels. */
     labels?: Record<string, string | undefined>;
     fields?: Merge.crm.RemoteFieldClassForCustomObjectClass[];
+    /** The types of associations with other models that the custom object class can have. */
     associationTypes?: Record<string, unknown>[];
 }

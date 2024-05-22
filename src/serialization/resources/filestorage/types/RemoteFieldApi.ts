@@ -21,6 +21,9 @@ export const RemoteFieldApi: core.serialization.ObjectSchema<
         "advanced_metadata",
         core.serialization.lazyObject(async () => (await import("../../..")).filestorage.AdvancedMetadata).optional()
     ),
+    coverage: core.serialization
+        .lazy(async () => (await import("../../..")).filestorage.RemoteFieldApiCoverage)
+        .optional(),
 });
 
 export declare namespace RemoteFieldApi {
@@ -30,5 +33,6 @@ export declare namespace RemoteFieldApi {
         remote_endpoint_info: serializers.filestorage.RemoteEndpointInfo.Raw;
         example_values: unknown[];
         advanced_metadata?: serializers.filestorage.AdvancedMetadata.Raw | null;
+        coverage?: serializers.filestorage.RemoteFieldApiCoverage.Raw | null;
     }
 }

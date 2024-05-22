@@ -35,7 +35,6 @@ import { Payments } from "../resources/payments/client/Client";
 import { PhoneNumbers } from "../resources/phoneNumbers/client/Client";
 import { PurchaseOrders } from "../resources/purchaseOrders/client/Client";
 import { RegenerateKey } from "../resources/regenerateKey/client/Client";
-import { SelectiveSync } from "../resources/selectiveSync/client/Client";
 import { SyncStatus } from "../resources/syncStatus/client/Client";
 import { ForceResync } from "../resources/forceResync/client/Client";
 import { TaxRates } from "../resources/taxRates/client/Client";
@@ -244,12 +243,6 @@ export class Accounting {
 
     public get regenerateKey(): RegenerateKey {
         return (this._regenerateKey ??= new RegenerateKey(this._options));
-    }
-
-    protected _selectiveSync: SelectiveSync | undefined;
-
-    public get selectiveSync(): SelectiveSync {
-        return (this._selectiveSync ??= new SelectiveSync(this._options));
     }
 
     protected _syncStatus: SyncStatus | undefined;

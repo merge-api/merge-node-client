@@ -16,8 +16,9 @@ import * as Merge from "../../..";
  * Fetch from the `GET Candidate` endpoint and view their email addresses.
  */
 export interface EmailAddress {
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     /** The email address. */
     value?: string;

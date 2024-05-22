@@ -19,8 +19,9 @@ export interface TransactionLineItem {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     /** An internal note used by the business to clarify purpose of the transaction. */
     memo?: string;
@@ -37,7 +38,6 @@ export interface TransactionLineItem {
     trackingCategories: string[];
     /** The line item's total. */
     totalLineAmount?: string;
-    /** The line item's tax rate. */
     taxRate?: string;
     /**
      * The line item's currency.

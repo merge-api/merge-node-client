@@ -7,8 +7,7 @@ import * as Merge from "../../../../../..";
 /**
  * @example
  *     {
- *         reason: Merge.ats.ReasonEnum.GeneralCustomerRequest,
- *         message: "deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39"
+ *         reason: Merge.ats.ReasonEnum.GeneralCustomerRequest
  *     }
  */
 export interface IgnoreCommonModelRequest {

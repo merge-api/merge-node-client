@@ -10,4 +10,5 @@ export interface RemoteFieldApi {
     remoteEndpointInfo: Merge.accounting.RemoteEndpointInfo;
     exampleValues: unknown[];
     advancedMetadata?: Merge.accounting.AdvancedMetadata;
+    coverage?: Merge.accounting.RemoteFieldApiCoverage;
 }

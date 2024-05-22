@@ -25,6 +25,7 @@ export const PaymentRequest: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).accounting.PaymentRequestCompany)
         .optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
+    type: core.serialization.lazy(async () => (await import("../../..")).accounting.PaymentRequestType).optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
         core.serialization
@@ -70,6 +71,7 @@ export declare namespace PaymentRequest {
         exchange_rate?: string | null;
         company?: serializers.accounting.PaymentRequestCompany.Raw | null;
         total_amount?: number | null;
+        type?: serializers.accounting.PaymentRequestType.Raw | null;
         tracking_categories?:
             | (serializers.accounting.PaymentRequestTrackingCategoriesItem.Raw | null | undefined)[]
             | null;

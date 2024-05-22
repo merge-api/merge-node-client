@@ -28,6 +28,10 @@ export interface GroupsListRequest {
      */
     includeRemoteData?: boolean;
     /**
+     * If provided, specifies whether to return only Group objects which refer to a team in the third party platform. Note that this is an opinionated view based on how a team may be represented in the third party platform.
+     */
+    isCommonlyUsedAsTeam?: string;
+    /**
      * If provided, only objects synced by Merge after this date time will be returned.
      */
     modifiedAfter?: Date;

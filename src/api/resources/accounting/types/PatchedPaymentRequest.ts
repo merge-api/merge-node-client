@@ -339,6 +339,13 @@ export interface PatchedPaymentRequest {
     company?: Merge.accounting.PatchedPaymentRequestCompany;
     /** The total amount of money being paid to the supplier, or customer, after taxes. */
     totalAmount?: number;
+    /**
+     * The type of the invoice.
+     *
+     * - `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
+     * - `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
+     */
+    type?: Merge.accounting.PatchedPaymentRequestType;
     trackingCategories?: (Merge.accounting.PatchedPaymentRequestTrackingCategoriesItem | undefined)[];
     /** The accounting period that the Payment was generated in. */
     accountingPeriod?: Merge.accounting.PatchedPaymentRequestAccountingPeriod;

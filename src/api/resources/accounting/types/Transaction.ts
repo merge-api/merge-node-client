@@ -27,8 +27,9 @@ export interface Transaction {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     /** The type of transaction, which can by any transaction object not already included in Merge’s common model. */
     transactionType?: string;

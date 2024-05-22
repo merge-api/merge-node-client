@@ -44,6 +44,9 @@ export const EventTypeEnum: core.serialization.Schema<
     "FORCED_LINKED_ACCOUNT_RESYNC",
     "MUTED_ISSUE",
     "GENERATED_MAGIC_LINK",
+    "ENABLED_MERGE_WEBHOOK",
+    "DISABLED_MERGE_WEBHOOK",
+    "MERGE_WEBHOOK_TARGET_CHANGED",
 ]);
 
 export declare namespace EventTypeEnum {
@@ -81,5 +84,8 @@ export declare namespace EventTypeEnum {
         | "DELETED_LINKED_ACCOUNT_FIELD_MAPPING"
         | "FORCED_LINKED_ACCOUNT_RESYNC"
         | "MUTED_ISSUE"
-        | "GENERATED_MAGIC_LINK";
+        | "GENERATED_MAGIC_LINK"
+        | "ENABLED_MERGE_WEBHOOK"
+        | "DISABLED_MERGE_WEBHOOK"
+        | "MERGE_WEBHOOK_TARGET_CHANGED";
 }
