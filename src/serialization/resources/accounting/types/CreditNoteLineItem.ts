@@ -20,7 +20,6 @@ export const CreditNoteLineItem: core.serialization.ObjectSchema<
     quantity: core.serialization.string().optional(),
     memo: core.serialization.string().optional(),
     unitPrice: core.serialization.property("unit_price", core.serialization.string().optional()),
-    taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     totalLineAmount: core.serialization.property("total_line_amount", core.serialization.string().optional()),
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
@@ -46,7 +45,6 @@ export declare namespace CreditNoteLineItem {
         quantity?: string | null;
         memo?: string | null;
         unit_price?: string | null;
-        tax_rate?: string | null;
         total_line_amount?: string | null;
         tracking_category?: string | null;
         tracking_categories: string[];

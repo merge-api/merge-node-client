@@ -14,8 +14,9 @@
  * Fetch from the `GET Contact` endpoint and view their email addresses.
  */
 export interface EmailAddress {
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     /** The email address. */
     emailAddress?: string;

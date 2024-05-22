@@ -4,10 +4,7 @@
 
 /**
  * @example
- *     {
- *         remoteMethod: "GET",
- *         remoteUrlPath: "/example-url-path"
- *     }
+ *     {}
  */
 export interface PatchedEditFieldMappingRequest {
     /** The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint. */

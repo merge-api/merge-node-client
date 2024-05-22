@@ -19,8 +19,9 @@ export interface Group {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     /** The parent group for this group. */
     parentGroup?: string;
@@ -38,6 +39,8 @@ export interface Group {
     type?: Merge.hris.GroupType;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;
+    /** Indicates whether the Group refers to a team in the third party platform. Note that this is an opinionated view based on how Merge observes most organizations representing teams in each third party platform. If your customer uses a platform different from most, there is a chance this will not be correct. */
+    isCommonlyUsedAsTeam?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];
 }

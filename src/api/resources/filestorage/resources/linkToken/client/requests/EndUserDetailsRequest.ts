@@ -37,4 +37,6 @@ export interface EndUserDetailsRequest {
     >;
     /** The language code for the language to localize Merge Link to. */
     language?: string;
+    /** A JSON object containing integration-specific configuration options. */
+    integrationSpecificConfig?: Record<string, unknown>;
 }

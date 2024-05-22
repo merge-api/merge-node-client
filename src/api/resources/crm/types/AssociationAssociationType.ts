@@ -4,4 +4,7 @@
 
 import * as Merge from "../../..";
 
+/**
+ * The association type the association belongs to.
+ */
 export type AssociationAssociationType = string | Merge.crm.AssociationType;

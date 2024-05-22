@@ -8,8 +8,9 @@ export interface CreditNoteLineItem {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     item?: Merge.accounting.CreditNoteLineItemItem;
     /** The credit note line item's name. */
@@ -22,8 +23,6 @@ export interface CreditNoteLineItem {
     memo?: string;
     /** The credit note line item's unit price. */
     unitPrice?: string;
-    /** The credit note line item's tax rate. */
-    taxRate?: string;
     /** The credit note line item's total. */
     totalLineAmount?: string;
     /** The credit note line item's associated tracking category. */

@@ -102,7 +102,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -111,6 +111,83 @@ export class Contacts {
         });
         if (_response.ok) {
             return await serializers.ticketing.PaginatedContactList.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Creates a `Contact` object with the given values.
+     *
+     * @example
+     *     await merge.ticketing.contacts.create({
+     *         model: {}
+     *     })
+     */
+    public async create(
+        request: Merge.ticketing.TicketingContactEndpointRequest,
+        requestOptions?: Contacts.RequestOptions
+    ): Promise<Merge.ticketing.TicketingContactResponse> {
+        const { isDebugMode, runAsync, ..._body } = request;
+        const _queryParams: Record<string, string | string[]> = {};
+        if (isDebugMode != null) {
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
+        }
+
+        if (runAsync != null) {
+            _queryParams["run_async"] = runAsync.toString();
+        }
+
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                "ticketing/v1/contacts"
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.0.8",
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            body: await serializers.ticketing.TicketingContactEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.ticketing.TicketingContactResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -175,7 +252,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -184,6 +261,64 @@ export class Contacts {
         });
         if (_response.ok) {
             return await serializers.ticketing.Contact.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Returns metadata for `TicketingContact` POSTs.
+     *
+     * @example
+     *     await merge.ticketing.contacts.metaPostRetrieve()
+     */
+    public async metaPostRetrieve(requestOptions?: Contacts.RequestOptions): Promise<Merge.ticketing.MetaResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                "ticketing/v1/contacts/meta/post"
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.0.8",
+            },
+            contentType: "application/json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,

@@ -19,10 +19,13 @@ export interface CustomObject {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
+    /** The custom object class the custom object record belongs to. */
     objectClass?: string;
+    /** The fields and values contained within the custom object record. */
     fields?: Record<string, unknown>;
     remoteFields?: Merge.crm.RemoteField[];
 }

@@ -28,6 +28,7 @@ export interface PatchedAccountRequest {
     website?: string;
     /** The account's number of employees. */
     numberOfEmployees?: number;
+    addresses?: Merge.crm.AddressRequest[];
     /** The last date (either most recent or furthest in the future) of when an activity occurs in an account. */
     lastActivityAt?: Date;
     integrationParams?: Record<string, unknown>;

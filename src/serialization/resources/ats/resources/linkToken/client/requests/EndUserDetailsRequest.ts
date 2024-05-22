@@ -49,6 +49,10 @@ export const EndUserDetailsRequest: core.serialization.Schema<
             .optional()
     ),
     language: core.serialization.string().optional(),
+    integrationSpecificConfig: core.serialization.property(
+        "integration_specific_config",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
 });
 
 export declare namespace EndUserDetailsRequest {
@@ -66,5 +70,6 @@ export declare namespace EndUserDetailsRequest {
             serializers.ats.IndividualCommonModelScopeDeserializerRequest.Raw[] | null | undefined
         > | null;
         language?: string | null;
+        integration_specific_config?: Record<string, unknown> | null;
     }
 }

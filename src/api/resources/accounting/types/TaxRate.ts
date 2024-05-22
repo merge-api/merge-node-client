@@ -19,16 +19,17 @@ export interface TaxRate {
     id?: string;
     /** The third-party API ID of the matching object. */
     remoteId?: string;
+    /** The datetime that this object was created by Merge. */
     createdAt?: Date;
-    /** This is the datetime that this object was last updated by Merge */
+    /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
     /** The tax rate's description. */
     description?: string;
-    /** The tax rate's total tax rate. */
+    /** The tax’s total tax rate - sum of the tax components (not compounded). */
     totalTaxRate?: number;
-    /** The tax rate's effective tax rate. */
+    /** The tax rate’s effective tax rate - total amount of tax with compounding. */
     effectiveTaxRate?: number;
-    /** The company the tax rate belongs to. */
+    /** The subsidiary that the tax rate belongs to (in the case of multi-entity systems). */
     company?: Merge.accounting.TaxRateCompany;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;

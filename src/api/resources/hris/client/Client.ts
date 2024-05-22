@@ -30,7 +30,6 @@ import { Passthrough } from "../resources/passthrough/client/Client";
 import { PayGroups } from "../resources/payGroups/client/Client";
 import { PayrollRuns } from "../resources/payrollRuns/client/Client";
 import { RegenerateKey } from "../resources/regenerateKey/client/Client";
-import { SelectiveSync } from "../resources/selectiveSync/client/Client";
 import { SyncStatus } from "../resources/syncStatus/client/Client";
 import { ForceResync } from "../resources/forceResync/client/Client";
 import { Teams } from "../resources/teams/client/Client";
@@ -209,12 +208,6 @@ export class Hris {
 
     public get regenerateKey(): RegenerateKey {
         return (this._regenerateKey ??= new RegenerateKey(this._options));
-    }
-
-    protected _selectiveSync: SelectiveSync | undefined;
-
-    public get selectiveSync(): SelectiveSync {
-        return (this._selectiveSync ??= new SelectiveSync(this._options));
     }
 
     protected _syncStatus: SyncStatus | undefined;
