@@ -172,6 +172,7 @@ await merge.ticketing.tickets.create({
 
 ```typescript
 import { MergeClient, Merge } from '@mergeapi/merge-node-client';
+import * as stream from 'node:stream/promises';
 import * as fs from 'fs/promises';
 
 const merge = new MergeClient({
