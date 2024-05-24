@@ -126,7 +126,7 @@ const merge = new MergeClient({
 });
 
 const candidatesResponse = await merge.ats.candidates.list({
-  created_after: "2030-01-01"
+  createdAfter: "2030-01-01"
 })
 
 console.log(candidatesResponse.results)
@@ -162,7 +162,7 @@ await merge.ticketing.tickets.create({
     name: "Please add more integrations",
     assignees: ["17a54124-287f-494d-965e-3c5b330c9a68"],
     creator: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    due_date: "2022-10-11T00:00:00Z",
+    dueDate: "2022-10-11T00:00:00Z",
     status: TicketStatusEnum.Open,
   },
 })
@@ -211,7 +211,7 @@ let response = merge.hris.employees.list({
 while (response.next != null) {
     response = merge.hris.employees.list({
         cursor: response.next, 
-        created_after: "2030-01-01",
+        createdAfter: "2030-01-01",
     })
 }
 ```
