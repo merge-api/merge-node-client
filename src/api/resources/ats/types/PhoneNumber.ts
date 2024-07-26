@@ -32,4 +32,6 @@ export interface PhoneNumber {
      * - `OTHER` - OTHER
      */
     phoneNumberType?: Merge.ats.PhoneNumberPhoneNumberType;
+    /** Indicates whether or not this object has been deleted in the third party platform. */
+    remoteWasDeleted?: boolean;
 }

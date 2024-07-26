@@ -20,6 +20,10 @@ export interface TicketsRemoteFieldClassesListRequest {
      */
     includeRemoteData?: boolean;
     /**
+     * If provided, will only return remote field classes with this is_common_model_field value
+     */
+    isCommonModelField?: boolean;
+    /**
      * Number of results to return per page.
      */
     pageSize?: number;

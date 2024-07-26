@@ -66,6 +66,7 @@ export class Tickets {
             status,
             tags,
             ticketType,
+            ticketUrl,
         } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (accountId != null) {
@@ -188,6 +189,10 @@ export class Tickets {
             _queryParams["ticket_type"] = ticketType;
         }
 
+        if (ticketUrl != null) {
+            _queryParams["ticket_url"] = ticketUrl;
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
@@ -202,7 +207,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -214,6 +219,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -276,7 +282,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -291,6 +297,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -364,7 +371,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -376,6 +383,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -439,7 +447,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -454,6 +462,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -527,7 +536,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -539,6 +548,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -589,7 +599,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -600,6 +610,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -647,7 +658,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -658,6 +669,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -694,7 +706,7 @@ export class Tickets {
         request: Merge.ticketing.TicketsRemoteFieldClassesListRequest = {},
         requestOptions?: Tickets.RequestOptions
     ): Promise<Merge.ticketing.PaginatedRemoteFieldClassList> {
-        const { cursor, includeDeletedData, includeRemoteData, pageSize } = request;
+        const { cursor, includeDeletedData, includeRemoteData, isCommonModelField, pageSize } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
@@ -706,6 +718,10 @@ export class Tickets {
 
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
+        }
+
+        if (isCommonModelField != null) {
+            _queryParams["is_common_model_field"] = isCommonModelField.toString();
         }
 
         if (pageSize != null) {
@@ -726,7 +742,7 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -738,6 +754,7 @@ export class Tickets {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }

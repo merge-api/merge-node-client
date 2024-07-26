@@ -15,6 +15,7 @@ export const PhoneNumber: core.serialization.ObjectSchema<serializers.ats.PhoneN
             "phone_number_type",
             core.serialization.lazy(async () => (await import("../../..")).ats.PhoneNumberPhoneNumberType).optional()
         ),
+        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     });
 
 export declare namespace PhoneNumber {
@@ -23,5 +24,6 @@ export declare namespace PhoneNumber {
         modified_at?: string | null;
         value?: string | null;
         phone_number_type?: serializers.ats.PhoneNumberPhoneNumberType.Raw | null;
+        remote_was_deleted?: boolean | null;
     }
 }

@@ -8,7 +8,22 @@ import * as Merge from "../../../../../..";
  * @example
  *     {
  *         commonModels: [{
- *                 modelName: "model_name"
+ *                 modelName: "Employee",
+ *                 modelPermissions: {
+ *                     "READ": {
+ *                         isEnabled: true
+ *                     },
+ *                     "WRITE": {
+ *                         isEnabled: false
+ *                     }
+ *                 }
+ *             }, {
+ *                 modelName: "Benefit",
+ *                 modelPermissions: {
+ *                     "WRITE": {
+ *                         isEnabled: false
+ *                     }
+ *                 }
  *             }]
  *     }
  */

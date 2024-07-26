@@ -38,7 +38,6 @@ export interface ActivityRequest {
      * - `PRIVATE` - PRIVATE
      */
     visibility?: Merge.ats.ActivityRequestVisibility;
-    /** The activity’s candidate. */
     candidate?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;

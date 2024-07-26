@@ -15,6 +15,7 @@ export const ScreeningQuestionOption: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     label: core.serialization.string().optional(),
+    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
 
 export declare namespace ScreeningQuestionOption {
@@ -24,5 +25,6 @@ export declare namespace ScreeningQuestionOption {
         created_at?: string | null;
         modified_at?: string | null;
         label?: string | null;
+        remote_was_deleted?: boolean | null;
     }
 }

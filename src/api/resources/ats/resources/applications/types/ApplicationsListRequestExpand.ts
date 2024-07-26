@@ -65,7 +65,199 @@ export type ApplicationsListRequestExpand =
     | "offers,job,current_stage,reject_reason"
     | "offers,job,reject_reason"
     | "offers,reject_reason"
-    | "reject_reason";
+    | "offers,screening_question_answers"
+    | "offers,screening_question_answers,candidate"
+    | "offers,screening_question_answers,candidate,credited_to"
+    | "offers,screening_question_answers,candidate,credited_to,current_stage"
+    | "offers,screening_question_answers,candidate,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers,candidate,credited_to,reject_reason"
+    | "offers,screening_question_answers,candidate,current_stage"
+    | "offers,screening_question_answers,candidate,current_stage,reject_reason"
+    | "offers,screening_question_answers,candidate,job"
+    | "offers,screening_question_answers,candidate,job,credited_to"
+    | "offers,screening_question_answers,candidate,job,credited_to,current_stage"
+    | "offers,screening_question_answers,candidate,job,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers,candidate,job,credited_to,reject_reason"
+    | "offers,screening_question_answers,candidate,job,current_stage"
+    | "offers,screening_question_answers,candidate,job,current_stage,reject_reason"
+    | "offers,screening_question_answers,candidate,job,reject_reason"
+    | "offers,screening_question_answers,candidate,reject_reason"
+    | "offers,screening_question_answers,credited_to"
+    | "offers,screening_question_answers,credited_to,current_stage"
+    | "offers,screening_question_answers,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers,credited_to,reject_reason"
+    | "offers,screening_question_answers,current_stage"
+    | "offers,screening_question_answers,current_stage,reject_reason"
+    | "offers,screening_question_answers,job"
+    | "offers,screening_question_answers,job,credited_to"
+    | "offers,screening_question_answers,job,credited_to,current_stage"
+    | "offers,screening_question_answers,job,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers,job,credited_to,reject_reason"
+    | "offers,screening_question_answers,job,current_stage"
+    | "offers,screening_question_answers,job,current_stage,reject_reason"
+    | "offers,screening_question_answers,job,reject_reason"
+    | "offers,screening_question_answers,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,job"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,job,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,candidate,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,credited_to"
+    | "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage"
+    | "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,credited_to,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,current_stage"
+    | "offers,screening_question_answers,screening_question_answers.question,current_stage,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,job"
+    | "offers,screening_question_answers,screening_question_answers.question,job,credited_to"
+    | "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage"
+    | "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,job,current_stage"
+    | "offers,screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,job,reject_reason"
+    | "offers,screening_question_answers,screening_question_answers.question,reject_reason"
+    | "offers,screening_question_answers.question"
+    | "offers,screening_question_answers.question,candidate"
+    | "offers,screening_question_answers.question,candidate,credited_to"
+    | "offers,screening_question_answers.question,candidate,credited_to,current_stage"
+    | "offers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers.question,candidate,credited_to,reject_reason"
+    | "offers,screening_question_answers.question,candidate,current_stage"
+    | "offers,screening_question_answers.question,candidate,current_stage,reject_reason"
+    | "offers,screening_question_answers.question,candidate,job"
+    | "offers,screening_question_answers.question,candidate,job,credited_to"
+    | "offers,screening_question_answers.question,candidate,job,credited_to,current_stage"
+    | "offers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers.question,candidate,job,credited_to,reject_reason"
+    | "offers,screening_question_answers.question,candidate,job,current_stage"
+    | "offers,screening_question_answers.question,candidate,job,current_stage,reject_reason"
+    | "offers,screening_question_answers.question,candidate,job,reject_reason"
+    | "offers,screening_question_answers.question,candidate,reject_reason"
+    | "offers,screening_question_answers.question,credited_to"
+    | "offers,screening_question_answers.question,credited_to,current_stage"
+    | "offers,screening_question_answers.question,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers.question,credited_to,reject_reason"
+    | "offers,screening_question_answers.question,current_stage"
+    | "offers,screening_question_answers.question,current_stage,reject_reason"
+    | "offers,screening_question_answers.question,job"
+    | "offers,screening_question_answers.question,job,credited_to"
+    | "offers,screening_question_answers.question,job,credited_to,current_stage"
+    | "offers,screening_question_answers.question,job,credited_to,current_stage,reject_reason"
+    | "offers,screening_question_answers.question,job,credited_to,reject_reason"
+    | "offers,screening_question_answers.question,job,current_stage"
+    | "offers,screening_question_answers.question,job,current_stage,reject_reason"
+    | "offers,screening_question_answers.question,job,reject_reason"
+    | "offers,screening_question_answers.question,reject_reason"
+    | "reject_reason"
+    | "screening_question_answers"
+    | "screening_question_answers,candidate"
+    | "screening_question_answers,candidate,credited_to"
+    | "screening_question_answers,candidate,credited_to,current_stage"
+    | "screening_question_answers,candidate,credited_to,current_stage,reject_reason"
+    | "screening_question_answers,candidate,credited_to,reject_reason"
+    | "screening_question_answers,candidate,current_stage"
+    | "screening_question_answers,candidate,current_stage,reject_reason"
+    | "screening_question_answers,candidate,job"
+    | "screening_question_answers,candidate,job,credited_to"
+    | "screening_question_answers,candidate,job,credited_to,current_stage"
+    | "screening_question_answers,candidate,job,credited_to,current_stage,reject_reason"
+    | "screening_question_answers,candidate,job,credited_to,reject_reason"
+    | "screening_question_answers,candidate,job,current_stage"
+    | "screening_question_answers,candidate,job,current_stage,reject_reason"
+    | "screening_question_answers,candidate,job,reject_reason"
+    | "screening_question_answers,candidate,reject_reason"
+    | "screening_question_answers,credited_to"
+    | "screening_question_answers,credited_to,current_stage"
+    | "screening_question_answers,credited_to,current_stage,reject_reason"
+    | "screening_question_answers,credited_to,reject_reason"
+    | "screening_question_answers,current_stage"
+    | "screening_question_answers,current_stage,reject_reason"
+    | "screening_question_answers,job"
+    | "screening_question_answers,job,credited_to"
+    | "screening_question_answers,job,credited_to,current_stage"
+    | "screening_question_answers,job,credited_to,current_stage,reject_reason"
+    | "screening_question_answers,job,credited_to,reject_reason"
+    | "screening_question_answers,job,current_stage"
+    | "screening_question_answers,job,current_stage,reject_reason"
+    | "screening_question_answers,job,reject_reason"
+    | "screening_question_answers,reject_reason"
+    | "screening_question_answers,screening_question_answers.question"
+    | "screening_question_answers,screening_question_answers.question,candidate"
+    | "screening_question_answers,screening_question_answers.question,candidate,credited_to"
+    | "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage"
+    | "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,candidate,current_stage"
+    | "screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,candidate,job"
+    | "screening_question_answers,screening_question_answers.question,candidate,job,credited_to"
+    | "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage"
+    | "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,candidate,job,current_stage"
+    | "screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,candidate,job,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,candidate,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,credited_to"
+    | "screening_question_answers,screening_question_answers.question,credited_to,current_stage"
+    | "screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,credited_to,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,current_stage"
+    | "screening_question_answers,screening_question_answers.question,current_stage,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,job"
+    | "screening_question_answers,screening_question_answers.question,job,credited_to"
+    | "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage"
+    | "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,job,current_stage"
+    | "screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,job,reject_reason"
+    | "screening_question_answers,screening_question_answers.question,reject_reason"
+    | "screening_question_answers.question"
+    | "screening_question_answers.question,candidate"
+    | "screening_question_answers.question,candidate,credited_to"
+    | "screening_question_answers.question,candidate,credited_to,current_stage"
+    | "screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"
+    | "screening_question_answers.question,candidate,credited_to,reject_reason"
+    | "screening_question_answers.question,candidate,current_stage"
+    | "screening_question_answers.question,candidate,current_stage,reject_reason"
+    | "screening_question_answers.question,candidate,job"
+    | "screening_question_answers.question,candidate,job,credited_to"
+    | "screening_question_answers.question,candidate,job,credited_to,current_stage"
+    | "screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"
+    | "screening_question_answers.question,candidate,job,credited_to,reject_reason"
+    | "screening_question_answers.question,candidate,job,current_stage"
+    | "screening_question_answers.question,candidate,job,current_stage,reject_reason"
+    | "screening_question_answers.question,candidate,job,reject_reason"
+    | "screening_question_answers.question,candidate,reject_reason"
+    | "screening_question_answers.question,credited_to"
+    | "screening_question_answers.question,credited_to,current_stage"
+    | "screening_question_answers.question,credited_to,current_stage,reject_reason"
+    | "screening_question_answers.question,credited_to,reject_reason"
+    | "screening_question_answers.question,current_stage"
+    | "screening_question_answers.question,current_stage,reject_reason"
+    | "screening_question_answers.question,job"
+    | "screening_question_answers.question,job,credited_to"
+    | "screening_question_answers.question,job,credited_to,current_stage"
+    | "screening_question_answers.question,job,credited_to,current_stage,reject_reason"
+    | "screening_question_answers.question,job,credited_to,reject_reason"
+    | "screening_question_answers.question,job,current_stage"
+    | "screening_question_answers.question,job,current_stage,reject_reason"
+    | "screening_question_answers.question,job,reject_reason"
+    | "screening_question_answers.question,reject_reason";
 
 export const ApplicationsListRequestExpand = {
     Candidate: "candidate",
@@ -131,5 +323,332 @@ export const ApplicationsListRequestExpand = {
     OffersJobCurrentStageRejectReason: "offers,job,current_stage,reject_reason",
     OffersJobRejectReason: "offers,job,reject_reason",
     OffersRejectReason: "offers,reject_reason",
+    OffersScreeningQuestionAnswers: "offers,screening_question_answers",
+    OffersScreeningQuestionAnswersCandidate: "offers,screening_question_answers,candidate",
+    OffersScreeningQuestionAnswersCandidateCreditedTo: "offers,screening_question_answers,candidate,credited_to",
+    OffersScreeningQuestionAnswersCandidateCreditedToCurrentStage:
+        "offers,screening_question_answers,candidate,credited_to,current_stage",
+    OffersScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers,candidate,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersCandidateCreditedToRejectReason:
+        "offers,screening_question_answers,candidate,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersCandidateCurrentStage: "offers,screening_question_answers,candidate,current_stage",
+    OffersScreeningQuestionAnswersCandidateCurrentStageRejectReason:
+        "offers,screening_question_answers,candidate,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersCandidateJob: "offers,screening_question_answers,candidate,job",
+    OffersScreeningQuestionAnswersCandidateJobCreditedTo: "offers,screening_question_answers,candidate,job,credited_to",
+    OffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStage:
+        "offers,screening_question_answers,candidate,job,credited_to,current_stage",
+    OffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers,candidate,job,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersCandidateJobCreditedToRejectReason:
+        "offers,screening_question_answers,candidate,job,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersCandidateJobCurrentStage:
+        "offers,screening_question_answers,candidate,job,current_stage",
+    OffersScreeningQuestionAnswersCandidateJobCurrentStageRejectReason:
+        "offers,screening_question_answers,candidate,job,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersCandidateJobRejectReason:
+        "offers,screening_question_answers,candidate,job,reject_reason",
+    OffersScreeningQuestionAnswersCandidateRejectReason: "offers,screening_question_answers,candidate,reject_reason",
+    OffersScreeningQuestionAnswersCreditedTo: "offers,screening_question_answers,credited_to",
+    OffersScreeningQuestionAnswersCreditedToCurrentStage: "offers,screening_question_answers,credited_to,current_stage",
+    OffersScreeningQuestionAnswersCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersCreditedToRejectReason: "offers,screening_question_answers,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersCurrentStage: "offers,screening_question_answers,current_stage",
+    OffersScreeningQuestionAnswersCurrentStageRejectReason:
+        "offers,screening_question_answers,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersJob: "offers,screening_question_answers,job",
+    OffersScreeningQuestionAnswersJobCreditedTo: "offers,screening_question_answers,job,credited_to",
+    OffersScreeningQuestionAnswersJobCreditedToCurrentStage:
+        "offers,screening_question_answers,job,credited_to,current_stage",
+    OffersScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers,job,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersJobCreditedToRejectReason:
+        "offers,screening_question_answers,job,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersJobCurrentStage: "offers,screening_question_answers,job,current_stage",
+    OffersScreeningQuestionAnswersJobCurrentStageRejectReason:
+        "offers,screening_question_answers,job,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersJobRejectReason: "offers,screening_question_answers,job,reject_reason",
+    OffersScreeningQuestionAnswersRejectReason: "offers,screening_question_answers,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestion:
+        "offers,screening_question_answers,screening_question_answers.question",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate:
+        "offers,screening_question_answers,screening_question_answers.question,candidate",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,job",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,job,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,candidate,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo:
+        "offers,screening_question_answers,screening_question_answers.question,credited_to",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage:
+        "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage:
+        "offers,screening_question_answers,screening_question_answers.question,current_stage",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob:
+        "offers,screening_question_answers,screening_question_answers.question,job",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo:
+        "offers,screening_question_answers,screening_question_answers.question,job,credited_to",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage:
+        "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage:
+        "offers,screening_question_answers,screening_question_answers.question,job,current_stage",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,job,reject_reason",
+    OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason:
+        "offers,screening_question_answers,screening_question_answers.question,reject_reason",
+    OffersScreeningQuestionAnswersQuestion: "offers,screening_question_answers.question",
+    OffersScreeningQuestionAnswersQuestionCandidate: "offers,screening_question_answers.question,candidate",
+    OffersScreeningQuestionAnswersQuestionCandidateCreditedTo:
+        "offers,screening_question_answers.question,candidate,credited_to",
+    OffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage:
+        "offers,screening_question_answers.question,candidate,credited_to,current_stage",
+    OffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason:
+        "offers,screening_question_answers.question,candidate,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCandidateCurrentStage:
+        "offers,screening_question_answers.question,candidate,current_stage",
+    OffersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason:
+        "offers,screening_question_answers.question,candidate,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCandidateJob: "offers,screening_question_answers.question,candidate,job",
+    OffersScreeningQuestionAnswersQuestionCandidateJobCreditedTo:
+        "offers,screening_question_answers.question,candidate,job,credited_to",
+    OffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage:
+        "offers,screening_question_answers.question,candidate,job,credited_to,current_stage",
+    OffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason:
+        "offers,screening_question_answers.question,candidate,job,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCandidateJobCurrentStage:
+        "offers,screening_question_answers.question,candidate,job,current_stage",
+    OffersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason:
+        "offers,screening_question_answers.question,candidate,job,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCandidateJobRejectReason:
+        "offers,screening_question_answers.question,candidate,job,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCandidateRejectReason:
+        "offers,screening_question_answers.question,candidate,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCreditedTo: "offers,screening_question_answers.question,credited_to",
+    OffersScreeningQuestionAnswersQuestionCreditedToCurrentStage:
+        "offers,screening_question_answers.question,credited_to,current_stage",
+    OffersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers.question,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCreditedToRejectReason:
+        "offers,screening_question_answers.question,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersQuestionCurrentStage: "offers,screening_question_answers.question,current_stage",
+    OffersScreeningQuestionAnswersQuestionCurrentStageRejectReason:
+        "offers,screening_question_answers.question,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersQuestionJob: "offers,screening_question_answers.question,job",
+    OffersScreeningQuestionAnswersQuestionJobCreditedTo: "offers,screening_question_answers.question,job,credited_to",
+    OffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage:
+        "offers,screening_question_answers.question,job,credited_to,current_stage",
+    OffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason:
+        "offers,screening_question_answers.question,job,credited_to,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersQuestionJobCreditedToRejectReason:
+        "offers,screening_question_answers.question,job,credited_to,reject_reason",
+    OffersScreeningQuestionAnswersQuestionJobCurrentStage:
+        "offers,screening_question_answers.question,job,current_stage",
+    OffersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason:
+        "offers,screening_question_answers.question,job,current_stage,reject_reason",
+    OffersScreeningQuestionAnswersQuestionJobRejectReason:
+        "offers,screening_question_answers.question,job,reject_reason",
+    OffersScreeningQuestionAnswersQuestionRejectReason: "offers,screening_question_answers.question,reject_reason",
     RejectReason: "reject_reason",
+    ScreeningQuestionAnswers: "screening_question_answers",
+    ScreeningQuestionAnswersCandidate: "screening_question_answers,candidate",
+    ScreeningQuestionAnswersCandidateCreditedTo: "screening_question_answers,candidate,credited_to",
+    ScreeningQuestionAnswersCandidateCreditedToCurrentStage:
+        "screening_question_answers,candidate,credited_to,current_stage",
+    ScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason:
+        "screening_question_answers,candidate,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersCandidateCreditedToRejectReason:
+        "screening_question_answers,candidate,credited_to,reject_reason",
+    ScreeningQuestionAnswersCandidateCurrentStage: "screening_question_answers,candidate,current_stage",
+    ScreeningQuestionAnswersCandidateCurrentStageRejectReason:
+        "screening_question_answers,candidate,current_stage,reject_reason",
+    ScreeningQuestionAnswersCandidateJob: "screening_question_answers,candidate,job",
+    ScreeningQuestionAnswersCandidateJobCreditedTo: "screening_question_answers,candidate,job,credited_to",
+    ScreeningQuestionAnswersCandidateJobCreditedToCurrentStage:
+        "screening_question_answers,candidate,job,credited_to,current_stage",
+    ScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason:
+        "screening_question_answers,candidate,job,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersCandidateJobCreditedToRejectReason:
+        "screening_question_answers,candidate,job,credited_to,reject_reason",
+    ScreeningQuestionAnswersCandidateJobCurrentStage: "screening_question_answers,candidate,job,current_stage",
+    ScreeningQuestionAnswersCandidateJobCurrentStageRejectReason:
+        "screening_question_answers,candidate,job,current_stage,reject_reason",
+    ScreeningQuestionAnswersCandidateJobRejectReason: "screening_question_answers,candidate,job,reject_reason",
+    ScreeningQuestionAnswersCandidateRejectReason: "screening_question_answers,candidate,reject_reason",
+    ScreeningQuestionAnswersCreditedTo: "screening_question_answers,credited_to",
+    ScreeningQuestionAnswersCreditedToCurrentStage: "screening_question_answers,credited_to,current_stage",
+    ScreeningQuestionAnswersCreditedToCurrentStageRejectReason:
+        "screening_question_answers,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersCreditedToRejectReason: "screening_question_answers,credited_to,reject_reason",
+    ScreeningQuestionAnswersCurrentStage: "screening_question_answers,current_stage",
+    ScreeningQuestionAnswersCurrentStageRejectReason: "screening_question_answers,current_stage,reject_reason",
+    ScreeningQuestionAnswersJob: "screening_question_answers,job",
+    ScreeningQuestionAnswersJobCreditedTo: "screening_question_answers,job,credited_to",
+    ScreeningQuestionAnswersJobCreditedToCurrentStage: "screening_question_answers,job,credited_to,current_stage",
+    ScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason:
+        "screening_question_answers,job,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersJobCreditedToRejectReason: "screening_question_answers,job,credited_to,reject_reason",
+    ScreeningQuestionAnswersJobCurrentStage: "screening_question_answers,job,current_stage",
+    ScreeningQuestionAnswersJobCurrentStageRejectReason: "screening_question_answers,job,current_stage,reject_reason",
+    ScreeningQuestionAnswersJobRejectReason: "screening_question_answers,job,reject_reason",
+    ScreeningQuestionAnswersRejectReason: "screening_question_answers,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestion:
+        "screening_question_answers,screening_question_answers.question",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate:
+        "screening_question_answers,screening_question_answers.question,candidate",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo:
+        "screening_question_answers,screening_question_answers.question,candidate,credited_to",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage:
+        "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason:
+        "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason:
+        "screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage:
+        "screening_question_answers,screening_question_answers.question,candidate,current_stage",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason:
+        "screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob:
+        "screening_question_answers,screening_question_answers.question,candidate,job",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo:
+        "screening_question_answers,screening_question_answers.question,candidate,job,credited_to",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage:
+        "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason:
+        "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason:
+        "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage:
+        "screening_question_answers,screening_question_answers.question,candidate,job,current_stage",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason:
+        "screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason:
+        "screening_question_answers,screening_question_answers.question,candidate,job,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason:
+        "screening_question_answers,screening_question_answers.question,candidate,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo:
+        "screening_question_answers,screening_question_answers.question,credited_to",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage:
+        "screening_question_answers,screening_question_answers.question,credited_to,current_stage",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason:
+        "screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason:
+        "screening_question_answers,screening_question_answers.question,credited_to,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage:
+        "screening_question_answers,screening_question_answers.question,current_stage",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason:
+        "screening_question_answers,screening_question_answers.question,current_stage,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob:
+        "screening_question_answers,screening_question_answers.question,job",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo:
+        "screening_question_answers,screening_question_answers.question,job,credited_to",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage:
+        "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason:
+        "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason:
+        "screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage:
+        "screening_question_answers,screening_question_answers.question,job,current_stage",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason:
+        "screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason:
+        "screening_question_answers,screening_question_answers.question,job,reject_reason",
+    ScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason:
+        "screening_question_answers,screening_question_answers.question,reject_reason",
+    ScreeningQuestionAnswersQuestion: "screening_question_answers.question",
+    ScreeningQuestionAnswersQuestionCandidate: "screening_question_answers.question,candidate",
+    ScreeningQuestionAnswersQuestionCandidateCreditedTo: "screening_question_answers.question,candidate,credited_to",
+    ScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage:
+        "screening_question_answers.question,candidate,credited_to,current_stage",
+    ScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason:
+        "screening_question_answers.question,candidate,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason:
+        "screening_question_answers.question,candidate,credited_to,reject_reason",
+    ScreeningQuestionAnswersQuestionCandidateCurrentStage:
+        "screening_question_answers.question,candidate,current_stage",
+    ScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason:
+        "screening_question_answers.question,candidate,current_stage,reject_reason",
+    ScreeningQuestionAnswersQuestionCandidateJob: "screening_question_answers.question,candidate,job",
+    ScreeningQuestionAnswersQuestionCandidateJobCreditedTo:
+        "screening_question_answers.question,candidate,job,credited_to",
+    ScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage:
+        "screening_question_answers.question,candidate,job,credited_to,current_stage",
+    ScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason:
+        "screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason:
+        "screening_question_answers.question,candidate,job,credited_to,reject_reason",
+    ScreeningQuestionAnswersQuestionCandidateJobCurrentStage:
+        "screening_question_answers.question,candidate,job,current_stage",
+    ScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason:
+        "screening_question_answers.question,candidate,job,current_stage,reject_reason",
+    ScreeningQuestionAnswersQuestionCandidateJobRejectReason:
+        "screening_question_answers.question,candidate,job,reject_reason",
+    ScreeningQuestionAnswersQuestionCandidateRejectReason:
+        "screening_question_answers.question,candidate,reject_reason",
+    ScreeningQuestionAnswersQuestionCreditedTo: "screening_question_answers.question,credited_to",
+    ScreeningQuestionAnswersQuestionCreditedToCurrentStage:
+        "screening_question_answers.question,credited_to,current_stage",
+    ScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason:
+        "screening_question_answers.question,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersQuestionCreditedToRejectReason:
+        "screening_question_answers.question,credited_to,reject_reason",
+    ScreeningQuestionAnswersQuestionCurrentStage: "screening_question_answers.question,current_stage",
+    ScreeningQuestionAnswersQuestionCurrentStageRejectReason:
+        "screening_question_answers.question,current_stage,reject_reason",
+    ScreeningQuestionAnswersQuestionJob: "screening_question_answers.question,job",
+    ScreeningQuestionAnswersQuestionJobCreditedTo: "screening_question_answers.question,job,credited_to",
+    ScreeningQuestionAnswersQuestionJobCreditedToCurrentStage:
+        "screening_question_answers.question,job,credited_to,current_stage",
+    ScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason:
+        "screening_question_answers.question,job,credited_to,current_stage,reject_reason",
+    ScreeningQuestionAnswersQuestionJobCreditedToRejectReason:
+        "screening_question_answers.question,job,credited_to,reject_reason",
+    ScreeningQuestionAnswersQuestionJobCurrentStage: "screening_question_answers.question,job,current_stage",
+    ScreeningQuestionAnswersQuestionJobCurrentStageRejectReason:
+        "screening_question_answers.question,job,current_stage,reject_reason",
+    ScreeningQuestionAnswersQuestionJobRejectReason: "screening_question_answers.question,job,reject_reason",
+    ScreeningQuestionAnswersQuestionRejectReason: "screening_question_answers.question,reject_reason",
 } as const;

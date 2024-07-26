@@ -7,7 +7,7 @@
  *
  * ### Description
  *
- * The `Group` object is used to represent any subset of `User`s. This can extend to company domains as well.
+ * The `Group` object is used to represent any subset of `Users`. This can extend to company domains as well.
  *
  * ### Usage Example
  *

@@ -45,6 +45,7 @@ export const EventTypeEnum: core.serialization.Schema<serializers.ats.EventTypeE
         "ENABLED_MERGE_WEBHOOK",
         "DISABLED_MERGE_WEBHOOK",
         "MERGE_WEBHOOK_TARGET_CHANGED",
+        "END_USER_CREDENTIALS_ACCESSED",
     ]);
 
 export declare namespace EventTypeEnum {
@@ -85,5 +86,6 @@ export declare namespace EventTypeEnum {
         | "GENERATED_MAGIC_LINK"
         | "ENABLED_MERGE_WEBHOOK"
         | "DISABLED_MERGE_WEBHOOK"
-        | "MERGE_WEBHOOK_TARGET_CHANGED";
+        | "MERGE_WEBHOOK_TARGET_CHANGED"
+        | "END_USER_CREDENTIALS_ACCESSED";
 }

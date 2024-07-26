@@ -10,7 +10,7 @@ import * as Merge from "../../../../../..";
  *         endUserEmailAddress: "example@gmail.com",
  *         endUserOrganizationName: "Test Organization",
  *         endUserOriginId: "12345",
- *         categories: [Merge.ticketing.CategoriesEnum.Hris]
+ *         categories: [Merge.ticketing.CategoriesEnum.Hris, Merge.ticketing.CategoriesEnum.Ats]
  *     }
  */
 export interface EndUserDetailsRequest {
@@ -28,6 +28,8 @@ export interface EndUserDetailsRequest {
     linkExpiryMins?: number;
     /** Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link. */
     shouldCreateMagicLinkUrl?: boolean;
+    /** Whether to generate a Magic Link URL on the Admin Needed screen during the linking flow. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link. */
+    hideAdminMagicLink?: boolean;
     /** An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account. */
     commonModels?: Merge.ticketing.CommonModelScopesBodyRequest[];
     /** When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings. */

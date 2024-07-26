@@ -20,8 +20,8 @@ export interface Association {
     createdAt?: Date;
     /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
-    sourceObject?: Record<string, unknown>;
-    targetObject?: Record<string, unknown>;
+    sourceObject?: string;
+    targetObject?: string;
     /** The association type the association belongs to. */
     associationType?: Merge.crm.AssociationAssociationType;
 }

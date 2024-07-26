@@ -41,6 +41,10 @@ export interface IssuesListRequest {
      */
     lastIncidentTimeBefore?: Date;
     /**
+     * If provided, will only include issues pertaining to the linked account passed in.
+     */
+    linkedAccountId?: string;
+    /**
      * Number of results to return per page.
      */
     pageSize?: number;

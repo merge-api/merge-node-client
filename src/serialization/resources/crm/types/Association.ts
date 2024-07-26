@@ -10,14 +10,8 @@ export const Association: core.serialization.ObjectSchema<serializers.crm.Associ
     core.serialization.object({
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
-        sourceObject: core.serialization.property(
-            "source_object",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
-        ),
-        targetObject: core.serialization.property(
-            "target_object",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
-        ),
+        sourceObject: core.serialization.property("source_object", core.serialization.string().optional()),
+        targetObject: core.serialization.property("target_object", core.serialization.string().optional()),
         associationType: core.serialization.property(
             "association_type",
             core.serialization.lazy(async () => (await import("../../..")).crm.AssociationAssociationType).optional()
@@ -28,8 +22,8 @@ export declare namespace Association {
     interface Raw {
         created_at?: string | null;
         modified_at?: string | null;
-        source_object?: Record<string, unknown> | null;
-        target_object?: Record<string, unknown> | null;
+        source_object?: string | null;
+        target_object?: string | null;
         association_type?: serializers.crm.AssociationAssociationType.Raw | null;
     }
 }

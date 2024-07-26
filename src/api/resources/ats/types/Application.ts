@@ -36,6 +36,7 @@ export interface Application {
     source?: string;
     /** The user credited for this application. */
     creditedTo?: Merge.ats.ApplicationCreditedTo;
+    screeningQuestionAnswers?: Merge.ats.ApplicationScreeningQuestionAnswersItem[];
     /** The application's current stage. */
     currentStage?: Merge.ats.ApplicationCurrentStage;
     /** The application's reason for rejection. */

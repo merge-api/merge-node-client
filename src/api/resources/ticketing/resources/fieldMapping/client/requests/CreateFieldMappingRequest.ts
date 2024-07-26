@@ -7,7 +7,7 @@
  *     {
  *         targetFieldName: "example_target_field_name",
  *         targetFieldDescription: "this is a example description of the target field",
- *         remoteFieldTraversalPath: [],
+ *         remoteFieldTraversalPath: ["example_remote_field"],
  *         remoteMethod: "GET",
  *         remoteUrlPath: "/example-url-path",
  *         commonModelName: "ExampleCommonModel"

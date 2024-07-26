@@ -30,4 +30,6 @@ export interface EmailAddress {
      * - `OTHER` - OTHER
      */
     emailAddressType?: Merge.ats.EmailAddressEmailAddressType;
+    /** Indicates whether or not this object has been deleted in the third party platform. */
+    remoteWasDeleted?: boolean;
 }

@@ -8,7 +8,7 @@ export interface RemoteFieldApi {
     schema: Record<string, unknown>;
     remoteKeyName: string;
     remoteEndpointInfo: Merge.ticketing.RemoteEndpointInfo;
-    exampleValues: unknown[];
+    exampleValues?: unknown[];
     advancedMetadata?: Merge.ticketing.AdvancedMetadata;
     coverage?: Merge.ticketing.RemoteFieldApiCoverage;
 }

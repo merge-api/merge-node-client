@@ -14,6 +14,7 @@ export const Url: core.serialization.ObjectSchema<serializers.ats.Url.Raw, Merge
         "url_type",
         core.serialization.lazy(async () => (await import("../../..")).ats.UrlUrlType).optional()
     ),
+    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
 
 export declare namespace Url {
@@ -22,5 +23,6 @@ export declare namespace Url {
         modified_at?: string | null;
         value?: string | null;
         url_type?: serializers.ats.UrlUrlType.Raw | null;
+        remote_was_deleted?: boolean | null;
     }
 }

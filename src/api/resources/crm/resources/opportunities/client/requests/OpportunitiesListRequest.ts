@@ -58,6 +58,10 @@ export interface OpportunitiesListRequest {
      */
     pageSize?: number;
     /**
+     * If provided, will only return opportunities created in the third party platform after this datetime.
+     */
+    remoteCreatedAfter?: Date;
+    /**
      * Deprecated. Use show_enum_origins.
      */
     remoteFields?: "status";

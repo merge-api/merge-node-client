@@ -22,6 +22,7 @@ export interface Tag {
     createdAt?: Date;
     /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
+    id?: string;
     /** The tag's name. */
     name?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. */

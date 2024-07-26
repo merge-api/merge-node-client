@@ -46,7 +46,7 @@ export interface EmploymentsListRequest {
      */
     modifiedBefore?: Date;
     /**
-     * Overrides the default ordering for this endpoint.
+     * Overrides the default ordering for this endpoint. Possible values include: effective_date, -effective_date.
      */
     orderBy?: Merge.hris.EmploymentsListRequestOrderBy;
     /**

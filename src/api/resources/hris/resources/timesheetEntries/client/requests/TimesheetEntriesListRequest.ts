@@ -22,15 +22,15 @@ export interface TimesheetEntriesListRequest {
      */
     cursor?: string;
     /**
-     * If provided, will only return employee payroll runs for this employee.
+     * If provided, will only return timesheet entries for this employee.
      */
     employeeId?: string;
     /**
-     * If provided, will only return employee payroll runs ended after this datetime.
+     * If provided, will only return timesheet entries ended after this datetime.
      */
     endedAfter?: string;
     /**
-     * If provided, will only return employee payroll runs ended before this datetime.
+     * If provided, will only return timesheet entries ended before this datetime.
      */
     endedBefore?: string;
     /**
@@ -62,11 +62,11 @@ export interface TimesheetEntriesListRequest {
      */
     remoteId?: string;
     /**
-     * If provided, will only return employee payroll runs started after this datetime.
+     * If provided, will only return timesheet entries started after this datetime.
      */
     startedAfter?: string;
     /**
-     * If provided, will only return employee payroll runs started before this datetime.
+     * If provided, will only return timesheet entries started before this datetime.
      */
     startedBefore?: string;
 }

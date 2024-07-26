@@ -45,4 +45,6 @@ export interface ScreeningQuestion {
     /** Whether or not the screening question is required. */
     required?: boolean;
     options?: unknown[];
+    /** Indicates whether or not this object has been deleted in the third party platform. */
+    remoteWasDeleted?: boolean;
 }

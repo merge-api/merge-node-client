@@ -20,6 +20,7 @@ export const ScreeningQuestion: core.serialization.ObjectSchema<
     type: core.serialization.lazy(async () => (await import("../../..")).ats.ScreeningQuestionType).optional(),
     required: core.serialization.boolean().optional(),
     options: core.serialization.list(core.serialization.unknown()).optional(),
+    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
 
 export declare namespace ScreeningQuestion {
@@ -34,5 +35,6 @@ export declare namespace ScreeningQuestion {
         type?: serializers.ats.ScreeningQuestionType.Raw | null;
         required?: boolean | null;
         options?: unknown[] | null;
+        remote_was_deleted?: boolean | null;
     }
 }
