@@ -10,7 +10,7 @@ import * as Merge from "../../../../../..";
  *         endUserEmailAddress: "example@gmail.com",
  *         endUserOrganizationName: "Test Organization",
  *         endUserOriginId: "12345",
- *         categories: [Merge.accounting.CategoriesEnum.Hris]
+ *         categories: [Merge.accounting.CategoriesEnum.Hris, Merge.accounting.CategoriesEnum.Ats]
  *     }
  */
 export interface EndUserDetailsRequest {

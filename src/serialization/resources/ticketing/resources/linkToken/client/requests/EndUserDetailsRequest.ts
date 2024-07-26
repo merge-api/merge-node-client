@@ -22,6 +22,7 @@ export const EndUserDetailsRequest: core.serialization.Schema<
         "should_create_magic_link_url",
         core.serialization.boolean().optional()
     ),
+    hideAdminMagicLink: core.serialization.property("hide_admin_magic_link", core.serialization.boolean().optional()),
     commonModels: core.serialization.property(
         "common_models",
         core.serialization
@@ -65,6 +66,7 @@ export declare namespace EndUserDetailsRequest {
         integration?: string | null;
         link_expiry_mins?: number | null;
         should_create_magic_link_url?: boolean | null;
+        hide_admin_magic_link?: boolean | null;
         common_models?: serializers.ticketing.CommonModelScopesBodyRequest.Raw[] | null;
         category_common_model_scopes?: Record<
             string,

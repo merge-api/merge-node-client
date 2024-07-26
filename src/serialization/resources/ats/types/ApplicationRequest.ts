@@ -26,6 +26,16 @@ export const ApplicationRequest: core.serialization.ObjectSchema<
         "credited_to",
         core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationRequestCreditedTo).optional()
     ),
+    screeningQuestionAnswers: core.serialization.property(
+        "screening_question_answers",
+        core.serialization
+            .list(
+                core.serialization.lazy(
+                    async () => (await import("../../..")).ats.ApplicationRequestScreeningQuestionAnswersItem
+                )
+            )
+            .optional()
+    ),
     currentStage: core.serialization.property(
         "current_stage",
         core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationRequestCurrentStage).optional()
@@ -54,6 +64,7 @@ export declare namespace ApplicationRequest {
         offers?: (serializers.ats.ApplicationRequestOffersItem.Raw | null | undefined)[] | null;
         source?: string | null;
         credited_to?: serializers.ats.ApplicationRequestCreditedTo.Raw | null;
+        screening_question_answers?: serializers.ats.ApplicationRequestScreeningQuestionAnswersItem.Raw[] | null;
         current_stage?: serializers.ats.ApplicationRequestCurrentStage.Raw | null;
         reject_reason?: serializers.ats.ApplicationRequestRejectReason.Raw | null;
         remote_template_id?: string | null;

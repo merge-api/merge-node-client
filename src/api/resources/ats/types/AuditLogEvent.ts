@@ -62,6 +62,7 @@ export interface AuditLogEvent {
      * - `ENABLED_MERGE_WEBHOOK` - ENABLED_MERGE_WEBHOOK
      * - `DISABLED_MERGE_WEBHOOK` - DISABLED_MERGE_WEBHOOK
      * - `MERGE_WEBHOOK_TARGET_CHANGED` - MERGE_WEBHOOK_TARGET_CHANGED
+     * - `END_USER_CREDENTIALS_ACCESSED` - END_USER_CREDENTIALS_ACCESSED
      */
     eventType: Merge.ats.AuditLogEventEventType;
     eventDescription: string;

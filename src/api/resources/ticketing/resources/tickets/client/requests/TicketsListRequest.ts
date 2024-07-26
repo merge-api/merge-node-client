@@ -139,4 +139,8 @@ export interface TicketsListRequest {
      * If provided, will only return tickets of this type.
      */
     ticketType?: string;
+    /**
+     * If provided, will only return tickets where the URL matches or contains the substring
+     */
+    ticketUrl?: string;
 }

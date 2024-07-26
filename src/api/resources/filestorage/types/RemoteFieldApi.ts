@@ -8,7 +8,7 @@ export interface RemoteFieldApi {
     schema: Record<string, unknown>;
     remoteKeyName: string;
     remoteEndpointInfo: Merge.filestorage.RemoteEndpointInfo;
-    exampleValues: unknown[];
+    exampleValues?: unknown[];
     advancedMetadata?: Merge.filestorage.AdvancedMetadata;
     coverage?: Merge.filestorage.RemoteFieldApiCoverage;
 }

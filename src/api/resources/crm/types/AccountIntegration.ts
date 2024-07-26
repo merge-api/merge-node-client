@@ -7,6 +7,8 @@ import * as Merge from "../../..";
 export interface AccountIntegration {
     /** Company name. */
     name: string;
+    /** Optional. This shortened name appears in places with limited space, usually in conjunction with the platform's logo (e.g., Merge Link menu).<br><br>Example: <i>Workforce Now (in lieu of ADP Workforce Now), SuccessFactors (in lieu of SAP SuccessFactors)</i> */
+    abbreviatedName?: string;
     /** Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris]. */
     categories?: Merge.crm.CategoriesEnum[];
     /** Company logo in rectangular shape. <b>Upload an image with a clear background.</b> */

@@ -51,7 +51,7 @@ export class RegenerateKey {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             body: await serializers.accounting.RemoteKeyForRegenerationRequest.jsonOrThrow(request, {
@@ -65,6 +65,7 @@ export class RegenerateKey {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }

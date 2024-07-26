@@ -16,7 +16,10 @@ export const RemoteFieldApi: core.serialization.ObjectSchema<
         "remote_endpoint_info",
         core.serialization.lazyObject(async () => (await import("../../..")).ats.RemoteEndpointInfo)
     ),
-    exampleValues: core.serialization.property("example_values", core.serialization.list(core.serialization.unknown())),
+    exampleValues: core.serialization.property(
+        "example_values",
+        core.serialization.list(core.serialization.unknown()).optional()
+    ),
     advancedMetadata: core.serialization.property(
         "advanced_metadata",
         core.serialization.lazyObject(async () => (await import("../../..")).ats.AdvancedMetadata).optional()
@@ -29,7 +32,7 @@ export declare namespace RemoteFieldApi {
         schema: Record<string, unknown>;
         remote_key_name: string;
         remote_endpoint_info: serializers.ats.RemoteEndpointInfo.Raw;
-        example_values: unknown[];
+        example_values?: unknown[] | null;
         advanced_metadata?: serializers.ats.AdvancedMetadata.Raw | null;
         coverage?: serializers.ats.RemoteFieldApiCoverage.Raw | null;
     }

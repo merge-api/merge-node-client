@@ -23,4 +23,6 @@ export interface ScreeningQuestionOption {
     modifiedAt?: Date;
     /** Available response options */
     label?: string;
+    /** Indicates whether or not this object has been deleted in the third party platform. */
+    remoteWasDeleted?: boolean;
 }

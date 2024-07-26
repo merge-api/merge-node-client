@@ -8,7 +8,7 @@ export interface RemoteFieldApi {
     schema: Record<string, unknown>;
     remoteKeyName: string;
     remoteEndpointInfo: Merge.hris.RemoteEndpointInfo;
-    exampleValues: unknown[];
+    exampleValues?: unknown[];
     advancedMetadata?: Merge.hris.AdvancedMetadata;
     coverage?: Merge.hris.RemoteFieldApiCoverage;
 }

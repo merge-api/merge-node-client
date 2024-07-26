@@ -33,7 +33,7 @@ export class LinkToken {
      *         endUserEmailAddress: "example@gmail.com",
      *         endUserOrganizationName: "Test Organization",
      *         endUserOriginId: "12345",
-     *         categories: [Merge.ticketing.CategoriesEnum.Hris]
+     *         categories: [Merge.ticketing.CategoriesEnum.Hris, Merge.ticketing.CategoriesEnum.Ats]
      *     })
      */
     public async create(
@@ -54,7 +54,7 @@ export class LinkToken {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             body: await serializers.ticketing.EndUserDetailsRequest.jsonOrThrow(request, {
@@ -68,6 +68,7 @@ export class LinkToken {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }

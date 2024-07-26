@@ -67,7 +67,7 @@ export class AccountingPeriods {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -79,6 +79,7 @@ export class AccountingPeriods {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -136,7 +137,7 @@ export class AccountingPeriods {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -148,6 +149,7 @@ export class AccountingPeriods {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }

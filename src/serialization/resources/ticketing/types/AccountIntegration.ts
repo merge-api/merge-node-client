@@ -11,6 +11,7 @@ export const AccountIntegration: core.serialization.ObjectSchema<
     Merge.ticketing.AccountIntegration
 > = core.serialization.object({
     name: core.serialization.string(),
+    abbreviatedName: core.serialization.property("abbreviated_name", core.serialization.string().optional()),
     categories: core.serialization
         .list(core.serialization.lazy(async () => (await import("../../..")).ticketing.CategoriesEnum))
         .optional(),
@@ -35,6 +36,7 @@ export const AccountIntegration: core.serialization.ObjectSchema<
 export declare namespace AccountIntegration {
     interface Raw {
         name: string;
+        abbreviated_name?: string | null;
         categories?: serializers.ticketing.CategoriesEnum.Raw[] | null;
         image?: string | null;
         square_image?: string | null;

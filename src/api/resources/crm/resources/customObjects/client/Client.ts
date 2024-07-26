@@ -103,7 +103,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -115,6 +115,7 @@ export class CustomObjects {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -147,7 +148,9 @@ export class CustomObjects {
      * @example
      *     await merge.crm.customObjects.customObjectClassesCustomObjectsCreate("custom_object_class_id", {
      *         model: {
-     *             fields: {}
+     *             fields: {
+     *                 "test_field": "hello"
+     *             }
      *         }
      *     })
      */
@@ -180,7 +183,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -195,6 +198,7 @@ export class CustomObjects {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -257,7 +261,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -269,6 +273,7 @@ export class CustomObjects {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }
@@ -319,7 +324,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -330,6 +335,97 @@ export class CustomObjects {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError();
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Returns a list of `RemoteFieldClass` objects.
+     *
+     * @example
+     *     await merge.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClassesList({})
+     */
+    public async customObjectClassesCustomObjectsRemoteFieldClassesList(
+        request: Merge.crm.CustomObjectClassesCustomObjectsRemoteFieldClassesListRequest = {},
+        requestOptions?: CustomObjects.RequestOptions
+    ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
+        const { cursor, includeDeletedData, includeRemoteData, includeRemoteFields, isCommonModelField, pageSize } =
+            request;
+        const _queryParams: Record<string, string | string[]> = {};
+        if (cursor != null) {
+            _queryParams["cursor"] = cursor;
+        }
+
+        if (includeDeletedData != null) {
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
+        }
+
+        if (includeRemoteData != null) {
+            _queryParams["include_remote_data"] = includeRemoteData.toString();
+        }
+
+        if (includeRemoteFields != null) {
+            _queryParams["include_remote_fields"] = includeRemoteFields.toString();
+        }
+
+        if (isCommonModelField != null) {
+            _queryParams["is_common_model_field"] = isCommonModelField.toString();
+        }
+
+        if (pageSize != null) {
+            _queryParams["page_size"] = pageSize.toString();
+        }
+
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                "crm/v1/custom-object-classes/custom-objects/remote-field-classes"
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.0.9",
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
                 breadcrumbsPrefix: ["response"],
             });
         }

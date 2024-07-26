@@ -72,7 +72,199 @@ export const ApplicationsRetrieveRequestExpand: core.serialization.Schema<
     "offers,job,current_stage,reject_reason",
     "offers,job,reject_reason",
     "offers,reject_reason",
+    "offers,screening_question_answers",
+    "offers,screening_question_answers,candidate",
+    "offers,screening_question_answers,candidate,credited_to",
+    "offers,screening_question_answers,candidate,credited_to,current_stage",
+    "offers,screening_question_answers,candidate,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers,candidate,credited_to,reject_reason",
+    "offers,screening_question_answers,candidate,current_stage",
+    "offers,screening_question_answers,candidate,current_stage,reject_reason",
+    "offers,screening_question_answers,candidate,job",
+    "offers,screening_question_answers,candidate,job,credited_to",
+    "offers,screening_question_answers,candidate,job,credited_to,current_stage",
+    "offers,screening_question_answers,candidate,job,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers,candidate,job,credited_to,reject_reason",
+    "offers,screening_question_answers,candidate,job,current_stage",
+    "offers,screening_question_answers,candidate,job,current_stage,reject_reason",
+    "offers,screening_question_answers,candidate,job,reject_reason",
+    "offers,screening_question_answers,candidate,reject_reason",
+    "offers,screening_question_answers,credited_to",
+    "offers,screening_question_answers,credited_to,current_stage",
+    "offers,screening_question_answers,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers,credited_to,reject_reason",
+    "offers,screening_question_answers,current_stage",
+    "offers,screening_question_answers,current_stage,reject_reason",
+    "offers,screening_question_answers,job",
+    "offers,screening_question_answers,job,credited_to",
+    "offers,screening_question_answers,job,credited_to,current_stage",
+    "offers,screening_question_answers,job,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers,job,credited_to,reject_reason",
+    "offers,screening_question_answers,job,current_stage",
+    "offers,screening_question_answers,job,current_stage,reject_reason",
+    "offers,screening_question_answers,job,reject_reason",
+    "offers,screening_question_answers,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question",
+    "offers,screening_question_answers,screening_question_answers.question,candidate",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,job",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,job,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,candidate,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,credited_to",
+    "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage",
+    "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,credited_to,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,current_stage",
+    "offers,screening_question_answers,screening_question_answers.question,current_stage,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,job",
+    "offers,screening_question_answers,screening_question_answers.question,job,credited_to",
+    "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage",
+    "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,job,current_stage",
+    "offers,screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,job,reject_reason",
+    "offers,screening_question_answers,screening_question_answers.question,reject_reason",
+    "offers,screening_question_answers.question",
+    "offers,screening_question_answers.question,candidate",
+    "offers,screening_question_answers.question,candidate,credited_to",
+    "offers,screening_question_answers.question,candidate,credited_to,current_stage",
+    "offers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers.question,candidate,credited_to,reject_reason",
+    "offers,screening_question_answers.question,candidate,current_stage",
+    "offers,screening_question_answers.question,candidate,current_stage,reject_reason",
+    "offers,screening_question_answers.question,candidate,job",
+    "offers,screening_question_answers.question,candidate,job,credited_to",
+    "offers,screening_question_answers.question,candidate,job,credited_to,current_stage",
+    "offers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers.question,candidate,job,credited_to,reject_reason",
+    "offers,screening_question_answers.question,candidate,job,current_stage",
+    "offers,screening_question_answers.question,candidate,job,current_stage,reject_reason",
+    "offers,screening_question_answers.question,candidate,job,reject_reason",
+    "offers,screening_question_answers.question,candidate,reject_reason",
+    "offers,screening_question_answers.question,credited_to",
+    "offers,screening_question_answers.question,credited_to,current_stage",
+    "offers,screening_question_answers.question,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers.question,credited_to,reject_reason",
+    "offers,screening_question_answers.question,current_stage",
+    "offers,screening_question_answers.question,current_stage,reject_reason",
+    "offers,screening_question_answers.question,job",
+    "offers,screening_question_answers.question,job,credited_to",
+    "offers,screening_question_answers.question,job,credited_to,current_stage",
+    "offers,screening_question_answers.question,job,credited_to,current_stage,reject_reason",
+    "offers,screening_question_answers.question,job,credited_to,reject_reason",
+    "offers,screening_question_answers.question,job,current_stage",
+    "offers,screening_question_answers.question,job,current_stage,reject_reason",
+    "offers,screening_question_answers.question,job,reject_reason",
+    "offers,screening_question_answers.question,reject_reason",
     "reject_reason",
+    "screening_question_answers",
+    "screening_question_answers,candidate",
+    "screening_question_answers,candidate,credited_to",
+    "screening_question_answers,candidate,credited_to,current_stage",
+    "screening_question_answers,candidate,credited_to,current_stage,reject_reason",
+    "screening_question_answers,candidate,credited_to,reject_reason",
+    "screening_question_answers,candidate,current_stage",
+    "screening_question_answers,candidate,current_stage,reject_reason",
+    "screening_question_answers,candidate,job",
+    "screening_question_answers,candidate,job,credited_to",
+    "screening_question_answers,candidate,job,credited_to,current_stage",
+    "screening_question_answers,candidate,job,credited_to,current_stage,reject_reason",
+    "screening_question_answers,candidate,job,credited_to,reject_reason",
+    "screening_question_answers,candidate,job,current_stage",
+    "screening_question_answers,candidate,job,current_stage,reject_reason",
+    "screening_question_answers,candidate,job,reject_reason",
+    "screening_question_answers,candidate,reject_reason",
+    "screening_question_answers,credited_to",
+    "screening_question_answers,credited_to,current_stage",
+    "screening_question_answers,credited_to,current_stage,reject_reason",
+    "screening_question_answers,credited_to,reject_reason",
+    "screening_question_answers,current_stage",
+    "screening_question_answers,current_stage,reject_reason",
+    "screening_question_answers,job",
+    "screening_question_answers,job,credited_to",
+    "screening_question_answers,job,credited_to,current_stage",
+    "screening_question_answers,job,credited_to,current_stage,reject_reason",
+    "screening_question_answers,job,credited_to,reject_reason",
+    "screening_question_answers,job,current_stage",
+    "screening_question_answers,job,current_stage,reject_reason",
+    "screening_question_answers,job,reject_reason",
+    "screening_question_answers,reject_reason",
+    "screening_question_answers,screening_question_answers.question",
+    "screening_question_answers,screening_question_answers.question,candidate",
+    "screening_question_answers,screening_question_answers.question,candidate,credited_to",
+    "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage",
+    "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason",
+    "screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason",
+    "screening_question_answers,screening_question_answers.question,candidate,current_stage",
+    "screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason",
+    "screening_question_answers,screening_question_answers.question,candidate,job",
+    "screening_question_answers,screening_question_answers.question,candidate,job,credited_to",
+    "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage",
+    "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason",
+    "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason",
+    "screening_question_answers,screening_question_answers.question,candidate,job,current_stage",
+    "screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason",
+    "screening_question_answers,screening_question_answers.question,candidate,job,reject_reason",
+    "screening_question_answers,screening_question_answers.question,candidate,reject_reason",
+    "screening_question_answers,screening_question_answers.question,credited_to",
+    "screening_question_answers,screening_question_answers.question,credited_to,current_stage",
+    "screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason",
+    "screening_question_answers,screening_question_answers.question,credited_to,reject_reason",
+    "screening_question_answers,screening_question_answers.question,current_stage",
+    "screening_question_answers,screening_question_answers.question,current_stage,reject_reason",
+    "screening_question_answers,screening_question_answers.question,job",
+    "screening_question_answers,screening_question_answers.question,job,credited_to",
+    "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage",
+    "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason",
+    "screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason",
+    "screening_question_answers,screening_question_answers.question,job,current_stage",
+    "screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason",
+    "screening_question_answers,screening_question_answers.question,job,reject_reason",
+    "screening_question_answers,screening_question_answers.question,reject_reason",
+    "screening_question_answers.question",
+    "screening_question_answers.question,candidate",
+    "screening_question_answers.question,candidate,credited_to",
+    "screening_question_answers.question,candidate,credited_to,current_stage",
+    "screening_question_answers.question,candidate,credited_to,current_stage,reject_reason",
+    "screening_question_answers.question,candidate,credited_to,reject_reason",
+    "screening_question_answers.question,candidate,current_stage",
+    "screening_question_answers.question,candidate,current_stage,reject_reason",
+    "screening_question_answers.question,candidate,job",
+    "screening_question_answers.question,candidate,job,credited_to",
+    "screening_question_answers.question,candidate,job,credited_to,current_stage",
+    "screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason",
+    "screening_question_answers.question,candidate,job,credited_to,reject_reason",
+    "screening_question_answers.question,candidate,job,current_stage",
+    "screening_question_answers.question,candidate,job,current_stage,reject_reason",
+    "screening_question_answers.question,candidate,job,reject_reason",
+    "screening_question_answers.question,candidate,reject_reason",
+    "screening_question_answers.question,credited_to",
+    "screening_question_answers.question,credited_to,current_stage",
+    "screening_question_answers.question,credited_to,current_stage,reject_reason",
+    "screening_question_answers.question,credited_to,reject_reason",
+    "screening_question_answers.question,current_stage",
+    "screening_question_answers.question,current_stage,reject_reason",
+    "screening_question_answers.question,job",
+    "screening_question_answers.question,job,credited_to",
+    "screening_question_answers.question,job,credited_to,current_stage",
+    "screening_question_answers.question,job,credited_to,current_stage,reject_reason",
+    "screening_question_answers.question,job,credited_to,reject_reason",
+    "screening_question_answers.question,job,current_stage",
+    "screening_question_answers.question,job,current_stage,reject_reason",
+    "screening_question_answers.question,job,reject_reason",
+    "screening_question_answers.question,reject_reason",
 ]);
 
 export declare namespace ApplicationsRetrieveRequestExpand {
@@ -139,5 +331,197 @@ export declare namespace ApplicationsRetrieveRequestExpand {
         | "offers,job,current_stage,reject_reason"
         | "offers,job,reject_reason"
         | "offers,reject_reason"
-        | "reject_reason";
+        | "offers,screening_question_answers"
+        | "offers,screening_question_answers,candidate"
+        | "offers,screening_question_answers,candidate,credited_to"
+        | "offers,screening_question_answers,candidate,credited_to,current_stage"
+        | "offers,screening_question_answers,candidate,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers,candidate,credited_to,reject_reason"
+        | "offers,screening_question_answers,candidate,current_stage"
+        | "offers,screening_question_answers,candidate,current_stage,reject_reason"
+        | "offers,screening_question_answers,candidate,job"
+        | "offers,screening_question_answers,candidate,job,credited_to"
+        | "offers,screening_question_answers,candidate,job,credited_to,current_stage"
+        | "offers,screening_question_answers,candidate,job,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers,candidate,job,credited_to,reject_reason"
+        | "offers,screening_question_answers,candidate,job,current_stage"
+        | "offers,screening_question_answers,candidate,job,current_stage,reject_reason"
+        | "offers,screening_question_answers,candidate,job,reject_reason"
+        | "offers,screening_question_answers,candidate,reject_reason"
+        | "offers,screening_question_answers,credited_to"
+        | "offers,screening_question_answers,credited_to,current_stage"
+        | "offers,screening_question_answers,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers,credited_to,reject_reason"
+        | "offers,screening_question_answers,current_stage"
+        | "offers,screening_question_answers,current_stage,reject_reason"
+        | "offers,screening_question_answers,job"
+        | "offers,screening_question_answers,job,credited_to"
+        | "offers,screening_question_answers,job,credited_to,current_stage"
+        | "offers,screening_question_answers,job,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers,job,credited_to,reject_reason"
+        | "offers,screening_question_answers,job,current_stage"
+        | "offers,screening_question_answers,job,current_stage,reject_reason"
+        | "offers,screening_question_answers,job,reject_reason"
+        | "offers,screening_question_answers,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,job"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,job,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,candidate,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,credited_to"
+        | "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage"
+        | "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,credited_to,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,current_stage"
+        | "offers,screening_question_answers,screening_question_answers.question,current_stage,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,job"
+        | "offers,screening_question_answers,screening_question_answers.question,job,credited_to"
+        | "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage"
+        | "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,job,current_stage"
+        | "offers,screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,job,reject_reason"
+        | "offers,screening_question_answers,screening_question_answers.question,reject_reason"
+        | "offers,screening_question_answers.question"
+        | "offers,screening_question_answers.question,candidate"
+        | "offers,screening_question_answers.question,candidate,credited_to"
+        | "offers,screening_question_answers.question,candidate,credited_to,current_stage"
+        | "offers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers.question,candidate,credited_to,reject_reason"
+        | "offers,screening_question_answers.question,candidate,current_stage"
+        | "offers,screening_question_answers.question,candidate,current_stage,reject_reason"
+        | "offers,screening_question_answers.question,candidate,job"
+        | "offers,screening_question_answers.question,candidate,job,credited_to"
+        | "offers,screening_question_answers.question,candidate,job,credited_to,current_stage"
+        | "offers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers.question,candidate,job,credited_to,reject_reason"
+        | "offers,screening_question_answers.question,candidate,job,current_stage"
+        | "offers,screening_question_answers.question,candidate,job,current_stage,reject_reason"
+        | "offers,screening_question_answers.question,candidate,job,reject_reason"
+        | "offers,screening_question_answers.question,candidate,reject_reason"
+        | "offers,screening_question_answers.question,credited_to"
+        | "offers,screening_question_answers.question,credited_to,current_stage"
+        | "offers,screening_question_answers.question,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers.question,credited_to,reject_reason"
+        | "offers,screening_question_answers.question,current_stage"
+        | "offers,screening_question_answers.question,current_stage,reject_reason"
+        | "offers,screening_question_answers.question,job"
+        | "offers,screening_question_answers.question,job,credited_to"
+        | "offers,screening_question_answers.question,job,credited_to,current_stage"
+        | "offers,screening_question_answers.question,job,credited_to,current_stage,reject_reason"
+        | "offers,screening_question_answers.question,job,credited_to,reject_reason"
+        | "offers,screening_question_answers.question,job,current_stage"
+        | "offers,screening_question_answers.question,job,current_stage,reject_reason"
+        | "offers,screening_question_answers.question,job,reject_reason"
+        | "offers,screening_question_answers.question,reject_reason"
+        | "reject_reason"
+        | "screening_question_answers"
+        | "screening_question_answers,candidate"
+        | "screening_question_answers,candidate,credited_to"
+        | "screening_question_answers,candidate,credited_to,current_stage"
+        | "screening_question_answers,candidate,credited_to,current_stage,reject_reason"
+        | "screening_question_answers,candidate,credited_to,reject_reason"
+        | "screening_question_answers,candidate,current_stage"
+        | "screening_question_answers,candidate,current_stage,reject_reason"
+        | "screening_question_answers,candidate,job"
+        | "screening_question_answers,candidate,job,credited_to"
+        | "screening_question_answers,candidate,job,credited_to,current_stage"
+        | "screening_question_answers,candidate,job,credited_to,current_stage,reject_reason"
+        | "screening_question_answers,candidate,job,credited_to,reject_reason"
+        | "screening_question_answers,candidate,job,current_stage"
+        | "screening_question_answers,candidate,job,current_stage,reject_reason"
+        | "screening_question_answers,candidate,job,reject_reason"
+        | "screening_question_answers,candidate,reject_reason"
+        | "screening_question_answers,credited_to"
+        | "screening_question_answers,credited_to,current_stage"
+        | "screening_question_answers,credited_to,current_stage,reject_reason"
+        | "screening_question_answers,credited_to,reject_reason"
+        | "screening_question_answers,current_stage"
+        | "screening_question_answers,current_stage,reject_reason"
+        | "screening_question_answers,job"
+        | "screening_question_answers,job,credited_to"
+        | "screening_question_answers,job,credited_to,current_stage"
+        | "screening_question_answers,job,credited_to,current_stage,reject_reason"
+        | "screening_question_answers,job,credited_to,reject_reason"
+        | "screening_question_answers,job,current_stage"
+        | "screening_question_answers,job,current_stage,reject_reason"
+        | "screening_question_answers,job,reject_reason"
+        | "screening_question_answers,reject_reason"
+        | "screening_question_answers,screening_question_answers.question"
+        | "screening_question_answers,screening_question_answers.question,candidate"
+        | "screening_question_answers,screening_question_answers.question,candidate,credited_to"
+        | "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage"
+        | "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,candidate,current_stage"
+        | "screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,candidate,job"
+        | "screening_question_answers,screening_question_answers.question,candidate,job,credited_to"
+        | "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage"
+        | "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,candidate,job,current_stage"
+        | "screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,candidate,job,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,candidate,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,credited_to"
+        | "screening_question_answers,screening_question_answers.question,credited_to,current_stage"
+        | "screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,credited_to,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,current_stage"
+        | "screening_question_answers,screening_question_answers.question,current_stage,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,job"
+        | "screening_question_answers,screening_question_answers.question,job,credited_to"
+        | "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage"
+        | "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,job,current_stage"
+        | "screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,job,reject_reason"
+        | "screening_question_answers,screening_question_answers.question,reject_reason"
+        | "screening_question_answers.question"
+        | "screening_question_answers.question,candidate"
+        | "screening_question_answers.question,candidate,credited_to"
+        | "screening_question_answers.question,candidate,credited_to,current_stage"
+        | "screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"
+        | "screening_question_answers.question,candidate,credited_to,reject_reason"
+        | "screening_question_answers.question,candidate,current_stage"
+        | "screening_question_answers.question,candidate,current_stage,reject_reason"
+        | "screening_question_answers.question,candidate,job"
+        | "screening_question_answers.question,candidate,job,credited_to"
+        | "screening_question_answers.question,candidate,job,credited_to,current_stage"
+        | "screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"
+        | "screening_question_answers.question,candidate,job,credited_to,reject_reason"
+        | "screening_question_answers.question,candidate,job,current_stage"
+        | "screening_question_answers.question,candidate,job,current_stage,reject_reason"
+        | "screening_question_answers.question,candidate,job,reject_reason"
+        | "screening_question_answers.question,candidate,reject_reason"
+        | "screening_question_answers.question,credited_to"
+        | "screening_question_answers.question,credited_to,current_stage"
+        | "screening_question_answers.question,credited_to,current_stage,reject_reason"
+        | "screening_question_answers.question,credited_to,reject_reason"
+        | "screening_question_answers.question,current_stage"
+        | "screening_question_answers.question,current_stage,reject_reason"
+        | "screening_question_answers.question,job"
+        | "screening_question_answers.question,job,credited_to"
+        | "screening_question_answers.question,job,credited_to,current_stage"
+        | "screening_question_answers.question,job,credited_to,current_stage,reject_reason"
+        | "screening_question_answers.question,job,credited_to,reject_reason"
+        | "screening_question_answers.question,job,current_stage"
+        | "screening_question_answers.question,job,current_stage,reject_reason"
+        | "screening_question_answers.question,job,reject_reason"
+        | "screening_question_answers.question,reject_reason";
 }

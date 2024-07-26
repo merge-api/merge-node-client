@@ -15,6 +15,7 @@ export const EmailAddress: core.serialization.ObjectSchema<serializers.ats.Email
             "email_address_type",
             core.serialization.lazy(async () => (await import("../../..")).ats.EmailAddressEmailAddressType).optional()
         ),
+        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     });
 
 export declare namespace EmailAddress {
@@ -23,5 +24,6 @@ export declare namespace EmailAddress {
         modified_at?: string | null;
         value?: string | null;
         email_address_type?: serializers.ats.EmailAddressEmailAddressType.Raw | null;
+        remote_was_deleted?: boolean | null;
     }
 }

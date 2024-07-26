@@ -12,12 +12,12 @@ export const RemoteField: core.serialization.ObjectSchema<serializers.crm.Remote
             "remote_field_class",
             core.serialization.lazy(async () => (await import("../../..")).crm.RemoteFieldRemoteFieldClass)
         ),
-        value: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+        value: core.serialization.unknown().optional(),
     });
 
 export declare namespace RemoteField {
     interface Raw {
         remote_field_class: serializers.crm.RemoteFieldRemoteFieldClass.Raw;
-        value?: Record<string, unknown> | null;
+        value?: unknown | null;
     }
 }

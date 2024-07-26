@@ -57,7 +57,7 @@ export interface BankInfoListRequest {
      */
     modifiedBefore?: Date;
     /**
-     * Overrides the default ordering for this endpoint.
+     * Overrides the default ordering for this endpoint. Possible values include: remote_created_at, -remote_created_at.
      */
     orderBy?: Merge.hris.BankInfoListRequestOrderBy;
     /**

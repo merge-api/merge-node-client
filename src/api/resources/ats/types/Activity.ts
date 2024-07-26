@@ -47,7 +47,6 @@ export interface Activity {
      * - `PRIVATE` - PRIVATE
      */
     visibility?: Merge.ats.ActivityVisibility;
-    /** The activity’s candidate. */
     candidate?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. */
     remoteWasDeleted?: boolean;

@@ -34,4 +34,6 @@ export interface Url {
      * - `JOB_POSTING` - JOB_POSTING
      */
     urlType?: Merge.ats.UrlUrlType;
+    /** Indicates whether or not this object has been deleted in the third party platform. */
+    remoteWasDeleted?: boolean;
 }

@@ -24,6 +24,16 @@ export const Application: core.serialization.ObjectSchema<serializers.ats.Applic
             "credited_to",
             core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationCreditedTo).optional()
         ),
+        screeningQuestionAnswers: core.serialization.property(
+            "screening_question_answers",
+            core.serialization
+                .list(
+                    core.serialization.lazy(
+                        async () => (await import("../../..")).ats.ApplicationScreeningQuestionAnswersItem
+                    )
+                )
+                .optional()
+        ),
         currentStage: core.serialization.property(
             "current_stage",
             core.serialization.lazy(async () => (await import("../../..")).ats.ApplicationCurrentStage).optional()
@@ -58,6 +68,7 @@ export declare namespace Application {
         offers?: (serializers.ats.ApplicationOffersItem.Raw | null | undefined)[] | null;
         source?: string | null;
         credited_to?: serializers.ats.ApplicationCreditedTo.Raw | null;
+        screening_question_answers?: serializers.ats.ApplicationScreeningQuestionAnswersItem.Raw[] | null;
         current_stage?: serializers.ats.ApplicationCurrentStage.Raw | null;
         reject_reason?: serializers.ats.ApplicationRejectReason.Raw | null;
         remote_was_deleted?: boolean | null;
