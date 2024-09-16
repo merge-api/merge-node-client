@@ -30,4 +30,5 @@ export interface AccountDetailsAndActions {
     isDuplicate?: boolean;
     integration?: Merge.accounting.AccountDetailsAndActionsIntegration;
     accountType: string;
+    completedAt: Date;
 }

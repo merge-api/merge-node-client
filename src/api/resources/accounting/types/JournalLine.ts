@@ -27,6 +27,7 @@ export interface JournalLine {
     /** The value of the line item including taxes and other fees. */
     netAmount?: number;
     trackingCategory?: Merge.accounting.JournalLineTrackingCategory;
+    /** The journal line item's associated tracking categories. */
     trackingCategories?: (Merge.accounting.JournalLineTrackingCategoriesItem | undefined)[];
     /**
      * The journal line item's currency.
@@ -342,10 +343,13 @@ export interface JournalLine {
     /** The company the journal entry belongs to. */
     company?: string;
     contact?: string;
+    /** The tax rate that applies to this line item. */
+    taxRate?: string;
     /** The line's description. */
     description?: string;
     /** The journal line item's exchange rate. */
     exchangeRate?: string;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
+    remoteFields?: Merge.accounting.RemoteField[];
 }

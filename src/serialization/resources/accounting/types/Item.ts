@@ -25,6 +25,14 @@ export const Item: core.serialization.ObjectSchema<serializers.accounting.Item.R
             core.serialization.lazy(async () => (await import("../../..")).accounting.ItemSalesAccount).optional()
         ),
         company: core.serialization.lazy(async () => (await import("../../..")).accounting.ItemCompany).optional(),
+        purchaseTaxRate: core.serialization.property(
+            "purchase_tax_rate",
+            core.serialization.lazy(async () => (await import("../../..")).accounting.ItemPurchaseTaxRate).optional()
+        ),
+        salesTaxRate: core.serialization.property(
+            "sales_tax_rate",
+            core.serialization.lazy(async () => (await import("../../..")).accounting.ItemSalesTaxRate).optional()
+        ),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
@@ -52,6 +60,8 @@ export declare namespace Item {
         purchase_account?: serializers.accounting.ItemPurchaseAccount.Raw | null;
         sales_account?: serializers.accounting.ItemSalesAccount.Raw | null;
         company?: serializers.accounting.ItemCompany.Raw | null;
+        purchase_tax_rate?: serializers.accounting.ItemPurchaseTaxRate.Raw | null;
+        sales_tax_rate?: serializers.accounting.ItemSalesTaxRate.Raw | null;
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;

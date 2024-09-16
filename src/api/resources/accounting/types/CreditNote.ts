@@ -45,6 +45,8 @@ export interface CreditNote {
     totalAmount?: number;
     /** The amount of value remaining in the credit note that the customer can use. */
     remainingCredit?: number;
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     lineItems?: Merge.accounting.CreditNoteLineItem[];
     trackingCategories?: (Merge.accounting.CreditNoteTrackingCategoriesItem | undefined)[];
     /**
@@ -366,7 +368,7 @@ export interface CreditNote {
     payments?: (Merge.accounting.CreditNotePaymentsItem | undefined)[];
     /** A list of the Payment Applied to Lines common models related to a given Invoice, Credit Note, or Journal Entry. */
     appliedPayments?: (Merge.accounting.CreditNoteAppliedPaymentsItem | undefined)[];
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     /** The accounting period that the CreditNote was generated in. */
     accountingPeriod?: Merge.accounting.CreditNoteAccountingPeriod;

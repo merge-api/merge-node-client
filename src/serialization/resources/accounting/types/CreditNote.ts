@@ -22,6 +22,7 @@ export const CreditNote: core.serialization.ObjectSchema<
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     remainingCredit: core.serialization.property("remaining_credit", core.serialization.number().optional()),
+    inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     lineItems: core.serialization.property(
         "line_items",
         core.serialization
@@ -87,6 +88,7 @@ export declare namespace CreditNote {
         exchange_rate?: string | null;
         total_amount?: number | null;
         remaining_credit?: number | null;
+        inclusive_of_tax?: boolean | null;
         line_items?: serializers.accounting.CreditNoteLineItem.Raw[] | null;
         tracking_categories?: (serializers.accounting.CreditNoteTrackingCategoriesItem.Raw | null | undefined)[] | null;
         currency?: serializers.accounting.CreditNoteCurrency.Raw | null;

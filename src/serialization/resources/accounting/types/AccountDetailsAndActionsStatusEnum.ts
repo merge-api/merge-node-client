@@ -9,8 +9,8 @@ import * as core from "../../../../core";
 export const AccountDetailsAndActionsStatusEnum: core.serialization.Schema<
     serializers.accounting.AccountDetailsAndActionsStatusEnum.Raw,
     Merge.accounting.AccountDetailsAndActionsStatusEnum
-> = core.serialization.enum_(["COMPLETE", "INCOMPLETE", "RELINK_NEEDED"]);
+> = core.serialization.enum_(["COMPLETE", "INCOMPLETE", "RELINK_NEEDED", "IDLE"]);
 
 export declare namespace AccountDetailsAndActionsStatusEnum {
-    type Raw = "COMPLETE" | "INCOMPLETE" | "RELINK_NEEDED";
+    type Raw = "COMPLETE" | "INCOMPLETE" | "RELINK_NEEDED" | "IDLE";
 }

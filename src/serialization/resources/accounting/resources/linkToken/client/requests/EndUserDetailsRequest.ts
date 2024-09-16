@@ -22,6 +22,7 @@ export const EndUserDetailsRequest: core.serialization.Schema<
         "should_create_magic_link_url",
         core.serialization.boolean().optional()
     ),
+    hideAdminMagicLink: core.serialization.property("hide_admin_magic_link", core.serialization.boolean().optional()),
     commonModels: core.serialization.property(
         "common_models",
         core.serialization
@@ -49,7 +50,9 @@ export const EndUserDetailsRequest: core.serialization.Schema<
             )
             .optional()
     ),
-    language: core.serialization.string().optional(),
+    language: core.serialization
+        .lazy(async () => (await import("../../../../../..")).accounting.LanguageEnum)
+        .optional(),
     integrationSpecificConfig: core.serialization.property(
         "integration_specific_config",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -65,12 +68,13 @@ export declare namespace EndUserDetailsRequest {
         integration?: string | null;
         link_expiry_mins?: number | null;
         should_create_magic_link_url?: boolean | null;
+        hide_admin_magic_link?: boolean | null;
         common_models?: serializers.accounting.CommonModelScopesBodyRequest.Raw[] | null;
         category_common_model_scopes?: Record<
             string,
             serializers.accounting.IndividualCommonModelScopeDeserializerRequest.Raw[] | null | undefined
         > | null;
-        language?: string | null;
+        language?: serializers.accounting.LanguageEnum.Raw | null;
         integration_specific_config?: Record<string, unknown> | null;
     }
 }

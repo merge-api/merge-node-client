@@ -22,6 +22,7 @@ export const VendorCredit: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).accounting.VendorCreditCurrency)
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
+    inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     company: core.serialization.lazy(async () => (await import("../../..")).accounting.VendorCreditCompany).optional(),
     lines: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.VendorCreditLine))
@@ -67,6 +68,7 @@ export declare namespace VendorCredit {
         total_amount?: number | null;
         currency?: serializers.accounting.VendorCreditCurrency.Raw | null;
         exchange_rate?: string | null;
+        inclusive_of_tax?: boolean | null;
         company?: serializers.accounting.VendorCreditCompany.Raw | null;
         lines?: serializers.accounting.VendorCreditLine.Raw[] | null;
         tracking_categories?:

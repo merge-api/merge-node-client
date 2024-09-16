@@ -352,16 +352,19 @@ export interface Expense {
     currency?: Merge.accounting.ExpenseCurrency;
     /** The expense's exchange rate. */
     exchangeRate?: string;
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     /** The company the expense belongs to. */
     company?: Merge.accounting.ExpenseCompany;
     /** The expense's private note. */
     memo?: string;
     lines?: Merge.accounting.ExpenseLine[];
     trackingCategories?: (Merge.accounting.ExpenseTrackingCategoriesItem | undefined)[];
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     /** The accounting period that the Expense was generated in. */
     accountingPeriod?: Merge.accounting.ExpenseAccountingPeriod;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
+    remoteFields?: Merge.accounting.RemoteField[];
 }

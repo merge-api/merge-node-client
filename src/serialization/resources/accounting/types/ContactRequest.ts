@@ -43,6 +43,12 @@ export const ContactRequest: core.serialization.ObjectSchema<
         "linked_account_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteFieldRequest))
+            .optional()
+    ),
 });
 
 export declare namespace ContactRequest {
@@ -59,5 +65,6 @@ export declare namespace ContactRequest {
         phone_numbers?: serializers.accounting.AccountingPhoneNumberRequest.Raw[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
+        remote_fields?: serializers.accounting.RemoteFieldRequest.Raw[] | null;
     }
 }

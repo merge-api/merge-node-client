@@ -9,7 +9,7 @@ import * as Merge from "../../..";
  *
  * ### Description
  *
- * A `VendorCredit` is transaction issued by a vendor to the accounting company, indicating a reduction or cancellation of the amount owed to the vendor. It is most generally used as an adjustment note used to rectify errors, returns, or overpayments related to a purchasing transaction. A `VendorCredit` can be applied to _Accounts Payable_ Invoices to decrease the overall amount of the Invoice.
+ * A `VendorCredit` is transaction issued by a vendor to the accounting company, indicating a reduction or cancellation of the amount owed to the vendor. It is most generally used as an adjustment note used to rectify errors, returns, or overpayments related to a purchasing transaction. A `VendorCredit` can be applied to `Accounts Payable` Invoices to decrease the overall amount of the `Invoice`.
  *
  * ### Usage Example
  *
@@ -344,11 +344,13 @@ export interface VendorCredit {
     currency?: Merge.accounting.VendorCreditCurrency;
     /** The vendor credit's exchange rate. */
     exchangeRate?: string;
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     /** The company the vendor credit belongs to. */
     company?: Merge.accounting.VendorCreditCompany;
     lines?: Merge.accounting.VendorCreditLine[];
     trackingCategories?: (Merge.accounting.VendorCreditTrackingCategoriesItem | undefined)[];
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     /** The accounting period that the VendorCredit was generated in. */
     accountingPeriod?: Merge.accounting.VendorCreditAccountingPeriod;

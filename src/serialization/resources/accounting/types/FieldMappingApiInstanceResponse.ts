@@ -154,6 +154,14 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
             )
             .optional()
     ),
+    accountingPeriod: core.serialization.property(
+        "AccountingPeriod",
+        core.serialization
+            .list(
+                core.serialization.lazyObject(async () => (await import("../../..")).accounting.FieldMappingApiInstance)
+            )
+            .optional()
+    ),
     generalLedgerTransaction: core.serialization.property(
         "GeneralLedgerTransaction",
         core.serialization
@@ -184,6 +192,7 @@ export declare namespace FieldMappingApiInstanceResponse {
         Expense?: serializers.accounting.FieldMappingApiInstance.Raw[] | null;
         VendorCredit?: serializers.accounting.FieldMappingApiInstance.Raw[] | null;
         Transaction?: serializers.accounting.FieldMappingApiInstance.Raw[] | null;
+        AccountingPeriod?: serializers.accounting.FieldMappingApiInstance.Raw[] | null;
         GeneralLedgerTransaction?: serializers.accounting.FieldMappingApiInstance.Raw[] | null;
     }
 }

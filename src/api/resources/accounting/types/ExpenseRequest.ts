@@ -343,6 +343,8 @@ export interface ExpenseRequest {
     currency?: Merge.accounting.ExpenseRequestCurrency;
     /** The expense's exchange rate. */
     exchangeRate?: string;
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     /** The company the expense belongs to. */
     company?: Merge.accounting.ExpenseRequestCompany;
     /** The expense's private note. */
@@ -353,4 +355,5 @@ export interface ExpenseRequest {
     accountingPeriod?: Merge.accounting.ExpenseRequestAccountingPeriod;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

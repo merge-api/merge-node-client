@@ -46,4 +46,5 @@ export interface ContactRequest {
     phoneNumbers?: Merge.accounting.AccountingPhoneNumberRequest[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

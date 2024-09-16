@@ -353,4 +353,5 @@ export interface PatchedPaymentRequest {
     appliedToLines?: Merge.accounting.PatchedPaymentRequestAppliedToLinesItem[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

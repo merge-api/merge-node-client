@@ -19,6 +19,7 @@ export const Transaction: core.serialization.ObjectSchema<
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
     account: core.serialization.lazy(async () => (await import("../../..")).accounting.TransactionAccount).optional(),
     contact: core.serialization.lazy(async () => (await import("../../..")).accounting.TransactionContact).optional(),
+    inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     totalAmount: core.serialization.property("total_amount", core.serialization.string().optional()),
     currency: core.serialization.lazy(async () => (await import("../../..")).accounting.TransactionCurrency).optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
@@ -69,6 +70,7 @@ export declare namespace Transaction {
         transaction_date?: string | null;
         account?: serializers.accounting.TransactionAccount.Raw | null;
         contact?: serializers.accounting.TransactionContact.Raw | null;
+        inclusive_of_tax?: boolean | null;
         total_amount?: string | null;
         currency?: serializers.accounting.TransactionCurrency.Raw | null;
         exchange_rate?: string | null;

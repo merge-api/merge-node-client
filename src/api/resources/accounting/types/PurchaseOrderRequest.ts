@@ -353,10 +353,13 @@ export interface PurchaseOrderRequest {
      * - `ZWL` - Zimbabwean Dollar (2009)
      */
     currency?: Merge.accounting.PurchaseOrderRequestCurrency;
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     /** The purchase order's exchange rate. */
     exchangeRate?: string;
     trackingCategories?: (Merge.accounting.PurchaseOrderRequestTrackingCategoriesItem | undefined)[];
     lineItems?: Merge.accounting.PurchaseOrderLineItemRequest[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

@@ -35,7 +35,7 @@ export interface PurchaseOrderLineItem {
     /** The purchase order line item's associated tracking category. */
     trackingCategory?: string;
     /** The purchase order line item's associated tracking categories. */
-    trackingCategories: string[];
+    trackingCategories?: (string | undefined)[];
     /** The purchase order line item's tax amount. */
     taxAmount?: string;
     /** The purchase order line item's total amount. */
@@ -351,10 +351,13 @@ export interface PurchaseOrderLineItem {
      * - `ZWL` - Zimbabwean Dollar (2009)
      */
     currency?: Merge.accounting.PurchaseOrderLineItemCurrency;
+    /** The tax rate that applies to this line item. */
+    taxRate?: string;
     /** The purchase order line item's exchange rate. */
     exchangeRate?: string;
     /** The company the purchase order line item belongs to. */
     company?: string;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
+    remoteFields?: Merge.accounting.RemoteField[];
 }

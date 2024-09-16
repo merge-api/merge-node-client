@@ -29,10 +29,6 @@ export interface JournalEntry {
     modifiedAt?: Date;
     /** The journal entry's transaction date. */
     transactionDate?: Date;
-    /** When the third party's journal entry was created. */
-    remoteCreatedAt?: Date;
-    /** When the third party's journal entry was updated. */
-    remoteUpdatedAt?: Date;
     /** Array of `Payment` object IDs. */
     payments?: (Merge.accounting.JournalEntryPaymentsItem | undefined)[];
     /** A list of the Payment Applied to Lines common models related to a given Invoice, Credit Note, or Journal Entry. */
@@ -354,10 +350,13 @@ export interface JournalEntry {
     exchangeRate?: string;
     /** The company the journal entry belongs to. */
     company?: Merge.accounting.JournalEntryCompany;
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     lines?: Merge.accounting.JournalLine[];
     /** Reference number for identifying journal entries. */
     journalNumber?: string;
     trackingCategories?: (Merge.accounting.JournalEntryTrackingCategoriesItem | undefined)[];
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     /**
      * The journal's posting status.
@@ -368,6 +367,11 @@ export interface JournalEntry {
     postingStatus?: Merge.accounting.JournalEntryPostingStatus;
     /** The accounting period that the JournalEntry was generated in. */
     accountingPeriod?: Merge.accounting.JournalEntryAccountingPeriod;
+    /** When the third party's journal entry was created. */
+    remoteCreatedAt?: Date;
+    /** When the third party's journal entry was updated. */
+    remoteUpdatedAt?: Date;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
+    remoteFields?: Merge.accounting.RemoteField[];
 }

@@ -338,6 +338,8 @@ export interface JournalEntryRequest {
     /** The company the journal entry belongs to. */
     company?: Merge.accounting.JournalEntryRequestCompany;
     trackingCategories?: (Merge.accounting.JournalEntryRequestTrackingCategoriesItem | undefined)[];
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     lines?: Merge.accounting.JournalLineRequest[];
     /** Reference number for identifying journal entries. */
     journalNumber?: string;
@@ -350,4 +352,5 @@ export interface JournalEntryRequest {
     postingStatus?: Merge.accounting.JournalEntryRequestPostingStatus;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

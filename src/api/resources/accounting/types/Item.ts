@@ -42,9 +42,13 @@ export interface Item {
     salesAccount?: Merge.accounting.ItemSalesAccount;
     /** The company the item belongs to. */
     company?: Merge.accounting.ItemCompany;
+    /** The default purchase tax rate for this item. */
+    purchaseTaxRate?: Merge.accounting.ItemPurchaseTaxRate;
+    /** The default sales tax rate for this item. */
+    salesTaxRate?: Merge.accounting.ItemSalesTaxRate;
     /** When the third party's item note was updated. */
     remoteUpdatedAt?: Date;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];

@@ -18,6 +18,10 @@ export interface PurchaseOrdersRetrieveRequest {
      */
     includeRemoteData?: boolean;
     /**
+     * Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+     */
+    includeRemoteFields?: boolean;
+    /**
      * Deprecated. Use show_enum_origins.
      */
     remoteFields?: "status";

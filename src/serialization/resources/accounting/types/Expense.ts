@@ -21,6 +21,7 @@ export const Expense: core.serialization.ObjectSchema<serializers.accounting.Exp
         totalTaxAmount: core.serialization.property("total_tax_amount", core.serialization.number().optional()),
         currency: core.serialization.lazy(async () => (await import("../../..")).accounting.ExpenseCurrency).optional(),
         exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
+        inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
         company: core.serialization.lazy(async () => (await import("../../..")).accounting.ExpenseCompany).optional(),
         memo: core.serialization.string().optional(),
         lines: core.serialization
@@ -53,6 +54,12 @@ export const Expense: core.serialization.ObjectSchema<serializers.accounting.Exp
                 .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteData))
                 .optional()
         ),
+        remoteFields: core.serialization.property(
+            "remote_fields",
+            core.serialization
+                .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteField))
+                .optional()
+        ),
     });
 
 export declare namespace Expense {
@@ -70,6 +77,7 @@ export declare namespace Expense {
         total_tax_amount?: number | null;
         currency?: serializers.accounting.ExpenseCurrency.Raw | null;
         exchange_rate?: string | null;
+        inclusive_of_tax?: boolean | null;
         company?: serializers.accounting.ExpenseCompany.Raw | null;
         memo?: string | null;
         lines?: serializers.accounting.ExpenseLine.Raw[] | null;
@@ -78,5 +86,6 @@ export declare namespace Expense {
         accounting_period?: serializers.accounting.ExpenseAccountingPeriod.Raw | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
+        remote_fields?: serializers.accounting.RemoteField.Raw[] | null;
     }
 }
