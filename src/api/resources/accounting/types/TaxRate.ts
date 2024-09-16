@@ -23,15 +23,30 @@ export interface TaxRate {
     createdAt?: Date;
     /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
+    /** The subsidiary that the tax rate belongs to (in the case of multi-entity systems). */
+    company?: Merge.accounting.TaxRateCompany;
+    /** The tax code associated with this tax rate or group of tax rates from the third-party platform. */
+    code?: string;
+    /** The tax rate’s name. */
+    name?: string;
     /** The tax rate's description. */
     description?: string;
+    /**
+     * The tax rate’s status - `ACTIVE` if an active tax rate, `ARCHIVED` if not active.
+     *
+     * - `ACTIVE` - ACTIVE
+     * - `ARCHIVED` - ARCHIVED
+     */
+    status?: Merge.accounting.TaxRateStatus;
+    /** The country the tax rate is associated with. */
+    country?: string;
     /** The tax’s total tax rate - sum of the tax components (not compounded). */
     totalTaxRate?: number;
     /** The tax rate’s effective tax rate - total amount of tax with compounding. */
     effectiveTaxRate?: number;
-    /** The subsidiary that the tax rate belongs to (in the case of multi-entity systems). */
-    company?: Merge.accounting.TaxRateCompany;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** The related tax components of the tax rate. */
+    taxComponents?: Merge.accounting.TaxRateTaxComponentsItem[];
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];

@@ -12,10 +12,22 @@ export const TaxRate: core.serialization.ObjectSchema<serializers.accounting.Tax
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
+        company: core.serialization.lazy(async () => (await import("../../..")).accounting.TaxRateCompany).optional(),
+        code: core.serialization.string().optional(),
+        name: core.serialization.string().optional(),
         description: core.serialization.string().optional(),
+        status: core.serialization.lazy(async () => (await import("../../..")).accounting.TaxRateStatus).optional(),
+        country: core.serialization.string().optional(),
         totalTaxRate: core.serialization.property("total_tax_rate", core.serialization.number().optional()),
         effectiveTaxRate: core.serialization.property("effective_tax_rate", core.serialization.number().optional()),
-        company: core.serialization.lazy(async () => (await import("../../..")).accounting.TaxRateCompany).optional(),
+        taxComponents: core.serialization.property(
+            "tax_components",
+            core.serialization
+                .list(
+                    core.serialization.lazy(async () => (await import("../../..")).accounting.TaxRateTaxComponentsItem)
+                )
+                .optional()
+        ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -35,10 +47,15 @@ export declare namespace TaxRate {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
+        company?: serializers.accounting.TaxRateCompany.Raw | null;
+        code?: string | null;
+        name?: string | null;
         description?: string | null;
+        status?: serializers.accounting.TaxRateStatus.Raw | null;
+        country?: string | null;
         total_tax_rate?: number | null;
         effective_tax_rate?: number | null;
-        company?: serializers.accounting.TaxRateCompany.Raw | null;
+        tax_components?: serializers.accounting.TaxRateTaxComponentsItem.Raw[] | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;

@@ -35,9 +35,16 @@ export const JournalLine: core.serialization.ObjectSchema<
     currency: core.serialization.lazy(async () => (await import("../../..")).accounting.JournalLineCurrency).optional(),
     company: core.serialization.string().optional(),
     contact: core.serialization.string().optional(),
+    taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteField))
+            .optional()
+    ),
 });
 
 export declare namespace JournalLine {
@@ -55,8 +62,10 @@ export declare namespace JournalLine {
         currency?: serializers.accounting.JournalLineCurrency.Raw | null;
         company?: string | null;
         contact?: string | null;
+        tax_rate?: string | null;
         description?: string | null;
         exchange_rate?: string | null;
         remote_was_deleted?: boolean | null;
+        remote_fields?: serializers.accounting.RemoteField.Raw[] | null;
     }
 }

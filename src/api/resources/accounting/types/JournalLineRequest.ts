@@ -22,6 +22,7 @@ export interface JournalLineRequest {
     /** The value of the line item including taxes and other fees. */
     netAmount?: number;
     trackingCategory?: Merge.accounting.JournalLineRequestTrackingCategory;
+    /** The journal line item's associated tracking categories. */
     trackingCategories?: (Merge.accounting.JournalLineRequestTrackingCategoriesItem | undefined)[];
     /**
      * The journal line item's currency.
@@ -337,10 +338,13 @@ export interface JournalLineRequest {
     /** The company the journal entry belongs to. */
     company?: string;
     contact?: string;
+    /** The tax rate that applies to this line item. */
+    taxRate?: string;
     /** The line's description. */
     description?: string;
     /** The journal line item's exchange rate. */
     exchangeRate?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

@@ -27,16 +27,18 @@ export interface VendorCreditLine {
     netAmount?: number;
     /** The line's associated tracking category. */
     trackingCategory?: string;
-    /** The line's associated tracking categories. */
-    trackingCategories: string[];
+    /** The vendor credit line item's associated tracking categories. */
+    trackingCategories?: (string | undefined)[];
     /** The line's description. */
     description?: string;
     /** The line's account. */
     account?: Merge.accounting.VendorCreditLineAccount;
     /** The company the line belongs to. */
     company?: string;
+    /** The tax rate that applies to this line item. */
+    taxRate?: string;
     /** The vendor credit line item's exchange rate. */
     exchangeRate?: string;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
 }

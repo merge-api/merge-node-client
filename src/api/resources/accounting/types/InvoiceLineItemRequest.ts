@@ -341,10 +341,14 @@ export interface InvoiceLineItemRequest {
     exchangeRate?: string;
     item?: Merge.accounting.InvoiceLineItemRequestItem;
     account?: Merge.accounting.InvoiceLineItemRequestAccount;
+    /** The tax rate that applies to this line item. */
+    taxRate?: string;
     trackingCategory?: Merge.accounting.InvoiceLineItemRequestTrackingCategory;
+    /** The invoice line item's associated tracking categories. */
     trackingCategories?: (Merge.accounting.InvoiceLineItemRequestTrackingCategoriesItem | undefined)[];
     /** The company the line item belongs to. */
     company?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

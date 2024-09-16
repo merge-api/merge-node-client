@@ -49,6 +49,12 @@ export const Contact: core.serialization.ObjectSchema<serializers.accounting.Con
                 .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteData))
                 .optional()
         ),
+        remoteFields: core.serialization.property(
+            "remote_fields",
+            core.serialization
+                .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteField))
+                .optional()
+        ),
     });
 
 export declare namespace Contact {
@@ -71,5 +77,6 @@ export declare namespace Contact {
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
+        remote_fields?: serializers.accounting.RemoteField.Raw[] | null;
     }
 }

@@ -11,7 +11,7 @@ import * as Merge from "../../..";
  *
  * A `PurchaseOrder` represents a request to purchase goods or services from a vendor. It outlines the details of the purchase, such as the items or services requested, quantities, prices, and delivery details.
  *
- * A `PurchaseOrder` is a crucial component of the procurement process, but does not typically result in any impact on the company’s general ledger. The general ledger is typically only affected when the `PurchaseOrder` is fulfilled as an _Accounts Payable_ Invoice object.
+ * A `PurchaseOrder` is a crucial component of the procurement process, but does not typically result in any impact on the company’s general ledger. The general ledger is typically only affected when the `PurchaseOrder` is fulfilled as an _Accounts Payable_ `Invoice` object (also known as a Bill).
  *
  * ### Usage Example
  *
@@ -367,15 +367,18 @@ export interface PurchaseOrder {
     /** The purchase order's exchange rate. */
     exchangeRate?: string;
     lineItems?: Merge.accounting.PurchaseOrderLineItem[];
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     trackingCategories?: (Merge.accounting.PurchaseOrderTrackingCategoriesItem | undefined)[];
+    /** The accounting period that the PurchaseOrder was generated in. */
+    accountingPeriod?: Merge.accounting.PurchaseOrderAccountingPeriod;
     /** When the third party's purchase order note was created. */
     remoteCreatedAt?: Date;
     /** When the third party's purchase order note was updated. */
     remoteUpdatedAt?: Date;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
-    /** The accounting period that the PurchaseOrder was generated in. */
-    accountingPeriod?: Merge.accounting.PurchaseOrderAccountingPeriod;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
+    remoteFields?: Merge.accounting.RemoteField[];
 }

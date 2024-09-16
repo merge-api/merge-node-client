@@ -354,14 +354,15 @@ export interface Payment {
      */
     type?: Merge.accounting.PaymentType;
     trackingCategories?: (Merge.accounting.PaymentTrackingCategoriesItem | undefined)[];
-    /** When the third party's payment entry was updated. */
-    remoteUpdatedAt?: Date;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
-    remoteWasDeleted?: boolean;
     /** The accounting period that the Payment was generated in. */
     accountingPeriod?: Merge.accounting.PaymentAccountingPeriod;
     /** A list of “Payment Applied to Lines” objects. */
     appliedToLines?: Merge.accounting.PaymentAppliedToLinesItem[];
+    /** When the third party's payment entry was updated. */
+    remoteUpdatedAt?: Date;
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
+    remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
+    remoteFields?: Merge.accounting.RemoteField[];
 }

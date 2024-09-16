@@ -25,6 +25,7 @@ export const InvoiceLineItemRequest: core.serialization.ObjectSchema<
     account: core.serialization
         .lazy(async () => (await import("../../..")).accounting.InvoiceLineItemRequestAccount)
         .optional(),
+    taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     trackingCategory: core.serialization.property(
         "tracking_category",
         core.serialization
@@ -52,6 +53,12 @@ export const InvoiceLineItemRequest: core.serialization.ObjectSchema<
         "linked_account_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteFieldRequest))
+            .optional()
+    ),
 });
 
 export declare namespace InvoiceLineItemRequest {
@@ -65,6 +72,7 @@ export declare namespace InvoiceLineItemRequest {
         exchange_rate?: string | null;
         item?: serializers.accounting.InvoiceLineItemRequestItem.Raw | null;
         account?: serializers.accounting.InvoiceLineItemRequestAccount.Raw | null;
+        tax_rate?: string | null;
         tracking_category?: serializers.accounting.InvoiceLineItemRequestTrackingCategory.Raw | null;
         tracking_categories?:
             | (serializers.accounting.InvoiceLineItemRequestTrackingCategoriesItem.Raw | null | undefined)[]
@@ -72,5 +80,6 @@ export declare namespace InvoiceLineItemRequest {
         company?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
+        remote_fields?: serializers.accounting.RemoteFieldRequest.Raw[] | null;
     }
 }

@@ -24,6 +24,7 @@ export const ExpenseRequest: core.serialization.ObjectSchema<
         .lazy(async () => (await import("../../..")).accounting.ExpenseRequestCurrency)
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
+    inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     company: core.serialization
         .lazy(async () => (await import("../../..")).accounting.ExpenseRequestCompany)
         .optional(),
@@ -55,6 +56,12 @@ export const ExpenseRequest: core.serialization.ObjectSchema<
         "linked_account_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteFieldRequest))
+            .optional()
+    ),
 });
 
 export declare namespace ExpenseRequest {
@@ -67,6 +74,7 @@ export declare namespace ExpenseRequest {
         total_tax_amount?: number | null;
         currency?: serializers.accounting.ExpenseRequestCurrency.Raw | null;
         exchange_rate?: string | null;
+        inclusive_of_tax?: boolean | null;
         company?: serializers.accounting.ExpenseRequestCompany.Raw | null;
         memo?: string | null;
         lines?: serializers.accounting.ExpenseLineRequest.Raw[] | null;
@@ -76,5 +84,6 @@ export declare namespace ExpenseRequest {
         accounting_period?: serializers.accounting.ExpenseRequestAccountingPeriod.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
+        remote_fields?: serializers.accounting.RemoteFieldRequest.Raw[] | null;
     }
 }

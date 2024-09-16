@@ -22,7 +22,7 @@ export const TransactionLineItem: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string())
+        core.serialization.list(core.serialization.string().optional()).optional()
     ),
     totalLineAmount: core.serialization.property("total_line_amount", core.serialization.string().optional()),
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
@@ -46,7 +46,7 @@ export declare namespace TransactionLineItem {
         item?: serializers.accounting.TransactionLineItemItem.Raw | null;
         account?: string | null;
         tracking_category?: string | null;
-        tracking_categories: string[];
+        tracking_categories?: (string | null | undefined)[] | null;
         total_line_amount?: string | null;
         tax_rate?: string | null;
         currency?: serializers.accounting.TransactionLineItemCurrency.Raw | null;

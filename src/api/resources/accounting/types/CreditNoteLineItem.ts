@@ -23,16 +23,18 @@ export interface CreditNoteLineItem {
     memo?: string;
     /** The credit note line item's unit price. */
     unitPrice?: string;
+    /** The tax rate that applies to this line item. */
+    taxRate?: string;
     /** The credit note line item's total. */
     totalLineAmount?: string;
     /** The credit note line item's associated tracking category. */
     trackingCategory?: string;
     /** The credit note line item's associated tracking categories. */
-    trackingCategories: string[];
+    trackingCategories?: (string | undefined)[];
     /** The credit note line item's account. */
     account?: string;
     /** The company the credit note belongs to. */
     company?: Merge.accounting.CreditNoteLineItemCompany;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
 }

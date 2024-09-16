@@ -30,6 +30,7 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
     totalDiscount: core.serialization.property("total_discount", core.serialization.number().optional()),
     subTotal: core.serialization.property("sub_total", core.serialization.number().optional()),
     totalTaxAmount: core.serialization.property("total_tax_amount", core.serialization.number().optional()),
+    inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     balance: core.serialization.number().optional(),
     payments: core.serialization
@@ -75,6 +76,12 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
         "linked_account_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteFieldRequest))
+            .optional()
+    ),
 });
 
 export declare namespace InvoiceRequest {
@@ -93,6 +100,7 @@ export declare namespace InvoiceRequest {
         total_discount?: number | null;
         sub_total?: number | null;
         total_tax_amount?: number | null;
+        inclusive_of_tax?: boolean | null;
         total_amount?: number | null;
         balance?: number | null;
         payments?: (serializers.accounting.InvoiceRequestPaymentsItem.Raw | null | undefined)[] | null;
@@ -103,5 +111,6 @@ export declare namespace InvoiceRequest {
         purchase_orders?: (serializers.accounting.InvoiceRequestPurchaseOrdersItem.Raw | null | undefined)[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
+        remote_fields?: serializers.accounting.RemoteFieldRequest.Raw[] | null;
     }
 }

@@ -23,6 +23,7 @@ export interface ExpenseLineRequest {
     /** The line's net amount. */
     netAmount?: number;
     trackingCategory?: Merge.accounting.ExpenseLineRequestTrackingCategory;
+    /** The expense line item's associated tracking categories. */
     trackingCategories?: (Merge.accounting.ExpenseLineRequestTrackingCategoriesItem | undefined)[];
     /** The company the line belongs to. */
     company?: string;
@@ -345,6 +346,9 @@ export interface ExpenseLineRequest {
     description?: string;
     /** The expense line item's exchange rate. */
     exchangeRate?: string;
+    /** The tax rate that applies to this line item. */
+    taxRate?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

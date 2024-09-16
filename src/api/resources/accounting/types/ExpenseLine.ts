@@ -28,6 +28,7 @@ export interface ExpenseLine {
     /** The line's net amount. */
     netAmount?: number;
     trackingCategory?: Merge.accounting.ExpenseLineTrackingCategory;
+    /** The expense line item's associated tracking categories. */
     trackingCategories?: (Merge.accounting.ExpenseLineTrackingCategoriesItem | undefined)[];
     /** The company the line belongs to. */
     company?: string;
@@ -350,6 +351,8 @@ export interface ExpenseLine {
     description?: string;
     /** The expense line item's exchange rate. */
     exchangeRate?: string;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** The tax rate that applies to this line item. */
+    taxRate?: string;
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
 }

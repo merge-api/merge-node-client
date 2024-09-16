@@ -30,8 +30,6 @@ export const Payment: core.serialization.ObjectSchema<serializers.accounting.Pay
                 )
                 .optional()
         ),
-        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
-        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         accountingPeriod: core.serialization.property(
             "accounting_period",
             core.serialization
@@ -46,6 +44,8 @@ export const Payment: core.serialization.ObjectSchema<serializers.accounting.Pay
                 )
                 .optional()
         ),
+        remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
+        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -54,6 +54,12 @@ export const Payment: core.serialization.ObjectSchema<serializers.accounting.Pay
             "remote_data",
             core.serialization
                 .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteData))
+                .optional()
+        ),
+        remoteFields: core.serialization.property(
+            "remote_fields",
+            core.serialization
+                .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteField))
                 .optional()
         ),
     });
@@ -73,11 +79,12 @@ export declare namespace Payment {
         total_amount?: number | null;
         type?: serializers.accounting.PaymentType.Raw | null;
         tracking_categories?: (serializers.accounting.PaymentTrackingCategoriesItem.Raw | null | undefined)[] | null;
-        remote_updated_at?: string | null;
-        remote_was_deleted?: boolean | null;
         accounting_period?: serializers.accounting.PaymentAccountingPeriod.Raw | null;
         applied_to_lines?: serializers.accounting.PaymentAppliedToLinesItem.Raw[] | null;
+        remote_updated_at?: string | null;
+        remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
+        remote_fields?: serializers.accounting.RemoteField.Raw[] | null;
     }
 }

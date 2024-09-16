@@ -30,7 +30,7 @@ export interface PurchaseOrderLineItemRequest {
     /** The purchase order line item's associated tracking category. */
     trackingCategory?: string;
     /** The purchase order line item's associated tracking categories. */
-    trackingCategories: string[];
+    trackingCategories?: (string | undefined)[];
     /** The purchase order line item's tax amount. */
     taxAmount?: string;
     /** The purchase order line item's total amount. */
@@ -346,10 +346,13 @@ export interface PurchaseOrderLineItemRequest {
      * - `ZWL` - Zimbabwean Dollar (2009)
      */
     currency?: Merge.accounting.PurchaseOrderLineItemRequestCurrency;
+    /** The tax rate that applies to this line item. */
+    taxRate?: string;
     /** The purchase order line item's exchange rate. */
     exchangeRate?: string;
     /** The company the purchase order line item belongs to. */
     company?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

@@ -23,5 +23,6 @@ export interface ExternalTargetFieldApiResponse {
     expense?: Merge.accounting.ExternalTargetFieldApi[];
     vendorCredit?: Merge.accounting.ExternalTargetFieldApi[];
     transaction?: Merge.accounting.ExternalTargetFieldApi[];
+    accountingPeriod?: Merge.accounting.ExternalTargetFieldApi[];
     generalLedgerTransaction?: Merge.accounting.ExternalTargetFieldApi[];
 }

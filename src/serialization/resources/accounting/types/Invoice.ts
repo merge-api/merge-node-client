@@ -39,6 +39,22 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
                 )
                 .optional()
         ),
+        accountingPeriod: core.serialization.property(
+            "accounting_period",
+            core.serialization
+                .lazy(async () => (await import("../../..")).accounting.InvoiceAccountingPeriod)
+                .optional()
+        ),
+        purchaseOrders: core.serialization.property(
+            "purchase_orders",
+            core.serialization
+                .list(
+                    core.serialization
+                        .lazy(async () => (await import("../../..")).accounting.InvoicePurchaseOrdersItem)
+                        .optional()
+                )
+                .optional()
+        ),
         payments: core.serialization
             .list(
                 core.serialization
@@ -62,23 +78,8 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
                 .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.InvoiceLineItem))
                 .optional()
         ),
+        inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        accountingPeriod: core.serialization.property(
-            "accounting_period",
-            core.serialization
-                .lazy(async () => (await import("../../..")).accounting.InvoiceAccountingPeriod)
-                .optional()
-        ),
-        purchaseOrders: core.serialization.property(
-            "purchase_orders",
-            core.serialization
-                .list(
-                    core.serialization
-                        .lazy(async () => (await import("../../..")).accounting.InvoicePurchaseOrdersItem)
-                        .optional()
-                )
-                .optional()
-        ),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -87,6 +88,12 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
             "remote_data",
             core.serialization
                 .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteData))
+                .optional()
+        ),
+        remoteFields: core.serialization.property(
+            "remote_fields",
+            core.serialization
+                .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteField))
                 .optional()
         ),
     });
@@ -115,13 +122,15 @@ export declare namespace Invoice {
         balance?: number | null;
         remote_updated_at?: string | null;
         tracking_categories?: (serializers.accounting.InvoiceTrackingCategoriesItem.Raw | null | undefined)[] | null;
+        accounting_period?: serializers.accounting.InvoiceAccountingPeriod.Raw | null;
+        purchase_orders?: (serializers.accounting.InvoicePurchaseOrdersItem.Raw | null | undefined)[] | null;
         payments?: (serializers.accounting.InvoicePaymentsItem.Raw | null | undefined)[] | null;
         applied_payments?: (serializers.accounting.InvoiceAppliedPaymentsItem.Raw | null | undefined)[] | null;
         line_items?: serializers.accounting.InvoiceLineItem.Raw[] | null;
+        inclusive_of_tax?: boolean | null;
         remote_was_deleted?: boolean | null;
-        accounting_period?: serializers.accounting.InvoiceAccountingPeriod.Raw | null;
-        purchase_orders?: (serializers.accounting.InvoicePurchaseOrdersItem.Raw | null | undefined)[] | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
+        remote_fields?: serializers.accounting.RemoteField.Raw[] | null;
     }
 }

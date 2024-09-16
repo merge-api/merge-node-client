@@ -17,15 +17,19 @@ import * as Merge from "../../..";
  */
 export interface AccountingPeriod {
     id?: string;
+    /** The third-party API ID of the matching object. */
+    remoteId?: string;
     /** The datetime that this object was created by Merge. */
     createdAt?: Date;
     /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
+    /** Name of the accounting period. */
+    name?: string;
+    status?: Merge.accounting.AccountingPeriodStatus;
     /** Beginning date of the period */
     startDate?: Date;
     /** End date of the period */
     endDate?: Date;
-    status?: Merge.accounting.AccountingPeriodStatus;
-    /** Name of the accounting period. */
-    name?: string;
+    fieldMappings?: Record<string, unknown>;
+    remoteData?: Merge.accounting.RemoteData[];
 }

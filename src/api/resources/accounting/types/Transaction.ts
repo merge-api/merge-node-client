@@ -41,6 +41,8 @@ export interface Transaction {
     account?: Merge.accounting.TransactionAccount;
     /** The contact to whom the transaction relates to. */
     contact?: Merge.accounting.TransactionContact;
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     /** The total amount being paid after taxes. */
     totalAmount?: string;
     /**
@@ -360,7 +362,7 @@ export interface Transaction {
     company?: string;
     trackingCategories?: (Merge.accounting.TransactionTrackingCategoriesItem | undefined)[];
     lineItems?: Merge.accounting.TransactionLineItem[];
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     /** The accounting period that the Transaction was generated in. */
     accountingPeriod?: Merge.accounting.TransactionAccountingPeriod;

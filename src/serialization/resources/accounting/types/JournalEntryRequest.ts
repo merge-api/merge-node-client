@@ -36,6 +36,7 @@ export const JournalEntryRequest: core.serialization.ObjectSchema<
             )
             .optional()
     ),
+    inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     lines: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.JournalLineRequest))
         .optional(),
@@ -54,6 +55,12 @@ export const JournalEntryRequest: core.serialization.ObjectSchema<
         "linked_account_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteFieldRequest))
+            .optional()
+    ),
 });
 
 export declare namespace JournalEntryRequest {
@@ -67,10 +74,12 @@ export declare namespace JournalEntryRequest {
         tracking_categories?:
             | (serializers.accounting.JournalEntryRequestTrackingCategoriesItem.Raw | null | undefined)[]
             | null;
+        inclusive_of_tax?: boolean | null;
         lines?: serializers.accounting.JournalLineRequest.Raw[] | null;
         journal_number?: string | null;
         posting_status?: serializers.accounting.JournalEntryRequestPostingStatus.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
+        remote_fields?: serializers.accounting.RemoteFieldRequest.Raw[] | null;
     }
 }

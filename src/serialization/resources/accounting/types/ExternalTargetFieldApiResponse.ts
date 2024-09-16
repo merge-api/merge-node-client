@@ -154,6 +154,14 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
             )
             .optional()
     ),
+    accountingPeriod: core.serialization.property(
+        "AccountingPeriod",
+        core.serialization
+            .list(
+                core.serialization.lazyObject(async () => (await import("../../..")).accounting.ExternalTargetFieldApi)
+            )
+            .optional()
+    ),
     generalLedgerTransaction: core.serialization.property(
         "GeneralLedgerTransaction",
         core.serialization
@@ -184,6 +192,7 @@ export declare namespace ExternalTargetFieldApiResponse {
         Expense?: serializers.accounting.ExternalTargetFieldApi.Raw[] | null;
         VendorCredit?: serializers.accounting.ExternalTargetFieldApi.Raw[] | null;
         Transaction?: serializers.accounting.ExternalTargetFieldApi.Raw[] | null;
+        AccountingPeriod?: serializers.accounting.ExternalTargetFieldApi.Raw[] | null;
         GeneralLedgerTransaction?: serializers.accounting.ExternalTargetFieldApi.Raw[] | null;
     }
 }

@@ -41,6 +41,7 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
             )
             .optional()
     ),
+    inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
         core.serialization
@@ -51,15 +52,15 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
             )
             .optional()
     ),
-    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
-    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
-    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     accountingPeriod: core.serialization.property(
         "accounting_period",
         core.serialization
             .lazy(async () => (await import("../../..")).accounting.PurchaseOrderAccountingPeriod)
             .optional()
     ),
+    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
+    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -68,6 +69,12 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
         "remote_data",
         core.serialization
             .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteData))
+            .optional()
+    ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteField))
             .optional()
     ),
 });
@@ -91,14 +98,16 @@ export declare namespace PurchaseOrder {
         currency?: serializers.accounting.PurchaseOrderCurrency.Raw | null;
         exchange_rate?: string | null;
         line_items?: serializers.accounting.PurchaseOrderLineItem.Raw[] | null;
+        inclusive_of_tax?: boolean | null;
         tracking_categories?:
             | (serializers.accounting.PurchaseOrderTrackingCategoriesItem.Raw | null | undefined)[]
             | null;
+        accounting_period?: serializers.accounting.PurchaseOrderAccountingPeriod.Raw | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
-        accounting_period?: serializers.accounting.PurchaseOrderAccountingPeriod.Raw | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
+        remote_fields?: serializers.accounting.RemoteField.Raw[] | null;
     }
 }

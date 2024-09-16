@@ -11,24 +11,38 @@ export const AccountingPeriod: core.serialization.ObjectSchema<
     Merge.accounting.AccountingPeriod
 > = core.serialization.object({
     id: core.serialization.string().optional(),
+    remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
-    startDate: core.serialization.property("start_date", core.serialization.date().optional()),
-    endDate: core.serialization.property("end_date", core.serialization.date().optional()),
+    name: core.serialization.string().optional(),
     status: core.serialization
         .lazy(async () => (await import("../../..")).accounting.AccountingPeriodStatus)
         .optional(),
-    name: core.serialization.string().optional(),
+    startDate: core.serialization.property("start_date", core.serialization.date().optional()),
+    endDate: core.serialization.property("end_date", core.serialization.date().optional()),
+    fieldMappings: core.serialization.property(
+        "field_mappings",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
+    remoteData: core.serialization.property(
+        "remote_data",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteData))
+            .optional()
+    ),
 });
 
 export declare namespace AccountingPeriod {
     interface Raw {
         id?: string | null;
+        remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
+        name?: string | null;
+        status?: serializers.accounting.AccountingPeriodStatus.Raw | null;
         start_date?: string | null;
         end_date?: string | null;
-        status?: serializers.accounting.AccountingPeriodStatus.Raw | null;
-        name?: string | null;
+        field_mappings?: Record<string, unknown> | null;
+        remote_data?: serializers.accounting.RemoteData.Raw[] | null;
     }
 }

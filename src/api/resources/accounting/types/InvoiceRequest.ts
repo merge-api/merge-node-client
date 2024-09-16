@@ -7,13 +7,15 @@ import * as Merge from "../../..";
 /**
  * # The Invoice Object
  *
- *     ### Description
- *     The `Invoice` object represents an itemized record of goods and/or services sold to a customer.
+ * ### Description
  *
- * If type = accounts_payable `Invoice` is a bill, if type = accounts_receivable it's an invoice.
+ * The `Invoice` object represents an itemized record of goods and/or services sold to a customer or bought from a vendor.
  *
- *     ### Usage Example
- *     Fetch from the `LIST Invoices` endpoint and view a company's invoices.
+ * Represents a Bill when the `Invoice` type is `ACCOUNTS_PAYABLE`. References an Invoice when the `Invoice` type is `ACCOUNTS_RECEIVABLE`.
+ *
+ * ### Usage Example
+ *
+ * Fetch from the `LIST Invoices` endpoint and view a company's invoices.
  */
 export interface InvoiceRequest {
     /**
@@ -367,6 +369,8 @@ export interface InvoiceRequest {
     subTotal?: number;
     /** The total amount being paid in taxes. */
     totalTaxAmount?: number;
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
     /** The invoice's total amount. */
     totalAmount?: number;
     /** The invoice's remaining balance. */
@@ -378,4 +382,5 @@ export interface InvoiceRequest {
     purchaseOrders?: (Merge.accounting.InvoiceRequestPurchaseOrdersItem | undefined)[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
+    remoteFields?: Merge.accounting.RemoteFieldRequest[];
 }

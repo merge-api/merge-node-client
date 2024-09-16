@@ -41,6 +41,7 @@ export const ExpenseLineRequest: core.serialization.ObjectSchema<
         .optional(),
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
+    taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -48,6 +49,12 @@ export const ExpenseLineRequest: core.serialization.ObjectSchema<
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteFieldRequest))
+            .optional()
     ),
 });
 
@@ -66,7 +73,9 @@ export declare namespace ExpenseLineRequest {
         contact?: serializers.accounting.ExpenseLineRequestContact.Raw | null;
         description?: string | null;
         exchange_rate?: string | null;
+        tax_rate?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
+        remote_fields?: serializers.accounting.RemoteFieldRequest.Raw[] | null;
     }
 }

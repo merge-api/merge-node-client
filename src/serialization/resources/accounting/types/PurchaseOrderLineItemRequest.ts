@@ -21,13 +21,14 @@ export const PurchaseOrderLineItemRequest: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string())
+        core.serialization.list(core.serialization.string().optional()).optional()
     ),
     taxAmount: core.serialization.property("tax_amount", core.serialization.string().optional()),
     totalLineAmount: core.serialization.property("total_line_amount", core.serialization.string().optional()),
     currency: core.serialization
         .lazy(async () => (await import("../../..")).accounting.PurchaseOrderLineItemRequestCurrency)
         .optional(),
+    taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     company: core.serialization.string().optional(),
     integrationParams: core.serialization.property(
@@ -37,6 +38,12 @@ export const PurchaseOrderLineItemRequest: core.serialization.ObjectSchema<
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteFieldRequest))
+            .optional()
     ),
 });
 
@@ -49,13 +56,15 @@ export declare namespace PurchaseOrderLineItemRequest {
         item?: serializers.accounting.PurchaseOrderLineItemRequestItem.Raw | null;
         account?: string | null;
         tracking_category?: string | null;
-        tracking_categories: string[];
+        tracking_categories?: (string | null | undefined)[] | null;
         tax_amount?: string | null;
         total_line_amount?: string | null;
         currency?: serializers.accounting.PurchaseOrderLineItemRequestCurrency.Raw | null;
+        tax_rate?: string | null;
         exchange_rate?: string | null;
         company?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
+        remote_fields?: serializers.accounting.RemoteFieldRequest.Raw[] | null;
     }
 }

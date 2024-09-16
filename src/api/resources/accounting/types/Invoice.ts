@@ -9,7 +9,9 @@ import * as Merge from "../../..";
  *
  * ### Description
  *
- * The `Invoice` object represents an itemized record of goods and/or services sold to a customer.
+ * The `Invoice` object represents an itemized record of goods and/or services sold to a customer or bought from a vendor.
+ *
+ * Represents a Bill when the `Invoice` type is `ACCOUNTS_PAYABLE`. References an Invoice when the `Invoice` type is `ACCOUNTS_RECEIVABLE`.
  *
  * ### Usage Example
  *
@@ -381,15 +383,19 @@ export interface Invoice {
     /** When the third party's invoice entry was updated. */
     remoteUpdatedAt?: Date;
     trackingCategories?: (Merge.accounting.InvoiceTrackingCategoriesItem | undefined)[];
+    /** The accounting period that the Invoice was generated in. */
+    accountingPeriod?: Merge.accounting.InvoiceAccountingPeriod;
+    purchaseOrders?: (Merge.accounting.InvoicePurchaseOrdersItem | undefined)[];
     /** Array of `Payment` object IDs. */
     payments?: (Merge.accounting.InvoicePaymentsItem | undefined)[];
     /** A list of the Payment Applied to Lines common models related to a given Invoice, Credit Note, or Journal Entry. */
     appliedPayments?: (Merge.accounting.InvoiceAppliedPaymentsItem | undefined)[];
     lineItems?: Merge.accounting.InvoiceLineItem[];
+    /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
+    inclusiveOfTax?: boolean;
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
-    /** The accounting period that the Invoice was generated in. */
-    accountingPeriod?: Merge.accounting.InvoiceAccountingPeriod;
-    purchaseOrders?: (Merge.accounting.InvoicePurchaseOrdersItem | undefined)[];
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
+    remoteFields?: Merge.accounting.RemoteField[];
 }

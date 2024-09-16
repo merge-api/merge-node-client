@@ -15,8 +15,6 @@ export const JournalEntry: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
-    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
-    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
     payments: core.serialization
         .list(
             core.serialization
@@ -40,6 +38,7 @@ export const JournalEntry: core.serialization.ObjectSchema<
         .optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     company: core.serialization.lazy(async () => (await import("../../..")).accounting.JournalEntryCompany).optional(),
+    inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     lines: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.JournalLine))
         .optional(),
@@ -65,6 +64,8 @@ export const JournalEntry: core.serialization.ObjectSchema<
             .lazy(async () => (await import("../../..")).accounting.JournalEntryAccountingPeriod)
             .optional()
     ),
+    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -73,6 +74,12 @@ export const JournalEntry: core.serialization.ObjectSchema<
         "remote_data",
         core.serialization
             .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteData))
+            .optional()
+    ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteField))
             .optional()
     ),
 });
@@ -84,14 +91,13 @@ export declare namespace JournalEntry {
         created_at?: string | null;
         modified_at?: string | null;
         transaction_date?: string | null;
-        remote_created_at?: string | null;
-        remote_updated_at?: string | null;
         payments?: (serializers.accounting.JournalEntryPaymentsItem.Raw | null | undefined)[] | null;
         applied_payments?: (serializers.accounting.JournalEntryAppliedPaymentsItem.Raw | null | undefined)[] | null;
         memo?: string | null;
         currency?: serializers.accounting.JournalEntryCurrency.Raw | null;
         exchange_rate?: string | null;
         company?: serializers.accounting.JournalEntryCompany.Raw | null;
+        inclusive_of_tax?: boolean | null;
         lines?: serializers.accounting.JournalLine.Raw[] | null;
         journal_number?: string | null;
         tracking_categories?:
@@ -100,7 +106,10 @@ export declare namespace JournalEntry {
         remote_was_deleted?: boolean | null;
         posting_status?: serializers.accounting.JournalEntryPostingStatus.Raw | null;
         accounting_period?: serializers.accounting.JournalEntryAccountingPeriod.Raw | null;
+        remote_created_at?: string | null;
+        remote_updated_at?: string | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: serializers.accounting.RemoteData.Raw[] | null;
+        remote_fields?: serializers.accounting.RemoteField.Raw[] | null;
     }
 }

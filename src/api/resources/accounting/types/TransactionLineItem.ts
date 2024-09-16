@@ -34,10 +34,11 @@ export interface TransactionLineItem {
     account?: string;
     /** The line's associated tracking category. */
     trackingCategory?: string;
-    /** The line's associated tracking categories. */
-    trackingCategories: string[];
+    /** The transaction line item's associated tracking categories. */
+    trackingCategories?: (string | undefined)[];
     /** The line item's total. */
     totalLineAmount?: string;
+    /** The tax rate that applies to this line item. */
     taxRate?: string;
     /**
      * The line item's currency.
@@ -354,6 +355,6 @@ export interface TransactionLineItem {
     exchangeRate?: string;
     /** The company the line belongs to. */
     company?: string;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
 }

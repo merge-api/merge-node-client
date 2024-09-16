@@ -18,13 +18,14 @@ export const VendorCreditLine: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string())
+        core.serialization.list(core.serialization.string().optional()).optional()
     ),
     description: core.serialization.string().optional(),
     account: core.serialization
         .lazy(async () => (await import("../../..")).accounting.VendorCreditLineAccount)
         .optional(),
     company: core.serialization.string().optional(),
+    taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
@@ -37,10 +38,11 @@ export declare namespace VendorCreditLine {
         modified_at?: string | null;
         net_amount?: number | null;
         tracking_category?: string | null;
-        tracking_categories: string[];
+        tracking_categories?: (string | null | undefined)[] | null;
         description?: string | null;
         account?: serializers.accounting.VendorCreditLineAccount.Raw | null;
         company?: string | null;
+        tax_rate?: string | null;
         exchange_rate?: string | null;
         remote_was_deleted?: boolean | null;
     }
