@@ -52,7 +52,7 @@ export class Passthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             body: await serializers.crm.DataPassthroughRequest.jsonOrThrow(request, {

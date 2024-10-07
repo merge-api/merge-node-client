@@ -25,9 +25,9 @@ export interface TimeOffBalance {
     modifiedAt?: Date;
     /** The employee the balance belongs to. */
     employee?: Merge.hris.TimeOffBalanceEmployee;
-    /** The current remaining PTO balance, always measured in terms of hours. */
+    /** The current remaining PTO balance, measured in hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours. */
     balance?: number;
-    /** The amount of PTO used in terms of hours. */
+    /** The amount of PTO used in terms of hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours. */
     used?: number;
     /**
      * The policy type of this time off balance.
@@ -40,7 +40,7 @@ export interface TimeOffBalance {
      * - `BEREAVEMENT` - BEREAVEMENT
      */
     policyType?: Merge.hris.TimeOffBalancePolicyType;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];

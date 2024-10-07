@@ -50,7 +50,9 @@ export const EndUserDetailsRequest: core.serialization.Schema<
             )
             .optional()
     ),
-    language: core.serialization.string().optional(),
+    language: core.serialization
+        .lazy(async () => (await import("../../../../../..")).ticketing.LanguageEnum)
+        .optional(),
     integrationSpecificConfig: core.serialization.property(
         "integration_specific_config",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -72,7 +74,7 @@ export declare namespace EndUserDetailsRequest {
             string,
             serializers.ticketing.IndividualCommonModelScopeDeserializerRequest.Raw[] | null | undefined
         > | null;
-        language?: string | null;
+        language?: serializers.ticketing.LanguageEnum.Raw | null;
         integration_specific_config?: Record<string, unknown> | null;
     }
 }

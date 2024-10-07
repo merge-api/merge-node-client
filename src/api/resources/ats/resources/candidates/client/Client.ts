@@ -44,6 +44,7 @@ export class Candidates {
             firstName,
             includeDeletedData,
             includeRemoteData,
+            includeShellData,
             lastName,
             modifiedAfter,
             modifiedBefore,
@@ -84,6 +85,10 @@ export class Candidates {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
+        }
+
         if (lastName != null) {
             _queryParams["last_name"] = lastName;
         }
@@ -122,7 +127,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -198,7 +203,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -275,7 +280,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -352,7 +357,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -421,7 +426,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             body: await serializers.ats.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -480,7 +485,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -539,7 +544,7 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

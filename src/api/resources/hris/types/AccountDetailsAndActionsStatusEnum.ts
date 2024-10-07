@@ -6,11 +6,13 @@
  * - `COMPLETE` - COMPLETE
  * - `INCOMPLETE` - INCOMPLETE
  * - `RELINK_NEEDED` - RELINK_NEEDED
+ * - `IDLE` - IDLE
  */
-export type AccountDetailsAndActionsStatusEnum = "COMPLETE" | "INCOMPLETE" | "RELINK_NEEDED";
+export type AccountDetailsAndActionsStatusEnum = "COMPLETE" | "INCOMPLETE" | "RELINK_NEEDED" | "IDLE";
 
 export const AccountDetailsAndActionsStatusEnum = {
     Complete: "COMPLETE",
     Incomplete: "INCOMPLETE",
     RelinkNeeded: "RELINK_NEEDED",
+    Idle: "IDLE",
 } as const;

@@ -105,6 +105,7 @@ export * from "./JobPosting";
 export * from "./JobPostingStatusEnum";
 export * from "./JobStatusEnum";
 export * from "./JobTypeEnum";
+export * from "./LanguageEnum";
 export * from "./LinkToken";
 export * from "./LinkedAccountStatus";
 export * from "./MetaResponse";

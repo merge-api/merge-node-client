@@ -65,6 +65,7 @@ export * from "./IssueStatusEnum";
 export * from "./ItemFormatEnum";
 export * from "./ItemSchema";
 export * from "./ItemTypeEnum";
+export * from "./LanguageEnum";
 export * from "./LinkToken";
 export * from "./LinkedAccountStatus";
 export * from "./MetaResponse";

@@ -130,6 +130,12 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteFieldApi))
             .optional()
     ),
+    bankFeedAccount: core.serialization.property(
+        "BankFeedAccount",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("../../..")).accounting.RemoteFieldApi))
+            .optional()
+    ),
 });
 
 export declare namespace RemoteFieldApiResponse {
@@ -154,5 +160,6 @@ export declare namespace RemoteFieldApiResponse {
         Transaction?: serializers.accounting.RemoteFieldApi.Raw[] | null;
         AccountingPeriod?: serializers.accounting.RemoteFieldApi.Raw[] | null;
         GeneralLedgerTransaction?: serializers.accounting.RemoteFieldApi.Raw[] | null;
+        BankFeedAccount?: serializers.accounting.RemoteFieldApi.Raw[] | null;
     }
 }

@@ -170,6 +170,14 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
             )
             .optional()
     ),
+    bankFeedAccount: core.serialization.property(
+        "BankFeedAccount",
+        core.serialization
+            .list(
+                core.serialization.lazyObject(async () => (await import("../../..")).accounting.FieldMappingApiInstance)
+            )
+            .optional()
+    ),
 });
 
 export declare namespace FieldMappingApiInstanceResponse {
@@ -194,5 +202,6 @@ export declare namespace FieldMappingApiInstanceResponse {
         Transaction?: serializers.accounting.FieldMappingApiInstance.Raw[] | null;
         AccountingPeriod?: serializers.accounting.FieldMappingApiInstance.Raw[] | null;
         GeneralLedgerTransaction?: serializers.accounting.FieldMappingApiInstance.Raw[] | null;
+        BankFeedAccount?: serializers.accounting.FieldMappingApiInstance.Raw[] | null;
     }
 }

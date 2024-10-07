@@ -42,6 +42,7 @@ export class Stages {
             includeDeletedData,
             includeRemoteData,
             includeRemoteFields,
+            includeShellData,
             modifiedAfter,
             modifiedBefore,
             pageSize,
@@ -70,6 +71,10 @@ export class Stages {
 
         if (includeRemoteFields != null) {
             _queryParams["include_remote_fields"] = includeRemoteFields.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         if (modifiedAfter != null) {
@@ -102,7 +107,7 @@ export class Stages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -176,7 +181,7 @@ export class Stages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -225,8 +230,15 @@ export class Stages {
         request: Merge.crm.StagesRemoteFieldClassesListRequest = {},
         requestOptions?: Stages.RequestOptions
     ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
-        const { cursor, includeDeletedData, includeRemoteData, includeRemoteFields, isCommonModelField, pageSize } =
-            request;
+        const {
+            cursor,
+            includeDeletedData,
+            includeRemoteData,
+            includeRemoteFields,
+            includeShellData,
+            isCommonModelField,
+            pageSize,
+        } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
@@ -242,6 +254,10 @@ export class Stages {
 
         if (includeRemoteFields != null) {
             _queryParams["include_remote_fields"] = includeRemoteFields.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         if (isCommonModelField != null) {
@@ -266,7 +282,7 @@ export class Stages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

@@ -37,7 +37,7 @@ export interface Collection {
     collectionType?: Merge.ticketing.CollectionCollectionType;
     /** The parent collection for this collection. */
     parentCollection?: Merge.ticketing.CollectionParentCollection;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     /**
      * The level of access a User has to the Collection and its sub-objects.

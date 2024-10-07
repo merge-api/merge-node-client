@@ -29,7 +29,7 @@ export interface JobInterviewStage {
     job?: Merge.ats.JobInterviewStageJob;
     /** The stage’s order, with the lowest values ordered first. If the third-party does not return details on the order of stages, this field will not be populated. */
     stageOrder?: number;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];

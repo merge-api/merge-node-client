@@ -22,6 +22,7 @@ export const ReportItem: core.serialization.ObjectSchema<
             .optional()
     ),
     company: core.serialization.string().optional(),
+    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
 
 export declare namespace ReportItem {
@@ -33,5 +34,6 @@ export declare namespace ReportItem {
         value?: number | null;
         sub_items?: Record<string, unknown>[] | null;
         company?: string | null;
+        remote_was_deleted?: boolean | null;
     }
 }

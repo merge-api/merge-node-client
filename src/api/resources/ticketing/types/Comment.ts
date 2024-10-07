@@ -23,9 +23,9 @@ export interface Comment {
     createdAt?: Date;
     /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
-    /** The author of the Comment, if the author is a User. */
+    /** The author of the Comment, if the author is a User. If the third party does not support specifying an author, we will append "[Posted on behalf of {name}]" to the comment. */
     user?: Merge.ticketing.CommentUser;
-    /** The author of the Comment, if the author is a Contact. */
+    /** The author of the Comment, if the author is a Contact.If the third party does not support specifying an author, we will append "[Posted on behalf of {name}]" to the comment. */
     contact?: Merge.ticketing.CommentContact;
     /** The comment's text body. */
     body?: string;
@@ -37,6 +37,7 @@ export interface Comment {
     isPrivate?: boolean;
     /** When the third party's comment was created. */
     remoteCreatedAt?: Date;
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
