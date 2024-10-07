@@ -41,6 +41,7 @@ export class Accounts {
             cursor,
             includeDeletedData,
             includeRemoteData,
+            includeShellData,
             modifiedAfter,
             modifiedBefore,
             pageSize,
@@ -65,6 +66,10 @@ export class Accounts {
 
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         if (modifiedAfter != null) {
@@ -97,7 +102,7 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -167,7 +172,7 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

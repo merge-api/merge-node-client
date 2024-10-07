@@ -60,6 +60,7 @@ export * from "./IndividualCommonModelScopeDeserializerRequest";
 export * from "./IssueStatus";
 export * from "./Issue";
 export * from "./IssueStatusEnum";
+export * from "./LanguageEnum";
 export * from "./LinkToken";
 export * from "./LinkedAccountStatus";
 export * from "./MetaResponse";

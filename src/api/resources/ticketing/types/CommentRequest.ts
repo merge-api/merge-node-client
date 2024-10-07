@@ -16,9 +16,9 @@ import * as Merge from "../../..";
  * TODO
  */
 export interface CommentRequest {
-    /** The author of the Comment, if the author is a User. */
+    /** The author of the Comment, if the author is a User. If the third party does not support specifying an author, we will append "[Posted on behalf of {name}]" to the comment. */
     user?: Merge.ticketing.CommentRequestUser;
-    /** The author of the Comment, if the author is a Contact. */
+    /** The author of the Comment, if the author is a Contact.If the third party does not support specifying an author, we will append "[Posted on behalf of {name}]" to the comment. */
     contact?: Merge.ticketing.CommentRequestContact;
     /** The comment's text body. */
     body?: string;

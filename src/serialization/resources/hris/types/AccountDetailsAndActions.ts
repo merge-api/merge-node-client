@@ -24,6 +24,7 @@ export const AccountDetailsAndActions: core.serialization.ObjectSchema<
         .lazyObject(async () => (await import("../../..")).hris.AccountDetailsAndActionsIntegration)
         .optional(),
     accountType: core.serialization.property("account_type", core.serialization.string()),
+    completedAt: core.serialization.property("completed_at", core.serialization.date()),
 });
 
 export declare namespace AccountDetailsAndActions {
@@ -40,5 +41,6 @@ export declare namespace AccountDetailsAndActions {
         is_duplicate?: boolean | null;
         integration?: serializers.hris.AccountDetailsAndActionsIntegration.Raw | null;
         account_type: string;
+        completed_at: string;
     }
 }

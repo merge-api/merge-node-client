@@ -43,7 +43,7 @@ export interface Scorecard {
      * - `NO_DECISION` - NO_DECISION
      */
     overallRecommendation?: Merge.ats.ScorecardOverallRecommendation;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ats.RemoteData[];

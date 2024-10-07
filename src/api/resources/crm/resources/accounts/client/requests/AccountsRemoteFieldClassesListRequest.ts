@@ -12,7 +12,7 @@ export interface AccountsRemoteFieldClassesListRequest {
      */
     cursor?: string;
     /**
-     * Whether to include data that was marked as deleted by third party webhooks.
+     * Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/).
      */
     includeDeletedData?: boolean;
     /**
@@ -23,6 +23,10 @@ export interface AccountsRemoteFieldClassesListRequest {
      * Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
      */
     includeRemoteFields?: boolean;
+    /**
+     * Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    includeShellData?: boolean;
     /**
      * If provided, will only return remote field classes with this is_common_model_field value
      */

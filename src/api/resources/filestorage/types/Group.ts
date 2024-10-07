@@ -25,7 +25,7 @@ export interface Group {
     name?: string;
     /** The users that belong in the group. If null, this typically means it's either a domain or the third-party platform does not surface this information. */
     users: string[];
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: (Record<string, unknown> | undefined)[];

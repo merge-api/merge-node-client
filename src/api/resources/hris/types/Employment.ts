@@ -29,7 +29,7 @@ export interface Employment {
     employee?: Merge.hris.EmploymentEmployee;
     /** The position's title. */
     jobTitle?: string;
-    /** The position's pay rate in dollars. */
+    /** The position's pay rate. */
     payRate?: number;
     /**
      * The time period this pay rate encompasses.
@@ -393,7 +393,7 @@ export interface Employment {
      * - `FREELANCE` - FREELANCE
      */
     employmentType?: Merge.hris.EmploymentEmploymentType;
-    /** Indicates whether or not this object has been deleted in the third party platform. */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.hris.RemoteData[];

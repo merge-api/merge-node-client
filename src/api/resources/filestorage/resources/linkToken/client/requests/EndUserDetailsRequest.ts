@@ -37,8 +37,13 @@ export interface EndUserDetailsRequest {
         string,
         Merge.filestorage.IndividualCommonModelScopeDeserializerRequest[] | undefined
     >;
-    /** The language code for the language to localize Merge Link to. */
-    language?: string;
+    /**
+     * The following subset of IETF language tags can be used to configure localization.
+     *
+     * * `en` - en
+     * * `de` - de
+     */
+    language?: Merge.filestorage.LanguageEnum;
     /** A JSON object containing integration-specific configuration options. */
     integrationSpecificConfig?: Record<string, unknown>;
 }

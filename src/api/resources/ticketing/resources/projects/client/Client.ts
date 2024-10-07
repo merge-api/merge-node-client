@@ -41,6 +41,7 @@ export class Projects {
             cursor,
             includeDeletedData,
             includeRemoteData,
+            includeShellData,
             modifiedAfter,
             modifiedBefore,
             pageSize,
@@ -65,6 +66,10 @@ export class Projects {
 
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         if (modifiedAfter != null) {
@@ -97,7 +102,7 @@ export class Projects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -167,7 +172,7 @@ export class Projects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -217,7 +222,7 @@ export class Projects {
         request: Merge.ticketing.ProjectsUsersListRequest = {},
         requestOptions?: Projects.RequestOptions
     ): Promise<Merge.ticketing.PaginatedUserList> {
-        const { cursor, expand, includeDeletedData, includeRemoteData, pageSize } = request;
+        const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
@@ -233,6 +238,10 @@ export class Projects {
 
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         if (pageSize != null) {
@@ -253,7 +262,7 @@ export class Projects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

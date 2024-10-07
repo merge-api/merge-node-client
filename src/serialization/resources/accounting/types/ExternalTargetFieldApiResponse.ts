@@ -170,6 +170,14 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
             )
             .optional()
     ),
+    bankFeedAccount: core.serialization.property(
+        "BankFeedAccount",
+        core.serialization
+            .list(
+                core.serialization.lazyObject(async () => (await import("../../..")).accounting.ExternalTargetFieldApi)
+            )
+            .optional()
+    ),
 });
 
 export declare namespace ExternalTargetFieldApiResponse {
@@ -194,5 +202,6 @@ export declare namespace ExternalTargetFieldApiResponse {
         Transaction?: serializers.accounting.ExternalTargetFieldApi.Raw[] | null;
         AccountingPeriod?: serializers.accounting.ExternalTargetFieldApi.Raw[] | null;
         GeneralLedgerTransaction?: serializers.accounting.ExternalTargetFieldApi.Raw[] | null;
+        BankFeedAccount?: serializers.accounting.ExternalTargetFieldApi.Raw[] | null;
     }
 }

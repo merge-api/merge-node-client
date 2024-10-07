@@ -45,6 +45,7 @@ export class Contacts {
             includeDeletedData,
             includeRemoteData,
             includeRemoteFields,
+            includeShellData,
             modifiedAfter,
             modifiedBefore,
             pageSize,
@@ -88,6 +89,10 @@ export class Contacts {
             _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
+        }
+
         if (modifiedAfter != null) {
             _queryParams["modified_after"] = modifiedAfter.toISOString();
         }
@@ -122,7 +127,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -197,7 +202,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -278,7 +283,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -354,7 +359,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -423,7 +428,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             body: await serializers.crm.IgnoreCommonModelRequest.jsonOrThrow(request, {
@@ -482,7 +487,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -541,7 +546,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -589,8 +594,15 @@ export class Contacts {
         request: Merge.crm.ContactsRemoteFieldClassesListRequest = {},
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
-        const { cursor, includeDeletedData, includeRemoteData, includeRemoteFields, isCommonModelField, pageSize } =
-            request;
+        const {
+            cursor,
+            includeDeletedData,
+            includeRemoteData,
+            includeRemoteFields,
+            includeShellData,
+            isCommonModelField,
+            pageSize,
+        } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
@@ -606,6 +618,10 @@ export class Contacts {
 
         if (includeRemoteFields != null) {
             _queryParams["include_remote_fields"] = includeRemoteFields.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         if (isCommonModelField != null) {
@@ -630,7 +646,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

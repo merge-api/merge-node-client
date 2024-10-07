@@ -38,6 +38,7 @@ export interface Contact {
     lastActivityAt?: Date;
     /** When the third party's contact was created. */
     remoteCreatedAt?: Date;
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.crm.RemoteData[];

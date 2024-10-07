@@ -63,7 +63,7 @@ export interface LinkedAccountsListRequest {
      */
     pageSize?: number;
     /**
-     * Filter by status. Options: `COMPLETE`, `INCOMPLETE`, `RELINK_NEEDED`
+     * Filter by status. Options: `COMPLETE`, `IDLE`, `INCOMPLETE`, `RELINK_NEEDED`
      */
     status?: string;
 }

@@ -93,6 +93,7 @@ export * from "./IssueStatusEnum";
 export * from "./ItemFormatEnum";
 export * from "./ItemSchema";
 export * from "./ItemTypeEnum";
+export * from "./LanguageEnum";
 export * from "./LeadOwner";
 export * from "./LeadConvertedContact";
 export * from "./LeadConvertedAccount";
