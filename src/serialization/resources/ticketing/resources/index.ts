@@ -1,3 +1,5 @@
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as collections from "./collections";
 export * from "./collections/types";
 export * as comments from "./comments";

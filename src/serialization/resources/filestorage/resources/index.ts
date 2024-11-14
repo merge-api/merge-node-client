@@ -1,3 +1,5 @@
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as files from "./files";
 export * from "./files/types";
 export * as folders from "./folders";

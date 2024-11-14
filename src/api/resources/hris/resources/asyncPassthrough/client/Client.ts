@@ -14,6 +14,7 @@ export declare namespace AsyncPassthrough {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
         accountToken?: core.Supplier<string | undefined>;
+        fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
@@ -38,7 +39,7 @@ export class AsyncPassthrough {
         request: Merge.hris.DataPassthroughRequest,
         requestOptions?: AsyncPassthrough.RequestOptions
     ): Promise<Merge.hris.AsyncPassthroughReciept> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "hris/v1/async-passthrough"
@@ -52,7 +53,7 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             body: await serializers.hris.DataPassthroughRequest.jsonOrThrow(request, {
@@ -95,15 +96,12 @@ export class AsyncPassthrough {
 
     /**
      * Retrieves data from earlier async-passthrough POST request
-     *
-     * @example
-     *     await merge.hris.asyncPassthrough.retrieve("async_passthrough_receipt_id")
      */
     public async retrieve(
         asyncPassthroughReceiptId: string,
         requestOptions?: AsyncPassthrough.RequestOptions
-    ): Promise<Merge.hris.RemoteResponse> {
-        const _response = await core.fetcher({
+    ): Promise<Merge.hris.AsyncPassthroughRetrieveResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `hris/v1/async-passthrough/${asyncPassthroughReceiptId}`
@@ -117,14 +115,14 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
-            return await serializers.hris.RemoteResponse.parseOrThrow(_response.body, {
+            return await serializers.hris.AsyncPassthroughRetrieveResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,

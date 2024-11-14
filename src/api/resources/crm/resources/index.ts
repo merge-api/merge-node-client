@@ -1,3 +1,5 @@
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as contacts from "./contacts";
 export * from "./contacts/types";
 export * as engagements from "./engagements";
@@ -17,7 +19,6 @@ export * from "./tasks/types";
 export * as accountDetails from "./accountDetails";
 export * as accountToken from "./accountToken";
 export * as accounts from "./accounts";
-export * as asyncPassthrough from "./asyncPassthrough";
 export * as auditTrail from "./auditTrail";
 export * as availableActions from "./availableActions";
 export * as customObjectClasses from "./customObjectClasses";

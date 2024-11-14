@@ -14,6 +14,7 @@ export declare namespace Applications {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
         accountToken?: core.Supplier<string | undefined>;
+        fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
@@ -123,7 +124,7 @@ export class Applications {
             _queryParams["source"] = source;
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "ats/v1/applications"
@@ -137,7 +138,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -199,7 +200,7 @@ export class Applications {
             _queryParams["run_async"] = runAsync.toString();
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "ats/v1/applications"
@@ -213,7 +214,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -276,7 +277,7 @@ export class Applications {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `ats/v1/applications/${id}`
@@ -290,7 +291,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -350,7 +351,7 @@ export class Applications {
             _queryParams["run_async"] = runAsync.toString();
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `ats/v1/applications/${id}/change-stage`
@@ -364,7 +365,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -422,7 +423,7 @@ export class Applications {
             _queryParams["application_remote_template_id"] = applicationRemoteTemplateId;
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "ats/v1/applications/meta/post"
@@ -436,7 +437,7 @@ export class Applications {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

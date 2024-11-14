@@ -14,6 +14,7 @@ export declare namespace ForceResync {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
         accountToken?: core.Supplier<string | undefined>;
+        fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
@@ -34,7 +35,7 @@ export class ForceResync {
     public async syncStatusResyncCreate(
         requestOptions?: ForceResync.RequestOptions
     ): Promise<Merge.accounting.SyncStatus[]> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "accounting/v1/sync-status/resync"
@@ -48,7 +49,7 @@ export class ForceResync {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -1,3 +1,5 @@
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as bankInfo from "./bankInfo";
 export * from "./bankInfo/types";
 export * as employeePayrollRuns from "./employeePayrollRuns";
@@ -22,7 +24,6 @@ export * as timesheetEntries from "./timesheetEntries";
 export * from "./timesheetEntries/types";
 export * as accountDetails from "./accountDetails";
 export * as accountToken from "./accountToken";
-export * as asyncPassthrough from "./asyncPassthrough";
 export * as auditTrail from "./auditTrail";
 export * as availableActions from "./availableActions";
 export * as benefits from "./benefits";

@@ -14,6 +14,7 @@ export declare namespace CustomObjects {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
         accountToken?: core.Supplier<string | undefined>;
+        fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
@@ -94,7 +95,7 @@ export class CustomObjects {
             _queryParams["remote_id"] = remoteId;
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `crm/v1/custom-object-classes/${customObjectClassId}/custom-objects`
@@ -108,7 +109,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -174,7 +175,7 @@ export class CustomObjects {
             _queryParams["run_async"] = runAsync.toString();
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `crm/v1/custom-object-classes/${customObjectClassId}/custom-objects`
@@ -188,7 +189,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -252,7 +253,7 @@ export class CustomObjects {
             _queryParams["include_remote_fields"] = includeRemoteFields.toString();
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `crm/v1/custom-object-classes/${customObjectClassId}/custom-objects/${id}`
@@ -266,7 +267,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -315,7 +316,7 @@ export class CustomObjects {
         customObjectClassId: string,
         requestOptions?: CustomObjects.RequestOptions
     ): Promise<Merge.crm.MetaResponse> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `crm/v1/custom-object-classes/${customObjectClassId}/custom-objects/meta/post`
@@ -329,7 +330,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -415,7 +416,7 @@ export class CustomObjects {
             _queryParams["page_size"] = pageSize.toString();
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "crm/v1/custom-object-classes/custom-objects/remote-field-classes"
@@ -429,7 +430,7 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,

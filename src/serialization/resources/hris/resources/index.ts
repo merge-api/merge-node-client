@@ -1,3 +1,5 @@
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as bankInfo from "./bankInfo";
 export * from "./bankInfo/types";
 export * as employeePayrollRuns from "./employeePayrollRuns";

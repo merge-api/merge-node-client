@@ -14,6 +14,7 @@ export declare namespace Activities {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
         accountToken?: core.Supplier<string | undefined>;
+        fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
@@ -108,7 +109,7 @@ export class Activities {
             _queryParams["user_id"] = userId;
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "ats/v1/activities"
@@ -122,7 +123,7 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -184,7 +185,7 @@ export class Activities {
             _queryParams["run_async"] = runAsync.toString();
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "ats/v1/activities"
@@ -198,7 +199,7 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -267,7 +268,7 @@ export class Activities {
             _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `ats/v1/activities/${id}`
@@ -281,7 +282,7 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -327,7 +328,7 @@ export class Activities {
      *     await merge.ats.activities.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Activities.RequestOptions): Promise<Merge.ats.MetaResponse> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "ats/v1/activities/meta/post"
@@ -341,7 +342,7 @@ export class Activities {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

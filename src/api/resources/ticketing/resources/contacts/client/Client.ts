@@ -14,6 +14,7 @@ export declare namespace Contacts {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
         accountToken?: core.Supplier<string | undefined>;
+        fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
@@ -93,7 +94,7 @@ export class Contacts {
             _queryParams["remote_id"] = remoteId;
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "ticketing/v1/contacts"
@@ -107,7 +108,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -168,7 +169,7 @@ export class Contacts {
             _queryParams["run_async"] = runAsync.toString();
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "ticketing/v1/contacts"
@@ -182,7 +183,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -245,7 +246,7 @@ export class Contacts {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `ticketing/v1/contacts/${id}`
@@ -259,7 +260,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -305,7 +306,7 @@ export class Contacts {
      *     await merge.ticketing.contacts.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Contacts.RequestOptions): Promise<Merge.ticketing.MetaResponse> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "ticketing/v1/contacts/meta/post"
@@ -319,7 +320,7 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

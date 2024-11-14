@@ -1,3 +1,5 @@
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as contacts from "./contacts";
 export * from "./contacts/types";
 export * as engagements from "./engagements";

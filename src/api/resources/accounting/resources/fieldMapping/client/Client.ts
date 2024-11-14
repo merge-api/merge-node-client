@@ -14,6 +14,7 @@ export declare namespace FieldMapping {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
         accountToken?: core.Supplier<string | undefined>;
+        fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
@@ -34,7 +35,7 @@ export class FieldMapping {
     public async fieldMappingsRetrieve(
         requestOptions?: FieldMapping.RequestOptions
     ): Promise<Merge.accounting.FieldMappingApiInstanceResponse> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "accounting/v1/field-mappings"
@@ -48,7 +49,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -103,7 +104,7 @@ export class FieldMapping {
         request: Merge.accounting.CreateFieldMappingRequest,
         requestOptions?: FieldMapping.RequestOptions
     ): Promise<Merge.accounting.FieldMappingInstanceResponse> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "accounting/v1/field-mappings"
@@ -117,7 +118,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             body: await serializers.accounting.CreateFieldMappingRequest.jsonOrThrow(request, {
@@ -168,7 +169,7 @@ export class FieldMapping {
         fieldMappingId: string,
         requestOptions?: FieldMapping.RequestOptions
     ): Promise<Merge.accounting.FieldMappingInstanceResponse> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `accounting/v1/field-mappings/${fieldMappingId}`
@@ -182,7 +183,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -231,7 +232,7 @@ export class FieldMapping {
         request: Merge.accounting.PatchedEditFieldMappingRequest = {},
         requestOptions?: FieldMapping.RequestOptions
     ): Promise<Merge.accounting.FieldMappingInstanceResponse> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 `accounting/v1/field-mappings/${fieldMappingId}`
@@ -245,7 +246,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             body: await serializers.accounting.PatchedEditFieldMappingRequest.jsonOrThrow(request, {
@@ -306,7 +307,7 @@ export class FieldMapping {
             _queryParams["include_example_values"] = includeExampleValues;
         }
 
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "accounting/v1/remote-fields"
@@ -320,7 +321,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -368,7 +369,7 @@ export class FieldMapping {
     public async targetFieldsRetrieve(
         requestOptions?: FieldMapping.RequestOptions
     ): Promise<Merge.accounting.ExternalTargetFieldApiResponse> {
-        const _response = await core.fetcher({
+        const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
                 "accounting/v1/target-fields"
@@ -382,7 +383,7 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.11",
+                "X-Fern-SDK-Version": "1.0.12",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
