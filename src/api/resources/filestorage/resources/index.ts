@@ -1,3 +1,5 @@
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as files from "./files";
 export * from "./files/types";
 export * as folders from "./folders";
@@ -8,7 +10,6 @@ export * as linkedAccounts from "./linkedAccounts";
 export * from "./linkedAccounts/types";
 export * as accountDetails from "./accountDetails";
 export * as accountToken from "./accountToken";
-export * as asyncPassthrough from "./asyncPassthrough";
 export * as auditTrail from "./auditTrail";
 export * as availableActions from "./availableActions";
 export * as scopes from "./scopes";

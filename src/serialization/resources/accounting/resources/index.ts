@@ -1,5 +1,7 @@
 export * as accounts from "./accounts";
 export * from "./accounts/types";
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as companyInfo from "./companyInfo";
 export * from "./companyInfo/types";
 export * as contacts from "./contacts";

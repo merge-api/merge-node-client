@@ -1,3 +1,5 @@
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as collections from "./collections";
 export * from "./collections/types";
 export * as comments from "./comments";
@@ -15,7 +17,6 @@ export * from "./users/types";
 export * as accountDetails from "./accountDetails";
 export * as accountToken from "./accountToken";
 export * as accounts from "./accounts";
-export * as asyncPassthrough from "./asyncPassthrough";
 export * as attachments from "./attachments";
 export * as auditTrail from "./auditTrail";
 export * as availableActions from "./availableActions";

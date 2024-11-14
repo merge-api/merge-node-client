@@ -2,6 +2,8 @@ export * as activities from "./activities";
 export * from "./activities/types";
 export * as applications from "./applications";
 export * from "./applications/types";
+export * as asyncPassthrough from "./asyncPassthrough";
+export * from "./asyncPassthrough/types";
 export * as candidates from "./candidates";
 export * from "./candidates/types";
 export * as eeocs from "./eeocs";
