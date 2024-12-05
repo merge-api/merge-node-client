@@ -1,3 +1,3 @@
-export { TimeOffListRequest } from "./TimeOffListRequest";
-export { TimeOffEndpointRequest } from "./TimeOffEndpointRequest";
-export { TimeOffRetrieveRequest } from "./TimeOffRetrieveRequest";
+export { type TimeOffListRequest } from "./TimeOffListRequest";
+export { type TimeOffEndpointRequest } from "./TimeOffEndpointRequest";
+export { type TimeOffRetrieveRequest } from "./TimeOffRetrieveRequest";

@@ -1,3 +1,3 @@
-export { EngagementTypesListRequest } from "./EngagementTypesListRequest";
-export { EngagementTypesRetrieveRequest } from "./EngagementTypesRetrieveRequest";
-export { EngagementTypesRemoteFieldClassesListRequest } from "./EngagementTypesRemoteFieldClassesListRequest";
+export { type EngagementTypesListRequest } from "./EngagementTypesListRequest";
+export { type EngagementTypesRetrieveRequest } from "./EngagementTypesRetrieveRequest";
+export { type EngagementTypesRemoteFieldClassesListRequest } from "./EngagementTypesRemoteFieldClassesListRequest";

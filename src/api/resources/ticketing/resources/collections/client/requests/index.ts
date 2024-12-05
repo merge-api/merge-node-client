@@ -1,3 +1,3 @@
-export { CollectionsListRequest } from "./CollectionsListRequest";
-export { CollectionsRetrieveRequest } from "./CollectionsRetrieveRequest";
-export { CollectionsUsersListRequest } from "./CollectionsUsersListRequest";
+export { type CollectionsListRequest } from "./CollectionsListRequest";
+export { type CollectionsRetrieveRequest } from "./CollectionsRetrieveRequest";
+export { type CollectionsUsersListRequest } from "./CollectionsUsersListRequest";

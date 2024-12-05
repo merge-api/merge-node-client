@@ -1,5 +1,5 @@
-export { PurchaseOrdersListRequest } from "./PurchaseOrdersListRequest";
-export { PurchaseOrderEndpointRequest } from "./PurchaseOrderEndpointRequest";
-export { PurchaseOrdersRetrieveRequest } from "./PurchaseOrdersRetrieveRequest";
-export { PurchaseOrdersLineItemsRemoteFieldClassesListRequest } from "./PurchaseOrdersLineItemsRemoteFieldClassesListRequest";
-export { PurchaseOrdersRemoteFieldClassesListRequest } from "./PurchaseOrdersRemoteFieldClassesListRequest";
+export { type PurchaseOrdersListRequest } from "./PurchaseOrdersListRequest";
+export { type PurchaseOrderEndpointRequest } from "./PurchaseOrderEndpointRequest";
+export { type PurchaseOrdersRetrieveRequest } from "./PurchaseOrdersRetrieveRequest";
+export { type PurchaseOrdersLineItemsRemoteFieldClassesListRequest } from "./PurchaseOrdersLineItemsRemoteFieldClassesListRequest";
+export { type PurchaseOrdersRemoteFieldClassesListRequest } from "./PurchaseOrdersRemoteFieldClassesListRequest";

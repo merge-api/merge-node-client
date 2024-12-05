@@ -1,2 +1,2 @@
-export { ScorecardsListRequest } from "./ScorecardsListRequest";
-export { ScorecardsRetrieveRequest } from "./ScorecardsRetrieveRequest";
+export { type ScorecardsListRequest } from "./ScorecardsListRequest";
+export { type ScorecardsRetrieveRequest } from "./ScorecardsRetrieveRequest";

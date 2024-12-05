@@ -1,2 +1,2 @@
-export { CustomObjectClassesListRequest } from "./CustomObjectClassesListRequest";
-export { CustomObjectClassesRetrieveRequest } from "./CustomObjectClassesRetrieveRequest";
+export { type CustomObjectClassesListRequest } from "./CustomObjectClassesListRequest";
+export { type CustomObjectClassesRetrieveRequest } from "./CustomObjectClassesRetrieveRequest";

@@ -1,2 +1,2 @@
-export { CreditNotesListRequest } from "./CreditNotesListRequest";
-export { CreditNotesRetrieveRequest } from "./CreditNotesRetrieveRequest";
+export { type CreditNotesListRequest } from "./CreditNotesListRequest";
+export { type CreditNotesRetrieveRequest } from "./CreditNotesRetrieveRequest";

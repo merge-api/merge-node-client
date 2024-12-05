@@ -1,2 +1,2 @@
-export { CompaniesListRequest } from "./CompaniesListRequest";
-export { CompaniesRetrieveRequest } from "./CompaniesRetrieveRequest";
+export { type CompaniesListRequest } from "./CompaniesListRequest";
+export { type CompaniesRetrieveRequest } from "./CompaniesRetrieveRequest";

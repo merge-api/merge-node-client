@@ -1,3 +1,3 @@
-export { CustomObjectClassesAssociationTypesListRequest } from "./CustomObjectClassesAssociationTypesListRequest";
-export { CrmAssociationTypeEndpointRequest } from "./CrmAssociationTypeEndpointRequest";
-export { CustomObjectClassesAssociationTypesRetrieveRequest } from "./CustomObjectClassesAssociationTypesRetrieveRequest";
+export { type CustomObjectClassesAssociationTypesListRequest } from "./CustomObjectClassesAssociationTypesListRequest";
+export { type CrmAssociationTypeEndpointRequest } from "./CrmAssociationTypeEndpointRequest";
+export { type CustomObjectClassesAssociationTypesRetrieveRequest } from "./CustomObjectClassesAssociationTypesRetrieveRequest";

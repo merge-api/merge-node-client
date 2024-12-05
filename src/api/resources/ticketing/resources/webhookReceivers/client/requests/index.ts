@@ -1,1 +1,1 @@
-export { WebhookReceiverRequest } from "./WebhookReceiverRequest";
+export { type WebhookReceiverRequest } from "./WebhookReceiverRequest";

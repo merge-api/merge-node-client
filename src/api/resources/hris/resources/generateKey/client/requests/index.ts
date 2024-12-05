@@ -1,1 +1,1 @@
-export { GenerateRemoteKeyRequest } from "./GenerateRemoteKeyRequest";
+export { type GenerateRemoteKeyRequest } from "./GenerateRemoteKeyRequest";

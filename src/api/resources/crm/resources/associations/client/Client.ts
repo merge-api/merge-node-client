@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace Associations {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,13 @@ export class Associations {
     /**
      * Returns a list of `Association` objects.
      *
+     * @param {string} customObjectClassId
+     * @param {string} objectId
+     * @param {Merge.crm.CustomObjectClassesCustomObjectsAssociationsListRequest} request
+     * @param {Associations.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id", {})
+     *     await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id")
      */
     public async customObjectClassesCustomObjectsAssociationsList(
         customObjectClassId: string,
@@ -52,7 +66,7 @@ export class Associations {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (associationTypeId != null) {
             _queryParams["association_type_id"] = associationTypeId;
         }
@@ -104,7 +118,9 @@ export class Associations {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/custom-object-classes/${customObjectClassId}/custom-objects/${objectId}/associations`
+                `crm/v1/custom-object-classes/${encodeURIComponent(
+                    customObjectClassId
+                )}/custom-objects/${encodeURIComponent(objectId)}/associations`
             ),
             method: "GET",
             headers: {
@@ -115,15 +131,21 @@ export class Associations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.PaginatedAssociationList.parseOrThrow(_response.body, {
+            return serializers.crm.PaginatedAssociationList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -146,7 +168,9 @@ export class Associations {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects/{object_id}/associations."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -157,8 +181,16 @@ export class Associations {
     /**
      * Creates an Association between `source_object_id` and `target_object_id` of type `association_type_id`.
      *
+     * @param {string} associationTypeId
+     * @param {string} sourceClassId
+     * @param {string} sourceObjectId
+     * @param {string} targetClassId
+     * @param {string} targetObjectId
+     * @param {Merge.crm.CustomObjectClassesCustomObjectsAssociationsUpdateRequest} request
+     * @param {Associations.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.associations.customObjectClassesCustomObjectsAssociationsUpdate("association_type_id", "source_class_id", "source_object_id", "target_class_id", "target_object_id", {})
+     *     await client.crm.associations.customObjectClassesCustomObjectsAssociationsUpdate("association_type_id", "source_class_id", "source_object_id", "target_class_id", "target_object_id")
      */
     public async customObjectClassesCustomObjectsAssociationsUpdate(
         associationTypeId: string,
@@ -170,7 +202,7 @@ export class Associations {
         requestOptions?: Associations.RequestOptions
     ): Promise<Merge.crm.Association> {
         const { isDebugMode, runAsync } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -182,7 +214,11 @@ export class Associations {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/custom-object-classes/${sourceClassId}/custom-objects/${sourceObjectId}/associations/${targetClassId}/${targetObjectId}/${associationTypeId}`
+                `crm/v1/custom-object-classes/${encodeURIComponent(sourceClassId)}/custom-objects/${encodeURIComponent(
+                    sourceObjectId
+                )}/associations/${encodeURIComponent(targetClassId)}/${encodeURIComponent(
+                    targetObjectId
+                )}/${encodeURIComponent(associationTypeId)}`
             ),
             method: "PUT",
             headers: {
@@ -193,15 +229,21 @@ export class Associations {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.Association.parseOrThrow(_response.body, {
+            return serializers.crm.Association.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -224,7 +266,9 @@ export class Associations {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling PUT /crm/v1/custom-object-classes/{source_class_id}/custom-objects/{source_object_id}/associations/{target_class_id}/{target_object_id}/{association_type_id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -232,7 +276,7 @@ export class Associations {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

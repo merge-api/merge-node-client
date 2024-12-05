@@ -1,5 +1,5 @@
-export { ContactsListRequest } from "./ContactsListRequest";
-export { CrmContactEndpointRequest } from "./CrmContactEndpointRequest";
-export { ContactsRetrieveRequest } from "./ContactsRetrieveRequest";
-export { PatchedCrmContactEndpointRequest } from "./PatchedCrmContactEndpointRequest";
-export { ContactsRemoteFieldClassesListRequest } from "./ContactsRemoteFieldClassesListRequest";
+export { type ContactsListRequest } from "./ContactsListRequest";
+export { type CrmContactEndpointRequest } from "./CrmContactEndpointRequest";
+export { type ContactsRetrieveRequest } from "./ContactsRetrieveRequest";
+export { type PatchedCrmContactEndpointRequest } from "./PatchedCrmContactEndpointRequest";
+export { type ContactsRemoteFieldClassesListRequest } from "./ContactsRemoteFieldClassesListRequest";

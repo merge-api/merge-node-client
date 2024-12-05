@@ -1,3 +1,3 @@
-export { CreateFieldMappingRequest } from "./CreateFieldMappingRequest";
-export { PatchedEditFieldMappingRequest } from "./PatchedEditFieldMappingRequest";
-export { RemoteFieldsRetrieveRequest } from "./RemoteFieldsRetrieveRequest";
+export { type CreateFieldMappingRequest } from "./CreateFieldMappingRequest";
+export { type PatchedEditFieldMappingRequest } from "./PatchedEditFieldMappingRequest";
+export { type RemoteFieldsRetrieveRequest } from "./RemoteFieldsRetrieveRequest";

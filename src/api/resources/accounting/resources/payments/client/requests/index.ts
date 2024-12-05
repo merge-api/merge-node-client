@@ -1,6 +1,6 @@
-export { PaymentsListRequest } from "./PaymentsListRequest";
-export { PaymentEndpointRequest } from "./PaymentEndpointRequest";
-export { PaymentsRetrieveRequest } from "./PaymentsRetrieveRequest";
-export { PatchedPaymentEndpointRequest } from "./PatchedPaymentEndpointRequest";
-export { PaymentsLineItemsRemoteFieldClassesListRequest } from "./PaymentsLineItemsRemoteFieldClassesListRequest";
-export { PaymentsRemoteFieldClassesListRequest } from "./PaymentsRemoteFieldClassesListRequest";
+export { type PaymentsListRequest } from "./PaymentsListRequest";
+export { type PaymentEndpointRequest } from "./PaymentEndpointRequest";
+export { type PaymentsRetrieveRequest } from "./PaymentsRetrieveRequest";
+export { type PatchedPaymentEndpointRequest } from "./PatchedPaymentEndpointRequest";
+export { type PaymentsLineItemsRemoteFieldClassesListRequest } from "./PaymentsLineItemsRemoteFieldClassesListRequest";
+export { type PaymentsRemoteFieldClassesListRequest } from "./PaymentsRemoteFieldClassesListRequest";
