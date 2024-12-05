@@ -9,6 +9,7 @@ import { ExpenseRequestAccount } from "./ExpenseRequestAccount";
 import { ExpenseRequestContact } from "./ExpenseRequestContact";
 import { ExpenseRequestCurrency } from "./ExpenseRequestCurrency";
 import { ExpenseRequestCompany } from "./ExpenseRequestCompany";
+import { ExpenseRequestEmployee } from "./ExpenseRequestEmployee";
 import { ExpenseLineRequest } from "./ExpenseLineRequest";
 import { ExpenseRequestTrackingCategoriesItem } from "./ExpenseRequestTrackingCategoriesItem";
 import { ExpenseRequestAccountingPeriod } from "./ExpenseRequestAccountingPeriod";
@@ -28,6 +29,7 @@ export const ExpenseRequest: core.serialization.ObjectSchema<
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     company: ExpenseRequestCompany.optional(),
+    employee: ExpenseRequestEmployee.optional(),
     memo: core.serialization.string().optional(),
     lines: core.serialization.list(ExpenseLineRequest).optional(),
     trackingCategories: core.serialization.property(
@@ -58,6 +60,7 @@ export declare namespace ExpenseRequest {
         exchange_rate?: string | null;
         inclusive_of_tax?: boolean | null;
         company?: ExpenseRequestCompany.Raw | null;
+        employee?: ExpenseRequestEmployee.Raw | null;
         memo?: string | null;
         lines?: ExpenseLineRequest.Raw[] | null;
         tracking_categories?: (ExpenseRequestTrackingCategoriesItem.Raw | null | undefined)[] | null;

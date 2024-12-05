@@ -26,6 +26,8 @@ export interface InvoiceLineItemRequest {
     quantity?: number;
     /** The line item's total amount. */
     totalAmount?: number;
+    /** The employee this overall transaction relates to. */
+    employee?: Merge.accounting.InvoiceLineItemRequestEmployee;
     /**
      * The line item's currency.
      *
@@ -346,7 +348,7 @@ export interface InvoiceLineItemRequest {
     trackingCategory?: Merge.accounting.InvoiceLineItemRequestTrackingCategory;
     /** The invoice line item's associated tracking categories. */
     trackingCategories?: (Merge.accounting.InvoiceLineItemRequestTrackingCategoriesItem | undefined)[];
-    /** The company the line item belongs to. */
+    /** The company the invoice belongs to. */
     company?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;

@@ -6,9 +6,9 @@
  * - `ACTIVE` - ACTIVE
  * - `INACTIVE` - INACTIVE
  */
-export type AccountingPeriodStatusEnum = "ACTIVE" | "INACTIVE";
+export type FeedStatusEnum = "ACTIVE" | "INACTIVE";
 
-export const AccountingPeriodStatusEnum = {
+export const FeedStatusEnum = {
     Active: "ACTIVE",
     Inactive: "INACTIVE",
 } as const;

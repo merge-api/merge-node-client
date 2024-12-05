@@ -350,6 +350,8 @@ export interface VendorCredit {
     company?: Merge.accounting.VendorCreditCompany;
     lines?: Merge.accounting.VendorCreditLine[];
     trackingCategories?: (Merge.accounting.VendorCreditTrackingCategoriesItem | undefined)[];
+    /** A list of VendorCredit Applied to Lines objects. */
+    appliedToLines?: Merge.accounting.VendorCreditApplyLineForVendorCredit[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     /** The accounting period that the VendorCredit was generated in. */

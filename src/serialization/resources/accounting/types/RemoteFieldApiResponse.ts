@@ -47,6 +47,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
         core.serialization.list(RemoteFieldApi).optional()
     ),
     bankFeedAccount: core.serialization.property("BankFeedAccount", core.serialization.list(RemoteFieldApi).optional()),
+    employee: core.serialization.property("Employee", core.serialization.list(RemoteFieldApi).optional()),
 });
 
 export declare namespace RemoteFieldApiResponse {
@@ -72,5 +73,6 @@ export declare namespace RemoteFieldApiResponse {
         AccountingPeriod?: RemoteFieldApi.Raw[] | null;
         GeneralLedgerTransaction?: RemoteFieldApi.Raw[] | null;
         BankFeedAccount?: RemoteFieldApi.Raw[] | null;
+        Employee?: RemoteFieldApi.Raw[] | null;
     }
 }

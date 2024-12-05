@@ -6,11 +6,11 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 
-export const AccountingPeriodStatusEnum: core.serialization.Schema<
-    serializers.accounting.AccountingPeriodStatusEnum.Raw,
-    Merge.accounting.AccountingPeriodStatusEnum
+export const FeedStatusEnum: core.serialization.Schema<
+    serializers.accounting.FeedStatusEnum.Raw,
+    Merge.accounting.FeedStatusEnum
 > = core.serialization.enum_(["ACTIVE", "INACTIVE"]);
 
-export declare namespace AccountingPeriodStatusEnum {
+export declare namespace FeedStatusEnum {
     type Raw = "ACTIVE" | "INACTIVE";
 }

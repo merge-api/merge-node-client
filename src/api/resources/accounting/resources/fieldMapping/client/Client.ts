@@ -38,14 +38,22 @@ export class FieldMapping {
     /**
      * Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
      *
+     * @param {Merge.accounting.FieldMappingsRetrieveRequest} request
      * @param {FieldMapping.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.accounting.fieldMapping.fieldMappingsRetrieve()
      */
     public async fieldMappingsRetrieve(
+        request: Merge.accounting.FieldMappingsRetrieveRequest = {},
         requestOptions?: FieldMapping.RequestOptions
     ): Promise<Merge.accounting.FieldMappingApiInstanceResponse> {
+        const { excludeRemoteFieldMetadata } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (excludeRemoteFieldMetadata != null) {
+            _queryParams["exclude_remote_field_metadata"] = excludeRemoteFieldMetadata.toString();
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
@@ -60,13 +68,14 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
             },
             contentType: "application/json",
+            queryParameters: _queryParams,
             requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -124,6 +133,12 @@ export class FieldMapping {
         request: Merge.accounting.CreateFieldMappingRequest,
         requestOptions?: FieldMapping.RequestOptions
     ): Promise<Merge.accounting.FieldMappingInstanceResponse> {
+        const { excludeRemoteFieldMetadata, ..._body } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (excludeRemoteFieldMetadata != null) {
+            _queryParams["exclude_remote_field_metadata"] = excludeRemoteFieldMetadata.toString();
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
@@ -138,15 +153,16 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
             },
             contentType: "application/json",
+            queryParameters: _queryParams,
             requestType: "json",
-            body: serializers.accounting.CreateFieldMappingRequest.jsonOrThrow(request, {
+            body: serializers.accounting.CreateFieldMappingRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -212,8 +228,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -287,8 +303,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -373,8 +389,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -443,8 +459,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

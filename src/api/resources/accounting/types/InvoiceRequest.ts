@@ -35,6 +35,8 @@ export interface InvoiceRequest {
     dueDate?: Date;
     /** The invoice's paid date. */
     paidOnDate?: Date;
+    /** The employee this overall transaction relates to. */
+    employee?: Merge.accounting.InvoiceRequestEmployee;
     /** The invoice's private note. */
     memo?: string;
     /**

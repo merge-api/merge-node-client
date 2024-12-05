@@ -372,6 +372,8 @@ export interface CreditNote {
     remoteWasDeleted?: boolean;
     /** The accounting period that the CreditNote was generated in. */
     accountingPeriod?: Merge.accounting.CreditNoteAccountingPeriod;
+    /** A list of the CreditNote Applied to Lines common models related to a given Credit Note */
+    appliedToLines?: Merge.accounting.CreditNoteApplyLineForCreditNote[];
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

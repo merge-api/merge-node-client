@@ -10,16 +10,20 @@ import { AccountingPeriods } from "../resources/accountingPeriods/client/Client"
 import { Accounts } from "../resources/accounts/client/Client";
 import { Addresses } from "../resources/addresses/client/Client";
 import { AsyncPassthrough } from "../resources/asyncPassthrough/client/Client";
+import { AsyncTasks } from "../resources/asyncTasks/client/Client";
 import { Attachments } from "../resources/attachments/client/Client";
 import { AuditTrail } from "../resources/auditTrail/client/Client";
 import { AvailableActions } from "../resources/availableActions/client/Client";
 import { BalanceSheets } from "../resources/balanceSheets/client/Client";
+import { BankFeedAccounts } from "../resources/bankFeedAccounts/client/Client";
+import { BankFeedTransactions } from "../resources/bankFeedTransactions/client/Client";
 import { CashFlowStatements } from "../resources/cashFlowStatements/client/Client";
 import { CompanyInfo } from "../resources/companyInfo/client/Client";
 import { Contacts } from "../resources/contacts/client/Client";
 import { CreditNotes } from "../resources/creditNotes/client/Client";
 import { Scopes } from "../resources/scopes/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
+import { Employees } from "../resources/employees/client/Client";
 import { Expenses } from "../resources/expenses/client/Client";
 import { FieldMapping } from "../resources/fieldMapping/client/Client";
 import { GenerateKey } from "../resources/generateKey/client/Client";
@@ -105,6 +109,12 @@ export class Accounting {
         return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
     }
 
+    protected _asyncTasks: AsyncTasks | undefined;
+
+    public get asyncTasks(): AsyncTasks {
+        return (this._asyncTasks ??= new AsyncTasks(this._options));
+    }
+
     protected _attachments: Attachments | undefined;
 
     public get attachments(): Attachments {
@@ -127,6 +137,18 @@ export class Accounting {
 
     public get balanceSheets(): BalanceSheets {
         return (this._balanceSheets ??= new BalanceSheets(this._options));
+    }
+
+    protected _bankFeedAccounts: BankFeedAccounts | undefined;
+
+    public get bankFeedAccounts(): BankFeedAccounts {
+        return (this._bankFeedAccounts ??= new BankFeedAccounts(this._options));
+    }
+
+    protected _bankFeedTransactions: BankFeedTransactions | undefined;
+
+    public get bankFeedTransactions(): BankFeedTransactions {
+        return (this._bankFeedTransactions ??= new BankFeedTransactions(this._options));
     }
 
     protected _cashFlowStatements: CashFlowStatements | undefined;
@@ -163,6 +185,12 @@ export class Accounting {
 
     public get deleteAccount(): DeleteAccount {
         return (this._deleteAccount ??= new DeleteAccount(this._options));
+    }
+
+    protected _employees: Employees | undefined;
+
+    public get employees(): Employees {
+        return (this._employees ??= new Employees(this._options));
     }
 
     protected _expenses: Expenses | undefined;

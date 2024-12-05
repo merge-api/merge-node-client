@@ -5,13 +5,13 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { AccountingPeriodStatusEnum } from "./AccountingPeriodStatusEnum";
+import { Status895Enum } from "./Status895Enum";
 
 export const AccountingPeriodStatus: core.serialization.Schema<
     serializers.accounting.AccountingPeriodStatus.Raw,
     Merge.accounting.AccountingPeriodStatus
-> = core.serialization.undiscriminatedUnion([AccountingPeriodStatusEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([Status895Enum, core.serialization.string()]);
 
 export declare namespace AccountingPeriodStatus {
-    type Raw = AccountingPeriodStatusEnum.Raw | string;
+    type Raw = Status895Enum.Raw | string;
 }

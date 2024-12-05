@@ -5,7 +5,6 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { Invoice } from "./Invoice";
 
 export const PaginatedInvoiceList: core.serialization.ObjectSchema<
     serializers.accounting.PaginatedInvoiceList.Raw,
@@ -13,13 +12,13 @@ export const PaginatedInvoiceList: core.serialization.ObjectSchema<
 > = core.serialization.object({
     next: core.serialization.string().optional(),
     previous: core.serialization.string().optional(),
-    results: core.serialization.list(Invoice).optional(),
+    results: core.serialization.list(core.serialization.lazyObject(() => serializers.accounting.Invoice)).optional(),
 });
 
 export declare namespace PaginatedInvoiceList {
     interface Raw {
         next?: string | null;
         previous?: string | null;
-        results?: Invoice.Raw[] | null;
+        results?: serializers.accounting.Invoice.Raw[] | null;
     }
 }

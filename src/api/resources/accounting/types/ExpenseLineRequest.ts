@@ -25,8 +25,10 @@ export interface ExpenseLineRequest {
     trackingCategory?: Merge.accounting.ExpenseLineRequestTrackingCategory;
     /** The expense line item's associated tracking categories. */
     trackingCategories?: (Merge.accounting.ExpenseLineRequestTrackingCategoriesItem | undefined)[];
-    /** The company the line belongs to. */
+    /** The company the expense belongs to. */
     company?: string;
+    /** The employee this overall transaction relates to. */
+    employee?: Merge.accounting.ExpenseLineRequestEmployee;
     /**
      * The expense line item's currency.
      *

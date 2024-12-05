@@ -8,6 +8,7 @@ import * as core from "../../../../core";
 import { InvoiceType } from "./InvoiceType";
 import { InvoiceContact } from "./InvoiceContact";
 import { InvoiceCompany } from "./InvoiceCompany";
+import { InvoiceEmployee } from "./InvoiceEmployee";
 import { InvoiceCurrency } from "./InvoiceCurrency";
 import { InvoiceStatus } from "./InvoiceStatus";
 import { InvoiceTrackingCategoriesItem } from "./InvoiceTrackingCategoriesItem";
@@ -33,6 +34,7 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
         paidOnDate: core.serialization.property("paid_on_date", core.serialization.date().optional()),
         memo: core.serialization.string().optional(),
         company: InvoiceCompany.optional(),
+        employee: InvoiceEmployee.optional(),
         currency: InvoiceCurrency.optional(),
         exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
         totalDiscount: core.serialization.property("total_discount", core.serialization.number().optional()),
@@ -57,6 +59,18 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
             core.serialization.list(InvoiceAppliedPaymentsItem.optional()).optional()
         ),
         lineItems: core.serialization.property("line_items", core.serialization.list(InvoiceLineItem).optional()),
+        appliedCreditNotes: core.serialization.property(
+            "applied_credit_notes",
+            core.serialization
+                .list(core.serialization.lazy(() => serializers.accounting.InvoiceAppliedCreditNotesItem))
+                .optional()
+        ),
+        appliedVendorCredits: core.serialization.property(
+            "applied_vendor_credits",
+            core.serialization
+                .list(core.serialization.lazy(() => serializers.accounting.InvoiceAppliedVendorCreditsItem))
+                .optional()
+        ),
         inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
@@ -81,6 +95,7 @@ export declare namespace Invoice {
         paid_on_date?: string | null;
         memo?: string | null;
         company?: InvoiceCompany.Raw | null;
+        employee?: InvoiceEmployee.Raw | null;
         currency?: InvoiceCurrency.Raw | null;
         exchange_rate?: string | null;
         total_discount?: number | null;
@@ -96,6 +111,8 @@ export declare namespace Invoice {
         payments?: (InvoicePaymentsItem.Raw | null | undefined)[] | null;
         applied_payments?: (InvoiceAppliedPaymentsItem.Raw | null | undefined)[] | null;
         line_items?: InvoiceLineItem.Raw[] | null;
+        applied_credit_notes?: serializers.accounting.InvoiceAppliedCreditNotesItem.Raw[] | null;
+        applied_vendor_credits?: serializers.accounting.InvoiceAppliedVendorCreditsItem.Raw[] | null;
         inclusive_of_tax?: boolean | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;

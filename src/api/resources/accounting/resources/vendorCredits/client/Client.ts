@@ -135,8 +135,8 @@ export class VendorCredits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -173,6 +173,93 @@ export class VendorCredits {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /accounting/v1/vendor-credits.");
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Creates a `VendorCredit` object with the given values.
+     *
+     * @param {Merge.accounting.VendorCreditEndpointRequest} request
+     * @param {VendorCredits.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.vendorCredits.create({
+     *         model: {}
+     *     })
+     */
+    public async create(
+        request: Merge.accounting.VendorCreditEndpointRequest,
+        requestOptions?: VendorCredits.RequestOptions
+    ): Promise<Merge.accounting.VendorCreditResponse> {
+        const { isDebugMode, runAsync, ..._body } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (isDebugMode != null) {
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
+        }
+
+        if (runAsync != null) {
+            _queryParams["run_async"] = runAsync.toString();
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                "accounting/v1/vendor-credits"
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            body: serializers.accounting.VendorCreditEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.accounting.VendorCreditResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /accounting/v1/vendor-credits.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -219,8 +306,8 @@ export class VendorCredits {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -258,6 +345,77 @@ export class VendorCredits {
             case "timeout":
                 throw new errors.MergeTimeoutError(
                     "Timeout exceeded when calling GET /accounting/v1/vendor-credits/{id}."
+                );
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Returns metadata for `VendorCredit` POSTs.
+     *
+     * @param {VendorCredits.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.vendorCredits.metaPostRetrieve()
+     */
+    public async metaPostRetrieve(
+        requestOptions?: VendorCredits.RequestOptions
+    ): Promise<Merge.accounting.MetaResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                "accounting/v1/vendor-credits/meta/post"
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/vendor-credits/meta/post."
                 );
             case "unknown":
                 throw new errors.MergeError({

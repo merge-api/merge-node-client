@@ -46,6 +46,8 @@ export interface Invoice {
     memo?: string;
     /** The company the invoice belongs to. */
     company?: Merge.accounting.InvoiceCompany;
+    /** The employee this overall transaction relates to. */
+    employee?: Merge.accounting.InvoiceEmployee;
     /**
      * The invoice's currency.
      *
@@ -391,6 +393,10 @@ export interface Invoice {
     /** A list of the Payment Applied to Lines common models related to a given Invoice, Credit Note, or Journal Entry. */
     appliedPayments?: (Merge.accounting.InvoiceAppliedPaymentsItem | undefined)[];
     lineItems?: Merge.accounting.InvoiceLineItem[];
+    /** `CreditNoteApplyLines` applied to the Invoice. */
+    appliedCreditNotes?: Merge.accounting.InvoiceAppliedCreditNotesItem[];
+    /** `VendorCreditApplyLines` applied to the Invoice. */
+    appliedVendorCredits?: Merge.accounting.InvoiceAppliedVendorCreditsItem[];
     /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
     inclusiveOfTax?: boolean;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

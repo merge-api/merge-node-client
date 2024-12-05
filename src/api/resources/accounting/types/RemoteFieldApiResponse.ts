@@ -26,4 +26,5 @@ export interface RemoteFieldApiResponse {
     accountingPeriod?: Merge.accounting.RemoteFieldApi[];
     generalLedgerTransaction?: Merge.accounting.RemoteFieldApi[];
     bankFeedAccount?: Merge.accounting.RemoteFieldApi[];
+    employee?: Merge.accounting.RemoteFieldApi[];
 }

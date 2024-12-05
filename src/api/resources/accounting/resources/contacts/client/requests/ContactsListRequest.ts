@@ -26,6 +26,10 @@ export interface ContactsListRequest {
      */
     cursor?: string;
     /**
+     * If provided, will only return Contacts that match this email.
+     */
+    emailAddress?: string;
+    /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     expand?: Merge.accounting.ContactsListRequestExpand;
@@ -61,6 +65,10 @@ export interface ContactsListRequest {
      * If provided, only objects synced by Merge before this date time will be returned.
      */
     modifiedBefore?: Date;
+    /**
+     * If provided, will only return Contacts that match this name.
+     */
+    name?: string;
     /**
      * Number of results to return per page.
      */
