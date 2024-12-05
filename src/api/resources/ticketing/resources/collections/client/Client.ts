@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace Collections {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,11 @@ export class Collections {
     /**
      * Returns a list of `Collection` objects.
      *
+     * @param {Merge.ticketing.CollectionsListRequest} request
+     * @param {Collections.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ticketing.collections.list({})
+     *     await client.ticketing.collections.list()
      */
     public async list(
         request: Merge.ticketing.CollectionsListRequest = {},
@@ -53,7 +65,7 @@ export class Collections {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (collectionType != null) {
             _queryParams["collection_type"] = collectionType;
         }
@@ -128,15 +140,21 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ticketing.PaginatedCollectionList.parseOrThrow(_response.body, {
+            return serializers.ticketing.PaginatedCollectionList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -159,7 +177,7 @@ export class Collections {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ticketing/v1/collections.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -170,8 +188,12 @@ export class Collections {
     /**
      * Returns a `Collection` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.ticketing.CollectionsRetrieveRequest} request
+     * @param {Collections.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ticketing.collections.retrieve("id", {})
+     *     await client.ticketing.collections.retrieve("id")
      */
     public async retrieve(
         id: string,
@@ -179,7 +201,7 @@ export class Collections {
         requestOptions?: Collections.RequestOptions
     ): Promise<Merge.ticketing.Collection> {
         const { expand, includeRemoteData, remoteFields, showEnumOrigins } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -199,7 +221,7 @@ export class Collections {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/collections/${id}`
+                `ticketing/v1/collections/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -210,15 +232,21 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ticketing.Collection.parseOrThrow(_response.body, {
+            return serializers.ticketing.Collection.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -241,7 +269,7 @@ export class Collections {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ticketing/v1/collections/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -252,8 +280,12 @@ export class Collections {
     /**
      * Returns a list of `User` objects.
      *
+     * @param {string} parentId
+     * @param {Merge.ticketing.CollectionsUsersListRequest} request
+     * @param {Collections.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ticketing.collections.usersList("parent_id", {})
+     *     await client.ticketing.collections.usersList("parent_id")
      */
     public async usersList(
         parentId: string,
@@ -261,7 +293,7 @@ export class Collections {
         requestOptions?: Collections.RequestOptions
     ): Promise<Merge.ticketing.PaginatedUserList> {
         const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -289,7 +321,7 @@ export class Collections {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/collections/${parentId}/users`
+                `ticketing/v1/collections/${encodeURIComponent(parentId)}/users`
             ),
             method: "GET",
             headers: {
@@ -300,15 +332,21 @@ export class Collections {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ticketing.PaginatedUserList.parseOrThrow(_response.body, {
+            return serializers.ticketing.PaginatedUserList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -331,7 +369,9 @@ export class Collections {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /ticketing/v1/collections/{parent_id}/users."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -339,7 +379,7 @@ export class Collections {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

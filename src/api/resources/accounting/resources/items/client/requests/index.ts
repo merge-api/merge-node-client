@@ -1,2 +1,2 @@
-export { ItemsListRequest } from "./ItemsListRequest";
-export { ItemsRetrieveRequest } from "./ItemsRetrieveRequest";
+export { type ItemsListRequest } from "./ItemsListRequest";
+export { type ItemsRetrieveRequest } from "./ItemsRetrieveRequest";

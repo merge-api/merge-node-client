@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace Candidates {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,11 @@ export class Candidates {
     /**
      * Returns a list of `Candidate` objects.
      *
+     * @param {Merge.ats.CandidatesListRequest} request
+     * @param {Candidates.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.candidates.list({})
+     *     await client.ats.candidates.list()
      */
     public async list(
         request: Merge.ats.CandidatesListRequest = {},
@@ -53,7 +65,7 @@ export class Candidates {
             remoteId,
             tags,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -128,15 +140,21 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.PaginatedCandidateList.parseOrThrow(_response.body, {
+            return serializers.ats.PaginatedCandidateList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -159,7 +177,7 @@ export class Candidates {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ats/v1/candidates.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -170,8 +188,11 @@ export class Candidates {
     /**
      * Creates a `Candidate` object with the given values.
      *
+     * @param {Merge.ats.CandidateEndpointRequest} request
+     * @param {Candidates.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.candidates.create({
+     *     await client.ats.candidates.create({
      *         model: {},
      *         remoteUserId: "remote_user_id"
      *     })
@@ -181,7 +202,7 @@ export class Candidates {
         requestOptions?: Candidates.RequestOptions
     ): Promise<Merge.ats.CandidateResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -204,18 +225,22 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.ats.CandidateEndpointRequest.jsonOrThrow(_body, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            requestType: "json",
+            body: serializers.ats.CandidateEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.CandidateResponse.parseOrThrow(_response.body, {
+            return serializers.ats.CandidateResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -238,7 +263,7 @@ export class Candidates {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /ats/v1/candidates.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -249,8 +274,12 @@ export class Candidates {
     /**
      * Returns a `Candidate` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.ats.CandidatesRetrieveRequest} request
+     * @param {Candidates.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.candidates.retrieve("id", {})
+     *     await client.ats.candidates.retrieve("id")
      */
     public async retrieve(
         id: string,
@@ -258,7 +287,7 @@ export class Candidates {
         requestOptions?: Candidates.RequestOptions
     ): Promise<Merge.ats.Candidate> {
         const { expand, includeRemoteData } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -270,7 +299,7 @@ export class Candidates {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/candidates/${id}`
+                `ats/v1/candidates/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -281,15 +310,21 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.Candidate.parseOrThrow(_response.body, {
+            return serializers.ats.Candidate.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -312,7 +347,7 @@ export class Candidates {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ats/v1/candidates/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -323,8 +358,12 @@ export class Candidates {
     /**
      * Updates a `Candidate` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.ats.PatchedCandidateEndpointRequest} request
+     * @param {Candidates.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.candidates.partialUpdate("id", {
+     *     await client.ats.candidates.partialUpdate("id", {
      *         model: {},
      *         remoteUserId: "remote_user_id"
      *     })
@@ -335,7 +374,7 @@ export class Candidates {
         requestOptions?: Candidates.RequestOptions
     ): Promise<Merge.ats.CandidateResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -347,7 +386,7 @@ export class Candidates {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/candidates/${id}`
+                `ats/v1/candidates/${encodeURIComponent(id)}`
             ),
             method: "PATCH",
             headers: {
@@ -358,18 +397,24 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.ats.PatchedCandidateEndpointRequest.jsonOrThrow(_body, {
+            requestType: "json",
+            body: serializers.ats.PatchedCandidateEndpointRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.CandidateResponse.parseOrThrow(_response.body, {
+            return serializers.ats.CandidateResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -392,7 +437,7 @@ export class Candidates {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling PATCH /ats/v1/candidates/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -403,9 +448,13 @@ export class Candidates {
     /**
      * Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
      *
+     * @param {string} modelId
+     * @param {Merge.ats.IgnoreCommonModelRequest} request
+     * @param {Candidates.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.candidates.ignoreCreate("model_id", {
-     *         reason: Merge.ats.ReasonEnum.GeneralCustomerRequest
+     *     await client.ats.candidates.ignoreCreate("model_id", {
+     *         reason: "GENERAL_CUSTOMER_REQUEST"
      *     })
      */
     public async ignoreCreate(
@@ -416,7 +465,7 @@ export class Candidates {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/candidates/ignore/${modelId}`
+                `ats/v1/candidates/ignore/${encodeURIComponent(modelId)}`
             ),
             method: "POST",
             headers: {
@@ -427,14 +476,18 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
-            body: await serializers.ats.IgnoreCommonModelRequest.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            requestType: "json",
+            body: serializers.ats.IgnoreCommonModelRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
             return;
@@ -454,7 +507,9 @@ export class Candidates {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling POST /ats/v1/candidates/ignore/{model_id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -465,8 +520,11 @@ export class Candidates {
     /**
      * Returns metadata for `Candidate` PATCHs.
      *
+     * @param {string} id
+     * @param {Candidates.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.candidates.metaPatchRetrieve("id")
+     *     await client.ats.candidates.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -475,7 +533,7 @@ export class Candidates {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/candidates/meta/patch/${id}`
+                `ats/v1/candidates/meta/patch/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -486,14 +544,20 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.ats.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -516,7 +580,9 @@ export class Candidates {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /ats/v1/candidates/meta/patch/{id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -527,8 +593,10 @@ export class Candidates {
     /**
      * Returns metadata for `Candidate` POSTs.
      *
+     * @param {Candidates.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.candidates.metaPostRetrieve()
+     *     await client.ats.candidates.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Candidates.RequestOptions): Promise<Merge.ats.MetaResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -545,14 +613,20 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.ats.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -575,7 +649,7 @@ export class Candidates {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ats/v1/candidates/meta/post.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -583,7 +657,7 @@ export class Candidates {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

@@ -1,2 +1,2 @@
-export { BenefitsListRequest } from "./BenefitsListRequest";
-export { BenefitsRetrieveRequest } from "./BenefitsRetrieveRequest";
+export { type BenefitsListRequest } from "./BenefitsListRequest";
+export { type BenefitsRetrieveRequest } from "./BenefitsRetrieveRequest";

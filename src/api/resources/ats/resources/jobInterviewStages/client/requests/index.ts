@@ -1,2 +1,2 @@
-export { JobInterviewStagesListRequest } from "./JobInterviewStagesListRequest";
-export { JobInterviewStagesRetrieveRequest } from "./JobInterviewStagesRetrieveRequest";
+export { type JobInterviewStagesListRequest } from "./JobInterviewStagesListRequest";
+export { type JobInterviewStagesRetrieveRequest } from "./JobInterviewStagesRetrieveRequest";

@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace FieldMapping {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,10 @@ export class FieldMapping {
     /**
      * Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
      *
+     * @param {FieldMapping.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ticketing.fieldMapping.fieldMappingsRetrieve()
+     *     await client.ticketing.fieldMapping.fieldMappingsRetrieve()
      */
     public async fieldMappingsRetrieve(
         requestOptions?: FieldMapping.RequestOptions
@@ -49,14 +60,20 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ticketing.FieldMappingApiInstanceResponse.parseOrThrow(_response.body, {
+            return serializers.ticketing.FieldMappingApiInstanceResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -79,7 +96,7 @@ export class FieldMapping {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ticketing/v1/field-mappings.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -90,8 +107,11 @@ export class FieldMapping {
     /**
      * Create new Field Mappings that will be available after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
      *
+     * @param {Merge.ticketing.CreateFieldMappingRequest} request
+     * @param {FieldMapping.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ticketing.fieldMapping.fieldMappingsCreate({
+     *     await client.ticketing.fieldMapping.fieldMappingsCreate({
      *         targetFieldName: "example_target_field_name",
      *         targetFieldDescription: "this is a example description of the target field",
      *         remoteFieldTraversalPath: ["example_remote_field"],
@@ -118,17 +138,23 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
-            body: await serializers.ticketing.CreateFieldMappingRequest.jsonOrThrow(request, {
+            requestType: "json",
+            body: serializers.ticketing.CreateFieldMappingRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ticketing.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
+            return serializers.ticketing.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -151,7 +177,7 @@ export class FieldMapping {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /ticketing/v1/field-mappings.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -162,8 +188,11 @@ export class FieldMapping {
     /**
      * Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
      *
+     * @param {string} fieldMappingId
+     * @param {FieldMapping.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ticketing.fieldMapping.fieldMappingsDestroy("field_mapping_id")
+     *     await client.ticketing.fieldMapping.fieldMappingsDestroy("field_mapping_id")
      */
     public async fieldMappingsDestroy(
         fieldMappingId: string,
@@ -172,7 +201,7 @@ export class FieldMapping {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/field-mappings/${fieldMappingId}`
+                `ticketing/v1/field-mappings/${encodeURIComponent(fieldMappingId)}`
             ),
             method: "DELETE",
             headers: {
@@ -183,14 +212,20 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ticketing.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
+            return serializers.ticketing.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -213,7 +248,9 @@ export class FieldMapping {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling DELETE /ticketing/v1/field-mappings/{field_mapping_id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -224,8 +261,12 @@ export class FieldMapping {
     /**
      * Create or update existing Field Mappings for a Linked Account. Changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
      *
+     * @param {string} fieldMappingId
+     * @param {Merge.ticketing.PatchedEditFieldMappingRequest} request
+     * @param {FieldMapping.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ticketing.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {})
+     *     await client.ticketing.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id")
      */
     public async fieldMappingsPartialUpdate(
         fieldMappingId: string,
@@ -235,7 +276,7 @@ export class FieldMapping {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/field-mappings/${fieldMappingId}`
+                `ticketing/v1/field-mappings/${encodeURIComponent(fieldMappingId)}`
             ),
             method: "PATCH",
             headers: {
@@ -246,17 +287,23 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
-            body: await serializers.ticketing.PatchedEditFieldMappingRequest.jsonOrThrow(request, {
+            requestType: "json",
+            body: serializers.ticketing.PatchedEditFieldMappingRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ticketing.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
+            return serializers.ticketing.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -279,7 +326,9 @@ export class FieldMapping {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling PATCH /ticketing/v1/field-mappings/{field_mapping_id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -290,15 +339,18 @@ export class FieldMapping {
     /**
      * Get all remote fields for a Linked Account. Remote fields are third-party fields that are accessible after initial sync if remote_data is enabled. You can use remote fields to override existing Merge fields or map a new Merge field. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
      *
+     * @param {Merge.ticketing.RemoteFieldsRetrieveRequest} request
+     * @param {FieldMapping.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ticketing.fieldMapping.remoteFieldsRetrieve({})
+     *     await client.ticketing.fieldMapping.remoteFieldsRetrieve()
      */
     public async remoteFieldsRetrieve(
         request: Merge.ticketing.RemoteFieldsRetrieveRequest = {},
         requestOptions?: FieldMapping.RequestOptions
     ): Promise<Merge.ticketing.RemoteFieldApiResponse> {
         const { commonModels, includeExampleValues } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (commonModels != null) {
             _queryParams["common_models"] = commonModels;
         }
@@ -321,15 +373,21 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ticketing.RemoteFieldApiResponse.parseOrThrow(_response.body, {
+            return serializers.ticketing.RemoteFieldApiResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -352,7 +410,7 @@ export class FieldMapping {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ticketing/v1/remote-fields.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -363,8 +421,10 @@ export class FieldMapping {
     /**
      * Get all organization-wide Target Fields, this will not include any Linked Account specific Target Fields. Organization-wide Target Fields are additional fields appended to the Merge Common Model for all Linked Accounts in a category. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/target-fields/).
      *
+     * @param {FieldMapping.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ticketing.fieldMapping.targetFieldsRetrieve()
+     *     await client.ticketing.fieldMapping.targetFieldsRetrieve()
      */
     public async targetFieldsRetrieve(
         requestOptions?: FieldMapping.RequestOptions
@@ -383,14 +443,20 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ticketing.ExternalTargetFieldApiResponse.parseOrThrow(_response.body, {
+            return serializers.ticketing.ExternalTargetFieldApiResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -413,7 +479,7 @@ export class FieldMapping {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ticketing/v1/target-fields.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -421,7 +487,7 @@ export class FieldMapping {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

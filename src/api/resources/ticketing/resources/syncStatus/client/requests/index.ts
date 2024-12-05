@@ -1,1 +1,1 @@
-export { SyncStatusListRequest } from "./SyncStatusListRequest";
+export { type SyncStatusListRequest } from "./SyncStatusListRequest";

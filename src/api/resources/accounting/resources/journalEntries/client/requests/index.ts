@@ -1,5 +1,5 @@
-export { JournalEntriesListRequest } from "./JournalEntriesListRequest";
-export { JournalEntryEndpointRequest } from "./JournalEntryEndpointRequest";
-export { JournalEntriesRetrieveRequest } from "./JournalEntriesRetrieveRequest";
-export { JournalEntriesLinesRemoteFieldClassesListRequest } from "./JournalEntriesLinesRemoteFieldClassesListRequest";
-export { JournalEntriesRemoteFieldClassesListRequest } from "./JournalEntriesRemoteFieldClassesListRequest";
+export { type JournalEntriesListRequest } from "./JournalEntriesListRequest";
+export { type JournalEntryEndpointRequest } from "./JournalEntryEndpointRequest";
+export { type JournalEntriesRetrieveRequest } from "./JournalEntriesRetrieveRequest";
+export { type JournalEntriesLinesRemoteFieldClassesListRequest } from "./JournalEntriesLinesRemoteFieldClassesListRequest";
+export { type JournalEntriesRemoteFieldClassesListRequest } from "./JournalEntriesRemoteFieldClassesListRequest";

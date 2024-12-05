@@ -1,6 +1,6 @@
-export { TicketsListRequest } from "./TicketsListRequest";
-export { TicketEndpointRequest } from "./TicketEndpointRequest";
-export { TicketsRetrieveRequest } from "./TicketsRetrieveRequest";
-export { PatchedTicketEndpointRequest } from "./PatchedTicketEndpointRequest";
-export { TicketsCollaboratorsListRequest } from "./TicketsCollaboratorsListRequest";
-export { TicketsRemoteFieldClassesListRequest } from "./TicketsRemoteFieldClassesListRequest";
+export { type TicketsListRequest } from "./TicketsListRequest";
+export { type TicketEndpointRequest } from "./TicketEndpointRequest";
+export { type TicketsRetrieveRequest } from "./TicketsRetrieveRequest";
+export { type PatchedTicketEndpointRequest } from "./PatchedTicketEndpointRequest";
+export { type TicketsCollaboratorsListRequest } from "./TicketsCollaboratorsListRequest";
+export { type TicketsRemoteFieldClassesListRequest } from "./TicketsRemoteFieldClassesListRequest";

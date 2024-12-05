@@ -1,2 +1,2 @@
-export { OfficesListRequest } from "./OfficesListRequest";
-export { OfficesRetrieveRequest } from "./OfficesRetrieveRequest";
+export { type OfficesListRequest } from "./OfficesListRequest";
+export { type OfficesRetrieveRequest } from "./OfficesRetrieveRequest";

@@ -1,4 +1,4 @@
-export { LeadsListRequest } from "./LeadsListRequest";
-export { LeadEndpointRequest } from "./LeadEndpointRequest";
-export { LeadsRetrieveRequest } from "./LeadsRetrieveRequest";
-export { LeadsRemoteFieldClassesListRequest } from "./LeadsRemoteFieldClassesListRequest";
+export { type LeadsListRequest } from "./LeadsListRequest";
+export { type LeadEndpointRequest } from "./LeadEndpointRequest";
+export { type LeadsRetrieveRequest } from "./LeadsRetrieveRequest";
+export { type LeadsRemoteFieldClassesListRequest } from "./LeadsRemoteFieldClassesListRequest";

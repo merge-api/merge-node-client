@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace Engagements {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,11 @@ export class Engagements {
     /**
      * Returns a list of `Engagement` objects.
      *
+     * @param {Merge.crm.EngagementsListRequest} request
+     * @param {Engagements.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.engagements.list({})
+     *     await client.crm.engagements.list()
      */
     public async list(
         request: Merge.crm.EngagementsListRequest = {},
@@ -52,7 +64,7 @@ export class Engagements {
             startedAfter,
             startedBefore,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -123,15 +135,21 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.PaginatedEngagementList.parseOrThrow(_response.body, {
+            return serializers.crm.PaginatedEngagementList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -154,7 +172,7 @@ export class Engagements {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/engagements.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -165,8 +183,11 @@ export class Engagements {
     /**
      * Creates an `Engagement` object with the given values.
      *
+     * @param {Merge.crm.EngagementEndpointRequest} request
+     * @param {Engagements.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.engagements.create({
+     *     await client.crm.engagements.create({
      *         model: {}
      *     })
      */
@@ -175,7 +196,7 @@ export class Engagements {
         requestOptions?: Engagements.RequestOptions
     ): Promise<Merge.crm.EngagementResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -198,18 +219,22 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.crm.EngagementEndpointRequest.jsonOrThrow(_body, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            requestType: "json",
+            body: serializers.crm.EngagementEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
+            return serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -232,7 +257,7 @@ export class Engagements {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /crm/v1/engagements.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -243,8 +268,12 @@ export class Engagements {
     /**
      * Returns an `Engagement` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.crm.EngagementsRetrieveRequest} request
+     * @param {Engagements.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.engagements.retrieve("id", {})
+     *     await client.crm.engagements.retrieve("id")
      */
     public async retrieve(
         id: string,
@@ -252,7 +281,7 @@ export class Engagements {
         requestOptions?: Engagements.RequestOptions
     ): Promise<Merge.crm.Engagement> {
         const { expand, includeRemoteData, includeRemoteFields } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -268,7 +297,7 @@ export class Engagements {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/engagements/${id}`
+                `crm/v1/engagements/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -279,15 +308,21 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.Engagement.parseOrThrow(_response.body, {
+            return serializers.crm.Engagement.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -310,7 +345,7 @@ export class Engagements {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/engagements/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -321,8 +356,12 @@ export class Engagements {
     /**
      * Updates an `Engagement` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.crm.PatchedEngagementEndpointRequest} request
+     * @param {Engagements.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.engagements.partialUpdate("id", {
+     *     await client.crm.engagements.partialUpdate("id", {
      *         model: {}
      *     })
      */
@@ -332,7 +371,7 @@ export class Engagements {
         requestOptions?: Engagements.RequestOptions
     ): Promise<Merge.crm.EngagementResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -344,7 +383,7 @@ export class Engagements {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/engagements/${id}`
+                `crm/v1/engagements/${encodeURIComponent(id)}`
             ),
             method: "PATCH",
             headers: {
@@ -355,18 +394,24 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.crm.PatchedEngagementEndpointRequest.jsonOrThrow(_body, {
+            requestType: "json",
+            body: serializers.crm.PatchedEngagementEndpointRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
+            return serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -389,7 +434,7 @@ export class Engagements {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling PATCH /crm/v1/engagements/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -400,8 +445,11 @@ export class Engagements {
     /**
      * Returns metadata for `Engagement` PATCHs.
      *
+     * @param {string} id
+     * @param {Engagements.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.engagements.metaPatchRetrieve("id")
+     *     await client.crm.engagements.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -410,7 +458,7 @@ export class Engagements {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/engagements/meta/patch/${id}`
+                `crm/v1/engagements/meta/patch/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -421,14 +469,20 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -451,7 +505,9 @@ export class Engagements {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /crm/v1/engagements/meta/patch/{id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -462,8 +518,10 @@ export class Engagements {
     /**
      * Returns metadata for `Engagement` POSTs.
      *
+     * @param {Engagements.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.engagements.metaPostRetrieve()
+     *     await client.crm.engagements.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Engagements.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -480,14 +538,20 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -510,7 +574,7 @@ export class Engagements {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/engagements/meta/post.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -521,8 +585,11 @@ export class Engagements {
     /**
      * Returns a list of `RemoteFieldClass` objects.
      *
+     * @param {Merge.crm.EngagementsRemoteFieldClassesListRequest} request
+     * @param {Engagements.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.engagements.remoteFieldClassesList({})
+     *     await client.crm.engagements.remoteFieldClassesList()
      */
     public async remoteFieldClassesList(
         request: Merge.crm.EngagementsRemoteFieldClassesListRequest = {},
@@ -537,7 +604,7 @@ export class Engagements {
             isCommonModelField,
             pageSize,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -580,15 +647,21 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+            return serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -611,7 +684,9 @@ export class Engagements {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /crm/v1/engagements/remote-field-classes."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -619,7 +694,7 @@ export class Engagements {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

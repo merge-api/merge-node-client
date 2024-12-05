@@ -1,3 +1,3 @@
-export { AttachmentsListRequest } from "./AttachmentsListRequest";
-export { AccountingAttachmentEndpointRequest } from "./AccountingAttachmentEndpointRequest";
-export { AttachmentsRetrieveRequest } from "./AttachmentsRetrieveRequest";
+export { type AttachmentsListRequest } from "./AttachmentsListRequest";
+export { type AccountingAttachmentEndpointRequest } from "./AccountingAttachmentEndpointRequest";
+export { type AttachmentsRetrieveRequest } from "./AttachmentsRetrieveRequest";

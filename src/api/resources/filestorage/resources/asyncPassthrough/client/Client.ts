@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
-import * as serializers from "../../../../../../serialization";
+import * as Merge from "../../../../../index";
+import * as serializers from "../../../../../../serialization/index";
 import urlJoin from "url-join";
-import * as errors from "../../../../../../errors";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace AsyncPassthrough {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,9 +38,12 @@ export class AsyncPassthrough {
     /**
      * Asynchronously pull data from an endpoint not currently supported by Merge.
      *
+     * @param {Merge.filestorage.DataPassthroughRequest} request
+     * @param {AsyncPassthrough.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.filestorage.asyncPassthrough.create({
-     *         method: Merge.filestorage.MethodEnum.Get,
+     *     await client.filestorage.asyncPassthrough.create({
+     *         method: "GET",
      *         path: "/scooters"
      *     })
      */
@@ -53,17 +65,23 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
-            body: await serializers.filestorage.DataPassthroughRequest.jsonOrThrow(request, {
+            requestType: "json",
+            body: serializers.filestorage.DataPassthroughRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.filestorage.AsyncPassthroughReciept.parseOrThrow(_response.body, {
+            return serializers.filestorage.AsyncPassthroughReciept.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -86,7 +104,9 @@ export class AsyncPassthrough {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling POST /filestorage/v1/async-passthrough."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -96,6 +116,12 @@ export class AsyncPassthrough {
 
     /**
      * Retrieves data from earlier async-passthrough POST request
+     *
+     * @param {string} asyncPassthroughReceiptId
+     * @param {AsyncPassthrough.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.filestorage.asyncPassthrough.retrieve("async_passthrough_receipt_id")
      */
     public async retrieve(
         asyncPassthroughReceiptId: string,
@@ -104,7 +130,7 @@ export class AsyncPassthrough {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `filestorage/v1/async-passthrough/${asyncPassthroughReceiptId}`
+                `filestorage/v1/async-passthrough/${encodeURIComponent(asyncPassthroughReceiptId)}`
             ),
             method: "GET",
             headers: {
@@ -115,14 +141,20 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.filestorage.AsyncPassthroughRetrieveResponse.parseOrThrow(_response.body, {
+            return serializers.filestorage.AsyncPassthroughRetrieveResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -145,7 +177,9 @@ export class AsyncPassthrough {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /filestorage/v1/async-passthrough/{async_passthrough_receipt_id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -153,7 +187,7 @@ export class AsyncPassthrough {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

@@ -1,2 +1,2 @@
-export { GroupsListRequest } from "./GroupsListRequest";
-export { GroupsRetrieveRequest } from "./GroupsRetrieveRequest";
+export { type GroupsListRequest } from "./GroupsListRequest";
+export { type GroupsRetrieveRequest } from "./GroupsRetrieveRequest";

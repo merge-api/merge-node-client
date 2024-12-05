@@ -1,2 +1,2 @@
-export { TimeOffBalancesListRequest } from "./TimeOffBalancesListRequest";
-export { TimeOffBalancesRetrieveRequest } from "./TimeOffBalancesRetrieveRequest";
+export { type TimeOffBalancesListRequest } from "./TimeOffBalancesListRequest";
+export { type TimeOffBalancesRetrieveRequest } from "./TimeOffBalancesRetrieveRequest";

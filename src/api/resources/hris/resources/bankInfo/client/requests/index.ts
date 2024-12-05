@@ -1,2 +1,2 @@
-export { BankInfoListRequest } from "./BankInfoListRequest";
-export { BankInfoRetrieveRequest } from "./BankInfoRetrieveRequest";
+export { type BankInfoListRequest } from "./BankInfoListRequest";
+export { type BankInfoRetrieveRequest } from "./BankInfoRetrieveRequest";

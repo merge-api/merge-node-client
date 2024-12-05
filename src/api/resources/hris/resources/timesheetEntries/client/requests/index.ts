@@ -1,3 +1,3 @@
-export { TimesheetEntriesListRequest } from "./TimesheetEntriesListRequest";
-export { TimesheetEntryEndpointRequest } from "./TimesheetEntryEndpointRequest";
-export { TimesheetEntriesRetrieveRequest } from "./TimesheetEntriesRetrieveRequest";
+export { type TimesheetEntriesListRequest } from "./TimesheetEntriesListRequest";
+export { type TimesheetEntryEndpointRequest } from "./TimesheetEntryEndpointRequest";
+export { type TimesheetEntriesRetrieveRequest } from "./TimesheetEntriesRetrieveRequest";

@@ -1,3 +1,3 @@
-export { ActivitiesListRequest } from "./ActivitiesListRequest";
-export { ActivityEndpointRequest } from "./ActivityEndpointRequest";
-export { ActivitiesRetrieveRequest } from "./ActivitiesRetrieveRequest";
+export { type ActivitiesListRequest } from "./ActivitiesListRequest";
+export { type ActivityEndpointRequest } from "./ActivityEndpointRequest";
+export { type ActivitiesRetrieveRequest } from "./ActivitiesRetrieveRequest";

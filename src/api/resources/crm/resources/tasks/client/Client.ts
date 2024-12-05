@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace Tasks {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,11 @@ export class Tasks {
     /**
      * Returns a list of `Task` objects.
      *
+     * @param {Merge.crm.TasksListRequest} request
+     * @param {Tasks.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.tasks.list({})
+     *     await client.crm.tasks.list()
      */
     public async list(
         request: Merge.crm.TasksListRequest = {},
@@ -50,7 +62,7 @@ export class Tasks {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -113,15 +125,21 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.PaginatedTaskList.parseOrThrow(_response.body, {
+            return serializers.crm.PaginatedTaskList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -144,7 +162,7 @@ export class Tasks {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/tasks.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -155,8 +173,11 @@ export class Tasks {
     /**
      * Creates a `Task` object with the given values.
      *
+     * @param {Merge.crm.TaskEndpointRequest} request
+     * @param {Tasks.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.tasks.create({
+     *     await client.crm.tasks.create({
      *         model: {}
      *     })
      */
@@ -165,7 +186,7 @@ export class Tasks {
         requestOptions?: Tasks.RequestOptions
     ): Promise<Merge.crm.TaskResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -188,16 +209,22 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.crm.TaskEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            requestType: "json",
+            body: serializers.crm.TaskEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.TaskResponse.parseOrThrow(_response.body, {
+            return serializers.crm.TaskResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -220,7 +247,7 @@ export class Tasks {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /crm/v1/tasks.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -231,8 +258,12 @@ export class Tasks {
     /**
      * Returns a `Task` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.crm.TasksRetrieveRequest} request
+     * @param {Tasks.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.tasks.retrieve("id", {})
+     *     await client.crm.tasks.retrieve("id")
      */
     public async retrieve(
         id: string,
@@ -240,7 +271,7 @@ export class Tasks {
         requestOptions?: Tasks.RequestOptions
     ): Promise<Merge.crm.Task> {
         const { expand, includeRemoteData, includeRemoteFields } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -256,7 +287,7 @@ export class Tasks {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/tasks/${id}`
+                `crm/v1/tasks/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -267,15 +298,21 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.Task.parseOrThrow(_response.body, {
+            return serializers.crm.Task.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -298,7 +335,7 @@ export class Tasks {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/tasks/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -309,8 +346,12 @@ export class Tasks {
     /**
      * Updates a `Task` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.crm.PatchedTaskEndpointRequest} request
+     * @param {Tasks.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.tasks.partialUpdate("id", {
+     *     await client.crm.tasks.partialUpdate("id", {
      *         model: {}
      *     })
      */
@@ -320,7 +361,7 @@ export class Tasks {
         requestOptions?: Tasks.RequestOptions
     ): Promise<Merge.crm.TaskResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -332,7 +373,7 @@ export class Tasks {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/tasks/${id}`
+                `crm/v1/tasks/${encodeURIComponent(id)}`
             ),
             method: "PATCH",
             headers: {
@@ -343,18 +384,22 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.crm.PatchedTaskEndpointRequest.jsonOrThrow(_body, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            requestType: "json",
+            body: serializers.crm.PatchedTaskEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.TaskResponse.parseOrThrow(_response.body, {
+            return serializers.crm.TaskResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -377,7 +422,7 @@ export class Tasks {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling PATCH /crm/v1/tasks/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -388,14 +433,17 @@ export class Tasks {
     /**
      * Returns metadata for `Task` PATCHs.
      *
+     * @param {string} id
+     * @param {Tasks.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.tasks.metaPatchRetrieve("id")
+     *     await client.crm.tasks.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(id: string, requestOptions?: Tasks.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/tasks/meta/patch/${id}`
+                `crm/v1/tasks/meta/patch/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -406,14 +454,20 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -436,7 +490,7 @@ export class Tasks {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/tasks/meta/patch/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -447,8 +501,10 @@ export class Tasks {
     /**
      * Returns metadata for `Task` POSTs.
      *
+     * @param {Tasks.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.tasks.metaPostRetrieve()
+     *     await client.crm.tasks.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Tasks.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -465,14 +521,20 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -495,7 +557,7 @@ export class Tasks {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/tasks/meta/post.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -506,8 +568,11 @@ export class Tasks {
     /**
      * Returns a list of `RemoteFieldClass` objects.
      *
+     * @param {Merge.crm.TasksRemoteFieldClassesListRequest} request
+     * @param {Tasks.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.tasks.remoteFieldClassesList({})
+     *     await client.crm.tasks.remoteFieldClassesList()
      */
     public async remoteFieldClassesList(
         request: Merge.crm.TasksRemoteFieldClassesListRequest = {},
@@ -522,7 +587,7 @@ export class Tasks {
             isCommonModelField,
             pageSize,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -565,15 +630,21 @@ export class Tasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+            return serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -596,7 +667,9 @@ export class Tasks {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /crm/v1/tasks/remote-field-classes."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -604,7 +677,7 @@ export class Tasks {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

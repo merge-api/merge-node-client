@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace Interviews {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,11 @@ export class Interviews {
     /**
      * Returns a list of `ScheduledInterview` objects.
      *
+     * @param {Merge.ats.InterviewsListRequest} request
+     * @param {Interviews.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.interviews.list({})
+     *     await client.ats.interviews.list()
      */
     public async list(
         request: Merge.ats.InterviewsListRequest = {},
@@ -55,7 +67,7 @@ export class Interviews {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (applicationId != null) {
             _queryParams["application_id"] = applicationId;
         }
@@ -138,15 +150,21 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.PaginatedScheduledInterviewList.parseOrThrow(_response.body, {
+            return serializers.ats.PaginatedScheduledInterviewList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -169,7 +187,7 @@ export class Interviews {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ats/v1/interviews.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -180,8 +198,11 @@ export class Interviews {
     /**
      * Creates a `ScheduledInterview` object with the given values.
      *
+     * @param {Merge.ats.ScheduledInterviewEndpointRequest} request
+     * @param {Interviews.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.interviews.create({
+     *     await client.ats.interviews.create({
      *         model: {},
      *         remoteUserId: "remote_user_id"
      *     })
@@ -191,7 +212,7 @@ export class Interviews {
         requestOptions?: Interviews.RequestOptions
     ): Promise<Merge.ats.ScheduledInterviewResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -214,18 +235,24 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.ats.ScheduledInterviewEndpointRequest.jsonOrThrow(_body, {
+            requestType: "json",
+            body: serializers.ats.ScheduledInterviewEndpointRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.ScheduledInterviewResponse.parseOrThrow(_response.body, {
+            return serializers.ats.ScheduledInterviewResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -248,7 +275,7 @@ export class Interviews {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /ats/v1/interviews.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -259,8 +286,12 @@ export class Interviews {
     /**
      * Returns a `ScheduledInterview` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.ats.InterviewsRetrieveRequest} request
+     * @param {Interviews.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.interviews.retrieve("id", {})
+     *     await client.ats.interviews.retrieve("id")
      */
     public async retrieve(
         id: string,
@@ -268,7 +299,7 @@ export class Interviews {
         requestOptions?: Interviews.RequestOptions
     ): Promise<Merge.ats.ScheduledInterview> {
         const { expand, includeRemoteData, remoteFields, showEnumOrigins } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -288,7 +319,7 @@ export class Interviews {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/interviews/${id}`
+                `ats/v1/interviews/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -299,15 +330,21 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.ScheduledInterview.parseOrThrow(_response.body, {
+            return serializers.ats.ScheduledInterview.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -330,7 +367,7 @@ export class Interviews {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ats/v1/interviews/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -341,8 +378,10 @@ export class Interviews {
     /**
      * Returns metadata for `ScheduledInterview` POSTs.
      *
+     * @param {Interviews.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.ats.interviews.metaPostRetrieve()
+     *     await client.ats.interviews.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Interviews.RequestOptions): Promise<Merge.ats.MetaResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -359,14 +398,20 @@ export class Interviews {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ats.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.ats.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -389,7 +434,7 @@ export class Interviews {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ats/v1/interviews/meta/post.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -397,7 +442,7 @@ export class Interviews {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

@@ -1,5 +1,5 @@
-export { ExpensesListRequest } from "./ExpensesListRequest";
-export { ExpenseEndpointRequest } from "./ExpenseEndpointRequest";
-export { ExpensesRetrieveRequest } from "./ExpensesRetrieveRequest";
-export { ExpensesLinesRemoteFieldClassesListRequest } from "./ExpensesLinesRemoteFieldClassesListRequest";
-export { ExpensesRemoteFieldClassesListRequest } from "./ExpensesRemoteFieldClassesListRequest";
+export { type ExpensesListRequest } from "./ExpensesListRequest";
+export { type ExpenseEndpointRequest } from "./ExpenseEndpointRequest";
+export { type ExpensesRetrieveRequest } from "./ExpensesRetrieveRequest";
+export { type ExpensesLinesRemoteFieldClassesListRequest } from "./ExpensesLinesRemoteFieldClassesListRequest";
+export { type ExpensesRemoteFieldClassesListRequest } from "./ExpensesRemoteFieldClassesListRequest";

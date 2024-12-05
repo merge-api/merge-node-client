@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace Contacts {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,11 @@ export class Contacts {
     /**
      * Returns a list of `Contact` objects.
      *
+     * @param {Merge.crm.ContactsListRequest} request
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.contacts.list({})
+     *     await client.crm.contacts.list()
      */
     public async list(
         request: Merge.crm.ContactsListRequest = {},
@@ -53,7 +65,7 @@ export class Contacts {
             phoneNumbers,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (accountId != null) {
             _queryParams["account_id"] = accountId;
         }
@@ -128,15 +140,21 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.PaginatedContactList.parseOrThrow(_response.body, {
+            return serializers.crm.PaginatedContactList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -159,7 +177,7 @@ export class Contacts {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/contacts.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -170,8 +188,11 @@ export class Contacts {
     /**
      * Creates a `Contact` object with the given values.
      *
+     * @param {Merge.crm.CrmContactEndpointRequest} request
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.contacts.create({
+     *     await client.crm.contacts.create({
      *         model: {}
      *     })
      */
@@ -180,7 +201,7 @@ export class Contacts {
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.crm.CrmContactResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -203,18 +224,22 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.crm.CrmContactEndpointRequest.jsonOrThrow(_body, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            requestType: "json",
+            body: serializers.crm.CrmContactEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.CrmContactResponse.parseOrThrow(_response.body, {
+            return serializers.crm.CrmContactResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -237,7 +262,7 @@ export class Contacts {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /crm/v1/contacts.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -248,8 +273,12 @@ export class Contacts {
     /**
      * Returns a `Contact` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.crm.ContactsRetrieveRequest} request
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.contacts.retrieve("id", {})
+     *     await client.crm.contacts.retrieve("id")
      */
     public async retrieve(
         id: string,
@@ -257,7 +286,7 @@ export class Contacts {
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.crm.Contact> {
         const { expand, includeRemoteData, includeRemoteFields } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -273,7 +302,7 @@ export class Contacts {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/contacts/${id}`
+                `crm/v1/contacts/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -284,15 +313,21 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.Contact.parseOrThrow(_response.body, {
+            return serializers.crm.Contact.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -315,7 +350,7 @@ export class Contacts {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/contacts/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -326,8 +361,12 @@ export class Contacts {
     /**
      * Updates a `Contact` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.crm.PatchedCrmContactEndpointRequest} request
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.contacts.partialUpdate("id", {
+     *     await client.crm.contacts.partialUpdate("id", {
      *         model: {}
      *     })
      */
@@ -337,7 +376,7 @@ export class Contacts {
         requestOptions?: Contacts.RequestOptions
     ): Promise<Merge.crm.CrmContactResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -349,7 +388,7 @@ export class Contacts {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/contacts/${id}`
+                `crm/v1/contacts/${encodeURIComponent(id)}`
             ),
             method: "PATCH",
             headers: {
@@ -360,18 +399,24 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.crm.PatchedCrmContactEndpointRequest.jsonOrThrow(_body, {
+            requestType: "json",
+            body: serializers.crm.PatchedCrmContactEndpointRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.CrmContactResponse.parseOrThrow(_response.body, {
+            return serializers.crm.CrmContactResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -394,7 +439,7 @@ export class Contacts {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling PATCH /crm/v1/contacts/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -405,9 +450,13 @@ export class Contacts {
     /**
      * Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
      *
+     * @param {string} modelId
+     * @param {Merge.crm.IgnoreCommonModelRequest} request
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.contacts.ignoreCreate("model_id", {
-     *         reason: Merge.crm.ReasonEnum.GeneralCustomerRequest
+     *     await client.crm.contacts.ignoreCreate("model_id", {
+     *         reason: "GENERAL_CUSTOMER_REQUEST"
      *     })
      */
     public async ignoreCreate(
@@ -418,7 +467,7 @@ export class Contacts {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/contacts/ignore/${modelId}`
+                `crm/v1/contacts/ignore/${encodeURIComponent(modelId)}`
             ),
             method: "POST",
             headers: {
@@ -429,14 +478,18 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
-            body: await serializers.crm.IgnoreCommonModelRequest.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            requestType: "json",
+            body: serializers.crm.IgnoreCommonModelRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
             return;
@@ -456,7 +509,9 @@ export class Contacts {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling POST /crm/v1/contacts/ignore/{model_id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -467,8 +522,11 @@ export class Contacts {
     /**
      * Returns metadata for `CRMContact` PATCHs.
      *
+     * @param {string} id
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.contacts.metaPatchRetrieve("id")
+     *     await client.crm.contacts.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -477,7 +535,7 @@ export class Contacts {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/contacts/meta/patch/${id}`
+                `crm/v1/contacts/meta/patch/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -488,14 +546,20 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -518,7 +582,9 @@ export class Contacts {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /crm/v1/contacts/meta/patch/{id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -529,8 +595,10 @@ export class Contacts {
     /**
      * Returns metadata for `CRMContact` POSTs.
      *
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.contacts.metaPostRetrieve()
+     *     await client.crm.contacts.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Contacts.RequestOptions): Promise<Merge.crm.MetaResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -547,14 +615,20 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -577,7 +651,7 @@ export class Contacts {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /crm/v1/contacts/meta/post.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -588,8 +662,11 @@ export class Contacts {
     /**
      * Returns a list of `RemoteFieldClass` objects.
      *
+     * @param {Merge.crm.ContactsRemoteFieldClassesListRequest} request
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.crm.contacts.remoteFieldClassesList({})
+     *     await client.crm.contacts.remoteFieldClassesList()
      */
     public async remoteFieldClassesList(
         request: Merge.crm.ContactsRemoteFieldClassesListRequest = {},
@@ -604,7 +681,7 @@ export class Contacts {
             isCommonModelField,
             pageSize,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -647,15 +724,21 @@ export class Contacts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+            return serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -678,7 +761,9 @@ export class Contacts {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /crm/v1/contacts/remote-field-classes."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -686,7 +771,7 @@ export class Contacts {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

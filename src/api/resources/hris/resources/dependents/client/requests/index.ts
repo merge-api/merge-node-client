@@ -1,2 +1,2 @@
-export { DependentsListRequest } from "./DependentsListRequest";
-export { DependentsRetrieveRequest } from "./DependentsRetrieveRequest";
+export { type DependentsListRequest } from "./DependentsListRequest";
+export { type DependentsRetrieveRequest } from "./DependentsRetrieveRequest";

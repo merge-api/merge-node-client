@@ -1,3 +1,3 @@
-export { ContactsListRequest } from "./ContactsListRequest";
-export { TicketingContactEndpointRequest } from "./TicketingContactEndpointRequest";
-export { ContactsRetrieveRequest } from "./ContactsRetrieveRequest";
+export { type ContactsListRequest } from "./ContactsListRequest";
+export { type TicketingContactEndpointRequest } from "./TicketingContactEndpointRequest";
+export { type ContactsRetrieveRequest } from "./ContactsRetrieveRequest";

@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace PurchaseOrders {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,11 @@ export class PurchaseOrders {
     /**
      * Returns a list of `PurchaseOrder` objects.
      *
+     * @param {Merge.accounting.PurchaseOrdersListRequest} request
+     * @param {PurchaseOrders.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.purchaseOrders.list({})
+     *     await client.accounting.purchaseOrders.list()
      */
     public async list(
         request: Merge.accounting.PurchaseOrdersListRequest = {},
@@ -55,7 +67,7 @@ export class PurchaseOrders {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
         }
@@ -138,15 +150,21 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.PaginatedPurchaseOrderList.parseOrThrow(_response.body, {
+            return serializers.accounting.PaginatedPurchaseOrderList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -169,7 +187,7 @@ export class PurchaseOrders {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /accounting/v1/purchase-orders.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -180,8 +198,11 @@ export class PurchaseOrders {
     /**
      * Creates a `PurchaseOrder` object with the given values.
      *
+     * @param {Merge.accounting.PurchaseOrderEndpointRequest} request
+     * @param {PurchaseOrders.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.purchaseOrders.create({
+     *     await client.accounting.purchaseOrders.create({
      *         model: {}
      *     })
      */
@@ -190,7 +211,7 @@ export class PurchaseOrders {
         requestOptions?: PurchaseOrders.RequestOptions
     ): Promise<Merge.accounting.PurchaseOrderResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -213,18 +234,24 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.accounting.PurchaseOrderEndpointRequest.jsonOrThrow(_body, {
+            requestType: "json",
+            body: serializers.accounting.PurchaseOrderEndpointRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.PurchaseOrderResponse.parseOrThrow(_response.body, {
+            return serializers.accounting.PurchaseOrderResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -247,7 +274,9 @@ export class PurchaseOrders {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling POST /accounting/v1/purchase-orders."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -258,8 +287,12 @@ export class PurchaseOrders {
     /**
      * Returns a `PurchaseOrder` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.accounting.PurchaseOrdersRetrieveRequest} request
+     * @param {PurchaseOrders.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.purchaseOrders.retrieve("id", {})
+     *     await client.accounting.purchaseOrders.retrieve("id")
      */
     public async retrieve(
         id: string,
@@ -267,7 +300,7 @@ export class PurchaseOrders {
         requestOptions?: PurchaseOrders.RequestOptions
     ): Promise<Merge.accounting.PurchaseOrder> {
         const { expand, includeRemoteData, includeRemoteFields, remoteFields, showEnumOrigins } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -291,7 +324,7 @@ export class PurchaseOrders {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/purchase-orders/${id}`
+                `accounting/v1/purchase-orders/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -302,15 +335,21 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.PurchaseOrder.parseOrThrow(_response.body, {
+            return serializers.accounting.PurchaseOrder.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -333,7 +372,9 @@ export class PurchaseOrders {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/{id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -344,8 +385,11 @@ export class PurchaseOrders {
     /**
      * Returns a list of `RemoteFieldClass` objects.
      *
+     * @param {Merge.accounting.PurchaseOrdersLineItemsRemoteFieldClassesListRequest} request
+     * @param {PurchaseOrders.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.purchaseOrders.lineItemsRemoteFieldClassesList({})
+     *     await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList()
      */
     public async lineItemsRemoteFieldClassesList(
         request: Merge.accounting.PurchaseOrdersLineItemsRemoteFieldClassesListRequest = {},
@@ -353,7 +397,7 @@ export class PurchaseOrders {
     ): Promise<Merge.accounting.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -392,15 +436,21 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+            return serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -423,7 +473,9 @@ export class PurchaseOrders {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/line-items/remote-field-classes."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -434,8 +486,10 @@ export class PurchaseOrders {
     /**
      * Returns metadata for `PurchaseOrder` POSTs.
      *
+     * @param {PurchaseOrders.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.purchaseOrders.metaPostRetrieve()
+     *     await client.accounting.purchaseOrders.metaPostRetrieve()
      */
     public async metaPostRetrieve(
         requestOptions?: PurchaseOrders.RequestOptions
@@ -454,14 +508,20 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -484,7 +544,9 @@ export class PurchaseOrders {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/meta/post."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -495,8 +557,11 @@ export class PurchaseOrders {
     /**
      * Returns a list of `RemoteFieldClass` objects.
      *
+     * @param {Merge.accounting.PurchaseOrdersRemoteFieldClassesListRequest} request
+     * @param {PurchaseOrders.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.purchaseOrders.remoteFieldClassesList({})
+     *     await client.accounting.purchaseOrders.remoteFieldClassesList()
      */
     public async remoteFieldClassesList(
         request: Merge.accounting.PurchaseOrdersRemoteFieldClassesListRequest = {},
@@ -504,7 +569,7 @@ export class PurchaseOrders {
     ): Promise<Merge.accounting.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -543,15 +608,21 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+            return serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -574,7 +645,9 @@ export class PurchaseOrders {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/remote-field-classes."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -582,7 +655,7 @@ export class PurchaseOrders {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

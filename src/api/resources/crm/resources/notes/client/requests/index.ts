@@ -1,4 +1,4 @@
-export { NotesListRequest } from "./NotesListRequest";
-export { NoteEndpointRequest } from "./NoteEndpointRequest";
-export { NotesRetrieveRequest } from "./NotesRetrieveRequest";
-export { NotesRemoteFieldClassesListRequest } from "./NotesRemoteFieldClassesListRequest";
+export { type NotesListRequest } from "./NotesListRequest";
+export { type NoteEndpointRequest } from "./NoteEndpointRequest";
+export { type NotesRetrieveRequest } from "./NotesRetrieveRequest";
+export { type NotesRemoteFieldClassesListRequest } from "./NotesRemoteFieldClassesListRequest";

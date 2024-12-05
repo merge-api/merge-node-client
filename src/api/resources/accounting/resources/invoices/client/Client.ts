@@ -4,22 +4,31 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Merge from "../../../../..";
+import * as Merge from "../../../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../../../serialization";
-import * as errors from "../../../../../../errors";
+import * as serializers from "../../../../../../serialization/index";
+import * as errors from "../../../../../../errors/index";
 
 export declare namespace Invoices {
     interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
         apiKey: core.Supplier<core.BearerToken>;
+        /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Override the X-Account-Token header */
+        accountToken?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -29,8 +38,11 @@ export class Invoices {
     /**
      * Returns a list of `Invoice` objects.
      *
+     * @param {Merge.accounting.InvoicesListRequest} request
+     * @param {Invoices.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.invoices.list({})
+     *     await client.accounting.invoices.list()
      */
     public async list(
         request: Merge.accounting.InvoicesListRequest = {},
@@ -57,7 +69,7 @@ export class Invoices {
             showEnumOrigins,
             type: type_,
         } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
         }
@@ -148,15 +160,21 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.PaginatedInvoiceList.parseOrThrow(_response.body, {
+            return serializers.accounting.PaginatedInvoiceList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -179,7 +197,7 @@ export class Invoices {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /accounting/v1/invoices.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -190,8 +208,11 @@ export class Invoices {
     /**
      * Creates an `Invoice` object with the given values.
      *
+     * @param {Merge.accounting.InvoiceEndpointRequest} request
+     * @param {Invoices.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.invoices.create({
+     *     await client.accounting.invoices.create({
      *         model: {}
      *     })
      */
@@ -200,7 +221,7 @@ export class Invoices {
         requestOptions?: Invoices.RequestOptions
     ): Promise<Merge.accounting.InvoiceResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -223,18 +244,22 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.accounting.InvoiceEndpointRequest.jsonOrThrow(_body, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            requestType: "json",
+            body: serializers.accounting.InvoiceEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.InvoiceResponse.parseOrThrow(_response.body, {
+            return serializers.accounting.InvoiceResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -257,7 +282,7 @@ export class Invoices {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /accounting/v1/invoices.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -268,8 +293,12 @@ export class Invoices {
     /**
      * Returns an `Invoice` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.accounting.InvoicesRetrieveRequest} request
+     * @param {Invoices.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.invoices.retrieve("id", {})
+     *     await client.accounting.invoices.retrieve("id")
      */
     public async retrieve(
         id: string,
@@ -277,7 +306,7 @@ export class Invoices {
         requestOptions?: Invoices.RequestOptions
     ): Promise<Merge.accounting.Invoice> {
         const { expand, includeRemoteData, includeRemoteFields, remoteFields, showEnumOrigins } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -301,7 +330,7 @@ export class Invoices {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/invoices/${id}`
+                `accounting/v1/invoices/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -312,15 +341,21 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.Invoice.parseOrThrow(_response.body, {
+            return serializers.accounting.Invoice.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -343,7 +378,7 @@ export class Invoices {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /accounting/v1/invoices/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -354,8 +389,12 @@ export class Invoices {
     /**
      * Updates an `Invoice` object with the given `id`.
      *
+     * @param {string} id
+     * @param {Merge.accounting.PatchedInvoiceEndpointRequest} request
+     * @param {Invoices.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.invoices.partialUpdate("id", {
+     *     await client.accounting.invoices.partialUpdate("id", {
      *         model: {}
      *     })
      */
@@ -365,7 +404,7 @@ export class Invoices {
         requestOptions?: Invoices.RequestOptions
     ): Promise<Merge.accounting.InvoiceResponse> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -377,7 +416,7 @@ export class Invoices {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/invoices/${id}`
+                `accounting/v1/invoices/${encodeURIComponent(id)}`
             ),
             method: "PATCH",
             headers: {
@@ -388,18 +427,24 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
-            body: await serializers.accounting.PatchedInvoiceEndpointRequest.jsonOrThrow(_body, {
+            requestType: "json",
+            body: serializers.accounting.PatchedInvoiceEndpointRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.InvoiceResponse.parseOrThrow(_response.body, {
+            return serializers.accounting.InvoiceResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -422,7 +467,7 @@ export class Invoices {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling PATCH /accounting/v1/invoices/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -433,8 +478,11 @@ export class Invoices {
     /**
      * Returns a list of `RemoteFieldClass` objects.
      *
+     * @param {Merge.accounting.InvoicesLineItemsRemoteFieldClassesListRequest} request
+     * @param {Invoices.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.invoices.lineItemsRemoteFieldClassesList({})
+     *     await client.accounting.invoices.lineItemsRemoteFieldClassesList()
      */
     public async lineItemsRemoteFieldClassesList(
         request: Merge.accounting.InvoicesLineItemsRemoteFieldClassesListRequest = {},
@@ -442,7 +490,7 @@ export class Invoices {
     ): Promise<Merge.accounting.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -481,15 +529,21 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+            return serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -512,7 +566,9 @@ export class Invoices {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/invoices/line-items/remote-field-classes."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -523,8 +579,11 @@ export class Invoices {
     /**
      * Returns metadata for `Invoice` PATCHs.
      *
+     * @param {string} id
+     * @param {Invoices.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.invoices.metaPatchRetrieve("id")
+     *     await client.accounting.invoices.metaPatchRetrieve("id")
      */
     public async metaPatchRetrieve(
         id: string,
@@ -533,7 +592,7 @@ export class Invoices {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/invoices/meta/patch/${id}`
+                `accounting/v1/invoices/meta/patch/${encodeURIComponent(id)}`
             ),
             method: "GET",
             headers: {
@@ -544,14 +603,20 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -574,7 +639,9 @@ export class Invoices {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/invoices/meta/patch/{id}."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -585,8 +652,10 @@ export class Invoices {
     /**
      * Returns metadata for `Invoice` POSTs.
      *
+     * @param {Invoices.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.invoices.metaPostRetrieve()
+     *     await client.accounting.invoices.metaPostRetrieve()
      */
     public async metaPostRetrieve(requestOptions?: Invoices.RequestOptions): Promise<Merge.accounting.MetaResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -603,14 +672,20 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
+            return serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -633,7 +708,9 @@ export class Invoices {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/invoices/meta/post."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -644,8 +721,11 @@ export class Invoices {
     /**
      * Returns a list of `RemoteFieldClass` objects.
      *
+     * @param {Merge.accounting.InvoicesRemoteFieldClassesListRequest} request
+     * @param {Invoices.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @example
-     *     await merge.accounting.invoices.remoteFieldClassesList({})
+     *     await client.accounting.invoices.remoteFieldClassesList()
      */
     public async remoteFieldClassesList(
         request: Merge.accounting.InvoicesRemoteFieldClassesListRequest = {},
@@ -653,7 +733,7 @@ export class Invoices {
     ): Promise<Merge.accounting.PaginatedRemoteFieldClassList> {
         const { cursor, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
-        const _queryParams: Record<string, string | string[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -692,15 +772,21 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.0.12",
+                "X-Fern-SDK-Version": "1.1.0",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+            return serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -723,7 +809,9 @@ export class Invoices {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MergeTimeoutError();
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/invoices/remote-field-classes."
+                );
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
@@ -731,7 +819,7 @@ export class Invoices {
         }
     }
 
-    protected async _getAuthorizationHeader() {
+    protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
     }
 }

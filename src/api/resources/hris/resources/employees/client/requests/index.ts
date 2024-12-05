@@ -1,4 +1,4 @@
-export { EmployeesListRequest } from "./EmployeesListRequest";
-export { EmployeeEndpointRequest } from "./EmployeeEndpointRequest";
-export { EmployeesRetrieveRequest } from "./EmployeesRetrieveRequest";
-export { IgnoreCommonModelRequest } from "./IgnoreCommonModelRequest";
+export { type EmployeesListRequest } from "./EmployeesListRequest";
+export { type EmployeeEndpointRequest } from "./EmployeeEndpointRequest";
+export { type EmployeesRetrieveRequest } from "./EmployeesRetrieveRequest";
+export { type IgnoreCommonModelRequest } from "./IgnoreCommonModelRequest";

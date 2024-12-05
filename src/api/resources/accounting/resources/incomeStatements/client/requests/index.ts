@@ -1,2 +1,2 @@
-export { IncomeStatementsListRequest } from "./IncomeStatementsListRequest";
-export { IncomeStatementsRetrieveRequest } from "./IncomeStatementsRetrieveRequest";
+export { type IncomeStatementsListRequest } from "./IncomeStatementsListRequest";
+export { type IncomeStatementsRetrieveRequest } from "./IncomeStatementsRetrieveRequest";

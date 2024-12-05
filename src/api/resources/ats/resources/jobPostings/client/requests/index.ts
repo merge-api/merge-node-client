@@ -1,2 +1,2 @@
-export { JobPostingsListRequest } from "./JobPostingsListRequest";
-export { JobPostingsRetrieveRequest } from "./JobPostingsRetrieveRequest";
+export { type JobPostingsListRequest } from "./JobPostingsListRequest";
+export { type JobPostingsRetrieveRequest } from "./JobPostingsRetrieveRequest";

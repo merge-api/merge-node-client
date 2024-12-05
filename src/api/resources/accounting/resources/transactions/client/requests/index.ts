@@ -1,2 +1,2 @@
-export { TransactionsListRequest } from "./TransactionsListRequest";
-export { TransactionsRetrieveRequest } from "./TransactionsRetrieveRequest";
+export { type TransactionsListRequest } from "./TransactionsListRequest";
+export { type TransactionsRetrieveRequest } from "./TransactionsRetrieveRequest";

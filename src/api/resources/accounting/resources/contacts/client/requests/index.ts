@@ -1,4 +1,4 @@
-export { ContactsListRequest } from "./ContactsListRequest";
-export { ContactEndpointRequest } from "./ContactEndpointRequest";
-export { ContactsRetrieveRequest } from "./ContactsRetrieveRequest";
-export { ContactsRemoteFieldClassesListRequest } from "./ContactsRemoteFieldClassesListRequest";
+export { type ContactsListRequest } from "./ContactsListRequest";
+export { type ContactEndpointRequest } from "./ContactEndpointRequest";
+export { type ContactsRetrieveRequest } from "./ContactsRetrieveRequest";
+export { type ContactsRemoteFieldClassesListRequest } from "./ContactsRemoteFieldClassesListRequest";
