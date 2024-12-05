@@ -31,6 +31,8 @@ export interface InvoiceLineItem {
     quantity?: number;
     /** The line item's total amount. */
     totalAmount?: number;
+    /** The employee this overall transaction relates to. */
+    employee?: Merge.accounting.InvoiceLineItemEmployee;
     /**
      * The line item's currency.
      *
@@ -351,7 +353,7 @@ export interface InvoiceLineItem {
     trackingCategory?: Merge.accounting.InvoiceLineItemTrackingCategory;
     /** The invoice line item's associated tracking categories. */
     trackingCategories?: (Merge.accounting.InvoiceLineItemTrackingCategoriesItem | undefined)[];
-    /** The company the line item belongs to. */
+    /** The company the invoice belongs to. */
     company?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;

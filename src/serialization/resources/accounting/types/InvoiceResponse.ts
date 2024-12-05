@@ -5,7 +5,6 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { Invoice } from "./Invoice";
 import { WarningValidationProblem } from "./WarningValidationProblem";
 import { ErrorValidationProblem } from "./ErrorValidationProblem";
 import { DebugModeLog } from "./DebugModeLog";
@@ -14,7 +13,7 @@ export const InvoiceResponse: core.serialization.ObjectSchema<
     serializers.accounting.InvoiceResponse.Raw,
     Merge.accounting.InvoiceResponse
 > = core.serialization.object({
-    model: Invoice,
+    model: core.serialization.lazyObject(() => serializers.accounting.Invoice),
     warnings: core.serialization.list(WarningValidationProblem),
     errors: core.serialization.list(ErrorValidationProblem),
     logs: core.serialization.list(DebugModeLog).optional(),
@@ -22,7 +21,7 @@ export const InvoiceResponse: core.serialization.ObjectSchema<
 
 export declare namespace InvoiceResponse {
     interface Raw {
-        model: Invoice.Raw;
+        model: serializers.accounting.Invoice.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];
         logs?: DebugModeLog.Raw[] | null;

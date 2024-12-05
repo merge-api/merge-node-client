@@ -347,6 +347,8 @@ export interface ExpenseRequest {
     inclusiveOfTax?: boolean;
     /** The company the expense belongs to. */
     company?: Merge.accounting.ExpenseRequestCompany;
+    /** The employee this overall transaction relates to. */
+    employee?: Merge.accounting.ExpenseRequestEmployee;
     /** The expense's private note. */
     memo?: string;
     lines?: Merge.accounting.ExpenseLineRequest[];

@@ -5,7 +5,6 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { CreditNote } from "./CreditNote";
 
 export const PaginatedCreditNoteList: core.serialization.ObjectSchema<
     serializers.accounting.PaginatedCreditNoteList.Raw,
@@ -13,13 +12,13 @@ export const PaginatedCreditNoteList: core.serialization.ObjectSchema<
 > = core.serialization.object({
     next: core.serialization.string().optional(),
     previous: core.serialization.string().optional(),
-    results: core.serialization.list(CreditNote).optional(),
+    results: core.serialization.list(core.serialization.lazyObject(() => serializers.accounting.CreditNote)).optional(),
 });
 
 export declare namespace PaginatedCreditNoteList {
     interface Raw {
         next?: string | null;
         previous?: string | null;
-        results?: CreditNote.Raw[] | null;
+        results?: serializers.accounting.CreditNote.Raw[] | null;
     }
 }

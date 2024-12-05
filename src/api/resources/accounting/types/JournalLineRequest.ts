@@ -337,6 +337,7 @@ export interface JournalLineRequest {
     currency?: Merge.accounting.JournalLineRequestCurrency;
     /** The company the journal entry belongs to. */
     company?: string;
+    employee?: string;
     contact?: string;
     /** The tax rate that applies to this line item. */
     taxRate?: string;

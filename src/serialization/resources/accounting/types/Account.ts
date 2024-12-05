@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { AccountClassification } from "./AccountClassification";
+import { AccountAccountType } from "./AccountAccountType";
 import { AccountStatus } from "./AccountStatus";
 import { AccountCurrency } from "./AccountCurrency";
 import { RemoteData } from "./RemoteData";
@@ -20,6 +21,7 @@ export const Account: core.serialization.ObjectSchema<serializers.accounting.Acc
         description: core.serialization.string().optional(),
         classification: AccountClassification.optional(),
         type: core.serialization.string().optional(),
+        accountType: core.serialization.property("account_type", AccountAccountType.optional()),
         status: AccountStatus.optional(),
         currentBalance: core.serialization.property("current_balance", core.serialization.number().optional()),
         currency: AccountCurrency.optional(),
@@ -44,6 +46,7 @@ export declare namespace Account {
         description?: string | null;
         classification?: AccountClassification.Raw | null;
         type?: string | null;
+        account_type?: AccountAccountType.Raw | null;
         status?: AccountStatus.Raw | null;
         current_balance?: number | null;
         currency?: AccountCurrency.Raw | null;

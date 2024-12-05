@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
+import { InvoiceLineItemEmployee } from "./InvoiceLineItemEmployee";
 import { InvoiceLineItemCurrency } from "./InvoiceLineItemCurrency";
 import { InvoiceLineItemItem } from "./InvoiceLineItemItem";
 import { InvoiceLineItemAccount } from "./InvoiceLineItemAccount";
@@ -24,6 +25,7 @@ export const InvoiceLineItem: core.serialization.ObjectSchema<
     unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
     quantity: core.serialization.number().optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
+    employee: InvoiceLineItemEmployee.optional(),
     currency: InvoiceLineItemCurrency.optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     item: InvoiceLineItemItem.optional(),
@@ -53,6 +55,7 @@ export declare namespace InvoiceLineItem {
         unit_price?: number | null;
         quantity?: number | null;
         total_amount?: number | null;
+        employee?: InvoiceLineItemEmployee.Raw | null;
         currency?: InvoiceLineItemCurrency.Raw | null;
         exchange_rate?: string | null;
         item?: InvoiceLineItemItem.Raw | null;

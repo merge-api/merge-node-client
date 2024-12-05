@@ -60,8 +60,8 @@ export class Scopes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -129,8 +129,8 @@ export class Scopes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -192,6 +192,10 @@ export class Scopes {
      *                     "WRITE": {
      *                         isEnabled: false
      *                     }
+     *                 },
+     *                 fieldPermissions: {
+     *                     enabledFields: ["avatar", "home_location"],
+     *                     disabledFields: ["work_location"]
      *                 }
      *             }, {
      *                 modelName: "Benefit",
@@ -221,8 +225,8 @@ export class Scopes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.0",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.0",
+                "X-Fern-SDK-Version": "1.1.1",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

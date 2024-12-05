@@ -8,6 +8,7 @@ import * as core from "../../../../core";
 import { ExpenseLineItem } from "./ExpenseLineItem";
 import { ExpenseLineTrackingCategory } from "./ExpenseLineTrackingCategory";
 import { ExpenseLineTrackingCategoriesItem } from "./ExpenseLineTrackingCategoriesItem";
+import { ExpenseLineEmployee } from "./ExpenseLineEmployee";
 import { ExpenseLineCurrency } from "./ExpenseLineCurrency";
 import { ExpenseLineAccount } from "./ExpenseLineAccount";
 import { ExpenseLineContact } from "./ExpenseLineContact";
@@ -28,6 +29,7 @@ export const ExpenseLine: core.serialization.ObjectSchema<
         core.serialization.list(ExpenseLineTrackingCategoriesItem.optional()).optional()
     ),
     company: core.serialization.string().optional(),
+    employee: ExpenseLineEmployee.optional(),
     currency: ExpenseLineCurrency.optional(),
     account: ExpenseLineAccount.optional(),
     contact: ExpenseLineContact.optional(),
@@ -48,6 +50,7 @@ export declare namespace ExpenseLine {
         tracking_category?: ExpenseLineTrackingCategory.Raw | null;
         tracking_categories?: (ExpenseLineTrackingCategoriesItem.Raw | null | undefined)[] | null;
         company?: string | null;
+        employee?: ExpenseLineEmployee.Raw | null;
         currency?: ExpenseLineCurrency.Raw | null;
         account?: ExpenseLineAccount.Raw | null;
         contact?: ExpenseLineContact.Raw | null;

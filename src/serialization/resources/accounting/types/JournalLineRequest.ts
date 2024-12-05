@@ -25,6 +25,7 @@ export const JournalLineRequest: core.serialization.ObjectSchema<
     ),
     currency: JournalLineRequestCurrency.optional(),
     company: core.serialization.string().optional(),
+    employee: core.serialization.string().optional(),
     contact: core.serialization.string().optional(),
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
@@ -49,6 +50,7 @@ export declare namespace JournalLineRequest {
         tracking_categories?: (JournalLineRequestTrackingCategoriesItem.Raw | null | undefined)[] | null;
         currency?: JournalLineRequestCurrency.Raw | null;
         company?: string | null;
+        employee?: string | null;
         contact?: string | null;
         tax_rate?: string | null;
         description?: string | null;

@@ -4,298 +4,2533 @@
 
 export type InvoicesRetrieveRequestExpand =
     | "accounting_period"
+    | "applied_credit_notes"
+    | "applied_credit_notes,accounting_period"
+    | "applied_credit_notes,applied_vendor_credits"
+    | "applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "applied_credit_notes,applied_vendor_credits,company"
+    | "applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "applied_credit_notes,applied_vendor_credits,company,employee"
+    | "applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_credit_notes,applied_vendor_credits,contact"
+    | "applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "applied_credit_notes,applied_vendor_credits,contact,company"
+    | "applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_credit_notes,applied_vendor_credits,employee"
+    | "applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "applied_credit_notes,company"
+    | "applied_credit_notes,company,accounting_period"
+    | "applied_credit_notes,company,employee"
+    | "applied_credit_notes,company,employee,accounting_period"
+    | "applied_credit_notes,contact"
+    | "applied_credit_notes,contact,accounting_period"
+    | "applied_credit_notes,contact,company"
+    | "applied_credit_notes,contact,company,accounting_period"
+    | "applied_credit_notes,contact,company,employee"
+    | "applied_credit_notes,contact,company,employee,accounting_period"
+    | "applied_credit_notes,contact,employee"
+    | "applied_credit_notes,contact,employee,accounting_period"
+    | "applied_credit_notes,employee"
+    | "applied_credit_notes,employee,accounting_period"
     | "applied_payments"
     | "applied_payments,accounting_period"
+    | "applied_payments,applied_credit_notes"
+    | "applied_payments,applied_credit_notes,accounting_period"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,company"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,contact"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,employee"
+    | "applied_payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "applied_payments,applied_credit_notes,company"
+    | "applied_payments,applied_credit_notes,company,accounting_period"
+    | "applied_payments,applied_credit_notes,company,employee"
+    | "applied_payments,applied_credit_notes,company,employee,accounting_period"
+    | "applied_payments,applied_credit_notes,contact"
+    | "applied_payments,applied_credit_notes,contact,accounting_period"
+    | "applied_payments,applied_credit_notes,contact,company"
+    | "applied_payments,applied_credit_notes,contact,company,accounting_period"
+    | "applied_payments,applied_credit_notes,contact,company,employee"
+    | "applied_payments,applied_credit_notes,contact,company,employee,accounting_period"
+    | "applied_payments,applied_credit_notes,contact,employee"
+    | "applied_payments,applied_credit_notes,contact,employee,accounting_period"
+    | "applied_payments,applied_credit_notes,employee"
+    | "applied_payments,applied_credit_notes,employee,accounting_period"
+    | "applied_payments,applied_vendor_credits"
+    | "applied_payments,applied_vendor_credits,accounting_period"
+    | "applied_payments,applied_vendor_credits,company"
+    | "applied_payments,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,applied_vendor_credits,company,employee"
+    | "applied_payments,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,applied_vendor_credits,contact"
+    | "applied_payments,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,applied_vendor_credits,contact,company"
+    | "applied_payments,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,applied_vendor_credits,contact,employee"
+    | "applied_payments,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,applied_vendor_credits,employee"
+    | "applied_payments,applied_vendor_credits,employee,accounting_period"
     | "applied_payments,company"
     | "applied_payments,company,accounting_period"
+    | "applied_payments,company,employee"
+    | "applied_payments,company,employee,accounting_period"
     | "applied_payments,contact"
     | "applied_payments,contact,accounting_period"
     | "applied_payments,contact,company"
     | "applied_payments,contact,company,accounting_period"
+    | "applied_payments,contact,company,employee"
+    | "applied_payments,contact,company,employee,accounting_period"
+    | "applied_payments,contact,employee"
+    | "applied_payments,contact,employee,accounting_period"
+    | "applied_payments,employee"
+    | "applied_payments,employee,accounting_period"
     | "applied_payments,line_items"
     | "applied_payments,line_items,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes"
+    | "applied_payments,line_items,applied_credit_notes,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee"
+    | "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,company"
+    | "applied_payments,line_items,applied_credit_notes,company,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,company,employee"
+    | "applied_payments,line_items,applied_credit_notes,company,employee,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,contact"
+    | "applied_payments,line_items,applied_credit_notes,contact,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,contact,company"
+    | "applied_payments,line_items,applied_credit_notes,contact,company,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,contact,company,employee"
+    | "applied_payments,line_items,applied_credit_notes,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,contact,employee"
+    | "applied_payments,line_items,applied_credit_notes,contact,employee,accounting_period"
+    | "applied_payments,line_items,applied_credit_notes,employee"
+    | "applied_payments,line_items,applied_credit_notes,employee,accounting_period"
+    | "applied_payments,line_items,applied_vendor_credits"
+    | "applied_payments,line_items,applied_vendor_credits,accounting_period"
+    | "applied_payments,line_items,applied_vendor_credits,company"
+    | "applied_payments,line_items,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,line_items,applied_vendor_credits,company,employee"
+    | "applied_payments,line_items,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,line_items,applied_vendor_credits,contact"
+    | "applied_payments,line_items,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,line_items,applied_vendor_credits,contact,company"
+    | "applied_payments,line_items,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,line_items,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,applied_vendor_credits,contact,employee"
+    | "applied_payments,line_items,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,line_items,applied_vendor_credits,employee"
+    | "applied_payments,line_items,applied_vendor_credits,employee,accounting_period"
     | "applied_payments,line_items,company"
     | "applied_payments,line_items,company,accounting_period"
+    | "applied_payments,line_items,company,employee"
+    | "applied_payments,line_items,company,employee,accounting_period"
     | "applied_payments,line_items,contact"
     | "applied_payments,line_items,contact,accounting_period"
     | "applied_payments,line_items,contact,company"
     | "applied_payments,line_items,contact,company,accounting_period"
+    | "applied_payments,line_items,contact,company,employee"
+    | "applied_payments,line_items,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,contact,employee"
+    | "applied_payments,line_items,contact,employee,accounting_period"
+    | "applied_payments,line_items,employee"
+    | "applied_payments,line_items,employee,accounting_period"
     | "applied_payments,line_items,purchase_orders"
     | "applied_payments,line_items,purchase_orders,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,company"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,contact"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,employee"
+    | "applied_payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,company"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,employee"
+    | "applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "applied_payments,line_items,purchase_orders,company"
     | "applied_payments,line_items,purchase_orders,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders,company,employee"
+    | "applied_payments,line_items,purchase_orders,company,employee,accounting_period"
     | "applied_payments,line_items,purchase_orders,contact"
     | "applied_payments,line_items,purchase_orders,contact,accounting_period"
     | "applied_payments,line_items,purchase_orders,contact,company"
     | "applied_payments,line_items,purchase_orders,contact,company,accounting_period"
+    | "applied_payments,line_items,purchase_orders,contact,company,employee"
+    | "applied_payments,line_items,purchase_orders,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,contact,employee"
+    | "applied_payments,line_items,purchase_orders,contact,employee,accounting_period"
+    | "applied_payments,line_items,purchase_orders,employee"
+    | "applied_payments,line_items,purchase_orders,employee,accounting_period"
     | "applied_payments,line_items,tracking_categories"
     | "applied_payments,line_items,tracking_categories,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,company"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,contact"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,employee"
+    | "applied_payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,company"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,employee"
+    | "applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period"
     | "applied_payments,line_items,tracking_categories,company"
     | "applied_payments,line_items,tracking_categories,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,company,employee"
+    | "applied_payments,line_items,tracking_categories,company,employee,accounting_period"
     | "applied_payments,line_items,tracking_categories,contact"
     | "applied_payments,line_items,tracking_categories,contact,accounting_period"
     | "applied_payments,line_items,tracking_categories,contact,company"
     | "applied_payments,line_items,tracking_categories,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,contact,company,employee"
+    | "applied_payments,line_items,tracking_categories,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,contact,employee"
+    | "applied_payments,line_items,tracking_categories,contact,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,employee"
+    | "applied_payments,line_items,tracking_categories,employee,accounting_period"
     | "applied_payments,line_items,tracking_categories,purchase_orders"
     | "applied_payments,line_items,tracking_categories,purchase_orders,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "applied_payments,line_items,tracking_categories,purchase_orders,company"
     | "applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,company,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period"
     | "applied_payments,line_items,tracking_categories,purchase_orders,contact"
     | "applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period"
     | "applied_payments,line_items,tracking_categories,purchase_orders,contact,company"
     | "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,contact,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,employee"
+    | "applied_payments,line_items,tracking_categories,purchase_orders,employee,accounting_period"
     | "applied_payments,purchase_orders"
     | "applied_payments,purchase_orders,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes"
+    | "applied_payments,purchase_orders,applied_credit_notes,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,company"
+    | "applied_payments,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,company,employee"
+    | "applied_payments,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,contact"
+    | "applied_payments,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,contact,company"
+    | "applied_payments,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,contact,employee"
+    | "applied_payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_credit_notes,employee"
+    | "applied_payments,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_vendor_credits"
+    | "applied_payments,purchase_orders,applied_vendor_credits,accounting_period"
+    | "applied_payments,purchase_orders,applied_vendor_credits,company"
+    | "applied_payments,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,purchase_orders,applied_vendor_credits,company,employee"
+    | "applied_payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_vendor_credits,contact"
+    | "applied_payments,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,purchase_orders,applied_vendor_credits,contact,company"
+    | "applied_payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_vendor_credits,contact,employee"
+    | "applied_payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,purchase_orders,applied_vendor_credits,employee"
+    | "applied_payments,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "applied_payments,purchase_orders,company"
     | "applied_payments,purchase_orders,company,accounting_period"
+    | "applied_payments,purchase_orders,company,employee"
+    | "applied_payments,purchase_orders,company,employee,accounting_period"
     | "applied_payments,purchase_orders,contact"
     | "applied_payments,purchase_orders,contact,accounting_period"
     | "applied_payments,purchase_orders,contact,company"
     | "applied_payments,purchase_orders,contact,company,accounting_period"
+    | "applied_payments,purchase_orders,contact,company,employee"
+    | "applied_payments,purchase_orders,contact,company,employee,accounting_period"
+    | "applied_payments,purchase_orders,contact,employee"
+    | "applied_payments,purchase_orders,contact,employee,accounting_period"
+    | "applied_payments,purchase_orders,employee"
+    | "applied_payments,purchase_orders,employee,accounting_period"
     | "applied_payments,tracking_categories"
     | "applied_payments,tracking_categories,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes"
+    | "applied_payments,tracking_categories,applied_credit_notes,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"
+    | "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,company"
+    | "applied_payments,tracking_categories,applied_credit_notes,company,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,company,employee"
+    | "applied_payments,tracking_categories,applied_credit_notes,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,contact"
+    | "applied_payments,tracking_categories,applied_credit_notes,contact,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,contact,company"
+    | "applied_payments,tracking_categories,applied_credit_notes,contact,company,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,contact,company,employee"
+    | "applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,contact,employee"
+    | "applied_payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_credit_notes,employee"
+    | "applied_payments,tracking_categories,applied_credit_notes,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_vendor_credits"
+    | "applied_payments,tracking_categories,applied_vendor_credits,accounting_period"
+    | "applied_payments,tracking_categories,applied_vendor_credits,company"
+    | "applied_payments,tracking_categories,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,tracking_categories,applied_vendor_credits,company,employee"
+    | "applied_payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_vendor_credits,contact"
+    | "applied_payments,tracking_categories,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,tracking_categories,applied_vendor_credits,contact,company"
+    | "applied_payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_vendor_credits,contact,employee"
+    | "applied_payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,tracking_categories,applied_vendor_credits,employee"
+    | "applied_payments,tracking_categories,applied_vendor_credits,employee,accounting_period"
     | "applied_payments,tracking_categories,company"
     | "applied_payments,tracking_categories,company,accounting_period"
+    | "applied_payments,tracking_categories,company,employee"
+    | "applied_payments,tracking_categories,company,employee,accounting_period"
     | "applied_payments,tracking_categories,contact"
     | "applied_payments,tracking_categories,contact,accounting_period"
     | "applied_payments,tracking_categories,contact,company"
     | "applied_payments,tracking_categories,contact,company,accounting_period"
+    | "applied_payments,tracking_categories,contact,company,employee"
+    | "applied_payments,tracking_categories,contact,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,contact,employee"
+    | "applied_payments,tracking_categories,contact,employee,accounting_period"
+    | "applied_payments,tracking_categories,employee"
+    | "applied_payments,tracking_categories,employee,accounting_period"
     | "applied_payments,tracking_categories,purchase_orders"
     | "applied_payments,tracking_categories,purchase_orders,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee"
+    | "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "applied_payments,tracking_categories,purchase_orders,company"
     | "applied_payments,tracking_categories,purchase_orders,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,company,employee"
+    | "applied_payments,tracking_categories,purchase_orders,company,employee,accounting_period"
     | "applied_payments,tracking_categories,purchase_orders,contact"
     | "applied_payments,tracking_categories,purchase_orders,contact,accounting_period"
     | "applied_payments,tracking_categories,purchase_orders,contact,company"
     | "applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,contact,company,employee"
+    | "applied_payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,contact,employee"
+    | "applied_payments,tracking_categories,purchase_orders,contact,employee,accounting_period"
+    | "applied_payments,tracking_categories,purchase_orders,employee"
+    | "applied_payments,tracking_categories,purchase_orders,employee,accounting_period"
+    | "applied_vendor_credits"
+    | "applied_vendor_credits,accounting_period"
+    | "applied_vendor_credits,company"
+    | "applied_vendor_credits,company,accounting_period"
+    | "applied_vendor_credits,company,employee"
+    | "applied_vendor_credits,company,employee,accounting_period"
+    | "applied_vendor_credits,contact"
+    | "applied_vendor_credits,contact,accounting_period"
+    | "applied_vendor_credits,contact,company"
+    | "applied_vendor_credits,contact,company,accounting_period"
+    | "applied_vendor_credits,contact,company,employee"
+    | "applied_vendor_credits,contact,company,employee,accounting_period"
+    | "applied_vendor_credits,contact,employee"
+    | "applied_vendor_credits,contact,employee,accounting_period"
+    | "applied_vendor_credits,employee"
+    | "applied_vendor_credits,employee,accounting_period"
     | "company"
     | "company,accounting_period"
+    | "company,employee"
+    | "company,employee,accounting_period"
     | "contact"
     | "contact,accounting_period"
     | "contact,company"
     | "contact,company,accounting_period"
+    | "contact,company,employee"
+    | "contact,company,employee,accounting_period"
+    | "contact,employee"
+    | "contact,employee,accounting_period"
+    | "employee"
+    | "employee,accounting_period"
     | "line_items"
     | "line_items,accounting_period"
+    | "line_items,applied_credit_notes"
+    | "line_items,applied_credit_notes,accounting_period"
+    | "line_items,applied_credit_notes,applied_vendor_credits"
+    | "line_items,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "line_items,applied_credit_notes,applied_vendor_credits,company"
+    | "line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "line_items,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "line_items,applied_credit_notes,applied_vendor_credits,contact"
+    | "line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "line_items,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "line_items,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "line_items,applied_credit_notes,applied_vendor_credits,employee"
+    | "line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "line_items,applied_credit_notes,company"
+    | "line_items,applied_credit_notes,company,accounting_period"
+    | "line_items,applied_credit_notes,company,employee"
+    | "line_items,applied_credit_notes,company,employee,accounting_period"
+    | "line_items,applied_credit_notes,contact"
+    | "line_items,applied_credit_notes,contact,accounting_period"
+    | "line_items,applied_credit_notes,contact,company"
+    | "line_items,applied_credit_notes,contact,company,accounting_period"
+    | "line_items,applied_credit_notes,contact,company,employee"
+    | "line_items,applied_credit_notes,contact,company,employee,accounting_period"
+    | "line_items,applied_credit_notes,contact,employee"
+    | "line_items,applied_credit_notes,contact,employee,accounting_period"
+    | "line_items,applied_credit_notes,employee"
+    | "line_items,applied_credit_notes,employee,accounting_period"
+    | "line_items,applied_vendor_credits"
+    | "line_items,applied_vendor_credits,accounting_period"
+    | "line_items,applied_vendor_credits,company"
+    | "line_items,applied_vendor_credits,company,accounting_period"
+    | "line_items,applied_vendor_credits,company,employee"
+    | "line_items,applied_vendor_credits,company,employee,accounting_period"
+    | "line_items,applied_vendor_credits,contact"
+    | "line_items,applied_vendor_credits,contact,accounting_period"
+    | "line_items,applied_vendor_credits,contact,company"
+    | "line_items,applied_vendor_credits,contact,company,accounting_period"
+    | "line_items,applied_vendor_credits,contact,company,employee"
+    | "line_items,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "line_items,applied_vendor_credits,contact,employee"
+    | "line_items,applied_vendor_credits,contact,employee,accounting_period"
+    | "line_items,applied_vendor_credits,employee"
+    | "line_items,applied_vendor_credits,employee,accounting_period"
     | "line_items,company"
     | "line_items,company,accounting_period"
+    | "line_items,company,employee"
+    | "line_items,company,employee,accounting_period"
     | "line_items,contact"
     | "line_items,contact,accounting_period"
     | "line_items,contact,company"
     | "line_items,contact,company,accounting_period"
+    | "line_items,contact,company,employee"
+    | "line_items,contact,company,employee,accounting_period"
+    | "line_items,contact,employee"
+    | "line_items,contact,employee,accounting_period"
+    | "line_items,employee"
+    | "line_items,employee,accounting_period"
     | "line_items,purchase_orders"
     | "line_items,purchase_orders,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes"
+    | "line_items,purchase_orders,applied_credit_notes,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,company"
+    | "line_items,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,company,employee"
+    | "line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,contact"
+    | "line_items,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,contact,company"
+    | "line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,contact,employee"
+    | "line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "line_items,purchase_orders,applied_credit_notes,employee"
+    | "line_items,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "line_items,purchase_orders,applied_vendor_credits"
+    | "line_items,purchase_orders,applied_vendor_credits,accounting_period"
+    | "line_items,purchase_orders,applied_vendor_credits,company"
+    | "line_items,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "line_items,purchase_orders,applied_vendor_credits,company,employee"
+    | "line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "line_items,purchase_orders,applied_vendor_credits,contact"
+    | "line_items,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "line_items,purchase_orders,applied_vendor_credits,contact,company"
+    | "line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "line_items,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "line_items,purchase_orders,applied_vendor_credits,contact,employee"
+    | "line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "line_items,purchase_orders,applied_vendor_credits,employee"
+    | "line_items,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "line_items,purchase_orders,company"
     | "line_items,purchase_orders,company,accounting_period"
+    | "line_items,purchase_orders,company,employee"
+    | "line_items,purchase_orders,company,employee,accounting_period"
     | "line_items,purchase_orders,contact"
     | "line_items,purchase_orders,contact,accounting_period"
     | "line_items,purchase_orders,contact,company"
     | "line_items,purchase_orders,contact,company,accounting_period"
+    | "line_items,purchase_orders,contact,company,employee"
+    | "line_items,purchase_orders,contact,company,employee,accounting_period"
+    | "line_items,purchase_orders,contact,employee"
+    | "line_items,purchase_orders,contact,employee,accounting_period"
+    | "line_items,purchase_orders,employee"
+    | "line_items,purchase_orders,employee,accounting_period"
     | "line_items,tracking_categories"
     | "line_items,tracking_categories,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes"
+    | "line_items,tracking_categories,applied_credit_notes,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"
+    | "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,company"
+    | "line_items,tracking_categories,applied_credit_notes,company,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,company,employee"
+    | "line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,contact"
+    | "line_items,tracking_categories,applied_credit_notes,contact,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,contact,company"
+    | "line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,contact,company,employee"
+    | "line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,contact,employee"
+    | "line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period"
+    | "line_items,tracking_categories,applied_credit_notes,employee"
+    | "line_items,tracking_categories,applied_credit_notes,employee,accounting_period"
+    | "line_items,tracking_categories,applied_vendor_credits"
+    | "line_items,tracking_categories,applied_vendor_credits,accounting_period"
+    | "line_items,tracking_categories,applied_vendor_credits,company"
+    | "line_items,tracking_categories,applied_vendor_credits,company,accounting_period"
+    | "line_items,tracking_categories,applied_vendor_credits,company,employee"
+    | "line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period"
+    | "line_items,tracking_categories,applied_vendor_credits,contact"
+    | "line_items,tracking_categories,applied_vendor_credits,contact,accounting_period"
+    | "line_items,tracking_categories,applied_vendor_credits,contact,company"
+    | "line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period"
+    | "line_items,tracking_categories,applied_vendor_credits,contact,company,employee"
+    | "line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "line_items,tracking_categories,applied_vendor_credits,contact,employee"
+    | "line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"
+    | "line_items,tracking_categories,applied_vendor_credits,employee"
+    | "line_items,tracking_categories,applied_vendor_credits,employee,accounting_period"
     | "line_items,tracking_categories,company"
     | "line_items,tracking_categories,company,accounting_period"
+    | "line_items,tracking_categories,company,employee"
+    | "line_items,tracking_categories,company,employee,accounting_period"
     | "line_items,tracking_categories,contact"
     | "line_items,tracking_categories,contact,accounting_period"
     | "line_items,tracking_categories,contact,company"
     | "line_items,tracking_categories,contact,company,accounting_period"
+    | "line_items,tracking_categories,contact,company,employee"
+    | "line_items,tracking_categories,contact,company,employee,accounting_period"
+    | "line_items,tracking_categories,contact,employee"
+    | "line_items,tracking_categories,contact,employee,accounting_period"
+    | "line_items,tracking_categories,employee"
+    | "line_items,tracking_categories,employee,accounting_period"
     | "line_items,tracking_categories,purchase_orders"
     | "line_items,tracking_categories,purchase_orders,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,company"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee"
+    | "line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "line_items,tracking_categories,purchase_orders,company"
     | "line_items,tracking_categories,purchase_orders,company,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,company,employee"
+    | "line_items,tracking_categories,purchase_orders,company,employee,accounting_period"
     | "line_items,tracking_categories,purchase_orders,contact"
     | "line_items,tracking_categories,purchase_orders,contact,accounting_period"
     | "line_items,tracking_categories,purchase_orders,contact,company"
     | "line_items,tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,contact,company,employee"
+    | "line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,contact,employee"
+    | "line_items,tracking_categories,purchase_orders,contact,employee,accounting_period"
+    | "line_items,tracking_categories,purchase_orders,employee"
+    | "line_items,tracking_categories,purchase_orders,employee,accounting_period"
     | "payments"
     | "payments,accounting_period"
+    | "payments,applied_credit_notes"
+    | "payments,applied_credit_notes,accounting_period"
+    | "payments,applied_credit_notes,applied_vendor_credits"
+    | "payments,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,applied_credit_notes,company"
+    | "payments,applied_credit_notes,company,accounting_period"
+    | "payments,applied_credit_notes,company,employee"
+    | "payments,applied_credit_notes,company,employee,accounting_period"
+    | "payments,applied_credit_notes,contact"
+    | "payments,applied_credit_notes,contact,accounting_period"
+    | "payments,applied_credit_notes,contact,company"
+    | "payments,applied_credit_notes,contact,company,accounting_period"
+    | "payments,applied_credit_notes,contact,company,employee"
+    | "payments,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,applied_credit_notes,contact,employee"
+    | "payments,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,applied_credit_notes,employee"
+    | "payments,applied_credit_notes,employee,accounting_period"
     | "payments,applied_payments"
     | "payments,applied_payments,accounting_period"
+    | "payments,applied_payments,applied_credit_notes"
+    | "payments,applied_payments,applied_credit_notes,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,applied_payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,company"
+    | "payments,applied_payments,applied_credit_notes,company,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,company,employee"
+    | "payments,applied_payments,applied_credit_notes,company,employee,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,contact"
+    | "payments,applied_payments,applied_credit_notes,contact,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,contact,company"
+    | "payments,applied_payments,applied_credit_notes,contact,company,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,contact,company,employee"
+    | "payments,applied_payments,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,contact,employee"
+    | "payments,applied_payments,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,applied_payments,applied_credit_notes,employee"
+    | "payments,applied_payments,applied_credit_notes,employee,accounting_period"
+    | "payments,applied_payments,applied_vendor_credits"
+    | "payments,applied_payments,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,applied_vendor_credits,company"
+    | "payments,applied_payments,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,applied_vendor_credits,contact"
+    | "payments,applied_payments,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,applied_vendor_credits,employee"
+    | "payments,applied_payments,applied_vendor_credits,employee,accounting_period"
     | "payments,applied_payments,company"
     | "payments,applied_payments,company,accounting_period"
+    | "payments,applied_payments,company,employee"
+    | "payments,applied_payments,company,employee,accounting_period"
     | "payments,applied_payments,contact"
     | "payments,applied_payments,contact,accounting_period"
     | "payments,applied_payments,contact,company"
     | "payments,applied_payments,contact,company,accounting_period"
+    | "payments,applied_payments,contact,company,employee"
+    | "payments,applied_payments,contact,company,employee,accounting_period"
+    | "payments,applied_payments,contact,employee"
+    | "payments,applied_payments,contact,employee,accounting_period"
+    | "payments,applied_payments,employee"
+    | "payments,applied_payments,employee,accounting_period"
     | "payments,applied_payments,line_items"
     | "payments,applied_payments,line_items,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes"
+    | "payments,applied_payments,line_items,applied_credit_notes,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,company"
+    | "payments,applied_payments,line_items,applied_credit_notes,company,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,company,employee"
+    | "payments,applied_payments,line_items,applied_credit_notes,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,contact"
+    | "payments,applied_payments,line_items,applied_credit_notes,contact,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,contact,company"
+    | "payments,applied_payments,line_items,applied_credit_notes,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,contact,company,employee"
+    | "payments,applied_payments,line_items,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,contact,employee"
+    | "payments,applied_payments,line_items,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_credit_notes,employee"
+    | "payments,applied_payments,line_items,applied_credit_notes,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_vendor_credits"
+    | "payments,applied_payments,line_items,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,line_items,applied_vendor_credits,company"
+    | "payments,applied_payments,line_items,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,line_items,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,line_items,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_vendor_credits,contact"
+    | "payments,applied_payments,line_items,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,line_items,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,line_items,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,line_items,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,applied_vendor_credits,employee"
+    | "payments,applied_payments,line_items,applied_vendor_credits,employee,accounting_period"
     | "payments,applied_payments,line_items,company"
     | "payments,applied_payments,line_items,company,accounting_period"
+    | "payments,applied_payments,line_items,company,employee"
+    | "payments,applied_payments,line_items,company,employee,accounting_period"
     | "payments,applied_payments,line_items,contact"
     | "payments,applied_payments,line_items,contact,accounting_period"
     | "payments,applied_payments,line_items,contact,company"
     | "payments,applied_payments,line_items,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,contact,company,employee"
+    | "payments,applied_payments,line_items,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,contact,employee"
+    | "payments,applied_payments,line_items,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,employee"
+    | "payments,applied_payments,line_items,employee,accounting_period"
     | "payments,applied_payments,line_items,purchase_orders"
     | "payments,applied_payments,line_items,purchase_orders,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,employee"
+    | "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "payments,applied_payments,line_items,purchase_orders,company"
     | "payments,applied_payments,line_items,purchase_orders,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,company,employee"
+    | "payments,applied_payments,line_items,purchase_orders,company,employee,accounting_period"
     | "payments,applied_payments,line_items,purchase_orders,contact"
     | "payments,applied_payments,line_items,purchase_orders,contact,accounting_period"
     | "payments,applied_payments,line_items,purchase_orders,contact,company"
     | "payments,applied_payments,line_items,purchase_orders,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,contact,company,employee"
+    | "payments,applied_payments,line_items,purchase_orders,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,contact,employee"
+    | "payments,applied_payments,line_items,purchase_orders,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,purchase_orders,employee"
+    | "payments,applied_payments,line_items,purchase_orders,employee,accounting_period"
     | "payments,applied_payments,line_items,tracking_categories"
     | "payments,applied_payments,line_items,tracking_categories,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,employee"
+    | "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period"
     | "payments,applied_payments,line_items,tracking_categories,company"
     | "payments,applied_payments,line_items,tracking_categories,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,company,employee,accounting_period"
     | "payments,applied_payments,line_items,tracking_categories,contact"
     | "payments,applied_payments,line_items,tracking_categories,contact,accounting_period"
     | "payments,applied_payments,line_items,tracking_categories,contact,company"
     | "payments,applied_payments,line_items,tracking_categories,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,contact,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,contact,employee"
+    | "payments,applied_payments,line_items,tracking_categories,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,employee"
+    | "payments,applied_payments,line_items,tracking_categories,employee,accounting_period"
     | "payments,applied_payments,line_items,tracking_categories,purchase_orders"
     | "payments,applied_payments,line_items,tracking_categories,purchase_orders,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "payments,applied_payments,line_items,tracking_categories,purchase_orders,company"
     | "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period"
     | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact"
     | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period"
     | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company"
     | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,employee"
+    | "payments,applied_payments,line_items,tracking_categories,purchase_orders,employee,accounting_period"
     | "payments,applied_payments,purchase_orders"
     | "payments,applied_payments,purchase_orders,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,company"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,company,employee"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,contact"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,contact,employee"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,employee"
+    | "payments,applied_payments,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,company"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,contact"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,employee"
+    | "payments,applied_payments,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "payments,applied_payments,purchase_orders,company"
     | "payments,applied_payments,purchase_orders,company,accounting_period"
+    | "payments,applied_payments,purchase_orders,company,employee"
+    | "payments,applied_payments,purchase_orders,company,employee,accounting_period"
     | "payments,applied_payments,purchase_orders,contact"
     | "payments,applied_payments,purchase_orders,contact,accounting_period"
     | "payments,applied_payments,purchase_orders,contact,company"
     | "payments,applied_payments,purchase_orders,contact,company,accounting_period"
+    | "payments,applied_payments,purchase_orders,contact,company,employee"
+    | "payments,applied_payments,purchase_orders,contact,company,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,contact,employee"
+    | "payments,applied_payments,purchase_orders,contact,employee,accounting_period"
+    | "payments,applied_payments,purchase_orders,employee"
+    | "payments,applied_payments,purchase_orders,employee,accounting_period"
     | "payments,applied_payments,tracking_categories"
     | "payments,applied_payments,tracking_categories,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,company"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,company,employee"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,contact"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,contact,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,employee"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,contact,employee"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,employee"
+    | "payments,applied_payments,tracking_categories,applied_credit_notes,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,company"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,contact"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,employee"
+    | "payments,applied_payments,tracking_categories,applied_vendor_credits,employee,accounting_period"
     | "payments,applied_payments,tracking_categories,company"
     | "payments,applied_payments,tracking_categories,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,company,employee"
+    | "payments,applied_payments,tracking_categories,company,employee,accounting_period"
     | "payments,applied_payments,tracking_categories,contact"
     | "payments,applied_payments,tracking_categories,contact,accounting_period"
     | "payments,applied_payments,tracking_categories,contact,company"
     | "payments,applied_payments,tracking_categories,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,contact,company,employee"
+    | "payments,applied_payments,tracking_categories,contact,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,contact,employee"
+    | "payments,applied_payments,tracking_categories,contact,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,employee"
+    | "payments,applied_payments,tracking_categories,employee,accounting_period"
     | "payments,applied_payments,tracking_categories,purchase_orders"
     | "payments,applied_payments,tracking_categories,purchase_orders,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "payments,applied_payments,tracking_categories,purchase_orders,company"
     | "payments,applied_payments,tracking_categories,purchase_orders,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,company,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,company,employee,accounting_period"
     | "payments,applied_payments,tracking_categories,purchase_orders,contact"
     | "payments,applied_payments,tracking_categories,purchase_orders,contact,accounting_period"
     | "payments,applied_payments,tracking_categories,purchase_orders,contact,company"
     | "payments,applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,contact,company,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,contact,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,contact,employee,accounting_period"
+    | "payments,applied_payments,tracking_categories,purchase_orders,employee"
+    | "payments,applied_payments,tracking_categories,purchase_orders,employee,accounting_period"
+    | "payments,applied_vendor_credits"
+    | "payments,applied_vendor_credits,accounting_period"
+    | "payments,applied_vendor_credits,company"
+    | "payments,applied_vendor_credits,company,accounting_period"
+    | "payments,applied_vendor_credits,company,employee"
+    | "payments,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,applied_vendor_credits,contact"
+    | "payments,applied_vendor_credits,contact,accounting_period"
+    | "payments,applied_vendor_credits,contact,company"
+    | "payments,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,applied_vendor_credits,contact,company,employee"
+    | "payments,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,applied_vendor_credits,contact,employee"
+    | "payments,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,applied_vendor_credits,employee"
+    | "payments,applied_vendor_credits,employee,accounting_period"
     | "payments,company"
     | "payments,company,accounting_period"
+    | "payments,company,employee"
+    | "payments,company,employee,accounting_period"
     | "payments,contact"
     | "payments,contact,accounting_period"
     | "payments,contact,company"
     | "payments,contact,company,accounting_period"
+    | "payments,contact,company,employee"
+    | "payments,contact,company,employee,accounting_period"
+    | "payments,contact,employee"
+    | "payments,contact,employee,accounting_period"
+    | "payments,employee"
+    | "payments,employee,accounting_period"
     | "payments,line_items"
     | "payments,line_items,accounting_period"
+    | "payments,line_items,applied_credit_notes"
+    | "payments,line_items,applied_credit_notes,accounting_period"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,line_items,applied_credit_notes,company"
+    | "payments,line_items,applied_credit_notes,company,accounting_period"
+    | "payments,line_items,applied_credit_notes,company,employee"
+    | "payments,line_items,applied_credit_notes,company,employee,accounting_period"
+    | "payments,line_items,applied_credit_notes,contact"
+    | "payments,line_items,applied_credit_notes,contact,accounting_period"
+    | "payments,line_items,applied_credit_notes,contact,company"
+    | "payments,line_items,applied_credit_notes,contact,company,accounting_period"
+    | "payments,line_items,applied_credit_notes,contact,company,employee"
+    | "payments,line_items,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,line_items,applied_credit_notes,contact,employee"
+    | "payments,line_items,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,line_items,applied_credit_notes,employee"
+    | "payments,line_items,applied_credit_notes,employee,accounting_period"
+    | "payments,line_items,applied_vendor_credits"
+    | "payments,line_items,applied_vendor_credits,accounting_period"
+    | "payments,line_items,applied_vendor_credits,company"
+    | "payments,line_items,applied_vendor_credits,company,accounting_period"
+    | "payments,line_items,applied_vendor_credits,company,employee"
+    | "payments,line_items,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,line_items,applied_vendor_credits,contact"
+    | "payments,line_items,applied_vendor_credits,contact,accounting_period"
+    | "payments,line_items,applied_vendor_credits,contact,company"
+    | "payments,line_items,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,line_items,applied_vendor_credits,contact,company,employee"
+    | "payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,line_items,applied_vendor_credits,contact,employee"
+    | "payments,line_items,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,line_items,applied_vendor_credits,employee"
+    | "payments,line_items,applied_vendor_credits,employee,accounting_period"
     | "payments,line_items,company"
     | "payments,line_items,company,accounting_period"
+    | "payments,line_items,company,employee"
+    | "payments,line_items,company,employee,accounting_period"
     | "payments,line_items,contact"
     | "payments,line_items,contact,accounting_period"
     | "payments,line_items,contact,company"
     | "payments,line_items,contact,company,accounting_period"
+    | "payments,line_items,contact,company,employee"
+    | "payments,line_items,contact,company,employee,accounting_period"
+    | "payments,line_items,contact,employee"
+    | "payments,line_items,contact,employee,accounting_period"
+    | "payments,line_items,employee"
+    | "payments,line_items,employee,accounting_period"
     | "payments,line_items,purchase_orders"
     | "payments,line_items,purchase_orders,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes"
+    | "payments,line_items,purchase_orders,applied_credit_notes,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,company"
+    | "payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,company,employee"
+    | "payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,contact"
+    | "payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,contact,company"
+    | "payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,contact,employee"
+    | "payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_credit_notes,employee"
+    | "payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_vendor_credits"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,accounting_period"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,company"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,company,employee"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,contact"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,contact,company"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,contact,employee"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,employee"
+    | "payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "payments,line_items,purchase_orders,company"
     | "payments,line_items,purchase_orders,company,accounting_period"
+    | "payments,line_items,purchase_orders,company,employee"
+    | "payments,line_items,purchase_orders,company,employee,accounting_period"
     | "payments,line_items,purchase_orders,contact"
     | "payments,line_items,purchase_orders,contact,accounting_period"
     | "payments,line_items,purchase_orders,contact,company"
     | "payments,line_items,purchase_orders,contact,company,accounting_period"
+    | "payments,line_items,purchase_orders,contact,company,employee"
+    | "payments,line_items,purchase_orders,contact,company,employee,accounting_period"
+    | "payments,line_items,purchase_orders,contact,employee"
+    | "payments,line_items,purchase_orders,contact,employee,accounting_period"
+    | "payments,line_items,purchase_orders,employee"
+    | "payments,line_items,purchase_orders,employee,accounting_period"
     | "payments,line_items,tracking_categories"
     | "payments,line_items,tracking_categories,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes"
+    | "payments,line_items,tracking_categories,applied_credit_notes,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,company"
+    | "payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,company,employee"
+    | "payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,contact"
+    | "payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,contact,company"
+    | "payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee"
+    | "payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,contact,employee"
+    | "payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_credit_notes,employee"
+    | "payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_vendor_credits"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,accounting_period"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,company"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,company,employee"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,contact"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,contact,company"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,contact,employee"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,employee"
+    | "payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period"
     | "payments,line_items,tracking_categories,company"
     | "payments,line_items,tracking_categories,company,accounting_period"
+    | "payments,line_items,tracking_categories,company,employee"
+    | "payments,line_items,tracking_categories,company,employee,accounting_period"
     | "payments,line_items,tracking_categories,contact"
     | "payments,line_items,tracking_categories,contact,accounting_period"
     | "payments,line_items,tracking_categories,contact,company"
     | "payments,line_items,tracking_categories,contact,company,accounting_period"
+    | "payments,line_items,tracking_categories,contact,company,employee"
+    | "payments,line_items,tracking_categories,contact,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,contact,employee"
+    | "payments,line_items,tracking_categories,contact,employee,accounting_period"
+    | "payments,line_items,tracking_categories,employee"
+    | "payments,line_items,tracking_categories,employee,accounting_period"
     | "payments,line_items,tracking_categories,purchase_orders"
     | "payments,line_items,tracking_categories,purchase_orders,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "payments,line_items,tracking_categories,purchase_orders,company"
     | "payments,line_items,tracking_categories,purchase_orders,company,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,company,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period"
     | "payments,line_items,tracking_categories,purchase_orders,contact"
     | "payments,line_items,tracking_categories,purchase_orders,contact,accounting_period"
     | "payments,line_items,tracking_categories,purchase_orders,contact,company"
     | "payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,contact,company,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,contact,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period"
+    | "payments,line_items,tracking_categories,purchase_orders,employee"
+    | "payments,line_items,tracking_categories,purchase_orders,employee,accounting_period"
     | "payments,purchase_orders"
     | "payments,purchase_orders,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes"
+    | "payments,purchase_orders,applied_credit_notes,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,company"
+    | "payments,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,company,employee"
+    | "payments,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,contact"
+    | "payments,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,contact,company"
+    | "payments,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,contact,employee"
+    | "payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,purchase_orders,applied_credit_notes,employee"
+    | "payments,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "payments,purchase_orders,applied_vendor_credits"
+    | "payments,purchase_orders,applied_vendor_credits,accounting_period"
+    | "payments,purchase_orders,applied_vendor_credits,company"
+    | "payments,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "payments,purchase_orders,applied_vendor_credits,company,employee"
+    | "payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,purchase_orders,applied_vendor_credits,contact"
+    | "payments,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "payments,purchase_orders,applied_vendor_credits,contact,company"
+    | "payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,purchase_orders,applied_vendor_credits,contact,employee"
+    | "payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,purchase_orders,applied_vendor_credits,employee"
+    | "payments,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "payments,purchase_orders,company"
     | "payments,purchase_orders,company,accounting_period"
+    | "payments,purchase_orders,company,employee"
+    | "payments,purchase_orders,company,employee,accounting_period"
     | "payments,purchase_orders,contact"
     | "payments,purchase_orders,contact,accounting_period"
     | "payments,purchase_orders,contact,company"
     | "payments,purchase_orders,contact,company,accounting_period"
+    | "payments,purchase_orders,contact,company,employee"
+    | "payments,purchase_orders,contact,company,employee,accounting_period"
+    | "payments,purchase_orders,contact,employee"
+    | "payments,purchase_orders,contact,employee,accounting_period"
+    | "payments,purchase_orders,employee"
+    | "payments,purchase_orders,employee,accounting_period"
     | "payments,tracking_categories"
     | "payments,tracking_categories,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes"
+    | "payments,tracking_categories,applied_credit_notes,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,company"
+    | "payments,tracking_categories,applied_credit_notes,company,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,company,employee"
+    | "payments,tracking_categories,applied_credit_notes,company,employee,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,contact"
+    | "payments,tracking_categories,applied_credit_notes,contact,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,contact,company"
+    | "payments,tracking_categories,applied_credit_notes,contact,company,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,contact,company,employee"
+    | "payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,contact,employee"
+    | "payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,tracking_categories,applied_credit_notes,employee"
+    | "payments,tracking_categories,applied_credit_notes,employee,accounting_period"
+    | "payments,tracking_categories,applied_vendor_credits"
+    | "payments,tracking_categories,applied_vendor_credits,accounting_period"
+    | "payments,tracking_categories,applied_vendor_credits,company"
+    | "payments,tracking_categories,applied_vendor_credits,company,accounting_period"
+    | "payments,tracking_categories,applied_vendor_credits,company,employee"
+    | "payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,tracking_categories,applied_vendor_credits,contact"
+    | "payments,tracking_categories,applied_vendor_credits,contact,accounting_period"
+    | "payments,tracking_categories,applied_vendor_credits,contact,company"
+    | "payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,tracking_categories,applied_vendor_credits,contact,company,employee"
+    | "payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,tracking_categories,applied_vendor_credits,contact,employee"
+    | "payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,tracking_categories,applied_vendor_credits,employee"
+    | "payments,tracking_categories,applied_vendor_credits,employee,accounting_period"
     | "payments,tracking_categories,company"
     | "payments,tracking_categories,company,accounting_period"
+    | "payments,tracking_categories,company,employee"
+    | "payments,tracking_categories,company,employee,accounting_period"
     | "payments,tracking_categories,contact"
     | "payments,tracking_categories,contact,accounting_period"
     | "payments,tracking_categories,contact,company"
     | "payments,tracking_categories,contact,company,accounting_period"
+    | "payments,tracking_categories,contact,company,employee"
+    | "payments,tracking_categories,contact,company,employee,accounting_period"
+    | "payments,tracking_categories,contact,employee"
+    | "payments,tracking_categories,contact,employee,accounting_period"
+    | "payments,tracking_categories,employee"
+    | "payments,tracking_categories,employee,accounting_period"
     | "payments,tracking_categories,purchase_orders"
     | "payments,tracking_categories,purchase_orders,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,company"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,contact"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,employee"
+    | "payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,company"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,employee"
+    | "payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "payments,tracking_categories,purchase_orders,company"
     | "payments,tracking_categories,purchase_orders,company,accounting_period"
+    | "payments,tracking_categories,purchase_orders,company,employee"
+    | "payments,tracking_categories,purchase_orders,company,employee,accounting_period"
     | "payments,tracking_categories,purchase_orders,contact"
     | "payments,tracking_categories,purchase_orders,contact,accounting_period"
     | "payments,tracking_categories,purchase_orders,contact,company"
     | "payments,tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "payments,tracking_categories,purchase_orders,contact,company,employee"
+    | "payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,contact,employee"
+    | "payments,tracking_categories,purchase_orders,contact,employee,accounting_period"
+    | "payments,tracking_categories,purchase_orders,employee"
+    | "payments,tracking_categories,purchase_orders,employee,accounting_period"
     | "purchase_orders"
     | "purchase_orders,accounting_period"
+    | "purchase_orders,applied_credit_notes"
+    | "purchase_orders,applied_credit_notes,accounting_period"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "purchase_orders,applied_credit_notes,company"
+    | "purchase_orders,applied_credit_notes,company,accounting_period"
+    | "purchase_orders,applied_credit_notes,company,employee"
+    | "purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "purchase_orders,applied_credit_notes,contact"
+    | "purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "purchase_orders,applied_credit_notes,contact,company"
+    | "purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "purchase_orders,applied_credit_notes,contact,company,employee"
+    | "purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "purchase_orders,applied_credit_notes,contact,employee"
+    | "purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "purchase_orders,applied_credit_notes,employee"
+    | "purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "purchase_orders,applied_vendor_credits"
+    | "purchase_orders,applied_vendor_credits,accounting_period"
+    | "purchase_orders,applied_vendor_credits,company"
+    | "purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "purchase_orders,applied_vendor_credits,company,employee"
+    | "purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "purchase_orders,applied_vendor_credits,contact"
+    | "purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "purchase_orders,applied_vendor_credits,contact,company"
+    | "purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "purchase_orders,applied_vendor_credits,contact,employee"
+    | "purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "purchase_orders,applied_vendor_credits,employee"
+    | "purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "purchase_orders,company"
     | "purchase_orders,company,accounting_period"
+    | "purchase_orders,company,employee"
+    | "purchase_orders,company,employee,accounting_period"
     | "purchase_orders,contact"
     | "purchase_orders,contact,accounting_period"
     | "purchase_orders,contact,company"
     | "purchase_orders,contact,company,accounting_period"
+    | "purchase_orders,contact,company,employee"
+    | "purchase_orders,contact,company,employee,accounting_period"
+    | "purchase_orders,contact,employee"
+    | "purchase_orders,contact,employee,accounting_period"
+    | "purchase_orders,employee"
+    | "purchase_orders,employee,accounting_period"
     | "tracking_categories"
     | "tracking_categories,accounting_period"
+    | "tracking_categories,applied_credit_notes"
+    | "tracking_categories,applied_credit_notes,accounting_period"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,company"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,contact"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,employee"
+    | "tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "tracking_categories,applied_credit_notes,company"
+    | "tracking_categories,applied_credit_notes,company,accounting_period"
+    | "tracking_categories,applied_credit_notes,company,employee"
+    | "tracking_categories,applied_credit_notes,company,employee,accounting_period"
+    | "tracking_categories,applied_credit_notes,contact"
+    | "tracking_categories,applied_credit_notes,contact,accounting_period"
+    | "tracking_categories,applied_credit_notes,contact,company"
+    | "tracking_categories,applied_credit_notes,contact,company,accounting_period"
+    | "tracking_categories,applied_credit_notes,contact,company,employee"
+    | "tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"
+    | "tracking_categories,applied_credit_notes,contact,employee"
+    | "tracking_categories,applied_credit_notes,contact,employee,accounting_period"
+    | "tracking_categories,applied_credit_notes,employee"
+    | "tracking_categories,applied_credit_notes,employee,accounting_period"
+    | "tracking_categories,applied_vendor_credits"
+    | "tracking_categories,applied_vendor_credits,accounting_period"
+    | "tracking_categories,applied_vendor_credits,company"
+    | "tracking_categories,applied_vendor_credits,company,accounting_period"
+    | "tracking_categories,applied_vendor_credits,company,employee"
+    | "tracking_categories,applied_vendor_credits,company,employee,accounting_period"
+    | "tracking_categories,applied_vendor_credits,contact"
+    | "tracking_categories,applied_vendor_credits,contact,accounting_period"
+    | "tracking_categories,applied_vendor_credits,contact,company"
+    | "tracking_categories,applied_vendor_credits,contact,company,accounting_period"
+    | "tracking_categories,applied_vendor_credits,contact,company,employee"
+    | "tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "tracking_categories,applied_vendor_credits,contact,employee"
+    | "tracking_categories,applied_vendor_credits,contact,employee,accounting_period"
+    | "tracking_categories,applied_vendor_credits,employee"
+    | "tracking_categories,applied_vendor_credits,employee,accounting_period"
     | "tracking_categories,company"
     | "tracking_categories,company,accounting_period"
+    | "tracking_categories,company,employee"
+    | "tracking_categories,company,employee,accounting_period"
     | "tracking_categories,contact"
     | "tracking_categories,contact,accounting_period"
     | "tracking_categories,contact,company"
     | "tracking_categories,contact,company,accounting_period"
+    | "tracking_categories,contact,company,employee"
+    | "tracking_categories,contact,company,employee,accounting_period"
+    | "tracking_categories,contact,employee"
+    | "tracking_categories,contact,employee,accounting_period"
+    | "tracking_categories,employee"
+    | "tracking_categories,employee,accounting_period"
     | "tracking_categories,purchase_orders"
     | "tracking_categories,purchase_orders,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes"
+    | "tracking_categories,purchase_orders,applied_credit_notes,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"
+    | "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,company"
+    | "tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,company,employee"
+    | "tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,contact"
+    | "tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,contact,company"
+    | "tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"
+    | "tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,contact,employee"
+    | "tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_credit_notes,employee"
+    | "tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_vendor_credits"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,company"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,company,employee"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,contact"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,contact,company"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,employee"
+    | "tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"
     | "tracking_categories,purchase_orders,company"
     | "tracking_categories,purchase_orders,company,accounting_period"
+    | "tracking_categories,purchase_orders,company,employee"
+    | "tracking_categories,purchase_orders,company,employee,accounting_period"
     | "tracking_categories,purchase_orders,contact"
     | "tracking_categories,purchase_orders,contact,accounting_period"
     | "tracking_categories,purchase_orders,contact,company"
-    | "tracking_categories,purchase_orders,contact,company,accounting_period";
+    | "tracking_categories,purchase_orders,contact,company,accounting_period"
+    | "tracking_categories,purchase_orders,contact,company,employee"
+    | "tracking_categories,purchase_orders,contact,company,employee,accounting_period"
+    | "tracking_categories,purchase_orders,contact,employee"
+    | "tracking_categories,purchase_orders,contact,employee,accounting_period"
+    | "tracking_categories,purchase_orders,employee"
+    | "tracking_categories,purchase_orders,employee,accounting_period";
 
 export const InvoicesRetrieveRequestExpand = {
     AccountingPeriod: "accounting_period",
+    AppliedCreditNotes: "applied_credit_notes",
+    AppliedCreditNotesAccountingPeriod: "applied_credit_notes,accounting_period",
+    AppliedCreditNotesAppliedVendorCredits: "applied_credit_notes,applied_vendor_credits",
+    AppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "applied_credit_notes,applied_vendor_credits,accounting_period",
+    AppliedCreditNotesAppliedVendorCreditsCompany: "applied_credit_notes,applied_vendor_credits,company",
+    AppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    AppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "applied_credit_notes,applied_vendor_credits,company,employee",
+    AppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    AppliedCreditNotesAppliedVendorCreditsContact: "applied_credit_notes,applied_vendor_credits,contact",
+    AppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    AppliedCreditNotesAppliedVendorCreditsContactCompany: "applied_credit_notes,applied_vendor_credits,contact,company",
+    AppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    AppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    AppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "applied_credit_notes,applied_vendor_credits,contact,employee",
+    AppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedCreditNotesAppliedVendorCreditsEmployee: "applied_credit_notes,applied_vendor_credits,employee",
+    AppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    AppliedCreditNotesCompany: "applied_credit_notes,company",
+    AppliedCreditNotesCompanyAccountingPeriod: "applied_credit_notes,company,accounting_period",
+    AppliedCreditNotesCompanyEmployee: "applied_credit_notes,company,employee",
+    AppliedCreditNotesCompanyEmployeeAccountingPeriod: "applied_credit_notes,company,employee,accounting_period",
+    AppliedCreditNotesContact: "applied_credit_notes,contact",
+    AppliedCreditNotesContactAccountingPeriod: "applied_credit_notes,contact,accounting_period",
+    AppliedCreditNotesContactCompany: "applied_credit_notes,contact,company",
+    AppliedCreditNotesContactCompanyAccountingPeriod: "applied_credit_notes,contact,company,accounting_period",
+    AppliedCreditNotesContactCompanyEmployee: "applied_credit_notes,contact,company,employee",
+    AppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "applied_credit_notes,contact,company,employee,accounting_period",
+    AppliedCreditNotesContactEmployee: "applied_credit_notes,contact,employee",
+    AppliedCreditNotesContactEmployeeAccountingPeriod: "applied_credit_notes,contact,employee,accounting_period",
+    AppliedCreditNotesEmployee: "applied_credit_notes,employee",
+    AppliedCreditNotesEmployeeAccountingPeriod: "applied_credit_notes,employee,accounting_period",
     AppliedPayments: "applied_payments",
     AppliedPaymentsAccountingPeriod: "applied_payments,accounting_period",
+    AppliedPaymentsAppliedCreditNotes: "applied_payments,applied_credit_notes",
+    AppliedPaymentsAppliedCreditNotesAccountingPeriod: "applied_payments,applied_credit_notes,accounting_period",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCredits:
+        "applied_payments,applied_credit_notes,applied_vendor_credits",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,accounting_period",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsCompany:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,company",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,company,employee",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContact:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,contact",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,employee",
+    AppliedPaymentsAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    AppliedPaymentsAppliedCreditNotesCompany: "applied_payments,applied_credit_notes,company",
+    AppliedPaymentsAppliedCreditNotesCompanyAccountingPeriod:
+        "applied_payments,applied_credit_notes,company,accounting_period",
+    AppliedPaymentsAppliedCreditNotesCompanyEmployee: "applied_payments,applied_credit_notes,company,employee",
+    AppliedPaymentsAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "applied_payments,applied_credit_notes,company,employee,accounting_period",
+    AppliedPaymentsAppliedCreditNotesContact: "applied_payments,applied_credit_notes,contact",
+    AppliedPaymentsAppliedCreditNotesContactAccountingPeriod:
+        "applied_payments,applied_credit_notes,contact,accounting_period",
+    AppliedPaymentsAppliedCreditNotesContactCompany: "applied_payments,applied_credit_notes,contact,company",
+    AppliedPaymentsAppliedCreditNotesContactCompanyAccountingPeriod:
+        "applied_payments,applied_credit_notes,contact,company,accounting_period",
+    AppliedPaymentsAppliedCreditNotesContactCompanyEmployee:
+        "applied_payments,applied_credit_notes,contact,company,employee",
+    AppliedPaymentsAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,applied_credit_notes,contact,company,employee,accounting_period",
+    AppliedPaymentsAppliedCreditNotesContactEmployee: "applied_payments,applied_credit_notes,contact,employee",
+    AppliedPaymentsAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "applied_payments,applied_credit_notes,contact,employee,accounting_period",
+    AppliedPaymentsAppliedCreditNotesEmployee: "applied_payments,applied_credit_notes,employee",
+    AppliedPaymentsAppliedCreditNotesEmployeeAccountingPeriod:
+        "applied_payments,applied_credit_notes,employee,accounting_period",
+    AppliedPaymentsAppliedVendorCredits: "applied_payments,applied_vendor_credits",
+    AppliedPaymentsAppliedVendorCreditsAccountingPeriod: "applied_payments,applied_vendor_credits,accounting_period",
+    AppliedPaymentsAppliedVendorCreditsCompany: "applied_payments,applied_vendor_credits,company",
+    AppliedPaymentsAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsAppliedVendorCreditsCompanyEmployee: "applied_payments,applied_vendor_credits,company,employee",
+    AppliedPaymentsAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsAppliedVendorCreditsContact: "applied_payments,applied_vendor_credits,contact",
+    AppliedPaymentsAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsAppliedVendorCreditsContactCompany: "applied_payments,applied_vendor_credits,contact,company",
+    AppliedPaymentsAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsAppliedVendorCreditsContactEmployee: "applied_payments,applied_vendor_credits,contact,employee",
+    AppliedPaymentsAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsAppliedVendorCreditsEmployee: "applied_payments,applied_vendor_credits,employee",
+    AppliedPaymentsAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,applied_vendor_credits,employee,accounting_period",
     AppliedPaymentsCompany: "applied_payments,company",
     AppliedPaymentsCompanyAccountingPeriod: "applied_payments,company,accounting_period",
+    AppliedPaymentsCompanyEmployee: "applied_payments,company,employee",
+    AppliedPaymentsCompanyEmployeeAccountingPeriod: "applied_payments,company,employee,accounting_period",
     AppliedPaymentsContact: "applied_payments,contact",
     AppliedPaymentsContactAccountingPeriod: "applied_payments,contact,accounting_period",
     AppliedPaymentsContactCompany: "applied_payments,contact,company",
     AppliedPaymentsContactCompanyAccountingPeriod: "applied_payments,contact,company,accounting_period",
+    AppliedPaymentsContactCompanyEmployee: "applied_payments,contact,company,employee",
+    AppliedPaymentsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,contact,company,employee,accounting_period",
+    AppliedPaymentsContactEmployee: "applied_payments,contact,employee",
+    AppliedPaymentsContactEmployeeAccountingPeriod: "applied_payments,contact,employee,accounting_period",
+    AppliedPaymentsEmployee: "applied_payments,employee",
+    AppliedPaymentsEmployeeAccountingPeriod: "applied_payments,employee,accounting_period",
     AppliedPaymentsLineItems: "applied_payments,line_items",
     AppliedPaymentsLineItemsAccountingPeriod: "applied_payments,line_items,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotes: "applied_payments,line_items,applied_credit_notes",
+    AppliedPaymentsLineItemsAppliedCreditNotesAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCredits:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompany:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContact:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee",
+    AppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesCompany: "applied_payments,line_items,applied_credit_notes,company",
+    AppliedPaymentsLineItemsAppliedCreditNotesCompanyAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,company,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesCompanyEmployee:
+        "applied_payments,line_items,applied_credit_notes,company,employee",
+    AppliedPaymentsLineItemsAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,company,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesContact: "applied_payments,line_items,applied_credit_notes,contact",
+    AppliedPaymentsLineItemsAppliedCreditNotesContactAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,contact,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesContactCompany:
+        "applied_payments,line_items,applied_credit_notes,contact,company",
+    AppliedPaymentsLineItemsAppliedCreditNotesContactCompanyAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,contact,company,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesContactCompanyEmployee:
+        "applied_payments,line_items,applied_credit_notes,contact,company,employee",
+    AppliedPaymentsLineItemsAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesContactEmployee:
+        "applied_payments,line_items,applied_credit_notes,contact,employee",
+    AppliedPaymentsLineItemsAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedCreditNotesEmployee: "applied_payments,line_items,applied_credit_notes,employee",
+    AppliedPaymentsLineItemsAppliedCreditNotesEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_credit_notes,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedVendorCredits: "applied_payments,line_items,applied_vendor_credits",
+    AppliedPaymentsLineItemsAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,line_items,applied_vendor_credits,accounting_period",
+    AppliedPaymentsLineItemsAppliedVendorCreditsCompany: "applied_payments,line_items,applied_vendor_credits,company",
+    AppliedPaymentsLineItemsAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,line_items,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsLineItemsAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,line_items,applied_vendor_credits,company,employee",
+    AppliedPaymentsLineItemsAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedVendorCreditsContact: "applied_payments,line_items,applied_vendor_credits,contact",
+    AppliedPaymentsLineItemsAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,line_items,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsLineItemsAppliedVendorCreditsContactCompany:
+        "applied_payments,line_items,applied_vendor_credits,contact,company",
+    AppliedPaymentsLineItemsAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,line_items,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsLineItemsAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,line_items,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsLineItemsAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedVendorCreditsContactEmployee:
+        "applied_payments,line_items,applied_vendor_credits,contact,employee",
+    AppliedPaymentsLineItemsAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsAppliedVendorCreditsEmployee: "applied_payments,line_items,applied_vendor_credits,employee",
+    AppliedPaymentsLineItemsAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,line_items,applied_vendor_credits,employee,accounting_period",
     AppliedPaymentsLineItemsCompany: "applied_payments,line_items,company",
     AppliedPaymentsLineItemsCompanyAccountingPeriod: "applied_payments,line_items,company,accounting_period",
+    AppliedPaymentsLineItemsCompanyEmployee: "applied_payments,line_items,company,employee",
+    AppliedPaymentsLineItemsCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,company,employee,accounting_period",
     AppliedPaymentsLineItemsContact: "applied_payments,line_items,contact",
     AppliedPaymentsLineItemsContactAccountingPeriod: "applied_payments,line_items,contact,accounting_period",
     AppliedPaymentsLineItemsContactCompany: "applied_payments,line_items,contact,company",
     AppliedPaymentsLineItemsContactCompanyAccountingPeriod:
         "applied_payments,line_items,contact,company,accounting_period",
+    AppliedPaymentsLineItemsContactCompanyEmployee: "applied_payments,line_items,contact,company,employee",
+    AppliedPaymentsLineItemsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsContactEmployee: "applied_payments,line_items,contact,employee",
+    AppliedPaymentsLineItemsContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsEmployee: "applied_payments,line_items,employee",
+    AppliedPaymentsLineItemsEmployeeAccountingPeriod: "applied_payments,line_items,employee,accounting_period",
     AppliedPaymentsLineItemsPurchaseOrders: "applied_payments,line_items,purchase_orders",
     AppliedPaymentsLineItemsPurchaseOrdersAccountingPeriod:
         "applied_payments,line_items,purchase_orders,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotes:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompany:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,company",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContact:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,contact",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompany:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesEmployee:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCredits:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompany:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,company",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContact:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsEmployee:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period",
     AppliedPaymentsLineItemsPurchaseOrdersCompany: "applied_payments,line_items,purchase_orders,company",
     AppliedPaymentsLineItemsPurchaseOrdersCompanyAccountingPeriod:
         "applied_payments,line_items,purchase_orders,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersCompanyEmployee:
+        "applied_payments,line_items,purchase_orders,company,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,company,employee,accounting_period",
     AppliedPaymentsLineItemsPurchaseOrdersContact: "applied_payments,line_items,purchase_orders,contact",
     AppliedPaymentsLineItemsPurchaseOrdersContactAccountingPeriod:
         "applied_payments,line_items,purchase_orders,contact,accounting_period",
     AppliedPaymentsLineItemsPurchaseOrdersContactCompany: "applied_payments,line_items,purchase_orders,contact,company",
     AppliedPaymentsLineItemsPurchaseOrdersContactCompanyAccountingPeriod:
         "applied_payments,line_items,purchase_orders,contact,company,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersContactCompanyEmployee:
+        "applied_payments,line_items,purchase_orders,contact,company,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersContactEmployee:
+        "applied_payments,line_items,purchase_orders,contact,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsPurchaseOrdersEmployee: "applied_payments,line_items,purchase_orders,employee",
+    AppliedPaymentsLineItemsPurchaseOrdersEmployeeAccountingPeriod:
+        "applied_payments,line_items,purchase_orders,employee,accounting_period",
     AppliedPaymentsLineItemsTrackingCategories: "applied_payments,line_items,tracking_categories",
     AppliedPaymentsLineItemsTrackingCategoriesAccountingPeriod:
         "applied_payments,line_items,tracking_categories,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotes:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCredits:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompany:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContact:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompany:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,company",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContact:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,contact",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompany:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactEmployee:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesEmployee:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCredits:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompany:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,company",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContact:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompany:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactEmployee:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsEmployee:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period",
     AppliedPaymentsLineItemsTrackingCategoriesCompany: "applied_payments,line_items,tracking_categories,company",
     AppliedPaymentsLineItemsTrackingCategoriesCompanyAccountingPeriod:
         "applied_payments,line_items,tracking_categories,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,company,employee,accounting_period",
     AppliedPaymentsLineItemsTrackingCategoriesContact: "applied_payments,line_items,tracking_categories,contact",
     AppliedPaymentsLineItemsTrackingCategoriesContactAccountingPeriod:
         "applied_payments,line_items,tracking_categories,contact,accounting_period",
@@ -303,14 +2538,125 @@ export const InvoicesRetrieveRequestExpand = {
         "applied_payments,line_items,tracking_categories,contact,company",
     AppliedPaymentsLineItemsTrackingCategoriesContactCompanyAccountingPeriod:
         "applied_payments,line_items,tracking_categories,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesContactCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,contact,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesContactEmployee:
+        "applied_payments,line_items,tracking_categories,contact,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesEmployee: "applied_payments,line_items,tracking_categories,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,employee,accounting_period",
     AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrders:
         "applied_payments,line_items,tracking_categories,purchase_orders",
     AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAccountingPeriod:
         "applied_payments,line_items,tracking_categories,purchase_orders,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotes:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompany:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContact:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompany:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCredits:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompany:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContact:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period",
     AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompany:
         "applied_payments,line_items,tracking_categories,purchase_orders,company",
     AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
         "applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period",
     AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContact:
         "applied_payments,line_items,tracking_categories,purchase_orders,contact",
     AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
@@ -319,33 +2665,359 @@ export const InvoicesRetrieveRequestExpand = {
         "applied_payments,line_items,tracking_categories,purchase_orders,contact,company",
     AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
         "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,contact,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersEmployee:
+        "applied_payments,line_items,tracking_categories,purchase_orders,employee",
+    AppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersEmployeeAccountingPeriod:
+        "applied_payments,line_items,tracking_categories,purchase_orders,employee,accounting_period",
     AppliedPaymentsPurchaseOrders: "applied_payments,purchase_orders",
     AppliedPaymentsPurchaseOrdersAccountingPeriod: "applied_payments,purchase_orders,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotes: "applied_payments,purchase_orders,applied_credit_notes",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesCompany:
+        "applied_payments,purchase_orders,applied_credit_notes,company",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,company,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "applied_payments,purchase_orders,applied_credit_notes,company,employee",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesContact:
+        "applied_payments,purchase_orders,applied_credit_notes,contact",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,contact,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesContactCompany:
+        "applied_payments,purchase_orders,applied_credit_notes,contact,company",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "applied_payments,purchase_orders,applied_credit_notes,contact,company,employee",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "applied_payments,purchase_orders,applied_credit_notes,contact,employee",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesEmployee:
+        "applied_payments,purchase_orders,applied_credit_notes,employee",
+    AppliedPaymentsPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_credit_notes,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCredits: "applied_payments,purchase_orders,applied_vendor_credits",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,purchase_orders,applied_vendor_credits,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsCompany:
+        "applied_payments,purchase_orders,applied_vendor_credits,company",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,purchase_orders,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,purchase_orders,applied_vendor_credits,company,employee",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsContact:
+        "applied_payments,purchase_orders,applied_vendor_credits,contact",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "applied_payments,purchase_orders,applied_vendor_credits,contact,company",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "applied_payments,purchase_orders,applied_vendor_credits,contact,employee",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsEmployee:
+        "applied_payments,purchase_orders,applied_vendor_credits,employee",
+    AppliedPaymentsPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,applied_vendor_credits,employee,accounting_period",
     AppliedPaymentsPurchaseOrdersCompany: "applied_payments,purchase_orders,company",
     AppliedPaymentsPurchaseOrdersCompanyAccountingPeriod: "applied_payments,purchase_orders,company,accounting_period",
+    AppliedPaymentsPurchaseOrdersCompanyEmployee: "applied_payments,purchase_orders,company,employee",
+    AppliedPaymentsPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,company,employee,accounting_period",
     AppliedPaymentsPurchaseOrdersContact: "applied_payments,purchase_orders,contact",
     AppliedPaymentsPurchaseOrdersContactAccountingPeriod: "applied_payments,purchase_orders,contact,accounting_period",
     AppliedPaymentsPurchaseOrdersContactCompany: "applied_payments,purchase_orders,contact,company",
     AppliedPaymentsPurchaseOrdersContactCompanyAccountingPeriod:
         "applied_payments,purchase_orders,contact,company,accounting_period",
+    AppliedPaymentsPurchaseOrdersContactCompanyEmployee: "applied_payments,purchase_orders,contact,company,employee",
+    AppliedPaymentsPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,contact,company,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersContactEmployee: "applied_payments,purchase_orders,contact,employee",
+    AppliedPaymentsPurchaseOrdersContactEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,contact,employee,accounting_period",
+    AppliedPaymentsPurchaseOrdersEmployee: "applied_payments,purchase_orders,employee",
+    AppliedPaymentsPurchaseOrdersEmployeeAccountingPeriod:
+        "applied_payments,purchase_orders,employee,accounting_period",
     AppliedPaymentsTrackingCategories: "applied_payments,tracking_categories",
     AppliedPaymentsTrackingCategoriesAccountingPeriod: "applied_payments,tracking_categories,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotes: "applied_payments,tracking_categories,applied_credit_notes",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCredits:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompany:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContact:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesCompany:
+        "applied_payments,tracking_categories,applied_credit_notes,company",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesCompanyEmployee:
+        "applied_payments,tracking_categories,applied_credit_notes,company,employee",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesContact:
+        "applied_payments,tracking_categories,applied_credit_notes,contact",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesContactAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,contact,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesContactCompany:
+        "applied_payments,tracking_categories,applied_credit_notes,contact,company",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesContactCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesContactCompanyEmployee:
+        "applied_payments,tracking_categories,applied_credit_notes,contact,company,employee",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesContactEmployee:
+        "applied_payments,tracking_categories,applied_credit_notes,contact,employee",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesEmployee:
+        "applied_payments,tracking_categories,applied_credit_notes,employee",
+    AppliedPaymentsTrackingCategoriesAppliedCreditNotesEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_credit_notes,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCredits:
+        "applied_payments,tracking_categories,applied_vendor_credits",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,tracking_categories,applied_vendor_credits,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsCompany:
+        "applied_payments,tracking_categories,applied_vendor_credits,company",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,tracking_categories,applied_vendor_credits,company,employee",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsContact:
+        "applied_payments,tracking_categories,applied_vendor_credits,contact",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,tracking_categories,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactCompany:
+        "applied_payments,tracking_categories,applied_vendor_credits,contact,company",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactEmployee:
+        "applied_payments,tracking_categories,applied_vendor_credits,contact,employee",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsEmployee:
+        "applied_payments,tracking_categories,applied_vendor_credits,employee",
+    AppliedPaymentsTrackingCategoriesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,applied_vendor_credits,employee,accounting_period",
     AppliedPaymentsTrackingCategoriesCompany: "applied_payments,tracking_categories,company",
     AppliedPaymentsTrackingCategoriesCompanyAccountingPeriod:
         "applied_payments,tracking_categories,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesCompanyEmployee: "applied_payments,tracking_categories,company,employee",
+    AppliedPaymentsTrackingCategoriesCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,company,employee,accounting_period",
     AppliedPaymentsTrackingCategoriesContact: "applied_payments,tracking_categories,contact",
     AppliedPaymentsTrackingCategoriesContactAccountingPeriod:
         "applied_payments,tracking_categories,contact,accounting_period",
     AppliedPaymentsTrackingCategoriesContactCompany: "applied_payments,tracking_categories,contact,company",
     AppliedPaymentsTrackingCategoriesContactCompanyAccountingPeriod:
         "applied_payments,tracking_categories,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesContactCompanyEmployee:
+        "applied_payments,tracking_categories,contact,company,employee",
+    AppliedPaymentsTrackingCategoriesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,contact,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesContactEmployee: "applied_payments,tracking_categories,contact,employee",
+    AppliedPaymentsTrackingCategoriesContactEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,contact,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesEmployee: "applied_payments,tracking_categories,employee",
+    AppliedPaymentsTrackingCategoriesEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,employee,accounting_period",
     AppliedPaymentsTrackingCategoriesPurchaseOrders: "applied_payments,tracking_categories,purchase_orders",
     AppliedPaymentsTrackingCategoriesPurchaseOrdersAccountingPeriod:
         "applied_payments,tracking_categories,purchase_orders,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotes:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompany:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContact:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompany:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCredits:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompany:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContact:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployee:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period",
     AppliedPaymentsTrackingCategoriesPurchaseOrdersCompany:
         "applied_payments,tracking_categories,purchase_orders,company",
     AppliedPaymentsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
         "applied_payments,tracking_categories,purchase_orders,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersCompanyEmployee:
+        "applied_payments,tracking_categories,purchase_orders,company,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,company,employee,accounting_period",
     AppliedPaymentsTrackingCategoriesPurchaseOrdersContact:
         "applied_payments,tracking_categories,purchase_orders,contact",
     AppliedPaymentsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
@@ -354,44 +3026,463 @@ export const InvoicesRetrieveRequestExpand = {
         "applied_payments,tracking_categories,purchase_orders,contact,company",
     AppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
         "applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompanyEmployee:
+        "applied_payments,tracking_categories,purchase_orders,contact,company,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersContactEmployee:
+        "applied_payments,tracking_categories,purchase_orders,contact,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersContactEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,contact,employee,accounting_period",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersEmployee:
+        "applied_payments,tracking_categories,purchase_orders,employee",
+    AppliedPaymentsTrackingCategoriesPurchaseOrdersEmployeeAccountingPeriod:
+        "applied_payments,tracking_categories,purchase_orders,employee,accounting_period",
+    AppliedVendorCredits: "applied_vendor_credits",
+    AppliedVendorCreditsAccountingPeriod: "applied_vendor_credits,accounting_period",
+    AppliedVendorCreditsCompany: "applied_vendor_credits,company",
+    AppliedVendorCreditsCompanyAccountingPeriod: "applied_vendor_credits,company,accounting_period",
+    AppliedVendorCreditsCompanyEmployee: "applied_vendor_credits,company,employee",
+    AppliedVendorCreditsCompanyEmployeeAccountingPeriod: "applied_vendor_credits,company,employee,accounting_period",
+    AppliedVendorCreditsContact: "applied_vendor_credits,contact",
+    AppliedVendorCreditsContactAccountingPeriod: "applied_vendor_credits,contact,accounting_period",
+    AppliedVendorCreditsContactCompany: "applied_vendor_credits,contact,company",
+    AppliedVendorCreditsContactCompanyAccountingPeriod: "applied_vendor_credits,contact,company,accounting_period",
+    AppliedVendorCreditsContactCompanyEmployee: "applied_vendor_credits,contact,company,employee",
+    AppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "applied_vendor_credits,contact,company,employee,accounting_period",
+    AppliedVendorCreditsContactEmployee: "applied_vendor_credits,contact,employee",
+    AppliedVendorCreditsContactEmployeeAccountingPeriod: "applied_vendor_credits,contact,employee,accounting_period",
+    AppliedVendorCreditsEmployee: "applied_vendor_credits,employee",
+    AppliedVendorCreditsEmployeeAccountingPeriod: "applied_vendor_credits,employee,accounting_period",
     Company: "company",
     CompanyAccountingPeriod: "company,accounting_period",
+    CompanyEmployee: "company,employee",
+    CompanyEmployeeAccountingPeriod: "company,employee,accounting_period",
     Contact: "contact",
     ContactAccountingPeriod: "contact,accounting_period",
     ContactCompany: "contact,company",
     ContactCompanyAccountingPeriod: "contact,company,accounting_period",
+    ContactCompanyEmployee: "contact,company,employee",
+    ContactCompanyEmployeeAccountingPeriod: "contact,company,employee,accounting_period",
+    ContactEmployee: "contact,employee",
+    ContactEmployeeAccountingPeriod: "contact,employee,accounting_period",
+    Employee: "employee",
+    EmployeeAccountingPeriod: "employee,accounting_period",
     LineItems: "line_items",
     LineItemsAccountingPeriod: "line_items,accounting_period",
+    LineItemsAppliedCreditNotes: "line_items,applied_credit_notes",
+    LineItemsAppliedCreditNotesAccountingPeriod: "line_items,applied_credit_notes,accounting_period",
+    LineItemsAppliedCreditNotesAppliedVendorCredits: "line_items,applied_credit_notes,applied_vendor_credits",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "line_items,applied_credit_notes,applied_vendor_credits,accounting_period",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsCompany:
+        "line_items,applied_credit_notes,applied_vendor_credits,company",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "line_items,applied_credit_notes,applied_vendor_credits,company,employee",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsContact:
+        "line_items,applied_credit_notes,applied_vendor_credits,contact",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "line_items,applied_credit_notes,applied_vendor_credits,contact,company",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "line_items,applied_credit_notes,applied_vendor_credits,contact,employee",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "line_items,applied_credit_notes,applied_vendor_credits,employee",
+    LineItemsAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    LineItemsAppliedCreditNotesCompany: "line_items,applied_credit_notes,company",
+    LineItemsAppliedCreditNotesCompanyAccountingPeriod: "line_items,applied_credit_notes,company,accounting_period",
+    LineItemsAppliedCreditNotesCompanyEmployee: "line_items,applied_credit_notes,company,employee",
+    LineItemsAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "line_items,applied_credit_notes,company,employee,accounting_period",
+    LineItemsAppliedCreditNotesContact: "line_items,applied_credit_notes,contact",
+    LineItemsAppliedCreditNotesContactAccountingPeriod: "line_items,applied_credit_notes,contact,accounting_period",
+    LineItemsAppliedCreditNotesContactCompany: "line_items,applied_credit_notes,contact,company",
+    LineItemsAppliedCreditNotesContactCompanyAccountingPeriod:
+        "line_items,applied_credit_notes,contact,company,accounting_period",
+    LineItemsAppliedCreditNotesContactCompanyEmployee: "line_items,applied_credit_notes,contact,company,employee",
+    LineItemsAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "line_items,applied_credit_notes,contact,company,employee,accounting_period",
+    LineItemsAppliedCreditNotesContactEmployee: "line_items,applied_credit_notes,contact,employee",
+    LineItemsAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "line_items,applied_credit_notes,contact,employee,accounting_period",
+    LineItemsAppliedCreditNotesEmployee: "line_items,applied_credit_notes,employee",
+    LineItemsAppliedCreditNotesEmployeeAccountingPeriod: "line_items,applied_credit_notes,employee,accounting_period",
+    LineItemsAppliedVendorCredits: "line_items,applied_vendor_credits",
+    LineItemsAppliedVendorCreditsAccountingPeriod: "line_items,applied_vendor_credits,accounting_period",
+    LineItemsAppliedVendorCreditsCompany: "line_items,applied_vendor_credits,company",
+    LineItemsAppliedVendorCreditsCompanyAccountingPeriod: "line_items,applied_vendor_credits,company,accounting_period",
+    LineItemsAppliedVendorCreditsCompanyEmployee: "line_items,applied_vendor_credits,company,employee",
+    LineItemsAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "line_items,applied_vendor_credits,company,employee,accounting_period",
+    LineItemsAppliedVendorCreditsContact: "line_items,applied_vendor_credits,contact",
+    LineItemsAppliedVendorCreditsContactAccountingPeriod: "line_items,applied_vendor_credits,contact,accounting_period",
+    LineItemsAppliedVendorCreditsContactCompany: "line_items,applied_vendor_credits,contact,company",
+    LineItemsAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "line_items,applied_vendor_credits,contact,company,accounting_period",
+    LineItemsAppliedVendorCreditsContactCompanyEmployee: "line_items,applied_vendor_credits,contact,company,employee",
+    LineItemsAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "line_items,applied_vendor_credits,contact,company,employee,accounting_period",
+    LineItemsAppliedVendorCreditsContactEmployee: "line_items,applied_vendor_credits,contact,employee",
+    LineItemsAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "line_items,applied_vendor_credits,contact,employee,accounting_period",
+    LineItemsAppliedVendorCreditsEmployee: "line_items,applied_vendor_credits,employee",
+    LineItemsAppliedVendorCreditsEmployeeAccountingPeriod:
+        "line_items,applied_vendor_credits,employee,accounting_period",
     LineItemsCompany: "line_items,company",
     LineItemsCompanyAccountingPeriod: "line_items,company,accounting_period",
+    LineItemsCompanyEmployee: "line_items,company,employee",
+    LineItemsCompanyEmployeeAccountingPeriod: "line_items,company,employee,accounting_period",
     LineItemsContact: "line_items,contact",
     LineItemsContactAccountingPeriod: "line_items,contact,accounting_period",
     LineItemsContactCompany: "line_items,contact,company",
     LineItemsContactCompanyAccountingPeriod: "line_items,contact,company,accounting_period",
+    LineItemsContactCompanyEmployee: "line_items,contact,company,employee",
+    LineItemsContactCompanyEmployeeAccountingPeriod: "line_items,contact,company,employee,accounting_period",
+    LineItemsContactEmployee: "line_items,contact,employee",
+    LineItemsContactEmployeeAccountingPeriod: "line_items,contact,employee,accounting_period",
+    LineItemsEmployee: "line_items,employee",
+    LineItemsEmployeeAccountingPeriod: "line_items,employee,accounting_period",
     LineItemsPurchaseOrders: "line_items,purchase_orders",
     LineItemsPurchaseOrdersAccountingPeriod: "line_items,purchase_orders,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotes: "line_items,purchase_orders,applied_credit_notes",
+    LineItemsPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    LineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesCompany: "line_items,purchase_orders,applied_credit_notes,company",
+    LineItemsPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,company,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "line_items,purchase_orders,applied_credit_notes,company,employee",
+    LineItemsPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesContact: "line_items,purchase_orders,applied_credit_notes,contact",
+    LineItemsPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,contact,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesContactCompany:
+        "line_items,purchase_orders,applied_credit_notes,contact,company",
+    LineItemsPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "line_items,purchase_orders,applied_credit_notes,contact,company,employee",
+    LineItemsPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "line_items,purchase_orders,applied_credit_notes,contact,employee",
+    LineItemsPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedCreditNotesEmployee: "line_items,purchase_orders,applied_credit_notes,employee",
+    LineItemsPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_credit_notes,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedVendorCredits: "line_items,purchase_orders,applied_vendor_credits",
+    LineItemsPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "line_items,purchase_orders,applied_vendor_credits,accounting_period",
+    LineItemsPurchaseOrdersAppliedVendorCreditsCompany: "line_items,purchase_orders,applied_vendor_credits,company",
+    LineItemsPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "line_items,purchase_orders,applied_vendor_credits,company,accounting_period",
+    LineItemsPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "line_items,purchase_orders,applied_vendor_credits,company,employee",
+    LineItemsPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedVendorCreditsContact: "line_items,purchase_orders,applied_vendor_credits,contact",
+    LineItemsPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "line_items,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    LineItemsPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "line_items,purchase_orders,applied_vendor_credits,contact,company",
+    LineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    LineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "line_items,purchase_orders,applied_vendor_credits,contact,company,employee",
+    LineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "line_items,purchase_orders,applied_vendor_credits,contact,employee",
+    LineItemsPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    LineItemsPurchaseOrdersAppliedVendorCreditsEmployee: "line_items,purchase_orders,applied_vendor_credits,employee",
+    LineItemsPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "line_items,purchase_orders,applied_vendor_credits,employee,accounting_period",
     LineItemsPurchaseOrdersCompany: "line_items,purchase_orders,company",
     LineItemsPurchaseOrdersCompanyAccountingPeriod: "line_items,purchase_orders,company,accounting_period",
+    LineItemsPurchaseOrdersCompanyEmployee: "line_items,purchase_orders,company,employee",
+    LineItemsPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "line_items,purchase_orders,company,employee,accounting_period",
     LineItemsPurchaseOrdersContact: "line_items,purchase_orders,contact",
     LineItemsPurchaseOrdersContactAccountingPeriod: "line_items,purchase_orders,contact,accounting_period",
     LineItemsPurchaseOrdersContactCompany: "line_items,purchase_orders,contact,company",
     LineItemsPurchaseOrdersContactCompanyAccountingPeriod:
         "line_items,purchase_orders,contact,company,accounting_period",
+    LineItemsPurchaseOrdersContactCompanyEmployee: "line_items,purchase_orders,contact,company,employee",
+    LineItemsPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "line_items,purchase_orders,contact,company,employee,accounting_period",
+    LineItemsPurchaseOrdersContactEmployee: "line_items,purchase_orders,contact,employee",
+    LineItemsPurchaseOrdersContactEmployeeAccountingPeriod:
+        "line_items,purchase_orders,contact,employee,accounting_period",
+    LineItemsPurchaseOrdersEmployee: "line_items,purchase_orders,employee",
+    LineItemsPurchaseOrdersEmployeeAccountingPeriod: "line_items,purchase_orders,employee,accounting_period",
     LineItemsTrackingCategories: "line_items,tracking_categories",
     LineItemsTrackingCategoriesAccountingPeriod: "line_items,tracking_categories,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotes: "line_items,tracking_categories,applied_credit_notes",
+    LineItemsTrackingCategoriesAppliedCreditNotesAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCredits:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompany:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContact:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee",
+    LineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesCompany: "line_items,tracking_categories,applied_credit_notes,company",
+    LineItemsTrackingCategoriesAppliedCreditNotesCompanyAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,company,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesCompanyEmployee:
+        "line_items,tracking_categories,applied_credit_notes,company,employee",
+    LineItemsTrackingCategoriesAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesContact: "line_items,tracking_categories,applied_credit_notes,contact",
+    LineItemsTrackingCategoriesAppliedCreditNotesContactAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,contact,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesContactCompany:
+        "line_items,tracking_categories,applied_credit_notes,contact,company",
+    LineItemsTrackingCategoriesAppliedCreditNotesContactCompanyAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesContactCompanyEmployee:
+        "line_items,tracking_categories,applied_credit_notes,contact,company,employee",
+    LineItemsTrackingCategoriesAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesContactEmployee:
+        "line_items,tracking_categories,applied_credit_notes,contact,employee",
+    LineItemsTrackingCategoriesAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedCreditNotesEmployee:
+        "line_items,tracking_categories,applied_credit_notes,employee",
+    LineItemsTrackingCategoriesAppliedCreditNotesEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_credit_notes,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedVendorCredits: "line_items,tracking_categories,applied_vendor_credits",
+    LineItemsTrackingCategoriesAppliedVendorCreditsAccountingPeriod:
+        "line_items,tracking_categories,applied_vendor_credits,accounting_period",
+    LineItemsTrackingCategoriesAppliedVendorCreditsCompany:
+        "line_items,tracking_categories,applied_vendor_credits,company",
+    LineItemsTrackingCategoriesAppliedVendorCreditsCompanyAccountingPeriod:
+        "line_items,tracking_categories,applied_vendor_credits,company,accounting_period",
+    LineItemsTrackingCategoriesAppliedVendorCreditsCompanyEmployee:
+        "line_items,tracking_categories,applied_vendor_credits,company,employee",
+    LineItemsTrackingCategoriesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedVendorCreditsContact:
+        "line_items,tracking_categories,applied_vendor_credits,contact",
+    LineItemsTrackingCategoriesAppliedVendorCreditsContactAccountingPeriod:
+        "line_items,tracking_categories,applied_vendor_credits,contact,accounting_period",
+    LineItemsTrackingCategoriesAppliedVendorCreditsContactCompany:
+        "line_items,tracking_categories,applied_vendor_credits,contact,company",
+    LineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period",
+    LineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployee:
+        "line_items,tracking_categories,applied_vendor_credits,contact,company,employee",
+    LineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedVendorCreditsContactEmployee:
+        "line_items,tracking_categories,applied_vendor_credits,contact,employee",
+    LineItemsTrackingCategoriesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period",
+    LineItemsTrackingCategoriesAppliedVendorCreditsEmployee:
+        "line_items,tracking_categories,applied_vendor_credits,employee",
+    LineItemsTrackingCategoriesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "line_items,tracking_categories,applied_vendor_credits,employee,accounting_period",
     LineItemsTrackingCategoriesCompany: "line_items,tracking_categories,company",
     LineItemsTrackingCategoriesCompanyAccountingPeriod: "line_items,tracking_categories,company,accounting_period",
+    LineItemsTrackingCategoriesCompanyEmployee: "line_items,tracking_categories,company,employee",
+    LineItemsTrackingCategoriesCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,company,employee,accounting_period",
     LineItemsTrackingCategoriesContact: "line_items,tracking_categories,contact",
     LineItemsTrackingCategoriesContactAccountingPeriod: "line_items,tracking_categories,contact,accounting_period",
     LineItemsTrackingCategoriesContactCompany: "line_items,tracking_categories,contact,company",
     LineItemsTrackingCategoriesContactCompanyAccountingPeriod:
         "line_items,tracking_categories,contact,company,accounting_period",
+    LineItemsTrackingCategoriesContactCompanyEmployee: "line_items,tracking_categories,contact,company,employee",
+    LineItemsTrackingCategoriesContactCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,contact,company,employee,accounting_period",
+    LineItemsTrackingCategoriesContactEmployee: "line_items,tracking_categories,contact,employee",
+    LineItemsTrackingCategoriesContactEmployeeAccountingPeriod:
+        "line_items,tracking_categories,contact,employee,accounting_period",
+    LineItemsTrackingCategoriesEmployee: "line_items,tracking_categories,employee",
+    LineItemsTrackingCategoriesEmployeeAccountingPeriod: "line_items,tracking_categories,employee,accounting_period",
     LineItemsTrackingCategoriesPurchaseOrders: "line_items,tracking_categories,purchase_orders",
     LineItemsTrackingCategoriesPurchaseOrdersAccountingPeriod:
         "line_items,tracking_categories,purchase_orders,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotes:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompany:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,company",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContact:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompany:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCredits:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompany:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContact:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployee:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period",
     LineItemsTrackingCategoriesPurchaseOrdersCompany: "line_items,tracking_categories,purchase_orders,company",
     LineItemsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
         "line_items,tracking_categories,purchase_orders,company,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersCompanyEmployee:
+        "line_items,tracking_categories,purchase_orders,company,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,company,employee,accounting_period",
     LineItemsTrackingCategoriesPurchaseOrdersContact: "line_items,tracking_categories,purchase_orders,contact",
     LineItemsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
         "line_items,tracking_categories,purchase_orders,contact,accounting_period",
@@ -399,35 +3490,403 @@ export const InvoicesRetrieveRequestExpand = {
         "line_items,tracking_categories,purchase_orders,contact,company",
     LineItemsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
         "line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersContactCompanyEmployee:
+        "line_items,tracking_categories,purchase_orders,contact,company,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersContactEmployee:
+        "line_items,tracking_categories,purchase_orders,contact,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersContactEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,contact,employee,accounting_period",
+    LineItemsTrackingCategoriesPurchaseOrdersEmployee: "line_items,tracking_categories,purchase_orders,employee",
+    LineItemsTrackingCategoriesPurchaseOrdersEmployeeAccountingPeriod:
+        "line_items,tracking_categories,purchase_orders,employee,accounting_period",
     Payments: "payments",
     PaymentsAccountingPeriod: "payments,accounting_period",
+    PaymentsAppliedCreditNotes: "payments,applied_credit_notes",
+    PaymentsAppliedCreditNotesAccountingPeriod: "payments,applied_credit_notes,accounting_period",
+    PaymentsAppliedCreditNotesAppliedVendorCredits: "payments,applied_credit_notes,applied_vendor_credits",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsAppliedCreditNotesCompany: "payments,applied_credit_notes,company",
+    PaymentsAppliedCreditNotesCompanyAccountingPeriod: "payments,applied_credit_notes,company,accounting_period",
+    PaymentsAppliedCreditNotesCompanyEmployee: "payments,applied_credit_notes,company,employee",
+    PaymentsAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,applied_credit_notes,company,employee,accounting_period",
+    PaymentsAppliedCreditNotesContact: "payments,applied_credit_notes,contact",
+    PaymentsAppliedCreditNotesContactAccountingPeriod: "payments,applied_credit_notes,contact,accounting_period",
+    PaymentsAppliedCreditNotesContactCompany: "payments,applied_credit_notes,contact,company",
+    PaymentsAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,applied_credit_notes,contact,company,accounting_period",
+    PaymentsAppliedCreditNotesContactCompanyEmployee: "payments,applied_credit_notes,contact,company,employee",
+    PaymentsAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsAppliedCreditNotesContactEmployee: "payments,applied_credit_notes,contact,employee",
+    PaymentsAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsAppliedCreditNotesEmployee: "payments,applied_credit_notes,employee",
+    PaymentsAppliedCreditNotesEmployeeAccountingPeriod: "payments,applied_credit_notes,employee,accounting_period",
     PaymentsAppliedPayments: "payments,applied_payments",
     PaymentsAppliedPaymentsAccountingPeriod: "payments,applied_payments,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotes: "payments,applied_payments,applied_credit_notes",
+    PaymentsAppliedPaymentsAppliedCreditNotesAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCredits:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesCompany: "payments,applied_payments,applied_credit_notes,company",
+    PaymentsAppliedPaymentsAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,company,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesCompanyEmployee:
+        "payments,applied_payments,applied_credit_notes,company,employee",
+    PaymentsAppliedPaymentsAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,company,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesContact: "payments,applied_payments,applied_credit_notes,contact",
+    PaymentsAppliedPaymentsAppliedCreditNotesContactAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,contact,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesContactCompany:
+        "payments,applied_payments,applied_credit_notes,contact,company",
+    PaymentsAppliedPaymentsAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,contact,company,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesContactCompanyEmployee:
+        "payments,applied_payments,applied_credit_notes,contact,company,employee",
+    PaymentsAppliedPaymentsAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesContactEmployee:
+        "payments,applied_payments,applied_credit_notes,contact,employee",
+    PaymentsAppliedPaymentsAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedCreditNotesEmployee: "payments,applied_payments,applied_credit_notes,employee",
+    PaymentsAppliedPaymentsAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_credit_notes,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedVendorCredits: "payments,applied_payments,applied_vendor_credits",
+    PaymentsAppliedPaymentsAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsAppliedVendorCreditsCompany: "payments,applied_payments,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedVendorCreditsContact: "payments,applied_payments,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsAppliedVendorCreditsEmployee: "payments,applied_payments,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,applied_vendor_credits,employee,accounting_period",
     PaymentsAppliedPaymentsCompany: "payments,applied_payments,company",
     PaymentsAppliedPaymentsCompanyAccountingPeriod: "payments,applied_payments,company,accounting_period",
+    PaymentsAppliedPaymentsCompanyEmployee: "payments,applied_payments,company,employee",
+    PaymentsAppliedPaymentsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,company,employee,accounting_period",
     PaymentsAppliedPaymentsContact: "payments,applied_payments,contact",
     PaymentsAppliedPaymentsContactAccountingPeriod: "payments,applied_payments,contact,accounting_period",
     PaymentsAppliedPaymentsContactCompany: "payments,applied_payments,contact,company",
     PaymentsAppliedPaymentsContactCompanyAccountingPeriod:
         "payments,applied_payments,contact,company,accounting_period",
+    PaymentsAppliedPaymentsContactCompanyEmployee: "payments,applied_payments,contact,company,employee",
+    PaymentsAppliedPaymentsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsContactEmployee: "payments,applied_payments,contact,employee",
+    PaymentsAppliedPaymentsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsEmployee: "payments,applied_payments,employee",
+    PaymentsAppliedPaymentsEmployeeAccountingPeriod: "payments,applied_payments,employee,accounting_period",
     PaymentsAppliedPaymentsLineItems: "payments,applied_payments,line_items",
     PaymentsAppliedPaymentsLineItemsAccountingPeriod: "payments,applied_payments,line_items,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotes: "payments,applied_payments,line_items,applied_credit_notes",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCredits:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesCompany:
+        "payments,applied_payments,line_items,applied_credit_notes,company",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesCompanyEmployee:
+        "payments,applied_payments,line_items,applied_credit_notes,company,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesContact:
+        "payments,applied_payments,line_items,applied_credit_notes,contact",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesContactAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesContactCompany:
+        "payments,applied_payments,line_items,applied_credit_notes,contact,company",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesContactCompanyEmployee:
+        "payments,applied_payments,line_items,applied_credit_notes,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesContactEmployee:
+        "payments,applied_payments,line_items,applied_credit_notes,contact,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesEmployee:
+        "payments,applied_payments,line_items,applied_credit_notes,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_credit_notes,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCredits: "payments,applied_payments,line_items,applied_vendor_credits",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,line_items,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsCompany:
+        "payments,applied_payments,line_items,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,line_items,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsContact:
+        "payments,applied_payments,line_items,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,line_items,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,line_items,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,line_items,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,line_items,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsEmployee:
+        "payments,applied_payments,line_items,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsLineItemsAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,applied_vendor_credits,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsCompany: "payments,applied_payments,line_items,company",
     PaymentsAppliedPaymentsLineItemsCompanyAccountingPeriod:
         "payments,applied_payments,line_items,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsCompanyEmployee: "payments,applied_payments,line_items,company,employee",
+    PaymentsAppliedPaymentsLineItemsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,company,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsContact: "payments,applied_payments,line_items,contact",
     PaymentsAppliedPaymentsLineItemsContactAccountingPeriod:
         "payments,applied_payments,line_items,contact,accounting_period",
     PaymentsAppliedPaymentsLineItemsContactCompany: "payments,applied_payments,line_items,contact,company",
     PaymentsAppliedPaymentsLineItemsContactCompanyAccountingPeriod:
         "payments,applied_payments,line_items,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsContactCompanyEmployee:
+        "payments,applied_payments,line_items,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsContactEmployee: "payments,applied_payments,line_items,contact,employee",
+    PaymentsAppliedPaymentsLineItemsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsEmployee: "payments,applied_payments,line_items,employee",
+    PaymentsAppliedPaymentsLineItemsEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsPurchaseOrders: "payments,applied_payments,line_items,purchase_orders",
     PaymentsAppliedPaymentsLineItemsPurchaseOrdersAccountingPeriod:
         "payments,applied_payments,line_items,purchase_orders,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotes:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompany:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContact:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompany:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCredits:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompany:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContact:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsEmployee:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsPurchaseOrdersCompany:
         "payments,applied_payments,line_items,purchase_orders,company",
     PaymentsAppliedPaymentsLineItemsPurchaseOrdersCompanyAccountingPeriod:
         "payments,applied_payments,line_items,purchase_orders,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersCompanyEmployee:
+        "payments,applied_payments,line_items,purchase_orders,company,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,company,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsPurchaseOrdersContact:
         "payments,applied_payments,line_items,purchase_orders,contact",
     PaymentsAppliedPaymentsLineItemsPurchaseOrdersContactAccountingPeriod:
@@ -436,13 +3895,125 @@ export const InvoicesRetrieveRequestExpand = {
         "payments,applied_payments,line_items,purchase_orders,contact,company",
     PaymentsAppliedPaymentsLineItemsPurchaseOrdersContactCompanyAccountingPeriod:
         "payments,applied_payments,line_items,purchase_orders,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersContactCompanyEmployee:
+        "payments,applied_payments,line_items,purchase_orders,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersContactEmployee:
+        "payments,applied_payments,line_items,purchase_orders,contact,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersEmployee:
+        "payments,applied_payments,line_items,purchase_orders,employee",
+    PaymentsAppliedPaymentsLineItemsPurchaseOrdersEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,purchase_orders,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsTrackingCategories: "payments,applied_payments,line_items,tracking_categories",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesAccountingPeriod:
         "payments,applied_payments,line_items,tracking_categories,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotes:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCredits:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompany:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContact:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompany:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCredits:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompany:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContact:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesCompany:
         "payments,applied_payments,line_items,tracking_categories,company",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesCompanyAccountingPeriod:
         "payments,applied_payments,line_items,tracking_categories,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,company,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesContact:
         "payments,applied_payments,line_items,tracking_categories,contact",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesContactAccountingPeriod:
@@ -451,14 +4022,126 @@ export const InvoicesRetrieveRequestExpand = {
         "payments,applied_payments,line_items,tracking_categories,contact,company",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesContactCompanyAccountingPeriod:
         "payments,applied_payments,line_items,tracking_categories,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesContactCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesContactEmployee:
+        "payments,applied_payments,line_items,tracking_categories,contact,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesEmployee:
+        "payments,applied_payments,line_items,tracking_categories,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrders:
         "payments,applied_payments,line_items,tracking_categories,purchase_orders",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAccountingPeriod:
         "payments,applied_payments,line_items,tracking_categories,purchase_orders,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotes:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompany:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContact:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompany:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCredits:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompany:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContact:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompany:
         "payments,applied_payments,line_items,tracking_categories,purchase_orders,company",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
         "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContact:
         "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
@@ -467,24 +4150,245 @@ export const InvoicesRetrieveRequestExpand = {
         "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company",
     PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
         "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersContactEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersEmployee:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,employee",
+    PaymentsAppliedPaymentsLineItemsTrackingCategoriesPurchaseOrdersEmployeeAccountingPeriod:
+        "payments,applied_payments,line_items,tracking_categories,purchase_orders,employee,accounting_period",
     PaymentsAppliedPaymentsPurchaseOrders: "payments,applied_payments,purchase_orders",
     PaymentsAppliedPaymentsPurchaseOrdersAccountingPeriod:
         "payments,applied_payments,purchase_orders,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotes:
+        "payments,applied_payments,purchase_orders,applied_credit_notes",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesCompany:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,company",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,company,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesContact:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,contact",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,contact,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesContactCompany:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,contact,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesEmployee:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_credit_notes,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCredits:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsCompany:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsContact:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsEmployee:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,applied_vendor_credits,employee,accounting_period",
     PaymentsAppliedPaymentsPurchaseOrdersCompany: "payments,applied_payments,purchase_orders,company",
     PaymentsAppliedPaymentsPurchaseOrdersCompanyAccountingPeriod:
         "payments,applied_payments,purchase_orders,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersCompanyEmployee: "payments,applied_payments,purchase_orders,company,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,company,employee,accounting_period",
     PaymentsAppliedPaymentsPurchaseOrdersContact: "payments,applied_payments,purchase_orders,contact",
     PaymentsAppliedPaymentsPurchaseOrdersContactAccountingPeriod:
         "payments,applied_payments,purchase_orders,contact,accounting_period",
     PaymentsAppliedPaymentsPurchaseOrdersContactCompany: "payments,applied_payments,purchase_orders,contact,company",
     PaymentsAppliedPaymentsPurchaseOrdersContactCompanyAccountingPeriod:
         "payments,applied_payments,purchase_orders,contact,company,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersContactCompanyEmployee:
+        "payments,applied_payments,purchase_orders,contact,company,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersContactEmployee: "payments,applied_payments,purchase_orders,contact,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersContactEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsPurchaseOrdersEmployee: "payments,applied_payments,purchase_orders,employee",
+    PaymentsAppliedPaymentsPurchaseOrdersEmployeeAccountingPeriod:
+        "payments,applied_payments,purchase_orders,employee,accounting_period",
     PaymentsAppliedPaymentsTrackingCategories: "payments,applied_payments,tracking_categories",
     PaymentsAppliedPaymentsTrackingCategoriesAccountingPeriod:
         "payments,applied_payments,tracking_categories,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotes:
+        "payments,applied_payments,tracking_categories,applied_credit_notes",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCredits:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesCompany:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,company",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesCompanyEmployee:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesContact:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,contact",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesContactAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,contact,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesContactCompany:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesContactCompanyEmployee:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesContactEmployee:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,contact,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesEmployee:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_credit_notes,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCredits:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsCompany:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsContact:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,applied_vendor_credits,employee,accounting_period",
     PaymentsAppliedPaymentsTrackingCategoriesCompany: "payments,applied_payments,tracking_categories,company",
     PaymentsAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod:
         "payments,applied_payments,tracking_categories,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesCompanyEmployee:
+        "payments,applied_payments,tracking_categories,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,company,employee,accounting_period",
     PaymentsAppliedPaymentsTrackingCategoriesContact: "payments,applied_payments,tracking_categories,contact",
     PaymentsAppliedPaymentsTrackingCategoriesContactAccountingPeriod:
         "payments,applied_payments,tracking_categories,contact,accounting_period",
@@ -492,14 +4396,125 @@ export const InvoicesRetrieveRequestExpand = {
         "payments,applied_payments,tracking_categories,contact,company",
     PaymentsAppliedPaymentsTrackingCategoriesContactCompanyAccountingPeriod:
         "payments,applied_payments,tracking_categories,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesContactCompanyEmployee:
+        "payments,applied_payments,tracking_categories,contact,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesContactEmployee:
+        "payments,applied_payments,tracking_categories,contact,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesEmployee: "payments,applied_payments,tracking_categories,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,employee,accounting_period",
     PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrders:
         "payments,applied_payments,tracking_categories,purchase_orders",
     PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAccountingPeriod:
         "payments,applied_payments,tracking_categories,purchase_orders,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotes:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompany:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContact:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompany:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCredits:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompany:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContact:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period",
     PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersCompany:
         "payments,applied_payments,tracking_categories,purchase_orders,company",
     PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
         "payments,applied_payments,tracking_categories,purchase_orders,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersCompanyEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,company,employee,accounting_period",
     PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContact:
         "payments,applied_payments,tracking_categories,purchase_orders,contact",
     PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
@@ -508,49 +4523,495 @@ export const InvoicesRetrieveRequestExpand = {
         "payments,applied_payments,tracking_categories,purchase_orders,contact,company",
     PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
         "payments,applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompanyEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,contact,company,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContactEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,contact,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersContactEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,contact,employee,accounting_period",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersEmployee:
+        "payments,applied_payments,tracking_categories,purchase_orders,employee",
+    PaymentsAppliedPaymentsTrackingCategoriesPurchaseOrdersEmployeeAccountingPeriod:
+        "payments,applied_payments,tracking_categories,purchase_orders,employee,accounting_period",
+    PaymentsAppliedVendorCredits: "payments,applied_vendor_credits",
+    PaymentsAppliedVendorCreditsAccountingPeriod: "payments,applied_vendor_credits,accounting_period",
+    PaymentsAppliedVendorCreditsCompany: "payments,applied_vendor_credits,company",
+    PaymentsAppliedVendorCreditsCompanyAccountingPeriod: "payments,applied_vendor_credits,company,accounting_period",
+    PaymentsAppliedVendorCreditsCompanyEmployee: "payments,applied_vendor_credits,company,employee",
+    PaymentsAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsAppliedVendorCreditsContact: "payments,applied_vendor_credits,contact",
+    PaymentsAppliedVendorCreditsContactAccountingPeriod: "payments,applied_vendor_credits,contact,accounting_period",
+    PaymentsAppliedVendorCreditsContactCompany: "payments,applied_vendor_credits,contact,company",
+    PaymentsAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsAppliedVendorCreditsContactCompanyEmployee: "payments,applied_vendor_credits,contact,company,employee",
+    PaymentsAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsAppliedVendorCreditsContactEmployee: "payments,applied_vendor_credits,contact,employee",
+    PaymentsAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsAppliedVendorCreditsEmployee: "payments,applied_vendor_credits,employee",
+    PaymentsAppliedVendorCreditsEmployeeAccountingPeriod: "payments,applied_vendor_credits,employee,accounting_period",
     PaymentsCompany: "payments,company",
     PaymentsCompanyAccountingPeriod: "payments,company,accounting_period",
+    PaymentsCompanyEmployee: "payments,company,employee",
+    PaymentsCompanyEmployeeAccountingPeriod: "payments,company,employee,accounting_period",
     PaymentsContact: "payments,contact",
     PaymentsContactAccountingPeriod: "payments,contact,accounting_period",
     PaymentsContactCompany: "payments,contact,company",
     PaymentsContactCompanyAccountingPeriod: "payments,contact,company,accounting_period",
+    PaymentsContactCompanyEmployee: "payments,contact,company,employee",
+    PaymentsContactCompanyEmployeeAccountingPeriod: "payments,contact,company,employee,accounting_period",
+    PaymentsContactEmployee: "payments,contact,employee",
+    PaymentsContactEmployeeAccountingPeriod: "payments,contact,employee,accounting_period",
+    PaymentsEmployee: "payments,employee",
+    PaymentsEmployeeAccountingPeriod: "payments,employee,accounting_period",
     PaymentsLineItems: "payments,line_items",
     PaymentsLineItemsAccountingPeriod: "payments,line_items,accounting_period",
+    PaymentsLineItemsAppliedCreditNotes: "payments,line_items,applied_credit_notes",
+    PaymentsLineItemsAppliedCreditNotesAccountingPeriod: "payments,line_items,applied_credit_notes,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCredits:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsLineItemsAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesCompany: "payments,line_items,applied_credit_notes,company",
+    PaymentsLineItemsAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,line_items,applied_credit_notes,company,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesCompanyEmployee: "payments,line_items,applied_credit_notes,company,employee",
+    PaymentsLineItemsAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,line_items,applied_credit_notes,company,employee,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesContact: "payments,line_items,applied_credit_notes,contact",
+    PaymentsLineItemsAppliedCreditNotesContactAccountingPeriod:
+        "payments,line_items,applied_credit_notes,contact,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesContactCompany: "payments,line_items,applied_credit_notes,contact,company",
+    PaymentsLineItemsAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,line_items,applied_credit_notes,contact,company,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesContactCompanyEmployee:
+        "payments,line_items,applied_credit_notes,contact,company,employee",
+    PaymentsLineItemsAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesContactEmployee: "payments,line_items,applied_credit_notes,contact,employee",
+    PaymentsLineItemsAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,line_items,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsLineItemsAppliedCreditNotesEmployee: "payments,line_items,applied_credit_notes,employee",
+    PaymentsLineItemsAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,line_items,applied_credit_notes,employee,accounting_period",
+    PaymentsLineItemsAppliedVendorCredits: "payments,line_items,applied_vendor_credits",
+    PaymentsLineItemsAppliedVendorCreditsAccountingPeriod:
+        "payments,line_items,applied_vendor_credits,accounting_period",
+    PaymentsLineItemsAppliedVendorCreditsCompany: "payments,line_items,applied_vendor_credits,company",
+    PaymentsLineItemsAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,line_items,applied_vendor_credits,company,accounting_period",
+    PaymentsLineItemsAppliedVendorCreditsCompanyEmployee: "payments,line_items,applied_vendor_credits,company,employee",
+    PaymentsLineItemsAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,line_items,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsLineItemsAppliedVendorCreditsContact: "payments,line_items,applied_vendor_credits,contact",
+    PaymentsLineItemsAppliedVendorCreditsContactAccountingPeriod:
+        "payments,line_items,applied_vendor_credits,contact,accounting_period",
+    PaymentsLineItemsAppliedVendorCreditsContactCompany: "payments,line_items,applied_vendor_credits,contact,company",
+    PaymentsLineItemsAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,line_items,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsLineItemsAppliedVendorCreditsContactCompanyEmployee:
+        "payments,line_items,applied_vendor_credits,contact,company,employee",
+    PaymentsLineItemsAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsLineItemsAppliedVendorCreditsContactEmployee: "payments,line_items,applied_vendor_credits,contact,employee",
+    PaymentsLineItemsAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,line_items,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsLineItemsAppliedVendorCreditsEmployee: "payments,line_items,applied_vendor_credits,employee",
+    PaymentsLineItemsAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,line_items,applied_vendor_credits,employee,accounting_period",
     PaymentsLineItemsCompany: "payments,line_items,company",
     PaymentsLineItemsCompanyAccountingPeriod: "payments,line_items,company,accounting_period",
+    PaymentsLineItemsCompanyEmployee: "payments,line_items,company,employee",
+    PaymentsLineItemsCompanyEmployeeAccountingPeriod: "payments,line_items,company,employee,accounting_period",
     PaymentsLineItemsContact: "payments,line_items,contact",
     PaymentsLineItemsContactAccountingPeriod: "payments,line_items,contact,accounting_period",
     PaymentsLineItemsContactCompany: "payments,line_items,contact,company",
     PaymentsLineItemsContactCompanyAccountingPeriod: "payments,line_items,contact,company,accounting_period",
+    PaymentsLineItemsContactCompanyEmployee: "payments,line_items,contact,company,employee",
+    PaymentsLineItemsContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,contact,company,employee,accounting_period",
+    PaymentsLineItemsContactEmployee: "payments,line_items,contact,employee",
+    PaymentsLineItemsContactEmployeeAccountingPeriod: "payments,line_items,contact,employee,accounting_period",
+    PaymentsLineItemsEmployee: "payments,line_items,employee",
+    PaymentsLineItemsEmployeeAccountingPeriod: "payments,line_items,employee,accounting_period",
     PaymentsLineItemsPurchaseOrders: "payments,line_items,purchase_orders",
     PaymentsLineItemsPurchaseOrdersAccountingPeriod: "payments,line_items,purchase_orders,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotes: "payments,line_items,purchase_orders,applied_credit_notes",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompany:
+        "payments,line_items,purchase_orders,applied_credit_notes,company",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "payments,line_items,purchase_orders,applied_credit_notes,company,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesContact:
+        "payments,line_items,purchase_orders,applied_credit_notes,contact",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompany:
+        "payments,line_items,purchase_orders,applied_credit_notes,contact,company",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "payments,line_items,purchase_orders,applied_credit_notes,contact,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesEmployee:
+        "payments,line_items,purchase_orders,applied_credit_notes,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCredits: "payments,line_items,purchase_orders,applied_vendor_credits",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_vendor_credits,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompany:
+        "payments,line_items,purchase_orders,applied_vendor_credits,company",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "payments,line_items,purchase_orders,applied_vendor_credits,company,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContact:
+        "payments,line_items,purchase_orders,applied_vendor_credits,contact",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "payments,line_items,purchase_orders,applied_vendor_credits,contact,company",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "payments,line_items,purchase_orders,applied_vendor_credits,contact,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsEmployee:
+        "payments,line_items,purchase_orders,applied_vendor_credits,employee",
+    PaymentsLineItemsPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period",
     PaymentsLineItemsPurchaseOrdersCompany: "payments,line_items,purchase_orders,company",
     PaymentsLineItemsPurchaseOrdersCompanyAccountingPeriod:
         "payments,line_items,purchase_orders,company,accounting_period",
+    PaymentsLineItemsPurchaseOrdersCompanyEmployee: "payments,line_items,purchase_orders,company,employee",
+    PaymentsLineItemsPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,company,employee,accounting_period",
     PaymentsLineItemsPurchaseOrdersContact: "payments,line_items,purchase_orders,contact",
     PaymentsLineItemsPurchaseOrdersContactAccountingPeriod:
         "payments,line_items,purchase_orders,contact,accounting_period",
     PaymentsLineItemsPurchaseOrdersContactCompany: "payments,line_items,purchase_orders,contact,company",
     PaymentsLineItemsPurchaseOrdersContactCompanyAccountingPeriod:
         "payments,line_items,purchase_orders,contact,company,accounting_period",
+    PaymentsLineItemsPurchaseOrdersContactCompanyEmployee:
+        "payments,line_items,purchase_orders,contact,company,employee",
+    PaymentsLineItemsPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,contact,company,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersContactEmployee: "payments,line_items,purchase_orders,contact,employee",
+    PaymentsLineItemsPurchaseOrdersContactEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,contact,employee,accounting_period",
+    PaymentsLineItemsPurchaseOrdersEmployee: "payments,line_items,purchase_orders,employee",
+    PaymentsLineItemsPurchaseOrdersEmployeeAccountingPeriod:
+        "payments,line_items,purchase_orders,employee,accounting_period",
     PaymentsLineItemsTrackingCategories: "payments,line_items,tracking_categories",
     PaymentsLineItemsTrackingCategoriesAccountingPeriod: "payments,line_items,tracking_categories,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotes:
+        "payments,line_items,tracking_categories,applied_credit_notes",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCredits:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompany:
+        "payments,line_items,tracking_categories,applied_credit_notes,company",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompanyEmployee:
+        "payments,line_items,tracking_categories,applied_credit_notes,company,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesContact:
+        "payments,line_items,tracking_categories,applied_credit_notes,contact",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompany:
+        "payments,line_items,tracking_categories,applied_credit_notes,contact,company",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompanyEmployee:
+        "payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactEmployee:
+        "payments,line_items,tracking_categories,applied_credit_notes,contact,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesEmployee:
+        "payments,line_items,tracking_categories,applied_credit_notes,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCredits:
+        "payments,line_items,tracking_categories,applied_vendor_credits",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_vendor_credits,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompany:
+        "payments,line_items,tracking_categories,applied_vendor_credits,company",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompanyEmployee:
+        "payments,line_items,tracking_categories,applied_vendor_credits,company,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContact:
+        "payments,line_items,tracking_categories,applied_vendor_credits,contact",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompany:
+        "payments,line_items,tracking_categories,applied_vendor_credits,contact,company",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactEmployee:
+        "payments,line_items,tracking_categories,applied_vendor_credits,contact,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsEmployee:
+        "payments,line_items,tracking_categories,applied_vendor_credits,employee",
+    PaymentsLineItemsTrackingCategoriesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period",
     PaymentsLineItemsTrackingCategoriesCompany: "payments,line_items,tracking_categories,company",
     PaymentsLineItemsTrackingCategoriesCompanyAccountingPeriod:
         "payments,line_items,tracking_categories,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesCompanyEmployee: "payments,line_items,tracking_categories,company,employee",
+    PaymentsLineItemsTrackingCategoriesCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,company,employee,accounting_period",
     PaymentsLineItemsTrackingCategoriesContact: "payments,line_items,tracking_categories,contact",
     PaymentsLineItemsTrackingCategoriesContactAccountingPeriod:
         "payments,line_items,tracking_categories,contact,accounting_period",
     PaymentsLineItemsTrackingCategoriesContactCompany: "payments,line_items,tracking_categories,contact,company",
     PaymentsLineItemsTrackingCategoriesContactCompanyAccountingPeriod:
         "payments,line_items,tracking_categories,contact,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesContactCompanyEmployee:
+        "payments,line_items,tracking_categories,contact,company,employee",
+    PaymentsLineItemsTrackingCategoriesContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,contact,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesContactEmployee: "payments,line_items,tracking_categories,contact,employee",
+    PaymentsLineItemsTrackingCategoriesContactEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,contact,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesEmployee: "payments,line_items,tracking_categories,employee",
+    PaymentsLineItemsTrackingCategoriesEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,employee,accounting_period",
     PaymentsLineItemsTrackingCategoriesPurchaseOrders: "payments,line_items,tracking_categories,purchase_orders",
     PaymentsLineItemsTrackingCategoriesPurchaseOrdersAccountingPeriod:
         "payments,line_items,tracking_categories,purchase_orders,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotes:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompany:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContact:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompany:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCredits:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompany:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContact:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period",
     PaymentsLineItemsTrackingCategoriesPurchaseOrdersCompany:
         "payments,line_items,tracking_categories,purchase_orders,company",
     PaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
         "payments,line_items,tracking_categories,purchase_orders,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,company,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period",
     PaymentsLineItemsTrackingCategoriesPurchaseOrdersContact:
         "payments,line_items,tracking_categories,purchase_orders,contact",
     PaymentsLineItemsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
@@ -559,29 +5020,342 @@ export const InvoicesRetrieveRequestExpand = {
         "payments,line_items,tracking_categories,purchase_orders,contact,company",
     PaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
         "payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,contact,company,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersContactEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,contact,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersContactEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersEmployee:
+        "payments,line_items,tracking_categories,purchase_orders,employee",
+    PaymentsLineItemsTrackingCategoriesPurchaseOrdersEmployeeAccountingPeriod:
+        "payments,line_items,tracking_categories,purchase_orders,employee,accounting_period",
     PaymentsPurchaseOrders: "payments,purchase_orders",
     PaymentsPurchaseOrdersAccountingPeriod: "payments,purchase_orders,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotes: "payments,purchase_orders,applied_credit_notes",
+    PaymentsPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesCompany: "payments,purchase_orders,applied_credit_notes,company",
+    PaymentsPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,company,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "payments,purchase_orders,applied_credit_notes,company,employee",
+    PaymentsPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesContact: "payments,purchase_orders,applied_credit_notes,contact",
+    PaymentsPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,contact,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesContactCompany:
+        "payments,purchase_orders,applied_credit_notes,contact,company",
+    PaymentsPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "payments,purchase_orders,applied_credit_notes,contact,company,employee",
+    PaymentsPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "payments,purchase_orders,applied_credit_notes,contact,employee",
+    PaymentsPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedCreditNotesEmployee: "payments,purchase_orders,applied_credit_notes,employee",
+    PaymentsPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_credit_notes,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedVendorCredits: "payments,purchase_orders,applied_vendor_credits",
+    PaymentsPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "payments,purchase_orders,applied_vendor_credits,accounting_period",
+    PaymentsPurchaseOrdersAppliedVendorCreditsCompany: "payments,purchase_orders,applied_vendor_credits,company",
+    PaymentsPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,purchase_orders,applied_vendor_credits,company,accounting_period",
+    PaymentsPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "payments,purchase_orders,applied_vendor_credits,company,employee",
+    PaymentsPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedVendorCreditsContact: "payments,purchase_orders,applied_vendor_credits,contact",
+    PaymentsPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "payments,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    PaymentsPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "payments,purchase_orders,applied_vendor_credits,contact,company",
+    PaymentsPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "payments,purchase_orders,applied_vendor_credits,contact,company,employee",
+    PaymentsPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "payments,purchase_orders,applied_vendor_credits,contact,employee",
+    PaymentsPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsPurchaseOrdersAppliedVendorCreditsEmployee: "payments,purchase_orders,applied_vendor_credits,employee",
+    PaymentsPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,purchase_orders,applied_vendor_credits,employee,accounting_period",
     PaymentsPurchaseOrdersCompany: "payments,purchase_orders,company",
     PaymentsPurchaseOrdersCompanyAccountingPeriod: "payments,purchase_orders,company,accounting_period",
+    PaymentsPurchaseOrdersCompanyEmployee: "payments,purchase_orders,company,employee",
+    PaymentsPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "payments,purchase_orders,company,employee,accounting_period",
     PaymentsPurchaseOrdersContact: "payments,purchase_orders,contact",
     PaymentsPurchaseOrdersContactAccountingPeriod: "payments,purchase_orders,contact,accounting_period",
     PaymentsPurchaseOrdersContactCompany: "payments,purchase_orders,contact,company",
     PaymentsPurchaseOrdersContactCompanyAccountingPeriod: "payments,purchase_orders,contact,company,accounting_period",
+    PaymentsPurchaseOrdersContactCompanyEmployee: "payments,purchase_orders,contact,company,employee",
+    PaymentsPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "payments,purchase_orders,contact,company,employee,accounting_period",
+    PaymentsPurchaseOrdersContactEmployee: "payments,purchase_orders,contact,employee",
+    PaymentsPurchaseOrdersContactEmployeeAccountingPeriod:
+        "payments,purchase_orders,contact,employee,accounting_period",
+    PaymentsPurchaseOrdersEmployee: "payments,purchase_orders,employee",
+    PaymentsPurchaseOrdersEmployeeAccountingPeriod: "payments,purchase_orders,employee,accounting_period",
     PaymentsTrackingCategories: "payments,tracking_categories",
     PaymentsTrackingCategoriesAccountingPeriod: "payments,tracking_categories,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotes: "payments,tracking_categories,applied_credit_notes",
+    PaymentsTrackingCategoriesAppliedCreditNotesAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCredits:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsTrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesCompany: "payments,tracking_categories,applied_credit_notes,company",
+    PaymentsTrackingCategoriesAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,company,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesCompanyEmployee:
+        "payments,tracking_categories,applied_credit_notes,company,employee",
+    PaymentsTrackingCategoriesAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,company,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesContact: "payments,tracking_categories,applied_credit_notes,contact",
+    PaymentsTrackingCategoriesAppliedCreditNotesContactAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,contact,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesContactCompany:
+        "payments,tracking_categories,applied_credit_notes,contact,company",
+    PaymentsTrackingCategoriesAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,contact,company,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesContactCompanyEmployee:
+        "payments,tracking_categories,applied_credit_notes,contact,company,employee",
+    PaymentsTrackingCategoriesAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesContactEmployee:
+        "payments,tracking_categories,applied_credit_notes,contact,employee",
+    PaymentsTrackingCategoriesAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedCreditNotesEmployee: "payments,tracking_categories,applied_credit_notes,employee",
+    PaymentsTrackingCategoriesAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_credit_notes,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedVendorCredits: "payments,tracking_categories,applied_vendor_credits",
+    PaymentsTrackingCategoriesAppliedVendorCreditsAccountingPeriod:
+        "payments,tracking_categories,applied_vendor_credits,accounting_period",
+    PaymentsTrackingCategoriesAppliedVendorCreditsCompany:
+        "payments,tracking_categories,applied_vendor_credits,company",
+    PaymentsTrackingCategoriesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,tracking_categories,applied_vendor_credits,company,accounting_period",
+    PaymentsTrackingCategoriesAppliedVendorCreditsCompanyEmployee:
+        "payments,tracking_categories,applied_vendor_credits,company,employee",
+    PaymentsTrackingCategoriesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedVendorCreditsContact:
+        "payments,tracking_categories,applied_vendor_credits,contact",
+    PaymentsTrackingCategoriesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,tracking_categories,applied_vendor_credits,contact,accounting_period",
+    PaymentsTrackingCategoriesAppliedVendorCreditsContactCompany:
+        "payments,tracking_categories,applied_vendor_credits,contact,company",
+    PaymentsTrackingCategoriesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,tracking_categories,applied_vendor_credits,contact,company,employee",
+    PaymentsTrackingCategoriesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedVendorCreditsContactEmployee:
+        "payments,tracking_categories,applied_vendor_credits,contact,employee",
+    PaymentsTrackingCategoriesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsTrackingCategoriesAppliedVendorCreditsEmployee:
+        "payments,tracking_categories,applied_vendor_credits,employee",
+    PaymentsTrackingCategoriesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,tracking_categories,applied_vendor_credits,employee,accounting_period",
     PaymentsTrackingCategoriesCompany: "payments,tracking_categories,company",
     PaymentsTrackingCategoriesCompanyAccountingPeriod: "payments,tracking_categories,company,accounting_period",
+    PaymentsTrackingCategoriesCompanyEmployee: "payments,tracking_categories,company,employee",
+    PaymentsTrackingCategoriesCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,company,employee,accounting_period",
     PaymentsTrackingCategoriesContact: "payments,tracking_categories,contact",
     PaymentsTrackingCategoriesContactAccountingPeriod: "payments,tracking_categories,contact,accounting_period",
     PaymentsTrackingCategoriesContactCompany: "payments,tracking_categories,contact,company",
     PaymentsTrackingCategoriesContactCompanyAccountingPeriod:
         "payments,tracking_categories,contact,company,accounting_period",
+    PaymentsTrackingCategoriesContactCompanyEmployee: "payments,tracking_categories,contact,company,employee",
+    PaymentsTrackingCategoriesContactCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,contact,company,employee,accounting_period",
+    PaymentsTrackingCategoriesContactEmployee: "payments,tracking_categories,contact,employee",
+    PaymentsTrackingCategoriesContactEmployeeAccountingPeriod:
+        "payments,tracking_categories,contact,employee,accounting_period",
+    PaymentsTrackingCategoriesEmployee: "payments,tracking_categories,employee",
+    PaymentsTrackingCategoriesEmployeeAccountingPeriod: "payments,tracking_categories,employee,accounting_period",
     PaymentsTrackingCategoriesPurchaseOrders: "payments,tracking_categories,purchase_orders",
     PaymentsTrackingCategoriesPurchaseOrdersAccountingPeriod:
         "payments,tracking_categories,purchase_orders,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotes:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompany:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,company",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContact:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,contact",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompany:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployee:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCredits:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompany:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,company",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContact:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployee:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period",
     PaymentsTrackingCategoriesPurchaseOrdersCompany: "payments,tracking_categories,purchase_orders,company",
     PaymentsTrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
         "payments,tracking_categories,purchase_orders,company,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersCompanyEmployee:
+        "payments,tracking_categories,purchase_orders,company,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,company,employee,accounting_period",
     PaymentsTrackingCategoriesPurchaseOrdersContact: "payments,tracking_categories,purchase_orders,contact",
     PaymentsTrackingCategoriesPurchaseOrdersContactAccountingPeriod:
         "payments,tracking_categories,purchase_orders,contact,accounting_period",
@@ -589,31 +5363,328 @@ export const InvoicesRetrieveRequestExpand = {
         "payments,tracking_categories,purchase_orders,contact,company",
     PaymentsTrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
         "payments,tracking_categories,purchase_orders,contact,company,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersContactCompanyEmployee:
+        "payments,tracking_categories,purchase_orders,contact,company,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersContactEmployee:
+        "payments,tracking_categories,purchase_orders,contact,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersContactEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,contact,employee,accounting_period",
+    PaymentsTrackingCategoriesPurchaseOrdersEmployee: "payments,tracking_categories,purchase_orders,employee",
+    PaymentsTrackingCategoriesPurchaseOrdersEmployeeAccountingPeriod:
+        "payments,tracking_categories,purchase_orders,employee,accounting_period",
     PurchaseOrders: "purchase_orders",
     PurchaseOrdersAccountingPeriod: "purchase_orders,accounting_period",
+    PurchaseOrdersAppliedCreditNotes: "purchase_orders,applied_credit_notes",
+    PurchaseOrdersAppliedCreditNotesAccountingPeriod: "purchase_orders,applied_credit_notes,accounting_period",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCredits: "purchase_orders,applied_credit_notes,applied_vendor_credits",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    PurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    PurchaseOrdersAppliedCreditNotesCompany: "purchase_orders,applied_credit_notes,company",
+    PurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "purchase_orders,applied_credit_notes,company,accounting_period",
+    PurchaseOrdersAppliedCreditNotesCompanyEmployee: "purchase_orders,applied_credit_notes,company,employee",
+    PurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    PurchaseOrdersAppliedCreditNotesContact: "purchase_orders,applied_credit_notes,contact",
+    PurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "purchase_orders,applied_credit_notes,contact,accounting_period",
+    PurchaseOrdersAppliedCreditNotesContactCompany: "purchase_orders,applied_credit_notes,contact,company",
+    PurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    PurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "purchase_orders,applied_credit_notes,contact,company,employee",
+    PurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    PurchaseOrdersAppliedCreditNotesContactEmployee: "purchase_orders,applied_credit_notes,contact,employee",
+    PurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    PurchaseOrdersAppliedCreditNotesEmployee: "purchase_orders,applied_credit_notes,employee",
+    PurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "purchase_orders,applied_credit_notes,employee,accounting_period",
+    PurchaseOrdersAppliedVendorCredits: "purchase_orders,applied_vendor_credits",
+    PurchaseOrdersAppliedVendorCreditsAccountingPeriod: "purchase_orders,applied_vendor_credits,accounting_period",
+    PurchaseOrdersAppliedVendorCreditsCompany: "purchase_orders,applied_vendor_credits,company",
+    PurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "purchase_orders,applied_vendor_credits,company,accounting_period",
+    PurchaseOrdersAppliedVendorCreditsCompanyEmployee: "purchase_orders,applied_vendor_credits,company,employee",
+    PurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    PurchaseOrdersAppliedVendorCreditsContact: "purchase_orders,applied_vendor_credits,contact",
+    PurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "purchase_orders,applied_vendor_credits,contact,accounting_period",
+    PurchaseOrdersAppliedVendorCreditsContactCompany: "purchase_orders,applied_vendor_credits,contact,company",
+    PurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    PurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "purchase_orders,applied_vendor_credits,contact,company,employee",
+    PurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    PurchaseOrdersAppliedVendorCreditsContactEmployee: "purchase_orders,applied_vendor_credits,contact,employee",
+    PurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    PurchaseOrdersAppliedVendorCreditsEmployee: "purchase_orders,applied_vendor_credits,employee",
+    PurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "purchase_orders,applied_vendor_credits,employee,accounting_period",
     PurchaseOrdersCompany: "purchase_orders,company",
     PurchaseOrdersCompanyAccountingPeriod: "purchase_orders,company,accounting_period",
+    PurchaseOrdersCompanyEmployee: "purchase_orders,company,employee",
+    PurchaseOrdersCompanyEmployeeAccountingPeriod: "purchase_orders,company,employee,accounting_period",
     PurchaseOrdersContact: "purchase_orders,contact",
     PurchaseOrdersContactAccountingPeriod: "purchase_orders,contact,accounting_period",
     PurchaseOrdersContactCompany: "purchase_orders,contact,company",
     PurchaseOrdersContactCompanyAccountingPeriod: "purchase_orders,contact,company,accounting_period",
+    PurchaseOrdersContactCompanyEmployee: "purchase_orders,contact,company,employee",
+    PurchaseOrdersContactCompanyEmployeeAccountingPeriod: "purchase_orders,contact,company,employee,accounting_period",
+    PurchaseOrdersContactEmployee: "purchase_orders,contact,employee",
+    PurchaseOrdersContactEmployeeAccountingPeriod: "purchase_orders,contact,employee,accounting_period",
+    PurchaseOrdersEmployee: "purchase_orders,employee",
+    PurchaseOrdersEmployeeAccountingPeriod: "purchase_orders,employee,accounting_period",
     TrackingCategories: "tracking_categories",
     TrackingCategoriesAccountingPeriod: "tracking_categories,accounting_period",
+    TrackingCategoriesAppliedCreditNotes: "tracking_categories,applied_credit_notes",
+    TrackingCategoriesAppliedCreditNotesAccountingPeriod: "tracking_categories,applied_credit_notes,accounting_period",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCredits:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompany:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,company",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContact:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,contact",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,employee",
+    TrackingCategoriesAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    TrackingCategoriesAppliedCreditNotesCompany: "tracking_categories,applied_credit_notes,company",
+    TrackingCategoriesAppliedCreditNotesCompanyAccountingPeriod:
+        "tracking_categories,applied_credit_notes,company,accounting_period",
+    TrackingCategoriesAppliedCreditNotesCompanyEmployee: "tracking_categories,applied_credit_notes,company,employee",
+    TrackingCategoriesAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "tracking_categories,applied_credit_notes,company,employee,accounting_period",
+    TrackingCategoriesAppliedCreditNotesContact: "tracking_categories,applied_credit_notes,contact",
+    TrackingCategoriesAppliedCreditNotesContactAccountingPeriod:
+        "tracking_categories,applied_credit_notes,contact,accounting_period",
+    TrackingCategoriesAppliedCreditNotesContactCompany: "tracking_categories,applied_credit_notes,contact,company",
+    TrackingCategoriesAppliedCreditNotesContactCompanyAccountingPeriod:
+        "tracking_categories,applied_credit_notes,contact,company,accounting_period",
+    TrackingCategoriesAppliedCreditNotesContactCompanyEmployee:
+        "tracking_categories,applied_credit_notes,contact,company,employee",
+    TrackingCategoriesAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "tracking_categories,applied_credit_notes,contact,company,employee,accounting_period",
+    TrackingCategoriesAppliedCreditNotesContactEmployee: "tracking_categories,applied_credit_notes,contact,employee",
+    TrackingCategoriesAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "tracking_categories,applied_credit_notes,contact,employee,accounting_period",
+    TrackingCategoriesAppliedCreditNotesEmployee: "tracking_categories,applied_credit_notes,employee",
+    TrackingCategoriesAppliedCreditNotesEmployeeAccountingPeriod:
+        "tracking_categories,applied_credit_notes,employee,accounting_period",
+    TrackingCategoriesAppliedVendorCredits: "tracking_categories,applied_vendor_credits",
+    TrackingCategoriesAppliedVendorCreditsAccountingPeriod:
+        "tracking_categories,applied_vendor_credits,accounting_period",
+    TrackingCategoriesAppliedVendorCreditsCompany: "tracking_categories,applied_vendor_credits,company",
+    TrackingCategoriesAppliedVendorCreditsCompanyAccountingPeriod:
+        "tracking_categories,applied_vendor_credits,company,accounting_period",
+    TrackingCategoriesAppliedVendorCreditsCompanyEmployee:
+        "tracking_categories,applied_vendor_credits,company,employee",
+    TrackingCategoriesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "tracking_categories,applied_vendor_credits,company,employee,accounting_period",
+    TrackingCategoriesAppliedVendorCreditsContact: "tracking_categories,applied_vendor_credits,contact",
+    TrackingCategoriesAppliedVendorCreditsContactAccountingPeriod:
+        "tracking_categories,applied_vendor_credits,contact,accounting_period",
+    TrackingCategoriesAppliedVendorCreditsContactCompany: "tracking_categories,applied_vendor_credits,contact,company",
+    TrackingCategoriesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "tracking_categories,applied_vendor_credits,contact,company,accounting_period",
+    TrackingCategoriesAppliedVendorCreditsContactCompanyEmployee:
+        "tracking_categories,applied_vendor_credits,contact,company,employee",
+    TrackingCategoriesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period",
+    TrackingCategoriesAppliedVendorCreditsContactEmployee:
+        "tracking_categories,applied_vendor_credits,contact,employee",
+    TrackingCategoriesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "tracking_categories,applied_vendor_credits,contact,employee,accounting_period",
+    TrackingCategoriesAppliedVendorCreditsEmployee: "tracking_categories,applied_vendor_credits,employee",
+    TrackingCategoriesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "tracking_categories,applied_vendor_credits,employee,accounting_period",
     TrackingCategoriesCompany: "tracking_categories,company",
     TrackingCategoriesCompanyAccountingPeriod: "tracking_categories,company,accounting_period",
+    TrackingCategoriesCompanyEmployee: "tracking_categories,company,employee",
+    TrackingCategoriesCompanyEmployeeAccountingPeriod: "tracking_categories,company,employee,accounting_period",
     TrackingCategoriesContact: "tracking_categories,contact",
     TrackingCategoriesContactAccountingPeriod: "tracking_categories,contact,accounting_period",
     TrackingCategoriesContactCompany: "tracking_categories,contact,company",
     TrackingCategoriesContactCompanyAccountingPeriod: "tracking_categories,contact,company,accounting_period",
+    TrackingCategoriesContactCompanyEmployee: "tracking_categories,contact,company,employee",
+    TrackingCategoriesContactCompanyEmployeeAccountingPeriod:
+        "tracking_categories,contact,company,employee,accounting_period",
+    TrackingCategoriesContactEmployee: "tracking_categories,contact,employee",
+    TrackingCategoriesContactEmployeeAccountingPeriod: "tracking_categories,contact,employee,accounting_period",
+    TrackingCategoriesEmployee: "tracking_categories,employee",
+    TrackingCategoriesEmployeeAccountingPeriod: "tracking_categories,employee,accounting_period",
     TrackingCategoriesPurchaseOrders: "tracking_categories,purchase_orders",
     TrackingCategoriesPurchaseOrdersAccountingPeriod: "tracking_categories,purchase_orders,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotes: "tracking_categories,purchase_orders,applied_credit_notes",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCredits:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompany:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployee:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContact:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompany:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployee:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployee:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployee:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesAppliedVendorCreditsEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesCompany:
+        "tracking_categories,purchase_orders,applied_credit_notes,company",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployee:
+        "tracking_categories,purchase_orders,applied_credit_notes,company,employee",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesCompanyEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesContact:
+        "tracking_categories,purchase_orders,applied_credit_notes,contact",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesContactAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompany:
+        "tracking_categories,purchase_orders,applied_credit_notes,contact,company",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployee:
+        "tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesContactCompanyEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployee:
+        "tracking_categories,purchase_orders,applied_credit_notes,contact,employee",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesContactEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployee:
+        "tracking_categories,purchase_orders,applied_credit_notes,employee",
+    TrackingCategoriesPurchaseOrdersAppliedCreditNotesEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCredits: "tracking_categories,purchase_orders,applied_vendor_credits",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_vendor_credits,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompany:
+        "tracking_categories,purchase_orders,applied_vendor_credits,company",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployee:
+        "tracking_categories,purchase_orders,applied_vendor_credits,company,employee",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsCompanyEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsContact:
+        "tracking_categories,purchase_orders,applied_vendor_credits,contact",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompany:
+        "tracking_categories,purchase_orders,applied_vendor_credits,contact,company",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployee:
+        "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactCompanyEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployee:
+        "tracking_categories,purchase_orders,applied_vendor_credits,contact,employee",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsContactEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployee:
+        "tracking_categories,purchase_orders,applied_vendor_credits,employee",
+    TrackingCategoriesPurchaseOrdersAppliedVendorCreditsEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period",
     TrackingCategoriesPurchaseOrdersCompany: "tracking_categories,purchase_orders,company",
     TrackingCategoriesPurchaseOrdersCompanyAccountingPeriod:
         "tracking_categories,purchase_orders,company,accounting_period",
+    TrackingCategoriesPurchaseOrdersCompanyEmployee: "tracking_categories,purchase_orders,company,employee",
+    TrackingCategoriesPurchaseOrdersCompanyEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,company,employee,accounting_period",
     TrackingCategoriesPurchaseOrdersContact: "tracking_categories,purchase_orders,contact",
     TrackingCategoriesPurchaseOrdersContactAccountingPeriod:
         "tracking_categories,purchase_orders,contact,accounting_period",
     TrackingCategoriesPurchaseOrdersContactCompany: "tracking_categories,purchase_orders,contact,company",
     TrackingCategoriesPurchaseOrdersContactCompanyAccountingPeriod:
         "tracking_categories,purchase_orders,contact,company,accounting_period",
+    TrackingCategoriesPurchaseOrdersContactCompanyEmployee:
+        "tracking_categories,purchase_orders,contact,company,employee",
+    TrackingCategoriesPurchaseOrdersContactCompanyEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,contact,company,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersContactEmployee: "tracking_categories,purchase_orders,contact,employee",
+    TrackingCategoriesPurchaseOrdersContactEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,contact,employee,accounting_period",
+    TrackingCategoriesPurchaseOrdersEmployee: "tracking_categories,purchase_orders,employee",
+    TrackingCategoriesPurchaseOrdersEmployeeAccountingPeriod:
+        "tracking_categories,purchase_orders,employee,accounting_period",
 } as const;

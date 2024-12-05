@@ -9,6 +9,7 @@ import { ExpenseAccount } from "./ExpenseAccount";
 import { ExpenseContact } from "./ExpenseContact";
 import { ExpenseCurrency } from "./ExpenseCurrency";
 import { ExpenseCompany } from "./ExpenseCompany";
+import { ExpenseEmployee } from "./ExpenseEmployee";
 import { ExpenseLine } from "./ExpenseLine";
 import { ExpenseTrackingCategoriesItem } from "./ExpenseTrackingCategoriesItem";
 import { ExpenseAccountingPeriod } from "./ExpenseAccountingPeriod";
@@ -32,6 +33,7 @@ export const Expense: core.serialization.ObjectSchema<serializers.accounting.Exp
         exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
         inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
         company: ExpenseCompany.optional(),
+        employee: ExpenseEmployee.optional(),
         memo: core.serialization.string().optional(),
         lines: core.serialization.list(ExpenseLine).optional(),
         trackingCategories: core.serialization.property(
@@ -65,6 +67,7 @@ export declare namespace Expense {
         exchange_rate?: string | null;
         inclusive_of_tax?: boolean | null;
         company?: ExpenseCompany.Raw | null;
+        employee?: ExpenseEmployee.Raw | null;
         memo?: string | null;
         lines?: ExpenseLine.Raw[] | null;
         tracking_categories?: (ExpenseTrackingCategoriesItem.Raw | null | undefined)[] | null;

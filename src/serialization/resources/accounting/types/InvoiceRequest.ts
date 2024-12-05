@@ -7,6 +7,7 @@ import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { InvoiceRequestType } from "./InvoiceRequestType";
 import { InvoiceRequestContact } from "./InvoiceRequestContact";
+import { InvoiceRequestEmployee } from "./InvoiceRequestEmployee";
 import { InvoiceRequestStatus } from "./InvoiceRequestStatus";
 import { InvoiceRequestCompany } from "./InvoiceRequestCompany";
 import { InvoiceRequestCurrency } from "./InvoiceRequestCurrency";
@@ -26,6 +27,7 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
     issueDate: core.serialization.property("issue_date", core.serialization.date().optional()),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     paidOnDate: core.serialization.property("paid_on_date", core.serialization.date().optional()),
+    employee: InvoiceRequestEmployee.optional(),
     memo: core.serialization.string().optional(),
     status: InvoiceRequestStatus.optional(),
     company: InvoiceRequestCompany.optional(),
@@ -66,6 +68,7 @@ export declare namespace InvoiceRequest {
         issue_date?: string | null;
         due_date?: string | null;
         paid_on_date?: string | null;
+        employee?: InvoiceRequestEmployee.Raw | null;
         memo?: string | null;
         status?: InvoiceRequestStatus.Raw | null;
         company?: InvoiceRequestCompany.Raw | null;

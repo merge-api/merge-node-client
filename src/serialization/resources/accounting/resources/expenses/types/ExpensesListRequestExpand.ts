@@ -14,33 +14,65 @@ export const ExpensesListRequestExpand: core.serialization.Schema<
     "account,accounting_period",
     "account,company",
     "account,company,accounting_period",
+    "account,company,employee",
+    "account,company,employee,accounting_period",
     "account,contact",
     "account,contact,accounting_period",
     "account,contact,company",
     "account,contact,company,accounting_period",
+    "account,contact,company,employee",
+    "account,contact,company,employee,accounting_period",
+    "account,contact,employee",
+    "account,contact,employee,accounting_period",
+    "account,employee",
+    "account,employee,accounting_period",
     "accounting_period",
     "company",
     "company,accounting_period",
+    "company,employee",
+    "company,employee,accounting_period",
     "contact",
     "contact,accounting_period",
     "contact,company",
     "contact,company,accounting_period",
+    "contact,company,employee",
+    "contact,company,employee,accounting_period",
+    "contact,employee",
+    "contact,employee,accounting_period",
+    "employee",
+    "employee,accounting_period",
     "tracking_categories",
     "tracking_categories,account",
     "tracking_categories,account,accounting_period",
     "tracking_categories,account,company",
     "tracking_categories,account,company,accounting_period",
+    "tracking_categories,account,company,employee",
+    "tracking_categories,account,company,employee,accounting_period",
     "tracking_categories,account,contact",
     "tracking_categories,account,contact,accounting_period",
     "tracking_categories,account,contact,company",
     "tracking_categories,account,contact,company,accounting_period",
+    "tracking_categories,account,contact,company,employee",
+    "tracking_categories,account,contact,company,employee,accounting_period",
+    "tracking_categories,account,contact,employee",
+    "tracking_categories,account,contact,employee,accounting_period",
+    "tracking_categories,account,employee",
+    "tracking_categories,account,employee,accounting_period",
     "tracking_categories,accounting_period",
     "tracking_categories,company",
     "tracking_categories,company,accounting_period",
+    "tracking_categories,company,employee",
+    "tracking_categories,company,employee,accounting_period",
     "tracking_categories,contact",
     "tracking_categories,contact,accounting_period",
     "tracking_categories,contact,company",
     "tracking_categories,contact,company,accounting_period",
+    "tracking_categories,contact,company,employee",
+    "tracking_categories,contact,company,employee,accounting_period",
+    "tracking_categories,contact,employee",
+    "tracking_categories,contact,employee,accounting_period",
+    "tracking_categories,employee",
+    "tracking_categories,employee,accounting_period",
 ]);
 
 export declare namespace ExpensesListRequestExpand {
@@ -49,31 +81,63 @@ export declare namespace ExpensesListRequestExpand {
         | "account,accounting_period"
         | "account,company"
         | "account,company,accounting_period"
+        | "account,company,employee"
+        | "account,company,employee,accounting_period"
         | "account,contact"
         | "account,contact,accounting_period"
         | "account,contact,company"
         | "account,contact,company,accounting_period"
+        | "account,contact,company,employee"
+        | "account,contact,company,employee,accounting_period"
+        | "account,contact,employee"
+        | "account,contact,employee,accounting_period"
+        | "account,employee"
+        | "account,employee,accounting_period"
         | "accounting_period"
         | "company"
         | "company,accounting_period"
+        | "company,employee"
+        | "company,employee,accounting_period"
         | "contact"
         | "contact,accounting_period"
         | "contact,company"
         | "contact,company,accounting_period"
+        | "contact,company,employee"
+        | "contact,company,employee,accounting_period"
+        | "contact,employee"
+        | "contact,employee,accounting_period"
+        | "employee"
+        | "employee,accounting_period"
         | "tracking_categories"
         | "tracking_categories,account"
         | "tracking_categories,account,accounting_period"
         | "tracking_categories,account,company"
         | "tracking_categories,account,company,accounting_period"
+        | "tracking_categories,account,company,employee"
+        | "tracking_categories,account,company,employee,accounting_period"
         | "tracking_categories,account,contact"
         | "tracking_categories,account,contact,accounting_period"
         | "tracking_categories,account,contact,company"
         | "tracking_categories,account,contact,company,accounting_period"
+        | "tracking_categories,account,contact,company,employee"
+        | "tracking_categories,account,contact,company,employee,accounting_period"
+        | "tracking_categories,account,contact,employee"
+        | "tracking_categories,account,contact,employee,accounting_period"
+        | "tracking_categories,account,employee"
+        | "tracking_categories,account,employee,accounting_period"
         | "tracking_categories,accounting_period"
         | "tracking_categories,company"
         | "tracking_categories,company,accounting_period"
+        | "tracking_categories,company,employee"
+        | "tracking_categories,company,employee,accounting_period"
         | "tracking_categories,contact"
         | "tracking_categories,contact,accounting_period"
         | "tracking_categories,contact,company"
-        | "tracking_categories,contact,company,accounting_period";
+        | "tracking_categories,contact,company,accounting_period"
+        | "tracking_categories,contact,company,employee"
+        | "tracking_categories,contact,company,employee,accounting_period"
+        | "tracking_categories,contact,employee"
+        | "tracking_categories,contact,employee,accounting_period"
+        | "tracking_categories,employee"
+        | "tracking_categories,employee,accounting_period";
 }

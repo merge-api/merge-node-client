@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
+import { InvoiceLineItemRequestEmployee } from "./InvoiceLineItemRequestEmployee";
 import { InvoiceLineItemRequestCurrency } from "./InvoiceLineItemRequestCurrency";
 import { InvoiceLineItemRequestItem } from "./InvoiceLineItemRequestItem";
 import { InvoiceLineItemRequestAccount } from "./InvoiceLineItemRequestAccount";
@@ -21,6 +22,7 @@ export const InvoiceLineItemRequest: core.serialization.ObjectSchema<
     unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
     quantity: core.serialization.number().optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
+    employee: InvoiceLineItemRequestEmployee.optional(),
     currency: InvoiceLineItemRequestCurrency.optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     item: InvoiceLineItemRequestItem.optional(),
@@ -53,6 +55,7 @@ export declare namespace InvoiceLineItemRequest {
         unit_price?: number | null;
         quantity?: number | null;
         total_amount?: number | null;
+        employee?: InvoiceLineItemRequestEmployee.Raw | null;
         currency?: InvoiceLineItemRequestCurrency.Raw | null;
         exchange_rate?: string | null;
         item?: InvoiceLineItemRequestItem.Raw | null;

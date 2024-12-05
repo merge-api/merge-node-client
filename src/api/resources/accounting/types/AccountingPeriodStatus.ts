@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type AccountingPeriodStatus = Merge.accounting.AccountingPeriodStatusEnum | string;
+export type AccountingPeriodStatus = Merge.accounting.Status895Enum | string;

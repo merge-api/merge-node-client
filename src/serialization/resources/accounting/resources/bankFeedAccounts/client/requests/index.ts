@@ -1,0 +1,1 @@
+export { BankFeedAccountEndpointRequest } from "./BankFeedAccountEndpointRequest";
