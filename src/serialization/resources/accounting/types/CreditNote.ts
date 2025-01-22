@@ -46,7 +46,6 @@ export const CreditNote: core.serialization.ObjectSchema<
         "applied_payments",
         core.serialization.list(CreditNoteAppliedPaymentsItem.optional()).optional()
     ),
-    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     accountingPeriod: core.serialization.property("accounting_period", CreditNoteAccountingPeriod.optional()),
     appliedToLines: core.serialization.property(
         "applied_to_lines",
@@ -54,6 +53,7 @@ export const CreditNote: core.serialization.ObjectSchema<
             .list(core.serialization.lazyObject(() => serializers.accounting.CreditNoteApplyLineForCreditNote))
             .optional()
     ),
+    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -83,9 +83,9 @@ export declare namespace CreditNote {
         remote_updated_at?: string | null;
         payments?: (CreditNotePaymentsItem.Raw | null | undefined)[] | null;
         applied_payments?: (CreditNoteAppliedPaymentsItem.Raw | null | undefined)[] | null;
-        remote_was_deleted?: boolean | null;
         accounting_period?: CreditNoteAccountingPeriod.Raw | null;
         applied_to_lines?: serializers.accounting.CreditNoteApplyLineForCreditNote.Raw[] | null;
+        remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: RemoteData.Raw[] | null;
     }

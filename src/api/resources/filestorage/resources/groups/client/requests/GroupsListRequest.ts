@@ -20,6 +20,10 @@ export interface GroupsListRequest {
      */
     cursor?: string;
     /**
+     * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    expand?: "child_groups";
+    /**
      * Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/).
      */
     includeDeletedData?: boolean;

@@ -368,12 +368,12 @@ export interface CreditNote {
     payments?: (Merge.accounting.CreditNotePaymentsItem | undefined)[];
     /** A list of the Payment Applied to Lines common models related to a given Invoice, Credit Note, or Journal Entry. */
     appliedPayments?: (Merge.accounting.CreditNoteAppliedPaymentsItem | undefined)[];
-    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
-    remoteWasDeleted?: boolean;
     /** The accounting period that the CreditNote was generated in. */
     accountingPeriod?: Merge.accounting.CreditNoteAccountingPeriod;
     /** A list of the CreditNote Applied to Lines common models related to a given Credit Note */
     appliedToLines?: Merge.accounting.CreditNoteApplyLineForCreditNote[];
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
+    remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.accounting.RemoteData[];
 }

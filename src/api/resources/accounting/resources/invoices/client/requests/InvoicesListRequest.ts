@@ -66,6 +66,10 @@ export interface InvoicesListRequest {
      */
     modifiedBefore?: Date;
     /**
+     * If provided, will only return Invoices with this number.
+     */
+    number?: string;
+    /**
      * Number of results to return per page.
      */
     pageSize?: number;
@@ -82,7 +86,18 @@ export interface InvoicesListRequest {
      */
     showEnumOrigins?: "type";
     /**
-     * If provided, will only return Invoices with this type
+     * If provided, will only return Invoices with this status.
+     *
+     * - `PAID` - PAID
+     * - `DRAFT` - DRAFT
+     * - `SUBMITTED` - SUBMITTED
+     * - `PARTIALLY_PAID` - PARTIALLY_PAID
+     * - `OPEN` - OPEN
+     * - `VOID` - VOID
+     */
+    status?: Merge.accounting.InvoicesListRequestStatus;
+    /**
+     * If provided, will only return Invoices with this type.
      *
      * - `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
      * - `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE

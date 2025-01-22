@@ -5,6 +5,6 @@
 import * as Merge from "../../../index";
 
 /**
- * The company the tracking category belongs to.
+ * The company the GeneralLedgerTransaction belongs to.
  */
 export type TrackingCategoryCompany = string | Merge.accounting.CompanyInfo;

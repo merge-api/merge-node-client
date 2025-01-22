@@ -9,8 +9,7 @@ import * as Merge from "../../../index";
  *
  * ### Description
  *
- * The `Collection` object is used to represent collections of tickets. Collections may include other collections as
- * sub collections.
+ * The `Collection` object is used to represent one or more `Tickets`. There can be a hierarchy of `Collections`, in which a sub-collection belongs to a parent-collection.
  *
  * ### Usage Example
  *
@@ -37,6 +36,7 @@ export interface Collection {
     collectionType?: Merge.ticketing.CollectionCollectionType;
     /** The parent collection for this collection. */
     parentCollection?: Merge.ticketing.CollectionParentCollection;
+    teams?: (Merge.ticketing.CollectionTeamsItem | undefined)[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     /**

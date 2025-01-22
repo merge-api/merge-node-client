@@ -10,13 +10,19 @@ export const FieldPermissionDeserializer: core.serialization.ObjectSchema<
     serializers.ats.FieldPermissionDeserializer.Raw,
     Merge.ats.FieldPermissionDeserializer
 > = core.serialization.object({
-    enabled: core.serialization.list(core.serialization.unknown()).optional(),
-    disabled: core.serialization.list(core.serialization.unknown()).optional(),
+    enabledFields: core.serialization.property(
+        "enabled_fields",
+        core.serialization.list(core.serialization.unknown()).optional()
+    ),
+    disabledFields: core.serialization.property(
+        "disabled_fields",
+        core.serialization.list(core.serialization.unknown()).optional()
+    ),
 });
 
 export declare namespace FieldPermissionDeserializer {
     interface Raw {
-        enabled?: unknown[] | null;
-        disabled?: unknown[] | null;
+        enabled_fields?: unknown[] | null;
+        disabled_fields?: unknown[] | null;
     }
 }

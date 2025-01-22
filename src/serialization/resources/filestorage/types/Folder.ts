@@ -7,6 +7,7 @@ import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { FolderDrive } from "./FolderDrive";
 import { FolderPermissions } from "./FolderPermissions";
+import { RemoteData } from "./RemoteData";
 
 export const Folder: core.serialization.ObjectSchema<serializers.filestorage.Folder.Raw, Merge.filestorage.Folder> =
     core.serialization.object({
@@ -31,12 +32,7 @@ export const Folder: core.serialization.ObjectSchema<serializers.filestorage.Fol
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
         ),
-        remoteData: core.serialization.property(
-            "remote_data",
-            core.serialization
-                .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional())
-                .optional()
-        ),
+        remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace Folder {
@@ -56,6 +52,6 @@ export declare namespace Folder {
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
-        remote_data?: (Record<string, unknown> | null | undefined)[] | null;
+        remote_data?: RemoteData.Raw[] | null;
     }
 }

@@ -28,11 +28,15 @@ export interface TimesheetEntriesListRequest {
     /**
      * If provided, will only return timesheet entries ended after this datetime.
      */
-    endedAfter?: string;
+    endedAfter?: Date;
     /**
      * If provided, will only return timesheet entries ended before this datetime.
      */
-    endedBefore?: string;
+    endedBefore?: Date;
+    /**
+     * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    expand?: "employee";
     /**
      * Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/).
      */
@@ -68,9 +72,9 @@ export interface TimesheetEntriesListRequest {
     /**
      * If provided, will only return timesheet entries started after this datetime.
      */
-    startedAfter?: string;
+    startedAfter?: Date;
     /**
      * If provided, will only return timesheet entries started before this datetime.
      */
-    startedBefore?: string;
+    startedBefore?: Date;
 }

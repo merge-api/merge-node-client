@@ -52,6 +52,7 @@ export class Groups {
             createdAfter,
             createdBefore,
             cursor,
+            expand,
             includeDeletedData,
             includeRemoteData,
             includeShellData,
@@ -71,6 +72,10 @@ export class Groups {
 
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
+        }
+
+        if (expand != null) {
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
@@ -115,8 +120,8 @@ export class Groups {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -175,8 +180,12 @@ export class Groups {
         request: Merge.filestorage.GroupsRetrieveRequest = {},
         requestOptions?: Groups.RequestOptions
     ): Promise<Merge.filestorage.Group> {
-        const { includeRemoteData } = request;
+        const { expand, includeRemoteData } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (expand != null) {
+            _queryParams["expand"] = expand;
+        }
+
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
@@ -195,8 +204,8 @@ export class Groups {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

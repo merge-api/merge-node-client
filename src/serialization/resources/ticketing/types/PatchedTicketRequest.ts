@@ -15,6 +15,10 @@ export const PatchedTicketRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string().optional(),
     assignees: core.serialization.list(core.serialization.string().optional()).optional(),
+    assignedTeams: core.serialization.property(
+        "assigned_teams",
+        core.serialization.list(core.serialization.string().optional()).optional()
+    ),
     creator: core.serialization.string().optional(),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     status: PatchedTicketRequestStatus.optional(),
@@ -25,6 +29,7 @@ export const PatchedTicketRequest: core.serialization.ObjectSchema<
     contact: core.serialization.string().optional(),
     parentTicket: core.serialization.property("parent_ticket", core.serialization.string().optional()),
     tags: core.serialization.list(core.serialization.string().optional()).optional(),
+    roles: core.serialization.list(core.serialization.string().optional()).optional(),
     completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
     ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
     priority: PatchedTicketRequestPriority.optional(),
@@ -43,6 +48,7 @@ export declare namespace PatchedTicketRequest {
     interface Raw {
         name?: string | null;
         assignees?: (string | null | undefined)[] | null;
+        assigned_teams?: (string | null | undefined)[] | null;
         creator?: string | null;
         due_date?: string | null;
         status?: PatchedTicketRequestStatus.Raw | null;
@@ -53,6 +59,7 @@ export declare namespace PatchedTicketRequest {
         contact?: string | null;
         parent_ticket?: string | null;
         tags?: (string | null | undefined)[] | null;
+        roles?: (string | null | undefined)[] | null;
         completed_at?: string | null;
         ticket_url?: string | null;
         priority?: PatchedTicketRequestPriority.Raw | null;

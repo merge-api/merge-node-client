@@ -9,7 +9,7 @@ import * as Merge from "../../../index";
  *
  * ### Description
  *
- * The `Employee` object is used to represent any person who has been employed by a company.
+ * The `Employee` object is used to represent any person who has been employed by a company. By default, it returns all employees. To filter for only active employees, set the `employment_status` query parameter to `ACTIVE`.
  *
  * ### Usage Example
  *

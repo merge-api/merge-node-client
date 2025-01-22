@@ -225,8 +225,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -309,8 +309,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -406,8 +406,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -492,8 +492,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -541,20 +541,20 @@ export class Tickets {
     }
 
     /**
-     * Returns a list of `User` objects.
+     * Returns a list of `Viewer` objects.
      *
-     * @param {string} parentId
-     * @param {Merge.ticketing.TicketsCollaboratorsListRequest} request
+     * @param {string} ticketId
+     * @param {Merge.ticketing.TicketsViewersListRequest} request
      * @param {Tickets.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.ticketing.tickets.collaboratorsList("parent_id")
+     *     await client.ticketing.tickets.viewersList("ticket_id")
      */
-    public async collaboratorsList(
-        parentId: string,
-        request: Merge.ticketing.TicketsCollaboratorsListRequest = {},
+    public async viewersList(
+        ticketId: string,
+        request: Merge.ticketing.TicketsViewersListRequest = {},
         requestOptions?: Tickets.RequestOptions
-    ): Promise<Merge.ticketing.PaginatedUserList> {
+    ): Promise<Merge.ticketing.PaginatedViewerList> {
         const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
@@ -584,7 +584,7 @@ export class Tickets {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/tickets/${encodeURIComponent(parentId)}/collaborators`
+                `ticketing/v1/tickets/${encodeURIComponent(ticketId)}/viewers`
             ),
             method: "GET",
             headers: {
@@ -595,8 +595,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -609,7 +609,7 @@ export class Tickets {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.PaginatedUserList.parseOrThrow(_response.body, {
+            return serializers.ticketing.PaginatedViewerList.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -633,7 +633,7 @@ export class Tickets {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/tickets/{parent_id}/collaborators."
+                    "Timeout exceeded when calling GET /ticketing/v1/tickets/{ticket_id}/viewers."
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -669,8 +669,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -738,8 +738,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -838,8 +838,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

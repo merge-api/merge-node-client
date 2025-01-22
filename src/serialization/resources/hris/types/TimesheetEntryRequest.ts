@@ -5,12 +5,13 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
+import { TimesheetEntryRequestEmployee } from "./TimesheetEntryRequestEmployee";
 
 export const TimesheetEntryRequest: core.serialization.ObjectSchema<
     serializers.hris.TimesheetEntryRequest.Raw,
     Merge.hris.TimesheetEntryRequest
 > = core.serialization.object({
-    employee: core.serialization.string().optional(),
+    employee: TimesheetEntryRequestEmployee.optional(),
     hoursWorked: core.serialization.property("hours_worked", core.serialization.number().optional()),
     startTime: core.serialization.property("start_time", core.serialization.date().optional()),
     endTime: core.serialization.property("end_time", core.serialization.date().optional()),
@@ -26,7 +27,7 @@ export const TimesheetEntryRequest: core.serialization.ObjectSchema<
 
 export declare namespace TimesheetEntryRequest {
     interface Raw {
-        employee?: string | null;
+        employee?: TimesheetEntryRequestEmployee.Raw | null;
         hours_worked?: number | null;
         start_time?: string | null;
         end_time?: string | null;

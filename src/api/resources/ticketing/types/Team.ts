@@ -9,7 +9,7 @@ import * as Merge from "../../../index";
  *
  * ### Description
  *
- * The `Team` object is used to represent a team within the company receiving the ticket.
+ * The `Team` object is used to represent one or more `Users` within the company receiving the ticket.
  *
  * ### Usage Example
  *

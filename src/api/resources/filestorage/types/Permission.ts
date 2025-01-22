@@ -23,9 +23,9 @@ export interface Permission {
     createdAt?: Date;
     /** The datetime that this object was modified by Merge. */
     modifiedAt?: Date;
-    /** The user that is granted this permission. */
+    /** The user that is granted this permission. This will only be populated if the type is `USER`. */
     user?: Merge.filestorage.PermissionUser;
-    /** The group that is granted this permission. */
+    /** The group that is granted this permission. This will only be populated if the type is `GROUP`. */
     group?: Merge.filestorage.PermissionGroup;
     /**
      * Denotes what type of people have access to the file.

@@ -11,7 +11,7 @@ import * as Merge from "../../../index";
  *
  * The `Employment` object is used to represent a job position at a company.
  *
- * Please note: When there is a change in pay or title, integrations with historical data will create new Employment objects while integrations without historical data will update existing ones.
+ * If an integration supports historical tracking of employments, it will be reflected in the data. If not, a new `Employment` object will be created whenever there is a change in job title or pay. The `effective_date` field should be used to order `Employment` objects, with the most recent date corresponding to the latest employment record for an employee.
  *
  * ### Usage Example
  *

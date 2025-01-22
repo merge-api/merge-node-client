@@ -128,13 +128,8 @@ export interface TicketsListRequest {
     showEnumOrigins?: Merge.ticketing.TicketsListRequestShowEnumOrigins;
     /**
      * If provided, will only return tickets of this status.
-     *
-     * - `OPEN` - OPEN
-     * - `CLOSED` - CLOSED
-     * - `IN_PROGRESS` - IN_PROGRESS
-     * - `ON_HOLD` - ON_HOLD
      */
-    status?: Merge.ticketing.TicketsListRequestStatus;
+    status?: string;
     /**
      * If provided, will only return tickets matching the tags; multiple tags can be separated by commas.
      */

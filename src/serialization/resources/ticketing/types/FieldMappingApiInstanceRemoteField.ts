@@ -11,8 +11,8 @@ export const FieldMappingApiInstanceRemoteField: core.serialization.ObjectSchema
     serializers.ticketing.FieldMappingApiInstanceRemoteField.Raw,
     Merge.ticketing.FieldMappingApiInstanceRemoteField
 > = core.serialization.object({
-    remoteKeyName: core.serialization.property("remote_key_name", core.serialization.string()),
-    schema: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    remoteKeyName: core.serialization.property("remote_key_name", core.serialization.string().optional()),
+    schema: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     remoteEndpointInfo: core.serialization.property(
         "remote_endpoint_info",
         FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo
@@ -21,8 +21,8 @@ export const FieldMappingApiInstanceRemoteField: core.serialization.ObjectSchema
 
 export declare namespace FieldMappingApiInstanceRemoteField {
     interface Raw {
-        remote_key_name: string;
-        schema: Record<string, unknown>;
+        remote_key_name?: string | null;
+        schema?: Record<string, unknown> | null;
         remote_endpoint_info: FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo.Raw;
     }
 }

@@ -5,13 +5,15 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { Group } from "./Group";
 
 export const PermissionRequestGroup: core.serialization.Schema<
     serializers.filestorage.PermissionRequestGroup.Raw,
     Merge.filestorage.PermissionRequestGroup
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), Group]);
+> = core.serialization.undiscriminatedUnion([
+    core.serialization.string(),
+    core.serialization.lazyObject(() => serializers.filestorage.Group),
+]);
 
 export declare namespace PermissionRequestGroup {
-    type Raw = string | Group.Raw;
+    type Raw = string | serializers.filestorage.Group.Raw;
 }

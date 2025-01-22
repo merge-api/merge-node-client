@@ -9,7 +9,7 @@ import * as Merge from "../../../index";
  *
  * ### Description
  *
- * The `Ticket` object is used to represent a ticket or a task within a system.
+ * The `Ticket` object is used to represent a ticket, issue, task or case.
  *
  * ### Usage Example
  *
@@ -18,7 +18,10 @@ import * as Merge from "../../../index";
 export interface TicketRequest {
     /** The ticket's name. */
     name?: string;
+    /** The individual `Users` who are assigned to this ticket. This does not include `Users` who just have view access to this ticket. */
     assignees?: (Merge.ticketing.TicketRequestAssigneesItem | undefined)[];
+    /** The `Teams` that are assigned to this ticket. This does not include `Teams` who just have view access to this ticket. */
+    assignedTeams?: (Merge.ticketing.TicketRequestAssignedTeamsItem | undefined)[];
     /** The user who created this ticket. */
     creator?: Merge.ticketing.TicketRequestCreator;
     /** The ticket's due date. */
@@ -34,6 +37,7 @@ export interface TicketRequest {
     status?: Merge.ticketing.TicketRequestStatus;
     /** The ticket’s description. HTML version of description is mapped if supported by the third-party platform. */
     description?: string;
+    /** The `Collections` that this `Ticket` is included in. */
     collections?: (Merge.ticketing.TicketRequestCollectionsItem | undefined)[];
     /** The sub category of the ticket within the 3rd party system. Examples include incident, task, subtask or to-do. */
     ticketType?: string;
@@ -45,6 +49,7 @@ export interface TicketRequest {
     parentTicket?: Merge.ticketing.TicketRequestParentTicket;
     attachments?: (Merge.ticketing.TicketRequestAttachmentsItem | undefined)[];
     tags?: (string | undefined)[];
+    roles?: (string | undefined)[];
     /** When the ticket was completed. */
     completedAt?: Date;
     /** The 3rd party url of the Ticket. */

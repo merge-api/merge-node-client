@@ -55,6 +55,7 @@ export class TimesheetEntries {
             employeeId,
             endedAfter,
             endedBefore,
+            expand,
             includeDeletedData,
             includeRemoteData,
             includeShellData,
@@ -84,11 +85,15 @@ export class TimesheetEntries {
         }
 
         if (endedAfter != null) {
-            _queryParams["ended_after"] = endedAfter;
+            _queryParams["ended_after"] = endedAfter.toISOString();
         }
 
         if (endedBefore != null) {
-            _queryParams["ended_before"] = endedBefore;
+            _queryParams["ended_before"] = endedBefore.toISOString();
+        }
+
+        if (expand != null) {
+            _queryParams["expand"] = expand;
         }
 
         if (includeDeletedData != null) {
@@ -124,11 +129,11 @@ export class TimesheetEntries {
         }
 
         if (startedAfter != null) {
-            _queryParams["started_after"] = startedAfter;
+            _queryParams["started_after"] = startedAfter.toISOString();
         }
 
         if (startedBefore != null) {
-            _queryParams["started_before"] = startedBefore;
+            _queryParams["started_before"] = startedBefore.toISOString();
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -145,8 +150,8 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -229,8 +234,8 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -292,8 +297,12 @@ export class TimesheetEntries {
         request: Merge.hris.TimesheetEntriesRetrieveRequest = {},
         requestOptions?: TimesheetEntries.RequestOptions
     ): Promise<Merge.hris.TimesheetEntry> {
-        const { includeRemoteData } = request;
+        const { expand, includeRemoteData } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (expand != null) {
+            _queryParams["expand"] = expand;
+        }
+
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
@@ -312,8 +321,8 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -382,8 +391,8 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

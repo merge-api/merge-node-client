@@ -63,10 +63,12 @@ export class Invoices {
             issueDateBefore,
             modifiedAfter,
             modifiedBefore,
+            number: number_,
             pageSize,
             remoteFields,
             remoteId,
             showEnumOrigins,
+            status,
             type: type_,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
@@ -126,6 +128,10 @@ export class Invoices {
             _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
+        if (number_ != null) {
+            _queryParams["number"] = number_;
+        }
+
         if (pageSize != null) {
             _queryParams["page_size"] = pageSize.toString();
         }
@@ -140,6 +146,10 @@ export class Invoices {
 
         if (showEnumOrigins != null) {
             _queryParams["show_enum_origins"] = showEnumOrigins;
+        }
+
+        if (status != null) {
+            _queryParams["status"] = status;
         }
 
         if (type_ != null) {
@@ -160,8 +170,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -207,6 +217,7 @@ export class Invoices {
 
     /**
      * Creates an `Invoice` object with the given values.
+     * Including a `PurchaseOrder` id in the `purchase_orders` property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
      *
      * @param {Merge.accounting.InvoiceEndpointRequest} request
      * @param {Invoices.RequestOptions} requestOptions - Request-specific configuration.
@@ -244,8 +255,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -341,8 +352,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -427,8 +438,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -529,8 +540,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -603,8 +614,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -672,8 +683,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -772,8 +783,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

@@ -52,6 +52,7 @@ export class Users {
             createdAfter,
             createdBefore,
             cursor,
+            email,
             includeDeletedData,
             includeRemoteData,
             includeRemoteFields,
@@ -72,6 +73,10 @@ export class Users {
 
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
+        }
+
+        if (email != null) {
+            _queryParams["email"] = email;
         }
 
         if (includeDeletedData != null) {
@@ -120,8 +125,8 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -204,8 +209,8 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -280,8 +285,8 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -386,8 +391,8 @@ export class Users {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.1",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.1",
+                "X-Fern-SDK-Version": "1.1.2",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

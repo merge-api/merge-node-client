@@ -10,6 +10,8 @@ export * as creditNotes from "./creditNotes";
 export * from "./creditNotes/types";
 export * as expenses from "./expenses";
 export * from "./expenses/types";
+export * as generalLedgerTransactions from "./generalLedgerTransactions";
+export * from "./generalLedgerTransactions/types";
 export * as invoices from "./invoices";
 export * from "./invoices/types";
 export * as issues from "./issues";

@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type PatchedPaymentRequestAppliedToLinesItem = string | Merge.accounting.PaymentLineItem;
+export type PatchedPaymentRequestAppliedToLinesItem = string | Merge.accounting.PaymentLineItemRequest;

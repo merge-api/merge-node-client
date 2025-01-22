@@ -5,13 +5,13 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { PaymentLineItem } from "./PaymentLineItem";
+import { PaymentLineItemRequest } from "./PaymentLineItemRequest";
 
 export const PatchedPaymentRequestAppliedToLinesItem: core.serialization.Schema<
     serializers.accounting.PatchedPaymentRequestAppliedToLinesItem.Raw,
     Merge.accounting.PatchedPaymentRequestAppliedToLinesItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), PaymentLineItem]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), PaymentLineItemRequest]);
 
 export declare namespace PatchedPaymentRequestAppliedToLinesItem {
-    type Raw = string | PaymentLineItem.Raw;
+    type Raw = string | PaymentLineItemRequest.Raw;
 }

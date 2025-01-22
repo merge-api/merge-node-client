@@ -16,6 +16,10 @@ import * as Merge from "../../../../../../index";
  *                     "WRITE": {
  *                         isEnabled: false
  *                     }
+ *                 },
+ *                 fieldPermissions: {
+ *                     enabledFields: ["avatar", "home_location"],
+ *                     disabledFields: ["work_location"]
  *                 }
  *             }, {
  *                 modelName: "Benefit",

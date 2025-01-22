@@ -310,7 +310,7 @@
  * - `ZWR` - Zimbabwean Dollar (2008)
  * - `ZWL` - Zimbabwean Dollar (2009)
  */
-export type CurrencyEnum =
+export type TransactionCurrencyEnum =
     | "XUA"
     | "AFN"
     | "AFA"
@@ -618,7 +618,7 @@ export type CurrencyEnum =
     | "ZWR"
     | "ZWL";
 
-export const CurrencyEnum = {
+export const TransactionCurrencyEnum = {
     Xua: "XUA",
     Afn: "AFN",
     Afa: "AFA",

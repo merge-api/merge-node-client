@@ -5,6 +5,6 @@
 import * as Merge from "../../../index";
 
 /**
- * The user that is granted this permission.
+ * The user that is granted this permission. This will only be populated if the type is `USER`.
  */
 export type PermissionUser = string | Merge.filestorage.User;

@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
+import { RemoteData } from "./RemoteData";
 
 export const Drive: core.serialization.ObjectSchema<serializers.filestorage.Drive.Raw, Merge.filestorage.Drive> =
     core.serialization.object({
@@ -20,12 +21,7 @@ export const Drive: core.serialization.ObjectSchema<serializers.filestorage.Driv
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
         ),
-        remoteData: core.serialization.property(
-            "remote_data",
-            core.serialization
-                .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional())
-                .optional()
-        ),
+        remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace Drive {
@@ -39,6 +35,6 @@ export declare namespace Drive {
         drive_url?: string | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
-        remote_data?: (Record<string, unknown> | null | undefined)[] | null;
+        remote_data?: RemoteData.Raw[] | null;
     }
 }
