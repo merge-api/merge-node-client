@@ -5,7 +5,7 @@
 import * as Merge from "../../../index";
 
 export interface FieldMappingApiInstanceRemoteField {
-    remoteKeyName: string;
-    schema: Record<string, unknown>;
+    remoteKeyName?: string;
+    schema?: Record<string, unknown>;
     remoteEndpointInfo: Merge.hris.FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo;
 }

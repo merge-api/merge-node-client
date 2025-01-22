@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
+import { RemoteData } from "./RemoteData";
 
 export const Group: core.serialization.ObjectSchema<serializers.filestorage.Group.Raw, Merge.filestorage.Group> =
     core.serialization.object({
@@ -14,17 +15,18 @@ export const Group: core.serialization.ObjectSchema<serializers.filestorage.Grou
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         name: core.serialization.string().optional(),
         users: core.serialization.list(core.serialization.string()),
+        childGroups: core.serialization.property(
+            "child_groups",
+            core.serialization
+                .list(core.serialization.lazy(() => serializers.filestorage.GroupChildGroupsItem))
+                .optional()
+        ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
         ),
-        remoteData: core.serialization.property(
-            "remote_data",
-            core.serialization
-                .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional())
-                .optional()
-        ),
+        remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace Group {
@@ -35,8 +37,9 @@ export declare namespace Group {
         modified_at?: string | null;
         name?: string | null;
         users: string[];
+        child_groups?: serializers.filestorage.GroupChildGroupsItem.Raw[] | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
-        remote_data?: (Record<string, unknown> | null | undefined)[] | null;
+        remote_data?: RemoteData.Raw[] | null;
     }
 }

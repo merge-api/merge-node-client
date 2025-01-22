@@ -26,6 +26,7 @@ import { DeleteAccount } from "../resources/deleteAccount/client/Client";
 import { Employees } from "../resources/employees/client/Client";
 import { Expenses } from "../resources/expenses/client/Client";
 import { FieldMapping } from "../resources/fieldMapping/client/Client";
+import { GeneralLedgerTransactions } from "../resources/generalLedgerTransactions/client/Client";
 import { GenerateKey } from "../resources/generateKey/client/Client";
 import { IncomeStatements } from "../resources/incomeStatements/client/Client";
 import { Invoices } from "../resources/invoices/client/Client";
@@ -203,6 +204,12 @@ export class Accounting {
 
     public get fieldMapping(): FieldMapping {
         return (this._fieldMapping ??= new FieldMapping(this._options));
+    }
+
+    protected _generalLedgerTransactions: GeneralLedgerTransactions | undefined;
+
+    public get generalLedgerTransactions(): GeneralLedgerTransactions {
+        return (this._generalLedgerTransactions ??= new GeneralLedgerTransactions(this._options));
     }
 
     protected _generateKey: GenerateKey | undefined;

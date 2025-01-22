@@ -8,7 +8,6 @@ import * as core from "../../../../core";
 import { TrackingCategoryStatus } from "./TrackingCategoryStatus";
 import { TrackingCategoryCategoryType } from "./TrackingCategoryCategoryType";
 import { TrackingCategoryCompany } from "./TrackingCategoryCompany";
-import { RemoteData } from "./RemoteData";
 
 export const TrackingCategory: core.serialization.ObjectSchema<
     serializers.accounting.TrackingCategory.Raw,
@@ -28,7 +27,6 @@ export const TrackingCategory: core.serialization.ObjectSchema<
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
-    remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace TrackingCategory {
@@ -44,6 +42,5 @@ export declare namespace TrackingCategory {
         company?: TrackingCategoryCompany.Raw | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
-        remote_data?: RemoteData.Raw[] | null;
     }
 }

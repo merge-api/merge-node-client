@@ -18,9 +18,9 @@ import * as Merge from "../../../index";
 export interface PermissionRequest {
     /** The third-party API ID of the matching object. */
     remoteId?: string;
-    /** The user that is granted this permission. */
+    /** The user that is granted this permission. This will only be populated if the type is `USER`. */
     user?: Merge.filestorage.PermissionRequestUser;
-    /** The group that is granted this permission. */
+    /** The group that is granted this permission. This will only be populated if the type is `GROUP`. */
     group?: Merge.filestorage.PermissionRequestGroup;
     /**
      * Denotes what type of people have access to the file.

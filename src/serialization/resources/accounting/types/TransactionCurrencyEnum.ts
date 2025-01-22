@@ -6,9 +6,9 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 
-export const CurrencyEnum: core.serialization.Schema<
-    serializers.accounting.CurrencyEnum.Raw,
-    Merge.accounting.CurrencyEnum
+export const TransactionCurrencyEnum: core.serialization.Schema<
+    serializers.accounting.TransactionCurrencyEnum.Raw,
+    Merge.accounting.TransactionCurrencyEnum
 > = core.serialization.enum_([
     "XUA",
     "AFN",
@@ -318,7 +318,7 @@ export const CurrencyEnum: core.serialization.Schema<
     "ZWL",
 ]);
 
-export declare namespace CurrencyEnum {
+export declare namespace TransactionCurrencyEnum {
     type Raw =
         | "XUA"
         | "AFN"

@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { TicketAssigneesItem } from "./TicketAssigneesItem";
+import { TicketAssignedTeamsItem } from "./TicketAssignedTeamsItem";
 import { TicketCreator } from "./TicketCreator";
 import { TicketStatus } from "./TicketStatus";
 import { TicketCollectionsItem } from "./TicketCollectionsItem";
@@ -23,6 +24,10 @@ export const Ticket: core.serialization.ObjectSchema<serializers.ticketing.Ticke
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         name: core.serialization.string().optional(),
         assignees: core.serialization.list(TicketAssigneesItem.optional()).optional(),
+        assignedTeams: core.serialization.property(
+            "assigned_teams",
+            core.serialization.list(TicketAssignedTeamsItem.optional()).optional()
+        ),
         creator: TicketCreator.optional(),
         dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
         status: TicketStatus.optional(),
@@ -39,6 +44,7 @@ export const Ticket: core.serialization.ObjectSchema<serializers.ticketing.Ticke
             .list(core.serialization.lazy(() => serializers.ticketing.TicketAttachmentsItem).optional())
             .optional(),
         tags: core.serialization.list(core.serialization.string().optional()).optional(),
+        roles: core.serialization.list(core.serialization.string().optional()).optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
@@ -61,6 +67,7 @@ export declare namespace Ticket {
         modified_at?: string | null;
         name?: string | null;
         assignees?: (TicketAssigneesItem.Raw | null | undefined)[] | null;
+        assigned_teams?: (TicketAssignedTeamsItem.Raw | null | undefined)[] | null;
         creator?: TicketCreator.Raw | null;
         due_date?: string | null;
         status?: TicketStatus.Raw | null;
@@ -72,6 +79,7 @@ export declare namespace Ticket {
         parent_ticket?: serializers.ticketing.TicketParentTicket.Raw | null;
         attachments?: (serializers.ticketing.TicketAttachmentsItem.Raw | null | undefined)[] | null;
         tags?: (string | null | undefined)[] | null;
+        roles?: (string | null | undefined)[] | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
         completed_at?: string | null;

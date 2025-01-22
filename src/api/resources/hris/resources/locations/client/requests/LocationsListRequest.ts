@@ -55,7 +55,7 @@ export interface LocationsListRequest {
     /**
      * Deprecated. Use show_enum_origins.
      */
-    remoteFields?: "location_type";
+    remoteFields?: Merge.hris.LocationsListRequestRemoteFields;
     /**
      * The API provider's ID for the given object.
      */
@@ -63,5 +63,5 @@ export interface LocationsListRequest {
     /**
      * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
-    showEnumOrigins?: "location_type";
+    showEnumOrigins?: Merge.hris.LocationsListRequestShowEnumOrigins;
 }

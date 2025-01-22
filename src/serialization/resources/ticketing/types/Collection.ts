@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { CollectionCollectionType } from "./CollectionCollectionType";
+import { CollectionTeamsItem } from "./CollectionTeamsItem";
 import { CollectionAccessLevel } from "./CollectionAccessLevel";
 import { RemoteData } from "./RemoteData";
 
@@ -24,6 +25,7 @@ export const Collection: core.serialization.ObjectSchema<
         "parent_collection",
         core.serialization.lazy(() => serializers.ticketing.CollectionParentCollection).optional()
     ),
+    teams: core.serialization.list(CollectionTeamsItem.optional()).optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     accessLevel: core.serialization.property("access_level", CollectionAccessLevel.optional()),
     fieldMappings: core.serialization.property(
@@ -43,6 +45,7 @@ export declare namespace Collection {
         description?: string | null;
         collection_type?: CollectionCollectionType.Raw | null;
         parent_collection?: serializers.ticketing.CollectionParentCollection.Raw | null;
+        teams?: (CollectionTeamsItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;
         access_level?: CollectionAccessLevel.Raw | null;
         field_mappings?: Record<string, unknown> | null;

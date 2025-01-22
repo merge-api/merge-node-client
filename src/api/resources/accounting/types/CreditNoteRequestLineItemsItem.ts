@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type CreditNoteRequestLineItemsItem = string | Merge.accounting.CreditNoteLineItem;
+export type CreditNoteRequestLineItemsItem = string | Merge.accounting.CreditNoteLineItemRequest;

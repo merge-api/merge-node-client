@@ -3,6 +3,6 @@
  */
 
 export interface FieldPermissionDeserializerRequest {
-    enabled?: unknown[];
-    disabled?: unknown[];
+    enabledFields?: unknown[];
+    disabledFields?: unknown[];
 }

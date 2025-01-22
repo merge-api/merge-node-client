@@ -5,12 +5,13 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
+import { PaymentLineItem } from "./PaymentLineItem";
 
 export const CreditNoteRequestAppliedPaymentsItem: core.serialization.Schema<
     serializers.accounting.CreditNoteRequestAppliedPaymentsItem.Raw,
     Merge.accounting.CreditNoteRequestAppliedPaymentsItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), core.serialization.unknown()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), PaymentLineItem]);
 
 export declare namespace CreditNoteRequestAppliedPaymentsItem {
-    type Raw = string | unknown;
+    type Raw = string | PaymentLineItem.Raw;
 }

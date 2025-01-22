@@ -14,6 +14,10 @@
  *     }
  */
 export interface CreateFieldMappingRequest {
+    /**
+     * If `true`, remote fields metadata is excluded from each field mapping instance (i.e. `remote_fields.remote_key_name` and `remote_fields.schema` will be null). This will increase the speed of the request since these fields require some calculations.
+     */
+    excludeRemoteFieldMetadata?: boolean;
     /** The name of the target field you want this remote field to map to. */
     targetFieldName: string;
     /** The description of the target field you want this remote field to map to. */

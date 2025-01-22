@@ -5,13 +5,13 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { CurrencyEnum } from "./CurrencyEnum";
+import { TransactionCurrencyEnum } from "./TransactionCurrencyEnum";
 
 export const VendorCreditRequestCurrency: core.serialization.Schema<
     serializers.accounting.VendorCreditRequestCurrency.Raw,
     Merge.accounting.VendorCreditRequestCurrency
-> = core.serialization.undiscriminatedUnion([CurrencyEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([TransactionCurrencyEnum, core.serialization.string()]);
 
 export declare namespace VendorCreditRequestCurrency {
-    type Raw = CurrencyEnum.Raw | string;
+    type Raw = TransactionCurrencyEnum.Raw | string;
 }

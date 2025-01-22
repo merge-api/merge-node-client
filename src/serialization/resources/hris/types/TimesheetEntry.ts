@@ -5,6 +5,8 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
+import { TimesheetEntryEmployee } from "./TimesheetEntryEmployee";
+import { RemoteData } from "./RemoteData";
 
 export const TimesheetEntry: core.serialization.ObjectSchema<
     serializers.hris.TimesheetEntry.Raw,
@@ -14,7 +16,7 @@ export const TimesheetEntry: core.serialization.ObjectSchema<
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
-    employee: core.serialization.string().optional(),
+    employee: TimesheetEntryEmployee.optional(),
     hoursWorked: core.serialization.property("hours_worked", core.serialization.number().optional()),
     startTime: core.serialization.property("start_time", core.serialization.date().optional()),
     endTime: core.serialization.property("end_time", core.serialization.date().optional()),
@@ -23,12 +25,7 @@ export const TimesheetEntry: core.serialization.ObjectSchema<
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
-    remoteData: core.serialization.property(
-        "remote_data",
-        core.serialization
-            .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional())
-            .optional()
-    ),
+    remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace TimesheetEntry {
@@ -37,12 +34,12 @@ export declare namespace TimesheetEntry {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
-        employee?: string | null;
+        employee?: TimesheetEntryEmployee.Raw | null;
         hours_worked?: number | null;
         start_time?: string | null;
         end_time?: string | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
-        remote_data?: (Record<string, unknown> | null | undefined)[] | null;
+        remote_data?: RemoteData.Raw[] | null;
     }
 }

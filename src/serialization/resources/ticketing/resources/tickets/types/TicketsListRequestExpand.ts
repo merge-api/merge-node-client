@@ -18,6 +18,22 @@ export const TicketsListRequestExpand: core.serialization.Schema<
     "account,creator",
     "account,creator,parent_ticket",
     "account,parent_ticket",
+    "assigned_teams",
+    "assigned_teams,account",
+    "assigned_teams,account,contact",
+    "assigned_teams,account,contact,creator",
+    "assigned_teams,account,contact,creator,parent_ticket",
+    "assigned_teams,account,contact,parent_ticket",
+    "assigned_teams,account,creator",
+    "assigned_teams,account,creator,parent_ticket",
+    "assigned_teams,account,parent_ticket",
+    "assigned_teams,contact",
+    "assigned_teams,contact,creator",
+    "assigned_teams,contact,creator,parent_ticket",
+    "assigned_teams,contact,parent_ticket",
+    "assigned_teams,creator",
+    "assigned_teams,creator,parent_ticket",
+    "assigned_teams,parent_ticket",
     "assignees",
     "assignees,account",
     "assignees,account,contact",
@@ -27,6 +43,22 @@ export const TicketsListRequestExpand: core.serialization.Schema<
     "assignees,account,creator",
     "assignees,account,creator,parent_ticket",
     "assignees,account,parent_ticket",
+    "assignees,assigned_teams",
+    "assignees,assigned_teams,account",
+    "assignees,assigned_teams,account,contact",
+    "assignees,assigned_teams,account,contact,creator",
+    "assignees,assigned_teams,account,contact,creator,parent_ticket",
+    "assignees,assigned_teams,account,contact,parent_ticket",
+    "assignees,assigned_teams,account,creator",
+    "assignees,assigned_teams,account,creator,parent_ticket",
+    "assignees,assigned_teams,account,parent_ticket",
+    "assignees,assigned_teams,contact",
+    "assignees,assigned_teams,contact,creator",
+    "assignees,assigned_teams,contact,creator,parent_ticket",
+    "assignees,assigned_teams,contact,parent_ticket",
+    "assignees,assigned_teams,creator",
+    "assignees,assigned_teams,creator,parent_ticket",
+    "assignees,assigned_teams,parent_ticket",
     "assignees,collections",
     "assignees,collections,account",
     "assignees,collections,account,contact",
@@ -36,6 +68,22 @@ export const TicketsListRequestExpand: core.serialization.Schema<
     "assignees,collections,account,creator",
     "assignees,collections,account,creator,parent_ticket",
     "assignees,collections,account,parent_ticket",
+    "assignees,collections,assigned_teams",
+    "assignees,collections,assigned_teams,account",
+    "assignees,collections,assigned_teams,account,contact",
+    "assignees,collections,assigned_teams,account,contact,creator",
+    "assignees,collections,assigned_teams,account,contact,creator,parent_ticket",
+    "assignees,collections,assigned_teams,account,contact,parent_ticket",
+    "assignees,collections,assigned_teams,account,creator",
+    "assignees,collections,assigned_teams,account,creator,parent_ticket",
+    "assignees,collections,assigned_teams,account,parent_ticket",
+    "assignees,collections,assigned_teams,contact",
+    "assignees,collections,assigned_teams,contact,creator",
+    "assignees,collections,assigned_teams,contact,creator,parent_ticket",
+    "assignees,collections,assigned_teams,contact,parent_ticket",
+    "assignees,collections,assigned_teams,creator",
+    "assignees,collections,assigned_teams,creator,parent_ticket",
+    "assignees,collections,assigned_teams,parent_ticket",
     "assignees,collections,contact",
     "assignees,collections,contact,creator",
     "assignees,collections,contact,creator,parent_ticket",
@@ -59,6 +107,22 @@ export const TicketsListRequestExpand: core.serialization.Schema<
     "attachments,account,creator",
     "attachments,account,creator,parent_ticket",
     "attachments,account,parent_ticket",
+    "attachments,assigned_teams",
+    "attachments,assigned_teams,account",
+    "attachments,assigned_teams,account,contact",
+    "attachments,assigned_teams,account,contact,creator",
+    "attachments,assigned_teams,account,contact,creator,parent_ticket",
+    "attachments,assigned_teams,account,contact,parent_ticket",
+    "attachments,assigned_teams,account,creator",
+    "attachments,assigned_teams,account,creator,parent_ticket",
+    "attachments,assigned_teams,account,parent_ticket",
+    "attachments,assigned_teams,contact",
+    "attachments,assigned_teams,contact,creator",
+    "attachments,assigned_teams,contact,creator,parent_ticket",
+    "attachments,assigned_teams,contact,parent_ticket",
+    "attachments,assigned_teams,creator",
+    "attachments,assigned_teams,creator,parent_ticket",
+    "attachments,assigned_teams,parent_ticket",
     "attachments,assignees",
     "attachments,assignees,account",
     "attachments,assignees,account,contact",
@@ -68,6 +132,22 @@ export const TicketsListRequestExpand: core.serialization.Schema<
     "attachments,assignees,account,creator",
     "attachments,assignees,account,creator,parent_ticket",
     "attachments,assignees,account,parent_ticket",
+    "attachments,assignees,assigned_teams",
+    "attachments,assignees,assigned_teams,account",
+    "attachments,assignees,assigned_teams,account,contact",
+    "attachments,assignees,assigned_teams,account,contact,creator",
+    "attachments,assignees,assigned_teams,account,contact,creator,parent_ticket",
+    "attachments,assignees,assigned_teams,account,contact,parent_ticket",
+    "attachments,assignees,assigned_teams,account,creator",
+    "attachments,assignees,assigned_teams,account,creator,parent_ticket",
+    "attachments,assignees,assigned_teams,account,parent_ticket",
+    "attachments,assignees,assigned_teams,contact",
+    "attachments,assignees,assigned_teams,contact,creator",
+    "attachments,assignees,assigned_teams,contact,creator,parent_ticket",
+    "attachments,assignees,assigned_teams,contact,parent_ticket",
+    "attachments,assignees,assigned_teams,creator",
+    "attachments,assignees,assigned_teams,creator,parent_ticket",
+    "attachments,assignees,assigned_teams,parent_ticket",
     "attachments,assignees,collections",
     "attachments,assignees,collections,account",
     "attachments,assignees,collections,account,contact",
@@ -77,6 +157,22 @@ export const TicketsListRequestExpand: core.serialization.Schema<
     "attachments,assignees,collections,account,creator",
     "attachments,assignees,collections,account,creator,parent_ticket",
     "attachments,assignees,collections,account,parent_ticket",
+    "attachments,assignees,collections,assigned_teams",
+    "attachments,assignees,collections,assigned_teams,account",
+    "attachments,assignees,collections,assigned_teams,account,contact",
+    "attachments,assignees,collections,assigned_teams,account,contact,creator",
+    "attachments,assignees,collections,assigned_teams,account,contact,creator,parent_ticket",
+    "attachments,assignees,collections,assigned_teams,account,contact,parent_ticket",
+    "attachments,assignees,collections,assigned_teams,account,creator",
+    "attachments,assignees,collections,assigned_teams,account,creator,parent_ticket",
+    "attachments,assignees,collections,assigned_teams,account,parent_ticket",
+    "attachments,assignees,collections,assigned_teams,contact",
+    "attachments,assignees,collections,assigned_teams,contact,creator",
+    "attachments,assignees,collections,assigned_teams,contact,creator,parent_ticket",
+    "attachments,assignees,collections,assigned_teams,contact,parent_ticket",
+    "attachments,assignees,collections,assigned_teams,creator",
+    "attachments,assignees,collections,assigned_teams,creator,parent_ticket",
+    "attachments,assignees,collections,assigned_teams,parent_ticket",
     "attachments,assignees,collections,contact",
     "attachments,assignees,collections,contact,creator",
     "attachments,assignees,collections,contact,creator,parent_ticket",
@@ -100,6 +196,22 @@ export const TicketsListRequestExpand: core.serialization.Schema<
     "attachments,collections,account,creator",
     "attachments,collections,account,creator,parent_ticket",
     "attachments,collections,account,parent_ticket",
+    "attachments,collections,assigned_teams",
+    "attachments,collections,assigned_teams,account",
+    "attachments,collections,assigned_teams,account,contact",
+    "attachments,collections,assigned_teams,account,contact,creator",
+    "attachments,collections,assigned_teams,account,contact,creator,parent_ticket",
+    "attachments,collections,assigned_teams,account,contact,parent_ticket",
+    "attachments,collections,assigned_teams,account,creator",
+    "attachments,collections,assigned_teams,account,creator,parent_ticket",
+    "attachments,collections,assigned_teams,account,parent_ticket",
+    "attachments,collections,assigned_teams,contact",
+    "attachments,collections,assigned_teams,contact,creator",
+    "attachments,collections,assigned_teams,contact,creator,parent_ticket",
+    "attachments,collections,assigned_teams,contact,parent_ticket",
+    "attachments,collections,assigned_teams,creator",
+    "attachments,collections,assigned_teams,creator,parent_ticket",
+    "attachments,collections,assigned_teams,parent_ticket",
     "attachments,collections,contact",
     "attachments,collections,contact,creator",
     "attachments,collections,contact,creator,parent_ticket",
@@ -123,6 +235,22 @@ export const TicketsListRequestExpand: core.serialization.Schema<
     "collections,account,creator",
     "collections,account,creator,parent_ticket",
     "collections,account,parent_ticket",
+    "collections,assigned_teams",
+    "collections,assigned_teams,account",
+    "collections,assigned_teams,account,contact",
+    "collections,assigned_teams,account,contact,creator",
+    "collections,assigned_teams,account,contact,creator,parent_ticket",
+    "collections,assigned_teams,account,contact,parent_ticket",
+    "collections,assigned_teams,account,creator",
+    "collections,assigned_teams,account,creator,parent_ticket",
+    "collections,assigned_teams,account,parent_ticket",
+    "collections,assigned_teams,contact",
+    "collections,assigned_teams,contact,creator",
+    "collections,assigned_teams,contact,creator,parent_ticket",
+    "collections,assigned_teams,contact,parent_ticket",
+    "collections,assigned_teams,creator",
+    "collections,assigned_teams,creator,parent_ticket",
+    "collections,assigned_teams,parent_ticket",
     "collections,contact",
     "collections,contact,creator",
     "collections,contact,creator,parent_ticket",
@@ -149,6 +277,22 @@ export declare namespace TicketsListRequestExpand {
         | "account,creator"
         | "account,creator,parent_ticket"
         | "account,parent_ticket"
+        | "assigned_teams"
+        | "assigned_teams,account"
+        | "assigned_teams,account,contact"
+        | "assigned_teams,account,contact,creator"
+        | "assigned_teams,account,contact,creator,parent_ticket"
+        | "assigned_teams,account,contact,parent_ticket"
+        | "assigned_teams,account,creator"
+        | "assigned_teams,account,creator,parent_ticket"
+        | "assigned_teams,account,parent_ticket"
+        | "assigned_teams,contact"
+        | "assigned_teams,contact,creator"
+        | "assigned_teams,contact,creator,parent_ticket"
+        | "assigned_teams,contact,parent_ticket"
+        | "assigned_teams,creator"
+        | "assigned_teams,creator,parent_ticket"
+        | "assigned_teams,parent_ticket"
         | "assignees"
         | "assignees,account"
         | "assignees,account,contact"
@@ -158,6 +302,22 @@ export declare namespace TicketsListRequestExpand {
         | "assignees,account,creator"
         | "assignees,account,creator,parent_ticket"
         | "assignees,account,parent_ticket"
+        | "assignees,assigned_teams"
+        | "assignees,assigned_teams,account"
+        | "assignees,assigned_teams,account,contact"
+        | "assignees,assigned_teams,account,contact,creator"
+        | "assignees,assigned_teams,account,contact,creator,parent_ticket"
+        | "assignees,assigned_teams,account,contact,parent_ticket"
+        | "assignees,assigned_teams,account,creator"
+        | "assignees,assigned_teams,account,creator,parent_ticket"
+        | "assignees,assigned_teams,account,parent_ticket"
+        | "assignees,assigned_teams,contact"
+        | "assignees,assigned_teams,contact,creator"
+        | "assignees,assigned_teams,contact,creator,parent_ticket"
+        | "assignees,assigned_teams,contact,parent_ticket"
+        | "assignees,assigned_teams,creator"
+        | "assignees,assigned_teams,creator,parent_ticket"
+        | "assignees,assigned_teams,parent_ticket"
         | "assignees,collections"
         | "assignees,collections,account"
         | "assignees,collections,account,contact"
@@ -167,6 +327,22 @@ export declare namespace TicketsListRequestExpand {
         | "assignees,collections,account,creator"
         | "assignees,collections,account,creator,parent_ticket"
         | "assignees,collections,account,parent_ticket"
+        | "assignees,collections,assigned_teams"
+        | "assignees,collections,assigned_teams,account"
+        | "assignees,collections,assigned_teams,account,contact"
+        | "assignees,collections,assigned_teams,account,contact,creator"
+        | "assignees,collections,assigned_teams,account,contact,creator,parent_ticket"
+        | "assignees,collections,assigned_teams,account,contact,parent_ticket"
+        | "assignees,collections,assigned_teams,account,creator"
+        | "assignees,collections,assigned_teams,account,creator,parent_ticket"
+        | "assignees,collections,assigned_teams,account,parent_ticket"
+        | "assignees,collections,assigned_teams,contact"
+        | "assignees,collections,assigned_teams,contact,creator"
+        | "assignees,collections,assigned_teams,contact,creator,parent_ticket"
+        | "assignees,collections,assigned_teams,contact,parent_ticket"
+        | "assignees,collections,assigned_teams,creator"
+        | "assignees,collections,assigned_teams,creator,parent_ticket"
+        | "assignees,collections,assigned_teams,parent_ticket"
         | "assignees,collections,contact"
         | "assignees,collections,contact,creator"
         | "assignees,collections,contact,creator,parent_ticket"
@@ -190,6 +366,22 @@ export declare namespace TicketsListRequestExpand {
         | "attachments,account,creator"
         | "attachments,account,creator,parent_ticket"
         | "attachments,account,parent_ticket"
+        | "attachments,assigned_teams"
+        | "attachments,assigned_teams,account"
+        | "attachments,assigned_teams,account,contact"
+        | "attachments,assigned_teams,account,contact,creator"
+        | "attachments,assigned_teams,account,contact,creator,parent_ticket"
+        | "attachments,assigned_teams,account,contact,parent_ticket"
+        | "attachments,assigned_teams,account,creator"
+        | "attachments,assigned_teams,account,creator,parent_ticket"
+        | "attachments,assigned_teams,account,parent_ticket"
+        | "attachments,assigned_teams,contact"
+        | "attachments,assigned_teams,contact,creator"
+        | "attachments,assigned_teams,contact,creator,parent_ticket"
+        | "attachments,assigned_teams,contact,parent_ticket"
+        | "attachments,assigned_teams,creator"
+        | "attachments,assigned_teams,creator,parent_ticket"
+        | "attachments,assigned_teams,parent_ticket"
         | "attachments,assignees"
         | "attachments,assignees,account"
         | "attachments,assignees,account,contact"
@@ -199,6 +391,22 @@ export declare namespace TicketsListRequestExpand {
         | "attachments,assignees,account,creator"
         | "attachments,assignees,account,creator,parent_ticket"
         | "attachments,assignees,account,parent_ticket"
+        | "attachments,assignees,assigned_teams"
+        | "attachments,assignees,assigned_teams,account"
+        | "attachments,assignees,assigned_teams,account,contact"
+        | "attachments,assignees,assigned_teams,account,contact,creator"
+        | "attachments,assignees,assigned_teams,account,contact,creator,parent_ticket"
+        | "attachments,assignees,assigned_teams,account,contact,parent_ticket"
+        | "attachments,assignees,assigned_teams,account,creator"
+        | "attachments,assignees,assigned_teams,account,creator,parent_ticket"
+        | "attachments,assignees,assigned_teams,account,parent_ticket"
+        | "attachments,assignees,assigned_teams,contact"
+        | "attachments,assignees,assigned_teams,contact,creator"
+        | "attachments,assignees,assigned_teams,contact,creator,parent_ticket"
+        | "attachments,assignees,assigned_teams,contact,parent_ticket"
+        | "attachments,assignees,assigned_teams,creator"
+        | "attachments,assignees,assigned_teams,creator,parent_ticket"
+        | "attachments,assignees,assigned_teams,parent_ticket"
         | "attachments,assignees,collections"
         | "attachments,assignees,collections,account"
         | "attachments,assignees,collections,account,contact"
@@ -208,6 +416,22 @@ export declare namespace TicketsListRequestExpand {
         | "attachments,assignees,collections,account,creator"
         | "attachments,assignees,collections,account,creator,parent_ticket"
         | "attachments,assignees,collections,account,parent_ticket"
+        | "attachments,assignees,collections,assigned_teams"
+        | "attachments,assignees,collections,assigned_teams,account"
+        | "attachments,assignees,collections,assigned_teams,account,contact"
+        | "attachments,assignees,collections,assigned_teams,account,contact,creator"
+        | "attachments,assignees,collections,assigned_teams,account,contact,creator,parent_ticket"
+        | "attachments,assignees,collections,assigned_teams,account,contact,parent_ticket"
+        | "attachments,assignees,collections,assigned_teams,account,creator"
+        | "attachments,assignees,collections,assigned_teams,account,creator,parent_ticket"
+        | "attachments,assignees,collections,assigned_teams,account,parent_ticket"
+        | "attachments,assignees,collections,assigned_teams,contact"
+        | "attachments,assignees,collections,assigned_teams,contact,creator"
+        | "attachments,assignees,collections,assigned_teams,contact,creator,parent_ticket"
+        | "attachments,assignees,collections,assigned_teams,contact,parent_ticket"
+        | "attachments,assignees,collections,assigned_teams,creator"
+        | "attachments,assignees,collections,assigned_teams,creator,parent_ticket"
+        | "attachments,assignees,collections,assigned_teams,parent_ticket"
         | "attachments,assignees,collections,contact"
         | "attachments,assignees,collections,contact,creator"
         | "attachments,assignees,collections,contact,creator,parent_ticket"
@@ -231,6 +455,22 @@ export declare namespace TicketsListRequestExpand {
         | "attachments,collections,account,creator"
         | "attachments,collections,account,creator,parent_ticket"
         | "attachments,collections,account,parent_ticket"
+        | "attachments,collections,assigned_teams"
+        | "attachments,collections,assigned_teams,account"
+        | "attachments,collections,assigned_teams,account,contact"
+        | "attachments,collections,assigned_teams,account,contact,creator"
+        | "attachments,collections,assigned_teams,account,contact,creator,parent_ticket"
+        | "attachments,collections,assigned_teams,account,contact,parent_ticket"
+        | "attachments,collections,assigned_teams,account,creator"
+        | "attachments,collections,assigned_teams,account,creator,parent_ticket"
+        | "attachments,collections,assigned_teams,account,parent_ticket"
+        | "attachments,collections,assigned_teams,contact"
+        | "attachments,collections,assigned_teams,contact,creator"
+        | "attachments,collections,assigned_teams,contact,creator,parent_ticket"
+        | "attachments,collections,assigned_teams,contact,parent_ticket"
+        | "attachments,collections,assigned_teams,creator"
+        | "attachments,collections,assigned_teams,creator,parent_ticket"
+        | "attachments,collections,assigned_teams,parent_ticket"
         | "attachments,collections,contact"
         | "attachments,collections,contact,creator"
         | "attachments,collections,contact,creator,parent_ticket"
@@ -254,6 +494,22 @@ export declare namespace TicketsListRequestExpand {
         | "collections,account,creator"
         | "collections,account,creator,parent_ticket"
         | "collections,account,parent_ticket"
+        | "collections,assigned_teams"
+        | "collections,assigned_teams,account"
+        | "collections,assigned_teams,account,contact"
+        | "collections,assigned_teams,account,contact,creator"
+        | "collections,assigned_teams,account,contact,creator,parent_ticket"
+        | "collections,assigned_teams,account,contact,parent_ticket"
+        | "collections,assigned_teams,account,creator"
+        | "collections,assigned_teams,account,creator,parent_ticket"
+        | "collections,assigned_teams,account,parent_ticket"
+        | "collections,assigned_teams,contact"
+        | "collections,assigned_teams,contact,creator"
+        | "collections,assigned_teams,contact,creator,parent_ticket"
+        | "collections,assigned_teams,contact,parent_ticket"
+        | "collections,assigned_teams,creator"
+        | "collections,assigned_teams,creator,parent_ticket"
+        | "collections,assigned_teams,parent_ticket"
         | "collections,contact"
         | "collections,contact,creator"
         | "collections,contact,creator,parent_ticket"

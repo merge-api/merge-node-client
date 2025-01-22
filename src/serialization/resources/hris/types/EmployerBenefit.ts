@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { EmployerBenefitBenefitPlanType } from "./EmployerBenefitBenefitPlanType";
+import { RemoteData } from "./RemoteData";
 
 export const EmployerBenefit: core.serialization.ObjectSchema<
     serializers.hris.EmployerBenefit.Raw,
@@ -24,12 +25,7 @@ export const EmployerBenefit: core.serialization.ObjectSchema<
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
-    remoteData: core.serialization.property(
-        "remote_data",
-        core.serialization
-            .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional())
-            .optional()
-    ),
+    remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace EmployerBenefit {
@@ -44,6 +40,6 @@ export declare namespace EmployerBenefit {
         deduction_code?: string | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
-        remote_data?: (Record<string, unknown> | null | undefined)[] | null;
+        remote_data?: RemoteData.Raw[] | null;
     }
 }

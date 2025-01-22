@@ -5,6 +5,6 @@
 import * as Merge from "../../../index";
 
 /**
- * The group that is granted this permission.
+ * The group that is granted this permission. This will only be populated if the type is `GROUP`.
  */
 export type PermissionRequestGroup = string | Merge.filestorage.Group;

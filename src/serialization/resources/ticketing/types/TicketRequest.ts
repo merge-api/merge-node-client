@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { TicketRequestAssigneesItem } from "./TicketRequestAssigneesItem";
+import { TicketRequestAssignedTeamsItem } from "./TicketRequestAssignedTeamsItem";
 import { TicketRequestCreator } from "./TicketRequestCreator";
 import { TicketRequestStatus } from "./TicketRequestStatus";
 import { TicketRequestCollectionsItem } from "./TicketRequestCollectionsItem";
@@ -22,6 +23,10 @@ export const TicketRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string().optional(),
     assignees: core.serialization.list(TicketRequestAssigneesItem.optional()).optional(),
+    assignedTeams: core.serialization.property(
+        "assigned_teams",
+        core.serialization.list(TicketRequestAssignedTeamsItem.optional()).optional()
+    ),
     creator: TicketRequestCreator.optional(),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     status: TicketRequestStatus.optional(),
@@ -33,6 +38,7 @@ export const TicketRequest: core.serialization.ObjectSchema<
     parentTicket: core.serialization.property("parent_ticket", TicketRequestParentTicket.optional()),
     attachments: core.serialization.list(TicketRequestAttachmentsItem.optional()).optional(),
     tags: core.serialization.list(core.serialization.string().optional()).optional(),
+    roles: core.serialization.list(core.serialization.string().optional()).optional(),
     completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
     ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
     priority: TicketRequestPriority.optional(),
@@ -51,6 +57,7 @@ export declare namespace TicketRequest {
     interface Raw {
         name?: string | null;
         assignees?: (TicketRequestAssigneesItem.Raw | null | undefined)[] | null;
+        assigned_teams?: (TicketRequestAssignedTeamsItem.Raw | null | undefined)[] | null;
         creator?: TicketRequestCreator.Raw | null;
         due_date?: string | null;
         status?: TicketRequestStatus.Raw | null;
@@ -62,6 +69,7 @@ export declare namespace TicketRequest {
         parent_ticket?: TicketRequestParentTicket.Raw | null;
         attachments?: (TicketRequestAttachmentsItem.Raw | null | undefined)[] | null;
         tags?: (string | null | undefined)[] | null;
+        roles?: (string | null | undefined)[] | null;
         completed_at?: string | null;
         ticket_url?: string | null;
         priority?: TicketRequestPriority.Raw | null;

@@ -8,6 +8,7 @@ import * as core from "../../../../core";
 import { FileFolder } from "./FileFolder";
 import { FilePermissions } from "./FilePermissions";
 import { FileDrive } from "./FileDrive";
+import { RemoteData } from "./RemoteData";
 
 export const File_: core.serialization.ObjectSchema<serializers.filestorage.File_.Raw, Merge.filestorage.File_> =
     core.serialization.object({
@@ -31,12 +32,7 @@ export const File_: core.serialization.ObjectSchema<serializers.filestorage.File
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
         ),
-        remoteData: core.serialization.property(
-            "remote_data",
-            core.serialization
-                .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional())
-                .optional()
-        ),
+        remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace File_ {
@@ -58,6 +54,6 @@ export declare namespace File_ {
         remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
-        remote_data?: (Record<string, unknown> | null | undefined)[] | null;
+        remote_data?: RemoteData.Raw[] | null;
     }
 }

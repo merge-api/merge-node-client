@@ -8,7 +8,7 @@ import * as Merge from "../../../../../../index";
  * @example
  *     {}
  */
-export interface CollectionsUsersListRequest {
+export interface TicketsViewersListRequest {
     /**
      * The pagination cursor value.
      */
@@ -16,7 +16,7 @@ export interface CollectionsUsersListRequest {
     /**
      * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
-    expand?: Merge.ticketing.CollectionsUsersListRequestExpand;
+    expand?: Merge.ticketing.TicketsViewersListRequestExpand;
     /**
      * Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/).
      */
