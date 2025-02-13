@@ -225,8 +225,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.2",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -309,8 +309,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.2",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -406,8 +406,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.2",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -492,8 +492,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.2",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -595,8 +595,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.2",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -669,8 +669,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.2",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -738,8 +738,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.2",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -797,11 +797,15 @@ export class Tickets {
         request: Merge.ticketing.TicketsRemoteFieldClassesListRequest = {},
         requestOptions?: Tickets.RequestOptions
     ): Promise<Merge.ticketing.PaginatedRemoteFieldClassList> {
-        const { cursor, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
+        const { cursor, ids, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
+        }
+
+        if (ids != null) {
+            _queryParams["ids"] = ids;
         }
 
         if (includeDeletedData != null) {
@@ -838,8 +842,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.2",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
