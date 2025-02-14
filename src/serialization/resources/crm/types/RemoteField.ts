@@ -10,12 +10,12 @@ import { RemoteFieldRemoteFieldClass } from "./RemoteFieldRemoteFieldClass";
 export const RemoteField: core.serialization.ObjectSchema<serializers.crm.RemoteField.Raw, Merge.crm.RemoteField> =
     core.serialization.object({
         remoteFieldClass: core.serialization.property("remote_field_class", RemoteFieldRemoteFieldClass),
-        value: core.serialization.unknown().optional(),
+        value: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     });
 
 export declare namespace RemoteField {
     interface Raw {
         remote_field_class: RemoteFieldRemoteFieldClass.Raw;
-        value?: unknown | null;
+        value?: Record<string, unknown> | null;
     }
 }
