@@ -364,6 +364,7 @@ export * from "./PurchaseOrderResponse";
 export * from "./PurchaseOrderStatusEnum";
 export * from "./RemoteData";
 export * from "./RemoteEndpointInfo";
+export * from "./RemoteFieldRemoteFieldClass";
 export * from "./RemoteField";
 export * from "./RemoteFieldApiCoverage";
 export * from "./RemoteFieldApi";
