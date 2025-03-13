@@ -29,6 +29,8 @@ export interface Payment {
     contact?: Merge.accounting.PaymentContact;
     /** The supplier’s or customer’s account in which the payment is made. */
     account?: Merge.accounting.PaymentAccount;
+    /** The method which this payment was made by. */
+    paymentMethod?: Merge.accounting.PaymentPaymentMethod;
     /**
      * The payment's currency.
      *

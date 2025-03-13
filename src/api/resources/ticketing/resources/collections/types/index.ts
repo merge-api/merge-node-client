@@ -1,2 +1,1 @@
-export * from "./CollectionsListRequestExpand";
-export * from "./CollectionsRetrieveRequestExpand";
+export * from "./CollectionsViewersListRequestExpand";

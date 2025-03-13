@@ -20,7 +20,9 @@ export interface SyncStatus {
     modelId: string;
     lastSyncStart?: Date;
     nextSyncStart?: Date;
-    status: Merge.accounting.SyncStatusStatusEnum;
+    lastSyncResult?: Merge.accounting.LastSyncResultEnum;
+    lastSyncFinished?: Date;
+    status: Merge.accounting.StatusFd5Enum;
     isInitialSync: boolean;
     selectiveSyncConfigurationsUsage?: Merge.accounting.SelectiveSyncConfigurationsUsageEnum;
 }

@@ -72,6 +72,14 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
         core.serialization.list(FieldMappingApiInstance).optional()
     ),
     employee: core.serialization.property("Employee", core.serialization.list(FieldMappingApiInstance).optional()),
+    paymentMethod: core.serialization.property(
+        "PaymentMethod",
+        core.serialization.list(FieldMappingApiInstance).optional()
+    ),
+    paymentTerm: core.serialization.property(
+        "PaymentTerm",
+        core.serialization.list(FieldMappingApiInstance).optional()
+    ),
 });
 
 export declare namespace FieldMappingApiInstanceResponse {
@@ -98,5 +106,7 @@ export declare namespace FieldMappingApiInstanceResponse {
         GeneralLedgerTransaction?: FieldMappingApiInstance.Raw[] | null;
         BankFeedAccount?: FieldMappingApiInstance.Raw[] | null;
         Employee?: FieldMappingApiInstance.Raw[] | null;
+        PaymentMethod?: FieldMappingApiInstance.Raw[] | null;
+        PaymentTerm?: FieldMappingApiInstance.Raw[] | null;
     }
 }

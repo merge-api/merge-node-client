@@ -54,6 +54,10 @@ export interface AccountsListRequest {
      */
     modifiedBefore?: Date;
     /**
+     * If provided, will only return Accounts with this name.
+     */
+    name?: string;
+    /**
      * Number of results to return per page.
      */
     pageSize?: number;

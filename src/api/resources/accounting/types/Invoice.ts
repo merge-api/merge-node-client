@@ -361,6 +361,8 @@ export interface Invoice {
     currency?: Merge.accounting.InvoiceCurrency;
     /** The invoice's exchange rate. */
     exchangeRate?: string;
+    /** The payment term that applies to this transaction. */
+    paymentTerm?: Merge.accounting.InvoicePaymentTerm;
     /** The total discounts applied to the total cost. */
     totalDiscount?: number;
     /** The total amount being paid before taxes. */

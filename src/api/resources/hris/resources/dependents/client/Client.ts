@@ -120,8 +120,8 @@ export class Dependents {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -180,7 +180,7 @@ export class Dependents {
         request: Merge.hris.DependentsRetrieveRequest = {},
         requestOptions?: Dependents.RequestOptions
     ): Promise<Merge.hris.Dependent> {
-        const { includeRemoteData, includeSensitiveFields } = request;
+        const { includeRemoteData, includeSensitiveFields, includeShellData } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
@@ -188,6 +188,10 @@ export class Dependents {
 
         if (includeSensitiveFields != null) {
             _queryParams["include_sensitive_fields"] = includeSensitiveFields.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -204,8 +208,8 @@ export class Dependents {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

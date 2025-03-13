@@ -17,6 +17,7 @@ export const EventTypeEnum: core.serialization.Schema<serializers.crm.EventTypeE
         "TWO_FACTOR_AUTH_ENABLED",
         "TWO_FACTOR_AUTH_DISABLED",
         "DELETED_LINKED_ACCOUNT",
+        "DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT",
         "CREATED_DESTINATION",
         "DELETED_DESTINATION",
         "CHANGED_DESTINATION",
@@ -62,6 +63,7 @@ export declare namespace EventTypeEnum {
         | "TWO_FACTOR_AUTH_ENABLED"
         | "TWO_FACTOR_AUTH_DISABLED"
         | "DELETED_LINKED_ACCOUNT"
+        | "DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT"
         | "CREATED_DESTINATION"
         | "DELETED_DESTINATION"
         | "CHANGED_DESTINATION"

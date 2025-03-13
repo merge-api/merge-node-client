@@ -36,6 +36,8 @@ import { JournalEntries } from "../resources/journalEntries/client/Client";
 import { LinkToken } from "../resources/linkToken/client/Client";
 import { LinkedAccounts } from "../resources/linkedAccounts/client/Client";
 import { Passthrough } from "../resources/passthrough/client/Client";
+import { PaymentMethods } from "../resources/paymentMethods/client/Client";
+import { PaymentTerms } from "../resources/paymentTerms/client/Client";
 import { Payments } from "../resources/payments/client/Client";
 import { PhoneNumbers } from "../resources/phoneNumbers/client/Client";
 import { PurchaseOrders } from "../resources/purchaseOrders/client/Client";
@@ -264,6 +266,18 @@ export class Accounting {
 
     public get passthrough(): Passthrough {
         return (this._passthrough ??= new Passthrough(this._options));
+    }
+
+    protected _paymentMethods: PaymentMethods | undefined;
+
+    public get paymentMethods(): PaymentMethods {
+        return (this._paymentMethods ??= new PaymentMethods(this._options));
+    }
+
+    protected _paymentTerms: PaymentTerms | undefined;
+
+    public get paymentTerms(): PaymentTerms {
+        return (this._paymentTerms ??= new PaymentTerms(this._options));
     }
 
     protected _payments: Payments | undefined;

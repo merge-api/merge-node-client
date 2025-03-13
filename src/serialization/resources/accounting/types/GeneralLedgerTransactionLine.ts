@@ -11,7 +11,7 @@ import { GeneralLedgerTransactionLineEmployee } from "./GeneralLedgerTransaction
 import { GeneralLedgerTransactionLineContact } from "./GeneralLedgerTransactionLineContact";
 import { GeneralLedgerTransactionLineBaseCurrency } from "./GeneralLedgerTransactionLineBaseCurrency";
 import { GeneralLedgerTransactionLineTransactionCurrency } from "./GeneralLedgerTransactionLineTransactionCurrency";
-import { TrackingCategory } from "./TrackingCategory";
+import { GeneralLedgerTransactionLineTrackingCategoriesItem } from "./GeneralLedgerTransactionLineTrackingCategoriesItem";
 import { GeneralLedgerTransactionLineItem } from "./GeneralLedgerTransactionLineItem";
 
 export const GeneralLedgerTransactionLine: core.serialization.ObjectSchema<
@@ -35,7 +35,7 @@ export const GeneralLedgerTransactionLine: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(TrackingCategory).optional()
+        core.serialization.list(GeneralLedgerTransactionLineTrackingCategoriesItem).optional()
     ),
     debitAmount: core.serialization.property("debit_amount", core.serialization.string()),
     creditAmount: core.serialization.property("credit_amount", core.serialization.string()),
@@ -63,7 +63,7 @@ export declare namespace GeneralLedgerTransactionLine {
         transaction_currency?: GeneralLedgerTransactionLineTransactionCurrency.Raw | null;
         exchange_rate?: string | null;
         description?: string | null;
-        tracking_categories?: TrackingCategory.Raw[] | null;
+        tracking_categories?: GeneralLedgerTransactionLineTrackingCategoriesItem.Raw[] | null;
         debit_amount: string;
         credit_amount: string;
         item?: GeneralLedgerTransactionLineItem.Raw | null;

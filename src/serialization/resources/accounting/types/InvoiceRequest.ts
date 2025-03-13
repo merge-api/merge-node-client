@@ -11,6 +11,7 @@ import { InvoiceRequestEmployee } from "./InvoiceRequestEmployee";
 import { InvoiceRequestStatus } from "./InvoiceRequestStatus";
 import { InvoiceRequestCompany } from "./InvoiceRequestCompany";
 import { InvoiceRequestCurrency } from "./InvoiceRequestCurrency";
+import { InvoiceRequestPaymentTerm } from "./InvoiceRequestPaymentTerm";
 import { InvoiceRequestPaymentsItem } from "./InvoiceRequestPaymentsItem";
 import { InvoiceRequestTrackingCategoriesItem } from "./InvoiceRequestTrackingCategoriesItem";
 import { InvoiceLineItemRequest } from "./InvoiceLineItemRequest";
@@ -35,6 +36,7 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     totalDiscount: core.serialization.property("total_discount", core.serialization.number().optional()),
     subTotal: core.serialization.property("sub_total", core.serialization.number().optional()),
+    paymentTerm: core.serialization.property("payment_term", InvoiceRequestPaymentTerm.optional()),
     totalTaxAmount: core.serialization.property("total_tax_amount", core.serialization.number().optional()),
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
@@ -76,6 +78,7 @@ export declare namespace InvoiceRequest {
         exchange_rate?: string | null;
         total_discount?: number | null;
         sub_total?: number | null;
+        payment_term?: InvoiceRequestPaymentTerm.Raw | null;
         total_tax_amount?: number | null;
         inclusive_of_tax?: boolean | null;
         total_amount?: number | null;

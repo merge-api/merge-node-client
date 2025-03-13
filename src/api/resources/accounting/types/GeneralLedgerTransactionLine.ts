@@ -654,7 +654,7 @@ export interface GeneralLedgerTransactionLine {
     exchangeRate?: string;
     /** A description of the line item. */
     description?: string;
-    trackingCategories?: Merge.accounting.TrackingCategory[];
+    trackingCategories?: Merge.accounting.GeneralLedgerTransactionLineTrackingCategoriesItem[];
     debitAmount: string;
     creditAmount: string;
     item?: Merge.accounting.GeneralLedgerTransactionLineItem;

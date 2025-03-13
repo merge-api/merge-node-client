@@ -48,6 +48,10 @@ export interface TrackingCategoriesListRequest {
      */
     modifiedBefore?: Date;
     /**
+     * If provided, will only return TrackingCategories with this name.
+     */
+    name?: string;
+    /**
      * Number of results to return per page.
      */
     pageSize?: number;

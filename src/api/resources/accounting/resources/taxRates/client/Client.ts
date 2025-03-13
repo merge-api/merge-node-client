@@ -59,6 +59,7 @@ export class TaxRates {
             includeShellData,
             modifiedAfter,
             modifiedBefore,
+            name,
             pageSize,
             remoteId,
         } = request;
@@ -103,6 +104,10 @@ export class TaxRates {
             _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
+        if (name != null) {
+            _queryParams["name"] = name;
+        }
+
         if (pageSize != null) {
             _queryParams["page_size"] = pageSize.toString();
         }
@@ -125,8 +130,8 @@ export class TaxRates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -185,7 +190,7 @@ export class TaxRates {
         request: Merge.accounting.TaxRatesRetrieveRequest = {},
         requestOptions?: TaxRates.RequestOptions
     ): Promise<Merge.accounting.TaxRate> {
-        const { expand, includeRemoteData } = request;
+        const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
@@ -193,6 +198,10 @@ export class TaxRates {
 
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -209,8 +218,8 @@ export class TaxRates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

@@ -17,11 +17,11 @@ export const Group: core.serialization.ObjectSchema<serializers.hris.Group.Raw, 
         parentGroup: core.serialization.property("parent_group", core.serialization.string().optional()),
         name: core.serialization.string().optional(),
         type: GroupType.optional(),
-        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         isCommonlyUsedAsTeam: core.serialization.property(
             "is_commonly_used_as_team",
             core.serialization.boolean().optional()
         ),
+        remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -38,8 +38,8 @@ export declare namespace Group {
         parent_group?: string | null;
         name?: string | null;
         type?: GroupType.Raw | null;
-        remote_was_deleted?: boolean | null;
         is_commonly_used_as_team?: boolean | null;
+        remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: RemoteData.Raw[] | null;
     }

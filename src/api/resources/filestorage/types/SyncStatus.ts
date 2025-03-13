@@ -20,7 +20,9 @@ export interface SyncStatus {
     modelId: string;
     lastSyncStart?: Date;
     nextSyncStart?: Date;
-    status: Merge.filestorage.SyncStatusStatusEnum;
+    lastSyncResult?: Merge.filestorage.SyncStatusLastSyncResult;
+    lastSyncFinished?: Date;
+    status: Merge.filestorage.StatusFd5Enum;
     isInitialSync: boolean;
     selectiveSyncConfigurationsUsage?: Merge.filestorage.SelectiveSyncConfigurationsUsageEnum;
 }

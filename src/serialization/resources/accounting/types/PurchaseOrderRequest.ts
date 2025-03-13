@@ -9,6 +9,7 @@ import { PurchaseOrderRequestStatus } from "./PurchaseOrderRequestStatus";
 import { PurchaseOrderRequestDeliveryAddress } from "./PurchaseOrderRequestDeliveryAddress";
 import { PurchaseOrderRequestVendor } from "./PurchaseOrderRequestVendor";
 import { PurchaseOrderRequestCompany } from "./PurchaseOrderRequestCompany";
+import { PurchaseOrderRequestPaymentTerm } from "./PurchaseOrderRequestPaymentTerm";
 import { PurchaseOrderRequestCurrency } from "./PurchaseOrderRequestCurrency";
 import { PurchaseOrderRequestTrackingCategoriesItem } from "./PurchaseOrderRequestTrackingCategoriesItem";
 import { PurchaseOrderLineItemRequest } from "./PurchaseOrderLineItemRequest";
@@ -27,6 +28,7 @@ export const PurchaseOrderRequest: core.serialization.ObjectSchema<
     memo: core.serialization.string().optional(),
     company: PurchaseOrderRequestCompany.optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
+    paymentTerm: core.serialization.property("payment_term", PurchaseOrderRequestPaymentTerm.optional()),
     currency: PurchaseOrderRequestCurrency.optional(),
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
@@ -60,6 +62,7 @@ export declare namespace PurchaseOrderRequest {
         memo?: string | null;
         company?: PurchaseOrderRequestCompany.Raw | null;
         total_amount?: number | null;
+        payment_term?: PurchaseOrderRequestPaymentTerm.Raw | null;
         currency?: PurchaseOrderRequestCurrency.Raw | null;
         inclusive_of_tax?: boolean | null;
         exchange_rate?: string | null;

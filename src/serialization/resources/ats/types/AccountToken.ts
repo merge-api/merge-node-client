@@ -11,11 +11,13 @@ export const AccountToken: core.serialization.ObjectSchema<serializers.ats.Accou
     core.serialization.object({
         accountToken: core.serialization.property("account_token", core.serialization.string()),
         integration: AccountIntegration,
+        id: core.serialization.string(),
     });
 
 export declare namespace AccountToken {
     interface Raw {
         account_token: string;
         integration: AccountIntegration.Raw;
+        id: string;
     }
 }

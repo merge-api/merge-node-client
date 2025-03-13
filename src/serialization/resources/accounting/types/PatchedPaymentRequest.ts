@@ -7,6 +7,7 @@ import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { PatchedPaymentRequestContact } from "./PatchedPaymentRequestContact";
 import { PatchedPaymentRequestAccount } from "./PatchedPaymentRequestAccount";
+import { PatchedPaymentRequestPaymentMethod } from "./PatchedPaymentRequestPaymentMethod";
 import { PatchedPaymentRequestCurrency } from "./PatchedPaymentRequestCurrency";
 import { PatchedPaymentRequestCompany } from "./PatchedPaymentRequestCompany";
 import { PatchedPaymentRequestType } from "./PatchedPaymentRequestType";
@@ -22,6 +23,7 @@ export const PatchedPaymentRequest: core.serialization.ObjectSchema<
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
     contact: PatchedPaymentRequestContact.optional(),
     account: PatchedPaymentRequestAccount.optional(),
+    paymentMethod: core.serialization.property("payment_method", PatchedPaymentRequestPaymentMethod.optional()),
     currency: PatchedPaymentRequestCurrency.optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     company: PatchedPaymentRequestCompany.optional(),
@@ -55,6 +57,7 @@ export declare namespace PatchedPaymentRequest {
         transaction_date?: string | null;
         contact?: PatchedPaymentRequestContact.Raw | null;
         account?: PatchedPaymentRequestAccount.Raw | null;
+        payment_method?: PatchedPaymentRequestPaymentMethod.Raw | null;
         currency?: PatchedPaymentRequestCurrency.Raw | null;
         exchange_rate?: string | null;
         company?: PatchedPaymentRequestCompany.Raw | null;
