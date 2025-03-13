@@ -150,8 +150,8 @@ export class PayrollRuns {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -210,10 +210,14 @@ export class PayrollRuns {
         request: Merge.hris.PayrollRunsRetrieveRequest = {},
         requestOptions?: PayrollRuns.RequestOptions
     ): Promise<Merge.hris.PayrollRun> {
-        const { includeRemoteData, remoteFields, showEnumOrigins } = request;
+        const { includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         if (remoteFields != null) {
@@ -238,8 +242,8 @@ export class PayrollRuns {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

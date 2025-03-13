@@ -42,6 +42,8 @@ export interface PurchaseOrderRequest {
     company?: Merge.accounting.PurchaseOrderRequestCompany;
     /** The purchase order's total amount. */
     totalAmount?: number;
+    /** The payment term that applies to this transaction. */
+    paymentTerm?: Merge.accounting.PurchaseOrderRequestPaymentTerm;
     /**
      * The purchase order's currency.
      *

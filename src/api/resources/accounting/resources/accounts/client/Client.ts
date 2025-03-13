@@ -60,6 +60,7 @@ export class Accounts {
             includeShellData,
             modifiedAfter,
             modifiedBefore,
+            name,
             pageSize,
             remoteFields,
             remoteId,
@@ -110,6 +111,10 @@ export class Accounts {
             _queryParams["modified_before"] = modifiedBefore.toISOString();
         }
 
+        if (name != null) {
+            _queryParams["name"] = name;
+        }
+
         if (pageSize != null) {
             _queryParams["page_size"] = pageSize.toString();
         }
@@ -140,8 +145,8 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -224,8 +229,8 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -285,7 +290,7 @@ export class Accounts {
         request: Merge.accounting.AccountsRetrieveRequest = {},
         requestOptions?: Accounts.RequestOptions
     ): Promise<Merge.accounting.Account> {
-        const { expand, includeRemoteData, remoteFields, showEnumOrigins } = request;
+        const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
@@ -293,6 +298,10 @@ export class Accounts {
 
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         if (remoteFields != null) {
@@ -317,8 +326,8 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -385,8 +394,8 @@ export class Accounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

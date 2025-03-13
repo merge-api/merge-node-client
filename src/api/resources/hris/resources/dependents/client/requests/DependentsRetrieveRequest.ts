@@ -15,4 +15,8 @@ export interface DependentsRetrieveRequest {
      * Whether to include sensitive fields (such as social security numbers) in the response.
      */
     includeSensitiveFields?: boolean;
+    /**
+     * Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    includeShellData?: boolean;
 }

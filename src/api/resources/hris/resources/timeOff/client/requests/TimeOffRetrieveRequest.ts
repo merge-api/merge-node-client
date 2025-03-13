@@ -18,6 +18,10 @@ export interface TimeOffRetrieveRequest {
      */
     includeRemoteData?: boolean;
     /**
+     * Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    includeShellData?: boolean;
+    /**
      * Deprecated. Use show_enum_origins.
      */
     remoteFields?: Merge.hris.TimeOffRetrieveRequestRemoteFields;

@@ -170,8 +170,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -255,8 +255,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -316,7 +316,8 @@ export class Invoices {
         request: Merge.accounting.InvoicesRetrieveRequest = {},
         requestOptions?: Invoices.RequestOptions
     ): Promise<Merge.accounting.Invoice> {
-        const { expand, includeRemoteData, includeRemoteFields, remoteFields, showEnumOrigins } = request;
+        const { expand, includeRemoteData, includeRemoteFields, includeShellData, remoteFields, showEnumOrigins } =
+            request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
@@ -328,6 +329,10 @@ export class Invoices {
 
         if (includeRemoteFields != null) {
             _queryParams["include_remote_fields"] = includeRemoteFields.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         if (remoteFields != null) {
@@ -352,8 +357,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -438,8 +443,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -540,8 +545,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -614,8 +619,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -683,8 +688,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -783,8 +788,8 @@ export class Invoices {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

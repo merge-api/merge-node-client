@@ -7,6 +7,7 @@ import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { PaymentRequestContact } from "./PaymentRequestContact";
 import { PaymentRequestAccount } from "./PaymentRequestAccount";
+import { PaymentRequestPaymentMethod } from "./PaymentRequestPaymentMethod";
 import { PaymentRequestCurrency } from "./PaymentRequestCurrency";
 import { PaymentRequestCompany } from "./PaymentRequestCompany";
 import { PaymentRequestType } from "./PaymentRequestType";
@@ -22,6 +23,7 @@ export const PaymentRequest: core.serialization.ObjectSchema<
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
     contact: PaymentRequestContact.optional(),
     account: PaymentRequestAccount.optional(),
+    paymentMethod: core.serialization.property("payment_method", PaymentRequestPaymentMethod.optional()),
     currency: PaymentRequestCurrency.optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     company: PaymentRequestCompany.optional(),
@@ -52,6 +54,7 @@ export declare namespace PaymentRequest {
         transaction_date?: string | null;
         contact?: PaymentRequestContact.Raw | null;
         account?: PaymentRequestAccount.Raw | null;
+        payment_method?: PaymentRequestPaymentMethod.Raw | null;
         currency?: PaymentRequestCurrency.Raw | null;
         exchange_rate?: string | null;
         company?: PaymentRequestCompany.Raw | null;

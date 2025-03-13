@@ -10,6 +10,7 @@ import { InvoiceContact } from "./InvoiceContact";
 import { InvoiceCompany } from "./InvoiceCompany";
 import { InvoiceEmployee } from "./InvoiceEmployee";
 import { InvoiceCurrency } from "./InvoiceCurrency";
+import { InvoicePaymentTerm } from "./InvoicePaymentTerm";
 import { InvoiceStatus } from "./InvoiceStatus";
 import { InvoiceTrackingCategoriesItem } from "./InvoiceTrackingCategoriesItem";
 import { InvoiceAccountingPeriod } from "./InvoiceAccountingPeriod";
@@ -37,6 +38,7 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
         employee: InvoiceEmployee.optional(),
         currency: InvoiceCurrency.optional(),
         exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
+        paymentTerm: core.serialization.property("payment_term", InvoicePaymentTerm.optional()),
         totalDiscount: core.serialization.property("total_discount", core.serialization.number().optional()),
         subTotal: core.serialization.property("sub_total", core.serialization.number().optional()),
         status: InvoiceStatus.optional(),
@@ -98,6 +100,7 @@ export declare namespace Invoice {
         employee?: InvoiceEmployee.Raw | null;
         currency?: InvoiceCurrency.Raw | null;
         exchange_rate?: string | null;
+        payment_term?: InvoicePaymentTerm.Raw | null;
         total_discount?: number | null;
         sub_total?: number | null;
         status?: InvoiceStatus.Raw | null;

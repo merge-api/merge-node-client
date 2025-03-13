@@ -7,4 +7,5 @@ import * as Merge from "../../../index";
 export interface AccountToken {
     accountToken: string;
     integration: Merge.filestorage.AccountIntegration;
+    id: string;
 }

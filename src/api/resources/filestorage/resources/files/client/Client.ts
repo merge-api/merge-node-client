@@ -141,8 +141,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -225,8 +225,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -288,7 +288,7 @@ export class Files {
         request: Merge.filestorage.FilesRetrieveRequest = {},
         requestOptions?: Files.RequestOptions
     ): Promise<Merge.filestorage.File_> {
-        const { expand, includeRemoteData } = request;
+        const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
@@ -296,6 +296,10 @@ export class Files {
 
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
+        }
+
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -312,8 +316,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -365,8 +369,12 @@ export class Files {
         request: Merge.filestorage.FilesDownloadRetrieveRequest = {},
         requestOptions?: Files.RequestOptions
     ): Promise<stream.Readable> {
-        const { mimeType } = request;
+        const { includeShellData, mimeType } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (includeShellData != null) {
+            _queryParams["include_shell_data"] = includeShellData.toString();
+        }
+
         if (mimeType != null) {
             _queryParams["mime_type"] = mimeType;
         }
@@ -385,8 +393,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -428,6 +436,180 @@ export class Files {
     }
 
     /**
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     *
+     * @param {string} id
+     * @param {Merge.filestorage.FilesDownloadRequestMetaRetrieveRequest} request
+     * @param {Files.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.filestorage.files.downloadRequestMetaRetrieve("id")
+     */
+    public async downloadRequestMetaRetrieve(
+        id: string,
+        request: Merge.filestorage.FilesDownloadRequestMetaRetrieveRequest = {},
+        requestOptions?: Files.RequestOptions
+    ): Promise<Merge.filestorage.DownloadRequestMeta> {
+        const { mimeType } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (mimeType != null) {
+            _queryParams["mime_type"] = mimeType;
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                `filestorage/v1/files/${encodeURIComponent(id)}/download/request-meta`
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.filestorage.DownloadRequestMeta.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /filestorage/v1/files/{id}/download/request-meta."
+                );
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Returns metadata to construct authenticated file download requests, allowing you to download files directly from the third-party.
+     *
+     * @param {Merge.filestorage.FilesDownloadRequestMetaListRequest} request
+     * @param {Files.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.filestorage.files.downloadRequestMetaList()
+     */
+    public async downloadRequestMetaList(
+        request: Merge.filestorage.FilesDownloadRequestMetaListRequest = {},
+        requestOptions?: Files.RequestOptions
+    ): Promise<Merge.filestorage.PaginatedDownloadRequestMetaList> {
+        const { cursor, includeDeletedData, mimeType, pageSize } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (cursor != null) {
+            _queryParams["cursor"] = cursor;
+        }
+
+        if (includeDeletedData != null) {
+            _queryParams["include_deleted_data"] = includeDeletedData.toString();
+        }
+
+        if (mimeType != null) {
+            _queryParams["mime_type"] = mimeType;
+        }
+
+        if (pageSize != null) {
+            _queryParams["page_size"] = pageSize.toString();
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
+                "filestorage/v1/files/download/request-meta"
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token":
+                    (await core.Supplier.get(this._options.accountToken)) != null
+                        ? await core.Supplier.get(this._options.accountToken)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.filestorage.PaginatedDownloadRequestMetaList.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /filestorage/v1/files/download/request-meta."
+                );
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
      * Returns metadata for `FileStorageFile` POSTs.
      *
      * @param {Files.RequestOptions} requestOptions - Request-specific configuration.
@@ -450,8 +632,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

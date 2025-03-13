@@ -57,4 +57,8 @@ export interface UsersListRequest {
      * The API provider's ID for the given object.
      */
     remoteId?: string;
+    /**
+     * If provided, will only return users matching in this team.
+     */
+    team?: string;
 }

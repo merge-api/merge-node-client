@@ -48,6 +48,10 @@ export interface TaxRatesListRequest {
      */
     modifiedBefore?: Date;
     /**
+     * If provided, will only return TaxRates with this name.
+     */
+    name?: string;
+    /**
      * Number of results to return per page.
      */
     pageSize?: number;

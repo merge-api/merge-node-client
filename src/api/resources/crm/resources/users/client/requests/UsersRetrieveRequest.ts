@@ -15,4 +15,8 @@ export interface UsersRetrieveRequest {
      * Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
      */
     includeRemoteFields?: boolean;
+    /**
+     * Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    includeShellData?: boolean;
 }

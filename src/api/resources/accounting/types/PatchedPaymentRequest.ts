@@ -22,6 +22,8 @@ export interface PatchedPaymentRequest {
     contact?: Merge.accounting.PatchedPaymentRequestContact;
     /** The supplier’s or customer’s account in which the payment is made. */
     account?: Merge.accounting.PatchedPaymentRequestAccount;
+    /** The method which this payment was made by. */
+    paymentMethod?: Merge.accounting.PatchedPaymentRequestPaymentMethod;
     /**
      * The payment's currency.
      *

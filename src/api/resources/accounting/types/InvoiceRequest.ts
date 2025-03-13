@@ -369,6 +369,8 @@ export interface InvoiceRequest {
     totalDiscount?: number;
     /** The total amount being paid before taxes. */
     subTotal?: number;
+    /** The payment term that applies to this transaction. */
+    paymentTerm?: Merge.accounting.InvoiceRequestPaymentTerm;
     /** The total amount being paid in taxes. */
     totalTaxAmount?: number;
     /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
