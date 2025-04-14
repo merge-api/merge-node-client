@@ -2,3 +2,5 @@
 
 README.md
 LICENSE.md
+
+tests/unit/fetcher/stream-wrappers/webpack.test.ts
