@@ -8,7 +8,6 @@
  * - `OTHER` - OTHER
  */
 export type EmailAddressTypeEnum = "PERSONAL" | "WORK" | "OTHER";
-
 export const EmailAddressTypeEnum = {
     Personal: "PERSONAL",
     Work: "WORK",

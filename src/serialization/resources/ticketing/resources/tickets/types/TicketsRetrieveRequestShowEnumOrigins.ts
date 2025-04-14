@@ -20,7 +20,7 @@ export const TicketsRetrieveRequestShowEnumOrigins: core.serialization.Schema<
 ]);
 
 export declare namespace TicketsRetrieveRequestShowEnumOrigins {
-    type Raw =
+    export type Raw =
         | "priority"
         | "priority,status"
         | "priority,status,ticket_type"

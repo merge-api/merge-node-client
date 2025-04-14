@@ -12,5 +12,5 @@ export const EmploymentsListRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["employee", "employee,pay_group", "pay_group"]);
 
 export declare namespace EmploymentsListRequestExpand {
-    type Raw = "employee" | "employee,pay_group" | "pay_group";
+    export type Raw = "employee" | "employee,pay_group" | "pay_group";
 }

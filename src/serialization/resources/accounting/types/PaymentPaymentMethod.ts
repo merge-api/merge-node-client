@@ -13,5 +13,5 @@ export const PaymentPaymentMethod: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), PaymentMethod]);
 
 export declare namespace PaymentPaymentMethod {
-    type Raw = string | PaymentMethod.Raw;
+    export type Raw = string | PaymentMethod.Raw;
 }

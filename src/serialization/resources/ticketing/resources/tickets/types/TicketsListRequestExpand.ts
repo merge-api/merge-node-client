@@ -268,7 +268,7 @@ export const TicketsListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace TicketsListRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "account,contact"
         | "account,contact,creator"

@@ -3,7 +3,6 @@
  */
 
 export type InvoicesListRequestType = "ACCOUNTS_PAYABLE" | "ACCOUNTS_RECEIVABLE";
-
 export const InvoicesListRequestType = {
     AccountsPayable: "ACCOUNTS_PAYABLE",
     AccountsReceivable: "ACCOUNTS_RECEIVABLE",

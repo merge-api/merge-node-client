@@ -25,7 +25,7 @@ export const Permission: core.serialization.ObjectSchema<
 });
 
 export declare namespace Permission {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

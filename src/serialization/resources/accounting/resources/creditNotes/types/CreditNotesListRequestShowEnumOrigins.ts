@@ -12,5 +12,5 @@ export const CreditNotesListRequestShowEnumOrigins: core.serialization.Schema<
 > = core.serialization.enum_(["status", "status,type", "type"]);
 
 export declare namespace CreditNotesListRequestShowEnumOrigins {
-    type Raw = "status" | "status,type" | "type";
+    export type Raw = "status" | "status,type" | "type";
 }

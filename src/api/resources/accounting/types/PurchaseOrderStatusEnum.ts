@@ -10,7 +10,6 @@
  * - `DELETED` - DELETED
  */
 export type PurchaseOrderStatusEnum = "DRAFT" | "SUBMITTED" | "AUTHORIZED" | "BILLED" | "DELETED";
-
 export const PurchaseOrderStatusEnum = {
     Draft: "DRAFT",
     Submitted: "SUBMITTED",

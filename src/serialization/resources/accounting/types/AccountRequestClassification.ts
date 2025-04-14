@@ -13,5 +13,5 @@ export const AccountRequestClassification: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([ClassificationEnum, core.serialization.string()]);
 
 export declare namespace AccountRequestClassification {
-    type Raw = ClassificationEnum.Raw | string;
+    export type Raw = ClassificationEnum.Raw | string;
 }

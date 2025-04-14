@@ -29,7 +29,7 @@ export const AccountDetailsAndActions: core.serialization.ObjectSchema<
 });
 
 export declare namespace AccountDetailsAndActions {
-    interface Raw {
+    export interface Raw {
         id: string;
         category?: CategoryEnum.Raw | null;
         status: AccountDetailsAndActionsStatusEnum.Raw;

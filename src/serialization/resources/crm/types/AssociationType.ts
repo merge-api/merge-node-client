@@ -18,11 +18,11 @@ export const AssociationType: core.serialization.ObjectSchema<
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     sourceObjectClass: core.serialization.property(
         "source_object_class",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     targetObjectClasses: core.serialization.property(
         "target_object_classes",
-        core.serialization.list(AssociationSubType).optional()
+        core.serialization.list(AssociationSubType).optional(),
     ),
     remoteKeyName: core.serialization.property("remote_key_name", core.serialization.string().optional()),
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
@@ -31,7 +31,7 @@ export const AssociationType: core.serialization.ObjectSchema<
 });
 
 export declare namespace AssociationType {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

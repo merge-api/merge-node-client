@@ -17,7 +17,7 @@ export const PaginatedContactList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedContactList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Contact.Raw[] | null;

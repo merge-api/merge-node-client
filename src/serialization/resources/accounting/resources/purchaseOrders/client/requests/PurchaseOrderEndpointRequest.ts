@@ -15,7 +15,7 @@ export const PurchaseOrderEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace PurchaseOrderEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: PurchaseOrderRequest.Raw;
     }
 }

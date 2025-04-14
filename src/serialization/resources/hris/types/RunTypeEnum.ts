@@ -10,5 +10,5 @@ export const RunTypeEnum: core.serialization.Schema<serializers.hris.RunTypeEnum
     core.serialization.enum_(["REGULAR", "OFF_CYCLE", "CORRECTION", "TERMINATION", "SIGN_ON_BONUS"]);
 
 export declare namespace RunTypeEnum {
-    type Raw = "REGULAR" | "OFF_CYCLE" | "CORRECTION" | "TERMINATION" | "SIGN_ON_BONUS";
+    export type Raw = "REGULAR" | "OFF_CYCLE" | "CORRECTION" | "TERMINATION" | "SIGN_ON_BONUS";
 }

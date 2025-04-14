@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace AccountToken {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,14 +46,23 @@ export class AccountToken {
      * @example
      *     await client.filestorage.accountToken.retrieve("public_token")
      */
-    public async retrieve(
+    public retrieve(
         publicToken: string,
-        requestOptions?: AccountToken.RequestOptions
-    ): Promise<Merge.filestorage.AccountToken> {
+        requestOptions?: AccountToken.RequestOptions,
+    ): core.HttpResponsePromise<Merge.filestorage.AccountToken> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(publicToken, requestOptions));
+    }
+
+    private async __retrieve(
+        publicToken: string,
+        requestOptions?: AccountToken.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.filestorage.AccountToken>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `filestorage/v1/account-token/${encodeURIComponent(publicToken)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `filestorage/v1/account-token/${encodeURIComponent(publicToken)}`,
             ),
             method: "GET",
             headers: {
@@ -62,8 +73,8 @@ export class AccountToken {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -75,13 +86,16 @@ export class AccountToken {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.filestorage.AccountToken.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.filestorage.AccountToken.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -99,7 +113,7 @@ export class AccountToken {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /filestorage/v1/account-token/{public_token}."
+                    "Timeout exceeded when calling GET /filestorage/v1/account-token/{public_token}.",
                 );
             case "unknown":
                 throw new errors.MergeError({

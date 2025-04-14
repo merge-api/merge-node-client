@@ -10,5 +10,5 @@ export const GroupTypeEnum: core.serialization.Schema<serializers.hris.GroupType
     core.serialization.enum_(["TEAM", "DEPARTMENT", "COST_CENTER", "BUSINESS_UNIT", "GROUP"]);
 
 export declare namespace GroupTypeEnum {
-    type Raw = "TEAM" | "DEPARTMENT" | "COST_CENTER" | "BUSINESS_UNIT" | "GROUP";
+    export type Raw = "TEAM" | "DEPARTMENT" | "COST_CENTER" | "BUSINESS_UNIT" | "GROUP";
 }

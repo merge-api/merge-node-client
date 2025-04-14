@@ -28,7 +28,7 @@ export const EeocsRetrieveRequestRemoteFields: core.serialization.Schema<
 ]);
 
 export declare namespace EeocsRetrieveRequestRemoteFields {
-    type Raw =
+    export type Raw =
         | "disability_status"
         | "disability_status,gender"
         | "disability_status,gender,race"

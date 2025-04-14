@@ -20,7 +20,7 @@ export const TicketsListRequestRemoteFields: core.serialization.Schema<
 ]);
 
 export declare namespace TicketsListRequestRemoteFields {
-    type Raw =
+    export type Raw =
         | "priority"
         | "priority,status"
         | "priority,status,ticket_type"

@@ -17,14 +17,14 @@ export const RemoteResponse: core.serialization.ObjectSchema<
     response: core.serialization.unknown(),
     responseHeaders: core.serialization.property(
         "response_headers",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     responseType: core.serialization.property("response_type", RemoteResponseResponseType.optional()),
     headers: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace RemoteResponse {
-    interface Raw {
+    export interface Raw {
         method: string;
         path: string;
         status: number;

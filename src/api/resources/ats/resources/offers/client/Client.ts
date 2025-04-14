@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Offers {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Offers {
      * @example
      *     await client.ats.offers.list()
      */
-    public async list(
+    public list(
         request: Merge.ats.OffersListRequest = {},
-        requestOptions?: Offers.RequestOptions
-    ): Promise<Merge.ats.PaginatedOfferList> {
+        requestOptions?: Offers.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.PaginatedOfferList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.ats.OffersListRequest = {},
+        requestOptions?: Offers.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.PaginatedOfferList>> {
         const {
             applicationId,
             createdAfter,
@@ -65,7 +74,7 @@ export class Offers {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (applicationId != null) {
             _queryParams["application_id"] = applicationId;
         }
@@ -87,7 +96,9 @@ export class Offers {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.ats.OffersListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -128,8 +139,10 @@ export class Offers {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/offers"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/offers",
             ),
             method: "GET",
             headers: {
@@ -140,8 +153,8 @@ export class Offers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -154,13 +167,16 @@ export class Offers {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.PaginatedOfferList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.PaginatedOfferList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -195,15 +211,25 @@ export class Offers {
      * @example
      *     await client.ats.offers.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.ats.OffersRetrieveRequest = {},
-        requestOptions?: Offers.RequestOptions
-    ): Promise<Merge.ats.Offer> {
+        requestOptions?: Offers.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.Offer> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.ats.OffersRetrieveRequest = {},
+        requestOptions?: Offers.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.Offer>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.ats.OffersRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -224,8 +250,10 @@ export class Offers {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/offers/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ats/v1/offers/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -236,8 +264,8 @@ export class Offers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -250,13 +278,16 @@ export class Offers {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.Offer.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.Offer.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

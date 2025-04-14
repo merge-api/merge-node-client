@@ -13,5 +13,5 @@ export const AddressRequestCountry: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([CountryEnum, core.serialization.string()]);
 
 export declare namespace AddressRequestCountry {
-    type Raw = CountryEnum.Raw | string;
+    export type Raw = CountryEnum.Raw | string;
 }

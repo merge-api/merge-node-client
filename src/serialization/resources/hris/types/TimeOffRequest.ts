@@ -26,16 +26,16 @@ export const TimeOffRequest: core.serialization.ObjectSchema<
     endTime: core.serialization.property("end_time", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace TimeOffRequest {
-    interface Raw {
+    export interface Raw {
         employee?: TimeOffRequestEmployee.Raw | null;
         approver?: TimeOffRequestApprover.Raw | null;
         status?: TimeOffRequestStatus.Raw | null;

@@ -44,7 +44,7 @@ export const JobsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace JobsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "departments"
         | "departments,hiring_managers"
         | "departments,hiring_managers,job_postings"

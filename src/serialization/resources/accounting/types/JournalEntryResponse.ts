@@ -21,7 +21,7 @@ export const JournalEntryResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace JournalEntryResponse {
-    interface Raw {
+    export interface Raw {
         model: JournalEntry.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

@@ -15,7 +15,7 @@ export const PatchedTaskEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace PatchedTaskEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: PatchedTaskRequest.Raw;
     }
 }

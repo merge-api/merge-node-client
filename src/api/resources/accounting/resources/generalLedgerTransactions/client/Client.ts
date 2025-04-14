@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace GeneralLedgerTransactions {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class GeneralLedgerTransactions {
      * @example
      *     await client.accounting.generalLedgerTransactions.list()
      */
-    public async list(
+    public list(
         request: Merge.accounting.GeneralLedgerTransactionsListRequest = {},
-        requestOptions?: GeneralLedgerTransactions.RequestOptions
-    ): Promise<Merge.accounting.PaginatedGeneralLedgerTransactionList> {
+        requestOptions?: GeneralLedgerTransactions.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedGeneralLedgerTransactionList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.GeneralLedgerTransactionsListRequest = {},
+        requestOptions?: GeneralLedgerTransactions.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedGeneralLedgerTransactionList>> {
         const {
             companyId,
             createdAfter,
@@ -64,7 +73,7 @@ export class GeneralLedgerTransactions {
             postedDateBefore,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
         }
@@ -82,7 +91,10 @@ export class GeneralLedgerTransactions {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.accounting.GeneralLedgerTransactionsListRequestExpand.jsonOrThrow(
+                expand,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (includeDeletedData != null) {
@@ -123,8 +135,10 @@ export class GeneralLedgerTransactions {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/general-ledger-transactions"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/general-ledger-transactions",
             ),
             method: "GET",
             headers: {
@@ -135,8 +149,8 @@ export class GeneralLedgerTransactions {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -149,13 +163,16 @@ export class GeneralLedgerTransactions {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedGeneralLedgerTransactionList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedGeneralLedgerTransactionList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -173,7 +190,7 @@ export class GeneralLedgerTransactions {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/general-ledger-transactions."
+                    "Timeout exceeded when calling GET /accounting/v1/general-ledger-transactions.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -192,15 +209,26 @@ export class GeneralLedgerTransactions {
      * @example
      *     await client.accounting.generalLedgerTransactions.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.accounting.GeneralLedgerTransactionsRetrieveRequest = {},
-        requestOptions?: GeneralLedgerTransactions.RequestOptions
-    ): Promise<Merge.accounting.GeneralLedgerTransaction> {
+        requestOptions?: GeneralLedgerTransactions.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.GeneralLedgerTransaction> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.accounting.GeneralLedgerTransactionsRetrieveRequest = {},
+        requestOptions?: GeneralLedgerTransactions.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.GeneralLedgerTransaction>> {
         const { expand, includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.accounting.GeneralLedgerTransactionsRetrieveRequestExpand.jsonOrThrow(
+                expand,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (includeRemoteData != null) {
@@ -213,8 +241,10 @@ export class GeneralLedgerTransactions {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/general-ledger-transactions/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/general-ledger-transactions/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -225,8 +255,8 @@ export class GeneralLedgerTransactions {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -239,13 +269,16 @@ export class GeneralLedgerTransactions {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.GeneralLedgerTransaction.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.GeneralLedgerTransaction.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -263,7 +296,7 @@ export class GeneralLedgerTransactions {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/general-ledger-transactions/{id}."
+                    "Timeout exceeded when calling GET /accounting/v1/general-ledger-transactions/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({

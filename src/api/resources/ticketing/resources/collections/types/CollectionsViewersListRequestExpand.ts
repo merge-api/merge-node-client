@@ -3,7 +3,6 @@
  */
 
 export type CollectionsViewersListRequestExpand = "team" | "user" | "user,team";
-
 export const CollectionsViewersListRequestExpand = {
     Team: "team",
     User: "user",

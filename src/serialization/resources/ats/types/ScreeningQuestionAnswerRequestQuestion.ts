@@ -13,5 +13,5 @@ export const ScreeningQuestionAnswerRequestQuestion: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), ScreeningQuestion]);
 
 export declare namespace ScreeningQuestionAnswerRequestQuestion {
-    type Raw = string | ScreeningQuestion.Raw;
+    export type Raw = string | ScreeningQuestion.Raw;
 }

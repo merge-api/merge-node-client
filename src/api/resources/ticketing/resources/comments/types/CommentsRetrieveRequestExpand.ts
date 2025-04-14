@@ -10,7 +10,6 @@ export type CommentsRetrieveRequestExpand =
     | "user,contact"
     | "user,contact,ticket"
     | "user,ticket";
-
 export const CommentsRetrieveRequestExpand = {
     Contact: "contact",
     ContactTicket: "contact,ticket",

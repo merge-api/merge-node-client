@@ -18,7 +18,7 @@ export const PaginatedVendorCreditList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedVendorCreditList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: serializers.accounting.VendorCredit.Raw[] | null;

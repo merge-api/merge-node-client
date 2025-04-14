@@ -13,5 +13,5 @@ export const DependentGender: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([GenderEnum, core.serialization.string()]);
 
 export declare namespace DependentGender {
-    type Raw = GenderEnum.Raw | string;
+    export type Raw = GenderEnum.Raw | string;
 }

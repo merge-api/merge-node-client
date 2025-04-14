@@ -12,5 +12,5 @@ export const PaymentTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["ACCOUNTS_PAYABLE", "ACCOUNTS_RECEIVABLE"]);
 
 export declare namespace PaymentTypeEnum {
-    type Raw = "ACCOUNTS_PAYABLE" | "ACCOUNTS_RECEIVABLE";
+    export type Raw = "ACCOUNTS_PAYABLE" | "ACCOUNTS_RECEIVABLE";
 }

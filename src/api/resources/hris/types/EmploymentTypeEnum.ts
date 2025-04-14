@@ -10,7 +10,6 @@
  * - `FREELANCE` - FREELANCE
  */
 export type EmploymentTypeEnum = "FULL_TIME" | "PART_TIME" | "INTERN" | "CONTRACTOR" | "FREELANCE";
-
 export const EmploymentTypeEnum = {
     FullTime: "FULL_TIME",
     PartTime: "PART_TIME",

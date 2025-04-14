@@ -268,7 +268,7 @@ export const ApplicationsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace ApplicationsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "candidate"
         | "candidate,credited_to"
         | "candidate,credited_to,current_stage"

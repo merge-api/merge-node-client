@@ -34,7 +34,6 @@ export type VendorCreditsListRequestExpand =
     | "vendor,accounting_period"
     | "vendor,company"
     | "vendor,company,accounting_period";
-
 export const VendorCreditsListRequestExpand = {
     AccountingPeriod: "accounting_period",
     Company: "company",

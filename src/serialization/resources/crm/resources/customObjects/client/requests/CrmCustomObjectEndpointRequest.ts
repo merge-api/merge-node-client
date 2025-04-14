@@ -15,7 +15,7 @@ export const CrmCustomObjectEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace CrmCustomObjectEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: CustomObjectRequest.Raw;
     }
 }

@@ -130,7 +130,6 @@ export type PaymentsListRequestExpand =
     | "tracking_categories,contact,company,payment_method"
     | "tracking_categories,contact,payment_method"
     | "tracking_categories,payment_method";
-
 export const PaymentsListRequestExpand = {
     Account: "account",
     AccountAccountingPeriod: "account,accounting_period",

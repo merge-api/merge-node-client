@@ -13,5 +13,5 @@ export const EmailAddressRequestEmailAddressType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([EmailAddressTypeEnum, core.serialization.string()]);
 
 export declare namespace EmailAddressRequestEmailAddressType {
-    type Raw = EmailAddressTypeEnum.Raw | string;
+    export type Raw = EmailAddressTypeEnum.Raw | string;
 }

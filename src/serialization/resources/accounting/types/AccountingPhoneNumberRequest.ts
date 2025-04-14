@@ -14,16 +14,16 @@ export const AccountingPhoneNumberRequest: core.serialization.ObjectSchema<
     type: core.serialization.string().optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace AccountingPhoneNumberRequest {
-    interface Raw {
+    export interface Raw {
         number?: string | null;
         type?: string | null;
         integration_params?: Record<string, unknown> | null;

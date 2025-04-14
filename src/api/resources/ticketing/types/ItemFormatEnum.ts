@@ -11,7 +11,6 @@
  * - `list` - decimal
  */
 export type ItemFormatEnum = "string" | "number" | "date" | "datetime" | "bool" | "list";
-
 export const ItemFormatEnum = {
     String: "string",
     Number: "number",

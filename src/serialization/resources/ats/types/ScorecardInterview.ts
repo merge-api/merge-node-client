@@ -13,5 +13,5 @@ export const ScorecardInterview: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), ScheduledInterview]);
 
 export declare namespace ScorecardInterview {
-    type Raw = string | ScheduledInterview.Raw;
+    export type Raw = string | ScheduledInterview.Raw;
 }

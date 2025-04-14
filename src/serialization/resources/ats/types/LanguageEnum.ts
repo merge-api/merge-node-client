@@ -10,5 +10,5 @@ export const LanguageEnum: core.serialization.Schema<serializers.ats.LanguageEnu
     core.serialization.enum_(["en", "de"]);
 
 export declare namespace LanguageEnum {
-    type Raw = "en" | "de";
+    export type Raw = "en" | "de";
 }

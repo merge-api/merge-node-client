@@ -15,5 +15,5 @@ export const BankInfoEmployee: core.serialization.Schema<
 ]);
 
 export declare namespace BankInfoEmployee {
-    type Raw = string | serializers.hris.Employee.Raw;
+    export type Raw = string | serializers.hris.Employee.Raw;
 }

@@ -12,5 +12,5 @@ export const TicketsViewersListRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["team", "user", "user,team"]);
 
 export declare namespace TicketsViewersListRequestExpand {
-    type Raw = "team" | "user" | "user,team";
+    export type Raw = "team" | "user" | "user,team";
 }

@@ -3,7 +3,6 @@
  */
 
 export type CreditNotesRetrieveRequestShowEnumOrigins = "status" | "status,type" | "type";
-
 export const CreditNotesRetrieveRequestShowEnumOrigins = {
     Status: "status",
     StatusType: "status,type",

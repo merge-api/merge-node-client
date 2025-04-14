@@ -9,7 +9,6 @@ export type TimeOffListRequestRequestType =
     | "SICK"
     | "VACATION"
     | "VOLUNTEER";
-
 export const TimeOffListRequestRequestType = {
     Bereavement: "BEREAVEMENT",
     JuryDuty: "JURY_DUTY",

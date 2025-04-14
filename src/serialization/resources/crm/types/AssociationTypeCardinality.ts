@@ -13,5 +13,5 @@ export const AssociationTypeCardinality: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([CardinalityEnum, core.serialization.string()]);
 
 export declare namespace AssociationTypeCardinality {
-    type Raw = CardinalityEnum.Raw | string;
+    export type Raw = CardinalityEnum.Raw | string;
 }

@@ -13,12 +13,12 @@ export const CommonModelScopeApi: core.serialization.ObjectSchema<
 > = core.serialization.object({
     commonModels: core.serialization.property(
         "common_models",
-        core.serialization.list(IndividualCommonModelScopeDeserializer)
+        core.serialization.list(IndividualCommonModelScopeDeserializer),
     ),
 });
 
 export declare namespace CommonModelScopeApi {
-    interface Raw {
+    export interface Raw {
         common_models: IndividualCommonModelScopeDeserializer.Raw[];
     }
 }

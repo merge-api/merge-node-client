@@ -15,7 +15,7 @@ export const LeadEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace LeadEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: LeadRequest.Raw;
     }
 }

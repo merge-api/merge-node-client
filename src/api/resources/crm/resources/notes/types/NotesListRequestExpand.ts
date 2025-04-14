@@ -18,7 +18,6 @@ export type NotesListRequestExpand =
     | "owner,contact,account,opportunity"
     | "owner,contact,opportunity"
     | "owner,opportunity";
-
 export const NotesListRequestExpand = {
     Account: "account",
     AccountOpportunity: "account,opportunity",

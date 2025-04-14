@@ -12,5 +12,5 @@ export const TicketStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["OPEN", "CLOSED", "IN_PROGRESS", "ON_HOLD"]);
 
 export declare namespace TicketStatusEnum {
-    type Raw = "OPEN" | "CLOSED" | "IN_PROGRESS" | "ON_HOLD";
+    export type Raw = "OPEN" | "CLOSED" | "IN_PROGRESS" | "ON_HOLD";
 }

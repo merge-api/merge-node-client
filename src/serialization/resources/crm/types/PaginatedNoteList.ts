@@ -17,7 +17,7 @@ export const PaginatedNoteList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedNoteList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Note.Raw[] | null;

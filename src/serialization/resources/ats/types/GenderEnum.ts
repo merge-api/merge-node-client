@@ -10,5 +10,5 @@ export const GenderEnum: core.serialization.Schema<serializers.ats.GenderEnum.Ra
     core.serialization.enum_(["MALE", "FEMALE", "NON-BINARY", "OTHER", "DECLINE_TO_SELF_IDENTIFY"]);
 
 export declare namespace GenderEnum {
-    type Raw = "MALE" | "FEMALE" | "NON-BINARY" | "OTHER" | "DECLINE_TO_SELF_IDENTIFY";
+    export type Raw = "MALE" | "FEMALE" | "NON-BINARY" | "OTHER" | "DECLINE_TO_SELF_IDENTIFY";
 }

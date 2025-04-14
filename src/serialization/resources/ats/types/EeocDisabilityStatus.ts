@@ -13,5 +13,5 @@ export const EeocDisabilityStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([DisabilityStatusEnum, core.serialization.string()]);
 
 export declare namespace EeocDisabilityStatus {
-    type Raw = DisabilityStatusEnum.Raw | string;
+    export type Raw = DisabilityStatusEnum.Raw | string;
 }

@@ -12,5 +12,5 @@ export const ResponseTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["JSON", "BASE64_GZIP"]);
 
 export declare namespace ResponseTypeEnum {
-    type Raw = "JSON" | "BASE64_GZIP";
+    export type Raw = "JSON" | "BASE64_GZIP";
 }

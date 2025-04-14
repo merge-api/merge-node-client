@@ -17,7 +17,7 @@ export const PaginatedTaxRateList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedTaxRateList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: TaxRate.Raw[] | null;

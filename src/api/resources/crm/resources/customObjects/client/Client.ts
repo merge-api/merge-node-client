@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace CustomObjects {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -45,11 +47,21 @@ export class CustomObjects {
      * @example
      *     await client.crm.customObjects.customObjectClassesCustomObjectsList("custom_object_class_id")
      */
-    public async customObjectClassesCustomObjectsList(
+    public customObjectClassesCustomObjectsList(
         customObjectClassId: string,
         request: Merge.crm.CustomObjectClassesCustomObjectsListRequest = {},
-        requestOptions?: CustomObjects.RequestOptions
-    ): Promise<Merge.crm.PaginatedCustomObjectList> {
+        requestOptions?: CustomObjects.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.PaginatedCustomObjectList> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__customObjectClassesCustomObjectsList(customObjectClassId, request, requestOptions),
+        );
+    }
+
+    private async __customObjectClassesCustomObjectsList(
+        customObjectClassId: string,
+        request: Merge.crm.CustomObjectClassesCustomObjectsListRequest = {},
+        requestOptions?: CustomObjects.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.PaginatedCustomObjectList>> {
         const {
             createdAfter,
             createdBefore,
@@ -63,7 +75,7 @@ export class CustomObjects {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -110,8 +122,10 @@ export class CustomObjects {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/custom-object-classes/${encodeURIComponent(customObjectClassId)}/custom-objects`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `crm/v1/custom-object-classes/${encodeURIComponent(customObjectClassId)}/custom-objects`,
             ),
             method: "GET",
             headers: {
@@ -122,8 +136,8 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -136,13 +150,16 @@ export class CustomObjects {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.PaginatedCustomObjectList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.PaginatedCustomObjectList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -160,7 +177,7 @@ export class CustomObjects {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects."
+                    "Timeout exceeded when calling GET /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -185,13 +202,23 @@ export class CustomObjects {
      *         }
      *     })
      */
-    public async customObjectClassesCustomObjectsCreate(
+    public customObjectClassesCustomObjectsCreate(
         customObjectClassId: string,
         request: Merge.crm.CrmCustomObjectEndpointRequest,
-        requestOptions?: CustomObjects.RequestOptions
-    ): Promise<Merge.crm.CrmCustomObjectResponse> {
+        requestOptions?: CustomObjects.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.CrmCustomObjectResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__customObjectClassesCustomObjectsCreate(customObjectClassId, request, requestOptions),
+        );
+    }
+
+    private async __customObjectClassesCustomObjectsCreate(
+        customObjectClassId: string,
+        request: Merge.crm.CrmCustomObjectEndpointRequest,
+        requestOptions?: CustomObjects.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.CrmCustomObjectResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -202,8 +229,10 @@ export class CustomObjects {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/custom-object-classes/${encodeURIComponent(customObjectClassId)}/custom-objects`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `crm/v1/custom-object-classes/${encodeURIComponent(customObjectClassId)}/custom-objects`,
             ),
             method: "POST",
             headers: {
@@ -214,8 +243,8 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -231,13 +260,16 @@ export class CustomObjects {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.CrmCustomObjectResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.CrmCustomObjectResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -255,7 +287,7 @@ export class CustomObjects {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling POST /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects."
+                    "Timeout exceeded when calling POST /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -275,14 +307,25 @@ export class CustomObjects {
      * @example
      *     await client.crm.customObjects.customObjectClassesCustomObjectsRetrieve("custom_object_class_id", "id")
      */
-    public async customObjectClassesCustomObjectsRetrieve(
+    public customObjectClassesCustomObjectsRetrieve(
         customObjectClassId: string,
         id: string,
         request: Merge.crm.CustomObjectClassesCustomObjectsRetrieveRequest = {},
-        requestOptions?: CustomObjects.RequestOptions
-    ): Promise<Merge.crm.CustomObject> {
+        requestOptions?: CustomObjects.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.CustomObject> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__customObjectClassesCustomObjectsRetrieve(customObjectClassId, id, request, requestOptions),
+        );
+    }
+
+    private async __customObjectClassesCustomObjectsRetrieve(
+        customObjectClassId: string,
+        id: string,
+        request: Merge.crm.CustomObjectClassesCustomObjectsRetrieveRequest = {},
+        requestOptions?: CustomObjects.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.CustomObject>> {
         const { includeRemoteData, includeRemoteFields, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
@@ -297,10 +340,10 @@ export class CustomObjects {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/custom-object-classes/${encodeURIComponent(
-                    customObjectClassId
-                )}/custom-objects/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `crm/v1/custom-object-classes/${encodeURIComponent(customObjectClassId)}/custom-objects/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -311,8 +354,8 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -325,13 +368,16 @@ export class CustomObjects {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.CustomObject.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.CustomObject.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -349,7 +395,7 @@ export class CustomObjects {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects/{id}."
+                    "Timeout exceeded when calling GET /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -367,14 +413,25 @@ export class CustomObjects {
      * @example
      *     await client.crm.customObjects.customObjectClassesCustomObjectsMetaPostRetrieve("custom_object_class_id")
      */
-    public async customObjectClassesCustomObjectsMetaPostRetrieve(
+    public customObjectClassesCustomObjectsMetaPostRetrieve(
         customObjectClassId: string,
-        requestOptions?: CustomObjects.RequestOptions
-    ): Promise<Merge.crm.MetaResponse> {
+        requestOptions?: CustomObjects.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__customObjectClassesCustomObjectsMetaPostRetrieve(customObjectClassId, requestOptions),
+        );
+    }
+
+    private async __customObjectClassesCustomObjectsMetaPostRetrieve(
+        customObjectClassId: string,
+        requestOptions?: CustomObjects.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/custom-object-classes/${encodeURIComponent(customObjectClassId)}/custom-objects/meta/post`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `crm/v1/custom-object-classes/${encodeURIComponent(customObjectClassId)}/custom-objects/meta/post`,
             ),
             method: "GET",
             headers: {
@@ -385,8 +442,8 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -398,13 +455,16 @@ export class CustomObjects {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -422,7 +482,7 @@ export class CustomObjects {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects/meta/post."
+                    "Timeout exceeded when calling GET /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects/meta/post.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -440,10 +500,19 @@ export class CustomObjects {
      * @example
      *     await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClassesList()
      */
-    public async customObjectClassesCustomObjectsRemoteFieldClassesList(
+    public customObjectClassesCustomObjectsRemoteFieldClassesList(
         request: Merge.crm.CustomObjectClassesCustomObjectsRemoteFieldClassesListRequest = {},
-        requestOptions?: CustomObjects.RequestOptions
-    ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
+        requestOptions?: CustomObjects.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__customObjectClassesCustomObjectsRemoteFieldClassesList(request, requestOptions),
+        );
+    }
+
+    private async __customObjectClassesCustomObjectsRemoteFieldClassesList(
+        request: Merge.crm.CustomObjectClassesCustomObjectsRemoteFieldClassesListRequest = {},
+        requestOptions?: CustomObjects.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.PaginatedRemoteFieldClassList>> {
         const {
             cursor,
             includeDeletedData,
@@ -453,7 +522,7 @@ export class CustomObjects {
             isCommonModelField,
             pageSize,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -484,8 +553,10 @@ export class CustomObjects {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/custom-object-classes/custom-objects/remote-field-classes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/custom-object-classes/custom-objects/remote-field-classes",
             ),
             method: "GET",
             headers: {
@@ -496,8 +567,8 @@ export class CustomObjects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -510,13 +581,16 @@ export class CustomObjects {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -534,7 +608,7 @@ export class CustomObjects {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /crm/v1/custom-object-classes/custom-objects/remote-field-classes."
+                    "Timeout exceeded when calling GET /crm/v1/custom-object-classes/custom-objects/remote-field-classes.",
                 );
             case "unknown":
                 throw new errors.MergeError({

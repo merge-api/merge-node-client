@@ -15,5 +15,5 @@ export const FileRequestFolder: core.serialization.Schema<
 ]);
 
 export declare namespace FileRequestFolder {
-    type Raw = string | serializers.filestorage.Folder.Raw;
+    export type Raw = string | serializers.filestorage.Folder.Raw;
 }

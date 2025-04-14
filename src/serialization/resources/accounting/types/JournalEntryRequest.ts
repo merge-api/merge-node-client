@@ -25,7 +25,7 @@ export const JournalEntryRequest: core.serialization.ObjectSchema<
     company: JournalEntryRequestCompany.optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(JournalEntryRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(JournalEntryRequestTrackingCategoriesItem.optional()).optional(),
     ),
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     lines: core.serialization.list(JournalLineRequest).optional(),
@@ -33,17 +33,17 @@ export const JournalEntryRequest: core.serialization.ObjectSchema<
     postingStatus: core.serialization.property("posting_status", JournalEntryRequestPostingStatus.optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace JournalEntryRequest {
-    interface Raw {
+    export interface Raw {
         transaction_date?: string | null;
         payments?: (JournalEntryRequestPaymentsItem.Raw | null | undefined)[] | null;
         memo?: string | null;

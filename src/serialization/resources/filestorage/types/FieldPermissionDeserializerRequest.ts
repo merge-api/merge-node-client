@@ -12,16 +12,16 @@ export const FieldPermissionDeserializerRequest: core.serialization.ObjectSchema
 > = core.serialization.object({
     enabledFields: core.serialization.property(
         "enabled_fields",
-        core.serialization.list(core.serialization.unknown()).optional()
+        core.serialization.list(core.serialization.unknown()).optional(),
     ),
     disabledFields: core.serialization.property(
         "disabled_fields",
-        core.serialization.list(core.serialization.unknown()).optional()
+        core.serialization.list(core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace FieldPermissionDeserializerRequest {
-    interface Raw {
+    export interface Raw {
         enabled_fields?: unknown[] | null;
         disabled_fields?: unknown[] | null;
     }

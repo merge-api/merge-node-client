@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace JournalEntries {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class JournalEntries {
      * @example
      *     await client.accounting.journalEntries.list()
      */
-    public async list(
+    public list(
         request: Merge.accounting.JournalEntriesListRequest = {},
-        requestOptions?: JournalEntries.RequestOptions
-    ): Promise<Merge.accounting.PaginatedJournalEntryList> {
+        requestOptions?: JournalEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedJournalEntryList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.JournalEntriesListRequest = {},
+        requestOptions?: JournalEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedJournalEntryList>> {
         const {
             companyId,
             createdAfter,
@@ -65,7 +74,7 @@ export class JournalEntries {
             transactionDateAfter,
             transactionDateBefore,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
         }
@@ -83,7 +92,9 @@ export class JournalEntries {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.accounting.JournalEntriesListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -128,8 +139,10 @@ export class JournalEntries {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/journal-entries"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/journal-entries",
             ),
             method: "GET",
             headers: {
@@ -140,8 +153,8 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -154,13 +167,16 @@ export class JournalEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedJournalEntryList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedJournalEntryList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -196,12 +212,19 @@ export class JournalEntries {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.accounting.JournalEntryEndpointRequest,
-        requestOptions?: JournalEntries.RequestOptions
-    ): Promise<Merge.accounting.JournalEntryResponse> {
+        requestOptions?: JournalEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.JournalEntryResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.accounting.JournalEntryEndpointRequest,
+        requestOptions?: JournalEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.JournalEntryResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -212,8 +235,10 @@ export class JournalEntries {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/journal-entries"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/journal-entries",
             ),
             method: "POST",
             headers: {
@@ -224,8 +249,8 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -241,13 +266,16 @@ export class JournalEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.JournalEntryResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.JournalEntryResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -265,7 +293,7 @@ export class JournalEntries {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling POST /accounting/v1/journal-entries."
+                    "Timeout exceeded when calling POST /accounting/v1/journal-entries.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -284,15 +312,25 @@ export class JournalEntries {
      * @example
      *     await client.accounting.journalEntries.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.accounting.JournalEntriesRetrieveRequest = {},
-        requestOptions?: JournalEntries.RequestOptions
-    ): Promise<Merge.accounting.JournalEntry> {
+        requestOptions?: JournalEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.JournalEntry> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.accounting.JournalEntriesRetrieveRequest = {},
+        requestOptions?: JournalEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.JournalEntry>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.accounting.JournalEntriesRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -309,8 +347,10 @@ export class JournalEntries {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/journal-entries/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/journal-entries/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -321,8 +361,8 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -335,13 +375,16 @@ export class JournalEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.JournalEntry.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.JournalEntry.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -359,7 +402,7 @@ export class JournalEntries {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/journal-entries/{id}."
+                    "Timeout exceeded when calling GET /accounting/v1/journal-entries/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -377,13 +420,20 @@ export class JournalEntries {
      * @example
      *     await client.accounting.journalEntries.linesRemoteFieldClassesList()
      */
-    public async linesRemoteFieldClassesList(
+    public linesRemoteFieldClassesList(
         request: Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest = {},
-        requestOptions?: JournalEntries.RequestOptions
-    ): Promise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        requestOptions?: JournalEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__linesRemoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __linesRemoteFieldClassesList(
+        request: Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest = {},
+        requestOptions?: JournalEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
         const { cursor, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -410,8 +460,10 @@ export class JournalEntries {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/journal-entries/lines/remote-field-classes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/journal-entries/lines/remote-field-classes",
             ),
             method: "GET",
             headers: {
@@ -422,8 +474,8 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -436,13 +488,16 @@ export class JournalEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -460,7 +515,7 @@ export class JournalEntries {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/journal-entries/lines/remote-field-classes."
+                    "Timeout exceeded when calling GET /accounting/v1/journal-entries/lines/remote-field-classes.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -477,13 +532,21 @@ export class JournalEntries {
      * @example
      *     await client.accounting.journalEntries.metaPostRetrieve()
      */
-    public async metaPostRetrieve(
-        requestOptions?: JournalEntries.RequestOptions
-    ): Promise<Merge.accounting.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: JournalEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: JournalEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/journal-entries/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/journal-entries/meta/post",
             ),
             method: "GET",
             headers: {
@@ -494,8 +557,8 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -507,13 +570,16 @@ export class JournalEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -531,7 +597,7 @@ export class JournalEntries {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/journal-entries/meta/post."
+                    "Timeout exceeded when calling GET /accounting/v1/journal-entries/meta/post.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -549,13 +615,20 @@ export class JournalEntries {
      * @example
      *     await client.accounting.journalEntries.remoteFieldClassesList()
      */
-    public async remoteFieldClassesList(
+    public remoteFieldClassesList(
         request: Merge.accounting.JournalEntriesRemoteFieldClassesListRequest = {},
-        requestOptions?: JournalEntries.RequestOptions
-    ): Promise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        requestOptions?: JournalEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __remoteFieldClassesList(
+        request: Merge.accounting.JournalEntriesRemoteFieldClassesListRequest = {},
+        requestOptions?: JournalEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
         const { cursor, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -582,8 +655,10 @@ export class JournalEntries {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/journal-entries/remote-field-classes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/journal-entries/remote-field-classes",
             ),
             method: "GET",
             headers: {
@@ -594,8 +669,8 @@ export class JournalEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -608,13 +683,16 @@ export class JournalEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -632,7 +710,7 @@ export class JournalEntries {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/journal-entries/remote-field-classes."
+                    "Timeout exceeded when calling GET /accounting/v1/journal-entries/remote-field-classes.",
                 );
             case "unknown":
                 throw new errors.MergeError({

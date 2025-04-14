@@ -15,5 +15,5 @@ export const EmployeeEmploymentsItem: core.serialization.Schema<
 ]);
 
 export declare namespace EmployeeEmploymentsItem {
-    type Raw = string | serializers.hris.Employment.Raw;
+    export type Raw = string | serializers.hris.Employment.Raw;
 }

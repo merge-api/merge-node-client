@@ -16,7 +16,7 @@ export const CandidateEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace CandidateEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: CandidateRequest.Raw;
         remote_user_id: string;
     }

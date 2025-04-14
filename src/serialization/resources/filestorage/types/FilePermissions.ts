@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { PermissionRequest } from "./PermissionRequest";
+import { Permission } from "./Permission";
 import { FilePermissionsItem } from "./FilePermissionsItem";
 
 export const FilePermissions: core.serialization.Schema<
@@ -13,10 +13,10 @@ export const FilePermissions: core.serialization.Schema<
     Merge.filestorage.FilePermissions
 > = core.serialization.undiscriminatedUnion([
     core.serialization.string(),
-    PermissionRequest,
+    Permission,
     core.serialization.list(FilePermissionsItem),
 ]);
 
 export declare namespace FilePermissions {
-    type Raw = string | PermissionRequest.Raw | FilePermissionsItem.Raw[];
+    export type Raw = string | Permission.Raw | FilePermissionsItem.Raw[];
 }

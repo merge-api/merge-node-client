@@ -12,5 +12,5 @@ export const IssuesListRequestStatus: core.serialization.Schema<
 > = core.serialization.enum_(["ONGOING", "RESOLVED"]);
 
 export declare namespace IssuesListRequestStatus {
-    type Raw = "ONGOING" | "RESOLVED";
+    export type Raw = "ONGOING" | "RESOLVED";
 }

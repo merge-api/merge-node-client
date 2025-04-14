@@ -3,7 +3,6 @@
  */
 
 export type LocationsRetrieveRequestRemoteFields = "country" | "country,location_type" | "location_type";
-
 export const LocationsRetrieveRequestRemoteFields = {
     Country: "country",
     CountryLocationType: "country,location_type",

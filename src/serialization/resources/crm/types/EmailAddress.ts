@@ -15,7 +15,7 @@ export const EmailAddress: core.serialization.ObjectSchema<serializers.crm.Email
     });
 
 export declare namespace EmailAddress {
-    interface Raw {
+    export interface Raw {
         created_at?: string | null;
         modified_at?: string | null;
         email_address?: string | null;

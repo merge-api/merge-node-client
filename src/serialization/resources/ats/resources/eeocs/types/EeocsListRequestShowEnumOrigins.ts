@@ -28,7 +28,7 @@ export const EeocsListRequestShowEnumOrigins: core.serialization.Schema<
 ]);
 
 export declare namespace EeocsListRequestShowEnumOrigins {
-    type Raw =
+    export type Raw =
         | "disability_status"
         | "disability_status,gender"
         | "disability_status,gender,race"

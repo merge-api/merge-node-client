@@ -9,7 +9,6 @@
  * - `OTHER` - OTHER
  */
 export type AttachmentTypeEnum = "RESUME" | "COVER_LETTER" | "OFFER_LETTER" | "OTHER";
-
 export const AttachmentTypeEnum = {
     Resume: "RESUME",
     CoverLetter: "COVER_LETTER",

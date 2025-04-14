@@ -13,5 +13,5 @@ export const EngagementRequestEngagementType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), EngagementType]);
 
 export declare namespace EngagementRequestEngagementType {
-    type Raw = string | EngagementType.Raw;
+    export type Raw = string | EngagementType.Raw;
 }

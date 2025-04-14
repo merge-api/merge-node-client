@@ -21,12 +21,12 @@ export const SyncStatus: core.serialization.ObjectSchema<serializers.crm.SyncSta
         isInitialSync: core.serialization.property("is_initial_sync", core.serialization.boolean()),
         selectiveSyncConfigurationsUsage: core.serialization.property(
             "selective_sync_configurations_usage",
-            SelectiveSyncConfigurationsUsageEnum.optional()
+            SelectiveSyncConfigurationsUsageEnum.optional(),
         ),
     });
 
 export declare namespace SyncStatus {
-    interface Raw {
+    export interface Raw {
         model_name: string;
         model_id: string;
         last_sync_start?: string | null;

@@ -13,5 +13,5 @@ export const ScheduledInterviewRequestStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([ScheduledInterviewStatusEnum, core.serialization.string()]);
 
 export declare namespace ScheduledInterviewRequestStatus {
-    type Raw = ScheduledInterviewStatusEnum.Raw | string;
+    export type Raw = ScheduledInterviewStatusEnum.Raw | string;
 }

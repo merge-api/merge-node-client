@@ -18,7 +18,7 @@ export const ErrorValidationProblem: core.serialization.ObjectSchema<
 });
 
 export declare namespace ErrorValidationProblem {
-    interface Raw {
+    export interface Raw {
         source?: ValidationProblemSource.Raw | null;
         title: string;
         detail: string;

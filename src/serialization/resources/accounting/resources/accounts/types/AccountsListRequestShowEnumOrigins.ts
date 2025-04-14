@@ -12,5 +12,5 @@ export const AccountsListRequestShowEnumOrigins: core.serialization.Schema<
 > = core.serialization.enum_(["classification", "classification,status", "status"]);
 
 export declare namespace AccountsListRequestShowEnumOrigins {
-    type Raw = "classification" | "classification,status" | "status";
+    export type Raw = "classification" | "classification,status" | "status";
 }

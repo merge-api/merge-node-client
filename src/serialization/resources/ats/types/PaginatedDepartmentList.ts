@@ -17,7 +17,7 @@ export const PaginatedDepartmentList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedDepartmentList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Department.Raw[] | null;

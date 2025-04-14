@@ -13,5 +13,5 @@ export const TicketRequestAssigneesItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), User]);
 
 export declare namespace TicketRequestAssigneesItem {
-    type Raw = string | User.Raw;
+    export type Raw = string | User.Raw;
 }

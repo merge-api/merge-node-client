@@ -16,7 +16,7 @@ export const PaginatedCollectionList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedCollectionList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: serializers.ticketing.Collection.Raw[] | null;

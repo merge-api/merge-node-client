@@ -15,5 +15,5 @@ export const VendorCreditApplyLineForVendorCreditInvoice: core.serialization.Sch
 ]);
 
 export declare namespace VendorCreditApplyLineForVendorCreditInvoice {
-    type Raw = string | serializers.accounting.Invoice.Raw;
+    export type Raw = string | serializers.accounting.Invoice.Raw;
 }

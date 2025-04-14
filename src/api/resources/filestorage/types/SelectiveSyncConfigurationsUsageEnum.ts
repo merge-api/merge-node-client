@@ -7,7 +7,6 @@
  * - `IN_LAST_SYNC` - IN_LAST_SYNC
  */
 export type SelectiveSyncConfigurationsUsageEnum = "IN_NEXT_SYNC" | "IN_LAST_SYNC";
-
 export const SelectiveSyncConfigurationsUsageEnum = {
     InNextSync: "IN_NEXT_SYNC",
     InLastSync: "IN_LAST_SYNC",

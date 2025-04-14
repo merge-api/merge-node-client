@@ -13,5 +13,5 @@ export const PatchedTaskRequestStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([TaskStatusEnum, core.serialization.string()]);
 
 export declare namespace PatchedTaskRequestStatus {
-    type Raw = TaskStatusEnum.Raw | string;
+    export type Raw = TaskStatusEnum.Raw | string;
 }

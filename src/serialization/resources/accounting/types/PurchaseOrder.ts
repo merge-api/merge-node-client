@@ -42,7 +42,7 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(PurchaseOrderTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(PurchaseOrderTrackingCategoriesItem.optional()).optional(),
     ),
     accountingPeriod: core.serialization.property("accounting_period", PurchaseOrderAccountingPeriod.optional()),
     remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
@@ -50,14 +50,14 @@ export const PurchaseOrder: core.serialization.ObjectSchema<
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteField).optional()),
 });
 
 export declare namespace PurchaseOrder {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

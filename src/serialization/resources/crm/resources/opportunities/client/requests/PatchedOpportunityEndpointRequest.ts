@@ -15,7 +15,7 @@ export const PatchedOpportunityEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace PatchedOpportunityEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: PatchedOpportunityRequest.Raw;
     }
 }

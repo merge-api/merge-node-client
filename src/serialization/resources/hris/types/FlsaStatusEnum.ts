@@ -10,5 +10,5 @@ export const FlsaStatusEnum: core.serialization.Schema<serializers.hris.FlsaStat
     core.serialization.enum_(["EXEMPT", "SALARIED_NONEXEMPT", "NONEXEMPT", "OWNER"]);
 
 export declare namespace FlsaStatusEnum {
-    type Raw = "EXEMPT" | "SALARIED_NONEXEMPT" | "NONEXEMPT" | "OWNER";
+    export type Raw = "EXEMPT" | "SALARIED_NONEXEMPT" | "NONEXEMPT" | "OWNER";
 }

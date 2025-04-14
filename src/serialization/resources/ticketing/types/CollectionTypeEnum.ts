@@ -12,5 +12,5 @@ export const CollectionTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["LIST", "PROJECT"]);
 
 export declare namespace CollectionTypeEnum {
-    type Raw = "LIST" | "PROJECT";
+    export type Raw = "LIST" | "PROJECT";
 }

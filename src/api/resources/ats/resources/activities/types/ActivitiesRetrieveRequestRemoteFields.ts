@@ -3,7 +3,6 @@
  */
 
 export type ActivitiesRetrieveRequestRemoteFields = "activity_type" | "activity_type,visibility" | "visibility";
-
 export const ActivitiesRetrieveRequestRemoteFields = {
     ActivityType: "activity_type",
     ActivityTypeVisibility: "activity_type,visibility",

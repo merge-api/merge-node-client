@@ -17,7 +17,7 @@ export const PaginatedTagList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedTagList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Tag.Raw[] | null;

@@ -26,25 +26,25 @@ export const VendorCreditRequest: core.serialization.ObjectSchema<
     company: VendorCreditRequestCompany.optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(VendorCreditRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(VendorCreditRequestTrackingCategoriesItem.optional()).optional(),
     ),
     appliedToLines: core.serialization.property(
         "applied_to_lines",
-        core.serialization.list(VendorCreditApplyLineForVendorCreditRequest).optional()
+        core.serialization.list(VendorCreditApplyLineForVendorCreditRequest).optional(),
     ),
     accountingPeriod: core.serialization.property("accounting_period", VendorCreditRequestAccountingPeriod.optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace VendorCreditRequest {
-    interface Raw {
+    export interface Raw {
         number?: string | null;
         transaction_date?: string | null;
         vendor?: VendorCreditRequestVendor.Raw | null;

@@ -12,5 +12,5 @@ export const TimesheetEntriesListRequestOrderBy: core.serialization.Schema<
 > = core.serialization.enum_(["-start_time", "start_time"]);
 
 export declare namespace TimesheetEntriesListRequestOrderBy {
-    type Raw = "-start_time" | "start_time";
+    export type Raw = "-start_time" | "start_time";
 }

@@ -19,7 +19,7 @@ export const NoteResponse: core.serialization.ObjectSchema<serializers.crm.NoteR
     });
 
 export declare namespace NoteResponse {
-    interface Raw {
+    export interface Raw {
         model: Note.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

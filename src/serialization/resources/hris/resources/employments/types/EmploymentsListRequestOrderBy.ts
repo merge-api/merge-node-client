@@ -12,5 +12,5 @@ export const EmploymentsListRequestOrderBy: core.serialization.Schema<
 > = core.serialization.enum_(["-effective_date", "effective_date"]);
 
 export declare namespace EmploymentsListRequestOrderBy {
-    type Raw = "-effective_date" | "effective_date";
+    export type Raw = "-effective_date" | "effective_date";
 }

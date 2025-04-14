@@ -17,7 +17,7 @@ export const PaginatedTeamList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedTeamList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Team.Raw[] | null;

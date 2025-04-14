@@ -16,7 +16,7 @@ export const VendorCreditLineRequest: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization.list(core.serialization.string().optional()).optional(),
     ),
     description: core.serialization.string().optional(),
     account: VendorCreditLineRequestAccount.optional(),
@@ -25,16 +25,16 @@ export const VendorCreditLineRequest: core.serialization.ObjectSchema<
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace VendorCreditLineRequest {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         net_amount?: number | null;
         tracking_category?: string | null;

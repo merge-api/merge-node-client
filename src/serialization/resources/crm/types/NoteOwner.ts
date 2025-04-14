@@ -11,5 +11,5 @@ export const NoteOwner: core.serialization.Schema<serializers.crm.NoteOwner.Raw,
     core.serialization.undiscriminatedUnion([core.serialization.string(), User]);
 
 export declare namespace NoteOwner {
-    type Raw = string | User.Raw;
+    export type Raw = string | User.Raw;
 }

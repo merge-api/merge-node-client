@@ -15,12 +15,12 @@ export const CommonModelScopesBodyRequest: core.serialization.ObjectSchema<
     enabledActions: core.serialization.property("enabled_actions", core.serialization.list(EnabledActionsEnum)),
     disabledFields: core.serialization.property(
         "disabled_fields",
-        core.serialization.list(core.serialization.string())
+        core.serialization.list(core.serialization.string()),
     ),
 });
 
 export declare namespace CommonModelScopesBodyRequest {
-    interface Raw {
+    export interface Raw {
         model_id: string;
         enabled_actions: EnabledActionsEnum.Raw[];
         disabled_fields: string[];

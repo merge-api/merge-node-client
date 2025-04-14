@@ -24,7 +24,7 @@ export const JournalLine: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", JournalLineTrackingCategory.optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(JournalLineTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(JournalLineTrackingCategoriesItem.optional()).optional(),
     ),
     currency: JournalLineCurrency.optional(),
     company: core.serialization.string().optional(),
@@ -38,7 +38,7 @@ export const JournalLine: core.serialization.ObjectSchema<
 });
 
 export declare namespace JournalLine {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

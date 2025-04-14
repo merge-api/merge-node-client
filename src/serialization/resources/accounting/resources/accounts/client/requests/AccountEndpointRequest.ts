@@ -15,7 +15,7 @@ export const AccountEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace AccountEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: AccountRequest.Raw;
     }
 }

@@ -13,7 +13,7 @@ export const RemoteKey: core.serialization.ObjectSchema<serializers.crm.RemoteKe
     });
 
 export declare namespace RemoteKey {
-    interface Raw {
+    export interface Raw {
         name: string;
         key: string;
     }

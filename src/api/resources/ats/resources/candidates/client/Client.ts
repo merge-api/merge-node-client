@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Candidates {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Candidates {
      * @example
      *     await client.ats.candidates.list()
      */
-    public async list(
+    public list(
         request: Merge.ats.CandidatesListRequest = {},
-        requestOptions?: Candidates.RequestOptions
-    ): Promise<Merge.ats.PaginatedCandidateList> {
+        requestOptions?: Candidates.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.PaginatedCandidateList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.ats.CandidatesListRequest = {},
+        requestOptions?: Candidates.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.PaginatedCandidateList>> {
         const {
             createdAfter,
             createdBefore,
@@ -65,7 +74,7 @@ export class Candidates {
             remoteId,
             tags,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -83,7 +92,9 @@ export class Candidates {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.ats.CandidatesListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (firstName != null) {
@@ -128,8 +139,10 @@ export class Candidates {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/candidates"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/candidates",
             ),
             method: "GET",
             headers: {
@@ -140,8 +153,8 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -154,13 +167,16 @@ export class Candidates {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.PaginatedCandidateList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.PaginatedCandidateList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -197,12 +213,19 @@ export class Candidates {
      *         remoteUserId: "remote_user_id"
      *     })
      */
-    public async create(
+    public create(
         request: Merge.ats.CandidateEndpointRequest,
-        requestOptions?: Candidates.RequestOptions
-    ): Promise<Merge.ats.CandidateResponse> {
+        requestOptions?: Candidates.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.CandidateResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.ats.CandidateEndpointRequest,
+        requestOptions?: Candidates.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.CandidateResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -213,8 +236,10 @@ export class Candidates {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/candidates"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/candidates",
             ),
             method: "POST",
             headers: {
@@ -225,8 +250,8 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -240,13 +265,16 @@ export class Candidates {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.CandidateResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.CandidateResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -281,15 +309,25 @@ export class Candidates {
      * @example
      *     await client.ats.candidates.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.ats.CandidatesRetrieveRequest = {},
-        requestOptions?: Candidates.RequestOptions
-    ): Promise<Merge.ats.Candidate> {
+        requestOptions?: Candidates.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.Candidate> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.ats.CandidatesRetrieveRequest = {},
+        requestOptions?: Candidates.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.Candidate>> {
         const { expand, includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.ats.CandidatesRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -302,8 +340,10 @@ export class Candidates {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/candidates/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ats/v1/candidates/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -314,8 +354,8 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -328,13 +368,16 @@ export class Candidates {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.Candidate.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.Candidate.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -372,13 +415,21 @@ export class Candidates {
      *         remoteUserId: "remote_user_id"
      *     })
      */
-    public async partialUpdate(
+    public partialUpdate(
         id: string,
         request: Merge.ats.PatchedCandidateEndpointRequest,
-        requestOptions?: Candidates.RequestOptions
-    ): Promise<Merge.ats.CandidateResponse> {
+        requestOptions?: Candidates.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.CandidateResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__partialUpdate(id, request, requestOptions));
+    }
+
+    private async __partialUpdate(
+        id: string,
+        request: Merge.ats.PatchedCandidateEndpointRequest,
+        requestOptions?: Candidates.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.CandidateResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -389,8 +440,10 @@ export class Candidates {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/candidates/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ats/v1/candidates/${encodeURIComponent(id)}`,
             ),
             method: "PATCH",
             headers: {
@@ -401,8 +454,8 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -418,13 +471,16 @@ export class Candidates {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.CandidateResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.CandidateResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -461,15 +517,25 @@ export class Candidates {
      *         reason: "GENERAL_CUSTOMER_REQUEST"
      *     })
      */
-    public async ignoreCreate(
+    public ignoreCreate(
         modelId: string,
         request: Merge.ats.IgnoreCommonModelRequest,
-        requestOptions?: Candidates.RequestOptions
-    ): Promise<void> {
+        requestOptions?: Candidates.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__ignoreCreate(modelId, request, requestOptions));
+    }
+
+    private async __ignoreCreate(
+        modelId: string,
+        request: Merge.ats.IgnoreCommonModelRequest,
+        requestOptions?: Candidates.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/candidates/ignore/${encodeURIComponent(modelId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ats/v1/candidates/ignore/${encodeURIComponent(modelId)}`,
             ),
             method: "POST",
             headers: {
@@ -480,8 +546,8 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -494,7 +560,7 @@ export class Candidates {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return;
+            return { data: undefined, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -512,7 +578,7 @@ export class Candidates {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling POST /ats/v1/candidates/ignore/{model_id}."
+                    "Timeout exceeded when calling POST /ats/v1/candidates/ignore/{model_id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -530,14 +596,23 @@ export class Candidates {
      * @example
      *     await client.ats.candidates.metaPatchRetrieve("id")
      */
-    public async metaPatchRetrieve(
+    public metaPatchRetrieve(
         id: string,
-        requestOptions?: Candidates.RequestOptions
-    ): Promise<Merge.ats.MetaResponse> {
+        requestOptions?: Candidates.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPatchRetrieve(id, requestOptions));
+    }
+
+    private async __metaPatchRetrieve(
+        id: string,
+        requestOptions?: Candidates.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/candidates/meta/patch/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ats/v1/candidates/meta/patch/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -548,8 +623,8 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -561,13 +636,16 @@ export class Candidates {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -585,7 +663,7 @@ export class Candidates {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ats/v1/candidates/meta/patch/{id}."
+                    "Timeout exceeded when calling GET /ats/v1/candidates/meta/patch/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -602,11 +680,21 @@ export class Candidates {
      * @example
      *     await client.ats.candidates.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: Candidates.RequestOptions): Promise<Merge.ats.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: Candidates.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: Candidates.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/candidates/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/candidates/meta/post",
             ),
             method: "GET",
             headers: {
@@ -617,8 +705,8 @@ export class Candidates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -630,13 +718,16 @@ export class Candidates {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

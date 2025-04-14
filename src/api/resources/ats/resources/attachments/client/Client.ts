@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Attachments {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Attachments {
      * @example
      *     await client.ats.attachments.list()
      */
-    public async list(
+    public list(
         request: Merge.ats.AttachmentsListRequest = {},
-        requestOptions?: Attachments.RequestOptions
-    ): Promise<Merge.ats.PaginatedAttachmentList> {
+        requestOptions?: Attachments.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.PaginatedAttachmentList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.ats.AttachmentsListRequest = {},
+        requestOptions?: Attachments.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.PaginatedAttachmentList>> {
         const {
             candidateId,
             createdAfter,
@@ -64,7 +73,7 @@ export class Attachments {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (candidateId != null) {
             _queryParams["candidate_id"] = candidateId;
         }
@@ -123,8 +132,10 @@ export class Attachments {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/attachments"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/attachments",
             ),
             method: "GET",
             headers: {
@@ -135,8 +146,8 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -149,13 +160,16 @@ export class Attachments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.PaginatedAttachmentList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.PaginatedAttachmentList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -192,12 +206,19 @@ export class Attachments {
      *         remoteUserId: "remote_user_id"
      *     })
      */
-    public async create(
+    public create(
         request: Merge.ats.AttachmentEndpointRequest,
-        requestOptions?: Attachments.RequestOptions
-    ): Promise<Merge.ats.AttachmentResponse> {
+        requestOptions?: Attachments.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.AttachmentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.ats.AttachmentEndpointRequest,
+        requestOptions?: Attachments.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.AttachmentResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -208,8 +229,10 @@ export class Attachments {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/attachments"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/attachments",
             ),
             method: "POST",
             headers: {
@@ -220,8 +243,8 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -235,13 +258,16 @@ export class Attachments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.AttachmentResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.AttachmentResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -276,13 +302,21 @@ export class Attachments {
      * @example
      *     await client.ats.attachments.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.ats.AttachmentsRetrieveRequest = {},
-        requestOptions?: Attachments.RequestOptions
-    ): Promise<Merge.ats.Attachment> {
+        requestOptions?: Attachments.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.Attachment> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.ats.AttachmentsRetrieveRequest = {},
+        requestOptions?: Attachments.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.Attachment>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -305,8 +339,10 @@ export class Attachments {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/attachments/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ats/v1/attachments/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -317,8 +353,8 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -331,13 +367,16 @@ export class Attachments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.Attachment.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.Attachment.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -370,11 +409,21 @@ export class Attachments {
      * @example
      *     await client.ats.attachments.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: Attachments.RequestOptions): Promise<Merge.ats.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: Attachments.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: Attachments.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/attachments/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/attachments/meta/post",
             ),
             method: "GET",
             headers: {
@@ -385,8 +434,8 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -398,13 +447,16 @@ export class Attachments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

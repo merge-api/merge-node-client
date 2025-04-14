@@ -12,5 +12,5 @@ export const AccountDetailsAndActionsStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["COMPLETE", "INCOMPLETE", "RELINK_NEEDED", "IDLE"]);
 
 export declare namespace AccountDetailsAndActionsStatusEnum {
-    type Raw = "COMPLETE" | "INCOMPLETE" | "RELINK_NEEDED" | "IDLE";
+    export type Raw = "COMPLETE" | "INCOMPLETE" | "RELINK_NEEDED" | "IDLE";
 }

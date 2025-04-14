@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace TaxRates {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class TaxRates {
      * @example
      *     await client.accounting.taxRates.list()
      */
-    public async list(
+    public list(
         request: Merge.accounting.TaxRatesListRequest = {},
-        requestOptions?: TaxRates.RequestOptions
-    ): Promise<Merge.accounting.PaginatedTaxRateList> {
+        requestOptions?: TaxRates.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedTaxRateList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.TaxRatesListRequest = {},
+        requestOptions?: TaxRates.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedTaxRateList>> {
         const {
             companyId,
             createdAfter,
@@ -63,7 +72,7 @@ export class TaxRates {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
         }
@@ -118,8 +127,10 @@ export class TaxRates {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/tax-rates"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/tax-rates",
             ),
             method: "GET",
             headers: {
@@ -130,8 +141,8 @@ export class TaxRates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -144,13 +155,16 @@ export class TaxRates {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedTaxRateList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedTaxRateList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -185,13 +199,21 @@ export class TaxRates {
      * @example
      *     await client.accounting.taxRates.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.accounting.TaxRatesRetrieveRequest = {},
-        requestOptions?: TaxRates.RequestOptions
-    ): Promise<Merge.accounting.TaxRate> {
+        requestOptions?: TaxRates.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.TaxRate> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.accounting.TaxRatesRetrieveRequest = {},
+        requestOptions?: TaxRates.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.TaxRate>> {
         const { expand, includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -206,8 +228,10 @@ export class TaxRates {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/tax-rates/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/tax-rates/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -218,8 +242,8 @@ export class TaxRates {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -232,13 +256,16 @@ export class TaxRates {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.TaxRate.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.TaxRate.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

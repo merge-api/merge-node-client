@@ -130,7 +130,6 @@ export type PurchaseOrdersRetrieveRequestExpand =
     | "vendor,company,accounting_period,payment_term"
     | "vendor,company,payment_term"
     | "vendor,payment_term";
-
 export const PurchaseOrdersRetrieveRequestExpand = {
     AccountingPeriod: "accounting_period",
     AccountingPeriodPaymentTerm: "accounting_period,payment_term",

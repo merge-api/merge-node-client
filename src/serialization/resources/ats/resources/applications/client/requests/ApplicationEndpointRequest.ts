@@ -16,7 +16,7 @@ export const ApplicationEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace ApplicationEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: ApplicationRequest.Raw;
         remote_user_id: string;
     }

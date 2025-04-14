@@ -25,21 +25,21 @@ export const ContactRequest: core.serialization.ObjectSchema<
     addresses: core.serialization.list(ContactRequestAddressesItem.optional()).optional(),
     phoneNumbers: core.serialization.property(
         "phone_numbers",
-        core.serialization.list(AccountingPhoneNumberRequest).optional()
+        core.serialization.list(AccountingPhoneNumberRequest).optional(),
     ),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace ContactRequest {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         is_supplier?: boolean | null;
         is_customer?: boolean | null;

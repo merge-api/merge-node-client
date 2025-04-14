@@ -319,7 +319,7 @@ export const PayCurrencyEnum: core.serialization.Schema<
 ]);
 
 export declare namespace PayCurrencyEnum {
-    type Raw =
+    export type Raw =
         | "XUA"
         | "AFN"
         | "AFA"

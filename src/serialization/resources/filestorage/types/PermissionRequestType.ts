@@ -13,5 +13,5 @@ export const PermissionRequestType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([TypeEnum, core.serialization.string()]);
 
 export declare namespace PermissionRequestType {
-    type Raw = TypeEnum.Raw | string;
+    export type Raw = TypeEnum.Raw | string;
 }

@@ -19,7 +19,7 @@ export const FieldMappingApiInstance: core.serialization.ObjectSchema<
 });
 
 export declare namespace FieldMappingApiInstance {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         is_integration_wide?: boolean | null;
         target_field?: FieldMappingApiInstanceTargetField.Raw | null;

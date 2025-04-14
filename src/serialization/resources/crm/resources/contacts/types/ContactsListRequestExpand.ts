@@ -12,5 +12,5 @@ export const ContactsListRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["account", "account,owner", "owner"]);
 
 export declare namespace ContactsListRequestExpand {
-    type Raw = "account" | "account,owner" | "owner";
+    export type Raw = "account" | "account,owner" | "owner";
 }

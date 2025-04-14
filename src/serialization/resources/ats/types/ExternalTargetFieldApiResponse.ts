@@ -19,19 +19,19 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
     eeoc: core.serialization.property("EEOC", core.serialization.list(ExternalTargetFieldApi).optional()),
     scheduledInterview: core.serialization.property(
         "ScheduledInterview",
-        core.serialization.list(ExternalTargetFieldApi).optional()
+        core.serialization.list(ExternalTargetFieldApi).optional(),
     ),
     job: core.serialization.property("Job", core.serialization.list(ExternalTargetFieldApi).optional()),
     jobPosting: core.serialization.property("JobPosting", core.serialization.list(ExternalTargetFieldApi).optional()),
     jobInterviewStage: core.serialization.property(
         "JobInterviewStage",
-        core.serialization.list(ExternalTargetFieldApi).optional()
+        core.serialization.list(ExternalTargetFieldApi).optional(),
     ),
     offer: core.serialization.property("Offer", core.serialization.list(ExternalTargetFieldApi).optional()),
     office: core.serialization.property("Office", core.serialization.list(ExternalTargetFieldApi).optional()),
     rejectReason: core.serialization.property(
         "RejectReason",
-        core.serialization.list(ExternalTargetFieldApi).optional()
+        core.serialization.list(ExternalTargetFieldApi).optional(),
     ),
     scorecard: core.serialization.property("Scorecard", core.serialization.list(ExternalTargetFieldApi).optional()),
     tag: core.serialization.property("Tag", core.serialization.list(ExternalTargetFieldApi).optional()),
@@ -39,7 +39,7 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ExternalTargetFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         Activity?: ExternalTargetFieldApi.Raw[] | null;
         Application?: ExternalTargetFieldApi.Raw[] | null;
         Attachment?: ExternalTargetFieldApi.Raw[] | null;

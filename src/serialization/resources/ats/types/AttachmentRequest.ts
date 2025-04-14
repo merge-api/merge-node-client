@@ -17,16 +17,16 @@ export const AttachmentRequest: core.serialization.ObjectSchema<
     attachmentType: core.serialization.property("attachment_type", AttachmentRequestAttachmentType.optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace AttachmentRequest {
-    interface Raw {
+    export interface Raw {
         file_name?: string | null;
         file_url?: string | null;
         candidate?: string | null;

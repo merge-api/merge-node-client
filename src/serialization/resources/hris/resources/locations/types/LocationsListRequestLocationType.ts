@@ -12,5 +12,5 @@ export const LocationsListRequestLocationType: core.serialization.Schema<
 > = core.serialization.enum_(["HOME", "WORK"]);
 
 export declare namespace LocationsListRequestLocationType {
-    type Raw = "HOME" | "WORK";
+    export type Raw = "HOME" | "WORK";
 }

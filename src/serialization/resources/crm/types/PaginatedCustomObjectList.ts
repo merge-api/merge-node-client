@@ -17,7 +17,7 @@ export const PaginatedCustomObjectList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedCustomObjectList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: CustomObject.Raw[] | null;

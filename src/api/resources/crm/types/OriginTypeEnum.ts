@@ -8,7 +8,6 @@
  * - `REMOTE_ONLY_MODEL` - REMOTE_ONLY_MODEL
  */
 export type OriginTypeEnum = "CUSTOM_OBJECT" | "COMMON_MODEL" | "REMOTE_ONLY_MODEL";
-
 export const OriginTypeEnum = {
     CustomObject: "CUSTOM_OBJECT",
     CommonModel: "COMMON_MODEL",

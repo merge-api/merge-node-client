@@ -28,7 +28,7 @@ export const EmploymentsRetrieveRequestRemoteFields: core.serialization.Schema<
 ]);
 
 export declare namespace EmploymentsRetrieveRequestRemoteFields {
-    type Raw =
+    export type Raw =
         | "employment_type"
         | "employment_type,flsa_status"
         | "employment_type,flsa_status,pay_frequency"

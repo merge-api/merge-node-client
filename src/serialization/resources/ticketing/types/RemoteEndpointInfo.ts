@@ -14,12 +14,12 @@ export const RemoteEndpointInfo: core.serialization.ObjectSchema<
     urlPath: core.serialization.property("url_path", core.serialization.string()),
     fieldTraversalPath: core.serialization.property(
         "field_traversal_path",
-        core.serialization.list(core.serialization.unknown())
+        core.serialization.list(core.serialization.unknown()),
     ),
 });
 
 export declare namespace RemoteEndpointInfo {
-    interface Raw {
+    export interface Raw {
         method: string;
         url_path: string;
         field_traversal_path: unknown[];

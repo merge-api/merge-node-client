@@ -10,5 +10,5 @@ export const JobTypeEnum: core.serialization.Schema<serializers.ats.JobTypeEnum.
     core.serialization.enum_(["POSTING", "REQUISITION", "PROFILE"]);
 
 export declare namespace JobTypeEnum {
-    type Raw = "POSTING" | "REQUISITION" | "PROFILE";
+    export type Raw = "POSTING" | "REQUISITION" | "PROFILE";
 }

@@ -18,7 +18,6 @@ export type GeneralLedgerTransactionsRetrieveRequestExpand =
     | "tracking_categories,general_ledger_transaction_lines,accounting_period"
     | "tracking_categories,general_ledger_transaction_lines,company"
     | "tracking_categories,general_ledger_transaction_lines,company,accounting_period";
-
 export const GeneralLedgerTransactionsRetrieveRequestExpand = {
     AccountingPeriod: "accounting_period",
     Company: "company",

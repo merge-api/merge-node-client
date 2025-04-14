@@ -15,5 +15,5 @@ export const GroupChildGroupsItem: core.serialization.Schema<
 ]);
 
 export declare namespace GroupChildGroupsItem {
-    type Raw = string | serializers.filestorage.Group.Raw;
+    export type Raw = string | serializers.filestorage.Group.Raw;
 }

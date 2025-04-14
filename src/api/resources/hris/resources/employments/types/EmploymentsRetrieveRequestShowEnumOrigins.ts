@@ -18,7 +18,6 @@ export type EmploymentsRetrieveRequestShowEnumOrigins =
     | "pay_frequency"
     | "pay_frequency,pay_period"
     | "pay_period";
-
 export const EmploymentsRetrieveRequestShowEnumOrigins = {
     EmploymentType: "employment_type",
     EmploymentTypeFlsaStatus: "employment_type,flsa_status",

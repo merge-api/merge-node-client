@@ -13,5 +13,5 @@ export const InvoiceLineItemRequestTrackingCategoriesItem: core.serialization.Sc
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), TrackingCategory]);
 
 export declare namespace InvoiceLineItemRequestTrackingCategoriesItem {
-    type Raw = string | TrackingCategory.Raw;
+    export type Raw = string | TrackingCategory.Raw;
 }

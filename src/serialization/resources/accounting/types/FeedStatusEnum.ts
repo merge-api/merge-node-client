@@ -12,5 +12,5 @@ export const FeedStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["ACTIVE", "INACTIVE"]);
 
 export declare namespace FeedStatusEnum {
-    type Raw = "ACTIVE" | "INACTIVE";
+    export type Raw = "ACTIVE" | "INACTIVE";
 }

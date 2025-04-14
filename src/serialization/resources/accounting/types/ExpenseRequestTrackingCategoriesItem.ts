@@ -13,5 +13,5 @@ export const ExpenseRequestTrackingCategoriesItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), TrackingCategory]);
 
 export declare namespace ExpenseRequestTrackingCategoriesItem {
-    type Raw = string | TrackingCategory.Raw;
+    export type Raw = string | TrackingCategory.Raw;
 }

@@ -15,7 +15,7 @@ export const PatchedCrmAccountEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace PatchedCrmAccountEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: PatchedAccountRequest.Raw;
     }
 }

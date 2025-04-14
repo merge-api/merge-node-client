@@ -13,5 +13,5 @@ export const GeneralLedgerTransactionLineTransactionCurrency: core.serialization
 > = core.serialization.undiscriminatedUnion([TransactionCurrencyEnum, core.serialization.string()]);
 
 export declare namespace GeneralLedgerTransactionLineTransactionCurrency {
-    type Raw = TransactionCurrencyEnum.Raw | string;
+    export type Raw = TransactionCurrencyEnum.Raw | string;
 }

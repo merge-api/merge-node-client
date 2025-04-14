@@ -17,7 +17,7 @@ export const PaginatedStageList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedStageList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Stage.Raw[] | null;

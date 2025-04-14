@@ -12,5 +12,5 @@ export const CreditNoteStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["SUBMITTED", "AUTHORIZED", "PAID"]);
 
 export declare namespace CreditNoteStatusEnum {
-    type Raw = "SUBMITTED" | "AUTHORIZED" | "PAID";
+    export type Raw = "SUBMITTED" | "AUTHORIZED" | "PAID";
 }

@@ -17,7 +17,7 @@ export const PaginatedGroupList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedGroupList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Group.Raw[] | null;

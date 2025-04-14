@@ -19,7 +19,7 @@ export const LeadResponse: core.serialization.ObjectSchema<serializers.crm.LeadR
     });
 
 export declare namespace LeadResponse {
-    interface Raw {
+    export interface Raw {
         model: Lead.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

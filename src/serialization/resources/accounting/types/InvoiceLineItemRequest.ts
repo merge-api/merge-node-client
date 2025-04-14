@@ -30,26 +30,26 @@ export const InvoiceLineItemRequest: core.serialization.ObjectSchema<
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     trackingCategory: core.serialization.property(
         "tracking_category",
-        InvoiceLineItemRequestTrackingCategory.optional()
+        InvoiceLineItemRequestTrackingCategory.optional(),
     ),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(InvoiceLineItemRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(InvoiceLineItemRequestTrackingCategoriesItem.optional()).optional(),
     ),
     company: core.serialization.string().optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace InvoiceLineItemRequest {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         description?: string | null;
         unit_price?: number | null;

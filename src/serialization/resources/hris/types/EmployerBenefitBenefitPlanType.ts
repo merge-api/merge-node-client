@@ -13,5 +13,5 @@ export const EmployerBenefitBenefitPlanType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([BenefitPlanTypeEnum, core.serialization.string()]);
 
 export declare namespace EmployerBenefitBenefitPlanType {
-    type Raw = BenefitPlanTypeEnum.Raw | string;
+    export type Raw = BenefitPlanTypeEnum.Raw | string;
 }

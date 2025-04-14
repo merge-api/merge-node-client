@@ -3,7 +3,6 @@
  */
 
 export type AccountsListRequestRemoteFields = "classification" | "classification,status" | "status";
-
 export const AccountsListRequestRemoteFields = {
     Classification: "classification",
     ClassificationStatus: "classification,status",

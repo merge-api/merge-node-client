@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace PhoneNumbers {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -45,13 +47,21 @@ export class PhoneNumbers {
      * @example
      *     await client.accounting.phoneNumbers.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.accounting.PhoneNumbersRetrieveRequest = {},
-        requestOptions?: PhoneNumbers.RequestOptions
-    ): Promise<Merge.accounting.AccountingPhoneNumber> {
+        requestOptions?: PhoneNumbers.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.AccountingPhoneNumber> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.accounting.PhoneNumbersRetrieveRequest = {},
+        requestOptions?: PhoneNumbers.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.AccountingPhoneNumber>> {
         const { includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
@@ -62,8 +72,10 @@ export class PhoneNumbers {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/phone-numbers/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/phone-numbers/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -74,8 +86,8 @@ export class PhoneNumbers {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -88,13 +100,16 @@ export class PhoneNumbers {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.AccountingPhoneNumber.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.AccountingPhoneNumber.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -112,7 +127,7 @@ export class PhoneNumbers {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/phone-numbers/{id}."
+                    "Timeout exceeded when calling GET /accounting/v1/phone-numbers/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({

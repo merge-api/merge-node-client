@@ -13,5 +13,5 @@ export const InvoiceRequestStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([InvoiceStatusEnum, core.serialization.string()]);
 
 export declare namespace InvoiceRequestStatus {
-    type Raw = InvoiceStatusEnum.Raw | string;
+    export type Raw = InvoiceStatusEnum.Raw | string;
 }

@@ -8,7 +8,6 @@
  * - `OTHER` - OTHER
  */
 export type ActivityTypeEnum = "NOTE" | "EMAIL" | "OTHER";
-
 export const ActivityTypeEnum = {
     Note: "NOTE",
     Email: "EMAIL",

@@ -12,5 +12,5 @@ export const TimeOffRetrieveRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["approver", "employee", "employee,approver"]);
 
 export declare namespace TimeOffRetrieveRequestExpand {
-    type Raw = "approver" | "employee" | "employee,approver";
+    export type Raw = "approver" | "employee" | "employee,approver";
 }

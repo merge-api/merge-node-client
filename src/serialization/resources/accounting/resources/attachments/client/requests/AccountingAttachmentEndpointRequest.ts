@@ -15,7 +15,7 @@ export const AccountingAttachmentEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace AccountingAttachmentEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: AccountingAttachmentRequest.Raw;
     }
 }

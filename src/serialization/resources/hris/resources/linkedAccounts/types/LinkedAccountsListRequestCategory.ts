@@ -12,5 +12,5 @@ export const LinkedAccountsListRequestCategory: core.serialization.Schema<
 > = core.serialization.enum_(["accounting", "ats", "crm", "filestorage", "hris", "mktg", "ticketing"]);
 
 export declare namespace LinkedAccountsListRequestCategory {
-    type Raw = "accounting" | "ats" | "crm" | "filestorage" | "hris" | "mktg" | "ticketing";
+    export type Raw = "accounting" | "ats" | "crm" | "filestorage" | "hris" | "mktg" | "ticketing";
 }

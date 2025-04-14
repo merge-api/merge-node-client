@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Dependents {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Dependents {
      * @example
      *     await client.hris.dependents.list()
      */
-    public async list(
+    public list(
         request: Merge.hris.DependentsListRequest = {},
-        requestOptions?: Dependents.RequestOptions
-    ): Promise<Merge.hris.PaginatedDependentList> {
+        requestOptions?: Dependents.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.PaginatedDependentList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.hris.DependentsListRequest = {},
+        requestOptions?: Dependents.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.PaginatedDependentList>> {
         const {
             createdAfter,
             createdBefore,
@@ -61,7 +70,7 @@ export class Dependents {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -108,8 +117,10 @@ export class Dependents {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/dependents"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/dependents",
             ),
             method: "GET",
             headers: {
@@ -120,8 +131,8 @@ export class Dependents {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -134,13 +145,16 @@ export class Dependents {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.PaginatedDependentList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.PaginatedDependentList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -175,13 +189,21 @@ export class Dependents {
      * @example
      *     await client.hris.dependents.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.hris.DependentsRetrieveRequest = {},
-        requestOptions?: Dependents.RequestOptions
-    ): Promise<Merge.hris.Dependent> {
+        requestOptions?: Dependents.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.Dependent> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.hris.DependentsRetrieveRequest = {},
+        requestOptions?: Dependents.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.Dependent>> {
         const { includeRemoteData, includeSensitiveFields, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
@@ -196,8 +218,10 @@ export class Dependents {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `hris/v1/dependents/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `hris/v1/dependents/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -208,8 +232,8 @@ export class Dependents {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -222,13 +246,16 @@ export class Dependents {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.Dependent.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.Dependent.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

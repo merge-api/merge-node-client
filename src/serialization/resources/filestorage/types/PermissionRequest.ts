@@ -21,16 +21,16 @@ export const PermissionRequest: core.serialization.ObjectSchema<
     roles: core.serialization.list(PermissionRequestRolesItem.optional()).optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace PermissionRequest {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         user?: PermissionRequestUser.Raw | null;
         group?: PermissionRequestGroup.Raw | null;

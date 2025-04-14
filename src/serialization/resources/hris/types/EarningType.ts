@@ -11,5 +11,5 @@ export const EarningType: core.serialization.Schema<serializers.hris.EarningType
     core.serialization.undiscriminatedUnion([EarningTypeEnum, core.serialization.string()]);
 
 export declare namespace EarningType {
-    type Raw = EarningTypeEnum.Raw | string;
+    export type Raw = EarningTypeEnum.Raw | string;
 }

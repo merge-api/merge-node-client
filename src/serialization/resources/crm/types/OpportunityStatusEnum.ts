@@ -12,5 +12,5 @@ export const OpportunityStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["OPEN", "WON", "LOST"]);
 
 export declare namespace OpportunityStatusEnum {
-    type Raw = "OPEN" | "WON" | "LOST";
+    export type Raw = "OPEN" | "WON" | "LOST";
 }

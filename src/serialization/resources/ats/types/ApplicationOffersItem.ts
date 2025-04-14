@@ -15,5 +15,5 @@ export const ApplicationOffersItem: core.serialization.Schema<
 ]);
 
 export declare namespace ApplicationOffersItem {
-    type Raw = string | serializers.ats.Offer.Raw;
+    export type Raw = string | serializers.ats.Offer.Raw;
 }

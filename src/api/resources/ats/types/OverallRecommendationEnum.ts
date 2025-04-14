@@ -10,7 +10,6 @@
  * - `NO_DECISION` - NO_DECISION
  */
 export type OverallRecommendationEnum = "DEFINITELY_NO" | "NO" | "YES" | "STRONG_YES" | "NO_DECISION";
-
 export const OverallRecommendationEnum = {
     DefinitelyNo: "DEFINITELY_NO",
     No: "NO",

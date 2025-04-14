@@ -28,7 +28,7 @@ export const NotesRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace NotesRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "account,opportunity"
         | "contact"

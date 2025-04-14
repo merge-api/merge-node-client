@@ -13,5 +13,5 @@ export const ContactRequestAccount: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Account]);
 
 export declare namespace ContactRequestAccount {
-    type Raw = string | Account.Raw;
+    export type Raw = string | Account.Raw;
 }

@@ -10,5 +10,5 @@ export const VisibilityEnum: core.serialization.Schema<serializers.ats.Visibilit
     core.serialization.enum_(["ADMIN_ONLY", "PUBLIC", "PRIVATE"]);
 
 export declare namespace VisibilityEnum {
-    type Raw = "ADMIN_ONLY" | "PUBLIC" | "PRIVATE";
+    export type Raw = "ADMIN_ONLY" | "PUBLIC" | "PRIVATE";
 }

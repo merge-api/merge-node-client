@@ -10,5 +10,5 @@ export const UrlTypeEnum: core.serialization.Schema<serializers.ats.UrlTypeEnum.
     core.serialization.enum_(["PERSONAL", "COMPANY", "PORTFOLIO", "BLOG", "SOCIAL_MEDIA", "OTHER", "JOB_POSTING"]);
 
 export declare namespace UrlTypeEnum {
-    type Raw = "PERSONAL" | "COMPANY" | "PORTFOLIO" | "BLOG" | "SOCIAL_MEDIA" | "OTHER" | "JOB_POSTING";
+    export type Raw = "PERSONAL" | "COMPANY" | "PORTFOLIO" | "BLOG" | "SOCIAL_MEDIA" | "OTHER" | "JOB_POSTING";
 }

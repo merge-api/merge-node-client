@@ -16,7 +16,7 @@ export const PaginatedCreditNoteList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedCreditNoteList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: serializers.accounting.CreditNote.Raw[] | null;

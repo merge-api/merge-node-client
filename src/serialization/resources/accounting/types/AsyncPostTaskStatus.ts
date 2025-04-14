@@ -13,5 +13,5 @@ export const AsyncPostTaskStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([AsyncPostTaskStatusEnum, core.serialization.string()]);
 
 export declare namespace AsyncPostTaskStatus {
-    type Raw = AsyncPostTaskStatusEnum.Raw | string;
+    export type Raw = AsyncPostTaskStatusEnum.Raw | string;
 }

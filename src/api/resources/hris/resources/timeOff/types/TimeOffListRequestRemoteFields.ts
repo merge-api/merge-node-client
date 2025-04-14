@@ -10,7 +10,6 @@ export type TimeOffListRequestRemoteFields =
     | "status"
     | "status,units"
     | "units";
-
 export const TimeOffListRequestRemoteFields = {
     RequestType: "request_type",
     RequestTypeStatus: "request_type,status",

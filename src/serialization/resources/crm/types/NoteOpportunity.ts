@@ -13,5 +13,5 @@ export const NoteOpportunity: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Opportunity]);
 
 export declare namespace NoteOpportunity {
-    type Raw = string | Opportunity.Raw;
+    export type Raw = string | Opportunity.Raw;
 }

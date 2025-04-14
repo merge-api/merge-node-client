@@ -14,12 +14,12 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
     benefit: core.serialization.property("Benefit", core.serialization.list(ExternalTargetFieldApi).optional()),
     employerBenefit: core.serialization.property(
         "EmployerBenefit",
-        core.serialization.list(ExternalTargetFieldApi).optional()
+        core.serialization.list(ExternalTargetFieldApi).optional(),
     ),
     company: core.serialization.property("Company", core.serialization.list(ExternalTargetFieldApi).optional()),
     employeePayrollRun: core.serialization.property(
         "EmployeePayrollRun",
-        core.serialization.list(ExternalTargetFieldApi).optional()
+        core.serialization.list(ExternalTargetFieldApi).optional(),
     ),
     employee: core.serialization.property("Employee", core.serialization.list(ExternalTargetFieldApi).optional()),
     employment: core.serialization.property("Employment", core.serialization.list(ExternalTargetFieldApi).optional()),
@@ -29,7 +29,7 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
     timeOff: core.serialization.property("TimeOff", core.serialization.list(ExternalTargetFieldApi).optional()),
     timeOffBalance: core.serialization.property(
         "TimeOffBalance",
-        core.serialization.list(ExternalTargetFieldApi).optional()
+        core.serialization.list(ExternalTargetFieldApi).optional(),
     ),
     bankInfo: core.serialization.property("BankInfo", core.serialization.list(ExternalTargetFieldApi).optional()),
     payGroup: core.serialization.property("PayGroup", core.serialization.list(ExternalTargetFieldApi).optional()),
@@ -37,12 +37,12 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
     dependent: core.serialization.property("Dependent", core.serialization.list(ExternalTargetFieldApi).optional()),
     timesheetEntry: core.serialization.property(
         "TimesheetEntry",
-        core.serialization.list(ExternalTargetFieldApi).optional()
+        core.serialization.list(ExternalTargetFieldApi).optional(),
     ),
 });
 
 export declare namespace ExternalTargetFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         Benefit?: ExternalTargetFieldApi.Raw[] | null;
         EmployerBenefit?: ExternalTargetFieldApi.Raw[] | null;
         Company?: ExternalTargetFieldApi.Raw[] | null;

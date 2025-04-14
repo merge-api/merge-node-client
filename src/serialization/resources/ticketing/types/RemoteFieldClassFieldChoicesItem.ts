@@ -15,7 +15,7 @@ export const RemoteFieldClassFieldChoicesItem: core.serialization.ObjectSchema<
 });
 
 export declare namespace RemoteFieldClassFieldChoicesItem {
-    interface Raw {
+    export interface Raw {
         value?: unknown | null;
         display_name?: string | null;
     }

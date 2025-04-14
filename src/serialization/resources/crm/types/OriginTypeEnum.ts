@@ -10,5 +10,5 @@ export const OriginTypeEnum: core.serialization.Schema<serializers.crm.OriginTyp
     core.serialization.enum_(["CUSTOM_OBJECT", "COMMON_MODEL", "REMOTE_ONLY_MODEL"]);
 
 export declare namespace OriginTypeEnum {
-    type Raw = "CUSTOM_OBJECT" | "COMMON_MODEL" | "REMOTE_ONLY_MODEL";
+    export type Raw = "CUSTOM_OBJECT" | "COMMON_MODEL" | "REMOTE_ONLY_MODEL";
 }

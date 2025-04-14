@@ -15,5 +15,5 @@ export const TimeOffRequestEmployee: core.serialization.Schema<
 ]);
 
 export declare namespace TimeOffRequestEmployee {
-    type Raw = string | serializers.hris.Employee.Raw;
+    export type Raw = string | serializers.hris.Employee.Raw;
 }

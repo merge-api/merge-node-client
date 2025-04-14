@@ -12,5 +12,5 @@ export const PurchaseOrderStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["DRAFT", "SUBMITTED", "AUTHORIZED", "BILLED", "DELETED"]);
 
 export declare namespace PurchaseOrderStatusEnum {
-    type Raw = "DRAFT" | "SUBMITTED" | "AUTHORIZED" | "BILLED" | "DELETED";
+    export type Raw = "DRAFT" | "SUBMITTED" | "AUTHORIZED" | "BILLED" | "DELETED";
 }

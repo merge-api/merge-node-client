@@ -8,7 +8,6 @@
  * - `COMPLETE` - COMPLETE
  */
 export type ScheduledInterviewStatusEnum = "SCHEDULED" | "AWAITING_FEEDBACK" | "COMPLETE";
-
 export const ScheduledInterviewStatusEnum = {
     Scheduled: "SCHEDULED",
     AwaitingFeedback: "AWAITING_FEEDBACK",

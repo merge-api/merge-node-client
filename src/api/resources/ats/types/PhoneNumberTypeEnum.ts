@@ -10,7 +10,6 @@
  * - `OTHER` - OTHER
  */
 export type PhoneNumberTypeEnum = "HOME" | "WORK" | "MOBILE" | "SKYPE" | "OTHER";
-
 export const PhoneNumberTypeEnum = {
     Home: "HOME",
     Work: "WORK",

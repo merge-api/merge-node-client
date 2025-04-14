@@ -22,19 +22,19 @@ export const Collection: core.serialization.ObjectSchema<
     collectionType: core.serialization.property("collection_type", CollectionCollectionType.optional()),
     parentCollection: core.serialization.property(
         "parent_collection",
-        core.serialization.lazy(() => serializers.ticketing.CollectionParentCollection).optional()
+        core.serialization.lazy(() => serializers.ticketing.CollectionParentCollection).optional(),
     ),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     accessLevel: core.serialization.property("access_level", CollectionAccessLevel.optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace Collection {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

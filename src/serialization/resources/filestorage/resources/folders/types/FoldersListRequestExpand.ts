@@ -20,7 +20,7 @@ export const FoldersListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace FoldersListRequestExpand {
-    type Raw =
+    export type Raw =
         | "drive"
         | "parent_folder"
         | "parent_folder,drive"

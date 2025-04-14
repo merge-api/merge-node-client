@@ -12,5 +12,5 @@ export const CategoryTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["CLASS", "DEPARTMENT"]);
 
 export declare namespace CategoryTypeEnum {
-    type Raw = "CLASS" | "DEPARTMENT";
+    export type Raw = "CLASS" | "DEPARTMENT";
 }

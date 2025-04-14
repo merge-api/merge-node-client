@@ -11,5 +11,5 @@ export const FileDrive: core.serialization.Schema<serializers.filestorage.FileDr
     core.serialization.undiscriminatedUnion([core.serialization.string(), Drive]);
 
 export declare namespace FileDrive {
-    type Raw = string | Drive.Raw;
+    export type Raw = string | Drive.Raw;
 }

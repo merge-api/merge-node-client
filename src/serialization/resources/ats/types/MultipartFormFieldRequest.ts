@@ -19,7 +19,7 @@ export const MultipartFormFieldRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace MultipartFormFieldRequest {
-    interface Raw {
+    export interface Raw {
         name: string;
         data: string;
         encoding?: MultipartFormFieldRequestEncoding.Raw | null;

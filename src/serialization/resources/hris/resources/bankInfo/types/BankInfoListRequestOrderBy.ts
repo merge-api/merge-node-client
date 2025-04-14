@@ -12,5 +12,5 @@ export const BankInfoListRequestOrderBy: core.serialization.Schema<
 > = core.serialization.enum_(["-remote_created_at", "remote_created_at"]);
 
 export declare namespace BankInfoListRequestOrderBy {
-    type Raw = "-remote_created_at" | "remote_created_at";
+    export type Raw = "-remote_created_at" | "remote_created_at";
 }

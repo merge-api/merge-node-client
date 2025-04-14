@@ -12,5 +12,5 @@ export const AccountsRetrieveRequestRemoteFields: core.serialization.Schema<
 > = core.serialization.enum_(["classification", "classification,status", "status"]);
 
 export declare namespace AccountsRetrieveRequestRemoteFields {
-    type Raw = "classification" | "classification,status" | "status";
+    export type Raw = "classification" | "classification,status" | "status";
 }

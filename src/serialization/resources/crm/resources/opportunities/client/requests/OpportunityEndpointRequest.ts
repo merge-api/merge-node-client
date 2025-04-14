@@ -15,7 +15,7 @@ export const OpportunityEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace OpportunityEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: OpportunityRequest.Raw;
     }
 }

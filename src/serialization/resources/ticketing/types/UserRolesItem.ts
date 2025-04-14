@@ -13,5 +13,5 @@ export const UserRolesItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Role]);
 
 export declare namespace UserRolesItem {
-    type Raw = string | Role.Raw;
+    export type Raw = string | Role.Raw;
 }

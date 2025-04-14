@@ -7,7 +7,6 @@
  * - `INACTIVE` - INACTIVE
  */
 export type Status895Enum = "ACTIVE" | "INACTIVE";
-
 export const Status895Enum = {
     Active: "ACTIVE",
     Inactive: "INACTIVE",

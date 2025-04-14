@@ -25,12 +25,12 @@ export const TrackingCategory: core.serialization.ObjectSchema<
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace TrackingCategory {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

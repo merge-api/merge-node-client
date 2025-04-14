@@ -13,5 +13,5 @@ export const AuditLogEventEventType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([EventTypeEnum, core.serialization.string()]);
 
 export declare namespace AuditLogEventEventType {
-    type Raw = EventTypeEnum.Raw | string;
+    export type Raw = EventTypeEnum.Raw | string;
 }

@@ -16,7 +16,7 @@ export const ObjectClassDescriptionRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace ObjectClassDescriptionRequest {
-    interface Raw {
+    export interface Raw {
         id: string;
         origin_type: OriginTypeEnum.Raw;
     }

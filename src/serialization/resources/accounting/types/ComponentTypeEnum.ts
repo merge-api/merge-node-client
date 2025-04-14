@@ -12,5 +12,5 @@ export const ComponentTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["SALES", "PURCHASE"]);
 
 export declare namespace ComponentTypeEnum {
-    type Raw = "SALES" | "PURCHASE";
+    export type Raw = "SALES" | "PURCHASE";
 }

@@ -319,7 +319,7 @@ export const TransactionCurrencyEnum: core.serialization.Schema<
 ]);
 
 export declare namespace TransactionCurrencyEnum {
-    type Raw =
+    export type Raw =
         | "XUA"
         | "AFN"
         | "AFA"

@@ -21,7 +21,7 @@ export const PurchaseOrderResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace PurchaseOrderResponse {
-    interface Raw {
+    export interface Raw {
         model: PurchaseOrder.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

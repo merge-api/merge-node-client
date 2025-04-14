@@ -29,13 +29,13 @@ export const GeneralLedgerTransactionLine: core.serialization.ObjectSchema<
     baseCurrency: core.serialization.property("base_currency", GeneralLedgerTransactionLineBaseCurrency.optional()),
     transactionCurrency: core.serialization.property(
         "transaction_currency",
-        GeneralLedgerTransactionLineTransactionCurrency.optional()
+        GeneralLedgerTransactionLineTransactionCurrency.optional(),
     ),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(GeneralLedgerTransactionLineTrackingCategoriesItem).optional()
+        core.serialization.list(GeneralLedgerTransactionLineTrackingCategoriesItem).optional(),
     ),
     debitAmount: core.serialization.property("debit_amount", core.serialization.string()),
     creditAmount: core.serialization.property("credit_amount", core.serialization.string()),
@@ -45,12 +45,12 @@ export const GeneralLedgerTransactionLine: core.serialization.ObjectSchema<
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace GeneralLedgerTransactionLine {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

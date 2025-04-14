@@ -15,13 +15,13 @@ export const IndividualCommonModelScopeDeserializer: core.serialization.ObjectSc
     modelName: core.serialization.property("model_name", core.serialization.string()),
     modelPermissions: core.serialization.property(
         "model_permissions",
-        core.serialization.record(core.serialization.string(), ModelPermissionDeserializer).optional()
+        core.serialization.record(core.serialization.string(), ModelPermissionDeserializer).optional(),
     ),
     fieldPermissions: core.serialization.property("field_permissions", FieldPermissionDeserializer.optional()),
 });
 
 export declare namespace IndividualCommonModelScopeDeserializer {
-    interface Raw {
+    export interface Raw {
         model_name: string;
         model_permissions?: Record<string, ModelPermissionDeserializer.Raw> | null;
         field_permissions?: FieldPermissionDeserializer.Raw | null;

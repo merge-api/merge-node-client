@@ -28,7 +28,7 @@ export const NotesListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace NotesListRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "account,opportunity"
         | "contact"

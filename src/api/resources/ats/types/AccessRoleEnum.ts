@@ -10,7 +10,6 @@
  * - `INTERVIEWER` - INTERVIEWER
  */
 export type AccessRoleEnum = "SUPER_ADMIN" | "ADMIN" | "TEAM_MEMBER" | "LIMITED_TEAM_MEMBER" | "INTERVIEWER";
-
 export const AccessRoleEnum = {
     SuperAdmin: "SUPER_ADMIN",
     Admin: "ADMIN",

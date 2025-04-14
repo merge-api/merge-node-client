@@ -21,7 +21,7 @@ export const FieldMappingInstanceResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace FieldMappingInstanceResponse {
-    interface Raw {
+    export interface Raw {
         model: FieldMappingApiInstance.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

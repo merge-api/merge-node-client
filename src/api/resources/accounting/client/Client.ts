@@ -51,296 +51,241 @@ import { VendorCredits } from "../resources/vendorCredits/client/Client";
 import { WebhookReceivers } from "../resources/webhookReceivers/client/Client";
 
 export declare namespace Accounting {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
-
-    interface RequestOptions {
-        /** The maximum time to wait for a response in seconds. */
-        timeoutInSeconds?: number;
-        /** The number of times to retry the request. Defaults to 2. */
-        maxRetries?: number;
-        /** A hook to abort the request. */
-        abortSignal?: AbortSignal;
-        /** Override the X-Account-Token header */
-        accountToken?: string | undefined;
-        /** Additional headers to include in the request. */
-        headers?: Record<string, string>;
-    }
 }
 
 export class Accounting {
-    constructor(protected readonly _options: Accounting.Options) {}
-
     protected _accountDetails: AccountDetails | undefined;
+    protected _accountToken: AccountToken | undefined;
+    protected _accountingPeriods: AccountingPeriods | undefined;
+    protected _accounts: Accounts | undefined;
+    protected _addresses: Addresses | undefined;
+    protected _asyncPassthrough: AsyncPassthrough | undefined;
+    protected _asyncTasks: AsyncTasks | undefined;
+    protected _attachments: Attachments | undefined;
+    protected _auditTrail: AuditTrail | undefined;
+    protected _availableActions: AvailableActions | undefined;
+    protected _balanceSheets: BalanceSheets | undefined;
+    protected _bankFeedAccounts: BankFeedAccounts | undefined;
+    protected _bankFeedTransactions: BankFeedTransactions | undefined;
+    protected _cashFlowStatements: CashFlowStatements | undefined;
+    protected _companyInfo: CompanyInfo | undefined;
+    protected _contacts: Contacts | undefined;
+    protected _creditNotes: CreditNotes | undefined;
+    protected _scopes: Scopes | undefined;
+    protected _deleteAccount: DeleteAccount | undefined;
+    protected _employees: Employees | undefined;
+    protected _expenses: Expenses | undefined;
+    protected _fieldMapping: FieldMapping | undefined;
+    protected _generalLedgerTransactions: GeneralLedgerTransactions | undefined;
+    protected _generateKey: GenerateKey | undefined;
+    protected _incomeStatements: IncomeStatements | undefined;
+    protected _invoices: Invoices | undefined;
+    protected _issues: Issues | undefined;
+    protected _items: Items | undefined;
+    protected _journalEntries: JournalEntries | undefined;
+    protected _linkToken: LinkToken | undefined;
+    protected _linkedAccounts: LinkedAccounts | undefined;
+    protected _passthrough: Passthrough | undefined;
+    protected _paymentMethods: PaymentMethods | undefined;
+    protected _paymentTerms: PaymentTerms | undefined;
+    protected _payments: Payments | undefined;
+    protected _phoneNumbers: PhoneNumbers | undefined;
+    protected _purchaseOrders: PurchaseOrders | undefined;
+    protected _regenerateKey: RegenerateKey | undefined;
+    protected _syncStatus: SyncStatus | undefined;
+    protected _forceResync: ForceResync | undefined;
+    protected _taxRates: TaxRates | undefined;
+    protected _trackingCategories: TrackingCategories | undefined;
+    protected _transactions: Transactions | undefined;
+    protected _vendorCredits: VendorCredits | undefined;
+    protected _webhookReceivers: WebhookReceivers | undefined;
+
+    constructor(protected readonly _options: Accounting.Options) {}
 
     public get accountDetails(): AccountDetails {
         return (this._accountDetails ??= new AccountDetails(this._options));
     }
 
-    protected _accountToken: AccountToken | undefined;
-
     public get accountToken(): AccountToken {
         return (this._accountToken ??= new AccountToken(this._options));
     }
-
-    protected _accountingPeriods: AccountingPeriods | undefined;
 
     public get accountingPeriods(): AccountingPeriods {
         return (this._accountingPeriods ??= new AccountingPeriods(this._options));
     }
 
-    protected _accounts: Accounts | undefined;
-
     public get accounts(): Accounts {
         return (this._accounts ??= new Accounts(this._options));
     }
-
-    protected _addresses: Addresses | undefined;
 
     public get addresses(): Addresses {
         return (this._addresses ??= new Addresses(this._options));
     }
 
-    protected _asyncPassthrough: AsyncPassthrough | undefined;
-
     public get asyncPassthrough(): AsyncPassthrough {
         return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
     }
-
-    protected _asyncTasks: AsyncTasks | undefined;
 
     public get asyncTasks(): AsyncTasks {
         return (this._asyncTasks ??= new AsyncTasks(this._options));
     }
 
-    protected _attachments: Attachments | undefined;
-
     public get attachments(): Attachments {
         return (this._attachments ??= new Attachments(this._options));
     }
-
-    protected _auditTrail: AuditTrail | undefined;
 
     public get auditTrail(): AuditTrail {
         return (this._auditTrail ??= new AuditTrail(this._options));
     }
 
-    protected _availableActions: AvailableActions | undefined;
-
     public get availableActions(): AvailableActions {
         return (this._availableActions ??= new AvailableActions(this._options));
     }
-
-    protected _balanceSheets: BalanceSheets | undefined;
 
     public get balanceSheets(): BalanceSheets {
         return (this._balanceSheets ??= new BalanceSheets(this._options));
     }
 
-    protected _bankFeedAccounts: BankFeedAccounts | undefined;
-
     public get bankFeedAccounts(): BankFeedAccounts {
         return (this._bankFeedAccounts ??= new BankFeedAccounts(this._options));
     }
-
-    protected _bankFeedTransactions: BankFeedTransactions | undefined;
 
     public get bankFeedTransactions(): BankFeedTransactions {
         return (this._bankFeedTransactions ??= new BankFeedTransactions(this._options));
     }
 
-    protected _cashFlowStatements: CashFlowStatements | undefined;
-
     public get cashFlowStatements(): CashFlowStatements {
         return (this._cashFlowStatements ??= new CashFlowStatements(this._options));
     }
-
-    protected _companyInfo: CompanyInfo | undefined;
 
     public get companyInfo(): CompanyInfo {
         return (this._companyInfo ??= new CompanyInfo(this._options));
     }
 
-    protected _contacts: Contacts | undefined;
-
     public get contacts(): Contacts {
         return (this._contacts ??= new Contacts(this._options));
     }
-
-    protected _creditNotes: CreditNotes | undefined;
 
     public get creditNotes(): CreditNotes {
         return (this._creditNotes ??= new CreditNotes(this._options));
     }
 
-    protected _scopes: Scopes | undefined;
-
     public get scopes(): Scopes {
         return (this._scopes ??= new Scopes(this._options));
     }
-
-    protected _deleteAccount: DeleteAccount | undefined;
 
     public get deleteAccount(): DeleteAccount {
         return (this._deleteAccount ??= new DeleteAccount(this._options));
     }
 
-    protected _employees: Employees | undefined;
-
     public get employees(): Employees {
         return (this._employees ??= new Employees(this._options));
     }
-
-    protected _expenses: Expenses | undefined;
 
     public get expenses(): Expenses {
         return (this._expenses ??= new Expenses(this._options));
     }
 
-    protected _fieldMapping: FieldMapping | undefined;
-
     public get fieldMapping(): FieldMapping {
         return (this._fieldMapping ??= new FieldMapping(this._options));
     }
-
-    protected _generalLedgerTransactions: GeneralLedgerTransactions | undefined;
 
     public get generalLedgerTransactions(): GeneralLedgerTransactions {
         return (this._generalLedgerTransactions ??= new GeneralLedgerTransactions(this._options));
     }
 
-    protected _generateKey: GenerateKey | undefined;
-
     public get generateKey(): GenerateKey {
         return (this._generateKey ??= new GenerateKey(this._options));
     }
-
-    protected _incomeStatements: IncomeStatements | undefined;
 
     public get incomeStatements(): IncomeStatements {
         return (this._incomeStatements ??= new IncomeStatements(this._options));
     }
 
-    protected _invoices: Invoices | undefined;
-
     public get invoices(): Invoices {
         return (this._invoices ??= new Invoices(this._options));
     }
-
-    protected _issues: Issues | undefined;
 
     public get issues(): Issues {
         return (this._issues ??= new Issues(this._options));
     }
 
-    protected _items: Items | undefined;
-
     public get items(): Items {
         return (this._items ??= new Items(this._options));
     }
-
-    protected _journalEntries: JournalEntries | undefined;
 
     public get journalEntries(): JournalEntries {
         return (this._journalEntries ??= new JournalEntries(this._options));
     }
 
-    protected _linkToken: LinkToken | undefined;
-
     public get linkToken(): LinkToken {
         return (this._linkToken ??= new LinkToken(this._options));
     }
-
-    protected _linkedAccounts: LinkedAccounts | undefined;
 
     public get linkedAccounts(): LinkedAccounts {
         return (this._linkedAccounts ??= new LinkedAccounts(this._options));
     }
 
-    protected _passthrough: Passthrough | undefined;
-
     public get passthrough(): Passthrough {
         return (this._passthrough ??= new Passthrough(this._options));
     }
-
-    protected _paymentMethods: PaymentMethods | undefined;
 
     public get paymentMethods(): PaymentMethods {
         return (this._paymentMethods ??= new PaymentMethods(this._options));
     }
 
-    protected _paymentTerms: PaymentTerms | undefined;
-
     public get paymentTerms(): PaymentTerms {
         return (this._paymentTerms ??= new PaymentTerms(this._options));
     }
-
-    protected _payments: Payments | undefined;
 
     public get payments(): Payments {
         return (this._payments ??= new Payments(this._options));
     }
 
-    protected _phoneNumbers: PhoneNumbers | undefined;
-
     public get phoneNumbers(): PhoneNumbers {
         return (this._phoneNumbers ??= new PhoneNumbers(this._options));
     }
-
-    protected _purchaseOrders: PurchaseOrders | undefined;
 
     public get purchaseOrders(): PurchaseOrders {
         return (this._purchaseOrders ??= new PurchaseOrders(this._options));
     }
 
-    protected _regenerateKey: RegenerateKey | undefined;
-
     public get regenerateKey(): RegenerateKey {
         return (this._regenerateKey ??= new RegenerateKey(this._options));
     }
-
-    protected _syncStatus: SyncStatus | undefined;
 
     public get syncStatus(): SyncStatus {
         return (this._syncStatus ??= new SyncStatus(this._options));
     }
 
-    protected _forceResync: ForceResync | undefined;
-
     public get forceResync(): ForceResync {
         return (this._forceResync ??= new ForceResync(this._options));
     }
-
-    protected _taxRates: TaxRates | undefined;
 
     public get taxRates(): TaxRates {
         return (this._taxRates ??= new TaxRates(this._options));
     }
 
-    protected _trackingCategories: TrackingCategories | undefined;
-
     public get trackingCategories(): TrackingCategories {
         return (this._trackingCategories ??= new TrackingCategories(this._options));
     }
-
-    protected _transactions: Transactions | undefined;
 
     public get transactions(): Transactions {
         return (this._transactions ??= new Transactions(this._options));
     }
 
-    protected _vendorCredits: VendorCredits | undefined;
-
     public get vendorCredits(): VendorCredits {
         return (this._vendorCredits ??= new VendorCredits(this._options));
     }
-
-    protected _webhookReceivers: WebhookReceivers | undefined;
 
     public get webhookReceivers(): WebhookReceivers {
         return (this._webhookReceivers ??= new WebhookReceivers(this._options));

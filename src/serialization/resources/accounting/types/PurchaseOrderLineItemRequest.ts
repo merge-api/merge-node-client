@@ -22,7 +22,7 @@ export const PurchaseOrderLineItemRequest: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization.list(core.serialization.string().optional()).optional(),
     ),
     taxAmount: core.serialization.property("tax_amount", core.serialization.string().optional()),
     totalLineAmount: core.serialization.property("total_line_amount", core.serialization.string().optional()),
@@ -32,17 +32,17 @@ export const PurchaseOrderLineItemRequest: core.serialization.ObjectSchema<
     company: core.serialization.string().optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace PurchaseOrderLineItemRequest {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         description?: string | null;
         unit_price?: number | null;

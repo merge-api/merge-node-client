@@ -13,5 +13,5 @@ export const ExpenseLineItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Item]);
 
 export declare namespace ExpenseLineItem {
-    type Raw = string | Item.Raw;
+    export type Raw = string | Item.Raw;
 }

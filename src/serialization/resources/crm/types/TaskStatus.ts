@@ -11,5 +11,5 @@ export const TaskStatus: core.serialization.Schema<serializers.crm.TaskStatus.Ra
     core.serialization.undiscriminatedUnion([TaskStatusEnum, core.serialization.string()]);
 
 export declare namespace TaskStatus {
-    type Raw = TaskStatusEnum.Raw | string;
+    export type Raw = TaskStatusEnum.Raw | string;
 }

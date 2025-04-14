@@ -268,7 +268,7 @@ export const TicketsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace TicketsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "account,contact"
         | "account,contact,creator"

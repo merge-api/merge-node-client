@@ -15,7 +15,7 @@ export const PhoneNumber: core.serialization.ObjectSchema<serializers.crm.PhoneN
     });
 
 export declare namespace PhoneNumber {
-    interface Raw {
+    export interface Raw {
         created_at?: string | null;
         modified_at?: string | null;
         phone_number?: string | null;

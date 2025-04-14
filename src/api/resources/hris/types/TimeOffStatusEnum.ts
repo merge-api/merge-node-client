@@ -10,7 +10,6 @@
  * - `DELETED` - DELETED
  */
 export type TimeOffStatusEnum = "REQUESTED" | "APPROVED" | "DECLINED" | "CANCELLED" | "DELETED";
-
 export const TimeOffStatusEnum = {
     Requested: "REQUESTED",
     Approved: "APPROVED",

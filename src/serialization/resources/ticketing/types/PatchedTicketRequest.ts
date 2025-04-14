@@ -17,7 +17,7 @@ export const PatchedTicketRequest: core.serialization.ObjectSchema<
     assignees: core.serialization.list(core.serialization.string().optional()).optional(),
     assignedTeams: core.serialization.property(
         "assigned_teams",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization.list(core.serialization.string().optional()).optional(),
     ),
     creator: core.serialization.string().optional(),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
@@ -35,17 +35,17 @@ export const PatchedTicketRequest: core.serialization.ObjectSchema<
     priority: PatchedTicketRequestPriority.optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace PatchedTicketRequest {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         assignees?: (string | null | undefined)[] | null;
         assigned_teams?: (string | null | undefined)[] | null;

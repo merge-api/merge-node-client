@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace TimesheetEntries {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class TimesheetEntries {
      * @example
      *     await client.hris.timesheetEntries.list()
      */
-    public async list(
+    public list(
         request: Merge.hris.TimesheetEntriesListRequest = {},
-        requestOptions?: TimesheetEntries.RequestOptions
-    ): Promise<Merge.hris.PaginatedTimesheetEntryList> {
+        requestOptions?: TimesheetEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.PaginatedTimesheetEntryList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.hris.TimesheetEntriesListRequest = {},
+        requestOptions?: TimesheetEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.PaginatedTimesheetEntryList>> {
         const {
             createdAfter,
             createdBefore,
@@ -67,7 +76,7 @@ export class TimesheetEntries {
             startedAfter,
             startedBefore,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -117,7 +126,9 @@ export class TimesheetEntries {
         }
 
         if (orderBy != null) {
-            _queryParams["order_by"] = orderBy;
+            _queryParams["order_by"] = serializers.hris.TimesheetEntriesListRequestOrderBy.jsonOrThrow(orderBy, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (pageSize != null) {
@@ -138,8 +149,10 @@ export class TimesheetEntries {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/timesheet-entries"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/timesheet-entries",
             ),
             method: "GET",
             headers: {
@@ -150,8 +163,8 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -164,13 +177,16 @@ export class TimesheetEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.PaginatedTimesheetEntryList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.PaginatedTimesheetEntryList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -206,12 +222,19 @@ export class TimesheetEntries {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.hris.TimesheetEntryEndpointRequest,
-        requestOptions?: TimesheetEntries.RequestOptions
-    ): Promise<Merge.hris.TimesheetEntryResponse> {
+        requestOptions?: TimesheetEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.TimesheetEntryResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.hris.TimesheetEntryEndpointRequest,
+        requestOptions?: TimesheetEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.TimesheetEntryResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -222,8 +245,10 @@ export class TimesheetEntries {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/timesheet-entries"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/timesheet-entries",
             ),
             method: "POST",
             headers: {
@@ -234,8 +259,8 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -251,13 +276,16 @@ export class TimesheetEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.TimesheetEntryResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.TimesheetEntryResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -292,13 +320,21 @@ export class TimesheetEntries {
      * @example
      *     await client.hris.timesheetEntries.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.hris.TimesheetEntriesRetrieveRequest = {},
-        requestOptions?: TimesheetEntries.RequestOptions
-    ): Promise<Merge.hris.TimesheetEntry> {
+        requestOptions?: TimesheetEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.TimesheetEntry> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.hris.TimesheetEntriesRetrieveRequest = {},
+        requestOptions?: TimesheetEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.TimesheetEntry>> {
         const { expand, includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -313,8 +349,10 @@ export class TimesheetEntries {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `hris/v1/timesheet-entries/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `hris/v1/timesheet-entries/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -325,8 +363,8 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -339,13 +377,16 @@ export class TimesheetEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.TimesheetEntry.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.TimesheetEntry.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -363,7 +404,7 @@ export class TimesheetEntries {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /hris/v1/timesheet-entries/{id}."
+                    "Timeout exceeded when calling GET /hris/v1/timesheet-entries/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -380,11 +421,21 @@ export class TimesheetEntries {
      * @example
      *     await client.hris.timesheetEntries.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: TimesheetEntries.RequestOptions): Promise<Merge.hris.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: TimesheetEntries.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: TimesheetEntries.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/timesheet-entries/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/timesheet-entries/meta/post",
             ),
             method: "GET",
             headers: {
@@ -395,8 +446,8 @@ export class TimesheetEntries {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -408,13 +459,16 @@ export class TimesheetEntries {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -432,7 +486,7 @@ export class TimesheetEntries {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /hris/v1/timesheet-entries/meta/post."
+                    "Timeout exceeded when calling GET /hris/v1/timesheet-entries/meta/post.",
                 );
             case "unknown":
                 throw new errors.MergeError({

@@ -17,7 +17,7 @@ export const PaginatedViewerList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedViewerList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Viewer.Raw[] | null;

@@ -7,7 +7,6 @@
  * - `DAYS` - DAYS
  */
 export type UnitsEnum = "HOURS" | "DAYS";
-
 export const UnitsEnum = {
     Hours: "HOURS",
     Days: "DAYS",

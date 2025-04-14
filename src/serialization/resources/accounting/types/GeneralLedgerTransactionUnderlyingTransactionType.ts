@@ -13,5 +13,5 @@ export const GeneralLedgerTransactionUnderlyingTransactionType: core.serializati
 > = core.serialization.undiscriminatedUnion([UnderlyingTransactionTypeEnum, core.serialization.string()]);
 
 export declare namespace GeneralLedgerTransactionUnderlyingTransactionType {
-    type Raw = UnderlyingTransactionTypeEnum.Raw | string;
+    export type Raw = UnderlyingTransactionTypeEnum.Raw | string;
 }

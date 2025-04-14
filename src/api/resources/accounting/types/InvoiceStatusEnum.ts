@@ -11,7 +11,6 @@
  * - `VOID` - VOID
  */
 export type InvoiceStatusEnum = "PAID" | "DRAFT" | "SUBMITTED" | "PARTIALLY_PAID" | "OPEN" | "VOID";
-
 export const InvoiceStatusEnum = {
     Paid: "PAID",
     Draft: "DRAFT",

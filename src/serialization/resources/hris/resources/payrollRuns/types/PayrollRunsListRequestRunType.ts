@@ -12,5 +12,5 @@ export const PayrollRunsListRequestRunType: core.serialization.Schema<
 > = core.serialization.enum_(["CORRECTION", "OFF_CYCLE", "REGULAR", "SIGN_ON_BONUS", "TERMINATION"]);
 
 export declare namespace PayrollRunsListRequestRunType {
-    type Raw = "CORRECTION" | "OFF_CYCLE" | "REGULAR" | "SIGN_ON_BONUS" | "TERMINATION";
+    export type Raw = "CORRECTION" | "OFF_CYCLE" | "REGULAR" | "SIGN_ON_BONUS" | "TERMINATION";
 }

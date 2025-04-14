@@ -15,7 +15,7 @@ export const UpdateApplicationStageRequest: core.serialization.Schema<
 });
 
 export declare namespace UpdateApplicationStageRequest {
-    interface Raw {
+    export interface Raw {
         job_interview_stage?: string | null;
         remote_user_id?: string | null;
     }

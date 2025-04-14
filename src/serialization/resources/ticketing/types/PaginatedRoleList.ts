@@ -17,7 +17,7 @@ export const PaginatedRoleList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedRoleList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Role.Raw[] | null;

@@ -13,5 +13,5 @@ export const FolderRequestDrive: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Drive]);
 
 export declare namespace FolderRequestDrive {
-    type Raw = string | Drive.Raw;
+    export type Raw = string | Drive.Raw;
 }

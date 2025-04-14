@@ -23,7 +23,6 @@ export type PayFrequencyEnum =
     | "THIRTEEN-MONTHLY"
     | "PRO_RATA"
     | "SEMIMONTHLY";
-
 export const PayFrequencyEnum = {
     Weekly: "WEEKLY",
     Biweekly: "BIWEEKLY",

@@ -21,7 +21,6 @@ export type ScreeningQuestionTypeEnum =
     | "MULTI_LINE_TEXT"
     | "NUMERIC"
     | "BOOLEAN";
-
 export const ScreeningQuestionTypeEnum = {
     Date: "DATE",
     File: "FILE",

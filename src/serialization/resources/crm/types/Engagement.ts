@@ -31,14 +31,14 @@ export const Engagement: core.serialization.ObjectSchema<serializers.crm.Engagem
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
         remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteField).optional()),
     });
 
 export declare namespace Engagement {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

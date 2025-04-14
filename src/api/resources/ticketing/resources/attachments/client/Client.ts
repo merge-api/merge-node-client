@@ -11,15 +11,17 @@ import * as errors from "../../../../../../errors/index";
 import * as stream from "stream";
 
 export declare namespace Attachments {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -45,10 +47,17 @@ export class Attachments {
      * @example
      *     await client.ticketing.attachments.list()
      */
-    public async list(
+    public list(
         request: Merge.ticketing.AttachmentsListRequest = {},
-        requestOptions?: Attachments.RequestOptions
-    ): Promise<Merge.ticketing.PaginatedAttachmentList> {
+        requestOptions?: Attachments.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.PaginatedAttachmentList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.ticketing.AttachmentsListRequest = {},
+        requestOptions?: Attachments.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedAttachmentList>> {
         const {
             createdAfter,
             createdBefore,
@@ -64,7 +73,7 @@ export class Attachments {
             remoteId,
             ticketId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -119,8 +128,10 @@ export class Attachments {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ticketing/v1/attachments"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ticketing/v1/attachments",
             ),
             method: "GET",
             headers: {
@@ -131,8 +142,8 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -145,13 +156,16 @@ export class Attachments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.PaginatedAttachmentList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.PaginatedAttachmentList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -187,12 +201,19 @@ export class Attachments {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.ticketing.TicketingAttachmentEndpointRequest,
-        requestOptions?: Attachments.RequestOptions
-    ): Promise<Merge.ticketing.TicketingAttachmentResponse> {
+        requestOptions?: Attachments.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.TicketingAttachmentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.ticketing.TicketingAttachmentEndpointRequest,
+        requestOptions?: Attachments.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.TicketingAttachmentResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -203,8 +224,10 @@ export class Attachments {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ticketing/v1/attachments"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ticketing/v1/attachments",
             ),
             method: "POST",
             headers: {
@@ -215,8 +238,8 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -232,13 +255,16 @@ export class Attachments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.TicketingAttachmentResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.TicketingAttachmentResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -273,13 +299,21 @@ export class Attachments {
      * @example
      *     await client.ticketing.attachments.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.ticketing.AttachmentsRetrieveRequest = {},
-        requestOptions?: Attachments.RequestOptions
-    ): Promise<Merge.ticketing.Attachment> {
+        requestOptions?: Attachments.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.Attachment> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.ticketing.AttachmentsRetrieveRequest = {},
+        requestOptions?: Attachments.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.Attachment>> {
         const { expand, includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -294,8 +328,10 @@ export class Attachments {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/attachments/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ticketing/v1/attachments/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -306,8 +342,8 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -320,13 +356,16 @@ export class Attachments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.Attachment.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.Attachment.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -354,13 +393,21 @@ export class Attachments {
     /**
      * Returns the `File` content with the given `id` as a stream of bytes.
      */
-    public async downloadRetrieve(
+    public downloadRetrieve(
         id: string,
         request: Merge.ticketing.AttachmentsDownloadRetrieveRequest = {},
-        requestOptions?: Attachments.RequestOptions
-    ): Promise<stream.Readable> {
+        requestOptions?: Attachments.RequestOptions,
+    ): core.HttpResponsePromise<stream.Readable> {
+        return core.HttpResponsePromise.fromPromise(this.__downloadRetrieve(id, request, requestOptions));
+    }
+
+    private async __downloadRetrieve(
+        id: string,
+        request: Merge.ticketing.AttachmentsDownloadRetrieveRequest = {},
+        requestOptions?: Attachments.RequestOptions,
+    ): Promise<core.WithRawResponse<stream.Readable>> {
         const { includeShellData, mimeType } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (includeShellData != null) {
             _queryParams["include_shell_data"] = includeShellData.toString();
         }
@@ -371,8 +418,10 @@ export class Attachments {
 
         const _response = await (this._options.fetcher ?? core.fetcher)<stream.Readable>({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/attachments/${encodeURIComponent(id)}/download`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ticketing/v1/attachments/${encodeURIComponent(id)}/download`,
             ),
             method: "GET",
             headers: {
@@ -383,8 +432,8 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -398,7 +447,7 @@ export class Attachments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body;
+            return { data: _response.body, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -416,7 +465,7 @@ export class Attachments {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/attachments/{id}/download."
+                    "Timeout exceeded when calling GET /ticketing/v1/attachments/{id}/download.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -433,11 +482,21 @@ export class Attachments {
      * @example
      *     await client.ticketing.attachments.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: Attachments.RequestOptions): Promise<Merge.ticketing.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: Attachments.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: Attachments.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ticketing/v1/attachments/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ticketing/v1/attachments/meta/post",
             ),
             method: "GET",
             headers: {
@@ -448,8 +507,8 @@ export class Attachments {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -461,13 +520,16 @@ export class Attachments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -485,7 +547,7 @@ export class Attachments {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/attachments/meta/post."
+                    "Timeout exceeded when calling GET /ticketing/v1/attachments/meta/post.",
                 );
             case "unknown":
                 throw new errors.MergeError({

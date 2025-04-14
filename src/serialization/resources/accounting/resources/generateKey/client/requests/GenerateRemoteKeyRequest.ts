@@ -14,7 +14,7 @@ export const GenerateRemoteKeyRequest: core.serialization.Schema<
 });
 
 export declare namespace GenerateRemoteKeyRequest {
-    interface Raw {
+    export interface Raw {
         name: string;
     }
 }

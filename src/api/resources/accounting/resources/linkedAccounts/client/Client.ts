@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace LinkedAccounts {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class LinkedAccounts {
      * @example
      *     await client.accounting.linkedAccounts.list()
      */
-    public async list(
+    public list(
         request: Merge.accounting.LinkedAccountsListRequest = {},
-        requestOptions?: LinkedAccounts.RequestOptions
-    ): Promise<Merge.accounting.PaginatedAccountDetailsAndActionsList> {
+        requestOptions?: LinkedAccounts.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedAccountDetailsAndActionsList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.LinkedAccountsListRequest = {},
+        requestOptions?: LinkedAccounts.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedAccountDetailsAndActionsList>> {
         const {
             category,
             cursor,
@@ -63,9 +72,11 @@ export class LinkedAccounts {
             pageSize,
             status,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (category != null) {
-            _queryParams["category"] = category;
+            _queryParams["category"] = serializers.accounting.LinkedAccountsListRequestCategory.jsonOrThrow(category, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (cursor != null) {
@@ -118,8 +129,10 @@ export class LinkedAccounts {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/linked-accounts"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/linked-accounts",
             ),
             method: "GET",
             headers: {
@@ -130,8 +143,8 @@ export class LinkedAccounts {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -144,13 +157,16 @@ export class LinkedAccounts {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedAccountDetailsAndActionsList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedAccountDetailsAndActionsList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

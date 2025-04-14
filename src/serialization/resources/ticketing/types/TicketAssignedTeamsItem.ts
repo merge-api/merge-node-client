@@ -13,5 +13,5 @@ export const TicketAssignedTeamsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Team]);
 
 export declare namespace TicketAssignedTeamsItem {
-    type Raw = string | Team.Raw;
+    export type Raw = string | Team.Raw;
 }

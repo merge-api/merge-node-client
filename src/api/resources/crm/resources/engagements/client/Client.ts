@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Engagements {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Engagements {
      * @example
      *     await client.crm.engagements.list()
      */
-    public async list(
+    public list(
         request: Merge.crm.EngagementsListRequest = {},
-        requestOptions?: Engagements.RequestOptions
-    ): Promise<Merge.crm.PaginatedEngagementList> {
+        requestOptions?: Engagements.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.PaginatedEngagementList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.crm.EngagementsListRequest = {},
+        requestOptions?: Engagements.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.PaginatedEngagementList>> {
         const {
             createdAfter,
             createdBefore,
@@ -64,7 +73,7 @@ export class Engagements {
             startedAfter,
             startedBefore,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -78,7 +87,9 @@ export class Engagements {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.crm.EngagementsListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -123,8 +134,10 @@ export class Engagements {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/engagements"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/engagements",
             ),
             method: "GET",
             headers: {
@@ -135,8 +148,8 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -149,13 +162,16 @@ export class Engagements {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.PaginatedEngagementList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.PaginatedEngagementList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -191,12 +207,19 @@ export class Engagements {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.crm.EngagementEndpointRequest,
-        requestOptions?: Engagements.RequestOptions
-    ): Promise<Merge.crm.EngagementResponse> {
+        requestOptions?: Engagements.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.EngagementResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.crm.EngagementEndpointRequest,
+        requestOptions?: Engagements.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.EngagementResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -207,8 +230,10 @@ export class Engagements {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/engagements"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/engagements",
             ),
             method: "POST",
             headers: {
@@ -219,8 +244,8 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -234,13 +259,16 @@ export class Engagements {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -275,15 +303,25 @@ export class Engagements {
      * @example
      *     await client.crm.engagements.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.crm.EngagementsRetrieveRequest = {},
-        requestOptions?: Engagements.RequestOptions
-    ): Promise<Merge.crm.Engagement> {
+        requestOptions?: Engagements.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.Engagement> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.crm.EngagementsRetrieveRequest = {},
+        requestOptions?: Engagements.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.Engagement>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.crm.EngagementsRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -300,8 +338,10 @@ export class Engagements {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/engagements/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `crm/v1/engagements/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -312,8 +352,8 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -326,13 +366,16 @@ export class Engagements {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.Engagement.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.Engagement.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -369,13 +412,21 @@ export class Engagements {
      *         model: {}
      *     })
      */
-    public async partialUpdate(
+    public partialUpdate(
         id: string,
         request: Merge.crm.PatchedEngagementEndpointRequest,
-        requestOptions?: Engagements.RequestOptions
-    ): Promise<Merge.crm.EngagementResponse> {
+        requestOptions?: Engagements.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.EngagementResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__partialUpdate(id, request, requestOptions));
+    }
+
+    private async __partialUpdate(
+        id: string,
+        request: Merge.crm.PatchedEngagementEndpointRequest,
+        requestOptions?: Engagements.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.EngagementResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -386,8 +437,10 @@ export class Engagements {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/engagements/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `crm/v1/engagements/${encodeURIComponent(id)}`,
             ),
             method: "PATCH",
             headers: {
@@ -398,8 +451,8 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -415,13 +468,16 @@ export class Engagements {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.EngagementResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -455,14 +511,23 @@ export class Engagements {
      * @example
      *     await client.crm.engagements.metaPatchRetrieve("id")
      */
-    public async metaPatchRetrieve(
+    public metaPatchRetrieve(
         id: string,
-        requestOptions?: Engagements.RequestOptions
-    ): Promise<Merge.crm.MetaResponse> {
+        requestOptions?: Engagements.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPatchRetrieve(id, requestOptions));
+    }
+
+    private async __metaPatchRetrieve(
+        id: string,
+        requestOptions?: Engagements.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/engagements/meta/patch/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `crm/v1/engagements/meta/patch/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -473,8 +538,8 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -486,13 +551,16 @@ export class Engagements {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -510,7 +578,7 @@ export class Engagements {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /crm/v1/engagements/meta/patch/{id}."
+                    "Timeout exceeded when calling GET /crm/v1/engagements/meta/patch/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -527,11 +595,21 @@ export class Engagements {
      * @example
      *     await client.crm.engagements.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: Engagements.RequestOptions): Promise<Merge.crm.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: Engagements.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: Engagements.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/engagements/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/engagements/meta/post",
             ),
             method: "GET",
             headers: {
@@ -542,8 +620,8 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -555,13 +633,16 @@ export class Engagements {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -595,10 +676,17 @@ export class Engagements {
      * @example
      *     await client.crm.engagements.remoteFieldClassesList()
      */
-    public async remoteFieldClassesList(
+    public remoteFieldClassesList(
         request: Merge.crm.EngagementsRemoteFieldClassesListRequest = {},
-        requestOptions?: Engagements.RequestOptions
-    ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
+        requestOptions?: Engagements.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __remoteFieldClassesList(
+        request: Merge.crm.EngagementsRemoteFieldClassesListRequest = {},
+        requestOptions?: Engagements.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.PaginatedRemoteFieldClassList>> {
         const {
             cursor,
             includeDeletedData,
@@ -608,7 +696,7 @@ export class Engagements {
             isCommonModelField,
             pageSize,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -639,8 +727,10 @@ export class Engagements {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/engagements/remote-field-classes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/engagements/remote-field-classes",
             ),
             method: "GET",
             headers: {
@@ -651,8 +741,8 @@ export class Engagements {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -665,13 +755,16 @@ export class Engagements {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -689,7 +782,7 @@ export class Engagements {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /crm/v1/engagements/remote-field-classes."
+                    "Timeout exceeded when calling GET /crm/v1/engagements/remote-field-classes.",
                 );
             case "unknown":
                 throw new errors.MergeError({

@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Projects {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Projects {
      * @example
      *     await client.ticketing.projects.list()
      */
-    public async list(
+    public list(
         request: Merge.ticketing.ProjectsListRequest = {},
-        requestOptions?: Projects.RequestOptions
-    ): Promise<Merge.ticketing.PaginatedProjectList> {
+        requestOptions?: Projects.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.PaginatedProjectList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.ticketing.ProjectsListRequest = {},
+        requestOptions?: Projects.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedProjectList>> {
         const {
             createdAfter,
             createdBefore,
@@ -60,7 +69,7 @@ export class Projects {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -103,8 +112,10 @@ export class Projects {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ticketing/v1/projects"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ticketing/v1/projects",
             ),
             method: "GET",
             headers: {
@@ -115,8 +126,8 @@ export class Projects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -129,13 +140,16 @@ export class Projects {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.PaginatedProjectList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.PaginatedProjectList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -170,13 +184,21 @@ export class Projects {
      * @example
      *     await client.ticketing.projects.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.ticketing.ProjectsRetrieveRequest = {},
-        requestOptions?: Projects.RequestOptions
-    ): Promise<Merge.ticketing.Project> {
+        requestOptions?: Projects.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.Project> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.ticketing.ProjectsRetrieveRequest = {},
+        requestOptions?: Projects.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.Project>> {
         const { includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
@@ -187,8 +209,10 @@ export class Projects {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/projects/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ticketing/v1/projects/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -199,8 +223,8 @@ export class Projects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -213,13 +237,16 @@ export class Projects {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.Project.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.Project.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -254,19 +281,29 @@ export class Projects {
      * @example
      *     await client.ticketing.projects.usersList("parent_id")
      */
-    public async usersList(
+    public usersList(
         parentId: string,
         request: Merge.ticketing.ProjectsUsersListRequest = {},
-        requestOptions?: Projects.RequestOptions
-    ): Promise<Merge.ticketing.PaginatedUserList> {
+        requestOptions?: Projects.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.PaginatedUserList> {
+        return core.HttpResponsePromise.fromPromise(this.__usersList(parentId, request, requestOptions));
+    }
+
+    private async __usersList(
+        parentId: string,
+        request: Merge.ticketing.ProjectsUsersListRequest = {},
+        requestOptions?: Projects.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedUserList>> {
         const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.ticketing.ProjectsUsersListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -287,8 +324,10 @@ export class Projects {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/projects/${encodeURIComponent(parentId)}/users`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ticketing/v1/projects/${encodeURIComponent(parentId)}/users`,
             ),
             method: "GET",
             headers: {
@@ -299,8 +338,8 @@ export class Projects {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -313,13 +352,16 @@ export class Projects {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.PaginatedUserList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.PaginatedUserList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -337,7 +379,7 @@ export class Projects {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/projects/{parent_id}/users."
+                    "Timeout exceeded when calling GET /ticketing/v1/projects/{parent_id}/users.",
                 );
             case "unknown":
                 throw new errors.MergeError({

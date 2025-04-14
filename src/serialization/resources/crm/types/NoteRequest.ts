@@ -20,20 +20,20 @@ export const NoteRequest: core.serialization.ObjectSchema<serializers.crm.NoteRe
         opportunity: NoteRequestOpportunity.optional(),
         integrationParams: core.serialization.property(
             "integration_params",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         linkedAccountParams: core.serialization.property(
             "linked_account_params",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteFields: core.serialization.property(
             "remote_fields",
-            core.serialization.list(RemoteFieldRequest).optional()
+            core.serialization.list(RemoteFieldRequest).optional(),
         ),
     });
 
 export declare namespace NoteRequest {
-    interface Raw {
+    export interface Raw {
         owner?: NoteRequestOwner.Raw | null;
         content?: string | null;
         contact?: NoteRequestContact.Raw | null;

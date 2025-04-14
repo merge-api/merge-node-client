@@ -15,7 +15,7 @@ export const TicketingAttachmentEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace TicketingAttachmentEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: AttachmentRequest.Raw;
     }
 }

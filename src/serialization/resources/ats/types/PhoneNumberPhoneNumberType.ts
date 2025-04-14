@@ -13,5 +13,5 @@ export const PhoneNumberPhoneNumberType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([PhoneNumberTypeEnum, core.serialization.string()]);
 
 export declare namespace PhoneNumberPhoneNumberType {
-    type Raw = PhoneNumberTypeEnum.Raw | string;
+    export type Raw = PhoneNumberTypeEnum.Raw | string;
 }

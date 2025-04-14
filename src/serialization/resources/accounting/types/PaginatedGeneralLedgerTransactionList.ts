@@ -17,7 +17,7 @@ export const PaginatedGeneralLedgerTransactionList: core.serialization.ObjectSch
 });
 
 export declare namespace PaginatedGeneralLedgerTransactionList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: GeneralLedgerTransaction.Raw[] | null;

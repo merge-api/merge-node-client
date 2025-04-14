@@ -3,7 +3,6 @@
  */
 
 export type InvoicesListRequestStatus = "DRAFT" | "OPEN" | "PAID" | "PARTIALLY_PAID" | "SUBMITTED" | "VOID";
-
 export const InvoicesListRequestStatus = {
     Draft: "DRAFT",
     Open: "OPEN",

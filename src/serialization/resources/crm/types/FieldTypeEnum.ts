@@ -10,5 +10,5 @@ export const FieldTypeEnum: core.serialization.Schema<serializers.crm.FieldTypeE
     core.serialization.enum_(["string", "number", "date", "datetime", "bool", "list"]);
 
 export declare namespace FieldTypeEnum {
-    type Raw = "string" | "number" | "date" | "datetime" | "bool" | "list";
+    export type Raw = "string" | "number" | "date" | "datetime" | "bool" | "list";
 }

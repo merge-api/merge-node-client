@@ -260,7 +260,7 @@ export const CountryEnum: core.serialization.Schema<serializers.hris.CountryEnum
     ]);
 
 export declare namespace CountryEnum {
-    type Raw =
+    export type Raw =
         | "AF"
         | "AX"
         | "AL"

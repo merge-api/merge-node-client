@@ -17,7 +17,7 @@ export const PaginatedUserList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedUserList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: User.Raw[] | null;

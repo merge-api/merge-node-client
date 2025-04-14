@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Leads {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Leads {
      * @example
      *     await client.crm.leads.list()
      */
-    public async list(
+    public list(
         request: Merge.crm.LeadsListRequest = {},
-        requestOptions?: Leads.RequestOptions
-    ): Promise<Merge.crm.PaginatedLeadList> {
+        requestOptions?: Leads.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.PaginatedLeadList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.crm.LeadsListRequest = {},
+        requestOptions?: Leads.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.PaginatedLeadList>> {
         const {
             convertedAccountId,
             convertedContactId,
@@ -67,7 +76,7 @@ export class Leads {
             phoneNumbers,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (convertedAccountId != null) {
             _queryParams["converted_account_id"] = convertedAccountId;
         }
@@ -93,7 +102,9 @@ export class Leads {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.crm.LeadsListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -138,8 +149,10 @@ export class Leads {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/leads"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/leads",
             ),
             method: "GET",
             headers: {
@@ -150,8 +163,8 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -164,13 +177,16 @@ export class Leads {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.PaginatedLeadList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.PaginatedLeadList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -206,12 +222,19 @@ export class Leads {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.crm.LeadEndpointRequest,
-        requestOptions?: Leads.RequestOptions
-    ): Promise<Merge.crm.LeadResponse> {
+        requestOptions?: Leads.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.LeadResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.crm.LeadEndpointRequest,
+        requestOptions?: Leads.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.LeadResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -222,8 +245,10 @@ export class Leads {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/leads"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/leads",
             ),
             method: "POST",
             headers: {
@@ -234,8 +259,8 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -249,13 +274,16 @@ export class Leads {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.LeadResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.LeadResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -290,15 +318,25 @@ export class Leads {
      * @example
      *     await client.crm.leads.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.crm.LeadsRetrieveRequest = {},
-        requestOptions?: Leads.RequestOptions
-    ): Promise<Merge.crm.Lead> {
+        requestOptions?: Leads.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.Lead> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.crm.LeadsRetrieveRequest = {},
+        requestOptions?: Leads.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.Lead>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.crm.LeadsRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -315,8 +353,10 @@ export class Leads {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/leads/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `crm/v1/leads/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -327,8 +367,8 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -341,13 +381,16 @@ export class Leads {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.Lead.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.Lead.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -380,11 +423,19 @@ export class Leads {
      * @example
      *     await client.crm.leads.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: Leads.RequestOptions): Promise<Merge.crm.MetaResponse> {
+    public metaPostRetrieve(requestOptions?: Leads.RequestOptions): core.HttpResponsePromise<Merge.crm.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: Leads.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/leads/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/leads/meta/post",
             ),
             method: "GET",
             headers: {
@@ -395,8 +446,8 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -408,13 +459,16 @@ export class Leads {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -448,10 +502,17 @@ export class Leads {
      * @example
      *     await client.crm.leads.remoteFieldClassesList()
      */
-    public async remoteFieldClassesList(
+    public remoteFieldClassesList(
         request: Merge.crm.LeadsRemoteFieldClassesListRequest = {},
-        requestOptions?: Leads.RequestOptions
-    ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
+        requestOptions?: Leads.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __remoteFieldClassesList(
+        request: Merge.crm.LeadsRemoteFieldClassesListRequest = {},
+        requestOptions?: Leads.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.PaginatedRemoteFieldClassList>> {
         const {
             cursor,
             includeDeletedData,
@@ -461,7 +522,7 @@ export class Leads {
             isCommonModelField,
             pageSize,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -492,8 +553,10 @@ export class Leads {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/leads/remote-field-classes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/leads/remote-field-classes",
             ),
             method: "GET",
             headers: {
@@ -504,8 +567,8 @@ export class Leads {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -518,13 +581,16 @@ export class Leads {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -542,7 +608,7 @@ export class Leads {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /crm/v1/leads/remote-field-classes."
+                    "Timeout exceeded when calling GET /crm/v1/leads/remote-field-classes.",
                 );
             case "unknown":
                 throw new errors.MergeError({

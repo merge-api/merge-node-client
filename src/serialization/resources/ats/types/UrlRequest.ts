@@ -13,16 +13,16 @@ export const UrlRequest: core.serialization.ObjectSchema<serializers.ats.UrlRequ
         urlType: core.serialization.property("url_type", UrlRequestUrlType.optional()),
         integrationParams: core.serialization.property(
             "integration_params",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         linkedAccountParams: core.serialization.property(
             "linked_account_params",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
     });
 
 export declare namespace UrlRequest {
-    interface Raw {
+    export interface Raw {
         value?: string | null;
         url_type?: UrlRequestUrlType.Raw | null;
         integration_params?: Record<string, unknown> | null;

@@ -15,7 +15,7 @@ export const AccountToken: core.serialization.ObjectSchema<serializers.hris.Acco
     });
 
 export declare namespace AccountToken {
-    interface Raw {
+    export interface Raw {
         account_token: string;
         integration: AccountIntegration.Raw;
         id: string;

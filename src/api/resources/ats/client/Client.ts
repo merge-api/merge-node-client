@@ -39,224 +39,181 @@ import { Users } from "../resources/users/client/Client";
 import { WebhookReceivers } from "../resources/webhookReceivers/client/Client";
 
 export declare namespace Ats {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
-
-    interface RequestOptions {
-        /** The maximum time to wait for a response in seconds. */
-        timeoutInSeconds?: number;
-        /** The number of times to retry the request. Defaults to 2. */
-        maxRetries?: number;
-        /** A hook to abort the request. */
-        abortSignal?: AbortSignal;
-        /** Override the X-Account-Token header */
-        accountToken?: string | undefined;
-        /** Additional headers to include in the request. */
-        headers?: Record<string, string>;
-    }
 }
 
 export class Ats {
-    constructor(protected readonly _options: Ats.Options) {}
-
     protected _accountDetails: AccountDetails | undefined;
+    protected _accountToken: AccountToken | undefined;
+    protected _activities: Activities | undefined;
+    protected _applications: Applications | undefined;
+    protected _asyncPassthrough: AsyncPassthrough | undefined;
+    protected _attachments: Attachments | undefined;
+    protected _auditTrail: AuditTrail | undefined;
+    protected _availableActions: AvailableActions | undefined;
+    protected _candidates: Candidates | undefined;
+    protected _scopes: Scopes | undefined;
+    protected _deleteAccount: DeleteAccount | undefined;
+    protected _departments: Departments | undefined;
+    protected _eeocs: Eeocs | undefined;
+    protected _fieldMapping: FieldMapping | undefined;
+    protected _generateKey: GenerateKey | undefined;
+    protected _interviews: Interviews | undefined;
+    protected _issues: Issues | undefined;
+    protected _jobInterviewStages: JobInterviewStages | undefined;
+    protected _jobPostings: JobPostings | undefined;
+    protected _jobs: Jobs | undefined;
+    protected _linkToken: LinkToken | undefined;
+    protected _linkedAccounts: LinkedAccounts | undefined;
+    protected _offers: Offers | undefined;
+    protected _offices: Offices | undefined;
+    protected _passthrough: Passthrough | undefined;
+    protected _regenerateKey: RegenerateKey | undefined;
+    protected _rejectReasons: RejectReasons | undefined;
+    protected _scorecards: Scorecards | undefined;
+    protected _syncStatus: SyncStatus | undefined;
+    protected _forceResync: ForceResync | undefined;
+    protected _tags: Tags | undefined;
+    protected _users: Users | undefined;
+    protected _webhookReceivers: WebhookReceivers | undefined;
+
+    constructor(protected readonly _options: Ats.Options) {}
 
     public get accountDetails(): AccountDetails {
         return (this._accountDetails ??= new AccountDetails(this._options));
     }
 
-    protected _accountToken: AccountToken | undefined;
-
     public get accountToken(): AccountToken {
         return (this._accountToken ??= new AccountToken(this._options));
     }
-
-    protected _activities: Activities | undefined;
 
     public get activities(): Activities {
         return (this._activities ??= new Activities(this._options));
     }
 
-    protected _applications: Applications | undefined;
-
     public get applications(): Applications {
         return (this._applications ??= new Applications(this._options));
     }
-
-    protected _asyncPassthrough: AsyncPassthrough | undefined;
 
     public get asyncPassthrough(): AsyncPassthrough {
         return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
     }
 
-    protected _attachments: Attachments | undefined;
-
     public get attachments(): Attachments {
         return (this._attachments ??= new Attachments(this._options));
     }
-
-    protected _auditTrail: AuditTrail | undefined;
 
     public get auditTrail(): AuditTrail {
         return (this._auditTrail ??= new AuditTrail(this._options));
     }
 
-    protected _availableActions: AvailableActions | undefined;
-
     public get availableActions(): AvailableActions {
         return (this._availableActions ??= new AvailableActions(this._options));
     }
-
-    protected _candidates: Candidates | undefined;
 
     public get candidates(): Candidates {
         return (this._candidates ??= new Candidates(this._options));
     }
 
-    protected _scopes: Scopes | undefined;
-
     public get scopes(): Scopes {
         return (this._scopes ??= new Scopes(this._options));
     }
-
-    protected _deleteAccount: DeleteAccount | undefined;
 
     public get deleteAccount(): DeleteAccount {
         return (this._deleteAccount ??= new DeleteAccount(this._options));
     }
 
-    protected _departments: Departments | undefined;
-
     public get departments(): Departments {
         return (this._departments ??= new Departments(this._options));
     }
-
-    protected _eeocs: Eeocs | undefined;
 
     public get eeocs(): Eeocs {
         return (this._eeocs ??= new Eeocs(this._options));
     }
 
-    protected _fieldMapping: FieldMapping | undefined;
-
     public get fieldMapping(): FieldMapping {
         return (this._fieldMapping ??= new FieldMapping(this._options));
     }
-
-    protected _generateKey: GenerateKey | undefined;
 
     public get generateKey(): GenerateKey {
         return (this._generateKey ??= new GenerateKey(this._options));
     }
 
-    protected _interviews: Interviews | undefined;
-
     public get interviews(): Interviews {
         return (this._interviews ??= new Interviews(this._options));
     }
-
-    protected _issues: Issues | undefined;
 
     public get issues(): Issues {
         return (this._issues ??= new Issues(this._options));
     }
 
-    protected _jobInterviewStages: JobInterviewStages | undefined;
-
     public get jobInterviewStages(): JobInterviewStages {
         return (this._jobInterviewStages ??= new JobInterviewStages(this._options));
     }
-
-    protected _jobPostings: JobPostings | undefined;
 
     public get jobPostings(): JobPostings {
         return (this._jobPostings ??= new JobPostings(this._options));
     }
 
-    protected _jobs: Jobs | undefined;
-
     public get jobs(): Jobs {
         return (this._jobs ??= new Jobs(this._options));
     }
-
-    protected _linkToken: LinkToken | undefined;
 
     public get linkToken(): LinkToken {
         return (this._linkToken ??= new LinkToken(this._options));
     }
 
-    protected _linkedAccounts: LinkedAccounts | undefined;
-
     public get linkedAccounts(): LinkedAccounts {
         return (this._linkedAccounts ??= new LinkedAccounts(this._options));
     }
-
-    protected _offers: Offers | undefined;
 
     public get offers(): Offers {
         return (this._offers ??= new Offers(this._options));
     }
 
-    protected _offices: Offices | undefined;
-
     public get offices(): Offices {
         return (this._offices ??= new Offices(this._options));
     }
-
-    protected _passthrough: Passthrough | undefined;
 
     public get passthrough(): Passthrough {
         return (this._passthrough ??= new Passthrough(this._options));
     }
 
-    protected _regenerateKey: RegenerateKey | undefined;
-
     public get regenerateKey(): RegenerateKey {
         return (this._regenerateKey ??= new RegenerateKey(this._options));
     }
-
-    protected _rejectReasons: RejectReasons | undefined;
 
     public get rejectReasons(): RejectReasons {
         return (this._rejectReasons ??= new RejectReasons(this._options));
     }
 
-    protected _scorecards: Scorecards | undefined;
-
     public get scorecards(): Scorecards {
         return (this._scorecards ??= new Scorecards(this._options));
     }
-
-    protected _syncStatus: SyncStatus | undefined;
 
     public get syncStatus(): SyncStatus {
         return (this._syncStatus ??= new SyncStatus(this._options));
     }
 
-    protected _forceResync: ForceResync | undefined;
-
     public get forceResync(): ForceResync {
         return (this._forceResync ??= new ForceResync(this._options));
     }
-
-    protected _tags: Tags | undefined;
 
     public get tags(): Tags {
         return (this._tags ??= new Tags(this._options));
     }
 
-    protected _users: Users | undefined;
-
     public get users(): Users {
         return (this._users ??= new Users(this._options));
     }
-
-    protected _webhookReceivers: WebhookReceivers | undefined;
 
     public get webhookReceivers(): WebhookReceivers {
         return (this._webhookReceivers ??= new WebhookReceivers(this._options));

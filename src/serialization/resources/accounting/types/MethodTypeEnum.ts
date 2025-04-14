@@ -12,5 +12,5 @@ export const MethodTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["CREDIT_CARD", "DEBIT_CARD", "ACH", "CASH", "CHECK"]);
 
 export declare namespace MethodTypeEnum {
-    type Raw = "CREDIT_CARD" | "DEBIT_CARD" | "ACH" | "CASH" | "CHECK";
+    export type Raw = "CREDIT_CARD" | "DEBIT_CARD" | "ACH" | "CASH" | "CHECK";
 }

@@ -28,7 +28,7 @@ export const EngagementsListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace EngagementsListRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "account,engagement_type"
         | "contacts"

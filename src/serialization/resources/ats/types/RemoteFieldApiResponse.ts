@@ -19,13 +19,13 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
     eeoc: core.serialization.property("EEOC", core.serialization.list(RemoteFieldApi).optional()),
     scheduledInterview: core.serialization.property(
         "ScheduledInterview",
-        core.serialization.list(RemoteFieldApi).optional()
+        core.serialization.list(RemoteFieldApi).optional(),
     ),
     job: core.serialization.property("Job", core.serialization.list(RemoteFieldApi).optional()),
     jobPosting: core.serialization.property("JobPosting", core.serialization.list(RemoteFieldApi).optional()),
     jobInterviewStage: core.serialization.property(
         "JobInterviewStage",
-        core.serialization.list(RemoteFieldApi).optional()
+        core.serialization.list(RemoteFieldApi).optional(),
     ),
     offer: core.serialization.property("Offer", core.serialization.list(RemoteFieldApi).optional()),
     office: core.serialization.property("Office", core.serialization.list(RemoteFieldApi).optional()),
@@ -36,7 +36,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace RemoteFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         Activity?: RemoteFieldApi.Raw[] | null;
         Application?: RemoteFieldApi.Raw[] | null;
         Attachment?: RemoteFieldApi.Raw[] | null;

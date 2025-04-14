@@ -23,7 +23,7 @@ export const Address: core.serialization.ObjectSchema<serializers.accounting.Add
     });
 
 export declare namespace Address {
-    interface Raw {
+    export interface Raw {
         created_at?: string | null;
         modified_at?: string | null;
         type?: AddressType.Raw | null;

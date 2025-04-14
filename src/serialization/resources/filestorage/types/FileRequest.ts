@@ -24,16 +24,16 @@ export const FileRequest: core.serialization.ObjectSchema<
     drive: FileRequestDrive.optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace FileRequest {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         file_url?: string | null;
         file_thumbnail_url?: string | null;

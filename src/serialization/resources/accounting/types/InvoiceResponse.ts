@@ -20,7 +20,7 @@ export const InvoiceResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace InvoiceResponse {
-    interface Raw {
+    export interface Raw {
         model: serializers.accounting.Invoice.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

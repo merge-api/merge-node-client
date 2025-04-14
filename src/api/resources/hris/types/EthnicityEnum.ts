@@ -21,7 +21,6 @@ export type EthnicityEnum =
     | "TWO_OR_MORE_RACES"
     | "WHITE"
     | "PREFER_NOT_TO_DISCLOSE";
-
 export const EthnicityEnum = {
     AmericanIndianOrAlaskaNative: "AMERICAN_INDIAN_OR_ALASKA_NATIVE",
     AsianOrIndianSubcontinent: "ASIAN_OR_INDIAN_SUBCONTINENT",

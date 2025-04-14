@@ -10,7 +10,6 @@
  * - `CLOSED` - CLOSED
  */
 export type RunStateEnum = "PAID" | "DRAFT" | "APPROVED" | "FAILED" | "CLOSED";
-
 export const RunStateEnum = {
     Paid: "PAID",
     Draft: "DRAFT",

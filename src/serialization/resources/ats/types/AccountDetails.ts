@@ -18,7 +18,7 @@ export const AccountDetails: core.serialization.ObjectSchema<
     endUserOriginId: core.serialization.property("end_user_origin_id", core.serialization.string().optional()),
     endUserOrganizationName: core.serialization.property(
         "end_user_organization_name",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     endUserEmailAddress: core.serialization.property("end_user_email_address", core.serialization.string().optional()),
     status: core.serialization.string().optional(),
@@ -29,7 +29,7 @@ export const AccountDetails: core.serialization.ObjectSchema<
 });
 
 export declare namespace AccountDetails {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         integration?: string | null;
         integration_slug?: string | null;

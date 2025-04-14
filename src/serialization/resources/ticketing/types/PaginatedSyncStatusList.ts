@@ -17,7 +17,7 @@ export const PaginatedSyncStatusList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedSyncStatusList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: SyncStatus.Raw[] | null;

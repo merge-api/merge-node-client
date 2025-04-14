@@ -3,7 +3,6 @@
  */
 
 export type ProjectsUsersListRequestExpand = "roles" | "teams" | "teams,roles";
-
 export const ProjectsUsersListRequestExpand = {
     Roles: "roles",
     Teams: "teams",

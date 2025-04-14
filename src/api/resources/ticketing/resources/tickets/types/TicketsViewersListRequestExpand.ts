@@ -3,7 +3,6 @@
  */
 
 export type TicketsViewersListRequestExpand = "team" | "user" | "user,team";
-
 export const TicketsViewersListRequestExpand = {
     Team: "team",
     User: "user",

@@ -10,7 +10,6 @@ export type OpportunitiesRetrieveRequestExpand =
     | "owner,stage,account"
     | "stage"
     | "stage,account";
-
 export const OpportunitiesRetrieveRequestExpand = {
     Account: "account",
     Owner: "owner",

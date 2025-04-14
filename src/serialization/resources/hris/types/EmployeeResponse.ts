@@ -20,7 +20,7 @@ export const EmployeeResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace EmployeeResponse {
-    interface Raw {
+    export interface Raw {
         model: serializers.hris.Employee.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

@@ -10,5 +10,5 @@ export const UnitsEnum: core.serialization.Schema<serializers.hris.UnitsEnum.Raw
     core.serialization.enum_(["HOURS", "DAYS"]);
 
 export declare namespace UnitsEnum {
-    type Raw = "HOURS" | "DAYS";
+    export type Raw = "HOURS" | "DAYS";
 }

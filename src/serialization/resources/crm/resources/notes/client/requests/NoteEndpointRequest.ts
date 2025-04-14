@@ -15,7 +15,7 @@ export const NoteEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace NoteEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: NoteRequest.Raw;
     }
 }

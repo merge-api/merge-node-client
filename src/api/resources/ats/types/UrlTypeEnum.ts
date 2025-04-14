@@ -12,7 +12,6 @@
  * - `JOB_POSTING` - JOB_POSTING
  */
 export type UrlTypeEnum = "PERSONAL" | "COMPANY" | "PORTFOLIO" | "BLOG" | "SOCIAL_MEDIA" | "OTHER" | "JOB_POSTING";
-
 export const UrlTypeEnum = {
     Personal: "PERSONAL",
     Company: "COMPANY",

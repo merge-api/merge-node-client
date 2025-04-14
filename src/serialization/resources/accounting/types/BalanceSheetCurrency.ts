@@ -13,5 +13,5 @@ export const BalanceSheetCurrency: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([TransactionCurrencyEnum, core.serialization.string()]);
 
 export declare namespace BalanceSheetCurrency {
-    type Raw = TransactionCurrencyEnum.Raw | string;
+    export type Raw = TransactionCurrencyEnum.Raw | string;
 }

@@ -18,7 +18,6 @@ export type EngagementsListRequestExpand =
     | "owner,account"
     | "owner,account,engagement_type"
     | "owner,engagement_type";
-
 export const EngagementsListRequestExpand = {
     Account: "account",
     AccountEngagementType: "account,engagement_type",

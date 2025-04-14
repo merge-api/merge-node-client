@@ -17,7 +17,7 @@ export const PaginatedBankFeedTransactionList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedBankFeedTransactionList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: BankFeedTransaction.Raw[] | null;

@@ -12,5 +12,5 @@ export const LastSyncResultEnum: core.serialization.Schema<
 > = core.serialization.enum_(["SYNCING", "DONE", "FAILED", "DISABLED", "PAUSED", "PARTIALLY_SYNCED"]);
 
 export declare namespace LastSyncResultEnum {
-    type Raw = "SYNCING" | "DONE" | "FAILED" | "DISABLED" | "PAUSED" | "PARTIALLY_SYNCED";
+    export type Raw = "SYNCING" | "DONE" | "FAILED" | "DISABLED" | "PAUSED" | "PARTIALLY_SYNCED";
 }

@@ -14,7 +14,7 @@ export const CustomObjectRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace CustomObjectRequest {
-    interface Raw {
+    export interface Raw {
         fields: Record<string, unknown>;
     }
 }

@@ -76,7 +76,7 @@ export const JournalEntriesRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace JournalEntriesRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "accounting_period"
         | "applied_payments"
         | "applied_payments,accounting_period"

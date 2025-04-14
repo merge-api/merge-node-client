@@ -25,32 +25,32 @@ export const CashFlowStatement: core.serialization.ObjectSchema<
     endPeriod: core.serialization.property("end_period", core.serialization.date().optional()),
     cashAtBeginningOfPeriod: core.serialization.property(
         "cash_at_beginning_of_period",
-        core.serialization.number().optional()
+        core.serialization.number().optional(),
     ),
     cashAtEndOfPeriod: core.serialization.property("cash_at_end_of_period", core.serialization.number().optional()),
     operatingActivities: core.serialization.property(
         "operating_activities",
-        core.serialization.list(ReportItem).optional()
+        core.serialization.list(ReportItem).optional(),
     ),
     investingActivities: core.serialization.property(
         "investing_activities",
-        core.serialization.list(ReportItem).optional()
+        core.serialization.list(ReportItem).optional(),
     ),
     financingActivities: core.serialization.property(
         "financing_activities",
-        core.serialization.list(ReportItem).optional()
+        core.serialization.list(ReportItem).optional(),
     ),
     remoteGeneratedAt: core.serialization.property("remote_generated_at", core.serialization.date().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace CashFlowStatement {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

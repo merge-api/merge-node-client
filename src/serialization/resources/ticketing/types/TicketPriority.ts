@@ -13,5 +13,5 @@ export const TicketPriority: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([PriorityEnum, core.serialization.string()]);
 
 export declare namespace TicketPriority {
-    type Raw = PriorityEnum.Raw | string;
+    export type Raw = PriorityEnum.Raw | string;
 }

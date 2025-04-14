@@ -14,7 +14,7 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
     activity: core.serialization.property("Activity", core.serialization.list(FieldMappingApiInstance).optional()),
     application: core.serialization.property(
         "Application",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     attachment: core.serialization.property("Attachment", core.serialization.list(FieldMappingApiInstance).optional()),
     candidate: core.serialization.property("Candidate", core.serialization.list(FieldMappingApiInstance).optional()),
@@ -22,19 +22,19 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
     eeoc: core.serialization.property("EEOC", core.serialization.list(FieldMappingApiInstance).optional()),
     scheduledInterview: core.serialization.property(
         "ScheduledInterview",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     job: core.serialization.property("Job", core.serialization.list(FieldMappingApiInstance).optional()),
     jobPosting: core.serialization.property("JobPosting", core.serialization.list(FieldMappingApiInstance).optional()),
     jobInterviewStage: core.serialization.property(
         "JobInterviewStage",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     offer: core.serialization.property("Offer", core.serialization.list(FieldMappingApiInstance).optional()),
     office: core.serialization.property("Office", core.serialization.list(FieldMappingApiInstance).optional()),
     rejectReason: core.serialization.property(
         "RejectReason",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     scorecard: core.serialization.property("Scorecard", core.serialization.list(FieldMappingApiInstance).optional()),
     tag: core.serialization.property("Tag", core.serialization.list(FieldMappingApiInstance).optional()),
@@ -42,7 +42,7 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace FieldMappingApiInstanceResponse {
-    interface Raw {
+    export interface Raw {
         Activity?: FieldMappingApiInstance.Raw[] | null;
         Application?: FieldMappingApiInstance.Raw[] | null;
         Attachment?: FieldMappingApiInstance.Raw[] | null;

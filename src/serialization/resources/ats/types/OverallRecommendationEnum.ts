@@ -12,5 +12,5 @@ export const OverallRecommendationEnum: core.serialization.Schema<
 > = core.serialization.enum_(["DEFINITELY_NO", "NO", "YES", "STRONG_YES", "NO_DECISION"]);
 
 export declare namespace OverallRecommendationEnum {
-    type Raw = "DEFINITELY_NO" | "NO" | "YES" | "STRONG_YES" | "NO_DECISION";
+    export type Raw = "DEFINITELY_NO" | "NO" | "YES" | "STRONG_YES" | "NO_DECISION";
 }

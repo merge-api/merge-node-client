@@ -12,5 +12,5 @@ export const PostingStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["UNPOSTED", "POSTED"]);
 
 export declare namespace PostingStatusEnum {
-    type Raw = "UNPOSTED" | "POSTED";
+    export type Raw = "UNPOSTED" | "POSTED";
 }

@@ -17,7 +17,7 @@ export const AssociationSubType: core.serialization.ObjectSchema<
 });
 
 export declare namespace AssociationSubType {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;

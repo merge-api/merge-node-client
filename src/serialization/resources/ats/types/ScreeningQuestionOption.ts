@@ -19,7 +19,7 @@ export const ScreeningQuestionOption: core.serialization.ObjectSchema<
 });
 
 export declare namespace ScreeningQuestionOption {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

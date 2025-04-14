@@ -3,7 +3,6 @@
  */
 
 export type IssuesListRequestStatus = "ONGOING" | "RESOLVED";
-
 export const IssuesListRequestStatus = {
     Ongoing: "ONGOING",
     Resolved: "RESOLVED",

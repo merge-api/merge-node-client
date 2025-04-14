@@ -13,5 +13,5 @@ export const EmployeeRequestWorkLocation: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Location]);
 
 export declare namespace EmployeeRequestWorkLocation {
-    type Raw = string | Location.Raw;
+    export type Raw = string | Location.Raw;
 }

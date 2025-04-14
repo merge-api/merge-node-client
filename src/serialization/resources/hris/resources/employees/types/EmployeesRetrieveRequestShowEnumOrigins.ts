@@ -28,7 +28,7 @@ export const EmployeesRetrieveRequestShowEnumOrigins: core.serialization.Schema<
 ]);
 
 export declare namespace EmployeesRetrieveRequestShowEnumOrigins {
-    type Raw =
+    export type Raw =
         | "employment_status"
         | "employment_status,ethnicity"
         | "employment_status,ethnicity,gender"

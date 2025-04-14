@@ -13,5 +13,5 @@ export const InvoiceLineItemItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Item]);
 
 export declare namespace InvoiceLineItemItem {
-    type Raw = string | Item.Raw;
+    export type Raw = string | Item.Raw;
 }

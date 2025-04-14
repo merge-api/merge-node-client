@@ -17,7 +17,7 @@ export const PaginatedRejectReasonList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedRejectReasonList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: RejectReason.Raw[] | null;

@@ -17,7 +17,7 @@ export const PaginatedJournalEntryList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedJournalEntryList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: JournalEntry.Raw[] | null;

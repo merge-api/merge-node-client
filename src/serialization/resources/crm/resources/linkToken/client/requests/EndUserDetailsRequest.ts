@@ -22,32 +22,32 @@ export const EndUserDetailsRequest: core.serialization.Schema<
     linkExpiryMins: core.serialization.property("link_expiry_mins", core.serialization.number().optional()),
     shouldCreateMagicLinkUrl: core.serialization.property(
         "should_create_magic_link_url",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
     hideAdminMagicLink: core.serialization.property("hide_admin_magic_link", core.serialization.boolean().optional()),
     commonModels: core.serialization.property(
         "common_models",
-        core.serialization.list(CommonModelScopesBodyRequest).optional()
+        core.serialization.list(CommonModelScopesBodyRequest).optional(),
     ),
     categoryCommonModelScopes: core.serialization.property(
         "category_common_model_scopes",
         core.serialization
             .record(
                 core.serialization.string(),
-                core.serialization.list(IndividualCommonModelScopeDeserializerRequest).optional()
+                core.serialization.list(IndividualCommonModelScopeDeserializerRequest).optional(),
             )
-            .optional()
+            .optional(),
     ),
     language: LanguageEnum.optional(),
     areSyncsDisabled: core.serialization.property("are_syncs_disabled", core.serialization.boolean().optional()),
     integrationSpecificConfig: core.serialization.property(
         "integration_specific_config",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace EndUserDetailsRequest {
-    interface Raw {
+    export interface Raw {
         end_user_email_address: string;
         end_user_organization_name: string;
         end_user_origin_id: string;

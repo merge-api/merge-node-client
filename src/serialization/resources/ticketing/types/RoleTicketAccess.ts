@@ -13,5 +13,5 @@ export const RoleTicketAccess: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), TicketAccessEnum]);
 
 export declare namespace RoleTicketAccess {
-    type Raw = string | TicketAccessEnum.Raw;
+    export type Raw = string | TicketAccessEnum.Raw;
 }

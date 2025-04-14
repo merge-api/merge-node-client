@@ -13,5 +13,5 @@ export const PurchaseOrderRequestStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([PurchaseOrderStatusEnum, core.serialization.string()]);
 
 export declare namespace PurchaseOrderRequestStatus {
-    type Raw = PurchaseOrderStatusEnum.Raw | string;
+    export type Raw = PurchaseOrderStatusEnum.Raw | string;
 }

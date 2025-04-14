@@ -10,5 +10,5 @@ export const DirectionEnum: core.serialization.Schema<serializers.crm.DirectionE
     core.serialization.enum_(["INBOUND", "OUTBOUND"]);
 
 export declare namespace DirectionEnum {
-    type Raw = "INBOUND" | "OUTBOUND";
+    export type Raw = "INBOUND" | "OUTBOUND";
 }

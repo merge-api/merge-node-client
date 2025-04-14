@@ -21,7 +21,7 @@ export const FileStorageFileResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace FileStorageFileResponse {
-    interface Raw {
+    export interface Raw {
         model: File_.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

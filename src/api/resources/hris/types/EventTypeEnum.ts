@@ -89,7 +89,6 @@ export type EventTypeEnum =
     | "DISABLED_MERGE_WEBHOOK"
     | "MERGE_WEBHOOK_TARGET_CHANGED"
     | "END_USER_CREDENTIALS_ACCESSED";
-
 export const EventTypeEnum = {
     CreatedRemoteProductionApiKey: "CREATED_REMOTE_PRODUCTION_API_KEY",
     DeletedRemoteProductionApiKey: "DELETED_REMOTE_PRODUCTION_API_KEY",

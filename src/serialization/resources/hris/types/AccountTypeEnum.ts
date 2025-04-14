@@ -12,5 +12,5 @@ export const AccountTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["SAVINGS", "CHECKING"]);
 
 export declare namespace AccountTypeEnum {
-    type Raw = "SAVINGS" | "CHECKING";
+    export type Raw = "SAVINGS" | "CHECKING";
 }

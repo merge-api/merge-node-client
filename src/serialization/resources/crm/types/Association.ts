@@ -17,7 +17,7 @@ export const Association: core.serialization.ObjectSchema<serializers.crm.Associ
     });
 
 export declare namespace Association {
-    interface Raw {
+    export interface Raw {
         created_at?: string | null;
         modified_at?: string | null;
         source_object?: string | null;

@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace AccountingPeriods {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,12 +46,19 @@ export class AccountingPeriods {
      * @example
      *     await client.accounting.accountingPeriods.list()
      */
-    public async list(
+    public list(
         request: Merge.accounting.AccountingPeriodsListRequest = {},
-        requestOptions?: AccountingPeriods.RequestOptions
-    ): Promise<Merge.accounting.PaginatedAccountingPeriodList> {
+        requestOptions?: AccountingPeriods.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedAccountingPeriodList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.AccountingPeriodsListRequest = {},
+        requestOptions?: AccountingPeriods.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedAccountingPeriodList>> {
         const { cursor, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -72,8 +81,10 @@ export class AccountingPeriods {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/accounting-periods"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/accounting-periods",
             ),
             method: "GET",
             headers: {
@@ -84,8 +95,8 @@ export class AccountingPeriods {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -98,13 +109,16 @@ export class AccountingPeriods {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedAccountingPeriodList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedAccountingPeriodList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -122,7 +136,7 @@ export class AccountingPeriods {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/accounting-periods."
+                    "Timeout exceeded when calling GET /accounting/v1/accounting-periods.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -141,13 +155,21 @@ export class AccountingPeriods {
      * @example
      *     await client.accounting.accountingPeriods.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.accounting.AccountingPeriodsRetrieveRequest = {},
-        requestOptions?: AccountingPeriods.RequestOptions
-    ): Promise<Merge.accounting.AccountingPeriod> {
+        requestOptions?: AccountingPeriods.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.AccountingPeriod> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.accounting.AccountingPeriodsRetrieveRequest = {},
+        requestOptions?: AccountingPeriods.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.AccountingPeriod>> {
         const { includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (includeRemoteData != null) {
             _queryParams["include_remote_data"] = includeRemoteData.toString();
         }
@@ -158,8 +180,10 @@ export class AccountingPeriods {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/accounting-periods/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/accounting-periods/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -170,8 +194,8 @@ export class AccountingPeriods {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -184,13 +208,16 @@ export class AccountingPeriods {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.AccountingPeriod.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.AccountingPeriod.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -208,7 +235,7 @@ export class AccountingPeriods {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/accounting-periods/{id}."
+                    "Timeout exceeded when calling GET /accounting/v1/accounting-periods/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({

@@ -21,7 +21,7 @@ export const AccountResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace AccountResponse {
-    interface Raw {
+    export interface Raw {
         model: Account.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

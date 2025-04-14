@@ -18,7 +18,6 @@ export type EmploymentsListRequestRemoteFields =
     | "pay_frequency"
     | "pay_frequency,pay_period"
     | "pay_period";
-
 export const EmploymentsListRequestRemoteFields = {
     EmploymentType: "employment_type",
     EmploymentTypeFlsaStatus: "employment_type,flsa_status",

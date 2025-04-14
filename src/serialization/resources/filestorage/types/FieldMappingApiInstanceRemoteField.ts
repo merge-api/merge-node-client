@@ -15,12 +15,12 @@ export const FieldMappingApiInstanceRemoteField: core.serialization.ObjectSchema
     schema: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     remoteEndpointInfo: core.serialization.property(
         "remote_endpoint_info",
-        FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo
+        FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo,
     ),
 });
 
 export declare namespace FieldMappingApiInstanceRemoteField {
-    interface Raw {
+    export interface Raw {
         remote_key_name?: string | null;
         schema?: Record<string, unknown> | null;
         remote_endpoint_info: FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo.Raw;

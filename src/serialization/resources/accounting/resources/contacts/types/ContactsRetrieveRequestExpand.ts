@@ -20,7 +20,7 @@ export const ContactsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace ContactsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "addresses"
         | "addresses,company"
         | "addresses,phone_numbers"

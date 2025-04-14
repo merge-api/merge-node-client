@@ -31,35 +31,35 @@ export const CreditNoteRequest: core.serialization.ObjectSchema<
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     lineItems: core.serialization.property(
         "line_items",
-        core.serialization.list(CreditNoteRequestLineItemsItem).optional()
+        core.serialization.list(CreditNoteRequestLineItemsItem).optional(),
     ),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(CreditNoteRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(CreditNoteRequestTrackingCategoriesItem.optional()).optional(),
     ),
     currency: CreditNoteRequestCurrency.optional(),
     payments: core.serialization.list(CreditNoteRequestPaymentsItem.optional()).optional(),
     appliedPayments: core.serialization.property(
         "applied_payments",
-        core.serialization.list(CreditNoteRequestAppliedPaymentsItem.optional()).optional()
+        core.serialization.list(CreditNoteRequestAppliedPaymentsItem.optional()).optional(),
     ),
     accountingPeriod: core.serialization.property("accounting_period", CreditNoteRequestAccountingPeriod.optional()),
     appliedToLines: core.serialization.property(
         "applied_to_lines",
-        core.serialization.list(CreditNoteApplyLineForCreditNoteRequest).optional()
+        core.serialization.list(CreditNoteApplyLineForCreditNoteRequest).optional(),
     ),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace CreditNoteRequest {
-    interface Raw {
+    export interface Raw {
         transaction_date?: string | null;
         status?: CreditNoteRequestStatus.Raw | null;
         number?: string | null;

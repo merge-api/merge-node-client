@@ -18,7 +18,6 @@ export type EeocsListRequestShowEnumOrigins =
     | "race"
     | "race,veteran_status"
     | "veteran_status";
-
 export const EeocsListRequestShowEnumOrigins = {
     DisabilityStatus: "disability_status",
     DisabilityStatusGender: "disability_status,gender",

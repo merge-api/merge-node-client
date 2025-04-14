@@ -10,7 +10,6 @@ export type TasksListRequestExpand =
     | "owner,account"
     | "owner,account,opportunity"
     | "owner,opportunity";
-
 export const TasksListRequestExpand = {
     Account: "account",
     AccountOpportunity: "account,opportunity",

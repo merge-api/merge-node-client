@@ -17,7 +17,7 @@ export const PaginatedLeadList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedLeadList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Lead.Raw[] | null;

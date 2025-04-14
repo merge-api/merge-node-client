@@ -13,5 +13,5 @@ export const PatchedPaymentRequestType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([PaymentTypeEnum, core.serialization.string()]);
 
 export declare namespace PatchedPaymentRequestType {
-    type Raw = PaymentTypeEnum.Raw | string;
+    export type Raw = PaymentTypeEnum.Raw | string;
 }

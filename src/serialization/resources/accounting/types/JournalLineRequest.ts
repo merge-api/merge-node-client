@@ -21,7 +21,7 @@ export const JournalLineRequest: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", JournalLineRequestTrackingCategory.optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(JournalLineRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(JournalLineRequestTrackingCategoriesItem.optional()).optional(),
     ),
     currency: JournalLineRequestCurrency.optional(),
     company: core.serialization.string().optional(),
@@ -32,17 +32,17 @@ export const JournalLineRequest: core.serialization.ObjectSchema<
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace JournalLineRequest {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         account?: JournalLineRequestAccount.Raw | null;
         net_amount?: number | null;

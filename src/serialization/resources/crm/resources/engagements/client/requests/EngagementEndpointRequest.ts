@@ -15,7 +15,7 @@ export const EngagementEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace EngagementEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: EngagementRequest.Raw;
     }
 }

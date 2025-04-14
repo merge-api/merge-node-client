@@ -16,12 +16,12 @@ export const ItemSchema: core.serialization.ObjectSchema<
     itemFormat: core.serialization.property("item_format", ItemFormatEnum.optional()),
     itemChoices: core.serialization.property(
         "item_choices",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
 });
 
 export declare namespace ItemSchema {
-    interface Raw {
+    export interface Raw {
         item_type?: ItemTypeEnum.Raw | null;
         item_format?: ItemFormatEnum.Raw | null;
         item_choices?: string[] | null;

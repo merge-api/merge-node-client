@@ -18,7 +18,6 @@ export type EeocsRetrieveRequestRemoteFields =
     | "race"
     | "race,veteran_status"
     | "veteran_status";
-
 export const EeocsRetrieveRequestRemoteFields = {
     DisabilityStatus: "disability_status",
     DisabilityStatusGender: "disability_status,gender",

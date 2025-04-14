@@ -31,7 +31,6 @@ export type AccountAccountTypeEnum =
     | "OTHER_CURRENT_LIABILITY"
     | "LONG_TERM_LIABILITY"
     | "NON_POSTING";
-
 export const AccountAccountTypeEnum = {
     Bank: "BANK",
     CreditCard: "CREDIT_CARD",

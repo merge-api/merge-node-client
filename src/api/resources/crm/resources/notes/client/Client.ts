@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Notes {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Notes {
      * @example
      *     await client.crm.notes.list()
      */
-    public async list(
+    public list(
         request: Merge.crm.NotesListRequest = {},
-        requestOptions?: Notes.RequestOptions
-    ): Promise<Merge.crm.PaginatedNoteList> {
+        requestOptions?: Notes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.PaginatedNoteList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.crm.NotesListRequest = {},
+        requestOptions?: Notes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.PaginatedNoteList>> {
         const {
             accountId,
             contactId,
@@ -66,7 +75,7 @@ export class Notes {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (accountId != null) {
             _queryParams["account_id"] = accountId;
         }
@@ -88,7 +97,9 @@ export class Notes {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.crm.NotesListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -133,8 +144,10 @@ export class Notes {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/notes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/notes",
             ),
             method: "GET",
             headers: {
@@ -145,8 +158,8 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -159,13 +172,16 @@ export class Notes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.PaginatedNoteList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.PaginatedNoteList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -201,12 +217,19 @@ export class Notes {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.crm.NoteEndpointRequest,
-        requestOptions?: Notes.RequestOptions
-    ): Promise<Merge.crm.NoteResponse> {
+        requestOptions?: Notes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.NoteResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.crm.NoteEndpointRequest,
+        requestOptions?: Notes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.NoteResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -217,8 +240,10 @@ export class Notes {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/notes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/notes",
             ),
             method: "POST",
             headers: {
@@ -229,8 +254,8 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -244,13 +269,16 @@ export class Notes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.NoteResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.NoteResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -285,15 +313,25 @@ export class Notes {
      * @example
      *     await client.crm.notes.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.crm.NotesRetrieveRequest = {},
-        requestOptions?: Notes.RequestOptions
-    ): Promise<Merge.crm.Note> {
+        requestOptions?: Notes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.Note> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.crm.NotesRetrieveRequest = {},
+        requestOptions?: Notes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.Note>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.crm.NotesRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -310,8 +348,10 @@ export class Notes {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `crm/v1/notes/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `crm/v1/notes/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -322,8 +362,8 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -336,13 +376,16 @@ export class Notes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.Note.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.Note.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -375,11 +418,19 @@ export class Notes {
      * @example
      *     await client.crm.notes.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: Notes.RequestOptions): Promise<Merge.crm.MetaResponse> {
+    public metaPostRetrieve(requestOptions?: Notes.RequestOptions): core.HttpResponsePromise<Merge.crm.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: Notes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/notes/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/notes/meta/post",
             ),
             method: "GET",
             headers: {
@@ -390,8 +441,8 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -403,13 +454,16 @@ export class Notes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -443,10 +497,17 @@ export class Notes {
      * @example
      *     await client.crm.notes.remoteFieldClassesList()
      */
-    public async remoteFieldClassesList(
+    public remoteFieldClassesList(
         request: Merge.crm.NotesRemoteFieldClassesListRequest = {},
-        requestOptions?: Notes.RequestOptions
-    ): Promise<Merge.crm.PaginatedRemoteFieldClassList> {
+        requestOptions?: Notes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __remoteFieldClassesList(
+        request: Merge.crm.NotesRemoteFieldClassesListRequest = {},
+        requestOptions?: Notes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.PaginatedRemoteFieldClassList>> {
         const {
             cursor,
             includeDeletedData,
@@ -456,7 +517,7 @@ export class Notes {
             isCommonModelField,
             pageSize,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -487,8 +548,10 @@ export class Notes {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "crm/v1/notes/remote-field-classes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/notes/remote-field-classes",
             ),
             method: "GET",
             headers: {
@@ -499,8 +562,8 @@ export class Notes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -513,13 +576,16 @@ export class Notes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.crm.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -537,7 +603,7 @@ export class Notes {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /crm/v1/notes/remote-field-classes."
+                    "Timeout exceeded when calling GET /crm/v1/notes/remote-field-classes.",
                 );
             case "unknown":
                 throw new errors.MergeError({

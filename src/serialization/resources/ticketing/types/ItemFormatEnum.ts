@@ -12,5 +12,5 @@ export const ItemFormatEnum: core.serialization.Schema<
 > = core.serialization.enum_(["string", "number", "date", "datetime", "bool", "list"]);
 
 export declare namespace ItemFormatEnum {
-    type Raw = "string" | "number" | "date" | "datetime" | "bool" | "list";
+    export type Raw = "string" | "number" | "date" | "datetime" | "bool" | "list";
 }

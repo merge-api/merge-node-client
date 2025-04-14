@@ -18,7 +18,7 @@ export const DownloadRequestMeta: core.serialization.ObjectSchema<
 });
 
 export declare namespace DownloadRequestMeta {
-    interface Raw {
+    export interface Raw {
         id: string;
         url: string;
         method: string;

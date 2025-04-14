@@ -10,7 +10,6 @@
  * - `SIGN_ON_BONUS` - SIGN_ON_BONUS
  */
 export type RunTypeEnum = "REGULAR" | "OFF_CYCLE" | "CORRECTION" | "TERMINATION" | "SIGN_ON_BONUS";
-
 export const RunTypeEnum = {
     Regular: "REGULAR",
     OffCycle: "OFF_CYCLE",

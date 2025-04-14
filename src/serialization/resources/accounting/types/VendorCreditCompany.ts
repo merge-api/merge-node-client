@@ -13,5 +13,5 @@ export const VendorCreditCompany: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), CompanyInfo]);
 
 export declare namespace VendorCreditCompany {
-    type Raw = string | CompanyInfo.Raw;
+    export type Raw = string | CompanyInfo.Raw;
 }

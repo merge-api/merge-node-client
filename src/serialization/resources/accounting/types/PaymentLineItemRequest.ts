@@ -18,17 +18,17 @@ export const PaymentLineItemRequest: core.serialization.ObjectSchema<
     relatedObjectType: core.serialization.property("related_object_type", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace PaymentLineItemRequest {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         applied_amount?: string | null;
         applied_date?: string | null;

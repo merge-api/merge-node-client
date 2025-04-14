@@ -12,5 +12,5 @@ export const ActivitiesListRequestShowEnumOrigins: core.serialization.Schema<
 > = core.serialization.enum_(["activity_type", "activity_type,visibility", "visibility"]);
 
 export declare namespace ActivitiesListRequestShowEnumOrigins {
-    type Raw = "activity_type" | "activity_type,visibility" | "visibility";
+    export type Raw = "activity_type" | "activity_type,visibility" | "visibility";
 }

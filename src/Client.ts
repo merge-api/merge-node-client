@@ -4,23 +4,25 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
-import { Crm } from "./api/resources/crm/client/Client";
-import { Ats } from "./api/resources/ats/client/Client";
 import { Filestorage } from "./api/resources/filestorage/client/Client";
+import { Ats } from "./api/resources/ats/client/Client";
+import { Crm } from "./api/resources/crm/client/Client";
 import { Hris } from "./api/resources/hris/client/Client";
 import { Ticketing } from "./api/resources/ticketing/client/Client";
 import { Accounting } from "./api/resources/accounting/client/Client";
 
 export declare namespace MergeClient {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -35,39 +37,34 @@ export declare namespace MergeClient {
 }
 
 export class MergeClient {
-    constructor(protected readonly _options: MergeClient.Options) {}
-
-    protected _crm: Crm | undefined;
-
-    public get crm(): Crm {
-        return (this._crm ??= new Crm(this._options));
-    }
-
-    protected _ats: Ats | undefined;
-
-    public get ats(): Ats {
-        return (this._ats ??= new Ats(this._options));
-    }
-
     protected _filestorage: Filestorage | undefined;
+    protected _ats: Ats | undefined;
+    protected _crm: Crm | undefined;
+    protected _hris: Hris | undefined;
+    protected _ticketing: Ticketing | undefined;
+    protected _accounting: Accounting | undefined;
+
+    constructor(protected readonly _options: MergeClient.Options) {}
 
     public get filestorage(): Filestorage {
         return (this._filestorage ??= new Filestorage(this._options));
     }
 
-    protected _hris: Hris | undefined;
+    public get ats(): Ats {
+        return (this._ats ??= new Ats(this._options));
+    }
+
+    public get crm(): Crm {
+        return (this._crm ??= new Crm(this._options));
+    }
 
     public get hris(): Hris {
         return (this._hris ??= new Hris(this._options));
     }
 
-    protected _ticketing: Ticketing | undefined;
-
     public get ticketing(): Ticketing {
         return (this._ticketing ??= new Ticketing(this._options));
     }
-
-    protected _accounting: Accounting | undefined;
 
     public get accounting(): Accounting {
         return (this._accounting ??= new Accounting(this._options));

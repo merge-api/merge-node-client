@@ -3,7 +3,6 @@
  */
 
 export type LocationsRetrieveRequestShowEnumOrigins = "country" | "country,location_type" | "location_type";
-
 export const LocationsRetrieveRequestShowEnumOrigins = {
     Country: "country",
     CountryLocationType: "country,location_type",

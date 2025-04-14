@@ -26,13 +26,13 @@ export const Comment: core.serialization.ObjectSchema<serializers.ticketing.Comm
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace Comment {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

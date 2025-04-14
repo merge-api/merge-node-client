@@ -13,5 +13,5 @@ export const TeamParentTeam: core.serialization.Schema<serializers.hris.TeamPare
     ]);
 
 export declare namespace TeamParentTeam {
-    type Raw = string | serializers.hris.Team.Raw;
+    export type Raw = string | serializers.hris.Team.Raw;
 }

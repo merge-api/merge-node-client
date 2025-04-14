@@ -20,7 +20,7 @@ export const FileStorageFolderResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace FileStorageFolderResponse {
-    interface Raw {
+    export interface Raw {
         model: serializers.filestorage.Folder.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

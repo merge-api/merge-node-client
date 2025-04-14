@@ -3,7 +3,6 @@
  */
 
 export type PayrollRunsRetrieveRequestRemoteFields = "run_state" | "run_state,run_type" | "run_type";
-
 export const PayrollRunsRetrieveRequestRemoteFields = {
     RunState: "run_state",
     RunStateRunType: "run_state,run_type",

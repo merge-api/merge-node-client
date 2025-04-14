@@ -15,5 +15,5 @@ export const TimeOffRequestApprover: core.serialization.Schema<
 ]);
 
 export declare namespace TimeOffRequestApprover {
-    type Raw = string | serializers.hris.Employee.Raw;
+    export type Raw = string | serializers.hris.Employee.Raw;
 }

@@ -34,7 +34,6 @@ export type JobsRetrieveRequestExpand =
     | "offices,job_postings,recruiters"
     | "offices,recruiters"
     | "recruiters";
-
 export const JobsRetrieveRequestExpand = {
     Departments: "departments",
     DepartmentsHiringManagers: "departments,hiring_managers",

@@ -3,7 +3,6 @@
  */
 
 export type OpportunitiesListRequestStatus = "LOST" | "OPEN" | "WON";
-
 export const OpportunitiesListRequestStatus = {
     Lost: "LOST",
     Open: "OPEN",

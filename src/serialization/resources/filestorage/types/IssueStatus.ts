@@ -13,5 +13,5 @@ export const IssueStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([IssueStatusEnum, core.serialization.string()]);
 
 export declare namespace IssueStatus {
-    type Raw = IssueStatusEnum.Raw | string;
+    export type Raw = IssueStatusEnum.Raw | string;
 }

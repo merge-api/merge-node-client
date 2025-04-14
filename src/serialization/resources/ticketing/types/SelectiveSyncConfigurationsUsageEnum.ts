@@ -12,5 +12,5 @@ export const SelectiveSyncConfigurationsUsageEnum: core.serialization.Schema<
 > = core.serialization.enum_(["IN_NEXT_SYNC", "IN_LAST_SYNC"]);
 
 export declare namespace SelectiveSyncConfigurationsUsageEnum {
-    type Raw = "IN_NEXT_SYNC" | "IN_LAST_SYNC";
+    export type Raw = "IN_NEXT_SYNC" | "IN_LAST_SYNC";
 }

@@ -3,7 +3,6 @@
  */
 
 export type EmploymentsListRequestOrderBy = "-effective_date" | "effective_date";
-
 export const EmploymentsListRequestOrderBy = {
     EffectiveDateDescending: "-effective_date",
     EffectiveDateAscending: "effective_date",

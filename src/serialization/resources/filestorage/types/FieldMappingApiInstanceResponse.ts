@@ -19,7 +19,7 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace FieldMappingApiInstanceResponse {
-    interface Raw {
+    export interface Raw {
         File?: FieldMappingApiInstance.Raw[] | null;
         Folder?: FieldMappingApiInstance.Raw[] | null;
         Drive?: FieldMappingApiInstance.Raw[] | null;

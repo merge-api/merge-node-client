@@ -20,7 +20,7 @@ export const OpportunitiesRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace OpportunitiesRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "owner"
         | "owner,account"

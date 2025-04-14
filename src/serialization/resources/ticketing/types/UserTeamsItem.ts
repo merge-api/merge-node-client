@@ -13,5 +13,5 @@ export const UserTeamsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Team]);
 
 export declare namespace UserTeamsItem {
-    type Raw = string | Team.Raw;
+    export type Raw = string | Team.Raw;
 }

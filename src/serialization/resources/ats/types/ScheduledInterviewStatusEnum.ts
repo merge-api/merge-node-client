@@ -12,5 +12,5 @@ export const ScheduledInterviewStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["SCHEDULED", "AWAITING_FEEDBACK", "COMPLETE"]);
 
 export declare namespace ScheduledInterviewStatusEnum {
-    type Raw = "SCHEDULED" | "AWAITING_FEEDBACK" | "COMPLETE";
+    export type Raw = "SCHEDULED" | "AWAITING_FEEDBACK" | "COMPLETE";
 }

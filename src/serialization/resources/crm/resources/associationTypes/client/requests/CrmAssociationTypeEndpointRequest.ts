@@ -15,7 +15,7 @@ export const CrmAssociationTypeEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace CrmAssociationTypeEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: AssociationTypeRequestRequest.Raw;
     }
 }

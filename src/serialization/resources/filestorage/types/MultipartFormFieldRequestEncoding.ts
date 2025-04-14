@@ -13,5 +13,5 @@ export const MultipartFormFieldRequestEncoding: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([EncodingEnum, core.serialization.string()]);
 
 export declare namespace MultipartFormFieldRequestEncoding {
-    type Raw = EncodingEnum.Raw | string;
+    export type Raw = EncodingEnum.Raw | string;
 }

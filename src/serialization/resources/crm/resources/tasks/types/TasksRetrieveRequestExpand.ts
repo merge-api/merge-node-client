@@ -20,7 +20,7 @@ export const TasksRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace TasksRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "account,opportunity"
         | "opportunity"

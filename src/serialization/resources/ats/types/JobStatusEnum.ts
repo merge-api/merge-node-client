@@ -10,5 +10,5 @@ export const JobStatusEnum: core.serialization.Schema<serializers.ats.JobStatusE
     core.serialization.enum_(["OPEN", "CLOSED", "DRAFT", "ARCHIVED", "PENDING"]);
 
 export declare namespace JobStatusEnum {
-    type Raw = "OPEN" | "CLOSED" | "DRAFT" | "ARCHIVED" | "PENDING";
+    export type Raw = "OPEN" | "CLOSED" | "DRAFT" | "ARCHIVED" | "PENDING";
 }

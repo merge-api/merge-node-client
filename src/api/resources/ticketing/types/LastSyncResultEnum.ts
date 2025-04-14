@@ -11,7 +11,6 @@
  * - `PARTIALLY_SYNCED` - PARTIALLY_SYNCED
  */
 export type LastSyncResultEnum = "SYNCING" | "DONE" | "FAILED" | "DISABLED" | "PAUSED" | "PARTIALLY_SYNCED";
-
 export const LastSyncResultEnum = {
     Syncing: "SYNCING",
     Done: "DONE",

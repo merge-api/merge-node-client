@@ -16,12 +16,12 @@ export const AvailableActions: core.serialization.ObjectSchema<
     passthroughAvailable: core.serialization.property("passthrough_available", core.serialization.boolean()),
     availableModelOperations: core.serialization.property(
         "available_model_operations",
-        core.serialization.list(ModelOperation).optional()
+        core.serialization.list(ModelOperation).optional(),
     ),
 });
 
 export declare namespace AvailableActions {
-    interface Raw {
+    export interface Raw {
         integration: AccountIntegration.Raw;
         passthrough_available: boolean;
         available_model_operations?: ModelOperation.Raw[] | null;

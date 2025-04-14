@@ -17,7 +17,7 @@ export const PaginatedFileList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedFileList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: File_.Raw[] | null;

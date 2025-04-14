@@ -7,7 +7,6 @@
  * - `DEPARTMENT` - DEPARTMENT
  */
 export type CategoryTypeEnum = "CLASS" | "DEPARTMENT";
-
 export const CategoryTypeEnum = {
     Class: "CLASS",
     Department: "DEPARTMENT",

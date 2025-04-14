@@ -10,7 +10,6 @@
  * - `REVENUE` - REVENUE
  */
 export type ClassificationEnum = "ASSET" | "EQUITY" | "EXPENSE" | "LIABILITY" | "REVENUE";
-
 export const ClassificationEnum = {
     Asset: "ASSET",
     Equity: "EQUITY",

@@ -13,5 +13,5 @@ export const CreditNoteRequestPaymentsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Payment]);
 
 export declare namespace CreditNoteRequestPaymentsItem {
-    type Raw = string | Payment.Raw;
+    export type Raw = string | Payment.Raw;
 }

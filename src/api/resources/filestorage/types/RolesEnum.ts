@@ -8,7 +8,6 @@
  * - `OWNER` - OWNER
  */
 export type RolesEnum = "READ" | "WRITE" | "OWNER";
-
 export const RolesEnum = {
     Read: "READ",
     Write: "WRITE",

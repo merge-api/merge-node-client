@@ -14,7 +14,7 @@ export const ValidationProblemSource: core.serialization.ObjectSchema<
 });
 
 export declare namespace ValidationProblemSource {
-    interface Raw {
+    export interface Raw {
         pointer: string;
     }
 }

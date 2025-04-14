@@ -13,5 +13,5 @@ export const JournalEntryAppliedPaymentsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), PaymentLineItem]);
 
 export declare namespace JournalEntryAppliedPaymentsItem {
-    type Raw = string | PaymentLineItem.Raw;
+    export type Raw = string | PaymentLineItem.Raw;
 }

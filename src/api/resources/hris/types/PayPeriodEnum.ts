@@ -23,7 +23,6 @@ export type PayPeriodEnum =
     | "QUARTER"
     | "EVERY_SIX_MONTHS"
     | "YEAR";
-
 export const PayPeriodEnum = {
     Hour: "HOUR",
     Day: "DAY",

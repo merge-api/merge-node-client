@@ -10,5 +10,5 @@ export const RoleEnum: core.serialization.Schema<serializers.crm.RoleEnum.Raw, M
     core.serialization.enum_(["ADMIN", "DEVELOPER", "MEMBER", "API", "SYSTEM", "MERGE_TEAM"]);
 
 export declare namespace RoleEnum {
-    type Raw = "ADMIN" | "DEVELOPER" | "MEMBER" | "API" | "SYSTEM" | "MERGE_TEAM";
+    export type Raw = "ADMIN" | "DEVELOPER" | "MEMBER" | "API" | "SYSTEM" | "MERGE_TEAM";
 }

@@ -15,7 +15,7 @@ export const FileStorageFolderEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace FileStorageFolderEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: FolderRequest.Raw;
     }
 }

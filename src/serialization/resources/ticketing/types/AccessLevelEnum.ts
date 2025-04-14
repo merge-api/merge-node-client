@@ -12,5 +12,5 @@ export const AccessLevelEnum: core.serialization.Schema<
 > = core.serialization.enum_(["PRIVATE", "COMPANY", "PUBLIC"]);
 
 export declare namespace AccessLevelEnum {
-    type Raw = "PRIVATE" | "COMPANY" | "PUBLIC";
+    export type Raw = "PRIVATE" | "COMPANY" | "PUBLIC";
 }

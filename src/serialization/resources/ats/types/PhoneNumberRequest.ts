@@ -15,16 +15,16 @@ export const PhoneNumberRequest: core.serialization.ObjectSchema<
     phoneNumberType: core.serialization.property("phone_number_type", PhoneNumberRequestPhoneNumberType.optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace PhoneNumberRequest {
-    interface Raw {
+    export interface Raw {
         value?: string | null;
         phone_number_type?: PhoneNumberRequestPhoneNumberType.Raw | null;
         integration_params?: Record<string, unknown> | null;

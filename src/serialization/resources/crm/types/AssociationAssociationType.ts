@@ -13,5 +13,5 @@ export const AssociationAssociationType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), AssociationType]);
 
 export declare namespace AssociationAssociationType {
-    type Raw = string | AssociationType.Raw;
+    export type Raw = string | AssociationType.Raw;
 }

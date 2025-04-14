@@ -13,5 +13,5 @@ export const EmployeeEthnicity: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([EthnicityEnum, core.serialization.string()]);
 
 export declare namespace EmployeeEthnicity {
-    type Raw = EthnicityEnum.Raw | string;
+    export type Raw = EthnicityEnum.Raw | string;
 }

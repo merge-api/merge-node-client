@@ -8,7 +8,6 @@
  * - `INACTIVE` - INACTIVE
  */
 export type AccountStatusEnum = "ACTIVE" | "PENDING" | "INACTIVE";
-
 export const AccountStatusEnum = {
     Active: "ACTIVE",
     Pending: "PENDING",

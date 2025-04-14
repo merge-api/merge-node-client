@@ -17,7 +17,7 @@ export const PaginatedDriveList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedDriveList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Drive.Raw[] | null;

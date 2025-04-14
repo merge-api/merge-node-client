@@ -3,7 +3,6 @@
  */
 
 export type BankInfoListRequestAccountType = "CHECKING" | "SAVINGS";
-
 export const BankInfoListRequestAccountType = {
     Checking: "CHECKING",
     Savings: "SAVINGS",

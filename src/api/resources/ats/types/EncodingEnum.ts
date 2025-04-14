@@ -8,7 +8,6 @@
  * - `GZIP_BASE64` - GZIP_BASE64
  */
 export type EncodingEnum = "RAW" | "BASE64" | "GZIP_BASE64";
-
 export const EncodingEnum = {
     Raw: "RAW",
     Base64: "BASE64",

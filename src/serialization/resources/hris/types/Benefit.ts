@@ -19,11 +19,11 @@ export const Benefit: core.serialization.ObjectSchema<serializers.hris.Benefit.R
         benefitPlanType: core.serialization.property("benefit_plan_type", core.serialization.string().optional()),
         employeeContribution: core.serialization.property(
             "employee_contribution",
-            core.serialization.number().optional()
+            core.serialization.number().optional(),
         ),
         companyContribution: core.serialization.property(
             "company_contribution",
-            core.serialization.number().optional()
+            core.serialization.number().optional(),
         ),
         startDate: core.serialization.property("start_date", core.serialization.date().optional()),
         endDate: core.serialization.property("end_date", core.serialization.date().optional()),
@@ -31,13 +31,13 @@ export const Benefit: core.serialization.ObjectSchema<serializers.hris.Benefit.R
         employerBenefit: core.serialization.property("employer_benefit", core.serialization.string().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace Benefit {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

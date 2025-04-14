@@ -13,5 +13,5 @@ export const ScheduledInterviewRequestInterviewersItem: core.serialization.Schem
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), RemoteUser]);
 
 export declare namespace ScheduledInterviewRequestInterviewersItem {
-    type Raw = string | RemoteUser.Raw;
+    export type Raw = string | RemoteUser.Raw;
 }

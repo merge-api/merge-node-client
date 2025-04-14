@@ -23,7 +23,7 @@ export const TaxComponent: core.serialization.ObjectSchema<
 });
 
 export declare namespace TaxComponent {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

@@ -10,7 +10,6 @@ export type OpportunitiesListRequestExpand =
     | "owner,stage,account"
     | "stage"
     | "stage,account";
-
 export const OpportunitiesListRequestExpand = {
     Account: "account",
     Owner: "owner",

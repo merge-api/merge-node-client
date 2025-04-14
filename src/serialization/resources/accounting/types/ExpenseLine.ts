@@ -26,7 +26,7 @@ export const ExpenseLine: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", ExpenseLineTrackingCategory.optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(ExpenseLineTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(ExpenseLineTrackingCategoriesItem.optional()).optional(),
     ),
     company: core.serialization.string().optional(),
     employee: ExpenseLineEmployee.optional(),
@@ -40,7 +40,7 @@ export const ExpenseLine: core.serialization.ObjectSchema<
 });
 
 export declare namespace ExpenseLine {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

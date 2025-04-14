@@ -18,16 +18,16 @@ export const ContactRequest: core.serialization.ObjectSchema<
     account: ContactRequestAccount.optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace ContactRequest {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         email_address?: string | null;
         phone_number?: string | null;

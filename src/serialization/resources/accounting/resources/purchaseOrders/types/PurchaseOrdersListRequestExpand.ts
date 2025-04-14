@@ -140,7 +140,7 @@ export const PurchaseOrdersListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace PurchaseOrdersListRequestExpand {
-    type Raw =
+    export type Raw =
         | "accounting_period"
         | "accounting_period,payment_term"
         | "company"

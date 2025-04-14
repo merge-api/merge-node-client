@@ -17,7 +17,7 @@ export const DebugModeLog: core.serialization.ObjectSchema<
 });
 
 export declare namespace DebugModeLog {
-    interface Raw {
+    export interface Raw {
         log_id: string;
         dashboard_view: string;
         log_summary: DebugModelLogSummary.Raw;

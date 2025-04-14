@@ -15,7 +15,7 @@ export const TaskEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace TaskEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: TaskRequest.Raw;
     }
 }

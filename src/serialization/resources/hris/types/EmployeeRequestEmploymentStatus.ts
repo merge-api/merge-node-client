@@ -13,5 +13,5 @@ export const EmployeeRequestEmploymentStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([EmploymentStatusEnum, core.serialization.string()]);
 
 export declare namespace EmployeeRequestEmploymentStatus {
-    type Raw = EmploymentStatusEnum.Raw | string;
+    export type Raw = EmploymentStatusEnum.Raw | string;
 }

@@ -13,12 +13,12 @@ export const LinkedAccountCommonModelScopeDeserializerRequest: core.serializatio
 > = core.serialization.object({
     commonModels: core.serialization.property(
         "common_models",
-        core.serialization.list(IndividualCommonModelScopeDeserializerRequest)
+        core.serialization.list(IndividualCommonModelScopeDeserializerRequest),
     ),
 });
 
 export declare namespace LinkedAccountCommonModelScopeDeserializerRequest {
-    interface Raw {
+    export interface Raw {
         common_models: IndividualCommonModelScopeDeserializerRequest.Raw[];
     }
 }

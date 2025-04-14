@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace AsyncTasks {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,14 +46,23 @@ export class AsyncTasks {
      * @example
      *     await client.accounting.asyncTasks.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
-        requestOptions?: AsyncTasks.RequestOptions
-    ): Promise<Merge.accounting.AsyncPostTask> {
+        requestOptions?: AsyncTasks.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.AsyncPostTask> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        requestOptions?: AsyncTasks.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.AsyncPostTask>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/async-tasks/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/async-tasks/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -62,8 +73,8 @@ export class AsyncTasks {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -75,13 +86,16 @@ export class AsyncTasks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.AsyncPostTask.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.AsyncPostTask.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -99,7 +113,7 @@ export class AsyncTasks {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/async-tasks/{id}."
+                    "Timeout exceeded when calling GET /accounting/v1/async-tasks/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({

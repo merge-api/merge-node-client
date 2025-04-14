@@ -12,5 +12,5 @@ export const RequestFormatEnum: core.serialization.Schema<
 > = core.serialization.enum_(["JSON", "XML", "MULTIPART"]);
 
 export declare namespace RequestFormatEnum {
-    type Raw = "JSON" | "XML" | "MULTIPART";
+    export type Raw = "JSON" | "XML" | "MULTIPART";
 }

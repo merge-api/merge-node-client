@@ -262,7 +262,7 @@ export const CountryEnum: core.serialization.Schema<
 ]);
 
 export declare namespace CountryEnum {
-    type Raw =
+    export type Raw =
         | "AF"
         | "AX"
         | "AL"

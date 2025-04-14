@@ -17,7 +17,7 @@ export const PaginatedJobInterviewStageList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedJobInterviewStageList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: JobInterviewStage.Raw[] | null;

@@ -12,5 +12,5 @@ export const RequestTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["VACATION", "SICK", "PERSONAL", "JURY_DUTY", "VOLUNTEER", "BEREAVEMENT"]);
 
 export declare namespace RequestTypeEnum {
-    type Raw = "VACATION" | "SICK" | "PERSONAL" | "JURY_DUTY" | "VOLUNTEER" | "BEREAVEMENT";
+    export type Raw = "VACATION" | "SICK" | "PERSONAL" | "JURY_DUTY" | "VOLUNTEER" | "BEREAVEMENT";
 }

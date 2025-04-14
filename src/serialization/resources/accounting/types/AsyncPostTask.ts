@@ -17,7 +17,7 @@ export const AsyncPostTask: core.serialization.ObjectSchema<
 });
 
 export declare namespace AsyncPostTask {
-    interface Raw {
+    export interface Raw {
         status: AsyncPostTaskStatus.Raw;
         result: AsyncPostTaskResult.Raw;
     }

@@ -23,17 +23,17 @@ export const PatchedEngagementRequest: core.serialization.ObjectSchema<
     contacts: core.serialization.list(core.serialization.string().optional()).optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace PatchedEngagementRequest {
-    interface Raw {
+    export interface Raw {
         owner?: string | null;
         content?: string | null;
         subject?: string | null;

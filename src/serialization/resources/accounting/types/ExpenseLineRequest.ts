@@ -24,7 +24,7 @@ export const ExpenseLineRequest: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", ExpenseLineRequestTrackingCategory.optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(ExpenseLineRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(ExpenseLineRequestTrackingCategoriesItem.optional()).optional(),
     ),
     company: core.serialization.string().optional(),
     employee: ExpenseLineRequestEmployee.optional(),
@@ -36,17 +36,17 @@ export const ExpenseLineRequest: core.serialization.ObjectSchema<
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace ExpenseLineRequest {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         item?: ExpenseLineRequestItem.Raw | null;
         net_amount?: number | null;

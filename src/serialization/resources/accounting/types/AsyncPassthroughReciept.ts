@@ -14,7 +14,7 @@ export const AsyncPassthroughReciept: core.serialization.ObjectSchema<
 });
 
 export declare namespace AsyncPassthroughReciept {
-    interface Raw {
+    export interface Raw {
         async_passthrough_receipt_id: string;
     }
 }

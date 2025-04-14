@@ -15,5 +15,5 @@ export const TimesheetEntryEmployee: core.serialization.Schema<
 ]);
 
 export declare namespace TimesheetEntryEmployee {
-    type Raw = string | serializers.hris.Employee.Raw;
+    export type Raw = string | serializers.hris.Employee.Raw;
 }

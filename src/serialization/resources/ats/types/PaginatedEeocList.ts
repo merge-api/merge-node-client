@@ -17,7 +17,7 @@ export const PaginatedEeocList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedEeocList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Eeoc.Raw[] | null;

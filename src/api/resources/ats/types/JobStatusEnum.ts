@@ -10,7 +10,6 @@
  * - `PENDING` - PENDING
  */
 export type JobStatusEnum = "OPEN" | "CLOSED" | "DRAFT" | "ARCHIVED" | "PENDING";
-
 export const JobStatusEnum = {
     Open: "OPEN",
     Closed: "CLOSED",

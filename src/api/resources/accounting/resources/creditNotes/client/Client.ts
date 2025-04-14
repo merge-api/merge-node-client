@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace CreditNotes {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class CreditNotes {
      * @example
      *     await client.accounting.creditNotes.list()
      */
-    public async list(
+    public list(
         request: Merge.accounting.CreditNotesListRequest = {},
-        requestOptions?: CreditNotes.RequestOptions
-    ): Promise<Merge.accounting.PaginatedCreditNoteList> {
+        requestOptions?: CreditNotes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedCreditNoteList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.CreditNotesListRequest = {},
+        requestOptions?: CreditNotes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedCreditNoteList>> {
         const {
             companyId,
             createdAfter,
@@ -66,7 +75,7 @@ export class CreditNotes {
             transactionDateAfter,
             transactionDateBefore,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
         }
@@ -84,7 +93,9 @@ export class CreditNotes {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.accounting.CreditNotesListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -112,7 +123,10 @@ export class CreditNotes {
         }
 
         if (remoteFields != null) {
-            _queryParams["remote_fields"] = remoteFields;
+            _queryParams["remote_fields"] = serializers.accounting.CreditNotesListRequestRemoteFields.jsonOrThrow(
+                remoteFields,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (remoteId != null) {
@@ -120,7 +134,10 @@ export class CreditNotes {
         }
 
         if (showEnumOrigins != null) {
-            _queryParams["show_enum_origins"] = showEnumOrigins;
+            _queryParams["show_enum_origins"] =
+                serializers.accounting.CreditNotesListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
+                    unrecognizedObjectKeys: "strip",
+                });
         }
 
         if (transactionDateAfter != null) {
@@ -133,8 +150,10 @@ export class CreditNotes {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/credit-notes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/credit-notes",
             ),
             method: "GET",
             headers: {
@@ -145,8 +164,8 @@ export class CreditNotes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -159,13 +178,16 @@ export class CreditNotes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedCreditNoteList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedCreditNoteList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -201,12 +223,19 @@ export class CreditNotes {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.accounting.CreditNoteEndpointRequest,
-        requestOptions?: CreditNotes.RequestOptions
-    ): Promise<Merge.accounting.CreditNoteResponse> {
+        requestOptions?: CreditNotes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.CreditNoteResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.accounting.CreditNoteEndpointRequest,
+        requestOptions?: CreditNotes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.CreditNoteResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -217,8 +246,10 @@ export class CreditNotes {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/credit-notes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/credit-notes",
             ),
             method: "POST",
             headers: {
@@ -229,8 +260,8 @@ export class CreditNotes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -246,13 +277,16 @@ export class CreditNotes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.CreditNoteResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.CreditNoteResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -287,15 +321,25 @@ export class CreditNotes {
      * @example
      *     await client.accounting.creditNotes.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.accounting.CreditNotesRetrieveRequest = {},
-        requestOptions?: CreditNotes.RequestOptions
-    ): Promise<Merge.accounting.CreditNote> {
+        requestOptions?: CreditNotes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.CreditNote> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.accounting.CreditNotesRetrieveRequest = {},
+        requestOptions?: CreditNotes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.CreditNote>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.accounting.CreditNotesRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -307,17 +351,25 @@ export class CreditNotes {
         }
 
         if (remoteFields != null) {
-            _queryParams["remote_fields"] = remoteFields;
+            _queryParams["remote_fields"] = serializers.accounting.CreditNotesRetrieveRequestRemoteFields.jsonOrThrow(
+                remoteFields,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (showEnumOrigins != null) {
-            _queryParams["show_enum_origins"] = showEnumOrigins;
+            _queryParams["show_enum_origins"] =
+                serializers.accounting.CreditNotesRetrieveRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
+                    unrecognizedObjectKeys: "strip",
+                });
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/credit-notes/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/credit-notes/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -328,8 +380,8 @@ export class CreditNotes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -342,13 +394,16 @@ export class CreditNotes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.CreditNote.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.CreditNote.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -366,7 +421,7 @@ export class CreditNotes {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/credit-notes/{id}."
+                    "Timeout exceeded when calling GET /accounting/v1/credit-notes/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -383,11 +438,21 @@ export class CreditNotes {
      * @example
      *     await client.accounting.creditNotes.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: CreditNotes.RequestOptions): Promise<Merge.accounting.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: CreditNotes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: CreditNotes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/credit-notes/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/credit-notes/meta/post",
             ),
             method: "GET",
             headers: {
@@ -398,8 +463,8 @@ export class CreditNotes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -411,13 +476,16 @@ export class CreditNotes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -435,7 +503,7 @@ export class CreditNotes {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/credit-notes/meta/post."
+                    "Timeout exceeded when calling GET /accounting/v1/credit-notes/meta/post.",
                 );
             case "unknown":
                 throw new errors.MergeError({

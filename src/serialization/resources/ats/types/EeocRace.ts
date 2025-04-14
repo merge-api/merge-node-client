@@ -11,5 +11,5 @@ export const EeocRace: core.serialization.Schema<serializers.ats.EeocRace.Raw, M
     core.serialization.undiscriminatedUnion([RaceEnum, core.serialization.string()]);
 
 export declare namespace EeocRace {
-    type Raw = RaceEnum.Raw | string;
+    export type Raw = RaceEnum.Raw | string;
 }

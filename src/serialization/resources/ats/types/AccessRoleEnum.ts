@@ -10,5 +10,5 @@ export const AccessRoleEnum: core.serialization.Schema<serializers.ats.AccessRol
     core.serialization.enum_(["SUPER_ADMIN", "ADMIN", "TEAM_MEMBER", "LIMITED_TEAM_MEMBER", "INTERVIEWER"]);
 
 export declare namespace AccessRoleEnum {
-    type Raw = "SUPER_ADMIN" | "ADMIN" | "TEAM_MEMBER" | "LIMITED_TEAM_MEMBER" | "INTERVIEWER";
+    export type Raw = "SUPER_ADMIN" | "ADMIN" | "TEAM_MEMBER" | "LIMITED_TEAM_MEMBER" | "INTERVIEWER";
 }

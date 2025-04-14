@@ -10,7 +10,6 @@ export type TicketsRetrieveRequestRemoteFields =
     | "status"
     | "status,ticket_type"
     | "ticket_type";
-
 export const TicketsRetrieveRequestRemoteFields = {
     Priority: "priority",
     PriorityStatus: "priority,status",

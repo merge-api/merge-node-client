@@ -10,7 +10,6 @@
  * - `PENDING` - PENDING
  */
 export type JobPostingStatusEnum = "PUBLISHED" | "CLOSED" | "DRAFT" | "INTERNAL" | "PENDING";
-
 export const JobPostingStatusEnum = {
     Published: "PUBLISHED",
     Closed: "CLOSED",

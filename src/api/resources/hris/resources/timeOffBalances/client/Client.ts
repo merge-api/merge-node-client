@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace TimeOffBalances {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class TimeOffBalances {
      * @example
      *     await client.hris.timeOffBalances.list()
      */
-    public async list(
+    public list(
         request: Merge.hris.TimeOffBalancesListRequest = {},
-        requestOptions?: TimeOffBalances.RequestOptions
-    ): Promise<Merge.hris.PaginatedTimeOffBalanceList> {
+        requestOptions?: TimeOffBalances.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.PaginatedTimeOffBalanceList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.hris.TimeOffBalancesListRequest = {},
+        requestOptions?: TimeOffBalances.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.PaginatedTimeOffBalanceList>> {
         const {
             createdAfter,
             createdBefore,
@@ -65,7 +74,7 @@ export class TimeOffBalances {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -111,7 +120,10 @@ export class TimeOffBalances {
         }
 
         if (policyType != null) {
-            _queryParams["policy_type"] = policyType;
+            _queryParams["policy_type"] = serializers.hris.TimeOffBalancesListRequestPolicyType.jsonOrThrow(
+                policyType,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (remoteFields != null) {
@@ -128,8 +140,10 @@ export class TimeOffBalances {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/time-off-balances"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/time-off-balances",
             ),
             method: "GET",
             headers: {
@@ -140,8 +154,8 @@ export class TimeOffBalances {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -154,13 +168,16 @@ export class TimeOffBalances {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.PaginatedTimeOffBalanceList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.PaginatedTimeOffBalanceList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -195,13 +212,21 @@ export class TimeOffBalances {
      * @example
      *     await client.hris.timeOffBalances.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.hris.TimeOffBalancesRetrieveRequest = {},
-        requestOptions?: TimeOffBalances.RequestOptions
-    ): Promise<Merge.hris.TimeOffBalance> {
+        requestOptions?: TimeOffBalances.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.TimeOffBalance> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.hris.TimeOffBalancesRetrieveRequest = {},
+        requestOptions?: TimeOffBalances.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.TimeOffBalance>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
             _queryParams["expand"] = expand;
         }
@@ -224,8 +249,10 @@ export class TimeOffBalances {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `hris/v1/time-off-balances/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `hris/v1/time-off-balances/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -236,8 +263,8 @@ export class TimeOffBalances {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -250,13 +277,16 @@ export class TimeOffBalances {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.TimeOffBalance.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.TimeOffBalance.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -274,7 +304,7 @@ export class TimeOffBalances {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /hris/v1/time-off-balances/{id}."
+                    "Timeout exceeded when calling GET /hris/v1/time-off-balances/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({

@@ -13,5 +13,5 @@ export const JobDepartmentsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Department]);
 
 export declare namespace JobDepartmentsItem {
-    type Raw = string | Department.Raw;
+    export type Raw = string | Department.Raw;
 }

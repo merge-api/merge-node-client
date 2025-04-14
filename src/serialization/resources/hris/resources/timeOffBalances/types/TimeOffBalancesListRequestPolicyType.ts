@@ -12,5 +12,5 @@ export const TimeOffBalancesListRequestPolicyType: core.serialization.Schema<
 > = core.serialization.enum_(["BEREAVEMENT", "JURY_DUTY", "PERSONAL", "SICK", "VACATION", "VOLUNTEER"]);
 
 export declare namespace TimeOffBalancesListRequestPolicyType {
-    type Raw = "BEREAVEMENT" | "JURY_DUTY" | "PERSONAL" | "SICK" | "VACATION" | "VOLUNTEER";
+    export type Raw = "BEREAVEMENT" | "JURY_DUTY" | "PERSONAL" | "SICK" | "VACATION" | "VOLUNTEER";
 }

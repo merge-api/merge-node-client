@@ -11,7 +11,6 @@
  * - `list` - list
  */
 export type ItemTypeEnum = "string" | "number" | "date" | "datetime" | "bool" | "list";
-
 export const ItemTypeEnum = {
     String: "string",
     Number: "number",

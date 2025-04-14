@@ -3,7 +3,6 @@
  */
 
 export type JobsScreeningQuestionsListRequestExpand = "job" | "options" | "options,job";
-
 export const JobsScreeningQuestionsListRequestExpand = {
     Job: "job",
     Options: "options",

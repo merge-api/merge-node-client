@@ -3,7 +3,6 @@
  */
 
 export type EmployeesListRequestEmploymentStatus = "ACTIVE" | "INACTIVE" | "PENDING";
-
 export const EmployeesListRequestEmploymentStatus = {
     Active: "ACTIVE",
     Inactive: "INACTIVE",

@@ -17,7 +17,7 @@ export const PaginatedPurchaseOrderList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedPurchaseOrderList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: PurchaseOrder.Raw[] | null;

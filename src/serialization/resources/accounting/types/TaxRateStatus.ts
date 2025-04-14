@@ -13,5 +13,5 @@ export const TaxRateStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([Status7D1Enum, core.serialization.string()]);
 
 export declare namespace TaxRateStatus {
-    type Raw = Status7D1Enum.Raw | string;
+    export type Raw = Status7D1Enum.Raw | string;
 }

@@ -11,5 +11,5 @@ export const NoteContact: core.serialization.Schema<serializers.crm.NoteContact.
     core.serialization.undiscriminatedUnion([core.serialization.string(), Contact]);
 
 export declare namespace NoteContact {
-    type Raw = string | Contact.Raw;
+    export type Raw = string | Contact.Raw;
 }

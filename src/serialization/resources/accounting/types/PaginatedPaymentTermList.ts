@@ -17,7 +17,7 @@ export const PaginatedPaymentTermList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedPaymentTermList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: PaymentTerm.Raw[] | null;

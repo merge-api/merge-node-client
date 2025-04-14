@@ -17,7 +17,7 @@ export const PaginatedTimeOffList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedTimeOffList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: TimeOff.Raw[] | null;

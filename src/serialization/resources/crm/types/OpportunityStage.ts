@@ -13,5 +13,5 @@ export const OpportunityStage: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Stage]);
 
 export declare namespace OpportunityStage {
-    type Raw = string | Stage.Raw;
+    export type Raw = string | Stage.Raw;
 }

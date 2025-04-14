@@ -25,16 +25,16 @@ export const BankFeedAccountRequest: core.serialization.ObjectSchema<
     accountType: core.serialization.property("account_type", BankFeedAccountRequestAccountType.optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace BankFeedAccountRequest {
-    interface Raw {
+    export interface Raw {
         source_account_id?: string | null;
         target_account_id?: string | null;
         source_account_name?: string | null;

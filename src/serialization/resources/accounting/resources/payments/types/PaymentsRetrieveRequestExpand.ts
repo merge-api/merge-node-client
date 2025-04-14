@@ -140,7 +140,7 @@ export const PaymentsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace PaymentsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "account,accounting_period"
         | "account,accounting_period,payment_method"

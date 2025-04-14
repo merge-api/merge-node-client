@@ -258,7 +258,6 @@ export type TicketsListRequestExpand =
     | "creator"
     | "creator,parent_ticket"
     | "parent_ticket";
-
 export const TicketsListRequestExpand = {
     Account: "account",
     AccountContact: "account,contact",

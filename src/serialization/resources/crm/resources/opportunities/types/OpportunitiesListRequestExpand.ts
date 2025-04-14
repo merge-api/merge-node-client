@@ -20,7 +20,7 @@ export const OpportunitiesListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace OpportunitiesListRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "owner"
         | "owner,account"

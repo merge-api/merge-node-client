@@ -13,5 +13,5 @@ export const PatchedEngagementRequestDirection: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([DirectionEnum, core.serialization.string()]);
 
 export declare namespace PatchedEngagementRequestDirection {
-    type Raw = DirectionEnum.Raw | string;
+    export type Raw = DirectionEnum.Raw | string;
 }

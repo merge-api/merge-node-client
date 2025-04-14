@@ -34,7 +34,6 @@ export type ItemsRetrieveRequestExpand =
     | "sales_account,sales_tax_rate,purchase_tax_rate"
     | "sales_tax_rate"
     | "sales_tax_rate,purchase_tax_rate";
-
 export const ItemsRetrieveRequestExpand = {
     Company: "company",
     CompanyPurchaseTaxRate: "company,purchase_tax_rate",

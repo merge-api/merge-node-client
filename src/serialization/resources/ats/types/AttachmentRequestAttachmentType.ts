@@ -13,5 +13,5 @@ export const AttachmentRequestAttachmentType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([AttachmentTypeEnum, core.serialization.string()]);
 
 export declare namespace AttachmentRequestAttachmentType {
-    type Raw = AttachmentTypeEnum.Raw | string;
+    export type Raw = AttachmentTypeEnum.Raw | string;
 }

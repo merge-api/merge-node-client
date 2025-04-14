@@ -9,7 +9,6 @@
  * - `ANYONE` - ANYONE
  */
 export type TypeEnum = "USER" | "GROUP" | "COMPANY" | "ANYONE";
-
 export const TypeEnum = {
     User: "USER",
     Group: "GROUP",

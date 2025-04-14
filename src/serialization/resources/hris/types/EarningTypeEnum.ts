@@ -12,5 +12,5 @@ export const EarningTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["SALARY", "REIMBURSEMENT", "OVERTIME", "BONUS"]);
 
 export declare namespace EarningTypeEnum {
-    type Raw = "SALARY" | "REIMBURSEMENT" | "OVERTIME" | "BONUS";
+    export type Raw = "SALARY" | "REIMBURSEMENT" | "OVERTIME" | "BONUS";
 }

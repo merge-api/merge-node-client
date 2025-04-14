@@ -12,5 +12,5 @@ export const BankFeedAccountAccountTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["BANK", "CREDIT_CARD"]);
 
 export declare namespace BankFeedAccountAccountTypeEnum {
-    type Raw = "BANK" | "CREDIT_CARD";
+    export type Raw = "BANK" | "CREDIT_CARD";
 }

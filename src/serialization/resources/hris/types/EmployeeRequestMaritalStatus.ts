@@ -13,5 +13,5 @@ export const EmployeeRequestMaritalStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([MaritalStatusEnum, core.serialization.string()]);
 
 export declare namespace EmployeeRequestMaritalStatus {
-    type Raw = MaritalStatusEnum.Raw | string;
+    export type Raw = MaritalStatusEnum.Raw | string;
 }

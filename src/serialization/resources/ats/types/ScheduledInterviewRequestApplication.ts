@@ -15,5 +15,5 @@ export const ScheduledInterviewRequestApplication: core.serialization.Schema<
 ]);
 
 export declare namespace ScheduledInterviewRequestApplication {
-    type Raw = string | serializers.ats.Application.Raw;
+    export type Raw = string | serializers.ats.Application.Raw;
 }

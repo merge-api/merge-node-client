@@ -7,7 +7,6 @@
  * - `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
  */
 export type PaymentTypeEnum = "ACCOUNTS_PAYABLE" | "ACCOUNTS_RECEIVABLE";
-
 export const PaymentTypeEnum = {
     AccountsPayable: "ACCOUNTS_PAYABLE",
     AccountsReceivable: "ACCOUNTS_RECEIVABLE",

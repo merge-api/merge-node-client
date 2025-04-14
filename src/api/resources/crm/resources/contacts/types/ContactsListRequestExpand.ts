@@ -3,7 +3,6 @@
  */
 
 export type ContactsListRequestExpand = "account" | "account,owner" | "owner";
-
 export const ContactsListRequestExpand = {
     Account: "account",
     AccountOwner: "account,owner",

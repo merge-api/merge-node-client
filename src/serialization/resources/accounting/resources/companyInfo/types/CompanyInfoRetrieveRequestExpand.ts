@@ -12,5 +12,5 @@ export const CompanyInfoRetrieveRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["addresses", "addresses,phone_numbers", "phone_numbers"]);
 
 export declare namespace CompanyInfoRetrieveRequestExpand {
-    type Raw = "addresses" | "addresses,phone_numbers" | "phone_numbers";
+    export type Raw = "addresses" | "addresses,phone_numbers" | "phone_numbers";
 }

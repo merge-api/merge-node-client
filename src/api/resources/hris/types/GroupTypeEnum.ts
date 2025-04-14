@@ -10,7 +10,6 @@
  * - `GROUP` - GROUP
  */
 export type GroupTypeEnum = "TEAM" | "DEPARTMENT" | "COST_CENTER" | "BUSINESS_UNIT" | "GROUP";
-
 export const GroupTypeEnum = {
     Team: "TEAM",
     Department: "DEPARTMENT",

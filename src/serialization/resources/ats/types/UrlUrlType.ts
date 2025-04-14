@@ -11,5 +11,5 @@ export const UrlUrlType: core.serialization.Schema<serializers.ats.UrlUrlType.Ra
     core.serialization.undiscriminatedUnion([UrlTypeEnum, core.serialization.string()]);
 
 export declare namespace UrlUrlType {
-    type Raw = UrlTypeEnum.Raw | string;
+    export type Raw = UrlTypeEnum.Raw | string;
 }

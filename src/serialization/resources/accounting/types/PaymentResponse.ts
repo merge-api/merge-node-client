@@ -21,7 +21,7 @@ export const PaymentResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaymentResponse {
-    interface Raw {
+    export interface Raw {
         model: Payment.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

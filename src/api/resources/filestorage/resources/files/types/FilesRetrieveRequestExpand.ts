@@ -10,7 +10,6 @@ export type FilesRetrieveRequestExpand =
     | "permissions,drive"
     | "permissions,folder"
     | "permissions,folder,drive";
-
 export const FilesRetrieveRequestExpand = {
     Drive: "drive",
     Folder: "folder",

@@ -17,7 +17,7 @@ export const PaginatedBenefitList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedBenefitList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Benefit.Raw[] | null;

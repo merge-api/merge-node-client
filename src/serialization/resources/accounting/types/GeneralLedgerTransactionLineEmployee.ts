@@ -13,5 +13,5 @@ export const GeneralLedgerTransactionLineEmployee: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Employee]);
 
 export declare namespace GeneralLedgerTransactionLineEmployee {
-    type Raw = string | Employee.Raw;
+    export type Raw = string | Employee.Raw;
 }

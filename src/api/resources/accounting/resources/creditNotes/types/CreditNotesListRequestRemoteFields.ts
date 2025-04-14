@@ -3,7 +3,6 @@
  */
 
 export type CreditNotesListRequestRemoteFields = "status" | "status,type" | "type";
-
 export const CreditNotesListRequestRemoteFields = {
     Status: "status",
     StatusType: "status,type",

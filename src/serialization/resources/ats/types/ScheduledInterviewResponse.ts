@@ -21,7 +21,7 @@ export const ScheduledInterviewResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ScheduledInterviewResponse {
-    interface Raw {
+    export interface Raw {
         model: ScheduledInterview.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

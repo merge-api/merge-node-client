@@ -13,5 +13,5 @@ export const JournalEntryRequestPostingStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([PostingStatusEnum, core.serialization.string()]);
 
 export declare namespace JournalEntryRequestPostingStatus {
-    type Raw = PostingStatusEnum.Raw | string;
+    export type Raw = PostingStatusEnum.Raw | string;
 }

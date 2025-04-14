@@ -15,7 +15,7 @@ export const LinkedAccountStatus: core.serialization.ObjectSchema<
 });
 
 export declare namespace LinkedAccountStatus {
-    interface Raw {
+    export interface Raw {
         linked_account_status: string;
         can_make_request: boolean;
     }

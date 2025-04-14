@@ -13,5 +13,5 @@ export const JobPostingJobPostingUrlsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Url]);
 
 export declare namespace JobPostingJobPostingUrlsItem {
-    type Raw = string | Url.Raw;
+    export type Raw = string | Url.Raw;
 }

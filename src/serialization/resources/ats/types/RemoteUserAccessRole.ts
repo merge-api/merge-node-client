@@ -13,5 +13,5 @@ export const RemoteUserAccessRole: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([AccessRoleEnum, core.serialization.string()]);
 
 export declare namespace RemoteUserAccessRole {
-    type Raw = AccessRoleEnum.Raw | string;
+    export type Raw = AccessRoleEnum.Raw | string;
 }

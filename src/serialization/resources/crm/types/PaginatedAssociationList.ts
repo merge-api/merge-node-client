@@ -17,7 +17,7 @@ export const PaginatedAssociationList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedAssociationList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Association.Raw[] | null;

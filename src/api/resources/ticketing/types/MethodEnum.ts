@@ -12,7 +12,6 @@
  * - `DELETE` - DELETE
  */
 export type MethodEnum = "GET" | "OPTIONS" | "HEAD" | "POST" | "PUT" | "PATCH" | "DELETE";
-
 export const MethodEnum = {
     Get: "GET",
     Options: "OPTIONS",

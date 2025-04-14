@@ -16,7 +16,7 @@ export const IgnoreCommonModelRequest: core.serialization.Schema<
 });
 
 export declare namespace IgnoreCommonModelRequest {
-    interface Raw {
+    export interface Raw {
         reason: IgnoreCommonModelRequestReason.Raw;
         message?: string | null;
     }

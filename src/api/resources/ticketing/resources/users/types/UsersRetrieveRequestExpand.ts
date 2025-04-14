@@ -3,7 +3,6 @@
  */
 
 export type UsersRetrieveRequestExpand = "roles" | "teams" | "teams,roles";
-
 export const UsersRetrieveRequestExpand = {
     Roles: "roles",
     Teams: "teams",

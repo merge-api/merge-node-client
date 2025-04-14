@@ -17,7 +17,7 @@ export const PaginatedPayGroupList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedPayGroupList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: PayGroup.Raw[] | null;

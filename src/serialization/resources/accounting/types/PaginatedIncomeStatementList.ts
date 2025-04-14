@@ -17,7 +17,7 @@ export const PaginatedIncomeStatementList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedIncomeStatementList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: IncomeStatement.Raw[] | null;
