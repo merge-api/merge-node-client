@@ -66,7 +66,6 @@ export type ExpensesRetrieveRequestExpand =
     | "tracking_categories,contact,employee,accounting_period"
     | "tracking_categories,employee"
     | "tracking_categories,employee,accounting_period";
-
 export const ExpensesRetrieveRequestExpand = {
     Account: "account",
     AccountAccountingPeriod: "account,accounting_period",

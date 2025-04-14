@@ -17,7 +17,7 @@ export const PaginatedAccountList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedAccountList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Account.Raw[] | null;

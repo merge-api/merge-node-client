@@ -3,7 +3,6 @@
  */
 
 export type CompanyInfoRetrieveRequestExpand = "addresses" | "addresses,phone_numbers" | "phone_numbers";
-
 export const CompanyInfoRetrieveRequestExpand = {
     Addresses: "addresses",
     AddressesPhoneNumbers: "addresses,phone_numbers",

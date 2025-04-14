@@ -11,7 +11,6 @@
  * - `list` - list
  */
 export type FieldTypeEnum = "string" | "number" | "date" | "datetime" | "bool" | "list";
-
 export const FieldTypeEnum = {
     String: "string",
     Number: "number",

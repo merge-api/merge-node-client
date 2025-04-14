@@ -15,5 +15,5 @@ export const EmployeeRequestManager: core.serialization.Schema<
 ]);
 
 export declare namespace EmployeeRequestManager {
-    type Raw = string | serializers.hris.Employee.Raw;
+    export type Raw = string | serializers.hris.Employee.Raw;
 }

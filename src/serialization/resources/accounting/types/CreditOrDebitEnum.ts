@@ -12,5 +12,5 @@ export const CreditOrDebitEnum: core.serialization.Schema<
 > = core.serialization.enum_(["CREDIT", "DEBIT"]);
 
 export declare namespace CreditOrDebitEnum {
-    type Raw = "CREDIT" | "DEBIT";
+    export type Raw = "CREDIT" | "DEBIT";
 }

@@ -7,7 +7,6 @@
  * - `OUTBOUND` - OUTBOUND
  */
 export type DirectionEnum = "INBOUND" | "OUTBOUND";
-
 export const DirectionEnum = {
     Inbound: "INBOUND",
     Outbound: "OUTBOUND",

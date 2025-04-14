@@ -34,22 +34,22 @@ export const ExpenseRequest: core.serialization.ObjectSchema<
     lines: core.serialization.list(ExpenseLineRequest).optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(ExpenseRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(ExpenseRequestTrackingCategoriesItem.optional()).optional(),
     ),
     accountingPeriod: core.serialization.property("accounting_period", ExpenseRequestAccountingPeriod.optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace ExpenseRequest {
-    interface Raw {
+    export interface Raw {
         transaction_date?: string | null;
         account?: ExpenseRequestAccount.Raw | null;
         contact?: ExpenseRequestContact.Raw | null;

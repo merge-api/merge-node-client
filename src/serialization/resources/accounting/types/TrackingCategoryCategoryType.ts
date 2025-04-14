@@ -13,5 +13,5 @@ export const TrackingCategoryCategoryType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([CategoryTypeEnum, core.serialization.string()]);
 
 export declare namespace TrackingCategoryCategoryType {
-    type Raw = CategoryTypeEnum.Raw | string;
+    export type Raw = CategoryTypeEnum.Raw | string;
 }

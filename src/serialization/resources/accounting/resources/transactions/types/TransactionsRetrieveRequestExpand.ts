@@ -44,7 +44,7 @@ export const TransactionsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace TransactionsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "account,accounting_period"
         | "accounting_period"

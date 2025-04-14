@@ -9,7 +9,6 @@
  * - `ON_HOLD` - ON_HOLD
  */
 export type TicketStatusEnum = "OPEN" | "CLOSED" | "IN_PROGRESS" | "ON_HOLD";
-
 export const TicketStatusEnum = {
     Open: "OPEN",
     Closed: "CLOSED",

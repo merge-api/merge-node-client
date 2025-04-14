@@ -7,7 +7,6 @@
  * - `ARCHIVED` - ARCHIVED
  */
 export type Status7D1Enum = "ACTIVE" | "ARCHIVED";
-
 export const Status7D1Enum = {
     Active: "ACTIVE",
     Archived: "ARCHIVED",

@@ -11,5 +11,5 @@ export const LeadOwner: core.serialization.Schema<serializers.crm.LeadOwner.Raw,
     core.serialization.undiscriminatedUnion([core.serialization.string(), User]);
 
 export declare namespace LeadOwner {
-    type Raw = string | User.Raw;
+    export type Raw = string | User.Raw;
 }

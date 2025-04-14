@@ -20,5 +20,12 @@ export const UnderlyingTransactionTypeEnum: core.serialization.Schema<
 ]);
 
 export declare namespace UnderlyingTransactionTypeEnum {
-    type Raw = "INVOICE" | "EXPENSE" | "TRANSACTION" | "JOURNAL_ENTRY" | "PAYMENT" | "VENDOR_CREDIT" | "CREDIT_NOTE";
+    export type Raw =
+        | "INVOICE"
+        | "EXPENSE"
+        | "TRANSACTION"
+        | "JOURNAL_ENTRY"
+        | "PAYMENT"
+        | "VENDOR_CREDIT"
+        | "CREDIT_NOTE";
 }

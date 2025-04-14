@@ -21,7 +21,6 @@ export type RaceEnum =
     | "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER"
     | "TWO_OR_MORE_RACES"
     | "DECLINE_TO_SELF_IDENTIFY";
-
 export const RaceEnum = {
     AmericanIndianOrAlaskanNative: "AMERICAN_INDIAN_OR_ALASKAN_NATIVE",
     Asian: "ASIAN",

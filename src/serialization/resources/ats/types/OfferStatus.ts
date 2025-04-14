@@ -11,5 +11,5 @@ export const OfferStatus: core.serialization.Schema<serializers.ats.OfferStatus.
     core.serialization.undiscriminatedUnion([OfferStatusEnum, core.serialization.string()]);
 
 export declare namespace OfferStatus {
-    type Raw = OfferStatusEnum.Raw | string;
+    export type Raw = OfferStatusEnum.Raw | string;
 }

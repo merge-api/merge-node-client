@@ -3,7 +3,6 @@
  */
 
 export type OffersRetrieveRequestExpand = "application" | "application,creator" | "creator";
-
 export const OffersRetrieveRequestExpand = {
     Application: "application",
     ApplicationCreator: "application,creator",

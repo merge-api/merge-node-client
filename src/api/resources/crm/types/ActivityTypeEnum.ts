@@ -8,7 +8,6 @@
  * - `EMAIL` - EMAIL
  */
 export type ActivityTypeEnum = "CALL" | "MEETING" | "EMAIL";
-
 export const ActivityTypeEnum = {
     Call: "CALL",
     Meeting: "MEETING",

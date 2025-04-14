@@ -13,5 +13,5 @@ export const EngagementDirection: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([DirectionEnum, core.serialization.string()]);
 
 export declare namespace EngagementDirection {
-    type Raw = DirectionEnum.Raw | string;
+    export type Raw = DirectionEnum.Raw | string;
 }

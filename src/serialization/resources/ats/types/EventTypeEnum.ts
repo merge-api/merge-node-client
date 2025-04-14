@@ -53,7 +53,7 @@ export const EventTypeEnum: core.serialization.Schema<serializers.ats.EventTypeE
     ]);
 
 export declare namespace EventTypeEnum {
-    type Raw =
+    export type Raw =
         | "CREATED_REMOTE_PRODUCTION_API_KEY"
         | "DELETED_REMOTE_PRODUCTION_API_KEY"
         | "CREATED_TEST_API_KEY"

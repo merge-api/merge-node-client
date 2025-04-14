@@ -23,17 +23,17 @@ export const AccountRequest: core.serialization.ObjectSchema<
     lastActivityAt: core.serialization.property("last_activity_at", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace AccountRequest {
-    interface Raw {
+    export interface Raw {
         owner?: AccountRequestOwner.Raw | null;
         name?: string | null;
         description?: string | null;

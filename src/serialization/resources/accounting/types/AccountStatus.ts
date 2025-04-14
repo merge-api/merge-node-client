@@ -13,5 +13,5 @@ export const AccountStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([AccountStatusEnum, core.serialization.string()]);
 
 export declare namespace AccountStatus {
-    type Raw = AccountStatusEnum.Raw | string;
+    export type Raw = AccountStatusEnum.Raw | string;
 }

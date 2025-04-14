@@ -15,7 +15,7 @@ export const TimesheetEntryEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace TimesheetEntryEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: TimesheetEntryRequest.Raw;
     }
 }

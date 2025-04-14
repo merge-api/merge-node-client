@@ -12,5 +12,5 @@ export const OffersListRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["application", "application,creator", "creator"]);
 
 export declare namespace OffersListRequestExpand {
-    type Raw = "application" | "application,creator" | "creator";
+    export type Raw = "application" | "application,creator" | "creator";
 }

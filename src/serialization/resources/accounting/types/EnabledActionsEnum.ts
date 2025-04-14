@@ -12,5 +12,5 @@ export const EnabledActionsEnum: core.serialization.Schema<
 > = core.serialization.enum_(["READ", "WRITE"]);
 
 export declare namespace EnabledActionsEnum {
-    type Raw = "READ" | "WRITE";
+    export type Raw = "READ" | "WRITE";
 }

@@ -16,7 +16,7 @@ export const PaginatedInvoiceList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedInvoiceList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: serializers.accounting.Invoice.Raw[] | null;

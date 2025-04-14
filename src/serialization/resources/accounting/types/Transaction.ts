@@ -33,20 +33,20 @@ export const Transaction: core.serialization.ObjectSchema<
     company: core.serialization.string().optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(TransactionTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(TransactionTrackingCategoriesItem.optional()).optional(),
     ),
     lineItems: core.serialization.property("line_items", core.serialization.list(TransactionLineItem).optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     accountingPeriod: core.serialization.property("accounting_period", TransactionAccountingPeriod.optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace Transaction {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

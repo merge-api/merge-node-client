@@ -21,7 +21,7 @@ export const CommentResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CommentResponse {
-    interface Raw {
+    export interface Raw {
         model: Comment.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

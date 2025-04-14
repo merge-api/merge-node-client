@@ -12,5 +12,5 @@ export const AsyncPostTaskStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["QUEUED", "IN_PROGRESS", "COMPLETED", "FAILURE"]);
 
 export declare namespace AsyncPostTaskStatusEnum {
-    type Raw = "QUEUED" | "IN_PROGRESS" | "COMPLETED" | "FAILURE";
+    export type Raw = "QUEUED" | "IN_PROGRESS" | "COMPLETED" | "FAILURE";
 }

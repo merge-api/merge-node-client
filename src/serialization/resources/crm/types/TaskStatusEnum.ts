@@ -10,5 +10,5 @@ export const TaskStatusEnum: core.serialization.Schema<serializers.crm.TaskStatu
     core.serialization.enum_(["OPEN", "CLOSED"]);
 
 export declare namespace TaskStatusEnum {
-    type Raw = "OPEN" | "CLOSED";
+    export type Raw = "OPEN" | "CLOSED";
 }

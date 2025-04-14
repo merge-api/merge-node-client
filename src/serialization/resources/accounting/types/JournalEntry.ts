@@ -28,7 +28,7 @@ export const JournalEntry: core.serialization.ObjectSchema<
     payments: core.serialization.list(JournalEntryPaymentsItem.optional()).optional(),
     appliedPayments: core.serialization.property(
         "applied_payments",
-        core.serialization.list(JournalEntryAppliedPaymentsItem.optional()).optional()
+        core.serialization.list(JournalEntryAppliedPaymentsItem.optional()).optional(),
     ),
     memo: core.serialization.string().optional(),
     currency: JournalEntryCurrency.optional(),
@@ -39,7 +39,7 @@ export const JournalEntry: core.serialization.ObjectSchema<
     journalNumber: core.serialization.property("journal_number", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(JournalEntryTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(JournalEntryTrackingCategoriesItem.optional()).optional(),
     ),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     postingStatus: core.serialization.property("posting_status", JournalEntryPostingStatus.optional()),
@@ -48,14 +48,14 @@ export const JournalEntry: core.serialization.ObjectSchema<
     remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteField).optional()),
 });
 
 export declare namespace JournalEntry {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

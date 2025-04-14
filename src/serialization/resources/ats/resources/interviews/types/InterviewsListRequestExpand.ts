@@ -28,7 +28,7 @@ export const InterviewsListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace InterviewsListRequestExpand {
-    type Raw =
+    export type Raw =
         | "application"
         | "application,job_interview_stage"
         | "interviewers"

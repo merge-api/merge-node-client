@@ -28,7 +28,7 @@ export const EmploymentsRetrieveRequestShowEnumOrigins: core.serialization.Schem
 ]);
 
 export declare namespace EmploymentsRetrieveRequestShowEnumOrigins {
-    type Raw =
+    export type Raw =
         | "employment_type"
         | "employment_type,flsa_status"
         | "employment_type,flsa_status,pay_frequency"

@@ -21,7 +21,7 @@ export const OpportunityResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace OpportunityResponse {
-    interface Raw {
+    export interface Raw {
         model: Opportunity.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

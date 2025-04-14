@@ -13,5 +13,5 @@ export const BankFeedTransactionRequestRequestCreditOrDebit: core.serialization.
 > = core.serialization.undiscriminatedUnion([CreditOrDebitEnum, core.serialization.string()]);
 
 export declare namespace BankFeedTransactionRequestRequestCreditOrDebit {
-    type Raw = CreditOrDebitEnum.Raw | string;
+    export type Raw = CreditOrDebitEnum.Raw | string;
 }

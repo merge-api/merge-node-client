@@ -21,7 +21,7 @@ export const TimeOffResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace TimeOffResponse {
-    interface Raw {
+    export interface Raw {
         model: TimeOff.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

@@ -13,5 +13,5 @@ export const EmploymentFlsaStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([FlsaStatusEnum, core.serialization.string()]);
 
 export declare namespace EmploymentFlsaStatus {
-    type Raw = FlsaStatusEnum.Raw | string;
+    export type Raw = FlsaStatusEnum.Raw | string;
 }

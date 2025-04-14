@@ -10,5 +10,5 @@ export const GenderEnum: core.serialization.Schema<serializers.hris.GenderEnum.R
     core.serialization.enum_(["MALE", "FEMALE", "NON-BINARY", "OTHER", "PREFER_NOT_TO_DISCLOSE"]);
 
 export declare namespace GenderEnum {
-    type Raw = "MALE" | "FEMALE" | "NON-BINARY" | "OTHER" | "PREFER_NOT_TO_DISCLOSE";
+    export type Raw = "MALE" | "FEMALE" | "NON-BINARY" | "OTHER" | "PREFER_NOT_TO_DISCLOSE";
 }

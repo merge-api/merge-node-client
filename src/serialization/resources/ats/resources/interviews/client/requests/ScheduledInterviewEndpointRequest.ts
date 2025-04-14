@@ -16,7 +16,7 @@ export const ScheduledInterviewEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace ScheduledInterviewEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: ScheduledInterviewRequest.Raw;
         remote_user_id: string;
     }

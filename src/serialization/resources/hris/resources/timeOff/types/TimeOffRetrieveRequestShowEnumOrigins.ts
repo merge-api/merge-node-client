@@ -20,7 +20,7 @@ export const TimeOffRetrieveRequestShowEnumOrigins: core.serialization.Schema<
 ]);
 
 export declare namespace TimeOffRetrieveRequestShowEnumOrigins {
-    type Raw =
+    export type Raw =
         | "request_type"
         | "request_type,status"
         | "request_type,status,units"

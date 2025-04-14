@@ -13,5 +13,5 @@ export const BankFeedAccountFeedStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([FeedStatusEnum, core.serialization.string()]);
 
 export declare namespace BankFeedAccountFeedStatus {
-    type Raw = FeedStatusEnum.Raw | string;
+    export type Raw = FeedStatusEnum.Raw | string;
 }

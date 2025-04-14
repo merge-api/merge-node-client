@@ -13,5 +13,5 @@ export const InvoiceAccountingPeriod: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), AccountingPeriod]);
 
 export declare namespace InvoiceAccountingPeriod {
-    type Raw = string | AccountingPeriod.Raw;
+    export type Raw = string | AccountingPeriod.Raw;
 }

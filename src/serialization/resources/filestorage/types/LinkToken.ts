@@ -16,7 +16,7 @@ export const LinkToken: core.serialization.ObjectSchema<
 });
 
 export declare namespace LinkToken {
-    interface Raw {
+    export interface Raw {
         link_token: string;
         integration_name?: string | null;
         magic_link_url?: string | null;

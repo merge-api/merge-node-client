@@ -23,17 +23,17 @@ export const RemoteFieldClassForCustomObjectClass: core.serialization.ObjectSche
     fieldType: core.serialization.property("field_type", RemoteFieldClassForCustomObjectClassFieldType.optional()),
     fieldFormat: core.serialization.property(
         "field_format",
-        RemoteFieldClassForCustomObjectClassFieldFormat.optional()
+        RemoteFieldClassForCustomObjectClassFieldFormat.optional(),
     ),
     fieldChoices: core.serialization.property(
         "field_choices",
-        core.serialization.list(RemoteFieldClassForCustomObjectClassFieldChoicesItem).optional()
+        core.serialization.list(RemoteFieldClassForCustomObjectClassFieldChoicesItem).optional(),
     ),
     itemSchema: core.serialization.property("item_schema", RemoteFieldClassForCustomObjectClassItemSchema.optional()),
 });
 
 export declare namespace RemoteFieldClassForCustomObjectClass {
-    interface Raw {
+    export interface Raw {
         created_at?: string | null;
         modified_at?: string | null;
         display_name?: string | null;

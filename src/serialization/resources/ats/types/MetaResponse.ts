@@ -11,22 +11,22 @@ export const MetaResponse: core.serialization.ObjectSchema<serializers.ats.MetaR
     core.serialization.object({
         requestSchema: core.serialization.property(
             "request_schema",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown())
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()),
         ),
         remoteFieldClasses: core.serialization.property(
             "remote_field_classes",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         status: LinkedAccountStatus.optional(),
         hasConditionalParams: core.serialization.property("has_conditional_params", core.serialization.boolean()),
         hasRequiredLinkedAccountParams: core.serialization.property(
             "has_required_linked_account_params",
-            core.serialization.boolean()
+            core.serialization.boolean(),
         ),
     });
 
 export declare namespace MetaResponse {
-    interface Raw {
+    export interface Raw {
         request_schema: Record<string, unknown>;
         remote_field_classes?: Record<string, unknown> | null;
         status?: LinkedAccountStatus.Raw | null;

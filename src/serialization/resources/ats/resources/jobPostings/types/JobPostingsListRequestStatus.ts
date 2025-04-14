@@ -12,5 +12,5 @@ export const JobPostingsListRequestStatus: core.serialization.Schema<
 > = core.serialization.enum_(["CLOSED", "DRAFT", "INTERNAL", "PENDING", "PUBLISHED"]);
 
 export declare namespace JobPostingsListRequestStatus {
-    type Raw = "CLOSED" | "DRAFT" | "INTERNAL" | "PENDING" | "PUBLISHED";
+    export type Raw = "CLOSED" | "DRAFT" | "INTERNAL" | "PENDING" | "PUBLISHED";
 }

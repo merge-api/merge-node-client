@@ -13,5 +13,5 @@ export const VendorCreditRequestCurrency: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([TransactionCurrencyEnum, core.serialization.string()]);
 
 export declare namespace VendorCreditRequestCurrency {
-    type Raw = TransactionCurrencyEnum.Raw | string;
+    export type Raw = TransactionCurrencyEnum.Raw | string;
 }

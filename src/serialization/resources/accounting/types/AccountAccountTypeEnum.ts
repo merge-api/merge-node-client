@@ -26,7 +26,7 @@ export const AccountAccountTypeEnum: core.serialization.Schema<
 ]);
 
 export declare namespace AccountAccountTypeEnum {
-    type Raw =
+    export type Raw =
         | "BANK"
         | "CREDIT_CARD"
         | "ACCOUNTS_PAYABLE"

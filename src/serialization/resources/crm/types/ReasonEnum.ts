@@ -10,5 +10,5 @@ export const ReasonEnum: core.serialization.Schema<serializers.crm.ReasonEnum.Ra
     core.serialization.enum_(["GENERAL_CUSTOMER_REQUEST", "GDPR", "OTHER"]);
 
 export declare namespace ReasonEnum {
-    type Raw = "GENERAL_CUSTOMER_REQUEST" | "GDPR" | "OTHER";
+    export type Raw = "GENERAL_CUSTOMER_REQUEST" | "GDPR" | "OTHER";
 }

@@ -13,5 +13,5 @@ export const IgnoreCommonModelRequestReason: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([ReasonEnum, core.serialization.string()]);
 
 export declare namespace IgnoreCommonModelRequestReason {
-    type Raw = ReasonEnum.Raw | string;
+    export type Raw = ReasonEnum.Raw | string;
 }

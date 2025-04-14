@@ -8,7 +8,6 @@
  * - `MULTIPART` - MULTIPART
  */
 export type RequestFormatEnum = "JSON" | "XML" | "MULTIPART";
-
 export const RequestFormatEnum = {
     Json: "JSON",
     Xml: "XML",

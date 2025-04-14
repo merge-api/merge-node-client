@@ -10,7 +10,6 @@
  * - `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
  */
 export type GenderEnum = "MALE" | "FEMALE" | "NON-BINARY" | "OTHER" | "DECLINE_TO_SELF_IDENTIFY";
-
 export const GenderEnum = {
     Male: "MALE",
     Female: "FEMALE",

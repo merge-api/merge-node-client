@@ -12,5 +12,5 @@ export const TicketsListRequestPriority: core.serialization.Schema<
 > = core.serialization.enum_(["HIGH", "LOW", "NORMAL", "URGENT"]);
 
 export declare namespace TicketsListRequestPriority {
-    type Raw = "HIGH" | "LOW" | "NORMAL" | "URGENT";
+    export type Raw = "HIGH" | "LOW" | "NORMAL" | "URGENT";
 }

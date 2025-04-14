@@ -13,5 +13,5 @@ export const LocationLocationType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([LocationTypeEnum, core.serialization.string()]);
 
 export declare namespace LocationLocationType {
-    type Raw = LocationTypeEnum.Raw | string;
+    export type Raw = LocationTypeEnum.Raw | string;
 }

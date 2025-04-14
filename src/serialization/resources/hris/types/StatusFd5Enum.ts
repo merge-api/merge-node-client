@@ -10,5 +10,5 @@ export const StatusFd5Enum: core.serialization.Schema<serializers.hris.StatusFd5
     core.serialization.enum_(["SYNCING", "DONE", "FAILED", "DISABLED", "PAUSED", "PARTIALLY_SYNCED"]);
 
 export declare namespace StatusFd5Enum {
-    type Raw = "SYNCING" | "DONE" | "FAILED" | "DISABLED" | "PAUSED" | "PARTIALLY_SYNCED";
+    export type Raw = "SYNCING" | "DONE" | "FAILED" | "DISABLED" | "PAUSED" | "PARTIALLY_SYNCED";
 }

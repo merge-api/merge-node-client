@@ -44,7 +44,7 @@ export const VendorCreditsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace VendorCreditsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "accounting_period"
         | "company"
         | "company,accounting_period"

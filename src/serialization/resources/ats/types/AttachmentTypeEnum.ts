@@ -12,5 +12,5 @@ export const AttachmentTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["RESUME", "COVER_LETTER", "OFFER_LETTER", "OTHER"]);
 
 export declare namespace AttachmentTypeEnum {
-    type Raw = "RESUME" | "COVER_LETTER" | "OFFER_LETTER" | "OTHER";
+    export type Raw = "RESUME" | "COVER_LETTER" | "OFFER_LETTER" | "OTHER";
 }

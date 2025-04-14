@@ -15,7 +15,7 @@ export const TimeOffEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace TimeOffEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: TimeOffRequest.Raw;
     }
 }

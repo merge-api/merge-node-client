@@ -15,7 +15,7 @@ export const ContactEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace ContactEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: ContactRequest.Raw;
     }
 }

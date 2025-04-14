@@ -15,5 +15,5 @@ export const CreditNoteApplyLineForCreditNoteRequestInvoice: core.serialization.
 ]);
 
 export declare namespace CreditNoteApplyLineForCreditNoteRequestInvoice {
-    type Raw = string | serializers.accounting.Invoice.Raw;
+    export type Raw = string | serializers.accounting.Invoice.Raw;
 }

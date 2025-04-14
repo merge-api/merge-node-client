@@ -11,7 +11,6 @@
  * - `MERGE_TEAM` - MERGE_TEAM
  */
 export type RoleEnum = "ADMIN" | "DEVELOPER" | "MEMBER" | "API" | "SYSTEM" | "MERGE_TEAM";
-
 export const RoleEnum = {
     Admin: "ADMIN",
     Developer: "DEVELOPER",

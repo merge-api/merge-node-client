@@ -13,5 +13,5 @@ export const GeneralLedgerTransactionLineTrackingCategoriesItem: core.serializat
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), TrackingCategory]);
 
 export declare namespace GeneralLedgerTransactionLineTrackingCategoriesItem {
-    type Raw = string | TrackingCategory.Raw;
+    export type Raw = string | TrackingCategory.Raw;
 }

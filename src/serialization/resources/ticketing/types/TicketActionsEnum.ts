@@ -12,5 +12,5 @@ export const TicketActionsEnum: core.serialization.Schema<
 > = core.serialization.enum_(["VIEW", "CREATE", "EDIT", "DELETE", "CLOSE", "ASSIGN"]);
 
 export declare namespace TicketActionsEnum {
-    type Raw = "VIEW" | "CREATE" | "EDIT" | "DELETE" | "CLOSE" | "ASSIGN";
+    export type Raw = "VIEW" | "CREATE" | "EDIT" | "DELETE" | "CLOSE" | "ASSIGN";
 }

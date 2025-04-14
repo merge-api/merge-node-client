@@ -25,7 +25,7 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace FieldMappingApiInstanceResponse {
-    interface Raw {
+    export interface Raw {
         Ticket?: FieldMappingApiInstance.Raw[] | null;
         Comment?: FieldMappingApiInstance.Raw[] | null;
         Project?: FieldMappingApiInstance.Raw[] | null;

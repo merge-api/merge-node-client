@@ -18,7 +18,7 @@ export const ScheduledInterviewRequest: core.serialization.ObjectSchema<
     application: ScheduledInterviewRequestApplication.optional(),
     jobInterviewStage: core.serialization.property(
         "job_interview_stage",
-        ScheduledInterviewRequestJobInterviewStage.optional()
+        ScheduledInterviewRequestJobInterviewStage.optional(),
     ),
     organizer: ScheduledInterviewRequestOrganizer.optional(),
     interviewers: core.serialization.list(ScheduledInterviewRequestInterviewersItem.optional()).optional(),
@@ -28,16 +28,16 @@ export const ScheduledInterviewRequest: core.serialization.ObjectSchema<
     status: ScheduledInterviewRequestStatus.optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace ScheduledInterviewRequest {
-    interface Raw {
+    export interface Raw {
         application?: ScheduledInterviewRequestApplication.Raw | null;
         job_interview_stage?: ScheduledInterviewRequestJobInterviewStage.Raw | null;
         organizer?: ScheduledInterviewRequestOrganizer.Raw | null;

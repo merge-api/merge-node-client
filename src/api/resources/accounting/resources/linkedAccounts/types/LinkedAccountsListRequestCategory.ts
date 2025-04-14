@@ -10,7 +10,6 @@ export type LinkedAccountsListRequestCategory =
     | "hris"
     | "mktg"
     | "ticketing";
-
 export const LinkedAccountsListRequestCategory = {
     Accounting: "accounting",
     Ats: "ats",

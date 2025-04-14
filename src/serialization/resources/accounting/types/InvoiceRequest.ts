@@ -44,26 +44,26 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
     payments: core.serialization.list(InvoiceRequestPaymentsItem.optional()).optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(InvoiceRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(InvoiceRequestTrackingCategoriesItem.optional()).optional(),
     ),
     lineItems: core.serialization.property("line_items", core.serialization.list(InvoiceLineItemRequest).optional()),
     purchaseOrders: core.serialization.property(
         "purchase_orders",
-        core.serialization.list(InvoiceRequestPurchaseOrdersItem.optional()).optional()
+        core.serialization.list(InvoiceRequestPurchaseOrdersItem.optional()).optional(),
     ),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace InvoiceRequest {
-    interface Raw {
+    export interface Raw {
         type?: InvoiceRequestType.Raw | null;
         contact?: InvoiceRequestContact.Raw | null;
         number?: string | null;

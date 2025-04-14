@@ -13,5 +13,5 @@ export const RemoteFieldRemoteFieldClass: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), RemoteFieldClass]);
 
 export declare namespace RemoteFieldRemoteFieldClass {
-    type Raw = string | RemoteFieldClass.Raw;
+    export type Raw = string | RemoteFieldClass.Raw;
 }

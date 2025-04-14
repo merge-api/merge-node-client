@@ -15,7 +15,7 @@ export const AsyncPostTaskResult: core.serialization.ObjectSchema<
 });
 
 export declare namespace AsyncPostTaskResult {
-    interface Raw {
+    export interface Raw {
         status_code?: number | null;
         response?: Record<string, unknown> | null;
     }

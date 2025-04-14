@@ -21,7 +21,7 @@ export const AccountingAttachmentResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace AccountingAttachmentResponse {
-    interface Raw {
+    export interface Raw {
         model: AccountingAttachment.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

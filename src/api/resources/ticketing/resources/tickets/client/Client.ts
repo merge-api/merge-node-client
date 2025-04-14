@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Tickets {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Tickets {
      * @example
      *     await client.ticketing.tickets.list()
      */
-    public async list(
+    public list(
         request: Merge.ticketing.TicketsListRequest = {},
-        requestOptions?: Tickets.RequestOptions
-    ): Promise<Merge.ticketing.PaginatedTicketList> {
+        requestOptions?: Tickets.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.PaginatedTicketList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.ticketing.TicketsListRequest = {},
+        requestOptions?: Tickets.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedTicketList>> {
         const {
             accountId,
             assigneeIds,
@@ -82,7 +91,7 @@ export class Tickets {
             ticketType,
             ticketUrl,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (accountId != null) {
             _queryParams["account_id"] = accountId;
         }
@@ -128,7 +137,9 @@ export class Tickets {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.ticketing.TicketsListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -164,7 +175,9 @@ export class Tickets {
         }
 
         if (priority != null) {
-            _queryParams["priority"] = priority;
+            _queryParams["priority"] = serializers.ticketing.TicketsListRequestPriority.jsonOrThrow(priority, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (remoteCreatedAfter != null) {
@@ -176,7 +189,10 @@ export class Tickets {
         }
 
         if (remoteFields != null) {
-            _queryParams["remote_fields"] = remoteFields;
+            _queryParams["remote_fields"] = serializers.ticketing.TicketsListRequestRemoteFields.jsonOrThrow(
+                remoteFields,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (remoteId != null) {
@@ -192,7 +208,10 @@ export class Tickets {
         }
 
         if (showEnumOrigins != null) {
-            _queryParams["show_enum_origins"] = showEnumOrigins;
+            _queryParams["show_enum_origins"] = serializers.ticketing.TicketsListRequestShowEnumOrigins.jsonOrThrow(
+                showEnumOrigins,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (status != null) {
@@ -213,8 +232,10 @@ export class Tickets {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ticketing/v1/tickets"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ticketing/v1/tickets",
             ),
             method: "GET",
             headers: {
@@ -225,8 +246,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -239,13 +260,16 @@ export class Tickets {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.PaginatedTicketList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.PaginatedTicketList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -281,12 +305,19 @@ export class Tickets {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.ticketing.TicketEndpointRequest,
-        requestOptions?: Tickets.RequestOptions
-    ): Promise<Merge.ticketing.TicketResponse> {
+        requestOptions?: Tickets.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.TicketResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.ticketing.TicketEndpointRequest,
+        requestOptions?: Tickets.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.TicketResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -297,8 +328,10 @@ export class Tickets {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ticketing/v1/tickets"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ticketing/v1/tickets",
             ),
             method: "POST",
             headers: {
@@ -309,8 +342,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -324,13 +357,16 @@ export class Tickets {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.TicketResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.TicketResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -365,16 +401,26 @@ export class Tickets {
      * @example
      *     await client.ticketing.tickets.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.ticketing.TicketsRetrieveRequest = {},
-        requestOptions?: Tickets.RequestOptions
-    ): Promise<Merge.ticketing.Ticket> {
+        requestOptions?: Tickets.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.Ticket> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.ticketing.TicketsRetrieveRequest = {},
+        requestOptions?: Tickets.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.Ticket>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData, remoteFields, showEnumOrigins } =
             request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.ticketing.TicketsRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -390,17 +436,25 @@ export class Tickets {
         }
 
         if (remoteFields != null) {
-            _queryParams["remote_fields"] = remoteFields;
+            _queryParams["remote_fields"] = serializers.ticketing.TicketsRetrieveRequestRemoteFields.jsonOrThrow(
+                remoteFields,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (showEnumOrigins != null) {
-            _queryParams["show_enum_origins"] = showEnumOrigins;
+            _queryParams["show_enum_origins"] = serializers.ticketing.TicketsRetrieveRequestShowEnumOrigins.jsonOrThrow(
+                showEnumOrigins,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/tickets/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ticketing/v1/tickets/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -411,8 +465,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -425,13 +479,16 @@ export class Tickets {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.Ticket.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.Ticket.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -468,13 +525,21 @@ export class Tickets {
      *         model: {}
      *     })
      */
-    public async partialUpdate(
+    public partialUpdate(
         id: string,
         request: Merge.ticketing.PatchedTicketEndpointRequest,
-        requestOptions?: Tickets.RequestOptions
-    ): Promise<Merge.ticketing.TicketResponse> {
+        requestOptions?: Tickets.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.TicketResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__partialUpdate(id, request, requestOptions));
+    }
+
+    private async __partialUpdate(
+        id: string,
+        request: Merge.ticketing.PatchedTicketEndpointRequest,
+        requestOptions?: Tickets.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.TicketResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -485,8 +550,10 @@ export class Tickets {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/tickets/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ticketing/v1/tickets/${encodeURIComponent(id)}`,
             ),
             method: "PATCH",
             headers: {
@@ -497,8 +564,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -514,13 +581,16 @@ export class Tickets {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.TicketResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.TicketResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -555,19 +625,29 @@ export class Tickets {
      * @example
      *     await client.ticketing.tickets.viewersList("ticket_id")
      */
-    public async viewersList(
+    public viewersList(
         ticketId: string,
         request: Merge.ticketing.TicketsViewersListRequest = {},
-        requestOptions?: Tickets.RequestOptions
-    ): Promise<Merge.ticketing.PaginatedViewerList> {
+        requestOptions?: Tickets.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.PaginatedViewerList> {
+        return core.HttpResponsePromise.fromPromise(this.__viewersList(ticketId, request, requestOptions));
+    }
+
+    private async __viewersList(
+        ticketId: string,
+        request: Merge.ticketing.TicketsViewersListRequest = {},
+        requestOptions?: Tickets.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedViewerList>> {
         const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.ticketing.TicketsViewersListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -588,8 +668,10 @@ export class Tickets {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/tickets/${encodeURIComponent(ticketId)}/viewers`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ticketing/v1/tickets/${encodeURIComponent(ticketId)}/viewers`,
             ),
             method: "GET",
             headers: {
@@ -600,8 +682,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -614,13 +696,16 @@ export class Tickets {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.PaginatedViewerList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.PaginatedViewerList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -638,7 +723,7 @@ export class Tickets {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/tickets/{ticket_id}/viewers."
+                    "Timeout exceeded when calling GET /ticketing/v1/tickets/{ticket_id}/viewers.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -656,14 +741,23 @@ export class Tickets {
      * @example
      *     await client.ticketing.tickets.metaPatchRetrieve("id")
      */
-    public async metaPatchRetrieve(
+    public metaPatchRetrieve(
         id: string,
-        requestOptions?: Tickets.RequestOptions
-    ): Promise<Merge.ticketing.MetaResponse> {
+        requestOptions?: Tickets.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPatchRetrieve(id, requestOptions));
+    }
+
+    private async __metaPatchRetrieve(
+        id: string,
+        requestOptions?: Tickets.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ticketing/v1/tickets/meta/patch/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ticketing/v1/tickets/meta/patch/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -674,8 +768,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -687,13 +781,16 @@ export class Tickets {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -711,7 +808,7 @@ export class Tickets {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/tickets/meta/patch/{id}."
+                    "Timeout exceeded when calling GET /ticketing/v1/tickets/meta/patch/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -728,11 +825,21 @@ export class Tickets {
      * @example
      *     await client.ticketing.tickets.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: Tickets.RequestOptions): Promise<Merge.ticketing.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: Tickets.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: Tickets.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ticketing/v1/tickets/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ticketing/v1/tickets/meta/post",
             ),
             method: "GET",
             headers: {
@@ -743,8 +850,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -756,13 +863,16 @@ export class Tickets {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -780,7 +890,7 @@ export class Tickets {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/tickets/meta/post."
+                    "Timeout exceeded when calling GET /ticketing/v1/tickets/meta/post.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -798,13 +908,20 @@ export class Tickets {
      * @example
      *     await client.ticketing.tickets.remoteFieldClassesList()
      */
-    public async remoteFieldClassesList(
+    public remoteFieldClassesList(
         request: Merge.ticketing.TicketsRemoteFieldClassesListRequest = {},
-        requestOptions?: Tickets.RequestOptions
-    ): Promise<Merge.ticketing.PaginatedRemoteFieldClassList> {
+        requestOptions?: Tickets.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ticketing.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __remoteFieldClassesList(
+        request: Merge.ticketing.TicketsRemoteFieldClassesListRequest = {},
+        requestOptions?: Tickets.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedRemoteFieldClassList>> {
         const { cursor, ids, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -835,8 +952,10 @@ export class Tickets {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ticketing/v1/tickets/remote-field-classes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ticketing/v1/tickets/remote-field-classes",
             ),
             method: "GET",
             headers: {
@@ -847,8 +966,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -861,13 +980,16 @@ export class Tickets {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ticketing.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ticketing.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -885,7 +1007,7 @@ export class Tickets {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/tickets/remote-field-classes."
+                    "Timeout exceeded when calling GET /ticketing/v1/tickets/remote-field-classes.",
                 );
             case "unknown":
                 throw new errors.MergeError({

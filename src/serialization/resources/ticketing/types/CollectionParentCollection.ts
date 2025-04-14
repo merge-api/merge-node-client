@@ -15,5 +15,5 @@ export const CollectionParentCollection: core.serialization.Schema<
 ]);
 
 export declare namespace CollectionParentCollection {
-    type Raw = string | serializers.ticketing.Collection.Raw;
+    export type Raw = string | serializers.ticketing.Collection.Raw;
 }

@@ -34,25 +34,25 @@ export const PurchaseOrderRequest: core.serialization.ObjectSchema<
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(PurchaseOrderRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(PurchaseOrderRequestTrackingCategoriesItem.optional()).optional(),
     ),
     lineItems: core.serialization.property(
         "line_items",
-        core.serialization.list(PurchaseOrderLineItemRequest).optional()
+        core.serialization.list(PurchaseOrderLineItemRequest).optional(),
     ),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace PurchaseOrderRequest {
-    interface Raw {
+    export interface Raw {
         status?: PurchaseOrderRequestStatus.Raw | null;
         issue_date?: string | null;
         delivery_date?: string | null;

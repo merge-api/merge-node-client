@@ -14,12 +14,12 @@ export const FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo: core.serializ
     urlPath: core.serialization.property("url_path", core.serialization.string().optional()),
     fieldTraversalPath: core.serialization.property(
         "field_traversal_path",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
 });
 
 export declare namespace FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo {
-    interface Raw {
+    export interface Raw {
         method?: string | null;
         url_path?: string | null;
         field_traversal_path?: string[] | null;

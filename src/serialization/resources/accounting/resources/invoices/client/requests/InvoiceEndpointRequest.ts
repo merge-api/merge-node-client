@@ -15,7 +15,7 @@ export const InvoiceEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace InvoiceEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: InvoiceRequest.Raw;
     }
 }

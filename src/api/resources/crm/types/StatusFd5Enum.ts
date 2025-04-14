@@ -11,7 +11,6 @@
  * - `PARTIALLY_SYNCED` - PARTIALLY_SYNCED
  */
 export type StatusFd5Enum = "SYNCING" | "DONE" | "FAILED" | "DISABLED" | "PAUSED" | "PARTIALLY_SYNCED";
-
 export const StatusFd5Enum = {
     Syncing: "SYNCING",
     Done: "DONE",

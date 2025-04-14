@@ -17,7 +17,7 @@ export const PaginatedTimesheetEntryList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedTimesheetEntryList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: TimesheetEntry.Raw[] | null;

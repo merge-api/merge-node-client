@@ -13,5 +13,5 @@ export const JobInterviewStageJob: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Job]);
 
 export declare namespace JobInterviewStageJob {
-    type Raw = string | Job.Raw;
+    export type Raw = string | Job.Raw;
 }

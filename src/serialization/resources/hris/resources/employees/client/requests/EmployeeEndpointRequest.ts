@@ -15,7 +15,7 @@ export const EmployeeEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace EmployeeEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: EmployeeRequest.Raw;
     }
 }

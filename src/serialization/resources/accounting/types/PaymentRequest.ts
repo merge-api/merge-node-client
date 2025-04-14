@@ -31,26 +31,26 @@ export const PaymentRequest: core.serialization.ObjectSchema<
     type: PaymentRequestType.optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(PaymentRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(PaymentRequestTrackingCategoriesItem.optional()).optional(),
     ),
     accountingPeriod: core.serialization.property("accounting_period", PaymentRequestAccountingPeriod.optional()),
     appliedToLines: core.serialization.property(
         "applied_to_lines",
-        core.serialization.list(PaymentRequestAppliedToLinesItem).optional()
+        core.serialization.list(PaymentRequestAppliedToLinesItem).optional(),
     ),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace PaymentRequest {
-    interface Raw {
+    export interface Raw {
         transaction_date?: string | null;
         contact?: PaymentRequestContact.Raw | null;
         account?: PaymentRequestAccount.Raw | null;

@@ -13,5 +13,5 @@ export const TimeOffRequestType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([RequestTypeEnum, core.serialization.string()]);
 
 export declare namespace TimeOffRequestType {
-    type Raw = RequestTypeEnum.Raw | string;
+    export type Raw = RequestTypeEnum.Raw | string;
 }

@@ -15,7 +15,7 @@ export const PatchedTicketEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace PatchedTicketEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: PatchedTicketRequest.Raw;
     }
 }

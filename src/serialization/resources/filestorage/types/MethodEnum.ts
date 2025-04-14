@@ -12,5 +12,5 @@ export const MethodEnum: core.serialization.Schema<
 > = core.serialization.enum_(["GET", "OPTIONS", "HEAD", "POST", "PUT", "PATCH", "DELETE"]);
 
 export declare namespace MethodEnum {
-    type Raw = "GET" | "OPTIONS" | "HEAD" | "POST" | "PUT" | "PATCH" | "DELETE";
+    export type Raw = "GET" | "OPTIONS" | "HEAD" | "POST" | "PUT" | "PATCH" | "DELETE";
 }

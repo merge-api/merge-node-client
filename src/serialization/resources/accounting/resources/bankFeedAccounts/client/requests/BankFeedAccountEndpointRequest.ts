@@ -15,7 +15,7 @@ export const BankFeedAccountEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace BankFeedAccountEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: BankFeedAccountRequest.Raw;
     }
 }

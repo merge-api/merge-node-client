@@ -130,7 +130,6 @@ export type CreditNotesListRequestExpand =
     | "tracking_categories,contact,accounting_period"
     | "tracking_categories,contact,company"
     | "tracking_categories,contact,company,accounting_period";
-
 export const CreditNotesListRequestExpand = {
     AccountingPeriod: "accounting_period",
     AppliedPayments: "applied_payments",

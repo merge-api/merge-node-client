@@ -14,12 +14,12 @@ export const RemoteFieldClassForCustomObjectClassItemSchema: core.serialization.
     itemFormat: core.serialization.property("item_format", core.serialization.string().optional()),
     itemChoices: core.serialization.property(
         "item_choices",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization.list(core.serialization.string().optional()).optional(),
     ),
 });
 
 export declare namespace RemoteFieldClassForCustomObjectClassItemSchema {
-    interface Raw {
+    export interface Raw {
         item_type?: string | null;
         item_format?: string | null;
         item_choices?: (string | null | undefined)[] | null;

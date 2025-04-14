@@ -13,5 +13,5 @@ export const FileRequestPermissionsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), PermissionRequest]);
 
 export declare namespace FileRequestPermissionsItem {
-    type Raw = string | PermissionRequest.Raw;
+    export type Raw = string | PermissionRequest.Raw;
 }

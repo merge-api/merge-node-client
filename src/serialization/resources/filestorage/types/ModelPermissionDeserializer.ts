@@ -14,7 +14,7 @@ export const ModelPermissionDeserializer: core.serialization.ObjectSchema<
 });
 
 export declare namespace ModelPermissionDeserializer {
-    interface Raw {
+    export interface Raw {
         is_enabled?: boolean | null;
     }
 }

@@ -21,16 +21,16 @@ export const ActivityRequest: core.serialization.ObjectSchema<
     candidate: core.serialization.string().optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace ActivityRequest {
-    interface Raw {
+    export interface Raw {
         user?: ActivityRequestUser.Raw | null;
         activity_type?: ActivityRequestActivityType.Raw | null;
         subject?: string | null;

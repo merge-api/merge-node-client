@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Scopes {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -43,13 +45,21 @@ export class Scopes {
      * @example
      *     await client.hris.scopes.defaultScopesRetrieve()
      */
-    public async defaultScopesRetrieve(
-        requestOptions?: Scopes.RequestOptions
-    ): Promise<Merge.hris.CommonModelScopeApi> {
+    public defaultScopesRetrieve(
+        requestOptions?: Scopes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.CommonModelScopeApi> {
+        return core.HttpResponsePromise.fromPromise(this.__defaultScopesRetrieve(requestOptions));
+    }
+
+    private async __defaultScopesRetrieve(
+        requestOptions?: Scopes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.CommonModelScopeApi>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/default-scopes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/default-scopes",
             ),
             method: "GET",
             headers: {
@@ -60,8 +70,8 @@ export class Scopes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -73,13 +83,16 @@ export class Scopes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.CommonModelScopeApi.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.CommonModelScopeApi.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -112,13 +125,21 @@ export class Scopes {
      * @example
      *     await client.hris.scopes.linkedAccountScopesRetrieve()
      */
-    public async linkedAccountScopesRetrieve(
-        requestOptions?: Scopes.RequestOptions
-    ): Promise<Merge.hris.CommonModelScopeApi> {
+    public linkedAccountScopesRetrieve(
+        requestOptions?: Scopes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.CommonModelScopeApi> {
+        return core.HttpResponsePromise.fromPromise(this.__linkedAccountScopesRetrieve(requestOptions));
+    }
+
+    private async __linkedAccountScopesRetrieve(
+        requestOptions?: Scopes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.CommonModelScopeApi>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/linked-account-scopes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/linked-account-scopes",
             ),
             method: "GET",
             headers: {
@@ -129,8 +150,8 @@ export class Scopes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -142,13 +163,16 @@ export class Scopes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.CommonModelScopeApi.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.CommonModelScopeApi.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -205,14 +229,23 @@ export class Scopes {
      *             }]
      *     })
      */
-    public async linkedAccountScopesCreate(
+    public linkedAccountScopesCreate(
         request: Merge.hris.LinkedAccountCommonModelScopeDeserializerRequest,
-        requestOptions?: Scopes.RequestOptions
-    ): Promise<Merge.hris.CommonModelScopeApi> {
+        requestOptions?: Scopes.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.CommonModelScopeApi> {
+        return core.HttpResponsePromise.fromPromise(this.__linkedAccountScopesCreate(request, requestOptions));
+    }
+
+    private async __linkedAccountScopesCreate(
+        request: Merge.hris.LinkedAccountCommonModelScopeDeserializerRequest,
+        requestOptions?: Scopes.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.CommonModelScopeApi>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/linked-account-scopes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/linked-account-scopes",
             ),
             method: "POST",
             headers: {
@@ -223,8 +256,8 @@ export class Scopes {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -239,13 +272,16 @@ export class Scopes {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.CommonModelScopeApi.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.CommonModelScopeApi.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -263,7 +299,7 @@ export class Scopes {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling POST /hris/v1/linked-account-scopes."
+                    "Timeout exceeded when calling POST /hris/v1/linked-account-scopes.",
                 );
             case "unknown":
                 throw new errors.MergeError({

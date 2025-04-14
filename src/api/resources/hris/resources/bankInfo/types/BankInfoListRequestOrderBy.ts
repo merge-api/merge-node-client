@@ -3,7 +3,6 @@
  */
 
 export type BankInfoListRequestOrderBy = "-remote_created_at" | "remote_created_at";
-
 export const BankInfoListRequestOrderBy = {
     RemoteCreatedAtDescending: "-remote_created_at",
     RemoteCreatedAtAscending: "remote_created_at",

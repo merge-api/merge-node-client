@@ -31,29 +31,29 @@ export const PatchedPaymentRequest: core.serialization.ObjectSchema<
     type: PatchedPaymentRequestType.optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(PatchedPaymentRequestTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(PatchedPaymentRequestTrackingCategoriesItem.optional()).optional(),
     ),
     accountingPeriod: core.serialization.property(
         "accounting_period",
-        PatchedPaymentRequestAccountingPeriod.optional()
+        PatchedPaymentRequestAccountingPeriod.optional(),
     ),
     appliedToLines: core.serialization.property(
         "applied_to_lines",
-        core.serialization.list(PatchedPaymentRequestAppliedToLinesItem).optional()
+        core.serialization.list(PatchedPaymentRequestAppliedToLinesItem).optional(),
     ),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace PatchedPaymentRequest {
-    interface Raw {
+    export interface Raw {
         transaction_date?: string | null;
         contact?: PatchedPaymentRequestContact.Raw | null;
         account?: PatchedPaymentRequestAccount.Raw | null;

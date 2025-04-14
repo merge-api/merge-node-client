@@ -15,5 +15,5 @@ export const TicketRequestCollectionsItem: core.serialization.Schema<
 ]);
 
 export declare namespace TicketRequestCollectionsItem {
-    type Raw = string | serializers.ticketing.Collection.Raw;
+    export type Raw = string | serializers.ticketing.Collection.Raw;
 }

@@ -3,7 +3,6 @@
  */
 
 export type TimesheetEntriesListRequestOrderBy = "-start_time" | "start_time";
-
 export const TimesheetEntriesListRequestOrderBy = {
     StartTimeDescending: "-start_time",
     StartTimeAscending: "start_time",

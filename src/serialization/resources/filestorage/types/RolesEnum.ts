@@ -10,5 +10,5 @@ export const RolesEnum: core.serialization.Schema<serializers.filestorage.RolesE
     core.serialization.enum_(["READ", "WRITE", "OWNER"]);
 
 export declare namespace RolesEnum {
-    type Raw = "READ" | "WRITE" | "OWNER";
+    export type Raw = "READ" | "WRITE" | "OWNER";
 }

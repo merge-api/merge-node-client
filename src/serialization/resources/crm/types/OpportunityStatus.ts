@@ -13,5 +13,5 @@ export const OpportunityStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([OpportunityStatusEnum, core.serialization.string()]);
 
 export declare namespace OpportunityStatus {
-    type Raw = OpportunityStatusEnum.Raw | string;
+    export type Raw = OpportunityStatusEnum.Raw | string;
 }

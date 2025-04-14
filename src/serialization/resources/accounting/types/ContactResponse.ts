@@ -21,7 +21,7 @@ export const ContactResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ContactResponse {
-    interface Raw {
+    export interface Raw {
         model: Contact.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

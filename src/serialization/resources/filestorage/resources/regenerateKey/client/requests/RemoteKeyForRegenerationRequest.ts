@@ -14,7 +14,7 @@ export const RemoteKeyForRegenerationRequest: core.serialization.Schema<
 });
 
 export declare namespace RemoteKeyForRegenerationRequest {
-    interface Raw {
+    export interface Raw {
         name: string;
     }
 }

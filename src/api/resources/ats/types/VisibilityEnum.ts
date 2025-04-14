@@ -8,7 +8,6 @@
  * - `PRIVATE` - PRIVATE
  */
 export type VisibilityEnum = "ADMIN_ONLY" | "PUBLIC" | "PRIVATE";
-
 export const VisibilityEnum = {
     AdminOnly: "ADMIN_ONLY",
     Public: "PUBLIC",

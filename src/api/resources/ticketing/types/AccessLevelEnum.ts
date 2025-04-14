@@ -8,7 +8,6 @@
  * - `PUBLIC` - PUBLIC
  */
 export type AccessLevelEnum = "PRIVATE" | "COMPANY" | "PUBLIC";
-
 export const AccessLevelEnum = {
     Private: "PRIVATE",
     Company: "COMPANY",

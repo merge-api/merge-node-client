@@ -7,7 +7,6 @@
  * - `POSTED` - POSTED
  */
 export type PostingStatusEnum = "UNPOSTED" | "POSTED";
-
 export const PostingStatusEnum = {
     Unposted: "UNPOSTED",
     Posted: "POSTED",

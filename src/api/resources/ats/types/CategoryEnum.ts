@@ -12,7 +12,6 @@
  * - `filestorage` - filestorage
  */
 export type CategoryEnum = "hris" | "ats" | "accounting" | "ticketing" | "crm" | "mktg" | "filestorage";
-
 export const CategoryEnum = {
     Hris: "hris",
     Ats: "ats",

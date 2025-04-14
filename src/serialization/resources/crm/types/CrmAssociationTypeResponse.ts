@@ -21,7 +21,7 @@ export const CrmAssociationTypeResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CrmAssociationTypeResponse {
-    interface Raw {
+    export interface Raw {
         model: AssociationType.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

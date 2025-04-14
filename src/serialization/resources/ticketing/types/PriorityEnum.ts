@@ -12,5 +12,5 @@ export const PriorityEnum: core.serialization.Schema<
 > = core.serialization.enum_(["URGENT", "HIGH", "NORMAL", "LOW"]);
 
 export declare namespace PriorityEnum {
-    type Raw = "URGENT" | "HIGH" | "NORMAL" | "LOW";
+    export type Raw = "URGENT" | "HIGH" | "NORMAL" | "LOW";
 }

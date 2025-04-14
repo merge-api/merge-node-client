@@ -22,7 +22,7 @@ export const VendorCreditApplyLineForVendorCredit: core.serialization.ObjectSche
 });
 
 export declare namespace VendorCreditApplyLineForVendorCredit {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;

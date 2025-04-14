@@ -13,5 +13,5 @@ export const RemoteResponseResponseType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([ResponseTypeEnum, core.serialization.string()]);
 
 export declare namespace RemoteResponseResponseType {
-    type Raw = ResponseTypeEnum.Raw | string;
+    export type Raw = ResponseTypeEnum.Raw | string;
 }

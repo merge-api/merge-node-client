@@ -16,7 +16,7 @@ export const WebhookReceiverRequest: core.serialization.Schema<
 });
 
 export declare namespace WebhookReceiverRequest {
-    interface Raw {
+    export interface Raw {
         event: string;
         is_active: boolean;
         key?: string | null;

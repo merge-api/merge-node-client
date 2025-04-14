@@ -21,7 +21,7 @@ export const EngagementResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace EngagementResponse {
-    interface Raw {
+    export interface Raw {
         model: Engagement.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

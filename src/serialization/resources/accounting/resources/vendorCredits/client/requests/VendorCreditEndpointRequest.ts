@@ -15,7 +15,7 @@ export const VendorCreditEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace VendorCreditEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: VendorCreditRequest.Raw;
     }
 }

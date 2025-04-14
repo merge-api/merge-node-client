@@ -17,7 +17,7 @@ export const PaginatedEmployeeList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedEmployeeList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Employee.Raw[] | null;

@@ -3,7 +3,6 @@
  */
 
 export type PayrollRunsListRequestRunType = "CORRECTION" | "OFF_CYCLE" | "REGULAR" | "SIGN_ON_BONUS" | "TERMINATION";
-
 export const PayrollRunsListRequestRunType = {
     Correction: "CORRECTION",
     OffCycle: "OFF_CYCLE",

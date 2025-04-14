@@ -15,5 +15,5 @@ export const AttachmentRequestTicket: core.serialization.Schema<
 ]);
 
 export declare namespace AttachmentRequestTicket {
-    type Raw = string | serializers.ticketing.Ticket.Raw;
+    export type Raw = string | serializers.ticketing.Ticket.Raw;
 }

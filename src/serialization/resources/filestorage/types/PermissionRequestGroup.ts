@@ -15,5 +15,5 @@ export const PermissionRequestGroup: core.serialization.Schema<
 ]);
 
 export declare namespace PermissionRequestGroup {
-    type Raw = string | serializers.filestorage.Group.Raw;
+    export type Raw = string | serializers.filestorage.Group.Raw;
 }

@@ -13,5 +13,5 @@ export const EmploymentPayPeriod: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([PayPeriodEnum, core.serialization.string()]);
 
 export declare namespace EmploymentPayPeriod {
-    type Raw = PayPeriodEnum.Raw | string;
+    export type Raw = PayPeriodEnum.Raw | string;
 }

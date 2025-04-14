@@ -13,5 +13,5 @@ export const EngagementContactsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Contact]);
 
 export declare namespace EngagementContactsItem {
-    type Raw = string | Contact.Raw;
+    export type Raw = string | Contact.Raw;
 }

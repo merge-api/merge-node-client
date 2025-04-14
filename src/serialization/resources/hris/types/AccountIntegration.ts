@@ -20,20 +20,20 @@ export const AccountIntegration: core.serialization.ObjectSchema<
     slug: core.serialization.string().optional(),
     apiEndpointsToDocumentationUrls: core.serialization.property(
         "api_endpoints_to_documentation_urls",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     webhookSetupGuideUrl: core.serialization.property(
         "webhook_setup_guide_url",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     categoryBetaStatus: core.serialization.property(
         "category_beta_status",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace AccountIntegration {
-    interface Raw {
+    export interface Raw {
         name: string;
         abbreviated_name?: string | null;
         categories?: CategoriesEnum.Raw[] | null;

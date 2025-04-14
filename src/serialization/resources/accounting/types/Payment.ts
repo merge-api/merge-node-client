@@ -34,25 +34,25 @@ export const Payment: core.serialization.ObjectSchema<serializers.accounting.Pay
         type: PaymentType.optional(),
         trackingCategories: core.serialization.property(
             "tracking_categories",
-            core.serialization.list(PaymentTrackingCategoriesItem.optional()).optional()
+            core.serialization.list(PaymentTrackingCategoriesItem.optional()).optional(),
         ),
         accountingPeriod: core.serialization.property("accounting_period", PaymentAccountingPeriod.optional()),
         appliedToLines: core.serialization.property(
             "applied_to_lines",
-            core.serialization.list(PaymentAppliedToLinesItem).optional()
+            core.serialization.list(PaymentAppliedToLinesItem).optional(),
         ),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
         remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteField).optional()),
     });
 
 export declare namespace Payment {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

@@ -617,7 +617,6 @@ export type TransactionCurrencyEnum =
     | "ZWD"
     | "ZWR"
     | "ZWL";
-
 export const TransactionCurrencyEnum = {
     Xua: "XUA",
     Afn: "AFN",

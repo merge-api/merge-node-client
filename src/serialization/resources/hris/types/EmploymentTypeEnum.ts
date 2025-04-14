@@ -12,5 +12,5 @@ export const EmploymentTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["FULL_TIME", "PART_TIME", "INTERN", "CONTRACTOR", "FREELANCE"]);
 
 export declare namespace EmploymentTypeEnum {
-    type Raw = "FULL_TIME" | "PART_TIME" | "INTERN" | "CONTRACTOR" | "FREELANCE";
+    export type Raw = "FULL_TIME" | "PART_TIME" | "INTERN" | "CONTRACTOR" | "FREELANCE";
 }

@@ -13,5 +13,5 @@ export const TaxRateCompany: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), CompanyInfo]);
 
 export declare namespace TaxRateCompany {
-    type Raw = string | CompanyInfo.Raw;
+    export type Raw = string | CompanyInfo.Raw;
 }

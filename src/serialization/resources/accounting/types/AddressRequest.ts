@@ -21,16 +21,16 @@ export const AddressRequest: core.serialization.ObjectSchema<
     zipCode: core.serialization.property("zip_code", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace AddressRequest {
-    interface Raw {
+    export interface Raw {
         type?: AddressRequestType.Raw | null;
         street_1?: string | null;
         street_2?: string | null;

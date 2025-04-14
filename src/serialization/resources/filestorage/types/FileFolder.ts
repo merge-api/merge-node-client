@@ -15,5 +15,5 @@ export const FileFolder: core.serialization.Schema<
 ]);
 
 export declare namespace FileFolder {
-    type Raw = string | serializers.filestorage.Folder.Raw;
+    export type Raw = string | serializers.filestorage.Folder.Raw;
 }

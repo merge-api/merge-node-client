@@ -12,5 +12,5 @@ export const EncodingEnum: core.serialization.Schema<
 > = core.serialization.enum_(["RAW", "BASE64", "GZIP_BASE64"]);
 
 export declare namespace EncodingEnum {
-    type Raw = "RAW" | "BASE64" | "GZIP_BASE64";
+    export type Raw = "RAW" | "BASE64" | "GZIP_BASE64";
 }

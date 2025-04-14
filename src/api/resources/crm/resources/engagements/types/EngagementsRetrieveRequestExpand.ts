@@ -18,7 +18,6 @@ export type EngagementsRetrieveRequestExpand =
     | "owner,account"
     | "owner,account,engagement_type"
     | "owner,engagement_type";
-
 export const EngagementsRetrieveRequestExpand = {
     Account: "account",
     AccountEngagementType: "account,engagement_type",

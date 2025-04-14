@@ -16,7 +16,7 @@ export const PatchedCandidateEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace PatchedCandidateEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: PatchedCandidateRequest.Raw;
         remote_user_id: string;
     }

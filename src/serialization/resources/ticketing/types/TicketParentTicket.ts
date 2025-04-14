@@ -15,5 +15,5 @@ export const TicketParentTicket: core.serialization.Schema<
 ]);
 
 export declare namespace TicketParentTicket {
-    type Raw = string | serializers.ticketing.Ticket.Raw;
+    export type Raw = string | serializers.ticketing.Ticket.Raw;
 }

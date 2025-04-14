@@ -10,7 +10,6 @@ export type TicketsRetrieveRequestShowEnumOrigins =
     | "status"
     | "status,ticket_type"
     | "ticket_type";
-
 export const TicketsRetrieveRequestShowEnumOrigins = {
     Priority: "priority",
     PriorityStatus: "priority,status",

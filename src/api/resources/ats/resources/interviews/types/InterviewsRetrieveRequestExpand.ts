@@ -18,7 +18,6 @@ export type InterviewsRetrieveRequestExpand =
     | "organizer,application"
     | "organizer,application,job_interview_stage"
     | "organizer,job_interview_stage";
-
 export const InterviewsRetrieveRequestExpand = {
     Application: "application",
     ApplicationJobInterviewStage: "application,job_interview_stage",

@@ -21,12 +21,12 @@ export const AccountDetailsAndActionsIntegration: core.serialization.ObjectSchem
     passthroughAvailable: core.serialization.property("passthrough_available", core.serialization.boolean()),
     availableModelOperations: core.serialization.property(
         "available_model_operations",
-        core.serialization.list(ModelOperation).optional()
+        core.serialization.list(ModelOperation).optional(),
     ),
 });
 
 export declare namespace AccountDetailsAndActionsIntegration {
-    interface Raw {
+    export interface Raw {
         name: string;
         categories: CategoriesEnum.Raw[];
         image?: string | null;

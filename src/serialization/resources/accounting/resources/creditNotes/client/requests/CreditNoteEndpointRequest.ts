@@ -15,7 +15,7 @@ export const CreditNoteEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace CreditNoteEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: CreditNoteRequest.Raw;
     }
 }

@@ -13,5 +13,5 @@ export const EmployeeRequestPayGroup: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), PayGroup]);
 
 export declare namespace EmployeeRequestPayGroup {
-    type Raw = string | PayGroup.Raw;
+    export type Raw = string | PayGroup.Raw;
 }

@@ -7,7 +7,6 @@
  * - `RESOLVED` - RESOLVED
  */
 export type IssueStatusEnum = "ONGOING" | "RESOLVED";
-
 export const IssueStatusEnum = {
     Ongoing: "ONGOING",
     Resolved: "RESOLVED",

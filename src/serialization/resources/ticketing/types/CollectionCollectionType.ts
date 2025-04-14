@@ -13,5 +13,5 @@ export const CollectionCollectionType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([CollectionTypeEnum, core.serialization.string()]);
 
 export declare namespace CollectionCollectionType {
-    type Raw = CollectionTypeEnum.Raw | string;
+    export type Raw = CollectionTypeEnum.Raw | string;
 }

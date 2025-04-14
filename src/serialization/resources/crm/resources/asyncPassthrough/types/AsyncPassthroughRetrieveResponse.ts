@@ -13,5 +13,5 @@ export const AsyncPassthroughRetrieveResponse: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([RemoteResponse, core.serialization.string()]);
 
 export declare namespace AsyncPassthroughRetrieveResponse {
-    type Raw = RemoteResponse.Raw | string;
+    export type Raw = RemoteResponse.Raw | string;
 }

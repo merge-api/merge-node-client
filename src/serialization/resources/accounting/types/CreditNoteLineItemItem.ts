@@ -13,5 +13,5 @@ export const CreditNoteLineItemItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Item]);
 
 export declare namespace CreditNoteLineItemItem {
-    type Raw = string | Item.Raw;
+    export type Raw = string | Item.Raw;
 }

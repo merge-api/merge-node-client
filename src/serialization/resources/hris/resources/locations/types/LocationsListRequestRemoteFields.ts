@@ -12,5 +12,5 @@ export const LocationsListRequestRemoteFields: core.serialization.Schema<
 > = core.serialization.enum_(["country", "country,location_type", "location_type"]);
 
 export declare namespace LocationsListRequestRemoteFields {
-    type Raw = "country" | "country,location_type" | "location_type";
+    export type Raw = "country" | "country,location_type" | "location_type";
 }

@@ -14,12 +14,12 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
     benefit: core.serialization.property("Benefit", core.serialization.list(FieldMappingApiInstance).optional()),
     employerBenefit: core.serialization.property(
         "EmployerBenefit",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     company: core.serialization.property("Company", core.serialization.list(FieldMappingApiInstance).optional()),
     employeePayrollRun: core.serialization.property(
         "EmployeePayrollRun",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     employee: core.serialization.property("Employee", core.serialization.list(FieldMappingApiInstance).optional()),
     employment: core.serialization.property("Employment", core.serialization.list(FieldMappingApiInstance).optional()),
@@ -29,7 +29,7 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
     timeOff: core.serialization.property("TimeOff", core.serialization.list(FieldMappingApiInstance).optional()),
     timeOffBalance: core.serialization.property(
         "TimeOffBalance",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     bankInfo: core.serialization.property("BankInfo", core.serialization.list(FieldMappingApiInstance).optional()),
     payGroup: core.serialization.property("PayGroup", core.serialization.list(FieldMappingApiInstance).optional()),
@@ -37,12 +37,12 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
     dependent: core.serialization.property("Dependent", core.serialization.list(FieldMappingApiInstance).optional()),
     timesheetEntry: core.serialization.property(
         "TimesheetEntry",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
 });
 
 export declare namespace FieldMappingApiInstanceResponse {
-    interface Raw {
+    export interface Raw {
         Benefit?: FieldMappingApiInstance.Raw[] | null;
         EmployerBenefit?: FieldMappingApiInstance.Raw[] | null;
         Company?: FieldMappingApiInstance.Raw[] | null;

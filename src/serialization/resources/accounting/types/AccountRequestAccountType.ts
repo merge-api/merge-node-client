@@ -13,5 +13,5 @@ export const AccountRequestAccountType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([AccountAccountTypeEnum, core.serialization.string()]);
 
 export declare namespace AccountRequestAccountType {
-    type Raw = AccountAccountTypeEnum.Raw | string;
+    export type Raw = AccountAccountTypeEnum.Raw | string;
 }

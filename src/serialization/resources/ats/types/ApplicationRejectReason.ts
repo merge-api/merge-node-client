@@ -13,5 +13,5 @@ export const ApplicationRejectReason: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), RejectReason]);
 
 export declare namespace ApplicationRejectReason {
-    type Raw = string | RejectReason.Raw;
+    export type Raw = string | RejectReason.Raw;
 }

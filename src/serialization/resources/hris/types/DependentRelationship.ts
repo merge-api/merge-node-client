@@ -13,5 +13,5 @@ export const DependentRelationship: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([RelationshipEnum, core.serialization.string()]);
 
 export declare namespace DependentRelationship {
-    type Raw = RelationshipEnum.Raw | string;
+    export type Raw = RelationshipEnum.Raw | string;
 }

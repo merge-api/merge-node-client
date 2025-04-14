@@ -23,7 +23,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace RemoteFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         Account?: RemoteFieldApi.Raw[] | null;
         Contact?: RemoteFieldApi.Raw[] | null;
         Lead?: RemoteFieldApi.Raw[] | null;

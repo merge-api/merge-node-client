@@ -25,7 +25,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace RemoteFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         Ticket?: RemoteFieldApi.Raw[] | null;
         Comment?: RemoteFieldApi.Raw[] | null;
         Project?: RemoteFieldApi.Raw[] | null;

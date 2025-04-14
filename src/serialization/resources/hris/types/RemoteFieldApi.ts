@@ -18,14 +18,14 @@ export const RemoteFieldApi: core.serialization.ObjectSchema<
     remoteEndpointInfo: core.serialization.property("remote_endpoint_info", RemoteEndpointInfo),
     exampleValues: core.serialization.property(
         "example_values",
-        core.serialization.list(core.serialization.unknown()).optional()
+        core.serialization.list(core.serialization.unknown()).optional(),
     ),
     advancedMetadata: core.serialization.property("advanced_metadata", AdvancedMetadata.optional()),
     coverage: RemoteFieldApiCoverage.optional(),
 });
 
 export declare namespace RemoteFieldApi {
-    interface Raw {
+    export interface Raw {
         schema: Record<string, unknown>;
         remote_key_name: string;
         remote_endpoint_info: RemoteEndpointInfo.Raw;

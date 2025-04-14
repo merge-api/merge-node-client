@@ -268,7 +268,7 @@ export const EmployeesRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace EmployeesRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "company"
         | "company,pay_group"
         | "employments"

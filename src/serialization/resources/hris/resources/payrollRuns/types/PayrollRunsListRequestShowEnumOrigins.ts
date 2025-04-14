@@ -12,5 +12,5 @@ export const PayrollRunsListRequestShowEnumOrigins: core.serialization.Schema<
 > = core.serialization.enum_(["run_state", "run_state,run_type", "run_type"]);
 
 export declare namespace PayrollRunsListRequestShowEnumOrigins {
-    type Raw = "run_state" | "run_state,run_type" | "run_type";
+    export type Raw = "run_state" | "run_state,run_type" | "run_type";
 }

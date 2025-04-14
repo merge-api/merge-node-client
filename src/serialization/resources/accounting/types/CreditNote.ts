@@ -36,7 +36,7 @@ export const CreditNote: core.serialization.ObjectSchema<
     lineItems: core.serialization.property("line_items", core.serialization.list(CreditNoteLineItem).optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(CreditNoteTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(CreditNoteTrackingCategoriesItem.optional()).optional(),
     ),
     currency: CreditNoteCurrency.optional(),
     remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
@@ -44,25 +44,25 @@ export const CreditNote: core.serialization.ObjectSchema<
     payments: core.serialization.list(CreditNotePaymentsItem.optional()).optional(),
     appliedPayments: core.serialization.property(
         "applied_payments",
-        core.serialization.list(CreditNoteAppliedPaymentsItem.optional()).optional()
+        core.serialization.list(CreditNoteAppliedPaymentsItem.optional()).optional(),
     ),
     accountingPeriod: core.serialization.property("accounting_period", CreditNoteAccountingPeriod.optional()),
     appliedToLines: core.serialization.property(
         "applied_to_lines",
         core.serialization
             .list(core.serialization.lazyObject(() => serializers.accounting.CreditNoteApplyLineForCreditNote))
-            .optional()
+            .optional(),
     ),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace CreditNote {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

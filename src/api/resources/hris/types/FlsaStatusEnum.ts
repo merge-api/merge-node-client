@@ -9,7 +9,6 @@
  * - `OWNER` - OWNER
  */
 export type FlsaStatusEnum = "EXEMPT" | "SALARIED_NONEXEMPT" | "NONEXEMPT" | "OWNER";
-
 export const FlsaStatusEnum = {
     Exempt: "EXEMPT",
     SalariedNonexempt: "SALARIED_NONEXEMPT",

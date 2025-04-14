@@ -15,7 +15,7 @@ export const PaymentEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace PaymentEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: PaymentRequest.Raw;
     }
 }

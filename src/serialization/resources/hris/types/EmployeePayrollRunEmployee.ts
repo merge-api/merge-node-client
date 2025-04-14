@@ -15,5 +15,5 @@ export const EmployeePayrollRunEmployee: core.serialization.Schema<
 ]);
 
 export declare namespace EmployeePayrollRunEmployee {
-    type Raw = string | serializers.hris.Employee.Raw;
+    export type Raw = string | serializers.hris.Employee.Raw;
 }

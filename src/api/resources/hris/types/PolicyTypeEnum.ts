@@ -11,7 +11,6 @@
  * - `BEREAVEMENT` - BEREAVEMENT
  */
 export type PolicyTypeEnum = "VACATION" | "SICK" | "PERSONAL" | "JURY_DUTY" | "VOLUNTEER" | "BEREAVEMENT";
-
 export const PolicyTypeEnum = {
     Vacation: "VACATION",
     Sick: "SICK",

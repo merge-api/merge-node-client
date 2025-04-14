@@ -13,5 +13,5 @@ export const EmployeePayrollRunPayrollRun: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), PayrollRun]);
 
 export declare namespace EmployeePayrollRunPayrollRun {
-    type Raw = string | PayrollRun.Raw;
+    export type Raw = string | PayrollRun.Raw;
 }

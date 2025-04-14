@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace TimeOff {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class TimeOff {
      * @example
      *     await client.hris.timeOff.list()
      */
-    public async list(
+    public list(
         request: Merge.hris.TimeOffListRequest = {},
-        requestOptions?: TimeOff.RequestOptions
-    ): Promise<Merge.hris.PaginatedTimeOffList> {
+        requestOptions?: TimeOff.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.PaginatedTimeOffList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.hris.TimeOffListRequest = {},
+        requestOptions?: TimeOff.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.PaginatedTimeOffList>> {
         const {
             approverId,
             createdAfter,
@@ -71,7 +80,7 @@ export class TimeOff {
             startedBefore,
             status,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (approverId != null) {
             _queryParams["approver_id"] = approverId;
         }
@@ -101,7 +110,9 @@ export class TimeOff {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.hris.TimeOffListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -129,7 +140,9 @@ export class TimeOff {
         }
 
         if (remoteFields != null) {
-            _queryParams["remote_fields"] = remoteFields;
+            _queryParams["remote_fields"] = serializers.hris.TimeOffListRequestRemoteFields.jsonOrThrow(remoteFields, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (remoteId != null) {
@@ -137,11 +150,16 @@ export class TimeOff {
         }
 
         if (requestType != null) {
-            _queryParams["request_type"] = requestType;
+            _queryParams["request_type"] = serializers.hris.TimeOffListRequestRequestType.jsonOrThrow(requestType, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (showEnumOrigins != null) {
-            _queryParams["show_enum_origins"] = showEnumOrigins;
+            _queryParams["show_enum_origins"] = serializers.hris.TimeOffListRequestShowEnumOrigins.jsonOrThrow(
+                showEnumOrigins,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (startedAfter != null) {
@@ -153,13 +171,17 @@ export class TimeOff {
         }
 
         if (status != null) {
-            _queryParams["status"] = status;
+            _queryParams["status"] = serializers.hris.TimeOffListRequestStatus.jsonOrThrow(status, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/time-off"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/time-off",
             ),
             method: "GET",
             headers: {
@@ -170,8 +192,8 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -184,13 +206,16 @@ export class TimeOff {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.PaginatedTimeOffList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.PaginatedTimeOffList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -226,12 +251,19 @@ export class TimeOff {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.hris.TimeOffEndpointRequest,
-        requestOptions?: TimeOff.RequestOptions
-    ): Promise<Merge.hris.TimeOffResponse> {
+        requestOptions?: TimeOff.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.TimeOffResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.hris.TimeOffEndpointRequest,
+        requestOptions?: TimeOff.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.TimeOffResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -242,8 +274,10 @@ export class TimeOff {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/time-off"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/time-off",
             ),
             method: "POST",
             headers: {
@@ -254,8 +288,8 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -269,13 +303,16 @@ export class TimeOff {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.TimeOffResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.TimeOffResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -310,15 +347,25 @@ export class TimeOff {
      * @example
      *     await client.hris.timeOff.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.hris.TimeOffRetrieveRequest = {},
-        requestOptions?: TimeOff.RequestOptions
-    ): Promise<Merge.hris.TimeOff> {
+        requestOptions?: TimeOff.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.TimeOff> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.hris.TimeOffRetrieveRequest = {},
+        requestOptions?: TimeOff.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.TimeOff>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.hris.TimeOffRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -330,17 +377,25 @@ export class TimeOff {
         }
 
         if (remoteFields != null) {
-            _queryParams["remote_fields"] = remoteFields;
+            _queryParams["remote_fields"] = serializers.hris.TimeOffRetrieveRequestRemoteFields.jsonOrThrow(
+                remoteFields,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (showEnumOrigins != null) {
-            _queryParams["show_enum_origins"] = showEnumOrigins;
+            _queryParams["show_enum_origins"] = serializers.hris.TimeOffRetrieveRequestShowEnumOrigins.jsonOrThrow(
+                showEnumOrigins,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `hris/v1/time-off/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `hris/v1/time-off/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -351,8 +406,8 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -365,13 +420,16 @@ export class TimeOff {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.TimeOff.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.TimeOff.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -404,11 +462,21 @@ export class TimeOff {
      * @example
      *     await client.hris.timeOff.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: TimeOff.RequestOptions): Promise<Merge.hris.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: TimeOff.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: TimeOff.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/time-off/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/time-off/meta/post",
             ),
             method: "GET",
             headers: {
@@ -419,8 +487,8 @@ export class TimeOff {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -432,13 +500,16 @@ export class TimeOff {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

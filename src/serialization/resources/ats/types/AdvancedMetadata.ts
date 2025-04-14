@@ -17,12 +17,12 @@ export const AdvancedMetadata: core.serialization.ObjectSchema<
     isCustom: core.serialization.property("is_custom", core.serialization.boolean().optional()),
     fieldChoices: core.serialization.property(
         "field_choices",
-        core.serialization.list(core.serialization.unknown()).optional()
+        core.serialization.list(core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace AdvancedMetadata {
-    interface Raw {
+    export interface Raw {
         id: string;
         display_name?: string | null;
         description?: string | null;

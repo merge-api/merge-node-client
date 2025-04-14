@@ -12,5 +12,5 @@ export const LocationsListRequestShowEnumOrigins: core.serialization.Schema<
 > = core.serialization.enum_(["country", "country,location_type", "location_type"]);
 
 export declare namespace LocationsListRequestShowEnumOrigins {
-    type Raw = "country" | "country,location_type" | "location_type";
+    export type Raw = "country" | "country,location_type" | "location_type";
 }

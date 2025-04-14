@@ -18,5 +18,5 @@ export const FolderRequestPermissions: core.serialization.Schema<
 ]);
 
 export declare namespace FolderRequestPermissions {
-    type Raw = string | PermissionRequest.Raw | FolderRequestPermissionsItem.Raw[];
+    export type Raw = string | PermissionRequest.Raw | FolderRequestPermissionsItem.Raw[];
 }

@@ -13,5 +13,5 @@ export const PurchaseOrderRequestDeliveryAddress: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Address]);
 
 export declare namespace PurchaseOrderRequestDeliveryAddress {
-    type Raw = string | Address.Raw;
+    export type Raw = string | Address.Raw;
 }

@@ -15,5 +15,5 @@ export const FolderRequestParentFolder: core.serialization.Schema<
 ]);
 
 export declare namespace FolderRequestParentFolder {
-    type Raw = string | serializers.filestorage.Folder.Raw;
+    export type Raw = string | serializers.filestorage.Folder.Raw;
 }

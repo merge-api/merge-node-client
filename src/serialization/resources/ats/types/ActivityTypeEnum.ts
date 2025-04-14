@@ -12,5 +12,5 @@ export const ActivityTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["NOTE", "EMAIL", "OTHER"]);
 
 export declare namespace ActivityTypeEnum {
-    type Raw = "NOTE" | "EMAIL" | "OTHER";
+    export type Raw = "NOTE" | "EMAIL" | "OTHER";
 }

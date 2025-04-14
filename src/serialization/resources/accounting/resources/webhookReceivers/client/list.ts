@@ -13,5 +13,5 @@ export const Response: core.serialization.Schema<
 > = core.serialization.list(WebhookReceiver);
 
 export declare namespace Response {
-    type Raw = WebhookReceiver.Raw[];
+    export type Raw = WebhookReceiver.Raw[];
 }

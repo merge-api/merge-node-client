@@ -4108,7 +4108,7 @@ export const InvoicesListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace InvoicesListRequestExpand {
-    type Raw =
+    export type Raw =
         | "accounting_period"
         | "accounting_period,payment_term"
         | "applied_credit_notes"

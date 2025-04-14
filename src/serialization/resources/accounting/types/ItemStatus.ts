@@ -11,5 +11,5 @@ export const ItemStatus: core.serialization.Schema<serializers.accounting.ItemSt
     core.serialization.undiscriminatedUnion([Status7D1Enum, core.serialization.string()]);
 
 export declare namespace ItemStatus {
-    type Raw = Status7D1Enum.Raw | string;
+    export type Raw = Status7D1Enum.Raw | string;
 }

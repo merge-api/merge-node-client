@@ -17,7 +17,7 @@ export const PaginatedEngagementList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedEngagementList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Engagement.Raw[] | null;

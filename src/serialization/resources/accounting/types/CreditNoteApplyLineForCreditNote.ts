@@ -20,7 +20,7 @@ export const CreditNoteApplyLineForCreditNote: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreditNoteApplyLineForCreditNote {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;

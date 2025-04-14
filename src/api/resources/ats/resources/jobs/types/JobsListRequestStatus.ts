@@ -3,7 +3,6 @@
  */
 
 export type JobsListRequestStatus = "ARCHIVED" | "CLOSED" | "DRAFT" | "OPEN" | "PENDING";
-
 export const JobsListRequestStatus = {
     Archived: "ARCHIVED",
     Closed: "CLOSED",

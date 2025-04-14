@@ -23,7 +23,7 @@ export const AuditLogEvent: core.serialization.ObjectSchema<
 });
 
 export declare namespace AuditLogEvent {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         user_name?: string | null;
         user_email?: string | null;

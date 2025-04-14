@@ -15,7 +15,7 @@ export const TicketEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace TicketEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: TicketRequest.Raw;
     }
 }

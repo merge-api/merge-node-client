@@ -9,7 +9,6 @@ export type TimeOffBalancesListRequestPolicyType =
     | "SICK"
     | "VACATION"
     | "VOLUNTEER";
-
 export const TimeOffBalancesListRequestPolicyType = {
     Bereavement: "BEREAVEMENT",
     JuryDuty: "JURY_DUTY",

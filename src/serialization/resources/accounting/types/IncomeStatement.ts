@@ -28,24 +28,24 @@ export const IncomeStatement: core.serialization.ObjectSchema<
     grossProfit: core.serialization.property("gross_profit", core.serialization.number().optional()),
     operatingExpenses: core.serialization.property(
         "operating_expenses",
-        core.serialization.list(ReportItem).optional()
+        core.serialization.list(ReportItem).optional(),
     ),
     netOperatingIncome: core.serialization.property("net_operating_income", core.serialization.number().optional()),
     nonOperatingExpenses: core.serialization.property(
         "non_operating_expenses",
-        core.serialization.list(ReportItem).optional()
+        core.serialization.list(ReportItem).optional(),
     ),
     netIncome: core.serialization.property("net_income", core.serialization.number().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace IncomeStatement {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

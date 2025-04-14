@@ -76,7 +76,7 @@ export const ExpensesListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace ExpensesListRequestExpand {
-    type Raw =
+    export type Raw =
         | "account"
         | "account,accounting_period"
         | "account,company"

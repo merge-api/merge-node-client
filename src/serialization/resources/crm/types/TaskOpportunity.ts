@@ -13,5 +13,5 @@ export const TaskOpportunity: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Opportunity]);
 
 export declare namespace TaskOpportunity {
-    type Raw = string | Opportunity.Raw;
+    export type Raw = string | Opportunity.Raw;
 }

@@ -15,7 +15,7 @@ export const RemoteKey: core.serialization.ObjectSchema<
 });
 
 export declare namespace RemoteKey {
-    interface Raw {
+    export interface Raw {
         name: string;
         key: string;
     }

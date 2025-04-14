@@ -11,5 +11,5 @@ export const NoteAccount: core.serialization.Schema<serializers.crm.NoteAccount.
     core.serialization.undiscriminatedUnion([core.serialization.string(), Account]);
 
 export declare namespace NoteAccount {
-    type Raw = string | Account.Raw;
+    export type Raw = string | Account.Raw;
 }

@@ -15,7 +15,7 @@ export const VendorCreditApplyLineForInvoice: core.serialization.ObjectSchema<
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     vendorCredit: core.serialization.property(
         "vendor_credit",
-        core.serialization.lazy(() => serializers.accounting.VendorCreditApplyLineForInvoiceVendorCredit).optional()
+        core.serialization.lazy(() => serializers.accounting.VendorCreditApplyLineForInvoiceVendorCredit).optional(),
     ),
     appliedDate: core.serialization.property("applied_date", core.serialization.date().optional()),
     appliedAmount: core.serialization.property("applied_amount", core.serialization.string().optional()),
@@ -23,7 +23,7 @@ export const VendorCreditApplyLineForInvoice: core.serialization.ObjectSchema<
 });
 
 export declare namespace VendorCreditApplyLineForInvoice {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;

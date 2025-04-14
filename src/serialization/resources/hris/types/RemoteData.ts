@@ -13,7 +13,7 @@ export const RemoteData: core.serialization.ObjectSchema<serializers.hris.Remote
     });
 
 export declare namespace RemoteData {
-    interface Raw {
+    export interface Raw {
         path: string;
         data?: unknown | null;
     }

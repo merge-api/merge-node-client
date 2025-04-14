@@ -15,7 +15,7 @@ export const JournalEntryEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace JournalEntryEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: JournalEntryRequest.Raw;
     }
 }

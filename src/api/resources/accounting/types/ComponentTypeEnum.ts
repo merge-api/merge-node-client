@@ -7,7 +7,6 @@
  * - `PURCHASE` - PURCHASE
  */
 export type ComponentTypeEnum = "SALES" | "PURCHASE";
-
 export const ComponentTypeEnum = {
     Sales: "SALES",
     Purchase: "PURCHASE",

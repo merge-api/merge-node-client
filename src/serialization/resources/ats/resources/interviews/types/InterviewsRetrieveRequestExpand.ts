@@ -28,7 +28,7 @@ export const InterviewsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace InterviewsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "application"
         | "application,job_interview_stage"
         | "interviewers"

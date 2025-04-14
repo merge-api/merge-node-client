@@ -14,12 +14,12 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
     account: core.serialization.property("Account", core.serialization.list(RemoteFieldApi).optional()),
     accountingAttachment: core.serialization.property(
         "AccountingAttachment",
-        core.serialization.list(RemoteFieldApi).optional()
+        core.serialization.list(RemoteFieldApi).optional(),
     ),
     balanceSheet: core.serialization.property("BalanceSheet", core.serialization.list(RemoteFieldApi).optional()),
     cashFlowStatement: core.serialization.property(
         "CashFlowStatement",
-        core.serialization.list(RemoteFieldApi).optional()
+        core.serialization.list(RemoteFieldApi).optional(),
     ),
     companyInfo: core.serialization.property("CompanyInfo", core.serialization.list(RemoteFieldApi).optional()),
     contact: core.serialization.property("Contact", core.serialization.list(RemoteFieldApi).optional()),
@@ -29,7 +29,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
     purchaseOrder: core.serialization.property("PurchaseOrder", core.serialization.list(RemoteFieldApi).optional()),
     trackingCategory: core.serialization.property(
         "TrackingCategory",
-        core.serialization.list(RemoteFieldApi).optional()
+        core.serialization.list(RemoteFieldApi).optional(),
     ),
     journalEntry: core.serialization.property("JournalEntry", core.serialization.list(RemoteFieldApi).optional()),
     taxRate: core.serialization.property("TaxRate", core.serialization.list(RemoteFieldApi).optional()),
@@ -40,11 +40,11 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
     transaction: core.serialization.property("Transaction", core.serialization.list(RemoteFieldApi).optional()),
     accountingPeriod: core.serialization.property(
         "AccountingPeriod",
-        core.serialization.list(RemoteFieldApi).optional()
+        core.serialization.list(RemoteFieldApi).optional(),
     ),
     generalLedgerTransaction: core.serialization.property(
         "GeneralLedgerTransaction",
-        core.serialization.list(RemoteFieldApi).optional()
+        core.serialization.list(RemoteFieldApi).optional(),
     ),
     bankFeedAccount: core.serialization.property("BankFeedAccount", core.serialization.list(RemoteFieldApi).optional()),
     employee: core.serialization.property("Employee", core.serialization.list(RemoteFieldApi).optional()),
@@ -53,7 +53,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace RemoteFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         Account?: RemoteFieldApi.Raw[] | null;
         AccountingAttachment?: RemoteFieldApi.Raw[] | null;
         BalanceSheet?: RemoteFieldApi.Raw[] | null;

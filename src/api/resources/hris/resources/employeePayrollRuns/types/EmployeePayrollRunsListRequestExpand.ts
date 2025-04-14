@@ -3,7 +3,6 @@
  */
 
 export type EmployeePayrollRunsListRequestExpand = "employee" | "employee,payroll_run" | "payroll_run";
-
 export const EmployeePayrollRunsListRequestExpand = {
     Employee: "employee",
     EmployeePayrollRun: "employee,payroll_run",

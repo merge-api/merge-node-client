@@ -12,5 +12,5 @@ export const CandidatesListRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["applications", "applications,attachments", "attachments"]);
 
 export declare namespace CandidatesListRequestExpand {
-    type Raw = "applications" | "applications,attachments" | "attachments";
+    export type Raw = "applications" | "applications,attachments" | "attachments";
 }

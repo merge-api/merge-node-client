@@ -8,7 +8,6 @@
  * - `DOMESTIC_PARTNER` - DOMESTIC_PARTNER
  */
 export type RelationshipEnum = "CHILD" | "SPOUSE" | "DOMESTIC_PARTNER";
-
 export const RelationshipEnum = {
     Child: "CHILD",
     Spouse: "SPOUSE",

@@ -21,7 +21,7 @@ export const CrmCustomObjectResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CrmCustomObjectResponse {
-    interface Raw {
+    export interface Raw {
         model: CustomObject.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

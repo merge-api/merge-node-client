@@ -15,7 +15,7 @@ export const AssociationTypeRequestRequest: core.serialization.ObjectSchema<
     sourceObjectClass: core.serialization.property("source_object_class", ObjectClassDescriptionRequest),
     targetObjectClasses: core.serialization.property(
         "target_object_classes",
-        core.serialization.list(ObjectClassDescriptionRequest)
+        core.serialization.list(ObjectClassDescriptionRequest),
     ),
     remoteKeyName: core.serialization.property("remote_key_name", core.serialization.string()),
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
@@ -24,7 +24,7 @@ export const AssociationTypeRequestRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace AssociationTypeRequestRequest {
-    interface Raw {
+    export interface Raw {
         source_object_class: ObjectClassDescriptionRequest.Raw;
         target_object_classes: ObjectClassDescriptionRequest.Raw[];
         remote_key_name: string;

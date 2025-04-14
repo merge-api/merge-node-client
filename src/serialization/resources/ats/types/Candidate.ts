@@ -30,7 +30,7 @@ export const Candidate: core.serialization.ObjectSchema<serializers.ats.Candidat
         phoneNumbers: core.serialization.property("phone_numbers", core.serialization.list(PhoneNumber).optional()),
         emailAddresses: core.serialization.property(
             "email_addresses",
-            core.serialization.list(EmailAddress).optional()
+            core.serialization.list(EmailAddress).optional(),
         ),
         urls: core.serialization.list(Url).optional(),
         tags: core.serialization.list(core.serialization.string().optional()).optional(),
@@ -41,13 +41,13 @@ export const Candidate: core.serialization.ObjectSchema<serializers.ats.Candidat
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace Candidate {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

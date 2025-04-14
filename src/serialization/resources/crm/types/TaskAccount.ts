@@ -11,5 +11,5 @@ export const TaskAccount: core.serialization.Schema<serializers.crm.TaskAccount.
     core.serialization.undiscriminatedUnion([core.serialization.string(), Account]);
 
 export declare namespace TaskAccount {
-    type Raw = string | Account.Raw;
+    export type Raw = string | Account.Raw;
 }

@@ -23,20 +23,20 @@ export const TaskRequest: core.serialization.ObjectSchema<serializers.crm.TaskRe
         status: TaskRequestStatus.optional(),
         integrationParams: core.serialization.property(
             "integration_params",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         linkedAccountParams: core.serialization.property(
             "linked_account_params",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteFields: core.serialization.property(
             "remote_fields",
-            core.serialization.list(RemoteFieldRequest).optional()
+            core.serialization.list(RemoteFieldRequest).optional(),
         ),
     });
 
 export declare namespace TaskRequest {
-    interface Raw {
+    export interface Raw {
         subject?: string | null;
         content?: string | null;
         owner?: TaskRequestOwner.Raw | null;

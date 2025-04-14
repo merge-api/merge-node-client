@@ -13,5 +13,5 @@ export const GeneralLedgerTransactionGeneralLedgerTransactionLinesItem: core.ser
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), GeneralLedgerTransactionLine]);
 
 export declare namespace GeneralLedgerTransactionGeneralLedgerTransactionLinesItem {
-    type Raw = string | GeneralLedgerTransactionLine.Raw;
+    export type Raw = string | GeneralLedgerTransactionLine.Raw;
 }

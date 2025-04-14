@@ -12,5 +12,5 @@ export const EmployeePayrollRunsRetrieveRequestExpand: core.serialization.Schema
 > = core.serialization.enum_(["employee", "employee,payroll_run", "payroll_run"]);
 
 export declare namespace EmployeePayrollRunsRetrieveRequestExpand {
-    type Raw = "employee" | "employee,payroll_run" | "payroll_run";
+    export type Raw = "employee" | "employee,payroll_run" | "payroll_run";
 }

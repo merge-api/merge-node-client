@@ -13,5 +13,5 @@ export const SyncStatusLastSyncResult: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([LastSyncResultEnum, core.serialization.string()]);
 
 export declare namespace SyncStatusLastSyncResult {
-    type Raw = LastSyncResultEnum.Raw | string;
+    export type Raw = LastSyncResultEnum.Raw | string;
 }

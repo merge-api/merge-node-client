@@ -13,5 +13,5 @@ export const ScorecardInterviewer: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), RemoteUser]);
 
 export declare namespace ScorecardInterviewer {
-    type Raw = string | RemoteUser.Raw;
+    export type Raw = string | RemoteUser.Raw;
 }

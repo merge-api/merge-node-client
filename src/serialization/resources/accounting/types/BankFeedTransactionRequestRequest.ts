@@ -14,7 +14,7 @@ export const BankFeedTransactionRequestRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     bankFeedAccount: core.serialization.property(
         "bank_feed_account",
-        BankFeedTransactionRequestRequestBankFeedAccount.optional()
+        BankFeedTransactionRequestRequestBankFeedAccount.optional(),
     ),
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
     postedDate: core.serialization.property("posted_date", core.serialization.date().optional()),
@@ -24,21 +24,21 @@ export const BankFeedTransactionRequestRequest: core.serialization.ObjectSchema<
     payee: core.serialization.string().optional(),
     creditOrDebit: core.serialization.property(
         "credit_or_debit",
-        BankFeedTransactionRequestRequestCreditOrDebit.optional()
+        BankFeedTransactionRequestRequestCreditOrDebit.optional(),
     ),
     sourceTransactionId: core.serialization.property("source_transaction_id", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace BankFeedTransactionRequestRequest {
-    interface Raw {
+    export interface Raw {
         bank_feed_account?: BankFeedTransactionRequestRequestBankFeedAccount.Raw | null;
         transaction_date?: string | null;
         posted_date?: string | null;

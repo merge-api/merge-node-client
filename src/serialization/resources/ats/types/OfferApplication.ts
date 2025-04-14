@@ -15,5 +15,5 @@ export const OfferApplication: core.serialization.Schema<
 ]);
 
 export declare namespace OfferApplication {
-    type Raw = string | serializers.ats.Application.Raw;
+    export type Raw = string | serializers.ats.Application.Raw;
 }

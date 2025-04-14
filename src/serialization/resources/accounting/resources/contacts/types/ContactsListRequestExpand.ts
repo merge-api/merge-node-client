@@ -20,7 +20,7 @@ export const ContactsListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace ContactsListRequestExpand {
-    type Raw =
+    export type Raw =
         | "addresses"
         | "addresses,company"
         | "addresses,phone_numbers"

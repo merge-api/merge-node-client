@@ -28,7 +28,7 @@ export const EmployeesRetrieveRequestRemoteFields: core.serialization.Schema<
 ]);
 
 export declare namespace EmployeesRetrieveRequestRemoteFields {
-    type Raw =
+    export type Raw =
         | "employment_status"
         | "employment_status,ethnicity"
         | "employment_status,ethnicity,gender"

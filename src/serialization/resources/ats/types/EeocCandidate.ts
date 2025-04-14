@@ -13,5 +13,5 @@ export const EeocCandidate: core.serialization.Schema<serializers.ats.EeocCandid
     ]);
 
 export declare namespace EeocCandidate {
-    type Raw = string | serializers.ats.Candidate.Raw;
+    export type Raw = string | serializers.ats.Candidate.Raw;
 }

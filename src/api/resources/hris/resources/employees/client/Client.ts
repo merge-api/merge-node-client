@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Employees {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class Employees {
      * @example
      *     await client.hris.employees.list()
      */
-    public async list(
+    public list(
         request: Merge.hris.EmployeesListRequest = {},
-        requestOptions?: Employees.RequestOptions
-    ): Promise<Merge.hris.PaginatedEmployeeList> {
+        requestOptions?: Employees.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.PaginatedEmployeeList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.hris.EmployeesListRequest = {},
+        requestOptions?: Employees.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.PaginatedEmployeeList>> {
         const {
             companyId,
             createdAfter,
@@ -83,7 +92,7 @@ export class Employees {
             workEmail,
             workLocationId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
         }
@@ -105,7 +114,10 @@ export class Employees {
         }
 
         if (employmentStatus != null) {
-            _queryParams["employment_status"] = employmentStatus;
+            _queryParams["employment_status"] = serializers.hris.EmployeesListRequestEmploymentStatus.jsonOrThrow(
+                employmentStatus,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (employmentType != null) {
@@ -113,7 +125,9 @@ export class Employees {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.hris.EmployeesListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (firstName != null) {
@@ -177,7 +191,10 @@ export class Employees {
         }
 
         if (remoteFields != null) {
-            _queryParams["remote_fields"] = remoteFields;
+            _queryParams["remote_fields"] = serializers.hris.EmployeesListRequestRemoteFields.jsonOrThrow(
+                remoteFields,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (remoteId != null) {
@@ -185,7 +202,10 @@ export class Employees {
         }
 
         if (showEnumOrigins != null) {
-            _queryParams["show_enum_origins"] = showEnumOrigins;
+            _queryParams["show_enum_origins"] = serializers.hris.EmployeesListRequestShowEnumOrigins.jsonOrThrow(
+                showEnumOrigins,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (startedAfter != null) {
@@ -218,8 +238,10 @@ export class Employees {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/employees"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/employees",
             ),
             method: "GET",
             headers: {
@@ -230,8 +252,8 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -244,13 +266,16 @@ export class Employees {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.PaginatedEmployeeList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.PaginatedEmployeeList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -286,12 +311,19 @@ export class Employees {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.hris.EmployeeEndpointRequest,
-        requestOptions?: Employees.RequestOptions
-    ): Promise<Merge.hris.EmployeeResponse> {
+        requestOptions?: Employees.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.EmployeeResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.hris.EmployeeEndpointRequest,
+        requestOptions?: Employees.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.EmployeeResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -302,8 +334,10 @@ export class Employees {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/employees"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/employees",
             ),
             method: "POST",
             headers: {
@@ -314,8 +348,8 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -329,13 +363,16 @@ export class Employees {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.EmployeeResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.EmployeeResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -370,16 +407,26 @@ export class Employees {
      * @example
      *     await client.hris.employees.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.hris.EmployeesRetrieveRequest = {},
-        requestOptions?: Employees.RequestOptions
-    ): Promise<Merge.hris.Employee> {
+        requestOptions?: Employees.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.Employee> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.hris.EmployeesRetrieveRequest = {},
+        requestOptions?: Employees.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.Employee>> {
         const { expand, includeRemoteData, includeSensitiveFields, includeShellData, remoteFields, showEnumOrigins } =
             request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.hris.EmployeesRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -395,17 +442,25 @@ export class Employees {
         }
 
         if (remoteFields != null) {
-            _queryParams["remote_fields"] = remoteFields;
+            _queryParams["remote_fields"] = serializers.hris.EmployeesRetrieveRequestRemoteFields.jsonOrThrow(
+                remoteFields,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (showEnumOrigins != null) {
-            _queryParams["show_enum_origins"] = showEnumOrigins;
+            _queryParams["show_enum_origins"] = serializers.hris.EmployeesRetrieveRequestShowEnumOrigins.jsonOrThrow(
+                showEnumOrigins,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `hris/v1/employees/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `hris/v1/employees/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -416,8 +471,8 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -430,13 +485,16 @@ export class Employees {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.Employee.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.Employee.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -473,15 +531,25 @@ export class Employees {
      *         reason: "GENERAL_CUSTOMER_REQUEST"
      *     })
      */
-    public async ignoreCreate(
+    public ignoreCreate(
         modelId: string,
         request: Merge.hris.IgnoreCommonModelRequest,
-        requestOptions?: Employees.RequestOptions
-    ): Promise<void> {
+        requestOptions?: Employees.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__ignoreCreate(modelId, request, requestOptions));
+    }
+
+    private async __ignoreCreate(
+        modelId: string,
+        request: Merge.hris.IgnoreCommonModelRequest,
+        requestOptions?: Employees.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `hris/v1/employees/ignore/${encodeURIComponent(modelId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `hris/v1/employees/ignore/${encodeURIComponent(modelId)}`,
             ),
             method: "POST",
             headers: {
@@ -492,8 +560,8 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -506,7 +574,7 @@ export class Employees {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return;
+            return { data: undefined, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -524,7 +592,7 @@ export class Employees {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling POST /hris/v1/employees/ignore/{model_id}."
+                    "Timeout exceeded when calling POST /hris/v1/employees/ignore/{model_id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -541,11 +609,21 @@ export class Employees {
      * @example
      *     await client.hris.employees.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: Employees.RequestOptions): Promise<Merge.hris.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: Employees.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: Employees.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "hris/v1/employees/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/employees/meta/post",
             ),
             method: "GET",
             headers: {
@@ -556,8 +634,8 @@ export class Employees {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -569,13 +647,16 @@ export class Employees {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.hris.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.hris.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

@@ -12,14 +12,14 @@ export const PatchedEditFieldMappingRequest: core.serialization.Schema<
 > = core.serialization.object({
     remoteFieldTraversalPath: core.serialization.property(
         "remote_field_traversal_path",
-        core.serialization.list(core.serialization.unknown()).optional()
+        core.serialization.list(core.serialization.unknown()).optional(),
     ),
     remoteMethod: core.serialization.property("remote_method", core.serialization.string().optional()),
     remoteUrlPath: core.serialization.property("remote_url_path", core.serialization.string().optional()),
 });
 
 export declare namespace PatchedEditFieldMappingRequest {
-    interface Raw {
+    export interface Raw {
         remote_field_traversal_path?: unknown[] | null;
         remote_method?: string | null;
         remote_url_path?: string | null;

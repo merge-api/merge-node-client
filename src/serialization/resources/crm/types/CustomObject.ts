@@ -19,7 +19,7 @@ export const CustomObject: core.serialization.ObjectSchema<serializers.crm.Custo
     });
 
 export declare namespace CustomObject {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

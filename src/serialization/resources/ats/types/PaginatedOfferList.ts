@@ -16,7 +16,7 @@ export const PaginatedOfferList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedOfferList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: serializers.ats.Offer.Raw[] | null;

@@ -12,5 +12,5 @@ export const BenefitPlanTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["MEDICAL", "HEALTH_SAVINGS", "INSURANCE", "RETIREMENT", "OTHER"]);
 
 export declare namespace BenefitPlanTypeEnum {
-    type Raw = "MEDICAL" | "HEALTH_SAVINGS" | "INSURANCE" | "RETIREMENT" | "OTHER";
+    export type Raw = "MEDICAL" | "HEALTH_SAVINGS" | "INSURANCE" | "RETIREMENT" | "OTHER";
 }

@@ -15,7 +15,7 @@ export const PatchedCrmContactEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace PatchedCrmContactEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: PatchedContactRequest.Raw;
     }
 }

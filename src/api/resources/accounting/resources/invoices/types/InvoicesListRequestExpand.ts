@@ -4098,7 +4098,6 @@ export type InvoicesListRequestExpand =
     | "tracking_categories,purchase_orders,employee,accounting_period,payment_term"
     | "tracking_categories,purchase_orders,employee,payment_term"
     | "tracking_categories,purchase_orders,payment_term";
-
 export const InvoicesListRequestExpand = {
     AccountingPeriod: "accounting_period",
     AccountingPeriodPaymentTerm: "accounting_period,payment_term",

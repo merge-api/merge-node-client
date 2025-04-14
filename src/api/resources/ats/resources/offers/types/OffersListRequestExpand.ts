@@ -3,7 +3,6 @@
  */
 
 export type OffersListRequestExpand = "application" | "application,creator" | "creator";
-
 export const OffersListRequestExpand = {
     Application: "application",
     ApplicationCreator: "application,creator",

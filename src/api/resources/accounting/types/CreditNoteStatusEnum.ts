@@ -8,7 +8,6 @@
  * - `PAID` - PAID
  */
 export type CreditNoteStatusEnum = "SUBMITTED" | "AUTHORIZED" | "PAID";
-
 export const CreditNoteStatusEnum = {
     Submitted: "SUBMITTED",
     Authorized: "AUTHORIZED",

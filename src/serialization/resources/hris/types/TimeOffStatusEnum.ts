@@ -12,5 +12,5 @@ export const TimeOffStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["REQUESTED", "APPROVED", "DECLINED", "CANCELLED", "DELETED"]);
 
 export declare namespace TimeOffStatusEnum {
-    type Raw = "REQUESTED" | "APPROVED" | "DECLINED" | "CANCELLED" | "DELETED";
+    export type Raw = "REQUESTED" | "APPROVED" | "DECLINED" | "CANCELLED" | "DELETED";
 }

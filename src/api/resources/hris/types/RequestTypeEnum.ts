@@ -11,7 +11,6 @@
  * - `BEREAVEMENT` - BEREAVEMENT
  */
 export type RequestTypeEnum = "VACATION" | "SICK" | "PERSONAL" | "JURY_DUTY" | "VOLUNTEER" | "BEREAVEMENT";
-
 export const RequestTypeEnum = {
     Vacation: "VACATION",
     Sick: "SICK",

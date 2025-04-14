@@ -3,7 +3,6 @@
  */
 
 export type TimeOffListRequestExpand = "approver" | "employee" | "employee,approver";
-
 export const TimeOffListRequestExpand = {
     Approver: "approver",
     Employee: "employee",

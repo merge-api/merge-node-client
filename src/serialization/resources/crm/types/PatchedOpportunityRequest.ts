@@ -23,17 +23,17 @@ export const PatchedOpportunityRequest: core.serialization.ObjectSchema<
     closeDate: core.serialization.property("close_date", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace PatchedOpportunityRequest {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         description?: string | null;
         amount?: number | null;

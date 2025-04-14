@@ -12,5 +12,5 @@ export const TicketAccessEnum: core.serialization.Schema<
 > = core.serialization.enum_(["ALL", "ASSIGNED_ONLY", "TEAM_ONLY"]);
 
 export declare namespace TicketAccessEnum {
-    type Raw = "ALL" | "ASSIGNED_ONLY" | "TEAM_ONLY";
+    export type Raw = "ALL" | "ASSIGNED_ONLY" | "TEAM_ONLY";
 }

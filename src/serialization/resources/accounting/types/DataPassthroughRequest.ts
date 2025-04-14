@@ -19,7 +19,7 @@ export const DataPassthroughRequest: core.serialization.ObjectSchema<
     data: core.serialization.string().optional(),
     multipartFormData: core.serialization.property(
         "multipart_form_data",
-        core.serialization.list(MultipartFormFieldRequest).optional()
+        core.serialization.list(MultipartFormFieldRequest).optional(),
     ),
     headers: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     requestFormat: core.serialization.property("request_format", RequestFormatEnum.optional()),
@@ -27,7 +27,7 @@ export const DataPassthroughRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace DataPassthroughRequest {
-    interface Raw {
+    export interface Raw {
         method: MethodEnum.Raw;
         path: string;
         base_url_override?: string | null;

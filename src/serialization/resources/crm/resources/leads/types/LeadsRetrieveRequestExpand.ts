@@ -20,7 +20,7 @@ export const LeadsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace LeadsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "converted_account"
         | "converted_contact"
         | "converted_contact,converted_account"

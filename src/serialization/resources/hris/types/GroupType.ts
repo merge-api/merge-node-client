@@ -11,5 +11,5 @@ export const GroupType: core.serialization.Schema<serializers.hris.GroupType.Raw
     core.serialization.undiscriminatedUnion([GroupTypeEnum, core.serialization.string()]);
 
 export declare namespace GroupType {
-    type Raw = GroupTypeEnum.Raw | string;
+    export type Raw = GroupTypeEnum.Raw | string;
 }

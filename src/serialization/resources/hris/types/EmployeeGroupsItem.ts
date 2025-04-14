@@ -13,5 +13,5 @@ export const EmployeeGroupsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Group]);
 
 export declare namespace EmployeeGroupsItem {
-    type Raw = string | Group.Raw;
+    export type Raw = string | Group.Raw;
 }

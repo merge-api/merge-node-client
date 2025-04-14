@@ -23,7 +23,7 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ExternalTargetFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         Account?: ExternalTargetFieldApi.Raw[] | null;
         Contact?: ExternalTargetFieldApi.Raw[] | null;
         Lead?: ExternalTargetFieldApi.Raw[] | null;

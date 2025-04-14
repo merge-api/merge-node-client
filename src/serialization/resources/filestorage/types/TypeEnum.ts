@@ -10,5 +10,5 @@ export const TypeEnum: core.serialization.Schema<serializers.filestorage.TypeEnu
     core.serialization.enum_(["USER", "GROUP", "COMPANY", "ANYONE"]);
 
 export declare namespace TypeEnum {
-    type Raw = "USER" | "GROUP" | "COMPANY" | "ANYONE";
+    export type Raw = "USER" | "GROUP" | "COMPANY" | "ANYONE";
 }

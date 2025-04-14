@@ -22,7 +22,7 @@ export const EngagementType: core.serialization.ObjectSchema<
 });
 
 export declare namespace EngagementType {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

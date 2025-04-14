@@ -5,21 +5,23 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 import * as stream from "stream";
 
 export declare namespace Files {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -45,10 +47,17 @@ export class Files {
      * @example
      *     await client.filestorage.files.list()
      */
-    public async list(
+    public list(
         request: Merge.filestorage.FilesListRequest = {},
-        requestOptions?: Files.RequestOptions
-    ): Promise<Merge.filestorage.PaginatedFileList> {
+        requestOptions?: Files.RequestOptions,
+    ): core.HttpResponsePromise<Merge.filestorage.PaginatedFileList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.filestorage.FilesListRequest = {},
+        requestOptions?: Files.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.filestorage.PaginatedFileList>> {
         const {
             createdAfter,
             createdBefore,
@@ -66,7 +75,7 @@ export class Files {
             pageSize,
             remoteId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (createdAfter != null) {
             _queryParams["created_after"] = createdAfter.toISOString();
         }
@@ -84,7 +93,9 @@ export class Files {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.filestorage.FilesListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (folderId != null) {
@@ -129,8 +140,10 @@ export class Files {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "filestorage/v1/files"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "filestorage/v1/files",
             ),
             method: "GET",
             headers: {
@@ -141,8 +154,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -155,13 +168,16 @@ export class Files {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.filestorage.PaginatedFileList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.filestorage.PaginatedFileList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -197,12 +213,19 @@ export class Files {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.filestorage.FileStorageFileEndpointRequest,
-        requestOptions?: Files.RequestOptions
-    ): Promise<Merge.filestorage.FileStorageFileResponse> {
+        requestOptions?: Files.RequestOptions,
+    ): core.HttpResponsePromise<Merge.filestorage.FileStorageFileResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.filestorage.FileStorageFileEndpointRequest,
+        requestOptions?: Files.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.filestorage.FileStorageFileResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -213,8 +236,10 @@ export class Files {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "filestorage/v1/files"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "filestorage/v1/files",
             ),
             method: "POST",
             headers: {
@@ -225,8 +250,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -242,13 +267,16 @@ export class Files {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.filestorage.FileStorageFileResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.filestorage.FileStorageFileResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -283,15 +311,25 @@ export class Files {
      * @example
      *     await client.filestorage.files.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.filestorage.FilesRetrieveRequest = {},
-        requestOptions?: Files.RequestOptions
-    ): Promise<Merge.filestorage.File_> {
+        requestOptions?: Files.RequestOptions,
+    ): core.HttpResponsePromise<Merge.filestorage.File_> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.filestorage.FilesRetrieveRequest = {},
+        requestOptions?: Files.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.filestorage.File_>> {
         const { expand, includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.filestorage.FilesRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -304,8 +342,10 @@ export class Files {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `filestorage/v1/files/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `filestorage/v1/files/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -316,8 +356,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -330,13 +370,16 @@ export class Files {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.filestorage.File_.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.filestorage.File_.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -364,13 +407,21 @@ export class Files {
     /**
      * Returns the `File` content with the given `id` as a stream of bytes.
      */
-    public async downloadRetrieve(
+    public downloadRetrieve(
         id: string,
         request: Merge.filestorage.FilesDownloadRetrieveRequest = {},
-        requestOptions?: Files.RequestOptions
-    ): Promise<stream.Readable> {
+        requestOptions?: Files.RequestOptions,
+    ): core.HttpResponsePromise<stream.Readable> {
+        return core.HttpResponsePromise.fromPromise(this.__downloadRetrieve(id, request, requestOptions));
+    }
+
+    private async __downloadRetrieve(
+        id: string,
+        request: Merge.filestorage.FilesDownloadRetrieveRequest = {},
+        requestOptions?: Files.RequestOptions,
+    ): Promise<core.WithRawResponse<stream.Readable>> {
         const { includeShellData, mimeType } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (includeShellData != null) {
             _queryParams["include_shell_data"] = includeShellData.toString();
         }
@@ -381,8 +432,10 @@ export class Files {
 
         const _response = await (this._options.fetcher ?? core.fetcher)<stream.Readable>({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `filestorage/v1/files/${encodeURIComponent(id)}/download`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `filestorage/v1/files/${encodeURIComponent(id)}/download`,
             ),
             method: "GET",
             headers: {
@@ -393,8 +446,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -408,7 +461,7 @@ export class Files {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body;
+            return { data: _response.body, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -426,7 +479,7 @@ export class Files {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /filestorage/v1/files/{id}/download."
+                    "Timeout exceeded when calling GET /filestorage/v1/files/{id}/download.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -445,21 +498,31 @@ export class Files {
      * @example
      *     await client.filestorage.files.downloadRequestMetaRetrieve("id")
      */
-    public async downloadRequestMetaRetrieve(
+    public downloadRequestMetaRetrieve(
         id: string,
         request: Merge.filestorage.FilesDownloadRequestMetaRetrieveRequest = {},
-        requestOptions?: Files.RequestOptions
-    ): Promise<Merge.filestorage.DownloadRequestMeta> {
+        requestOptions?: Files.RequestOptions,
+    ): core.HttpResponsePromise<Merge.filestorage.DownloadRequestMeta> {
+        return core.HttpResponsePromise.fromPromise(this.__downloadRequestMetaRetrieve(id, request, requestOptions));
+    }
+
+    private async __downloadRequestMetaRetrieve(
+        id: string,
+        request: Merge.filestorage.FilesDownloadRequestMetaRetrieveRequest = {},
+        requestOptions?: Files.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.filestorage.DownloadRequestMeta>> {
         const { mimeType } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (mimeType != null) {
             _queryParams["mime_type"] = mimeType;
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `filestorage/v1/files/${encodeURIComponent(id)}/download/request-meta`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `filestorage/v1/files/${encodeURIComponent(id)}/download/request-meta`,
             ),
             method: "GET",
             headers: {
@@ -470,8 +533,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -484,13 +547,16 @@ export class Files {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.filestorage.DownloadRequestMeta.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.filestorage.DownloadRequestMeta.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -508,7 +574,7 @@ export class Files {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /filestorage/v1/files/{id}/download/request-meta."
+                    "Timeout exceeded when calling GET /filestorage/v1/files/{id}/download/request-meta.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -526,12 +592,19 @@ export class Files {
      * @example
      *     await client.filestorage.files.downloadRequestMetaList()
      */
-    public async downloadRequestMetaList(
+    public downloadRequestMetaList(
         request: Merge.filestorage.FilesDownloadRequestMetaListRequest = {},
-        requestOptions?: Files.RequestOptions
-    ): Promise<Merge.filestorage.PaginatedDownloadRequestMetaList> {
+        requestOptions?: Files.RequestOptions,
+    ): core.HttpResponsePromise<Merge.filestorage.PaginatedDownloadRequestMetaList> {
+        return core.HttpResponsePromise.fromPromise(this.__downloadRequestMetaList(request, requestOptions));
+    }
+
+    private async __downloadRequestMetaList(
+        request: Merge.filestorage.FilesDownloadRequestMetaListRequest = {},
+        requestOptions?: Files.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.filestorage.PaginatedDownloadRequestMetaList>> {
         const { cursor, includeDeletedData, mimeType, pageSize } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -550,8 +623,10 @@ export class Files {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "filestorage/v1/files/download/request-meta"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "filestorage/v1/files/download/request-meta",
             ),
             method: "GET",
             headers: {
@@ -562,8 +637,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -576,13 +651,16 @@ export class Files {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.filestorage.PaginatedDownloadRequestMetaList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.filestorage.PaginatedDownloadRequestMetaList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -600,7 +678,7 @@ export class Files {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /filestorage/v1/files/download/request-meta."
+                    "Timeout exceeded when calling GET /filestorage/v1/files/download/request-meta.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -617,11 +695,21 @@ export class Files {
      * @example
      *     await client.filestorage.files.metaPostRetrieve()
      */
-    public async metaPostRetrieve(requestOptions?: Files.RequestOptions): Promise<Merge.filestorage.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: Files.RequestOptions,
+    ): core.HttpResponsePromise<Merge.filestorage.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: Files.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.filestorage.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "filestorage/v1/files/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "filestorage/v1/files/meta/post",
             ),
             method: "GET",
             headers: {
@@ -632,8 +720,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -645,13 +733,16 @@ export class Files {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.filestorage.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.filestorage.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -669,7 +760,7 @@ export class Files {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /filestorage/v1/files/meta/post."
+                    "Timeout exceeded when calling GET /filestorage/v1/files/meta/post.",
                 );
             case "unknown":
                 throw new errors.MergeError({

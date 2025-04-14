@@ -44,7 +44,7 @@ export const ItemsListRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace ItemsListRequestExpand {
-    type Raw =
+    export type Raw =
         | "company"
         | "company,purchase_tax_rate"
         | "company,sales_tax_rate"

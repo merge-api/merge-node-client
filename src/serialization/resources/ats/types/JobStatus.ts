@@ -11,5 +11,5 @@ export const JobStatus: core.serialization.Schema<serializers.ats.JobStatus.Raw,
     core.serialization.undiscriminatedUnion([JobStatusEnum, core.serialization.string()]);
 
 export declare namespace JobStatus {
-    type Raw = JobStatusEnum.Raw | string;
+    export type Raw = JobStatusEnum.Raw | string;
 }

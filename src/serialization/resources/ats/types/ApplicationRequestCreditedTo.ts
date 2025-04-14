@@ -13,5 +13,5 @@ export const ApplicationRequestCreditedTo: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), RemoteUser]);
 
 export declare namespace ApplicationRequestCreditedTo {
-    type Raw = string | RemoteUser.Raw;
+    export type Raw = string | RemoteUser.Raw;
 }

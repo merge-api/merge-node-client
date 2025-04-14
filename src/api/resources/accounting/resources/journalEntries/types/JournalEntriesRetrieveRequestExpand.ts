@@ -66,7 +66,6 @@ export type JournalEntriesRetrieveRequestExpand =
     | "tracking_categories,accounting_period"
     | "tracking_categories,company"
     | "tracking_categories,company,accounting_period";
-
 export const JournalEntriesRetrieveRequestExpand = {
     AccountingPeriod: "accounting_period",
     AppliedPayments: "applied_payments",

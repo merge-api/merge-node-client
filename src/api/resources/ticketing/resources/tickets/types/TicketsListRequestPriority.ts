@@ -3,7 +3,6 @@
  */
 
 export type TicketsListRequestPriority = "HIGH" | "LOW" | "NORMAL" | "URGENT";
-
 export const TicketsListRequestPriority = {
     High: "HIGH",
     Low: "LOW",

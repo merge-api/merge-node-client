@@ -37,212 +37,171 @@ import { Users } from "../resources/users/client/Client";
 import { WebhookReceivers } from "../resources/webhookReceivers/client/Client";
 
 export declare namespace Crm {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
-
-    interface RequestOptions {
-        /** The maximum time to wait for a response in seconds. */
-        timeoutInSeconds?: number;
-        /** The number of times to retry the request. Defaults to 2. */
-        maxRetries?: number;
-        /** A hook to abort the request. */
-        abortSignal?: AbortSignal;
-        /** Override the X-Account-Token header */
-        accountToken?: string | undefined;
-        /** Additional headers to include in the request. */
-        headers?: Record<string, string>;
-    }
 }
 
 export class Crm {
-    constructor(protected readonly _options: Crm.Options) {}
-
     protected _accountDetails: AccountDetails | undefined;
+    protected _accountToken: AccountToken | undefined;
+    protected _accounts: Accounts | undefined;
+    protected _asyncPassthrough: AsyncPassthrough | undefined;
+    protected _auditTrail: AuditTrail | undefined;
+    protected _availableActions: AvailableActions | undefined;
+    protected _contacts: Contacts | undefined;
+    protected _customObjectClasses: CustomObjectClasses | undefined;
+    protected _associationTypes: AssociationTypes | undefined;
+    protected _customObjects: CustomObjects | undefined;
+    protected _associations: Associations | undefined;
+    protected _scopes: Scopes | undefined;
+    protected _deleteAccount: DeleteAccount | undefined;
+    protected _engagementTypes: EngagementTypes | undefined;
+    protected _engagements: Engagements | undefined;
+    protected _fieldMapping: FieldMapping | undefined;
+    protected _generateKey: GenerateKey | undefined;
+    protected _issues: Issues | undefined;
+    protected _leads: Leads | undefined;
+    protected _linkToken: LinkToken | undefined;
+    protected _linkedAccounts: LinkedAccounts | undefined;
+    protected _notes: Notes | undefined;
+    protected _opportunities: Opportunities | undefined;
+    protected _passthrough: Passthrough | undefined;
+    protected _regenerateKey: RegenerateKey | undefined;
+    protected _stages: Stages | undefined;
+    protected _syncStatus: SyncStatus | undefined;
+    protected _forceResync: ForceResync | undefined;
+    protected _tasks: Tasks | undefined;
+    protected _users: Users | undefined;
+    protected _webhookReceivers: WebhookReceivers | undefined;
+
+    constructor(protected readonly _options: Crm.Options) {}
 
     public get accountDetails(): AccountDetails {
         return (this._accountDetails ??= new AccountDetails(this._options));
     }
 
-    protected _accountToken: AccountToken | undefined;
-
     public get accountToken(): AccountToken {
         return (this._accountToken ??= new AccountToken(this._options));
     }
-
-    protected _accounts: Accounts | undefined;
 
     public get accounts(): Accounts {
         return (this._accounts ??= new Accounts(this._options));
     }
 
-    protected _asyncPassthrough: AsyncPassthrough | undefined;
-
     public get asyncPassthrough(): AsyncPassthrough {
         return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
     }
-
-    protected _auditTrail: AuditTrail | undefined;
 
     public get auditTrail(): AuditTrail {
         return (this._auditTrail ??= new AuditTrail(this._options));
     }
 
-    protected _availableActions: AvailableActions | undefined;
-
     public get availableActions(): AvailableActions {
         return (this._availableActions ??= new AvailableActions(this._options));
     }
-
-    protected _contacts: Contacts | undefined;
 
     public get contacts(): Contacts {
         return (this._contacts ??= new Contacts(this._options));
     }
 
-    protected _customObjectClasses: CustomObjectClasses | undefined;
-
     public get customObjectClasses(): CustomObjectClasses {
         return (this._customObjectClasses ??= new CustomObjectClasses(this._options));
     }
-
-    protected _associationTypes: AssociationTypes | undefined;
 
     public get associationTypes(): AssociationTypes {
         return (this._associationTypes ??= new AssociationTypes(this._options));
     }
 
-    protected _customObjects: CustomObjects | undefined;
-
     public get customObjects(): CustomObjects {
         return (this._customObjects ??= new CustomObjects(this._options));
     }
-
-    protected _associations: Associations | undefined;
 
     public get associations(): Associations {
         return (this._associations ??= new Associations(this._options));
     }
 
-    protected _scopes: Scopes | undefined;
-
     public get scopes(): Scopes {
         return (this._scopes ??= new Scopes(this._options));
     }
-
-    protected _deleteAccount: DeleteAccount | undefined;
 
     public get deleteAccount(): DeleteAccount {
         return (this._deleteAccount ??= new DeleteAccount(this._options));
     }
 
-    protected _engagementTypes: EngagementTypes | undefined;
-
     public get engagementTypes(): EngagementTypes {
         return (this._engagementTypes ??= new EngagementTypes(this._options));
     }
-
-    protected _engagements: Engagements | undefined;
 
     public get engagements(): Engagements {
         return (this._engagements ??= new Engagements(this._options));
     }
 
-    protected _fieldMapping: FieldMapping | undefined;
-
     public get fieldMapping(): FieldMapping {
         return (this._fieldMapping ??= new FieldMapping(this._options));
     }
-
-    protected _generateKey: GenerateKey | undefined;
 
     public get generateKey(): GenerateKey {
         return (this._generateKey ??= new GenerateKey(this._options));
     }
 
-    protected _issues: Issues | undefined;
-
     public get issues(): Issues {
         return (this._issues ??= new Issues(this._options));
     }
-
-    protected _leads: Leads | undefined;
 
     public get leads(): Leads {
         return (this._leads ??= new Leads(this._options));
     }
 
-    protected _linkToken: LinkToken | undefined;
-
     public get linkToken(): LinkToken {
         return (this._linkToken ??= new LinkToken(this._options));
     }
-
-    protected _linkedAccounts: LinkedAccounts | undefined;
 
     public get linkedAccounts(): LinkedAccounts {
         return (this._linkedAccounts ??= new LinkedAccounts(this._options));
     }
 
-    protected _notes: Notes | undefined;
-
     public get notes(): Notes {
         return (this._notes ??= new Notes(this._options));
     }
-
-    protected _opportunities: Opportunities | undefined;
 
     public get opportunities(): Opportunities {
         return (this._opportunities ??= new Opportunities(this._options));
     }
 
-    protected _passthrough: Passthrough | undefined;
-
     public get passthrough(): Passthrough {
         return (this._passthrough ??= new Passthrough(this._options));
     }
-
-    protected _regenerateKey: RegenerateKey | undefined;
 
     public get regenerateKey(): RegenerateKey {
         return (this._regenerateKey ??= new RegenerateKey(this._options));
     }
 
-    protected _stages: Stages | undefined;
-
     public get stages(): Stages {
         return (this._stages ??= new Stages(this._options));
     }
-
-    protected _syncStatus: SyncStatus | undefined;
 
     public get syncStatus(): SyncStatus {
         return (this._syncStatus ??= new SyncStatus(this._options));
     }
 
-    protected _forceResync: ForceResync | undefined;
-
     public get forceResync(): ForceResync {
         return (this._forceResync ??= new ForceResync(this._options));
     }
-
-    protected _tasks: Tasks | undefined;
 
     public get tasks(): Tasks {
         return (this._tasks ??= new Tasks(this._options));
     }
 
-    protected _users: Users | undefined;
-
     public get users(): Users {
         return (this._users ??= new Users(this._options));
     }
-
-    protected _webhookReceivers: WebhookReceivers | undefined;
 
     public get webhookReceivers(): WebhookReceivers {
         return (this._webhookReceivers ??= new WebhookReceivers(this._options));

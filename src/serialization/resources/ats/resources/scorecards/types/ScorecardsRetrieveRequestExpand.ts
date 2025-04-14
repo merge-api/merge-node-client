@@ -20,7 +20,7 @@ export const ScorecardsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace ScorecardsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "application"
         | "application,interview"
         | "application,interview,interviewer"

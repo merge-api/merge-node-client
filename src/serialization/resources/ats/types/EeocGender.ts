@@ -11,5 +11,5 @@ export const EeocGender: core.serialization.Schema<serializers.ats.EeocGender.Ra
     core.serialization.undiscriminatedUnion([GenderEnum, core.serialization.string()]);
 
 export declare namespace EeocGender {
-    type Raw = GenderEnum.Raw | string;
+    export type Raw = GenderEnum.Raw | string;
 }

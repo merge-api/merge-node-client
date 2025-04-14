@@ -24,31 +24,31 @@ export const LeadRequest: core.serialization.ObjectSchema<serializers.crm.LeadRe
         addresses: core.serialization.list(AddressRequest).optional(),
         emailAddresses: core.serialization.property(
             "email_addresses",
-            core.serialization.list(EmailAddressRequest).optional()
+            core.serialization.list(EmailAddressRequest).optional(),
         ),
         phoneNumbers: core.serialization.property(
             "phone_numbers",
-            core.serialization.list(PhoneNumberRequest).optional()
+            core.serialization.list(PhoneNumberRequest).optional(),
         ),
         convertedDate: core.serialization.property("converted_date", core.serialization.date().optional()),
         convertedContact: core.serialization.property("converted_contact", LeadRequestConvertedContact.optional()),
         convertedAccount: core.serialization.property("converted_account", LeadRequestConvertedAccount.optional()),
         integrationParams: core.serialization.property(
             "integration_params",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         linkedAccountParams: core.serialization.property(
             "linked_account_params",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteFields: core.serialization.property(
             "remote_fields",
-            core.serialization.list(RemoteFieldRequest).optional()
+            core.serialization.list(RemoteFieldRequest).optional(),
         ),
     });
 
 export declare namespace LeadRequest {
-    interface Raw {
+    export interface Raw {
         owner?: LeadRequestOwner.Raw | null;
         lead_source?: string | null;
         title?: string | null;

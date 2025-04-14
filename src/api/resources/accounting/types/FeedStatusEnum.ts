@@ -7,7 +7,6 @@
  * - `INACTIVE` - INACTIVE
  */
 export type FeedStatusEnum = "ACTIVE" | "INACTIVE";
-
 export const FeedStatusEnum = {
     Active: "ACTIVE",
     Inactive: "INACTIVE",

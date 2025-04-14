@@ -25,7 +25,7 @@ export const TicketRequest: core.serialization.ObjectSchema<
     assignees: core.serialization.list(TicketRequestAssigneesItem.optional()).optional(),
     assignedTeams: core.serialization.property(
         "assigned_teams",
-        core.serialization.list(TicketRequestAssignedTeamsItem.optional()).optional()
+        core.serialization.list(TicketRequestAssignedTeamsItem.optional()).optional(),
     ),
     creator: TicketRequestCreator.optional(),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
@@ -44,17 +44,17 @@ export const TicketRequest: core.serialization.ObjectSchema<
     priority: TicketRequestPriority.optional(),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteFieldRequest).optional()),
 });
 
 export declare namespace TicketRequest {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         assignees?: (TicketRequestAssigneesItem.Raw | null | undefined)[] | null;
         assigned_teams?: (TicketRequestAssignedTeamsItem.Raw | null | undefined)[] | null;

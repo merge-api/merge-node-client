@@ -17,7 +17,7 @@ export const PaginatedScorecardList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedScorecardList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Scorecard.Raw[] | null;

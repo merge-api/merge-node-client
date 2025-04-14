@@ -18,7 +18,6 @@ export type EmployeesRetrieveRequestRemoteFields =
     | "gender"
     | "gender,marital_status"
     | "marital_status";
-
 export const EmployeesRetrieveRequestRemoteFields = {
     EmploymentStatus: "employment_status",
     EmploymentStatusEthnicity: "employment_status,ethnicity",

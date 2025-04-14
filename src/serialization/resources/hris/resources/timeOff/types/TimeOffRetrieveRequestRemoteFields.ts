@@ -20,7 +20,7 @@ export const TimeOffRetrieveRequestRemoteFields: core.serialization.Schema<
 ]);
 
 export declare namespace TimeOffRetrieveRequestRemoteFields {
-    type Raw =
+    export type Raw =
         | "request_type"
         | "request_type,status"
         | "request_type,status,units"

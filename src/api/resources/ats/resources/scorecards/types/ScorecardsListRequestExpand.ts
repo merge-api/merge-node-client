@@ -10,7 +10,6 @@ export type ScorecardsListRequestExpand =
     | "interview"
     | "interview,interviewer"
     | "interviewer";
-
 export const ScorecardsListRequestExpand = {
     Application: "application",
     ApplicationInterview: "application,interview",

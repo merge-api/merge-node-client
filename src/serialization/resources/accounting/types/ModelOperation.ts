@@ -13,20 +13,20 @@ export const ModelOperation: core.serialization.ObjectSchema<
     modelName: core.serialization.property("model_name", core.serialization.string()),
     availableOperations: core.serialization.property(
         "available_operations",
-        core.serialization.list(core.serialization.string())
+        core.serialization.list(core.serialization.string()),
     ),
     requiredPostParameters: core.serialization.property(
         "required_post_parameters",
-        core.serialization.list(core.serialization.string())
+        core.serialization.list(core.serialization.string()),
     ),
     supportedFields: core.serialization.property(
         "supported_fields",
-        core.serialization.list(core.serialization.string())
+        core.serialization.list(core.serialization.string()),
     ),
 });
 
 export declare namespace ModelOperation {
-    interface Raw {
+    export interface Raw {
         model_name: string;
         available_operations: string[];
         required_post_parameters: string[];

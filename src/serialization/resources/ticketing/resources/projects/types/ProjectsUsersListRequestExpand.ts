@@ -12,5 +12,5 @@ export const ProjectsUsersListRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["roles", "teams", "teams,roles"]);
 
 export declare namespace ProjectsUsersListRequestExpand {
-    type Raw = "roles" | "teams" | "teams,roles";
+    export type Raw = "roles" | "teams" | "teams,roles";
 }

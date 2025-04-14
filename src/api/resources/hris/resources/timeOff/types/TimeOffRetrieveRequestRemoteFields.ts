@@ -10,7 +10,6 @@ export type TimeOffRetrieveRequestRemoteFields =
     | "status"
     | "status,units"
     | "units";
-
 export const TimeOffRetrieveRequestRemoteFields = {
     RequestType: "request_type",
     RequestTypeStatus: "request_type,status",

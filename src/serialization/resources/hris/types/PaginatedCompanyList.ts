@@ -17,7 +17,7 @@ export const PaginatedCompanyList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedCompanyList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Company.Raw[] | null;

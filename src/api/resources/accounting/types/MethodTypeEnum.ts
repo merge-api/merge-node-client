@@ -10,7 +10,6 @@
  * - `CHECK` - CHECK
  */
 export type MethodTypeEnum = "CREDIT_CARD" | "DEBIT_CARD" | "ACH" | "CASH" | "CHECK";
-
 export const MethodTypeEnum = {
     CreditCard: "CREDIT_CARD",
     DebitCard: "DEBIT_CARD",

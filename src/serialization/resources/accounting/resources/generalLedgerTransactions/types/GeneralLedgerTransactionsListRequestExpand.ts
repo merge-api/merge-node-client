@@ -28,7 +28,7 @@ export const GeneralLedgerTransactionsListRequestExpand: core.serialization.Sche
 ]);
 
 export declare namespace GeneralLedgerTransactionsListRequestExpand {
-    type Raw =
+    export type Raw =
         | "accounting_period"
         | "company"
         | "company,accounting_period"

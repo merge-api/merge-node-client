@@ -19,7 +19,7 @@ export const Viewer: core.serialization.ObjectSchema<serializers.ticketing.Viewe
     });
 
 export declare namespace Viewer {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

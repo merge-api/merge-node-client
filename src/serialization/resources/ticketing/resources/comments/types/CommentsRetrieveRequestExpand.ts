@@ -20,7 +20,7 @@ export const CommentsRetrieveRequestExpand: core.serialization.Schema<
 ]);
 
 export declare namespace CommentsRetrieveRequestExpand {
-    type Raw =
+    export type Raw =
         | "contact"
         | "contact,ticket"
         | "ticket"

@@ -10,15 +10,17 @@ import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace FieldMapping {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,20 +46,29 @@ export class FieldMapping {
      * @example
      *     await client.ats.fieldMapping.fieldMappingsRetrieve()
      */
-    public async fieldMappingsRetrieve(
+    public fieldMappingsRetrieve(
         request: Merge.ats.FieldMappingsRetrieveRequest = {},
-        requestOptions?: FieldMapping.RequestOptions
-    ): Promise<Merge.ats.FieldMappingApiInstanceResponse> {
+        requestOptions?: FieldMapping.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.FieldMappingApiInstanceResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__fieldMappingsRetrieve(request, requestOptions));
+    }
+
+    private async __fieldMappingsRetrieve(
+        request: Merge.ats.FieldMappingsRetrieveRequest = {},
+        requestOptions?: FieldMapping.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.FieldMappingApiInstanceResponse>> {
         const { excludeRemoteFieldMetadata } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (excludeRemoteFieldMetadata != null) {
             _queryParams["exclude_remote_field_metadata"] = excludeRemoteFieldMetadata.toString();
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/field-mappings"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/field-mappings",
             ),
             method: "GET",
             headers: {
@@ -68,8 +79,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -82,13 +93,16 @@ export class FieldMapping {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.FieldMappingApiInstanceResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.FieldMappingApiInstanceResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -129,20 +143,29 @@ export class FieldMapping {
      *         commonModelName: "ExampleCommonModel"
      *     })
      */
-    public async fieldMappingsCreate(
+    public fieldMappingsCreate(
         request: Merge.ats.CreateFieldMappingRequest,
-        requestOptions?: FieldMapping.RequestOptions
-    ): Promise<Merge.ats.FieldMappingInstanceResponse> {
+        requestOptions?: FieldMapping.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.FieldMappingInstanceResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__fieldMappingsCreate(request, requestOptions));
+    }
+
+    private async __fieldMappingsCreate(
+        request: Merge.ats.CreateFieldMappingRequest,
+        requestOptions?: FieldMapping.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.FieldMappingInstanceResponse>> {
         const { excludeRemoteFieldMetadata, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (excludeRemoteFieldMetadata != null) {
             _queryParams["exclude_remote_field_metadata"] = excludeRemoteFieldMetadata.toString();
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/field-mappings"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/field-mappings",
             ),
             method: "POST",
             headers: {
@@ -153,8 +176,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -168,13 +191,16 @@ export class FieldMapping {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -208,14 +234,23 @@ export class FieldMapping {
      * @example
      *     await client.ats.fieldMapping.fieldMappingsDestroy("field_mapping_id")
      */
-    public async fieldMappingsDestroy(
+    public fieldMappingsDestroy(
         fieldMappingId: string,
-        requestOptions?: FieldMapping.RequestOptions
-    ): Promise<Merge.ats.FieldMappingInstanceResponse> {
+        requestOptions?: FieldMapping.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.FieldMappingInstanceResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__fieldMappingsDestroy(fieldMappingId, requestOptions));
+    }
+
+    private async __fieldMappingsDestroy(
+        fieldMappingId: string,
+        requestOptions?: FieldMapping.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.FieldMappingInstanceResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/field-mappings/${encodeURIComponent(fieldMappingId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ats/v1/field-mappings/${encodeURIComponent(fieldMappingId)}`,
             ),
             method: "DELETE",
             headers: {
@@ -226,8 +261,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -239,13 +274,16 @@ export class FieldMapping {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -263,7 +301,7 @@ export class FieldMapping {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling DELETE /ats/v1/field-mappings/{field_mapping_id}."
+                    "Timeout exceeded when calling DELETE /ats/v1/field-mappings/{field_mapping_id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -282,15 +320,27 @@ export class FieldMapping {
      * @example
      *     await client.ats.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id")
      */
-    public async fieldMappingsPartialUpdate(
+    public fieldMappingsPartialUpdate(
         fieldMappingId: string,
         request: Merge.ats.PatchedEditFieldMappingRequest = {},
-        requestOptions?: FieldMapping.RequestOptions
-    ): Promise<Merge.ats.FieldMappingInstanceResponse> {
+        requestOptions?: FieldMapping.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.FieldMappingInstanceResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__fieldMappingsPartialUpdate(fieldMappingId, request, requestOptions),
+        );
+    }
+
+    private async __fieldMappingsPartialUpdate(
+        fieldMappingId: string,
+        request: Merge.ats.PatchedEditFieldMappingRequest = {},
+        requestOptions?: FieldMapping.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.FieldMappingInstanceResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/field-mappings/${encodeURIComponent(fieldMappingId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ats/v1/field-mappings/${encodeURIComponent(fieldMappingId)}`,
             ),
             method: "PATCH",
             headers: {
@@ -301,8 +351,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -317,13 +367,16 @@ export class FieldMapping {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.FieldMappingInstanceResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -341,7 +394,7 @@ export class FieldMapping {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling PATCH /ats/v1/field-mappings/{field_mapping_id}."
+                    "Timeout exceeded when calling PATCH /ats/v1/field-mappings/{field_mapping_id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -359,12 +412,19 @@ export class FieldMapping {
      * @example
      *     await client.ats.fieldMapping.remoteFieldsRetrieve()
      */
-    public async remoteFieldsRetrieve(
+    public remoteFieldsRetrieve(
         request: Merge.ats.RemoteFieldsRetrieveRequest = {},
-        requestOptions?: FieldMapping.RequestOptions
-    ): Promise<Merge.ats.RemoteFieldApiResponse> {
+        requestOptions?: FieldMapping.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.RemoteFieldApiResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldsRetrieve(request, requestOptions));
+    }
+
+    private async __remoteFieldsRetrieve(
+        request: Merge.ats.RemoteFieldsRetrieveRequest = {},
+        requestOptions?: FieldMapping.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.RemoteFieldApiResponse>> {
         const { commonModels, includeExampleValues } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (commonModels != null) {
             _queryParams["common_models"] = commonModels;
         }
@@ -375,8 +435,10 @@ export class FieldMapping {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/remote-fields"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/remote-fields",
             ),
             method: "GET",
             headers: {
@@ -387,8 +449,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -401,13 +463,16 @@ export class FieldMapping {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.RemoteFieldApiResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.RemoteFieldApiResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -440,13 +505,21 @@ export class FieldMapping {
      * @example
      *     await client.ats.fieldMapping.targetFieldsRetrieve()
      */
-    public async targetFieldsRetrieve(
-        requestOptions?: FieldMapping.RequestOptions
-    ): Promise<Merge.ats.ExternalTargetFieldApiResponse> {
+    public targetFieldsRetrieve(
+        requestOptions?: FieldMapping.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.ExternalTargetFieldApiResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__targetFieldsRetrieve(requestOptions));
+    }
+
+    private async __targetFieldsRetrieve(
+        requestOptions?: FieldMapping.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.ExternalTargetFieldApiResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/target-fields"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/target-fields",
             ),
             method: "GET",
             headers: {
@@ -457,8 +530,8 @@ export class FieldMapping {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -470,13 +543,16 @@ export class FieldMapping {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.ExternalTargetFieldApiResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.ExternalTargetFieldApiResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

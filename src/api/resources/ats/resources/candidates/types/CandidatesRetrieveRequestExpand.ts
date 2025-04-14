@@ -3,7 +3,6 @@
  */
 
 export type CandidatesRetrieveRequestExpand = "applications" | "applications,attachments" | "attachments";
-
 export const CandidatesRetrieveRequestExpand = {
     Applications: "applications",
     ApplicationsAttachments: "applications,attachments",

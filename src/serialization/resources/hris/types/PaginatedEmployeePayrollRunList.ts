@@ -17,7 +17,7 @@ export const PaginatedEmployeePayrollRunList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedEmployeePayrollRunList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: EmployeePayrollRun.Raw[] | null;

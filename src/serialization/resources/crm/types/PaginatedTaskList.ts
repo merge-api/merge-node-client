@@ -17,7 +17,7 @@ export const PaginatedTaskList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedTaskList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Task.Raw[] | null;

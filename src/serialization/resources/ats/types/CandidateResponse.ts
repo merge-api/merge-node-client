@@ -20,7 +20,7 @@ export const CandidateResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CandidateResponse {
-    interface Raw {
+    export interface Raw {
         model: serializers.ats.Candidate.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

@@ -11,5 +11,5 @@ export const JobOfficesItem: core.serialization.Schema<serializers.ats.JobOffice
     core.serialization.undiscriminatedUnion([core.serialization.string(), Office]);
 
 export declare namespace JobOfficesItem {
-    type Raw = string | Office.Raw;
+    export type Raw = string | Office.Raw;
 }

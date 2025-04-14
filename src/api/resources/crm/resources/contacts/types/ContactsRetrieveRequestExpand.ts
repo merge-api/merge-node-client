@@ -3,7 +3,6 @@
  */
 
 export type ContactsRetrieveRequestExpand = "account" | "account,owner" | "owner";
-
 export const ContactsRetrieveRequestExpand = {
     Account: "account",
     AccountOwner: "account,owner",

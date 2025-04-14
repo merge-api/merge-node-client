@@ -9,7 +9,6 @@
  * - `FAILURE` - FAILURE
  */
 export type AsyncPostTaskStatusEnum = "QUEUED" | "IN_PROGRESS" | "COMPLETED" | "FAILURE";
-
 export const AsyncPostTaskStatusEnum = {
     Queued: "QUEUED",
     InProgress: "IN_PROGRESS",

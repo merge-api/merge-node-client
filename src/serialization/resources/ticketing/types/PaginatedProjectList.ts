@@ -17,7 +17,7 @@ export const PaginatedProjectList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedProjectList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Project.Raw[] | null;

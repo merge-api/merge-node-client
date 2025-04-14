@@ -15,5 +15,5 @@ export const TicketAttachmentsItem: core.serialization.Schema<
 ]);
 
 export declare namespace TicketAttachmentsItem {
-    type Raw = string | serializers.ticketing.Attachment.Raw;
+    export type Raw = string | serializers.ticketing.Attachment.Raw;
 }

@@ -7,7 +7,6 @@
  * - `CREDIT_CARD` - CREDIT_CARD
  */
 export type BankFeedAccountAccountTypeEnum = "BANK" | "CREDIT_CARD";
-
 export const BankFeedAccountAccountTypeEnum = {
     Bank: "BANK",
     CreditCard: "CREDIT_CARD",

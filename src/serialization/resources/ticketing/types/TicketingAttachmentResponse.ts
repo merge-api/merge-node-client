@@ -20,7 +20,7 @@ export const TicketingAttachmentResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace TicketingAttachmentResponse {
-    interface Raw {
+    export interface Raw {
         model: serializers.ticketing.Attachment.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

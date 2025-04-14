@@ -22,7 +22,7 @@ export const OfferStatusEnum: core.serialization.Schema<
 ]);
 
 export declare namespace OfferStatusEnum {
-    type Raw =
+    export type Raw =
         | "DRAFT"
         | "APPROVAL-SENT"
         | "APPROVED"

@@ -11,5 +11,5 @@ export const ViewerUser: core.serialization.Schema<serializers.ticketing.ViewerU
     core.serialization.undiscriminatedUnion([core.serialization.string(), User]);
 
 export declare namespace ViewerUser {
-    type Raw = string | User.Raw;
+    export type Raw = string | User.Raw;
 }

@@ -258,7 +258,6 @@ export type ApplicationsListRequestExpand =
     | "screening_question_answers.question,job,current_stage,reject_reason"
     | "screening_question_answers.question,job,reject_reason"
     | "screening_question_answers.question,reject_reason";
-
 export const ApplicationsListRequestExpand = {
     Candidate: "candidate",
     CandidateCreditedTo: "candidate,credited_to",

@@ -5,20 +5,22 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace PurchaseOrders {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -44,10 +46,17 @@ export class PurchaseOrders {
      * @example
      *     await client.accounting.purchaseOrders.list()
      */
-    public async list(
+    public list(
         request: Merge.accounting.PurchaseOrdersListRequest = {},
-        requestOptions?: PurchaseOrders.RequestOptions
-    ): Promise<Merge.accounting.PaginatedPurchaseOrderList> {
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedPurchaseOrderList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.PurchaseOrdersListRequest = {},
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedPurchaseOrderList>> {
         const {
             companyId,
             createdAfter,
@@ -67,7 +76,7 @@ export class PurchaseOrders {
             remoteId,
             showEnumOrigins,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
         }
@@ -85,7 +94,9 @@ export class PurchaseOrders {
         }
 
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.accounting.PurchaseOrdersListRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeDeletedData != null) {
@@ -138,8 +149,10 @@ export class PurchaseOrders {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/purchase-orders"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/purchase-orders",
             ),
             method: "GET",
             headers: {
@@ -150,8 +163,8 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -164,13 +177,16 @@ export class PurchaseOrders {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedPurchaseOrderList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedPurchaseOrderList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -206,12 +222,19 @@ export class PurchaseOrders {
      *         model: {}
      *     })
      */
-    public async create(
+    public create(
         request: Merge.accounting.PurchaseOrderEndpointRequest,
-        requestOptions?: PurchaseOrders.RequestOptions
-    ): Promise<Merge.accounting.PurchaseOrderResponse> {
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PurchaseOrderResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.accounting.PurchaseOrderEndpointRequest,
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PurchaseOrderResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (isDebugMode != null) {
             _queryParams["is_debug_mode"] = isDebugMode.toString();
         }
@@ -222,8 +245,10 @@ export class PurchaseOrders {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/purchase-orders"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/purchase-orders",
             ),
             method: "POST",
             headers: {
@@ -234,8 +259,8 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -251,13 +276,16 @@ export class PurchaseOrders {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PurchaseOrderResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PurchaseOrderResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -275,7 +303,7 @@ export class PurchaseOrders {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling POST /accounting/v1/purchase-orders."
+                    "Timeout exceeded when calling POST /accounting/v1/purchase-orders.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -294,16 +322,26 @@ export class PurchaseOrders {
      * @example
      *     await client.accounting.purchaseOrders.retrieve("id")
      */
-    public async retrieve(
+    public retrieve(
         id: string,
         request: Merge.accounting.PurchaseOrdersRetrieveRequest = {},
-        requestOptions?: PurchaseOrders.RequestOptions
-    ): Promise<Merge.accounting.PurchaseOrder> {
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PurchaseOrder> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(id, request, requestOptions));
+    }
+
+    private async __retrieve(
+        id: string,
+        request: Merge.accounting.PurchaseOrdersRetrieveRequest = {},
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PurchaseOrder>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData, remoteFields, showEnumOrigins } =
             request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (expand != null) {
-            _queryParams["expand"] = expand;
+            _queryParams["expand"] = serializers.accounting.PurchaseOrdersRetrieveRequestExpand.jsonOrThrow(expand, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
         if (includeRemoteData != null) {
@@ -328,8 +366,10 @@ export class PurchaseOrders {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `accounting/v1/purchase-orders/${encodeURIComponent(id)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/purchase-orders/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -340,8 +380,8 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -354,13 +394,16 @@ export class PurchaseOrders {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PurchaseOrder.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PurchaseOrder.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -378,7 +421,7 @@ export class PurchaseOrders {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/{id}."
+                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/{id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -396,13 +439,20 @@ export class PurchaseOrders {
      * @example
      *     await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList()
      */
-    public async lineItemsRemoteFieldClassesList(
+    public lineItemsRemoteFieldClassesList(
         request: Merge.accounting.PurchaseOrdersLineItemsRemoteFieldClassesListRequest = {},
-        requestOptions?: PurchaseOrders.RequestOptions
-    ): Promise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__lineItemsRemoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __lineItemsRemoteFieldClassesList(
+        request: Merge.accounting.PurchaseOrdersLineItemsRemoteFieldClassesListRequest = {},
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
         const { cursor, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -429,8 +479,10 @@ export class PurchaseOrders {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/purchase-orders/line-items/remote-field-classes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/purchase-orders/line-items/remote-field-classes",
             ),
             method: "GET",
             headers: {
@@ -441,8 +493,8 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -455,13 +507,16 @@ export class PurchaseOrders {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -479,7 +534,7 @@ export class PurchaseOrders {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/line-items/remote-field-classes."
+                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/line-items/remote-field-classes.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -496,13 +551,21 @@ export class PurchaseOrders {
      * @example
      *     await client.accounting.purchaseOrders.metaPostRetrieve()
      */
-    public async metaPostRetrieve(
-        requestOptions?: PurchaseOrders.RequestOptions
-    ): Promise<Merge.accounting.MetaResponse> {
+    public metaPostRetrieve(
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+    }
+
+    private async __metaPostRetrieve(
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/purchase-orders/meta/post"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/purchase-orders/meta/post",
             ),
             method: "GET",
             headers: {
@@ -513,8 +576,8 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -526,13 +589,16 @@ export class PurchaseOrders {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -550,7 +616,7 @@ export class PurchaseOrders {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/meta/post."
+                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/meta/post.",
                 );
             case "unknown":
                 throw new errors.MergeError({
@@ -568,13 +634,20 @@ export class PurchaseOrders {
      * @example
      *     await client.accounting.purchaseOrders.remoteFieldClassesList()
      */
-    public async remoteFieldClassesList(
+    public remoteFieldClassesList(
         request: Merge.accounting.PurchaseOrdersRemoteFieldClassesListRequest = {},
-        requestOptions?: PurchaseOrders.RequestOptions
-    ): Promise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __remoteFieldClassesList(
+        request: Merge.accounting.PurchaseOrdersRemoteFieldClassesListRequest = {},
+        requestOptions?: PurchaseOrders.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
         const { cursor, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
             request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -601,8 +674,10 @@ export class PurchaseOrders {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "accounting/v1/purchase-orders/remote-field-classes"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/purchase-orders/remote-field-classes",
             ),
             method: "GET",
             headers: {
@@ -613,8 +688,8 @@ export class PurchaseOrders {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -627,13 +702,16 @@ export class PurchaseOrders {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -651,7 +729,7 @@ export class PurchaseOrders {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/remote-field-classes."
+                    "Timeout exceeded when calling GET /accounting/v1/purchase-orders/remote-field-classes.",
                 );
             case "unknown":
                 throw new errors.MergeError({

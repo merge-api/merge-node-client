@@ -21,7 +21,7 @@ export const ScreeningQuestionTypeEnum: core.serialization.Schema<
 ]);
 
 export declare namespace ScreeningQuestionTypeEnum {
-    type Raw =
+    export type Raw =
         | "DATE"
         | "FILE"
         | "SINGLE_SELECT"

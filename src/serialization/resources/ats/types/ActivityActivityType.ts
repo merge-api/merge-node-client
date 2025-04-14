@@ -13,5 +13,5 @@ export const ActivityActivityType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([ActivityTypeEnum, core.serialization.string()]);
 
 export declare namespace ActivityActivityType {
-    type Raw = ActivityTypeEnum.Raw | string;
+    export type Raw = ActivityTypeEnum.Raw | string;
 }

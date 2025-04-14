@@ -11,5 +11,5 @@ export const ActivityUser: core.serialization.Schema<serializers.ats.ActivityUse
     core.serialization.undiscriminatedUnion([core.serialization.string(), RemoteUser]);
 
 export declare namespace ActivityUser {
-    type Raw = string | RemoteUser.Raw;
+    export type Raw = string | RemoteUser.Raw;
 }

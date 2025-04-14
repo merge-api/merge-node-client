@@ -14,7 +14,7 @@ export const CreateFieldMappingRequest: core.serialization.Schema<
     targetFieldDescription: core.serialization.property("target_field_description", core.serialization.string()),
     remoteFieldTraversalPath: core.serialization.property(
         "remote_field_traversal_path",
-        core.serialization.list(core.serialization.unknown())
+        core.serialization.list(core.serialization.unknown()),
     ),
     remoteMethod: core.serialization.property("remote_method", core.serialization.string()),
     remoteUrlPath: core.serialization.property("remote_url_path", core.serialization.string()),
@@ -22,7 +22,7 @@ export const CreateFieldMappingRequest: core.serialization.Schema<
 });
 
 export declare namespace CreateFieldMappingRequest {
-    interface Raw {
+    export interface Raw {
         target_field_name: string;
         target_field_description: string;
         remote_field_traversal_path: unknown[];

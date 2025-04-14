@@ -13,5 +13,5 @@ export const ContactAddressesItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Address]);
 
 export declare namespace ContactAddressesItem {
-    type Raw = string | Address.Raw;
+    export type Raw = string | Address.Raw;
 }

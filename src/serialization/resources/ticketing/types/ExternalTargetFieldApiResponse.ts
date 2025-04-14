@@ -25,7 +25,7 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ExternalTargetFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         Ticket?: ExternalTargetFieldApi.Raw[] | null;
         Comment?: ExternalTargetFieldApi.Raw[] | null;
         Project?: ExternalTargetFieldApi.Raw[] | null;

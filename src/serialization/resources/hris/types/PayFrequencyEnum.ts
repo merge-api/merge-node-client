@@ -22,7 +22,7 @@ export const PayFrequencyEnum: core.serialization.Schema<
 ]);
 
 export declare namespace PayFrequencyEnum {
-    type Raw =
+    export type Raw =
         | "WEEKLY"
         | "BIWEEKLY"
         | "MONTHLY"

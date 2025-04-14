@@ -13,5 +13,5 @@ export const CandidateAttachmentsItem: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Attachment]);
 
 export declare namespace CandidateAttachmentsItem {
-    type Raw = string | Attachment.Raw;
+    export type Raw = string | Attachment.Raw;
 }

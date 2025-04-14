@@ -11,5 +11,5 @@ export const OfferCreator: core.serialization.Schema<serializers.ats.OfferCreato
     core.serialization.undiscriminatedUnion([core.serialization.string(), RemoteUser]);
 
 export declare namespace OfferCreator {
-    type Raw = string | RemoteUser.Raw;
+    export type Raw = string | RemoteUser.Raw;
 }

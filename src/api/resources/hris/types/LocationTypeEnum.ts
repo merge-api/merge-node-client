@@ -7,7 +7,6 @@
  * - `WORK` - WORK
  */
 export type LocationTypeEnum = "HOME" | "WORK";
-
 export const LocationTypeEnum = {
     Home: "HOME",
     Work: "WORK",

@@ -12,5 +12,5 @@ export const Status7D1Enum: core.serialization.Schema<
 > = core.serialization.enum_(["ACTIVE", "ARCHIVED"]);
 
 export declare namespace Status7D1Enum {
-    type Raw = "ACTIVE" | "ARCHIVED";
+    export type Raw = "ACTIVE" | "ARCHIVED";
 }

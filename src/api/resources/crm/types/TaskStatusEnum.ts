@@ -7,7 +7,6 @@
  * - `CLOSED` - CLOSED
  */
 export type TaskStatusEnum = "OPEN" | "CLOSED";
-
 export const TaskStatusEnum = {
     Open: "OPEN",
     Closed: "CLOSED",

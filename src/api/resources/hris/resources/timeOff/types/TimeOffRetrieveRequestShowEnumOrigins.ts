@@ -10,7 +10,6 @@ export type TimeOffRetrieveRequestShowEnumOrigins =
     | "status"
     | "status,units"
     | "units";
-
 export const TimeOffRetrieveRequestShowEnumOrigins = {
     RequestType: "request_type",
     RequestTypeStatus: "request_type,status",

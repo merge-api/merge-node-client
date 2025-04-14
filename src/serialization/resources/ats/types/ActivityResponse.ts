@@ -21,7 +21,7 @@ export const ActivityResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ActivityResponse {
-    interface Raw {
+    export interface Raw {
         model: Activity.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

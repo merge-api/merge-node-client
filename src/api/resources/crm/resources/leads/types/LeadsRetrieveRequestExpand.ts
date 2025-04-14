@@ -10,7 +10,6 @@ export type LeadsRetrieveRequestExpand =
     | "owner,converted_account"
     | "owner,converted_contact"
     | "owner,converted_contact,converted_account";
-
 export const LeadsRetrieveRequestExpand = {
     ConvertedAccount: "converted_account",
     ConvertedContact: "converted_contact",

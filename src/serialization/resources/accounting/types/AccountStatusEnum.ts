@@ -12,5 +12,5 @@ export const AccountStatusEnum: core.serialization.Schema<
 > = core.serialization.enum_(["ACTIVE", "PENDING", "INACTIVE"]);
 
 export declare namespace AccountStatusEnum {
-    type Raw = "ACTIVE" | "PENDING" | "INACTIVE";
+    export type Raw = "ACTIVE" | "PENDING" | "INACTIVE";
 }

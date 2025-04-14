@@ -10,7 +10,6 @@ export type TasksRetrieveRequestExpand =
     | "owner,account"
     | "owner,account,opportunity"
     | "owner,opportunity";
-
 export const TasksRetrieveRequestExpand = {
     Account: "account",
     AccountOpportunity: "account,opportunity",

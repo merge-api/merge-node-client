@@ -17,7 +17,7 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
     note: core.serialization.property("Note", core.serialization.list(FieldMappingApiInstance).optional()),
     opportunity: core.serialization.property(
         "Opportunity",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     stage: core.serialization.property("Stage", core.serialization.list(FieldMappingApiInstance).optional()),
     user: core.serialization.property("User", core.serialization.list(FieldMappingApiInstance).optional()),
@@ -26,7 +26,7 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace FieldMappingApiInstanceResponse {
-    interface Raw {
+    export interface Raw {
         Account?: FieldMappingApiInstance.Raw[] | null;
         Contact?: FieldMappingApiInstance.Raw[] | null;
         Lead?: FieldMappingApiInstance.Raw[] | null;

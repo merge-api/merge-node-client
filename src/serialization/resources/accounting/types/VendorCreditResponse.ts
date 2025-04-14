@@ -20,7 +20,7 @@ export const VendorCreditResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace VendorCreditResponse {
-    interface Raw {
+    export interface Raw {
         model: serializers.accounting.VendorCredit.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

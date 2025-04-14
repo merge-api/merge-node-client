@@ -19,7 +19,7 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ExternalTargetFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         File?: ExternalTargetFieldApi.Raw[] | null;
         Folder?: ExternalTargetFieldApi.Raw[] | null;
         Drive?: ExternalTargetFieldApi.Raw[] | null;

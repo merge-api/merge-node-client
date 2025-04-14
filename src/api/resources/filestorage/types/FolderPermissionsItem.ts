@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type FolderPermissionsItem = string | Merge.filestorage.PermissionRequest;
+export type FolderPermissionsItem = string | Merge.filestorage.Permission;

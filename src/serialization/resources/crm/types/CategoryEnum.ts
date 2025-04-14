@@ -10,5 +10,5 @@ export const CategoryEnum: core.serialization.Schema<serializers.crm.CategoryEnu
     core.serialization.enum_(["hris", "ats", "accounting", "ticketing", "crm", "mktg", "filestorage"]);
 
 export declare namespace CategoryEnum {
-    type Raw = "hris" | "ats" | "accounting" | "ticketing" | "crm" | "mktg" | "filestorage";
+    export type Raw = "hris" | "ats" | "accounting" | "ticketing" | "crm" | "mktg" | "filestorage";
 }

@@ -9,7 +9,6 @@
  * - `ONE_TO_MANY` - ONE_TO_MANY
  */
 export type CardinalityEnum = "ONE_TO_ONE" | "MANY_TO_ONE" | "MANY_TO_MANY" | "ONE_TO_MANY";
-
 export const CardinalityEnum = {
     OneToOne: "ONE_TO_ONE",
     ManyToOne: "MANY_TO_ONE",

@@ -8,7 +8,6 @@
  * - `OTHER` - OTHER
  */
 export type ReasonEnum = "GENERAL_CUSTOMER_REQUEST" | "GDPR" | "OTHER";
-
 export const ReasonEnum = {
     GeneralCustomerRequest: "GENERAL_CUSTOMER_REQUEST",
     Gdpr: "GDPR",

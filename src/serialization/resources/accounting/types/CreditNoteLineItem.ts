@@ -27,7 +27,7 @@ export const CreditNoteLineItem: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization.list(core.serialization.string().optional()).optional(),
     ),
     account: core.serialization.string().optional(),
     company: CreditNoteLineItemCompany.optional(),
@@ -35,7 +35,7 @@ export const CreditNoteLineItem: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreditNoteLineItem {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

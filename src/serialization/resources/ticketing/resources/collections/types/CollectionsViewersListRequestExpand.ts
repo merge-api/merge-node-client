@@ -12,5 +12,5 @@ export const CollectionsViewersListRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["team", "user", "user,team"]);
 
 export declare namespace CollectionsViewersListRequestExpand {
-    type Raw = "team" | "user" | "user,team";
+    export type Raw = "team" | "user" | "user,team";
 }

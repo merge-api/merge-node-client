@@ -19,7 +19,7 @@ export const TaskResponse: core.serialization.ObjectSchema<serializers.crm.TaskR
     });
 
 export declare namespace TaskResponse {
-    interface Raw {
+    export interface Raw {
         model: Task.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

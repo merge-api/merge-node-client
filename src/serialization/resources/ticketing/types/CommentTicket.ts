@@ -15,5 +15,5 @@ export const CommentTicket: core.serialization.Schema<
 ]);
 
 export declare namespace CommentTicket {
-    type Raw = string | serializers.ticketing.Ticket.Raw;
+    export type Raw = string | serializers.ticketing.Ticket.Raw;
 }

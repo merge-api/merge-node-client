@@ -15,7 +15,7 @@ export const CommentEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace CommentEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: CommentRequest.Raw;
     }
 }

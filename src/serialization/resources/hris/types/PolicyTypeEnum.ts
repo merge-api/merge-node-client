@@ -10,5 +10,5 @@ export const PolicyTypeEnum: core.serialization.Schema<serializers.hris.PolicyTy
     core.serialization.enum_(["VACATION", "SICK", "PERSONAL", "JURY_DUTY", "VOLUNTEER", "BEREAVEMENT"]);
 
 export declare namespace PolicyTypeEnum {
-    type Raw = "VACATION" | "SICK" | "PERSONAL" | "JURY_DUTY" | "VOLUNTEER" | "BEREAVEMENT";
+    export type Raw = "VACATION" | "SICK" | "PERSONAL" | "JURY_DUTY" | "VOLUNTEER" | "BEREAVEMENT";
 }

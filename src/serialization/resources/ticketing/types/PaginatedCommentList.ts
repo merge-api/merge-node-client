@@ -17,7 +17,7 @@ export const PaginatedCommentList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedCommentList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Comment.Raw[] | null;

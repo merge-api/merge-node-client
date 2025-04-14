@@ -19,7 +19,6 @@ export type UnderlyingTransactionTypeEnum =
     | "PAYMENT"
     | "VENDOR_CREDIT"
     | "CREDIT_NOTE";
-
 export const UnderlyingTransactionTypeEnum = {
     Invoice: "INVOICE",
     Expense: "EXPENSE",

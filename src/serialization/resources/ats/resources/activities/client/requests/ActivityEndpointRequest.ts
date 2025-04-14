@@ -16,7 +16,7 @@ export const ActivityEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace ActivityEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: ActivityRequest.Raw;
         remote_user_id: string;
     }

@@ -10,7 +10,6 @@
  * - `OTHER` - OTHER
  */
 export type BenefitPlanTypeEnum = "MEDICAL" | "HEALTH_SAVINGS" | "INSURANCE" | "RETIREMENT" | "OTHER";
-
 export const BenefitPlanTypeEnum = {
     Medical: "MEDICAL",
     HealthSavings: "HEALTH_SAVINGS",

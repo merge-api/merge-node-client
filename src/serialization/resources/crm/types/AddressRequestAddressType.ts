@@ -13,5 +13,5 @@ export const AddressRequestAddressType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([AddressTypeEnum, core.serialization.string()]);
 
 export declare namespace AddressRequestAddressType {
-    type Raw = AddressTypeEnum.Raw | string;
+    export type Raw = AddressTypeEnum.Raw | string;
 }

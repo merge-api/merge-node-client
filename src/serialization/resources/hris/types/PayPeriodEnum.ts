@@ -20,7 +20,7 @@ export const PayPeriodEnum: core.serialization.Schema<serializers.hris.PayPeriod
     ]);
 
 export declare namespace PayPeriodEnum {
-    type Raw =
+    export type Raw =
         | "HOUR"
         | "DAY"
         | "WEEK"

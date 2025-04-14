@@ -3,7 +3,6 @@
  */
 
 export type ActivitiesRetrieveRequestShowEnumOrigins = "activity_type" | "activity_type,visibility" | "visibility";
-
 export const ActivitiesRetrieveRequestShowEnumOrigins = {
     ActivityType: "activity_type",
     ActivityTypeVisibility: "activity_type,visibility",

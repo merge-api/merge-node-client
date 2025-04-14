@@ -13,5 +13,5 @@ export const RemoteFieldClassForCustomObjectClassFieldFormat: core.serialization
 > = core.serialization.undiscriminatedUnion([FieldFormatEnum, core.serialization.string()]);
 
 export declare namespace RemoteFieldClassForCustomObjectClassFieldFormat {
-    type Raw = FieldFormatEnum.Raw | string;
+    export type Raw = FieldFormatEnum.Raw | string;
 }

@@ -19,7 +19,7 @@ export const EthnicityEnum: core.serialization.Schema<serializers.hris.Ethnicity
     ]);
 
 export declare namespace EthnicityEnum {
-    type Raw =
+    export type Raw =
         | "AMERICAN_INDIAN_OR_ALASKA_NATIVE"
         | "ASIAN_OR_INDIAN_SUBCONTINENT"
         | "BLACK_OR_AFRICAN_AMERICAN"

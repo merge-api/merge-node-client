@@ -19,14 +19,14 @@ export const ReportItem: core.serialization.ObjectSchema<
         "sub_items",
         core.serialization
             .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()))
-            .optional()
+            .optional(),
     ),
     company: core.serialization.string().optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
 
 export declare namespace ReportItem {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;

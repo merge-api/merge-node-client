@@ -19,7 +19,7 @@ export const VendorCreditLine: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization.list(core.serialization.string().optional()).optional(),
     ),
     description: core.serialization.string().optional(),
     account: VendorCreditLineAccount.optional(),
@@ -30,7 +30,7 @@ export const VendorCreditLine: core.serialization.ObjectSchema<
 });
 
 export declare namespace VendorCreditLine {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

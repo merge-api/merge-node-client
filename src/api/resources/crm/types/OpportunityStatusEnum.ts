@@ -8,7 +8,6 @@
  * - `LOST` - LOST
  */
 export type OpportunityStatusEnum = "OPEN" | "WON" | "LOST";
-
 export const OpportunityStatusEnum = {
     Open: "OPEN",
     Won: "WON",

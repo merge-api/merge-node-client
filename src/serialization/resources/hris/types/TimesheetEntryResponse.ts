@@ -21,7 +21,7 @@ export const TimesheetEntryResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace TimesheetEntryResponse {
-    interface Raw {
+    export interface Raw {
         model: TimesheetEntry.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

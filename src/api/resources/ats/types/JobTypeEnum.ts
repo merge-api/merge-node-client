@@ -8,7 +8,6 @@
  * - `PROFILE` - PROFILE
  */
 export type JobTypeEnum = "POSTING" | "REQUISITION" | "PROFILE";
-
 export const JobTypeEnum = {
     Posting: "POSTING",
     Requisition: "REQUISITION",

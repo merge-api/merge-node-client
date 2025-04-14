@@ -7,7 +7,6 @@
  * - `de` - de
  */
 export type LanguageEnum = "en" | "de";
-
 export const LanguageEnum = {
     En: "en",
     De: "de",

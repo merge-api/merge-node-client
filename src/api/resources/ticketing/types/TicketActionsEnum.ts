@@ -11,7 +11,6 @@
  * - `ASSIGN` - ASSIGN
  */
 export type TicketActionsEnum = "VIEW" | "CREATE" | "EDIT" | "DELETE" | "CLOSE" | "ASSIGN";
-
 export const TicketActionsEnum = {
     View: "VIEW",
     Create: "CREATE",

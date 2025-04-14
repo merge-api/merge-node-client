@@ -13,5 +13,5 @@ export const PatchedTicketRequestStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([TicketStatusEnum, core.serialization.string()]);
 
 export declare namespace PatchedTicketRequestStatus {
-    type Raw = TicketStatusEnum.Raw | string;
+    export type Raw = TicketStatusEnum.Raw | string;
 }

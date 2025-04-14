@@ -16,7 +16,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
     company: core.serialization.property("Company", core.serialization.list(RemoteFieldApi).optional()),
     employeePayrollRun: core.serialization.property(
         "EmployeePayrollRun",
-        core.serialization.list(RemoteFieldApi).optional()
+        core.serialization.list(RemoteFieldApi).optional(),
     ),
     employee: core.serialization.property("Employee", core.serialization.list(RemoteFieldApi).optional()),
     employment: core.serialization.property("Employment", core.serialization.list(RemoteFieldApi).optional()),
@@ -33,7 +33,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace RemoteFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         Benefit?: RemoteFieldApi.Raw[] | null;
         EmployerBenefit?: RemoteFieldApi.Raw[] | null;
         Company?: RemoteFieldApi.Raw[] | null;

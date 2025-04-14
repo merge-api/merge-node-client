@@ -19,7 +19,7 @@ export const RaceEnum: core.serialization.Schema<serializers.ats.RaceEnum.Raw, M
     ]);
 
 export declare namespace RaceEnum {
-    type Raw =
+    export type Raw =
         | "AMERICAN_INDIAN_OR_ALASKAN_NATIVE"
         | "ASIAN"
         | "BLACK_OR_AFRICAN_AMERICAN"

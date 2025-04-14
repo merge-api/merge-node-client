@@ -16,7 +16,7 @@ export const Url: core.serialization.ObjectSchema<serializers.ats.Url.Raw, Merge
 });
 
 export declare namespace Url {
-    interface Raw {
+    export interface Raw {
         created_at?: string | null;
         modified_at?: string | null;
         value?: string | null;

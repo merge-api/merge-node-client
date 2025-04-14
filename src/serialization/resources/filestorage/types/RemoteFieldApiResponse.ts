@@ -19,7 +19,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace RemoteFieldApiResponse {
-    interface Raw {
+    export interface Raw {
         File?: RemoteFieldApi.Raw[] | null;
         Folder?: RemoteFieldApi.Raw[] | null;
         Drive?: RemoteFieldApi.Raw[] | null;

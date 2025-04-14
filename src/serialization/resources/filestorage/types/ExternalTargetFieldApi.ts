@@ -16,7 +16,7 @@ export const ExternalTargetFieldApi: core.serialization.ObjectSchema<
 });
 
 export declare namespace ExternalTargetFieldApi {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         description?: string | null;
         is_mapped?: string | null;

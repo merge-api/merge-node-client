@@ -3,7 +3,6 @@
  */
 
 export type TimeOffListRequestStatus = "APPROVED" | "CANCELLED" | "DECLINED" | "DELETED" | "REQUESTED";
-
 export const TimeOffListRequestStatus = {
     Approved: "APPROVED",
     Cancelled: "CANCELLED",

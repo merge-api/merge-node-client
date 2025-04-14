@@ -617,7 +617,6 @@ export type PayCurrencyEnum =
     | "ZWD"
     | "ZWR"
     | "ZWL";
-
 export const PayCurrencyEnum = {
     Xua: "XUA",
     Afn: "AFN",

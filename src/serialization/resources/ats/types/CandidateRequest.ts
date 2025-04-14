@@ -26,7 +26,7 @@ export const CandidateRequest: core.serialization.ObjectSchema<
     phoneNumbers: core.serialization.property("phone_numbers", core.serialization.list(PhoneNumberRequest).optional()),
     emailAddresses: core.serialization.property(
         "email_addresses",
-        core.serialization.list(EmailAddressRequest).optional()
+        core.serialization.list(EmailAddressRequest).optional(),
     ),
     urls: core.serialization.list(UrlRequest).optional(),
     tags: core.serialization.list(core.serialization.string().optional()).optional(),
@@ -35,16 +35,16 @@ export const CandidateRequest: core.serialization.ObjectSchema<
     remoteTemplateId: core.serialization.property("remote_template_id", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace CandidateRequest {
-    interface Raw {
+    export interface Raw {
         first_name?: string | null;
         last_name?: string | null;
         company?: string | null;

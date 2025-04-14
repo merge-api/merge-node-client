@@ -16,7 +16,7 @@ export const PaginatedTicketList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedTicketList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: serializers.ticketing.Ticket.Raw[] | null;

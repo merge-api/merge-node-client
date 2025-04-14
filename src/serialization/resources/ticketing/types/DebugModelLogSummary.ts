@@ -16,7 +16,7 @@ export const DebugModelLogSummary: core.serialization.ObjectSchema<
 });
 
 export declare namespace DebugModelLogSummary {
-    interface Raw {
+    export interface Raw {
         url: string;
         method: string;
         status_code: number;

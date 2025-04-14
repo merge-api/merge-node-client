@@ -13,5 +13,5 @@ export const PaymentMethodMethodType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([MethodTypeEnum, core.serialization.string()]);
 
 export declare namespace PaymentMethodMethodType {
-    type Raw = MethodTypeEnum.Raw | string;
+    export type Raw = MethodTypeEnum.Raw | string;
 }

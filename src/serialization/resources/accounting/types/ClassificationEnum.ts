@@ -12,5 +12,5 @@ export const ClassificationEnum: core.serialization.Schema<
 > = core.serialization.enum_(["ASSET", "EQUITY", "EXPENSE", "LIABILITY", "REVENUE"]);
 
 export declare namespace ClassificationEnum {
-    type Raw = "ASSET" | "EQUITY" | "EXPENSE" | "LIABILITY" | "REVENUE";
+    export type Raw = "ASSET" | "EQUITY" | "EXPENSE" | "LIABILITY" | "REVENUE";
 }

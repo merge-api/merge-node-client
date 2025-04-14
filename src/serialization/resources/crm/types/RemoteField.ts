@@ -14,7 +14,7 @@ export const RemoteField: core.serialization.ObjectSchema<serializers.crm.Remote
     });
 
 export declare namespace RemoteField {
-    interface Raw {
+    export interface Raw {
         remote_field_class: RemoteFieldRemoteFieldClass.Raw;
         value?: unknown | null;
     }

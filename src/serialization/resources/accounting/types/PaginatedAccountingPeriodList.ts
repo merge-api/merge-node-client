@@ -17,7 +17,7 @@ export const PaginatedAccountingPeriodList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedAccountingPeriodList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: AccountingPeriod.Raw[] | null;

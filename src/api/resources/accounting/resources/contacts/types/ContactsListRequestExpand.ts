@@ -10,7 +10,6 @@ export type ContactsListRequestExpand =
     | "company"
     | "phone_numbers"
     | "phone_numbers,company";
-
 export const ContactsListRequestExpand = {
     Addresses: "addresses",
     AddressesCompany: "addresses,company",

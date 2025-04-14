@@ -13,5 +13,5 @@ export const TimeOffBalancePolicyType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([PolicyTypeEnum, core.serialization.string()]);
 
 export declare namespace TimeOffBalancePolicyType {
-    type Raw = PolicyTypeEnum.Raw | string;
+    export type Raw = PolicyTypeEnum.Raw | string;
 }

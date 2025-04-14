@@ -26,18 +26,18 @@ export const TaxRate: core.serialization.ObjectSchema<serializers.accounting.Tax
         effectiveTaxRate: core.serialization.property("effective_tax_rate", core.serialization.number().optional()),
         taxComponents: core.serialization.property(
             "tax_components",
-            core.serialization.list(TaxRateTaxComponentsItem).optional()
+            core.serialization.list(TaxRateTaxComponentsItem).optional(),
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace TaxRate {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

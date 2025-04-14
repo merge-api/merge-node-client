@@ -39,224 +39,181 @@ import { TimesheetEntries } from "../resources/timesheetEntries/client/Client";
 import { WebhookReceivers } from "../resources/webhookReceivers/client/Client";
 
 export declare namespace Hris {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
-
-    interface RequestOptions {
-        /** The maximum time to wait for a response in seconds. */
-        timeoutInSeconds?: number;
-        /** The number of times to retry the request. Defaults to 2. */
-        maxRetries?: number;
-        /** A hook to abort the request. */
-        abortSignal?: AbortSignal;
-        /** Override the X-Account-Token header */
-        accountToken?: string | undefined;
-        /** Additional headers to include in the request. */
-        headers?: Record<string, string>;
-    }
 }
 
 export class Hris {
-    constructor(protected readonly _options: Hris.Options) {}
-
     protected _accountDetails: AccountDetails | undefined;
+    protected _accountToken: AccountToken | undefined;
+    protected _asyncPassthrough: AsyncPassthrough | undefined;
+    protected _auditTrail: AuditTrail | undefined;
+    protected _availableActions: AvailableActions | undefined;
+    protected _bankInfo: BankInfo | undefined;
+    protected _benefits: Benefits | undefined;
+    protected _companies: Companies | undefined;
+    protected _scopes: Scopes | undefined;
+    protected _deleteAccount: DeleteAccount | undefined;
+    protected _dependents: Dependents | undefined;
+    protected _employeePayrollRuns: EmployeePayrollRuns | undefined;
+    protected _employees: Employees | undefined;
+    protected _employerBenefits: EmployerBenefits | undefined;
+    protected _employments: Employments | undefined;
+    protected _fieldMapping: FieldMapping | undefined;
+    protected _generateKey: GenerateKey | undefined;
+    protected _groups: Groups | undefined;
+    protected _issues: Issues | undefined;
+    protected _linkToken: LinkToken | undefined;
+    protected _linkedAccounts: LinkedAccounts | undefined;
+    protected _locations: Locations | undefined;
+    protected _passthrough: Passthrough | undefined;
+    protected _payGroups: PayGroups | undefined;
+    protected _payrollRuns: PayrollRuns | undefined;
+    protected _regenerateKey: RegenerateKey | undefined;
+    protected _syncStatus: SyncStatus | undefined;
+    protected _forceResync: ForceResync | undefined;
+    protected _teams: Teams | undefined;
+    protected _timeOff: TimeOff | undefined;
+    protected _timeOffBalances: TimeOffBalances | undefined;
+    protected _timesheetEntries: TimesheetEntries | undefined;
+    protected _webhookReceivers: WebhookReceivers | undefined;
+
+    constructor(protected readonly _options: Hris.Options) {}
 
     public get accountDetails(): AccountDetails {
         return (this._accountDetails ??= new AccountDetails(this._options));
     }
 
-    protected _accountToken: AccountToken | undefined;
-
     public get accountToken(): AccountToken {
         return (this._accountToken ??= new AccountToken(this._options));
     }
-
-    protected _asyncPassthrough: AsyncPassthrough | undefined;
 
     public get asyncPassthrough(): AsyncPassthrough {
         return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
     }
 
-    protected _auditTrail: AuditTrail | undefined;
-
     public get auditTrail(): AuditTrail {
         return (this._auditTrail ??= new AuditTrail(this._options));
     }
-
-    protected _availableActions: AvailableActions | undefined;
 
     public get availableActions(): AvailableActions {
         return (this._availableActions ??= new AvailableActions(this._options));
     }
 
-    protected _bankInfo: BankInfo | undefined;
-
     public get bankInfo(): BankInfo {
         return (this._bankInfo ??= new BankInfo(this._options));
     }
-
-    protected _benefits: Benefits | undefined;
 
     public get benefits(): Benefits {
         return (this._benefits ??= new Benefits(this._options));
     }
 
-    protected _companies: Companies | undefined;
-
     public get companies(): Companies {
         return (this._companies ??= new Companies(this._options));
     }
-
-    protected _scopes: Scopes | undefined;
 
     public get scopes(): Scopes {
         return (this._scopes ??= new Scopes(this._options));
     }
 
-    protected _deleteAccount: DeleteAccount | undefined;
-
     public get deleteAccount(): DeleteAccount {
         return (this._deleteAccount ??= new DeleteAccount(this._options));
     }
-
-    protected _dependents: Dependents | undefined;
 
     public get dependents(): Dependents {
         return (this._dependents ??= new Dependents(this._options));
     }
 
-    protected _employeePayrollRuns: EmployeePayrollRuns | undefined;
-
     public get employeePayrollRuns(): EmployeePayrollRuns {
         return (this._employeePayrollRuns ??= new EmployeePayrollRuns(this._options));
     }
-
-    protected _employees: Employees | undefined;
 
     public get employees(): Employees {
         return (this._employees ??= new Employees(this._options));
     }
 
-    protected _employerBenefits: EmployerBenefits | undefined;
-
     public get employerBenefits(): EmployerBenefits {
         return (this._employerBenefits ??= new EmployerBenefits(this._options));
     }
-
-    protected _employments: Employments | undefined;
 
     public get employments(): Employments {
         return (this._employments ??= new Employments(this._options));
     }
 
-    protected _fieldMapping: FieldMapping | undefined;
-
     public get fieldMapping(): FieldMapping {
         return (this._fieldMapping ??= new FieldMapping(this._options));
     }
-
-    protected _generateKey: GenerateKey | undefined;
 
     public get generateKey(): GenerateKey {
         return (this._generateKey ??= new GenerateKey(this._options));
     }
 
-    protected _groups: Groups | undefined;
-
     public get groups(): Groups {
         return (this._groups ??= new Groups(this._options));
     }
-
-    protected _issues: Issues | undefined;
 
     public get issues(): Issues {
         return (this._issues ??= new Issues(this._options));
     }
 
-    protected _linkToken: LinkToken | undefined;
-
     public get linkToken(): LinkToken {
         return (this._linkToken ??= new LinkToken(this._options));
     }
-
-    protected _linkedAccounts: LinkedAccounts | undefined;
 
     public get linkedAccounts(): LinkedAccounts {
         return (this._linkedAccounts ??= new LinkedAccounts(this._options));
     }
 
-    protected _locations: Locations | undefined;
-
     public get locations(): Locations {
         return (this._locations ??= new Locations(this._options));
     }
-
-    protected _passthrough: Passthrough | undefined;
 
     public get passthrough(): Passthrough {
         return (this._passthrough ??= new Passthrough(this._options));
     }
 
-    protected _payGroups: PayGroups | undefined;
-
     public get payGroups(): PayGroups {
         return (this._payGroups ??= new PayGroups(this._options));
     }
-
-    protected _payrollRuns: PayrollRuns | undefined;
 
     public get payrollRuns(): PayrollRuns {
         return (this._payrollRuns ??= new PayrollRuns(this._options));
     }
 
-    protected _regenerateKey: RegenerateKey | undefined;
-
     public get regenerateKey(): RegenerateKey {
         return (this._regenerateKey ??= new RegenerateKey(this._options));
     }
-
-    protected _syncStatus: SyncStatus | undefined;
 
     public get syncStatus(): SyncStatus {
         return (this._syncStatus ??= new SyncStatus(this._options));
     }
 
-    protected _forceResync: ForceResync | undefined;
-
     public get forceResync(): ForceResync {
         return (this._forceResync ??= new ForceResync(this._options));
     }
-
-    protected _teams: Teams | undefined;
 
     public get teams(): Teams {
         return (this._teams ??= new Teams(this._options));
     }
 
-    protected _timeOff: TimeOff | undefined;
-
     public get timeOff(): TimeOff {
         return (this._timeOff ??= new TimeOff(this._options));
     }
-
-    protected _timeOffBalances: TimeOffBalances | undefined;
 
     public get timeOffBalances(): TimeOffBalances {
         return (this._timeOffBalances ??= new TimeOffBalances(this._options));
     }
 
-    protected _timesheetEntries: TimesheetEntries | undefined;
-
     public get timesheetEntries(): TimesheetEntries {
         return (this._timesheetEntries ??= new TimesheetEntries(this._options));
     }
-
-    protected _webhookReceivers: WebhookReceivers | undefined;
 
     public get webhookReceivers(): WebhookReceivers {
         return (this._webhookReceivers ??= new WebhookReceivers(this._options));

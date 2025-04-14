@@ -258,7 +258,6 @@ export type EmployeesListRequestExpand =
     | "work_location,team,company"
     | "work_location,team,company,pay_group"
     | "work_location,team,pay_group";
-
 export const EmployeesListRequestExpand = {
     Company: "company",
     CompanyPayGroup: "company,pay_group",

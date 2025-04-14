@@ -26,23 +26,23 @@ export const ApplicationRequest: core.serialization.ObjectSchema<
     creditedTo: core.serialization.property("credited_to", ApplicationRequestCreditedTo.optional()),
     screeningQuestionAnswers: core.serialization.property(
         "screening_question_answers",
-        core.serialization.list(ApplicationRequestScreeningQuestionAnswersItem).optional()
+        core.serialization.list(ApplicationRequestScreeningQuestionAnswersItem).optional(),
     ),
     currentStage: core.serialization.property("current_stage", ApplicationRequestCurrentStage.optional()),
     rejectReason: core.serialization.property("reject_reason", ApplicationRequestRejectReason.optional()),
     remoteTemplateId: core.serialization.property("remote_template_id", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     linkedAccountParams: core.serialization.property(
         "linked_account_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
 });
 
 export declare namespace ApplicationRequest {
-    interface Raw {
+    export interface Raw {
         candidate?: ApplicationRequestCandidate.Raw | null;
         job?: ApplicationRequestJob.Raw | null;
         applied_at?: string | null;

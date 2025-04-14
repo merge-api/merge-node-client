@@ -13,5 +13,5 @@ export const JournalEntryRequestTrackingCategoriesItem: core.serialization.Schem
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), TrackingCategory]);
 
 export declare namespace JournalEntryRequestTrackingCategoriesItem {
-    type Raw = string | TrackingCategory.Raw;
+    export type Raw = string | TrackingCategory.Raw;
 }

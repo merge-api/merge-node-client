@@ -7,7 +7,6 @@
  * - `SHIPPING` - SHIPPING
  */
 export type AddressTypeEnum = "BILLING" | "SHIPPING";
-
 export const AddressTypeEnum = {
     Billing: "BILLING",
     Shipping: "SHIPPING",

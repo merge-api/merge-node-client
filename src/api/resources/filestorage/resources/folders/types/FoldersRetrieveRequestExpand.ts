@@ -10,7 +10,6 @@ export type FoldersRetrieveRequestExpand =
     | "permissions,drive"
     | "permissions,parent_folder"
     | "permissions,parent_folder,drive";
-
 export const FoldersRetrieveRequestExpand = {
     Drive: "drive",
     ParentFolder: "parent_folder",

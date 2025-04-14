@@ -23,7 +23,6 @@ export type OfferStatusEnum =
     | "DENIED"
     | "SIGNED"
     | "DEPRECATED";
-
 export const OfferStatusEnum = {
     Draft: "DRAFT",
     ApprovalSent: "APPROVAL-SENT",

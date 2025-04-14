@@ -12,5 +12,5 @@ export const JobsScreeningQuestionsListRequestExpand: core.serialization.Schema<
 > = core.serialization.enum_(["job", "options", "options,job"]);
 
 export declare namespace JobsScreeningQuestionsListRequestExpand {
-    type Raw = "job" | "options" | "options,job";
+    export type Raw = "job" | "options" | "options,job";
 }

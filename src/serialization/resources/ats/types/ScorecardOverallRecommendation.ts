@@ -13,5 +13,5 @@ export const ScorecardOverallRecommendation: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([OverallRecommendationEnum, core.serialization.string()]);
 
 export declare namespace ScorecardOverallRecommendation {
-    type Raw = OverallRecommendationEnum.Raw | string;
+    export type Raw = OverallRecommendationEnum.Raw | string;
 }

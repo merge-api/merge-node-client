@@ -21,7 +21,7 @@ export const BankFeedAccountResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace BankFeedAccountResponse {
-    interface Raw {
+    export interface Raw {
         model: BankFeedAccount.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

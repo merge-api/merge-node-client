@@ -17,7 +17,7 @@ export const PaginatedOfficeList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedOfficeList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Office.Raw[] | null;

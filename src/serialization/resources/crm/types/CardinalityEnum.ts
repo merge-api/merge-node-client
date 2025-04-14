@@ -12,5 +12,5 @@ export const CardinalityEnum: core.serialization.Schema<
 > = core.serialization.enum_(["ONE_TO_ONE", "MANY_TO_ONE", "MANY_TO_MANY", "ONE_TO_MANY"]);
 
 export declare namespace CardinalityEnum {
-    type Raw = "ONE_TO_ONE" | "MANY_TO_ONE" | "MANY_TO_MANY" | "ONE_TO_MANY";
+    export type Raw = "ONE_TO_ONE" | "MANY_TO_ONE" | "MANY_TO_MANY" | "ONE_TO_MANY";
 }

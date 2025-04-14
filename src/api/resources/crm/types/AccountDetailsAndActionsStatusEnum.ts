@@ -9,7 +9,6 @@
  * - `IDLE` - IDLE
  */
 export type AccountDetailsAndActionsStatusEnum = "COMPLETE" | "INCOMPLETE" | "RELINK_NEEDED" | "IDLE";
-
 export const AccountDetailsAndActionsStatusEnum = {
     Complete: "COMPLETE",
     Incomplete: "INCOMPLETE",

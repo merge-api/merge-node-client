@@ -13,5 +13,5 @@ export const CommentUser: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), User]);
 
 export declare namespace CommentUser {
-    type Raw = string | User.Raw;
+    export type Raw = string | User.Raw;
 }

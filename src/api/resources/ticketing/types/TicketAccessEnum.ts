@@ -8,7 +8,6 @@
  * - `TEAM_ONLY` - TEAM_ONLY
  */
 export type TicketAccessEnum = "ALL" | "ASSIGNED_ONLY" | "TEAM_ONLY";
-
 export const TicketAccessEnum = {
     All: "ALL",
     AssignedOnly: "ASSIGNED_ONLY",

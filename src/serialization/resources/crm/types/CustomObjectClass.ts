@@ -23,12 +23,12 @@ export const CustomObjectClass: core.serialization.ObjectSchema<
         "association_types",
         core.serialization
             .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()))
-            .optional()
+            .optional(),
     ),
 });
 
 export declare namespace CustomObjectClass {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

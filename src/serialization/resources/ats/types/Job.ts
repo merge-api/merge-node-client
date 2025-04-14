@@ -26,7 +26,7 @@ export const Job: core.serialization.ObjectSchema<serializers.ats.Job.Raw, Merge
     type: JobTypeEnum.optional(),
     jobPostings: core.serialization.property(
         "job_postings",
-        core.serialization.list(core.serialization.string().optional()).optional()
+        core.serialization.list(core.serialization.string().optional()).optional(),
     ),
     jobPostingUrls: core.serialization.property("job_posting_urls", core.serialization.list(Url).optional()),
     remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
@@ -36,19 +36,19 @@ export const Job: core.serialization.ObjectSchema<serializers.ats.Job.Raw, Merge
     offices: core.serialization.list(JobOfficesItem.optional()).optional(),
     hiringManagers: core.serialization.property(
         "hiring_managers",
-        core.serialization.list(JobHiringManagersItem.optional()).optional()
+        core.serialization.list(JobHiringManagersItem.optional()).optional(),
     ),
     recruiters: core.serialization.list(JobRecruitersItem.optional()).optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace Job {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

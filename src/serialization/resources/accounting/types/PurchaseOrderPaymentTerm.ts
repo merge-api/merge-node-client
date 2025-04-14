@@ -13,5 +13,5 @@ export const PurchaseOrderPaymentTerm: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), PaymentTerm]);
 
 export declare namespace PurchaseOrderPaymentTerm {
-    type Raw = string | PaymentTerm.Raw;
+    export type Raw = string | PaymentTerm.Raw;
 }

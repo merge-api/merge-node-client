@@ -3,7 +3,6 @@
  */
 
 export type LocationsListRequestLocationType = "HOME" | "WORK";
-
 export const LocationsListRequestLocationType = {
     Home: "HOME",
     Work: "WORK",

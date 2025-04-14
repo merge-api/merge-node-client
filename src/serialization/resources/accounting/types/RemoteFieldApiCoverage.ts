@@ -12,5 +12,5 @@ export const RemoteFieldApiCoverage: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.number(), core.serialization.number()]);
 
 export declare namespace RemoteFieldApiCoverage {
-    type Raw = number | number;
+    export type Raw = number | number;
 }

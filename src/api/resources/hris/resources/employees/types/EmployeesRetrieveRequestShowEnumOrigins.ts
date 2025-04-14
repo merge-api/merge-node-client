@@ -18,7 +18,6 @@ export type EmployeesRetrieveRequestShowEnumOrigins =
     | "gender"
     | "gender,marital_status"
     | "marital_status";
-
 export const EmployeesRetrieveRequestShowEnumOrigins = {
     EmploymentStatus: "employment_status",
     EmploymentStatusEthnicity: "employment_status,ethnicity",

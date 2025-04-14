@@ -15,5 +15,5 @@ export const ScorecardApplication: core.serialization.Schema<
 ]);
 
 export declare namespace ScorecardApplication {
-    type Raw = string | serializers.ats.Application.Raw;
+    export type Raw = string | serializers.ats.Application.Raw;
 }

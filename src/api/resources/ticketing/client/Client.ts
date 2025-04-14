@@ -34,194 +34,156 @@ import { Users } from "../resources/users/client/Client";
 import { WebhookReceivers } from "../resources/webhookReceivers/client/Client";
 
 export declare namespace Ticketing {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
-
-    interface RequestOptions {
-        /** The maximum time to wait for a response in seconds. */
-        timeoutInSeconds?: number;
-        /** The number of times to retry the request. Defaults to 2. */
-        maxRetries?: number;
-        /** A hook to abort the request. */
-        abortSignal?: AbortSignal;
-        /** Override the X-Account-Token header */
-        accountToken?: string | undefined;
-        /** Additional headers to include in the request. */
-        headers?: Record<string, string>;
-    }
 }
 
 export class Ticketing {
-    constructor(protected readonly _options: Ticketing.Options) {}
-
     protected _accountDetails: AccountDetails | undefined;
+    protected _accountToken: AccountToken | undefined;
+    protected _accounts: Accounts | undefined;
+    protected _asyncPassthrough: AsyncPassthrough | undefined;
+    protected _attachments: Attachments | undefined;
+    protected _auditTrail: AuditTrail | undefined;
+    protected _availableActions: AvailableActions | undefined;
+    protected _collections: Collections | undefined;
+    protected _comments: Comments | undefined;
+    protected _contacts: Contacts | undefined;
+    protected _scopes: Scopes | undefined;
+    protected _deleteAccount: DeleteAccount | undefined;
+    protected _fieldMapping: FieldMapping | undefined;
+    protected _generateKey: GenerateKey | undefined;
+    protected _issues: Issues | undefined;
+    protected _linkToken: LinkToken | undefined;
+    protected _linkedAccounts: LinkedAccounts | undefined;
+    protected _passthrough: Passthrough | undefined;
+    protected _projects: Projects | undefined;
+    protected _regenerateKey: RegenerateKey | undefined;
+    protected _roles: Roles | undefined;
+    protected _syncStatus: SyncStatus | undefined;
+    protected _forceResync: ForceResync | undefined;
+    protected _tags: Tags | undefined;
+    protected _teams: Teams | undefined;
+    protected _tickets: Tickets | undefined;
+    protected _users: Users | undefined;
+    protected _webhookReceivers: WebhookReceivers | undefined;
+
+    constructor(protected readonly _options: Ticketing.Options) {}
 
     public get accountDetails(): AccountDetails {
         return (this._accountDetails ??= new AccountDetails(this._options));
     }
 
-    protected _accountToken: AccountToken | undefined;
-
     public get accountToken(): AccountToken {
         return (this._accountToken ??= new AccountToken(this._options));
     }
-
-    protected _accounts: Accounts | undefined;
 
     public get accounts(): Accounts {
         return (this._accounts ??= new Accounts(this._options));
     }
 
-    protected _asyncPassthrough: AsyncPassthrough | undefined;
-
     public get asyncPassthrough(): AsyncPassthrough {
         return (this._asyncPassthrough ??= new AsyncPassthrough(this._options));
     }
-
-    protected _attachments: Attachments | undefined;
 
     public get attachments(): Attachments {
         return (this._attachments ??= new Attachments(this._options));
     }
 
-    protected _auditTrail: AuditTrail | undefined;
-
     public get auditTrail(): AuditTrail {
         return (this._auditTrail ??= new AuditTrail(this._options));
     }
-
-    protected _availableActions: AvailableActions | undefined;
 
     public get availableActions(): AvailableActions {
         return (this._availableActions ??= new AvailableActions(this._options));
     }
 
-    protected _collections: Collections | undefined;
-
     public get collections(): Collections {
         return (this._collections ??= new Collections(this._options));
     }
-
-    protected _comments: Comments | undefined;
 
     public get comments(): Comments {
         return (this._comments ??= new Comments(this._options));
     }
 
-    protected _contacts: Contacts | undefined;
-
     public get contacts(): Contacts {
         return (this._contacts ??= new Contacts(this._options));
     }
-
-    protected _scopes: Scopes | undefined;
 
     public get scopes(): Scopes {
         return (this._scopes ??= new Scopes(this._options));
     }
 
-    protected _deleteAccount: DeleteAccount | undefined;
-
     public get deleteAccount(): DeleteAccount {
         return (this._deleteAccount ??= new DeleteAccount(this._options));
     }
-
-    protected _fieldMapping: FieldMapping | undefined;
 
     public get fieldMapping(): FieldMapping {
         return (this._fieldMapping ??= new FieldMapping(this._options));
     }
 
-    protected _generateKey: GenerateKey | undefined;
-
     public get generateKey(): GenerateKey {
         return (this._generateKey ??= new GenerateKey(this._options));
     }
-
-    protected _issues: Issues | undefined;
 
     public get issues(): Issues {
         return (this._issues ??= new Issues(this._options));
     }
 
-    protected _linkToken: LinkToken | undefined;
-
     public get linkToken(): LinkToken {
         return (this._linkToken ??= new LinkToken(this._options));
     }
-
-    protected _linkedAccounts: LinkedAccounts | undefined;
 
     public get linkedAccounts(): LinkedAccounts {
         return (this._linkedAccounts ??= new LinkedAccounts(this._options));
     }
 
-    protected _passthrough: Passthrough | undefined;
-
     public get passthrough(): Passthrough {
         return (this._passthrough ??= new Passthrough(this._options));
     }
-
-    protected _projects: Projects | undefined;
 
     public get projects(): Projects {
         return (this._projects ??= new Projects(this._options));
     }
 
-    protected _regenerateKey: RegenerateKey | undefined;
-
     public get regenerateKey(): RegenerateKey {
         return (this._regenerateKey ??= new RegenerateKey(this._options));
     }
-
-    protected _roles: Roles | undefined;
 
     public get roles(): Roles {
         return (this._roles ??= new Roles(this._options));
     }
 
-    protected _syncStatus: SyncStatus | undefined;
-
     public get syncStatus(): SyncStatus {
         return (this._syncStatus ??= new SyncStatus(this._options));
     }
-
-    protected _forceResync: ForceResync | undefined;
 
     public get forceResync(): ForceResync {
         return (this._forceResync ??= new ForceResync(this._options));
     }
 
-    protected _tags: Tags | undefined;
-
     public get tags(): Tags {
         return (this._tags ??= new Tags(this._options));
     }
-
-    protected _teams: Teams | undefined;
 
     public get teams(): Teams {
         return (this._teams ??= new Teams(this._options));
     }
 
-    protected _tickets: Tickets | undefined;
-
     public get tickets(): Tickets {
         return (this._tickets ??= new Tickets(this._options));
     }
 
-    protected _users: Users | undefined;
-
     public get users(): Users {
         return (this._users ??= new Users(this._options));
     }
-
-    protected _webhookReceivers: WebhookReceivers | undefined;
 
     public get webhookReceivers(): WebhookReceivers {
         return (this._webhookReceivers ??= new WebhookReceivers(this._options));

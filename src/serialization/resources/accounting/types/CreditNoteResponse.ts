@@ -20,7 +20,7 @@ export const CreditNoteResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreditNoteResponse {
-    interface Raw {
+    export interface Raw {
         model: serializers.accounting.CreditNote.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

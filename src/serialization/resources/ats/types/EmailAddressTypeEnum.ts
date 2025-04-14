@@ -12,5 +12,5 @@ export const EmailAddressTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["PERSONAL", "WORK", "OTHER"]);
 
 export declare namespace EmailAddressTypeEnum {
-    type Raw = "PERSONAL" | "WORK" | "OTHER";
+    export type Raw = "PERSONAL" | "WORK" | "OTHER";
 }

@@ -17,7 +17,7 @@ export const PaginatedExpenseList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedExpenseList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: Expense.Raw[] | null;

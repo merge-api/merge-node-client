@@ -15,5 +15,5 @@ export const CandidateRequestApplicationsItem: core.serialization.Schema<
 ]);
 
 export declare namespace CandidateRequestApplicationsItem {
-    type Raw = string | serializers.ats.Application.Raw;
+    export type Raw = string | serializers.ats.Application.Raw;
 }

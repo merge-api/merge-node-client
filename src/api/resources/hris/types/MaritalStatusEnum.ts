@@ -15,7 +15,6 @@ export type MaritalStatusEnum =
     | "MARRIED_FILING_SEPARATELY"
     | "HEAD_OF_HOUSEHOLD"
     | "QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD";
-
 export const MaritalStatusEnum = {
     Single: "SINGLE",
     MarriedFilingJointly: "MARRIED_FILING_JOINTLY",

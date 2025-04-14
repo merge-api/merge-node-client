@@ -29,20 +29,20 @@ export const Application: core.serialization.ObjectSchema<serializers.ats.Applic
         creditedTo: core.serialization.property("credited_to", ApplicationCreditedTo.optional()),
         screeningQuestionAnswers: core.serialization.property(
             "screening_question_answers",
-            core.serialization.list(ApplicationScreeningQuestionAnswersItem).optional()
+            core.serialization.list(ApplicationScreeningQuestionAnswersItem).optional(),
         ),
         currentStage: core.serialization.property("current_stage", ApplicationCurrentStage.optional()),
         rejectReason: core.serialization.property("reject_reason", ApplicationRejectReason.optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace Application {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

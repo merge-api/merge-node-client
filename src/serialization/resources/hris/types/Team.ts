@@ -16,18 +16,18 @@ export const Team: core.serialization.ObjectSchema<serializers.hris.Team.Raw, Me
         name: core.serialization.string().optional(),
         parentTeam: core.serialization.property(
             "parent_team",
-            core.serialization.lazy(() => serializers.hris.TeamParentTeam).optional()
+            core.serialization.lazy(() => serializers.hris.TeamParentTeam).optional(),
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         ),
         remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
     });
 
 export declare namespace Team {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

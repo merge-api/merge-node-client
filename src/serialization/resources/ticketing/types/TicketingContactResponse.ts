@@ -21,7 +21,7 @@ export const TicketingContactResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace TicketingContactResponse {
-    interface Raw {
+    export interface Raw {
         model: Contact.Raw;
         warnings: WarningValidationProblem.Raw[];
         errors: ErrorValidationProblem.Raw[];

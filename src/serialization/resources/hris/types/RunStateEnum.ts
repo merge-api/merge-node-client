@@ -10,5 +10,5 @@ export const RunStateEnum: core.serialization.Schema<serializers.hris.RunStateEn
     core.serialization.enum_(["PAID", "DRAFT", "APPROVED", "FAILED", "CLOSED"]);
 
 export declare namespace RunStateEnum {
-    type Raw = "PAID" | "DRAFT" | "APPROVED" | "FAILED" | "CLOSED";
+    export type Raw = "PAID" | "DRAFT" | "APPROVED" | "FAILED" | "CLOSED";
 }

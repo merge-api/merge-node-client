@@ -12,5 +12,5 @@ export const InvoicesListRequestStatus: core.serialization.Schema<
 > = core.serialization.enum_(["DRAFT", "OPEN", "PAID", "PARTIALLY_PAID", "SUBMITTED", "VOID"]);
 
 export declare namespace InvoicesListRequestStatus {
-    type Raw = "DRAFT" | "OPEN" | "PAID" | "PARTIALLY_PAID" | "SUBMITTED" | "VOID";
+    export type Raw = "DRAFT" | "OPEN" | "PAID" | "PARTIALLY_PAID" | "SUBMITTED" | "VOID";
 }

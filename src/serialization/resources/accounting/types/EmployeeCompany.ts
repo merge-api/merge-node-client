@@ -12,5 +12,5 @@ export const EmployeeCompany: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), core.serialization.unknown()]);
 
 export declare namespace EmployeeCompany {
-    type Raw = string | unknown;
+    export type Raw = string | unknown;
 }

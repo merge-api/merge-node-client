@@ -11,5 +11,5 @@ export const TaskOwner: core.serialization.Schema<serializers.crm.TaskOwner.Raw,
     core.serialization.undiscriminatedUnion([core.serialization.string(), User]);
 
 export declare namespace TaskOwner {
-    type Raw = string | User.Raw;
+    export type Raw = string | User.Raw;
 }

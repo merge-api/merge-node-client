@@ -13,5 +13,5 @@ export const PayrollRunRunState: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([RunStateEnum, core.serialization.string()]);
 
 export declare namespace PayrollRunRunState {
-    type Raw = RunStateEnum.Raw | string;
+    export type Raw = RunStateEnum.Raw | string;
 }

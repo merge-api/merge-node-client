@@ -13,5 +13,5 @@ export const PatchedOpportunityRequestStatus: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([OpportunityStatusEnum, core.serialization.string()]);
 
 export declare namespace PatchedOpportunityRequestStatus {
-    type Raw = OpportunityStatusEnum.Raw | string;
+    export type Raw = OpportunityStatusEnum.Raw | string;
 }

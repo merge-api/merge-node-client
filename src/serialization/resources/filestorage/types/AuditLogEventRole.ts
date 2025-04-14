@@ -13,5 +13,5 @@ export const AuditLogEventRole: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([RoleEnum, core.serialization.string()]);
 
 export declare namespace AuditLogEventRole {
-    type Raw = RoleEnum.Raw | string;
+    export type Raw = RoleEnum.Raw | string;
 }

@@ -10,7 +10,6 @@ export type CommentsListRequestExpand =
     | "user,contact"
     | "user,contact,ticket"
     | "user,ticket";
-
 export const CommentsListRequestExpand = {
     Contact: "contact",
     ContactTicket: "contact,ticket",

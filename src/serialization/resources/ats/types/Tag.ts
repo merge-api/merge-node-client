@@ -14,18 +14,18 @@ export const Tag: core.serialization.ObjectSchema<serializers.ats.Tag.Raw, Merge
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteData: core.serialization.property(
         "remote_data",
         core.serialization
             .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional())
-            .optional()
+            .optional(),
     ),
 });
 
 export declare namespace Tag {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;

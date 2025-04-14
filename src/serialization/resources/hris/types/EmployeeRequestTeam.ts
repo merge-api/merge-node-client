@@ -15,5 +15,5 @@ export const EmployeeRequestTeam: core.serialization.Schema<
 ]);
 
 export declare namespace EmployeeRequestTeam {
-    type Raw = string | serializers.hris.Team.Raw;
+    export type Raw = string | serializers.hris.Team.Raw;
 }

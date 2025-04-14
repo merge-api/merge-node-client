@@ -15,7 +15,7 @@ export const RemoteData: core.serialization.ObjectSchema<
 });
 
 export declare namespace RemoteData {
-    interface Raw {
+    export interface Raw {
         path: string;
         data?: unknown | null;
     }

@@ -13,5 +13,5 @@ export const ActivityVisibility: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([VisibilityEnum, core.serialization.string()]);
 
 export declare namespace ActivityVisibility {
-    type Raw = VisibilityEnum.Raw | string;
+    export type Raw = VisibilityEnum.Raw | string;
 }

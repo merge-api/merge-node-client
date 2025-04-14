@@ -12,5 +12,5 @@ export const AddressTypeEnum: core.serialization.Schema<
 > = core.serialization.enum_(["BILLING", "SHIPPING"]);
 
 export declare namespace AddressTypeEnum {
-    type Raw = "BILLING" | "SHIPPING";
+    export type Raw = "BILLING" | "SHIPPING";
 }

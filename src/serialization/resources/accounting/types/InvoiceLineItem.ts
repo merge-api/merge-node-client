@@ -34,19 +34,19 @@ export const InvoiceLineItem: core.serialization.ObjectSchema<
     trackingCategory: core.serialization.property("tracking_category", InvoiceLineItemTrackingCategory.optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(InvoiceLineItemTrackingCategoriesItem.optional()).optional()
+        core.serialization.list(InvoiceLineItemTrackingCategoriesItem.optional()).optional(),
     ),
     company: core.serialization.string().optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     remoteFields: core.serialization.property("remote_fields", core.serialization.list(RemoteField).optional()),
 });
 
 export declare namespace InvoiceLineItem {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         remote_id?: string | null;
         created_at?: string | null;

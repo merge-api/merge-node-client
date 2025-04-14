@@ -3,7 +3,6 @@
  */
 
 export type AccountsListRequestShowEnumOrigins = "classification" | "classification,status" | "status";
-
 export const AccountsListRequestShowEnumOrigins = {
     Classification: "classification",
     ClassificationStatus: "classification,status",

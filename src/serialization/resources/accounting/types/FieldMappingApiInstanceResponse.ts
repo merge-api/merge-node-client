@@ -14,38 +14,38 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
     account: core.serialization.property("Account", core.serialization.list(FieldMappingApiInstance).optional()),
     accountingAttachment: core.serialization.property(
         "AccountingAttachment",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     balanceSheet: core.serialization.property(
         "BalanceSheet",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     cashFlowStatement: core.serialization.property(
         "CashFlowStatement",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     companyInfo: core.serialization.property(
         "CompanyInfo",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     contact: core.serialization.property("Contact", core.serialization.list(FieldMappingApiInstance).optional()),
     incomeStatement: core.serialization.property(
         "IncomeStatement",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     creditNote: core.serialization.property("CreditNote", core.serialization.list(FieldMappingApiInstance).optional()),
     item: core.serialization.property("Item", core.serialization.list(FieldMappingApiInstance).optional()),
     purchaseOrder: core.serialization.property(
         "PurchaseOrder",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     trackingCategory: core.serialization.property(
         "TrackingCategory",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     journalEntry: core.serialization.property(
         "JournalEntry",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     taxRate: core.serialization.property("TaxRate", core.serialization.list(FieldMappingApiInstance).optional()),
     invoice: core.serialization.property("Invoice", core.serialization.list(FieldMappingApiInstance).optional()),
@@ -53,37 +53,37 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
     expense: core.serialization.property("Expense", core.serialization.list(FieldMappingApiInstance).optional()),
     vendorCredit: core.serialization.property(
         "VendorCredit",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     transaction: core.serialization.property(
         "Transaction",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     accountingPeriod: core.serialization.property(
         "AccountingPeriod",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     generalLedgerTransaction: core.serialization.property(
         "GeneralLedgerTransaction",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     bankFeedAccount: core.serialization.property(
         "BankFeedAccount",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     employee: core.serialization.property("Employee", core.serialization.list(FieldMappingApiInstance).optional()),
     paymentMethod: core.serialization.property(
         "PaymentMethod",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
     paymentTerm: core.serialization.property(
         "PaymentTerm",
-        core.serialization.list(FieldMappingApiInstance).optional()
+        core.serialization.list(FieldMappingApiInstance).optional(),
     ),
 });
 
 export declare namespace FieldMappingApiInstanceResponse {
-    interface Raw {
+    export interface Raw {
         Account?: FieldMappingApiInstance.Raw[] | null;
         AccountingAttachment?: FieldMappingApiInstance.Raw[] | null;
         BalanceSheet?: FieldMappingApiInstance.Raw[] | null;

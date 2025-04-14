@@ -10,15 +10,17 @@ import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace AsyncPassthrough {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -47,14 +49,23 @@ export class AsyncPassthrough {
      *         path: "/scooters"
      *     })
      */
-    public async create(
+    public create(
         request: Merge.ats.DataPassthroughRequest,
-        requestOptions?: AsyncPassthrough.RequestOptions
-    ): Promise<Merge.ats.AsyncPassthroughReciept> {
+        requestOptions?: AsyncPassthrough.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.AsyncPassthroughReciept> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.ats.DataPassthroughRequest,
+        requestOptions?: AsyncPassthrough.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.AsyncPassthroughReciept>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "ats/v1/async-passthrough"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "ats/v1/async-passthrough",
             ),
             method: "POST",
             headers: {
@@ -65,8 +76,8 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -79,13 +90,16 @@ export class AsyncPassthrough {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.AsyncPassthroughReciept.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.AsyncPassthroughReciept.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -119,14 +133,23 @@ export class AsyncPassthrough {
      * @example
      *     await client.ats.asyncPassthrough.retrieve("async_passthrough_receipt_id")
      */
-    public async retrieve(
+    public retrieve(
         asyncPassthroughReceiptId: string,
-        requestOptions?: AsyncPassthrough.RequestOptions
-    ): Promise<Merge.ats.AsyncPassthroughRetrieveResponse> {
+        requestOptions?: AsyncPassthrough.RequestOptions,
+    ): core.HttpResponsePromise<Merge.ats.AsyncPassthroughRetrieveResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__retrieve(asyncPassthroughReceiptId, requestOptions));
+    }
+
+    private async __retrieve(
+        asyncPassthroughReceiptId: string,
+        requestOptions?: AsyncPassthrough.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.ats.AsyncPassthroughRetrieveResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                `ats/v1/async-passthrough/${encodeURIComponent(asyncPassthroughReceiptId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `ats/v1/async-passthrough/${encodeURIComponent(asyncPassthroughReceiptId)}`,
             ),
             method: "GET",
             headers: {
@@ -137,8 +160,8 @@ export class AsyncPassthrough {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -150,13 +173,16 @@ export class AsyncPassthrough {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ats.AsyncPassthroughRetrieveResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ats.AsyncPassthroughRetrieveResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -174,7 +200,7 @@ export class AsyncPassthrough {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ats/v1/async-passthrough/{async_passthrough_receipt_id}."
+                    "Timeout exceeded when calling GET /ats/v1/async-passthrough/{async_passthrough_receipt_id}.",
                 );
             case "unknown":
                 throw new errors.MergeError({

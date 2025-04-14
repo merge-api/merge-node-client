@@ -18,7 +18,7 @@ export const MaritalStatusEnum: core.serialization.Schema<
 ]);
 
 export declare namespace MaritalStatusEnum {
-    type Raw =
+    export type Raw =
         | "SINGLE"
         | "MARRIED_FILING_JOINTLY"
         | "MARRIED_FILING_SEPARATELY"

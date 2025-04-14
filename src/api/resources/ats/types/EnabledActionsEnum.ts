@@ -7,7 +7,6 @@
  * - `WRITE` - WRITE
  */
 export type EnabledActionsEnum = "READ" | "WRITE";
-
 export const EnabledActionsEnum = {
     Read: "READ",
     Write: "WRITE",

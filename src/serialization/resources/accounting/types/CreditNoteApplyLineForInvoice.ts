@@ -15,7 +15,7 @@ export const CreditNoteApplyLineForInvoice: core.serialization.ObjectSchema<
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     creditNote: core.serialization.property(
         "credit_note",
-        core.serialization.lazy(() => serializers.accounting.CreditNoteApplyLineForInvoiceCreditNote).optional()
+        core.serialization.lazy(() => serializers.accounting.CreditNoteApplyLineForInvoiceCreditNote).optional(),
     ),
     appliedDate: core.serialization.property("applied_date", core.serialization.date().optional()),
     appliedAmount: core.serialization.property("applied_amount", core.serialization.string().optional()),
@@ -23,7 +23,7 @@ export const CreditNoteApplyLineForInvoice: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreditNoteApplyLineForInvoice {
-    interface Raw {
+    export interface Raw {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;

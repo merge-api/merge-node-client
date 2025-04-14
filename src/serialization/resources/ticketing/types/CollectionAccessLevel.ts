@@ -13,5 +13,5 @@ export const CollectionAccessLevel: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([AccessLevelEnum, core.serialization.string()]);
 
 export declare namespace CollectionAccessLevel {
-    type Raw = AccessLevelEnum.Raw | string;
+    export type Raw = AccessLevelEnum.Raw | string;
 }

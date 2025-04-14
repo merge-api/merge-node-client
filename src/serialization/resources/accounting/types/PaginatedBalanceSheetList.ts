@@ -17,7 +17,7 @@ export const PaginatedBalanceSheetList: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginatedBalanceSheetList {
-    interface Raw {
+    export interface Raw {
         next?: string | null;
         previous?: string | null;
         results?: BalanceSheet.Raw[] | null;

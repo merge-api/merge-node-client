@@ -12,5 +12,5 @@ export const BankInfoListRequestAccountType: core.serialization.Schema<
 > = core.serialization.enum_(["CHECKING", "SAVINGS"]);
 
 export declare namespace BankInfoListRequestAccountType {
-    type Raw = "CHECKING" | "SAVINGS";
+    export type Raw = "CHECKING" | "SAVINGS";
 }

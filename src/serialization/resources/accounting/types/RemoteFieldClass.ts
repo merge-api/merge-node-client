@@ -23,13 +23,13 @@ export const RemoteFieldClass: core.serialization.ObjectSchema<
     fieldFormat: core.serialization.property("field_format", FieldFormatEnum.optional()),
     fieldChoices: core.serialization.property(
         "field_choices",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     itemSchema: core.serialization.property("item_schema", ItemSchema.optional()),
 });
 
 export declare namespace RemoteFieldClass {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         display_name?: string | null;
         remote_key_name?: string | null;

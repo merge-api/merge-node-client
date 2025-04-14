@@ -13,5 +13,5 @@ export const PatchedPaymentRequestContact: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([core.serialization.string(), Contact]);
 
 export declare namespace PatchedPaymentRequestContact {
-    type Raw = string | Contact.Raw;
+    export type Raw = string | Contact.Raw;
 }

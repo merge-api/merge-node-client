@@ -12,5 +12,5 @@ export const Status895Enum: core.serialization.Schema<
 > = core.serialization.enum_(["ACTIVE", "INACTIVE"]);
 
 export declare namespace Status895Enum {
-    type Raw = "ACTIVE" | "INACTIVE";
+    export type Raw = "ACTIVE" | "INACTIVE";
 }

@@ -16,7 +16,7 @@ export const AttachmentEndpointRequest: core.serialization.Schema<
 });
 
 export declare namespace AttachmentEndpointRequest {
-    interface Raw {
+    export interface Raw {
         model: AttachmentRequest.Raw;
         remote_user_id: string;
     }

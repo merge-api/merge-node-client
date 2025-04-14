@@ -34,7 +34,6 @@ export type TransactionsRetrieveRequestExpand =
     | "tracking_categories,contact,account"
     | "tracking_categories,contact,account,accounting_period"
     | "tracking_categories,contact,accounting_period";
-
 export const TransactionsRetrieveRequestExpand = {
     Account: "account",
     AccountAccountingPeriod: "account,accounting_period",

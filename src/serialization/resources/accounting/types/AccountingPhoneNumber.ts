@@ -17,7 +17,7 @@ export const AccountingPhoneNumber: core.serialization.ObjectSchema<
 });
 
 export declare namespace AccountingPhoneNumber {
-    interface Raw {
+    export interface Raw {
         created_at?: string | null;
         modified_at?: string | null;
         number?: string | null;

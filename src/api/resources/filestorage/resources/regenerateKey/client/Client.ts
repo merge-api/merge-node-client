@@ -10,15 +10,17 @@ import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace RegenerateKey {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MergeEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -46,14 +48,23 @@ export class RegenerateKey {
      *         name: "Remote Deployment Key 1"
      *     })
      */
-    public async create(
+    public create(
         request: Merge.filestorage.RemoteKeyForRegenerationRequest,
-        requestOptions?: RegenerateKey.RequestOptions
-    ): Promise<Merge.filestorage.RemoteKey> {
+        requestOptions?: RegenerateKey.RequestOptions,
+    ): core.HttpResponsePromise<Merge.filestorage.RemoteKey> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: Merge.filestorage.RemoteKeyForRegenerationRequest,
+        requestOptions?: RegenerateKey.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.filestorage.RemoteKey>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MergeEnvironment.Production,
-                "filestorage/v1/regenerate-key"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "filestorage/v1/regenerate-key",
             ),
             method: "POST",
             headers: {
@@ -64,8 +75,8 @@ export class RegenerateKey {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -80,13 +91,16 @@ export class RegenerateKey {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.filestorage.RemoteKey.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.filestorage.RemoteKey.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -104,7 +118,7 @@ export class RegenerateKey {
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling POST /filestorage/v1/regenerate-key."
+                    "Timeout exceeded when calling POST /filestorage/v1/regenerate-key.",
                 );
             case "unknown":
                 throw new errors.MergeError({

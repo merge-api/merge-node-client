@@ -13,5 +13,5 @@ export const BankFeedAccountRequestAccountType: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([BankFeedAccountAccountTypeEnum, core.serialization.string()]);
 
 export declare namespace BankFeedAccountRequestAccountType {
-    type Raw = BankFeedAccountAccountTypeEnum.Raw | string;
+    export type Raw = BankFeedAccountAccountTypeEnum.Raw | string;
 }
