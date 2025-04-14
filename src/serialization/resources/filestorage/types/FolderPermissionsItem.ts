@@ -5,13 +5,13 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { PermissionRequest } from "./PermissionRequest";
+import { Permission } from "./Permission";
 
 export const FolderPermissionsItem: core.serialization.Schema<
     serializers.filestorage.FolderPermissionsItem.Raw,
     Merge.filestorage.FolderPermissionsItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), PermissionRequest]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), Permission]);
 
 export declare namespace FolderPermissionsItem {
-    type Raw = string | PermissionRequest.Raw;
+    type Raw = string | Permission.Raw;
 }
