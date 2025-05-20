@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The Job Object
- *
  * ### Description
- *
  * The `Job` object can be used to track any jobs that are currently or will be open/closed for applications.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST Jobs` endpoint to show all job postings.
  */
 export interface Job {
@@ -32,19 +28,19 @@ export interface Job {
     /**
      * The job's status.
      *
-     * - `OPEN` - OPEN
-     * - `CLOSED` - CLOSED
-     * - `DRAFT` - DRAFT
-     * - `ARCHIVED` - ARCHIVED
-     * - `PENDING` - PENDING
+     * * `OPEN` - OPEN
+     * * `CLOSED` - CLOSED
+     * * `DRAFT` - DRAFT
+     * * `ARCHIVED` - ARCHIVED
+     * * `PENDING` - PENDING
      */
     status?: Merge.ats.JobStatus;
     /**
      * The job's type.
      *
-     * - `POSTING` - POSTING
-     * - `REQUISITION` - REQUISITION
-     * - `PROFILE` - PROFILE
+     * * `POSTING` - POSTING
+     * * `REQUISITION` - REQUISITION
+     * * `PROFILE` - PROFILE
      */
     type?: Merge.ats.JobTypeEnum;
     /** IDs of `JobPosting` objects that serve as job postings for this `Job`. */

@@ -7,8 +7,8 @@ import * as Merge from "../../../index";
 /**
  * The level of Ticket access that a User with this Role can perform.
  *
- * - `ALL` - ALL
- * - `ASSIGNED_ONLY` - ASSIGNED_ONLY
- * - `TEAM_ONLY` - TEAM_ONLY
+ * * `ALL` - ALL
+ * * `ASSIGNED_ONLY` - ASSIGNED_ONLY
+ * * `TEAM_ONLY` - TEAM_ONLY
  */
 export type RoleTicketAccess = string | Merge.ticketing.TicketAccessEnum;

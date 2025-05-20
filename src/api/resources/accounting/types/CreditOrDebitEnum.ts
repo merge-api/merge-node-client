@@ -3,8 +3,8 @@
  */
 
 /**
- * - `CREDIT` - CREDIT
- * - `DEBIT` - DEBIT
+ * * `CREDIT` - CREDIT
+ * * `DEBIT` - DEBIT
  */
 export type CreditOrDebitEnum = "CREDIT" | "DEBIT";
 export const CreditOrDebitEnum = {

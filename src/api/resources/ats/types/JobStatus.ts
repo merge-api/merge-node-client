@@ -7,10 +7,10 @@ import * as Merge from "../../../index";
 /**
  * The job's status.
  *
- * - `OPEN` - OPEN
- * - `CLOSED` - CLOSED
- * - `DRAFT` - DRAFT
- * - `ARCHIVED` - ARCHIVED
- * - `PENDING` - PENDING
+ * * `OPEN` - OPEN
+ * * `CLOSED` - CLOSED
+ * * `DRAFT` - DRAFT
+ * * `ARCHIVED` - ARCHIVED
+ * * `PENDING` - PENDING
  */
 export type JobStatus = Merge.ats.JobStatusEnum | string;

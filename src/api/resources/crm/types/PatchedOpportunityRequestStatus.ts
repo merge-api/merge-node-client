@@ -7,8 +7,8 @@ import * as Merge from "../../../index";
 /**
  * The opportunity's status.
  *
- * - `OPEN` - OPEN
- * - `WON` - WON
- * - `LOST` - LOST
+ * * `OPEN` - OPEN
+ * * `WON` - WON
+ * * `LOST` - LOST
  */
 export type PatchedOpportunityRequestStatus = Merge.crm.OpportunityStatusEnum | string;

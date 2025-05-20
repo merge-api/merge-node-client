@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The Scorecard Object
- *
  * ### Description
- *
  * The `Scorecard` object is used to represent an interviewer's candidate recommendation based on a particular interview.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.
  */
 export interface Scorecard {
@@ -36,11 +32,11 @@ export interface Scorecard {
     /**
      * The inteviewer's recommendation.
      *
-     * - `DEFINITELY_NO` - DEFINITELY_NO
-     * - `NO` - NO
-     * - `YES` - YES
-     * - `STRONG_YES` - STRONG_YES
-     * - `NO_DECISION` - NO_DECISION
+     * * `DEFINITELY_NO` - DEFINITELY_NO
+     * * `NO` - NO
+     * * `YES` - YES
+     * * `STRONG_YES` - STRONG_YES
+     * * `NO_DECISION` - NO_DECISION
      */
     overallRecommendation?: Merge.ats.ScorecardOverallRecommendation;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

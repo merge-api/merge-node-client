@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The TaxRate Object
- *
  * ### Description
- *
  * The `TaxComponent` object is used to represent any sub-taxes that make up the `TaxRate`.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST TaxRates` endpoint and view tax components relevant to a tax rate.
  */
 export interface TaxComponent {
@@ -32,8 +29,8 @@ export interface TaxComponent {
     /**
      * Returns PURCHASE if the tax component corresponds to a purchase tax or SALES if the tax component corresponds to a sales tax.
      *
-     * - `SALES` - SALES
-     * - `PURCHASE` - PURCHASE
+     * * `SALES` - SALES
+     * * `PURCHASE` - PURCHASE
      */
     componentType?: Merge.accounting.TaxComponentComponentType;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

@@ -56,11 +56,11 @@ export interface JobPostingsListRequest {
     /**
      * If provided, will only return Job Postings with this status. Options: ('PUBLISHED', 'CLOSED', 'DRAFT', 'INTERNAL', 'PENDING')
      *
-     * - `PUBLISHED` - PUBLISHED
-     * - `CLOSED` - CLOSED
-     * - `DRAFT` - DRAFT
-     * - `INTERNAL` - INTERNAL
-     * - `PENDING` - PENDING
+     * * `PUBLISHED` - PUBLISHED
+     * * `CLOSED` - CLOSED
+     * * `DRAFT` - DRAFT
+     * * `INTERNAL` - INTERNAL
+     * * `PENDING` - PENDING
      */
     status?: Merge.ats.JobPostingsListRequestStatus;
 }

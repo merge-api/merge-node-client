@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * The type of the invoice.
  *
- * - `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
- * - `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
+ * * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
+ * * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
  */
 export type PatchedPaymentRequestType = Merge.accounting.PaymentTypeEnum | string;

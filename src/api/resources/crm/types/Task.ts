@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The Task Object
- *
  * ### Description
- *
  * The `Task` object is used to represent a task, such as a to-do item.
- *
  * ### Usage Example
- *
  * TODO
  */
 export interface Task {
@@ -40,8 +36,8 @@ export interface Task {
     /**
      * The task's status.
      *
-     * - `OPEN` - OPEN
-     * - `CLOSED` - CLOSED
+     * * `OPEN` - OPEN
+     * * `CLOSED` - CLOSED
      */
     status?: Merge.crm.TaskStatus;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

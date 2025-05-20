@@ -3,8 +3,8 @@
  */
 
 /**
- * - `ACTIVE` - ACTIVE
- * - `ARCHIVED` - ARCHIVED
+ * * `ACTIVE` - ACTIVE
+ * * `ARCHIVED` - ARCHIVED
  */
 export type Status7D1Enum = "ACTIVE" | "ARCHIVED";
 export const Status7D1Enum = {

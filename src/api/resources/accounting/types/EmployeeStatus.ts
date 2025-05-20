@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * The employee's status in the accounting system.
  *
- * - `ACTIVE` - ACTIVE
- * - `INACTIVE` - INACTIVE
+ * * `ACTIVE` - ACTIVE
+ * * `INACTIVE` - INACTIVE
  */
 export type EmployeeStatus = Merge.accounting.Status895Enum | string;

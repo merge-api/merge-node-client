@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The Accounting Attachment Object
- *
  * ### Description
- *
  * The `AccountingAttachment` object is used to represent a company's attachments.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST AccountingAttachments` endpoint and view a company's attachments.
  */
 export interface AccountingAttachment {

@@ -3,12 +3,12 @@
  */
 
 /**
- * - `VACATION` - VACATION
- * - `SICK` - SICK
- * - `PERSONAL` - PERSONAL
- * - `JURY_DUTY` - JURY_DUTY
- * - `VOLUNTEER` - VOLUNTEER
- * - `BEREAVEMENT` - BEREAVEMENT
+ * * `VACATION` - VACATION
+ * * `SICK` - SICK
+ * * `PERSONAL` - PERSONAL
+ * * `JURY_DUTY` - JURY_DUTY
+ * * `VOLUNTEER` - VOLUNTEER
+ * * `BEREAVEMENT` - BEREAVEMENT
  */
 export type RequestTypeEnum = "VACATION" | "SICK" | "PERSONAL" | "JURY_DUTY" | "VOLUNTEER" | "BEREAVEMENT";
 export const RequestTypeEnum = {

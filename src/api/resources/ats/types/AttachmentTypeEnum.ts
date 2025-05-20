@@ -3,10 +3,10 @@
  */
 
 /**
- * - `RESUME` - RESUME
- * - `COVER_LETTER` - COVER_LETTER
- * - `OFFER_LETTER` - OFFER_LETTER
- * - `OTHER` - OTHER
+ * * `RESUME` - RESUME
+ * * `COVER_LETTER` - COVER_LETTER
+ * * `OFFER_LETTER` - OFFER_LETTER
+ * * `OTHER` - OTHER
  */
 export type AttachmentTypeEnum = "RESUME" | "COVER_LETTER" | "OFFER_LETTER" | "OTHER";
 export const AttachmentTypeEnum = {

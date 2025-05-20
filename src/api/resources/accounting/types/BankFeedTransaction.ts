@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The BankFeedTransaction Object
- *
  * ### Description
- *
  * The `BankFeedTransaction` object is used to represent transactions linked to a bank feed account. This includes details about the transaction such as the date, amount, description, and type.
  *
  * ### Usage Example
- *
  * Fetch from the `GET BankFeedTransaction` endpoint to view details of a transaction associated with a bank feed account.
  */
 export interface BankFeedTransaction {
@@ -40,8 +37,8 @@ export interface BankFeedTransaction {
     /**
      * If the transaction is of type debit or credit.
      *
-     * - `CREDIT` - CREDIT
-     * - `DEBIT` - DEBIT
+     * * `CREDIT` - CREDIT
+     * * `DEBIT` - DEBIT
      */
     creditOrDebit?: Merge.accounting.BankFeedTransactionCreditOrDebit;
     /** The customer’s identifier for the transaction. */

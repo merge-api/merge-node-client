@@ -7,11 +7,11 @@ import * as Merge from "../../../index";
 /**
  * The status of the invoice.
  *
- * - `PAID` - PAID
- * - `DRAFT` - DRAFT
- * - `SUBMITTED` - SUBMITTED
- * - `PARTIALLY_PAID` - PARTIALLY_PAID
- * - `OPEN` - OPEN
- * - `VOID` - VOID
+ * * `PAID` - PAID
+ * * `DRAFT` - DRAFT
+ * * `SUBMITTED` - SUBMITTED
+ * * `PARTIALLY_PAID` - PARTIALLY_PAID
+ * * `OPEN` - OPEN
+ * * `VOID` - VOID
  */
 export type InvoiceRequestStatus = Merge.accounting.InvoiceStatusEnum | string;

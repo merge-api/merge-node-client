@@ -3,11 +3,11 @@
  */
 
 /**
- * - `ASSET` - ASSET
- * - `EQUITY` - EQUITY
- * - `EXPENSE` - EXPENSE
- * - `LIABILITY` - LIABILITY
- * - `REVENUE` - REVENUE
+ * * `ASSET` - ASSET
+ * * `EQUITY` - EQUITY
+ * * `EXPENSE` - EXPENSE
+ * * `LIABILITY` - LIABILITY
+ * * `REVENUE` - REVENUE
  */
 export type ClassificationEnum = "ASSET" | "EQUITY" | "EXPENSE" | "LIABILITY" | "REVENUE";
 export const ClassificationEnum = {

@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The JobPosting Object
- *
  * ### Description
- *
  * The `JobPosting` object represents an external announcement on a job board created by an organization to attract qualified candidates to apply for a specific `Job` opening
- *
  * ### Usage Example
- *
  * Fetch from the `LIST JobPostings` endpoint to show all job postings.
  */
 export interface JobPosting {
@@ -32,11 +28,11 @@ export interface JobPosting {
     /**
      * The job posting's status.
      *
-     * - `PUBLISHED` - PUBLISHED
-     * - `CLOSED` - CLOSED
-     * - `DRAFT` - DRAFT
-     * - `INTERNAL` - INTERNAL
-     * - `PENDING` - PENDING
+     * * `PUBLISHED` - PUBLISHED
+     * * `CLOSED` - CLOSED
+     * * `DRAFT` - DRAFT
+     * * `INTERNAL` - INTERNAL
+     * * `PENDING` - PENDING
      */
     status?: Merge.ats.JobPostingStatusEnum;
     /** The job posting’s content. */

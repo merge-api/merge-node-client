@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * The address type.
  *
- * - `BILLING` - BILLING
- * - `SHIPPING` - SHIPPING
+ * * `BILLING` - BILLING
+ * * `SHIPPING` - SHIPPING
  */
 export type AddressType = Merge.accounting.AddressTypeEnum | string;

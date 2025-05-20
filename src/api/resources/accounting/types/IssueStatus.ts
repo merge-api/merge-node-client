@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * Status of the issue. Options: ('ONGOING', 'RESOLVED')
  *
- * - `ONGOING` - ONGOING
- * - `RESOLVED` - RESOLVED
+ * * `ONGOING` - ONGOING
+ * * `RESOLVED` - RESOLVED
  */
 export type IssueStatus = Merge.accounting.IssueStatusEnum | string;

@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The Group Object
- *
  * ### Description
- *
  * The `Group` object is used to represent any subset of `Users`. This can extend to company domains as well.
- *
  * ### Usage Example
- *
  * Fetch from the `GET /api/filestorage/v1/groups` endpoint and view their groups.
  */
 export interface Group {

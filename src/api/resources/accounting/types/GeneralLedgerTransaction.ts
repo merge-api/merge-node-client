@@ -6,9 +6,7 @@ import * as Merge from "../../../index";
 
 /**
  * # The GeneralLedgerTransaction Object
- *
  * ### Description
- *
  * A General Ledger Entry is a record of a financial transaction that is posted to the general ledger, the central repository of a company’s financial data.
  *
  * The `GeneralLedgerTransaction` object is a singular endpoint to pull all transactions posted to a company’s general ledger. The transaction that generated the `GeneralLedgerTransaction` can be found by referencing the `underlying_transaction_type` and `underlying_transaction_remote_id` fields.
@@ -16,7 +14,6 @@ import * as Merge from "../../../index";
  * The lines of a `GeneralLedgerTransaction` object will always have equal amounts of debits and credits.
  *
  * ### Usage Example
- *
  * Fetch from the `GET GeneralLedgerTransaction` endpoint and view a general ledger transaction.
  */
 export interface GeneralLedgerTransaction {
@@ -32,13 +29,13 @@ export interface GeneralLedgerTransaction {
     /**
      * The type of the underlying transaction.
      *
-     * - `INVOICE` - INVOICE
-     * - `EXPENSE` - EXPENSE
-     * - `TRANSACTION` - TRANSACTION
-     * - `JOURNAL_ENTRY` - JOURNAL_ENTRY
-     * - `PAYMENT` - PAYMENT
-     * - `VENDOR_CREDIT` - VENDOR_CREDIT
-     * - `CREDIT_NOTE` - CREDIT_NOTE
+     * * `INVOICE` - INVOICE
+     * * `EXPENSE` - EXPENSE
+     * * `TRANSACTION` - TRANSACTION
+     * * `JOURNAL_ENTRY` - JOURNAL_ENTRY
+     * * `PAYMENT` - PAYMENT
+     * * `VENDOR_CREDIT` - VENDOR_CREDIT
+     * * `CREDIT_NOTE` - CREDIT_NOTE
      */
     underlyingTransactionType?: Merge.accounting.GeneralLedgerTransactionUnderlyingTransactionType;
     /** The accounting period that the GeneralLedgerTransaction was generated in. */

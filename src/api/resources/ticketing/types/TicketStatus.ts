@@ -7,9 +7,9 @@ import * as Merge from "../../../index";
 /**
  * The current status of the ticket.
  *
- * - `OPEN` - OPEN
- * - `CLOSED` - CLOSED
- * - `IN_PROGRESS` - IN_PROGRESS
- * - `ON_HOLD` - ON_HOLD
+ * * `OPEN` - OPEN
+ * * `CLOSED` - CLOSED
+ * * `IN_PROGRESS` - IN_PROGRESS
+ * * `ON_HOLD` - ON_HOLD
  */
 export type TicketStatus = Merge.ticketing.TicketStatusEnum | string;

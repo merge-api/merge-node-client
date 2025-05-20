@@ -6,14 +6,11 @@ import * as Merge from "../../../index";
 
 /**
  * # The PaymentTerm Object
- *
  * ### Description
- *
  * The `PaymentTerm` object is the agreed-upon conditions between a buyer and a seller that define the timing,
  * amount, and conditions under which payment for goods or services must be made.
  *
  * ### Usage Example
- *
  * Fetch from the `GET PaymentTerm` endpoint and view payment term information.
  */
 export interface PaymentTerm {

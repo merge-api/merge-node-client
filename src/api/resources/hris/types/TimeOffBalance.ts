@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The TimeOffBalance Object
- *
  * ### Description
- *
  * The `TimeOffBalance` object is used to represent current balances for an employee's Time Off plan.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST TimeOffBalances` endpoint and filter by `ID` to show all time off balances.
  */
 export interface TimeOffBalance {
@@ -32,12 +29,12 @@ export interface TimeOffBalance {
     /**
      * The policy type of this time off balance.
      *
-     * - `VACATION` - VACATION
-     * - `SICK` - SICK
-     * - `PERSONAL` - PERSONAL
-     * - `JURY_DUTY` - JURY_DUTY
-     * - `VOLUNTEER` - VOLUNTEER
-     * - `BEREAVEMENT` - BEREAVEMENT
+     * * `VACATION` - VACATION
+     * * `SICK` - SICK
+     * * `PERSONAL` - PERSONAL
+     * * `JURY_DUTY` - JURY_DUTY
+     * * `VOLUNTEER` - VOLUNTEER
+     * * `BEREAVEMENT` - BEREAVEMENT
      */
     policyType?: Merge.hris.TimeOffBalancePolicyType;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

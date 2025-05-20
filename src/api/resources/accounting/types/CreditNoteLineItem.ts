@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The CreditNoteLineItem Object
- *
  * ### Description
- *
  * The `CreditNoteLineItem` object is used to represent a credit note's line items.
  *
  * ### Usage Example
- *
  * Fetch from the `GET CreditNote` endpoint and view the credit note's line items.
  */
 export interface CreditNoteLineItem {

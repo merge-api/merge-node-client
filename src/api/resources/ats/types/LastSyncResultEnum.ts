@@ -3,12 +3,12 @@
  */
 
 /**
- * - `SYNCING` - SYNCING
- * - `DONE` - DONE
- * - `FAILED` - FAILED
- * - `DISABLED` - DISABLED
- * - `PAUSED` - PAUSED
- * - `PARTIALLY_SYNCED` - PARTIALLY_SYNCED
+ * * `SYNCING` - SYNCING
+ * * `DONE` - DONE
+ * * `FAILED` - FAILED
+ * * `DISABLED` - DISABLED
+ * * `PAUSED` - PAUSED
+ * * `PARTIALLY_SYNCED` - PARTIALLY_SYNCED
  */
 export type LastSyncResultEnum = "SYNCING" | "DONE" | "FAILED" | "DISABLED" | "PAUSED" | "PARTIALLY_SYNCED";
 export const LastSyncResultEnum = {

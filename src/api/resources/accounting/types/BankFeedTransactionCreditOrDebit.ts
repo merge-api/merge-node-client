@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * If the transaction is of type debit or credit.
  *
- * - `CREDIT` - CREDIT
- * - `DEBIT` - DEBIT
+ * * `CREDIT` - CREDIT
+ * * `DEBIT` - DEBIT
  */
 export type BankFeedTransactionCreditOrDebit = Merge.accounting.CreditOrDebitEnum | string;

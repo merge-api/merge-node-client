@@ -9,8 +9,8 @@ export interface Issue {
     /**
      * Status of the issue. Options: ('ONGOING', 'RESOLVED')
      *
-     * - `ONGOING` - ONGOING
-     * - `RESOLVED` - RESOLVED
+     * * `ONGOING` - ONGOING
+     * * `RESOLVED` - RESOLVED
      */
     status?: Merge.accounting.IssueStatus;
     errorDescription: string;

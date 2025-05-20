@@ -58,6 +58,7 @@ export class TrackingCategories {
         requestOptions?: TrackingCategories.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.PaginatedTrackingCategoryList>> {
         const {
+            categoryType,
             companyId,
             createdAfter,
             createdBefore,
@@ -73,8 +74,13 @@ export class TrackingCategories {
             remoteFields,
             remoteId,
             showEnumOrigins,
+            status,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (categoryType != null) {
+            _queryParams["category_type"] = categoryType;
+        }
+
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
         }
@@ -135,6 +141,10 @@ export class TrackingCategories {
             _queryParams["show_enum_origins"] = showEnumOrigins;
         }
 
+        if (status != null) {
+            _queryParams["status"] = status;
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -151,8 +161,8 @@ export class TrackingCategories {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.7",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
+                "X-Fern-SDK-Version": "1.1.8",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -262,8 +272,8 @@ export class TrackingCategories {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.7",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.7",
+                "X-Fern-SDK-Version": "1.1.8",
+                "User-Agent": "@mergeapi/merge-node-client/1.1.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

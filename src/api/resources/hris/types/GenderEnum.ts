@@ -3,11 +3,11 @@
  */
 
 /**
- * - `MALE` - MALE
- * - `FEMALE` - FEMALE
- * - `NON-BINARY` - NON-BINARY
- * - `OTHER` - OTHER
- * - `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
+ * * `MALE` - MALE
+ * * `FEMALE` - FEMALE
+ * * `NON-BINARY` - NON-BINARY
+ * * `OTHER` - OTHER
+ * * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
  */
 export type GenderEnum = "MALE" | "FEMALE" | "NON-BINARY" | "OTHER" | "PREFER_NOT_TO_DISCLOSE";
 export const GenderEnum = {

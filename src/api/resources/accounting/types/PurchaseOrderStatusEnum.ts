@@ -3,11 +3,11 @@
  */
 
 /**
- * - `DRAFT` - DRAFT
- * - `SUBMITTED` - SUBMITTED
- * - `AUTHORIZED` - AUTHORIZED
- * - `BILLED` - BILLED
- * - `DELETED` - DELETED
+ * * `DRAFT` - DRAFT
+ * * `SUBMITTED` - SUBMITTED
+ * * `AUTHORIZED` - AUTHORIZED
+ * * `BILLED` - BILLED
+ * * `DELETED` - DELETED
  */
 export type PurchaseOrderStatusEnum = "DRAFT" | "SUBMITTED" | "AUTHORIZED" | "BILLED" | "DELETED";
 export const PurchaseOrderStatusEnum = {

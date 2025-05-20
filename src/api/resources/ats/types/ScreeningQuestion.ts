@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The ScreeningQuestion Object
- *
  * ### Description
- *
  * The `ScreeningQuestion` object is used to represent questions asked to screen candidates for a job.
  *
  * ### Usage Example
- *
  * TODO
  */
 export interface ScreeningQuestion {
@@ -32,14 +29,14 @@ export interface ScreeningQuestion {
     /**
      * The data type for the screening question.
      *
-     * - `DATE` - DATE
-     * - `FILE` - FILE
-     * - `SINGLE_SELECT` - SINGLE_SELECT
-     * - `MULTI_SELECT` - MULTI_SELECT
-     * - `SINGLE_LINE_TEXT` - SINGLE_LINE_TEXT
-     * - `MULTI_LINE_TEXT` - MULTI_LINE_TEXT
-     * - `NUMERIC` - NUMERIC
-     * - `BOOLEAN` - BOOLEAN
+     * * `DATE` - DATE
+     * * `FILE` - FILE
+     * * `SINGLE_SELECT` - SINGLE_SELECT
+     * * `MULTI_SELECT` - MULTI_SELECT
+     * * `SINGLE_LINE_TEXT` - SINGLE_LINE_TEXT
+     * * `MULTI_LINE_TEXT` - MULTI_LINE_TEXT
+     * * `NUMERIC` - NUMERIC
+     * * `BOOLEAN` - BOOLEAN
      */
     type?: Merge.ats.ScreeningQuestionType;
     /** Whether or not the screening question is required. */

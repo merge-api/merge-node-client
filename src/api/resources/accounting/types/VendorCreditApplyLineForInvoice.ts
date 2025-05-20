@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The VendorCreditApplyLine Object
- *
  * ### Description
- *
  * The `VendorCreditApplyLine` object is used to represent a applied vendor credit.
  *
  * ### Usage Example
- *
  * Fetch from the `GET VendorCredit` endpoint and view the vendor credit's applied to lines.
  */
 export interface VendorCreditApplyLineForInvoice {

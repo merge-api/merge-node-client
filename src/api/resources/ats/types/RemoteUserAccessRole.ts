@@ -7,10 +7,10 @@ import * as Merge from "../../../index";
 /**
  * The user's role.
  *
- * - `SUPER_ADMIN` - SUPER_ADMIN
- * - `ADMIN` - ADMIN
- * - `TEAM_MEMBER` - TEAM_MEMBER
- * - `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER
- * - `INTERVIEWER` - INTERVIEWER
+ * * `SUPER_ADMIN` - SUPER_ADMIN
+ * * `ADMIN` - ADMIN
+ * * `TEAM_MEMBER` - TEAM_MEMBER
+ * * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER
+ * * `INTERVIEWER` - INTERVIEWER
  */
 export type RemoteUserAccessRole = Merge.ats.AccessRoleEnum | string;

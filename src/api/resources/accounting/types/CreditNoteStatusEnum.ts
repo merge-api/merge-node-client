@@ -3,9 +3,9 @@
  */
 
 /**
- * - `SUBMITTED` - SUBMITTED
- * - `AUTHORIZED` - AUTHORIZED
- * - `PAID` - PAID
+ * * `SUBMITTED` - SUBMITTED
+ * * `AUTHORIZED` - AUTHORIZED
+ * * `PAID` - PAID
  */
 export type CreditNoteStatusEnum = "SUBMITTED" | "AUTHORIZED" | "PAID";
 export const CreditNoteStatusEnum = {

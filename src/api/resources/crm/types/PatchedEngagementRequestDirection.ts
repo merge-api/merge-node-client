@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * The engagement's direction.
  *
- * - `INBOUND` - INBOUND
- * - `OUTBOUND` - OUTBOUND
+ * * `INBOUND` - INBOUND
+ * * `OUTBOUND` - OUTBOUND
  */
 export type PatchedEngagementRequestDirection = Merge.crm.DirectionEnum | string;

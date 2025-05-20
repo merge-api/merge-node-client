@@ -12,13 +12,13 @@ export interface LinkedAccountsListRequest {
     /**
      * Options: `accounting`, `ats`, `crm`, `filestorage`, `hris`, `mktg`, `ticketing`
      *
-     * - `hris` - hris
-     * - `ats` - ats
-     * - `accounting` - accounting
-     * - `ticketing` - ticketing
-     * - `crm` - crm
-     * - `mktg` - mktg
-     * - `filestorage` - filestorage
+     * * `hris` - hris
+     * * `ats` - ats
+     * * `accounting` - accounting
+     * * `ticketing` - ticketing
+     * * `crm` - crm
+     * * `mktg` - mktg
+     * * `filestorage` - filestorage
      */
     category?: Merge.accounting.LinkedAccountsListRequestCategory;
     /**

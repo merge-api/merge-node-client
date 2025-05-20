@@ -7,8 +7,8 @@ import * as Merge from "../../../index";
 /**
  * The level of access a User has to the Collection and its sub-objects.
  *
- * - `PRIVATE` - PRIVATE
- * - `COMPANY` - COMPANY
- * - `PUBLIC` - PUBLIC
+ * * `PRIVATE` - PRIVATE
+ * * `COMPANY` - COMPANY
+ * * `PUBLIC` - PUBLIC
  */
 export type CollectionAccessLevel = Merge.ticketing.AccessLevelEnum | string;

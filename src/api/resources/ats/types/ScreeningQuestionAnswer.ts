@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The ScreeningQuestionAnswer Object
- *
  * ### Description
- *
  * The `ScreeningQuestionAnswer` object is used to represent candidate responses to a screening question, for a specific application.
  *
  * ### Usage Example
- *
  * TODO
  */
 export interface ScreeningQuestionAnswer {

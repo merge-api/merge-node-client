@@ -7,12 +7,12 @@ import * as Merge from "../../../index";
 /**
  * The type of the underlying transaction.
  *
- * - `INVOICE` - INVOICE
- * - `EXPENSE` - EXPENSE
- * - `TRANSACTION` - TRANSACTION
- * - `JOURNAL_ENTRY` - JOURNAL_ENTRY
- * - `PAYMENT` - PAYMENT
- * - `VENDOR_CREDIT` - VENDOR_CREDIT
- * - `CREDIT_NOTE` - CREDIT_NOTE
+ * * `INVOICE` - INVOICE
+ * * `EXPENSE` - EXPENSE
+ * * `TRANSACTION` - TRANSACTION
+ * * `JOURNAL_ENTRY` - JOURNAL_ENTRY
+ * * `PAYMENT` - PAYMENT
+ * * `VENDOR_CREDIT` - VENDOR_CREDIT
+ * * `CREDIT_NOTE` - CREDIT_NOTE
  */
 export type GeneralLedgerTransactionUnderlyingTransactionType = Merge.accounting.UnderlyingTransactionTypeEnum | string;

@@ -8,6 +8,10 @@
  */
 export interface TrackingCategoriesListRequest {
     /**
+     * If provided, will only return tracking categories with this type.
+     */
+    categoryType?: string;
+    /**
      * If provided, will only return tracking categories for this company.
      */
     companyId?: string;
@@ -67,4 +71,8 @@ export interface TrackingCategoriesListRequest {
      * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: "status";
+    /**
+     * If provided, will only return tracking categories with this status.
+     */
+    status?: string;
 }
