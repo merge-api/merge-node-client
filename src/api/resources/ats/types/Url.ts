@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The Url Object
- *
  * ### Description
- *
  * The `Url` object is used to represent hyperlinks associated with the parent model.
- *
  * ### Usage Example
- *
  * Fetch from the `GET Candidate` endpoint and view their website urls.
  */
 export interface Url {
@@ -25,13 +21,13 @@ export interface Url {
     /**
      * The type of site.
      *
-     * - `PERSONAL` - PERSONAL
-     * - `COMPANY` - COMPANY
-     * - `PORTFOLIO` - PORTFOLIO
-     * - `BLOG` - BLOG
-     * - `SOCIAL_MEDIA` - SOCIAL_MEDIA
-     * - `OTHER` - OTHER
-     * - `JOB_POSTING` - JOB_POSTING
+     * * `PERSONAL` - PERSONAL
+     * * `COMPANY` - COMPANY
+     * * `PORTFOLIO` - PORTFOLIO
+     * * `BLOG` - BLOG
+     * * `SOCIAL_MEDIA` - SOCIAL_MEDIA
+     * * `OTHER` - OTHER
+     * * `JOB_POSTING` - JOB_POSTING
      */
     urlType?: Merge.ats.UrlUrlType;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

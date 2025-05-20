@@ -3,8 +3,8 @@
  */
 
 /**
- * - `BILLING` - BILLING
- * - `SHIPPING` - SHIPPING
+ * * `BILLING` - BILLING
+ * * `SHIPPING` - SHIPPING
  */
 export type AddressTypeEnum = "BILLING" | "SHIPPING";
 export const AddressTypeEnum = {

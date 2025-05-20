@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The TaxRate Object
- *
  * ### Description
- *
  * The `TaxRate` object is used to represent a tax rate.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST TaxRates` endpoint and view tax rates relevant to a company.
  */
 export interface TaxRate {
@@ -34,8 +31,8 @@ export interface TaxRate {
     /**
      * The tax rate’s status - `ACTIVE` if an active tax rate, `ARCHIVED` if not active.
      *
-     * - `ACTIVE` - ACTIVE
-     * - `ARCHIVED` - ARCHIVED
+     * * `ACTIVE` - ACTIVE
+     * * `ARCHIVED` - ARCHIVED
      */
     status?: Merge.accounting.TaxRateStatus;
     /** The country the tax rate is associated with. */

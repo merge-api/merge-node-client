@@ -5,12 +5,13 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
+import { CompanyInfo } from "./CompanyInfo";
 
 export const EmployeeCompany: core.serialization.Schema<
     serializers.accounting.EmployeeCompany.Raw,
     Merge.accounting.EmployeeCompany
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), core.serialization.unknown()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), CompanyInfo]);
 
 export declare namespace EmployeeCompany {
-    export type Raw = string | unknown;
+    export type Raw = string | CompanyInfo.Raw;
 }

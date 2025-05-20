@@ -7,9 +7,9 @@ import * as Merge from "../../../index";
 /**
  * The priority or urgency of the Ticket.
  *
- * - `URGENT` - URGENT
- * - `HIGH` - HIGH
- * - `NORMAL` - NORMAL
- * - `LOW` - LOW
+ * * `URGENT` - URGENT
+ * * `HIGH` - HIGH
+ * * `NORMAL` - NORMAL
+ * * `LOW` - LOW
  */
 export type TicketRequestPriority = Merge.ticketing.PriorityEnum | string;

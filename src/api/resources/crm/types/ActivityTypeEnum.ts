@@ -3,9 +3,9 @@
  */
 
 /**
- * - `CALL` - CALL
- * - `MEETING` - MEETING
- * - `EMAIL` - EMAIL
+ * * `CALL` - CALL
+ * * `MEETING` - MEETING
+ * * `EMAIL` - EMAIL
  */
 export type ActivityTypeEnum = "CALL" | "MEETING" | "EMAIL";
 export const ActivityTypeEnum = {

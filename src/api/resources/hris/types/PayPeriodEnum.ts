@@ -3,15 +3,15 @@
  */
 
 /**
- * - `HOUR` - HOUR
- * - `DAY` - DAY
- * - `WEEK` - WEEK
- * - `EVERY_TWO_WEEKS` - EVERY_TWO_WEEKS
- * - `SEMIMONTHLY` - SEMIMONTHLY
- * - `MONTH` - MONTH
- * - `QUARTER` - QUARTER
- * - `EVERY_SIX_MONTHS` - EVERY_SIX_MONTHS
- * - `YEAR` - YEAR
+ * * `HOUR` - HOUR
+ * * `DAY` - DAY
+ * * `WEEK` - WEEK
+ * * `EVERY_TWO_WEEKS` - EVERY_TWO_WEEKS
+ * * `SEMIMONTHLY` - SEMIMONTHLY
+ * * `MONTH` - MONTH
+ * * `QUARTER` - QUARTER
+ * * `EVERY_SIX_MONTHS` - EVERY_SIX_MONTHS
+ * * `YEAR` - YEAR
  */
 export type PayPeriodEnum =
     | "HOUR"

@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * The tax rate’s status - `ACTIVE` if an active tax rate, `ARCHIVED` if not active.
  *
- * - `ACTIVE` - ACTIVE
- * - `ARCHIVED` - ARCHIVED
+ * * `ACTIVE` - ACTIVE
+ * * `ARCHIVED` - ARCHIVED
  */
 export type TaxRateStatus = Merge.accounting.Status7D1Enum | string;

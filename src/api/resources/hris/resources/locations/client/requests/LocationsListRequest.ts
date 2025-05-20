@@ -36,8 +36,8 @@ export interface LocationsListRequest {
     /**
      * If provided, will only return locations with this location_type
      *
-     * - `HOME` - HOME
-     * - `WORK` - WORK
+     * * `HOME` - HOME
+     * * `WORK` - WORK
      */
     locationType?: Merge.hris.LocationsListRequestLocationType;
     /**

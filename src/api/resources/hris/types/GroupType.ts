@@ -7,10 +7,10 @@ import * as Merge from "../../../index";
 /**
  * The Group type returned directly from the third-party.
  *
- * - `TEAM` - TEAM
- * - `DEPARTMENT` - DEPARTMENT
- * - `COST_CENTER` - COST_CENTER
- * - `BUSINESS_UNIT` - BUSINESS_UNIT
- * - `GROUP` - GROUP
+ * * `TEAM` - TEAM
+ * * `DEPARTMENT` - DEPARTMENT
+ * * `COST_CENTER` - COST_CENTER
+ * * `BUSINESS_UNIT` - BUSINESS_UNIT
+ * * `GROUP` - GROUP
  */
 export type GroupType = Merge.hris.GroupTypeEnum | string;

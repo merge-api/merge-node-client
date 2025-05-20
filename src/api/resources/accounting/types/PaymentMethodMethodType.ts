@@ -7,10 +7,10 @@ import * as Merge from "../../../index";
 /**
  * The type of the payment method.
  *
- * - `CREDIT_CARD` - CREDIT_CARD
- * - `DEBIT_CARD` - DEBIT_CARD
- * - `ACH` - ACH
- * - `CASH` - CASH
- * - `CHECK` - CHECK
+ * * `CREDIT_CARD` - CREDIT_CARD
+ * * `DEBIT_CARD` - DEBIT_CARD
+ * * `ACH` - ACH
+ * * `CASH` - CASH
+ * * `CHECK` - CHECK
  */
 export type PaymentMethodMethodType = Merge.accounting.MethodTypeEnum | string;

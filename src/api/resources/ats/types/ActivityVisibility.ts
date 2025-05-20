@@ -7,8 +7,8 @@ import * as Merge from "../../../index";
 /**
  * The activity's visibility.
  *
- * - `ADMIN_ONLY` - ADMIN_ONLY
- * - `PUBLIC` - PUBLIC
- * - `PRIVATE` - PRIVATE
+ * * `ADMIN_ONLY` - ADMIN_ONLY
+ * * `PUBLIC` - PUBLIC
+ * * `PRIVATE` - PRIVATE
  */
 export type ActivityVisibility = Merge.ats.VisibilityEnum | string;

@@ -4,13 +4,10 @@
 
 /**
  * # The RemoteData Object
- *
  * ### Description
- *
  * The `RemoteData` object is used to represent the full data pulled from the third-party API for an object.
  *
  * ### Usage Example
- *
  * TODO
  */
 export interface RemoteData {

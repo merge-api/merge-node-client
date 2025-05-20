@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The RemoteUser Object
- *
  * ### Description
- *
  * The `RemoteUser` object is used to represent a user with a login to the ATS system.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.
  */
 export interface RemoteUser {
@@ -36,11 +32,11 @@ export interface RemoteUser {
     /**
      * The user's role.
      *
-     * - `SUPER_ADMIN` - SUPER_ADMIN
-     * - `ADMIN` - ADMIN
-     * - `TEAM_MEMBER` - TEAM_MEMBER
-     * - `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER
-     * - `INTERVIEWER` - INTERVIEWER
+     * * `SUPER_ADMIN` - SUPER_ADMIN
+     * * `ADMIN` - ADMIN
+     * * `TEAM_MEMBER` - TEAM_MEMBER
+     * * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER
+     * * `INTERVIEWER` - INTERVIEWER
      */
     accessRole?: Merge.ats.RemoteUserAccessRole;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

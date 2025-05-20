@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The PhoneNumber Object
- *
  * ### Description
- *
  * The `PhoneNumber` object is used to represent a candidate's phone number.
- *
  * ### Usage Example
- *
  * Fetch from the `GET Candidate` endpoint and view their phone numbers.
  */
 export interface PhoneNumber {
@@ -25,11 +21,11 @@ export interface PhoneNumber {
     /**
      * The type of phone number.
      *
-     * - `HOME` - HOME
-     * - `WORK` - WORK
-     * - `MOBILE` - MOBILE
-     * - `SKYPE` - SKYPE
-     * - `OTHER` - OTHER
+     * * `HOME` - HOME
+     * * `WORK` - WORK
+     * * `MOBILE` - MOBILE
+     * * `SKYPE` - SKYPE
+     * * `OTHER` - OTHER
      */
     phoneNumberType?: Merge.ats.PhoneNumberPhoneNumberType;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

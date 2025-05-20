@@ -3,9 +3,9 @@
  */
 
 /**
- * - `JSON` - JSON
- * - `XML` - XML
- * - `MULTIPART` - MULTIPART
+ * * `JSON` - JSON
+ * * `XML` - XML
+ * * `MULTIPART` - MULTIPART
  */
 export type RequestFormatEnum = "JSON" | "XML" | "MULTIPART";
 export const RequestFormatEnum = {

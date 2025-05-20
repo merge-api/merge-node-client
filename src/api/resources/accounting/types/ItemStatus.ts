@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * The item's status.
  *
- * - `ACTIVE` - ACTIVE
- * - `ARCHIVED` - ARCHIVED
+ * * `ACTIVE` - ACTIVE
+ * * `ARCHIVED` - ARCHIVED
  */
 export type ItemStatus = Merge.accounting.Status7D1Enum | string;

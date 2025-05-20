@@ -3,10 +3,10 @@
  */
 
 /**
- * - `COMPLETE` - COMPLETE
- * - `INCOMPLETE` - INCOMPLETE
- * - `RELINK_NEEDED` - RELINK_NEEDED
- * - `IDLE` - IDLE
+ * * `COMPLETE` - COMPLETE
+ * * `INCOMPLETE` - INCOMPLETE
+ * * `RELINK_NEEDED` - RELINK_NEEDED
+ * * `IDLE` - IDLE
  */
 export type AccountDetailsAndActionsStatusEnum = "COMPLETE" | "INCOMPLETE" | "RELINK_NEEDED" | "IDLE";
 export const AccountDetailsAndActionsStatusEnum = {

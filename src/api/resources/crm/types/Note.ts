@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The Note Object
- *
  * ### Description
- *
  * The `Note` object is used to represent a note on another object.
- *
  * ### Usage Example
- *
  * TODO
  */
 export interface Note {

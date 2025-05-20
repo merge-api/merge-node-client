@@ -3,12 +3,12 @@
  */
 
 /**
- * - `PAID` - PAID
- * - `DRAFT` - DRAFT
- * - `SUBMITTED` - SUBMITTED
- * - `PARTIALLY_PAID` - PARTIALLY_PAID
- * - `OPEN` - OPEN
- * - `VOID` - VOID
+ * * `PAID` - PAID
+ * * `DRAFT` - DRAFT
+ * * `SUBMITTED` - SUBMITTED
+ * * `PARTIALLY_PAID` - PARTIALLY_PAID
+ * * `OPEN` - OPEN
+ * * `VOID` - VOID
  */
 export type InvoiceStatusEnum = "PAID" | "DRAFT" | "SUBMITTED" | "PARTIALLY_PAID" | "OPEN" | "VOID";
 export const InvoiceStatusEnum = {

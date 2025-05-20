@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The EmailAddress Object
- *
  * ### Description
- *
  * The `EmailAddress` object is used to represent a candidate's email address.
- *
  * ### Usage Example
- *
  * Fetch from the `GET Candidate` endpoint and view their email addresses.
  */
 export interface EmailAddress {
@@ -25,9 +21,9 @@ export interface EmailAddress {
     /**
      * The type of email address.
      *
-     * - `PERSONAL` - PERSONAL
-     * - `WORK` - WORK
-     * - `OTHER` - OTHER
+     * * `PERSONAL` - PERSONAL
+     * * `WORK` - WORK
+     * * `OTHER` - OTHER
      */
     emailAddressType?: Merge.ats.EmailAddressEmailAddressType;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

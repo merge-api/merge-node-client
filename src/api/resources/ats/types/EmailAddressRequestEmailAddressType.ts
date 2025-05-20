@@ -7,8 +7,8 @@ import * as Merge from "../../../index";
 /**
  * The type of email address.
  *
- * - `PERSONAL` - PERSONAL
- * - `WORK` - WORK
- * - `OTHER` - OTHER
+ * * `PERSONAL` - PERSONAL
+ * * `WORK` - WORK
+ * * `OTHER` - OTHER
  */
 export type EmailAddressRequestEmailAddressType = Merge.ats.EmailAddressTypeEnum | string;

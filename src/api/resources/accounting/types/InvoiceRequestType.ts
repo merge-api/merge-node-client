@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * Whether the invoice is an accounts receivable or accounts payable. If `type` is `ACCOUNTS_PAYABLE`, the invoice is a bill. If `type` is `ACCOUNTS_RECEIVABLE`, it is an invoice.
  *
- * - `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
- * - `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
+ * * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
+ * * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
  */
 export type InvoiceRequestType = Merge.accounting.InvoiceTypeEnum | string;

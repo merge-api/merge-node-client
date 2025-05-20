@@ -3,8 +3,8 @@
  */
 
 /**
- * - `SAVINGS` - SAVINGS
- * - `CHECKING` - CHECKING
+ * * `SAVINGS` - SAVINGS
+ * * `CHECKING` - CHECKING
  */
 export type AccountTypeEnum = "SAVINGS" | "CHECKING";
 export const AccountTypeEnum = {

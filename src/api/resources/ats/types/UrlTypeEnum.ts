@@ -3,13 +3,13 @@
  */
 
 /**
- * - `PERSONAL` - PERSONAL
- * - `COMPANY` - COMPANY
- * - `PORTFOLIO` - PORTFOLIO
- * - `BLOG` - BLOG
- * - `SOCIAL_MEDIA` - SOCIAL_MEDIA
- * - `OTHER` - OTHER
- * - `JOB_POSTING` - JOB_POSTING
+ * * `PERSONAL` - PERSONAL
+ * * `COMPANY` - COMPANY
+ * * `PORTFOLIO` - PORTFOLIO
+ * * `BLOG` - BLOG
+ * * `SOCIAL_MEDIA` - SOCIAL_MEDIA
+ * * `OTHER` - OTHER
+ * * `JOB_POSTING` - JOB_POSTING
  */
 export type UrlTypeEnum = "PERSONAL" | "COMPANY" | "PORTFOLIO" | "BLOG" | "SOCIAL_MEDIA" | "OTHER" | "JOB_POSTING";
 export const UrlTypeEnum = {

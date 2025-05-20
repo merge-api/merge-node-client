@@ -92,10 +92,10 @@ export interface TicketsListRequest {
     /**
      * If provided, will only return tickets of this priority.
      *
-     * - `URGENT` - URGENT
-     * - `HIGH` - HIGH
-     * - `NORMAL` - NORMAL
-     * - `LOW` - LOW
+     * * `URGENT` - URGENT
+     * * `HIGH` - HIGH
+     * * `NORMAL` - NORMAL
+     * * `LOW` - LOW
      */
     priority?: Merge.ticketing.TicketsListRequestPriority;
     /**

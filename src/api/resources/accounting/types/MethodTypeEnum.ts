@@ -3,11 +3,11 @@
  */
 
 /**
- * - `CREDIT_CARD` - CREDIT_CARD
- * - `DEBIT_CARD` - DEBIT_CARD
- * - `ACH` - ACH
- * - `CASH` - CASH
- * - `CHECK` - CHECK
+ * * `CREDIT_CARD` - CREDIT_CARD
+ * * `DEBIT_CARD` - DEBIT_CARD
+ * * `ACH` - ACH
+ * * `CASH` - CASH
+ * * `CHECK` - CHECK
  */
 export type MethodTypeEnum = "CREDIT_CARD" | "DEBIT_CARD" | "ACH" | "CASH" | "CHECK";
 export const MethodTypeEnum = {

@@ -3,9 +3,9 @@
  */
 
 /**
- * - `POSTING` - POSTING
- * - `REQUISITION` - REQUISITION
- * - `PROFILE` - PROFILE
+ * * `POSTING` - POSTING
+ * * `REQUISITION` - REQUISITION
+ * * `PROFILE` - PROFILE
  */
 export type JobTypeEnum = "POSTING" | "REQUISITION" | "PROFILE";
 export const JobTypeEnum = {

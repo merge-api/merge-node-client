@@ -7,8 +7,8 @@ import * as Merge from "../../../index";
 /**
  * The dependent's relationship to the employee.
  *
- * - `CHILD` - CHILD
- * - `SPOUSE` - SPOUSE
- * - `DOMESTIC_PARTNER` - DOMESTIC_PARTNER
+ * * `CHILD` - CHILD
+ * * `SPOUSE` - SPOUSE
+ * * `DOMESTIC_PARTNER` - DOMESTIC_PARTNER
  */
 export type DependentRelationship = Merge.hris.RelationshipEnum | string;

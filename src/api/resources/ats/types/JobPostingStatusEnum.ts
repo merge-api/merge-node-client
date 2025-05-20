@@ -3,11 +3,11 @@
  */
 
 /**
- * - `PUBLISHED` - PUBLISHED
- * - `CLOSED` - CLOSED
- * - `DRAFT` - DRAFT
- * - `INTERNAL` - INTERNAL
- * - `PENDING` - PENDING
+ * * `PUBLISHED` - PUBLISHED
+ * * `CLOSED` - CLOSED
+ * * `DRAFT` - DRAFT
+ * * `INTERNAL` - INTERNAL
+ * * `PENDING` - PENDING
  */
 export type JobPostingStatusEnum = "PUBLISHED" | "CLOSED" | "DRAFT" | "INTERNAL" | "PENDING";
 export const JobPostingStatusEnum = {

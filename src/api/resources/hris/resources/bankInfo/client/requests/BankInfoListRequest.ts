@@ -12,8 +12,8 @@ export interface BankInfoListRequest {
     /**
      * If provided, will only return BankInfo's with this account type. Options: ('SAVINGS', 'CHECKING')
      *
-     * - `SAVINGS` - SAVINGS
-     * - `CHECKING` - CHECKING
+     * * `SAVINGS` - SAVINGS
+     * * `CHECKING` - CHECKING
      */
     accountType?: Merge.hris.BankInfoListRequestAccountType;
     /**

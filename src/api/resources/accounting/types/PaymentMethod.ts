@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The PaymentMethod Object
- *
  * ### Description
- *
  * The `PaymentMethod` object defines how a payment against an invoice is made.
  *
  * ### Usage Example
- *
  * Fetch from the `GET PaymentMethod` endpoint and view payment method information.
  */
 export interface PaymentMethod {
@@ -26,11 +23,11 @@ export interface PaymentMethod {
     /**
      * The type of the payment method.
      *
-     * - `CREDIT_CARD` - CREDIT_CARD
-     * - `DEBIT_CARD` - DEBIT_CARD
-     * - `ACH` - ACH
-     * - `CASH` - CASH
-     * - `CHECK` - CHECK
+     * * `CREDIT_CARD` - CREDIT_CARD
+     * * `DEBIT_CARD` - DEBIT_CARD
+     * * `ACH` - ACH
+     * * `CASH` - CASH
+     * * `CHECK` - CHECK
      */
     methodType: Merge.accounting.PaymentMethodMethodType;
     /** The payment method’s name */

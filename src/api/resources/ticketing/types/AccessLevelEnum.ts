@@ -3,9 +3,9 @@
  */
 
 /**
- * - `PRIVATE` - PRIVATE
- * - `COMPANY` - COMPANY
- * - `PUBLIC` - PUBLIC
+ * * `PRIVATE` - PRIVATE
+ * * `COMPANY` - COMPANY
+ * * `PUBLIC` - PUBLIC
  */
 export type AccessLevelEnum = "PRIVATE" | "COMPANY" | "PUBLIC";
 export const AccessLevelEnum = {

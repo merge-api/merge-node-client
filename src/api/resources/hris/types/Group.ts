@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The Group Object
- *
  * ### Description
- *
  * The `Group` object is used to represent any subset of employees across, for example, `DEPARTMENT` or `TEAM`. Employees can be in multiple Groups.
  *
  * ### Usage Example
- *
  * Fetch from the `LIST Employee` endpoint and expand groups to view an employee's groups.
  */
 export interface Group {
@@ -30,11 +27,11 @@ export interface Group {
     /**
      * The Group type returned directly from the third-party.
      *
-     * - `TEAM` - TEAM
-     * - `DEPARTMENT` - DEPARTMENT
-     * - `COST_CENTER` - COST_CENTER
-     * - `BUSINESS_UNIT` - BUSINESS_UNIT
-     * - `GROUP` - GROUP
+     * * `TEAM` - TEAM
+     * * `DEPARTMENT` - DEPARTMENT
+     * * `COST_CENTER` - COST_CENTER
+     * * `BUSINESS_UNIT` - BUSINESS_UNIT
+     * * `GROUP` - GROUP
      */
     type?: Merge.hris.GroupType;
     /** Indicates whether the Group refers to a team in the third party platform. Note that this is an opinionated view based on how Merge observes most organizations representing teams in each third party platform. If your customer uses a platform different from most, there is a chance this will not be correct. */

@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The Viewer Object
- *
  * ### Description
- *
  * The `Viewer` object is used to represent a User or Team within a company.
  *
  * ### Usage Example
- *
  * TODO
  */
 export interface Viewer {

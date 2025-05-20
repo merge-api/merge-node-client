@@ -3,10 +3,10 @@
  */
 
 /**
- * - `URGENT` - URGENT
- * - `HIGH` - HIGH
- * - `NORMAL` - NORMAL
- * - `LOW` - LOW
+ * * `URGENT` - URGENT
+ * * `HIGH` - HIGH
+ * * `NORMAL` - NORMAL
+ * * `LOW` - LOW
  */
 export type PriorityEnum = "URGENT" | "HIGH" | "NORMAL" | "LOW";
 export const PriorityEnum = {

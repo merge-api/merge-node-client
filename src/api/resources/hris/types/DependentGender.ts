@@ -7,10 +7,10 @@ import * as Merge from "../../../index";
 /**
  * The dependent's gender.
  *
- * - `MALE` - MALE
- * - `FEMALE` - FEMALE
- * - `NON-BINARY` - NON-BINARY
- * - `OTHER` - OTHER
- * - `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
+ * * `MALE` - MALE
+ * * `FEMALE` - FEMALE
+ * * `NON-BINARY` - NON-BINARY
+ * * `OTHER` - OTHER
+ * * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE
  */
 export type DependentGender = Merge.hris.GenderEnum | string;

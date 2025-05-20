@@ -6,16 +6,12 @@ import * as Merge from "../../../index";
 
 /**
  * # The Employee Object
- *
  * ### Description
- *
  * An `Employee` is an individual who works for the company of the linked account. The `Employee` model contains both contractors and full time employees.
- *
- * - An `Employee` is a contractor if `is_contractor` property is `True`
- * - An `Employee` is a full time employee if `is_contractor` property is `False`
+ * * An `Employee` is a contractor if `is_contractor` property is `True`
+ * * An `Employee` is a full time employee if `is_contractor` property is `False`
  *
  * ### Usage Example
- *
  * Fetch from the `LIST Employees` endpoint and view a company's employees.
  */
 export interface Employee {
@@ -41,8 +37,8 @@ export interface Employee {
     /**
      * The employee's status in the accounting system.
      *
-     * - `ACTIVE` - ACTIVE
-     * - `INACTIVE` - INACTIVE
+     * * `ACTIVE` - ACTIVE
+     * * `INACTIVE` - INACTIVE
      */
     status: Merge.accounting.EmployeeStatus;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

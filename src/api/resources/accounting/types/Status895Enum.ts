@@ -3,8 +3,8 @@
  */
 
 /**
- * - `ACTIVE` - ACTIVE
- * - `INACTIVE` - INACTIVE
+ * * `ACTIVE` - ACTIVE
+ * * `INACTIVE` - INACTIVE
  */
 export type Status895Enum = "ACTIVE" | "INACTIVE";
 export const Status895Enum = {

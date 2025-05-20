@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The Activity Object
- *
  * ### Description
- *
  * The `Activity` object is used to represent an activity for a candidate performed by a user.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.
  */
 export interface Activity {
@@ -30,9 +26,9 @@ export interface Activity {
     /**
      * The activity's type.
      *
-     * - `NOTE` - NOTE
-     * - `EMAIL` - EMAIL
-     * - `OTHER` - OTHER
+     * * `NOTE` - NOTE
+     * * `EMAIL` - EMAIL
+     * * `OTHER` - OTHER
      */
     activityType?: Merge.ats.ActivityActivityType;
     /** The activity's subject. */
@@ -42,9 +38,9 @@ export interface Activity {
     /**
      * The activity's visibility.
      *
-     * - `ADMIN_ONLY` - ADMIN_ONLY
-     * - `PUBLIC` - PUBLIC
-     * - `PRIVATE` - PRIVATE
+     * * `ADMIN_ONLY` - ADMIN_ONLY
+     * * `PUBLIC` - PUBLIC
+     * * `PRIVATE` - PRIVATE
      */
     visibility?: Merge.ats.ActivityVisibility;
     candidate?: string;

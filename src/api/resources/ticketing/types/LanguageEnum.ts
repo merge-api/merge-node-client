@@ -3,8 +3,8 @@
  */
 
 /**
- * - `en` - en
- * - `de` - de
+ * * `en` - en
+ * * `de` - de
  */
 export type LanguageEnum = "en" | "de";
 export const LanguageEnum = {

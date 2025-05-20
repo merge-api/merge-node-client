@@ -7,8 +7,8 @@ import * as Merge from "../../../index";
 /**
  * The activity's type.
  *
- * - `NOTE` - NOTE
- * - `EMAIL` - EMAIL
- * - `OTHER` - OTHER
+ * * `NOTE` - NOTE
+ * * `EMAIL` - EMAIL
+ * * `OTHER` - OTHER
  */
 export type ActivityRequestActivityType = Merge.ats.ActivityTypeEnum | string;

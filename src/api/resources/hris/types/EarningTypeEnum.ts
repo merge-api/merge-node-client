@@ -3,10 +3,10 @@
  */
 
 /**
- * - `SALARY` - SALARY
- * - `REIMBURSEMENT` - REIMBURSEMENT
- * - `OVERTIME` - OVERTIME
- * - `BONUS` - BONUS
+ * * `SALARY` - SALARY
+ * * `REIMBURSEMENT` - REIMBURSEMENT
+ * * `OVERTIME` - OVERTIME
+ * * `BONUS` - BONUS
  */
 export type EarningTypeEnum = "SALARY" | "REIMBURSEMENT" | "OVERTIME" | "BONUS";
 export const EarningTypeEnum = {

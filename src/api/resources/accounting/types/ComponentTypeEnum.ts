@@ -3,8 +3,8 @@
  */
 
 /**
- * - `SALES` - SALES
- * - `PURCHASE` - PURCHASE
+ * * `SALES` - SALES
+ * * `PURCHASE` - PURCHASE
  */
 export type ComponentTypeEnum = "SALES" | "PURCHASE";
 export const ComponentTypeEnum = {

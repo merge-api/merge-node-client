@@ -7,9 +7,9 @@ import * as Merge from "../../../index";
 /**
  * The attachment's type.
  *
- * - `RESUME` - RESUME
- * - `COVER_LETTER` - COVER_LETTER
- * - `OFFER_LETTER` - OFFER_LETTER
- * - `OTHER` - OTHER
+ * * `RESUME` - RESUME
+ * * `COVER_LETTER` - COVER_LETTER
+ * * `OFFER_LETTER` - OFFER_LETTER
+ * * `OTHER` - OTHER
  */
 export type AttachmentAttachmentType = Merge.ats.AttachmentTypeEnum | string;

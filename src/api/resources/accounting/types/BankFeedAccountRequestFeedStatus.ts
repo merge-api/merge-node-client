@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * The status of the bank feed.
  *
- * - `ACTIVE` - ACTIVE
- * - `INACTIVE` - INACTIVE
+ * * `ACTIVE` - ACTIVE
+ * * `INACTIVE` - INACTIVE
  */
 export type BankFeedAccountRequestFeedStatus = Merge.accounting.FeedStatusEnum | string;

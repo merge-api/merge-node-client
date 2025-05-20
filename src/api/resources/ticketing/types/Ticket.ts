@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The Ticket Object
- *
  * ### Description
- *
  * The `Ticket` object is used to represent a ticket, issue, task or case.
- *
  * ### Usage Example
- *
  * TODO
  */
 export interface Ticket {
@@ -36,10 +32,10 @@ export interface Ticket {
     /**
      * The current status of the ticket.
      *
-     * - `OPEN` - OPEN
-     * - `CLOSED` - CLOSED
-     * - `IN_PROGRESS` - IN_PROGRESS
-     * - `ON_HOLD` - ON_HOLD
+     * * `OPEN` - OPEN
+     * * `CLOSED` - CLOSED
+     * * `IN_PROGRESS` - IN_PROGRESS
+     * * `ON_HOLD` - ON_HOLD
      */
     status?: Merge.ticketing.TicketStatus;
     /** The ticket’s description. HTML version of description is mapped if supported by the third-party platform. */
@@ -70,10 +66,10 @@ export interface Ticket {
     /**
      * The priority or urgency of the Ticket.
      *
-     * - `URGENT` - URGENT
-     * - `HIGH` - HIGH
-     * - `NORMAL` - NORMAL
-     * - `LOW` - LOW
+     * * `URGENT` - URGENT
+     * * `HIGH` - HIGH
+     * * `NORMAL` - NORMAL
+     * * `LOW` - LOW
      */
     priority?: Merge.ticketing.TicketPriority;
     fieldMappings?: Record<string, unknown>;

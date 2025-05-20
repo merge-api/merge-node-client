@@ -6,13 +6,10 @@ import * as Merge from "../../../index";
 
 /**
  * # The Team Object
- *
  * ### Description
- *
  * The `Team` object is used to represent a subdivision of the company, usually a department. Each employee will be grouped into one specific Team.
  *
  * ### Usage Example
- *
  * If you're building a way to filter by `Team`, you'd hit the `GET Teams` endpoint to fetch the `Teams`, and then use the `ID` of the team your user selects to filter the `GET Employees` endpoint.
  */
 export interface Team {

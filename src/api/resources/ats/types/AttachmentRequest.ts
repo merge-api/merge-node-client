@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The Attachment Object
- *
  * ### Description
- *
  * The `Attachment` object is used to represent a file attached to a candidate.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.
  */
 export interface AttachmentRequest {
@@ -25,10 +21,10 @@ export interface AttachmentRequest {
     /**
      * The attachment's type.
      *
-     * - `RESUME` - RESUME
-     * - `COVER_LETTER` - COVER_LETTER
-     * - `OFFER_LETTER` - OFFER_LETTER
-     * - `OTHER` - OTHER
+     * * `RESUME` - RESUME
+     * * `COVER_LETTER` - COVER_LETTER
+     * * `OFFER_LETTER` - OFFER_LETTER
+     * * `OTHER` - OTHER
      */
     attachmentType?: Merge.ats.AttachmentRequestAttachmentType;
     integrationParams?: Record<string, unknown>;

@@ -7,10 +7,10 @@ import * as Merge from "../../../index";
 /**
  * The type of benefit plan.
  *
- * - `MEDICAL` - MEDICAL
- * - `HEALTH_SAVINGS` - HEALTH_SAVINGS
- * - `INSURANCE` - INSURANCE
- * - `RETIREMENT` - RETIREMENT
- * - `OTHER` - OTHER
+ * * `MEDICAL` - MEDICAL
+ * * `HEALTH_SAVINGS` - HEALTH_SAVINGS
+ * * `INSURANCE` - INSURANCE
+ * * `RETIREMENT` - RETIREMENT
+ * * `OTHER` - OTHER
  */
 export type EmployerBenefitBenefitPlanType = Merge.hris.BenefitPlanTypeEnum | string;

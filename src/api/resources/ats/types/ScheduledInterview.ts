@@ -6,13 +6,9 @@ import * as Merge from "../../../index";
 
 /**
  * # The ScheduledInterview Object
- *
  * ### Description
- *
  * The `ScheduledInterview` object is used to represent a scheduled interview for a given candidate’s application to a job. An `Application` can have multiple `ScheduledInterview`s depending on the particular hiring process.
- *
  * ### Usage Example
- *
  * Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.
  */
 export interface ScheduledInterview {
@@ -44,9 +40,9 @@ export interface ScheduledInterview {
     /**
      * The interview's status.
      *
-     * - `SCHEDULED` - SCHEDULED
-     * - `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
-     * - `COMPLETE` - COMPLETE
+     * * `SCHEDULED` - SCHEDULED
+     * * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
+     * * `COMPLETE` - COMPLETE
      */
     status?: Merge.ats.ScheduledInterviewStatus;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */

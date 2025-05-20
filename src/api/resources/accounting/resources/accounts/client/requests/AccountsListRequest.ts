@@ -73,4 +73,8 @@ export interface AccountsListRequest {
      * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
      */
     showEnumOrigins?: Merge.accounting.AccountsListRequestShowEnumOrigins;
+    /**
+     * If provided, will only return accounts with this status.
+     */
+    status?: string;
 }

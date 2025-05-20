@@ -7,7 +7,7 @@ import * as Merge from "../../../index";
 /**
  * The type of the account.
  *
- * - `BANK` - BANK
- * - `CREDIT_CARD` - CREDIT_CARD
+ * * `BANK` - BANK
+ * * `CREDIT_CARD` - CREDIT_CARD
  */
 export type BankFeedAccountAccountType = Merge.accounting.BankFeedAccountAccountTypeEnum | string;
