@@ -24,6 +24,8 @@ export * as linkedAccounts from "./linkedAccounts";
 export * from "./linkedAccounts/types";
 export * as payments from "./payments";
 export * from "./payments/types";
+export * as projects from "./projects";
+export * from "./projects/types";
 export * as purchaseOrders from "./purchaseOrders";
 export * from "./purchaseOrders/types";
 export * as transactions from "./transactions";

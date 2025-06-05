@@ -7,6 +7,8 @@ import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { CreditNoteLineItemRequestItem } from "./CreditNoteLineItemRequestItem";
 import { CreditNoteLineItemRequestCompany } from "./CreditNoteLineItemRequestCompany";
+import { CreditNoteLineItemRequestContact } from "./CreditNoteLineItemRequestContact";
+import { CreditNoteLineItemRequestProject } from "./CreditNoteLineItemRequestProject";
 
 export const CreditNoteLineItemRequest: core.serialization.ObjectSchema<
     serializers.accounting.CreditNoteLineItemRequest.Raw,
@@ -28,6 +30,8 @@ export const CreditNoteLineItemRequest: core.serialization.ObjectSchema<
     ),
     account: core.serialization.string().optional(),
     company: CreditNoteLineItemRequestCompany.optional(),
+    contact: CreditNoteLineItemRequestContact.optional(),
+    project: CreditNoteLineItemRequestProject.optional(),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -53,6 +57,8 @@ export declare namespace CreditNoteLineItemRequest {
         tracking_categories?: (string | null | undefined)[] | null;
         account?: string | null;
         company?: CreditNoteLineItemRequestCompany.Raw | null;
+        contact?: CreditNoteLineItemRequestContact.Raw | null;
+        project?: CreditNoteLineItemRequestProject.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
     }

@@ -28,5 +28,6 @@ export interface FieldMappingApiInstanceResponse {
     bankFeedAccount?: Merge.accounting.FieldMappingApiInstance[];
     employee?: Merge.accounting.FieldMappingApiInstance[];
     paymentMethod?: Merge.accounting.FieldMappingApiInstance[];
+    project?: Merge.accounting.FieldMappingApiInstance[];
     paymentTerm?: Merge.accounting.FieldMappingApiInstance[];
 }

@@ -340,6 +340,7 @@ export interface JournalLine {
     /** The company the journal entry belongs to. */
     company?: string;
     employee?: string;
+    project?: Merge.accounting.JournalLineProject;
     contact?: string;
     /** The tax rate that applies to this line item. */
     taxRate?: string;

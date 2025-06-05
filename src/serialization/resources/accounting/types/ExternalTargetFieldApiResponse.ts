@@ -70,6 +70,7 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
         "PaymentMethod",
         core.serialization.list(ExternalTargetFieldApi).optional(),
     ),
+    project: core.serialization.property("Project", core.serialization.list(ExternalTargetFieldApi).optional()),
     paymentTerm: core.serialization.property("PaymentTerm", core.serialization.list(ExternalTargetFieldApi).optional()),
 });
 
@@ -98,6 +99,7 @@ export declare namespace ExternalTargetFieldApiResponse {
         BankFeedAccount?: ExternalTargetFieldApi.Raw[] | null;
         Employee?: ExternalTargetFieldApi.Raw[] | null;
         PaymentMethod?: ExternalTargetFieldApi.Raw[] | null;
+        Project?: ExternalTargetFieldApi.Raw[] | null;
         PaymentTerm?: ExternalTargetFieldApi.Raw[] | null;
     }
 }

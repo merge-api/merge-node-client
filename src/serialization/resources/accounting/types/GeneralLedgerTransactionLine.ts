@@ -9,6 +9,7 @@ import { GeneralLedgerTransactionLineAccount } from "./GeneralLedgerTransactionL
 import { GeneralLedgerTransactionLineCompany } from "./GeneralLedgerTransactionLineCompany";
 import { GeneralLedgerTransactionLineEmployee } from "./GeneralLedgerTransactionLineEmployee";
 import { GeneralLedgerTransactionLineContact } from "./GeneralLedgerTransactionLineContact";
+import { GeneralLedgerTransactionLineProject } from "./GeneralLedgerTransactionLineProject";
 import { GeneralLedgerTransactionLineBaseCurrency } from "./GeneralLedgerTransactionLineBaseCurrency";
 import { GeneralLedgerTransactionLineTransactionCurrency } from "./GeneralLedgerTransactionLineTransactionCurrency";
 import { GeneralLedgerTransactionLineTrackingCategoriesItem } from "./GeneralLedgerTransactionLineTrackingCategoriesItem";
@@ -26,6 +27,7 @@ export const GeneralLedgerTransactionLine: core.serialization.ObjectSchema<
     company: GeneralLedgerTransactionLineCompany.optional(),
     employee: GeneralLedgerTransactionLineEmployee.optional(),
     contact: GeneralLedgerTransactionLineContact.optional(),
+    project: GeneralLedgerTransactionLineProject.optional(),
     baseCurrency: core.serialization.property("base_currency", GeneralLedgerTransactionLineBaseCurrency.optional()),
     transactionCurrency: core.serialization.property(
         "transaction_currency",
@@ -59,6 +61,7 @@ export declare namespace GeneralLedgerTransactionLine {
         company?: GeneralLedgerTransactionLineCompany.Raw | null;
         employee?: GeneralLedgerTransactionLineEmployee.Raw | null;
         contact?: GeneralLedgerTransactionLineContact.Raw | null;
+        project?: GeneralLedgerTransactionLineProject.Raw | null;
         base_currency?: GeneralLedgerTransactionLineBaseCurrency.Raw | null;
         transaction_currency?: GeneralLedgerTransactionLineTransactionCurrency.Raw | null;
         exchange_rate?: string | null;

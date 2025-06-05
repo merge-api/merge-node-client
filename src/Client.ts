@@ -5,10 +5,10 @@
 import * as environments from "./environments";
 import * as core from "./core";
 import { Ats } from "./api/resources/ats/client/Client";
-import { Crm } from "./api/resources/crm/client/Client";
 import { Filestorage } from "./api/resources/filestorage/client/Client";
 import { Hris } from "./api/resources/hris/client/Client";
 import { Ticketing } from "./api/resources/ticketing/client/Client";
+import { Crm } from "./api/resources/crm/client/Client";
 import { Accounting } from "./api/resources/accounting/client/Client";
 
 export declare namespace MergeClient {
@@ -38,20 +38,16 @@ export declare namespace MergeClient {
 
 export class MergeClient {
     protected _ats: Ats | undefined;
-    protected _crm: Crm | undefined;
     protected _filestorage: Filestorage | undefined;
     protected _hris: Hris | undefined;
     protected _ticketing: Ticketing | undefined;
+    protected _crm: Crm | undefined;
     protected _accounting: Accounting | undefined;
 
     constructor(protected readonly _options: MergeClient.Options) {}
 
     public get ats(): Ats {
         return (this._ats ??= new Ats(this._options));
-    }
-
-    public get crm(): Crm {
-        return (this._crm ??= new Crm(this._options));
     }
 
     public get filestorage(): Filestorage {
@@ -64,6 +60,10 @@ export class MergeClient {
 
     public get ticketing(): Ticketing {
         return (this._ticketing ??= new Ticketing(this._options));
+    }
+
+    public get crm(): Crm {
+        return (this._crm ??= new Crm(this._options));
     }
 
     public get accounting(): Accounting {

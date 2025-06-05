@@ -38,6 +38,9 @@ export interface CreditNoteLineItemRequest {
     account?: string;
     /** The company the credit note belongs to. */
     company?: Merge.accounting.CreditNoteLineItemRequestCompany;
+    /** The credit note's contact. */
+    contact?: Merge.accounting.CreditNoteLineItemRequestContact;
+    project?: Merge.accounting.CreditNoteLineItemRequestProject;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }
