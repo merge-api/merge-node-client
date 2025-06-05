@@ -7,6 +7,8 @@ import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { CreditNoteLineItemItem } from "./CreditNoteLineItemItem";
 import { CreditNoteLineItemCompany } from "./CreditNoteLineItemCompany";
+import { CreditNoteLineItemContact } from "./CreditNoteLineItemContact";
+import { CreditNoteLineItemProject } from "./CreditNoteLineItemProject";
 
 export const CreditNoteLineItem: core.serialization.ObjectSchema<
     serializers.accounting.CreditNoteLineItem.Raw,
@@ -31,6 +33,8 @@ export const CreditNoteLineItem: core.serialization.ObjectSchema<
     ),
     account: core.serialization.string().optional(),
     company: CreditNoteLineItemCompany.optional(),
+    contact: CreditNoteLineItemContact.optional(),
+    project: CreditNoteLineItemProject.optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
 
@@ -52,6 +56,8 @@ export declare namespace CreditNoteLineItem {
         tracking_categories?: (string | null | undefined)[] | null;
         account?: string | null;
         company?: CreditNoteLineItemCompany.Raw | null;
+        contact?: CreditNoteLineItemContact.Raw | null;
+        project?: CreditNoteLineItemProject.Raw | null;
         remote_was_deleted?: boolean | null;
     }
 }

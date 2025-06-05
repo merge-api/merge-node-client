@@ -40,6 +40,7 @@ import { PaymentMethods } from "../resources/paymentMethods/client/Client";
 import { PaymentTerms } from "../resources/paymentTerms/client/Client";
 import { Payments } from "../resources/payments/client/Client";
 import { PhoneNumbers } from "../resources/phoneNumbers/client/Client";
+import { Projects } from "../resources/projects/client/Client";
 import { PurchaseOrders } from "../resources/purchaseOrders/client/Client";
 import { RegenerateKey } from "../resources/regenerateKey/client/Client";
 import { SyncStatus } from "../resources/syncStatus/client/Client";
@@ -99,6 +100,7 @@ export class Accounting {
     protected _paymentTerms: PaymentTerms | undefined;
     protected _payments: Payments | undefined;
     protected _phoneNumbers: PhoneNumbers | undefined;
+    protected _projects: Projects | undefined;
     protected _purchaseOrders: PurchaseOrders | undefined;
     protected _regenerateKey: RegenerateKey | undefined;
     protected _syncStatus: SyncStatus | undefined;
@@ -253,6 +255,10 @@ export class Accounting {
 
     public get phoneNumbers(): PhoneNumbers {
         return (this._phoneNumbers ??= new PhoneNumbers(this._options));
+    }
+
+    public get projects(): Projects {
+        return (this._projects ??= new Projects(this._options));
     }
 
     public get purchaseOrders(): PurchaseOrders {

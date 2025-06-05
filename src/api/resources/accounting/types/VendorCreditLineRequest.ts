@@ -27,6 +27,8 @@ export interface VendorCreditLineRequest {
     account?: Merge.accounting.VendorCreditLineRequestAccount;
     /** The company the line belongs to. */
     company?: string;
+    project?: Merge.accounting.VendorCreditLineRequestProject;
+    contact?: Merge.accounting.VendorCreditLineRequestContact;
     /** The tax rate that applies to this line item. */
     taxRate?: string;
     /** The vendor credit line item's exchange rate. */

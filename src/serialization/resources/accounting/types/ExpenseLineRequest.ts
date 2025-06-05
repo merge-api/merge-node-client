@@ -12,6 +12,7 @@ import { ExpenseLineRequestEmployee } from "./ExpenseLineRequestEmployee";
 import { ExpenseLineRequestCurrency } from "./ExpenseLineRequestCurrency";
 import { ExpenseLineRequestAccount } from "./ExpenseLineRequestAccount";
 import { ExpenseLineRequestContact } from "./ExpenseLineRequestContact";
+import { ExpenseLineRequestProject } from "./ExpenseLineRequestProject";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
 
 export const ExpenseLineRequest: core.serialization.ObjectSchema<
@@ -31,6 +32,7 @@ export const ExpenseLineRequest: core.serialization.ObjectSchema<
     currency: ExpenseLineRequestCurrency.optional(),
     account: ExpenseLineRequestAccount.optional(),
     contact: ExpenseLineRequestContact.optional(),
+    project: ExpenseLineRequestProject.optional(),
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
@@ -57,6 +59,7 @@ export declare namespace ExpenseLineRequest {
         currency?: ExpenseLineRequestCurrency.Raw | null;
         account?: ExpenseLineRequestAccount.Raw | null;
         contact?: ExpenseLineRequestContact.Raw | null;
+        project?: ExpenseLineRequestProject.Raw | null;
         description?: string | null;
         exchange_rate?: string | null;
         tax_rate?: string | null;

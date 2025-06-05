@@ -9,6 +9,7 @@ import { JournalLineAccount } from "./JournalLineAccount";
 import { JournalLineTrackingCategory } from "./JournalLineTrackingCategory";
 import { JournalLineTrackingCategoriesItem } from "./JournalLineTrackingCategoriesItem";
 import { JournalLineCurrency } from "./JournalLineCurrency";
+import { JournalLineProject } from "./JournalLineProject";
 import { RemoteField } from "./RemoteField";
 
 export const JournalLine: core.serialization.ObjectSchema<
@@ -29,6 +30,7 @@ export const JournalLine: core.serialization.ObjectSchema<
     currency: JournalLineCurrency.optional(),
     company: core.serialization.string().optional(),
     employee: core.serialization.string().optional(),
+    project: JournalLineProject.optional(),
     contact: core.serialization.string().optional(),
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
@@ -50,6 +52,7 @@ export declare namespace JournalLine {
         currency?: JournalLineCurrency.Raw | null;
         company?: string | null;
         employee?: string | null;
+        project?: JournalLineProject.Raw | null;
         contact?: string | null;
         tax_rate?: string | null;
         description?: string | null;

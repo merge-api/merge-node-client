@@ -25,6 +25,7 @@ export interface GeneralLedgerTransactionLine {
     company?: Merge.accounting.GeneralLedgerTransactionLineCompany;
     employee?: Merge.accounting.GeneralLedgerTransactionLineEmployee;
     contact?: Merge.accounting.GeneralLedgerTransactionLineContact;
+    project?: Merge.accounting.GeneralLedgerTransactionLineProject;
     /**
      * The base currency of the transaction
      *

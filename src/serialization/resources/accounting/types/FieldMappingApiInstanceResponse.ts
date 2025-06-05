@@ -76,6 +76,7 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
         "PaymentMethod",
         core.serialization.list(FieldMappingApiInstance).optional(),
     ),
+    project: core.serialization.property("Project", core.serialization.list(FieldMappingApiInstance).optional()),
     paymentTerm: core.serialization.property(
         "PaymentTerm",
         core.serialization.list(FieldMappingApiInstance).optional(),
@@ -107,6 +108,7 @@ export declare namespace FieldMappingApiInstanceResponse {
         BankFeedAccount?: FieldMappingApiInstance.Raw[] | null;
         Employee?: FieldMappingApiInstance.Raw[] | null;
         PaymentMethod?: FieldMappingApiInstance.Raw[] | null;
+        Project?: FieldMappingApiInstance.Raw[] | null;
         PaymentTerm?: FieldMappingApiInstance.Raw[] | null;
     }
 }

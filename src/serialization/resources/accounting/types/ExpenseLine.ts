@@ -12,6 +12,7 @@ import { ExpenseLineEmployee } from "./ExpenseLineEmployee";
 import { ExpenseLineCurrency } from "./ExpenseLineCurrency";
 import { ExpenseLineAccount } from "./ExpenseLineAccount";
 import { ExpenseLineContact } from "./ExpenseLineContact";
+import { ExpenseLineProject } from "./ExpenseLineProject";
 
 export const ExpenseLine: core.serialization.ObjectSchema<
     serializers.accounting.ExpenseLine.Raw,
@@ -33,6 +34,7 @@ export const ExpenseLine: core.serialization.ObjectSchema<
     currency: ExpenseLineCurrency.optional(),
     account: ExpenseLineAccount.optional(),
     contact: ExpenseLineContact.optional(),
+    project: ExpenseLineProject.optional(),
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
@@ -54,6 +56,7 @@ export declare namespace ExpenseLine {
         currency?: ExpenseLineCurrency.Raw | null;
         account?: ExpenseLineAccount.Raw | null;
         contact?: ExpenseLineContact.Raw | null;
+        project?: ExpenseLineProject.Raw | null;
         description?: string | null;
         exchange_rate?: string | null;
         tax_rate?: string | null;

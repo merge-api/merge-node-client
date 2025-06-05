@@ -346,6 +346,7 @@ export interface ExpenseLine {
     account?: Merge.accounting.ExpenseLineAccount;
     /** The expense's contact. */
     contact?: Merge.accounting.ExpenseLineContact;
+    project?: Merge.accounting.ExpenseLineProject;
     /** The description of the item that was purchased by the company. */
     description?: string;
     /** The expense line item's exchange rate. */

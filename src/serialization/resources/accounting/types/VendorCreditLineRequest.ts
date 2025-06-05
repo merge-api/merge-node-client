@@ -6,6 +6,8 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { VendorCreditLineRequestAccount } from "./VendorCreditLineRequestAccount";
+import { VendorCreditLineRequestProject } from "./VendorCreditLineRequestProject";
+import { VendorCreditLineRequestContact } from "./VendorCreditLineRequestContact";
 
 export const VendorCreditLineRequest: core.serialization.ObjectSchema<
     serializers.accounting.VendorCreditLineRequest.Raw,
@@ -21,6 +23,8 @@ export const VendorCreditLineRequest: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     account: VendorCreditLineRequestAccount.optional(),
     company: core.serialization.string().optional(),
+    project: VendorCreditLineRequestProject.optional(),
+    contact: VendorCreditLineRequestContact.optional(),
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
@@ -42,6 +46,8 @@ export declare namespace VendorCreditLineRequest {
         description?: string | null;
         account?: VendorCreditLineRequestAccount.Raw | null;
         company?: string | null;
+        project?: VendorCreditLineRequestProject.Raw | null;
+        contact?: VendorCreditLineRequestContact.Raw | null;
         tax_rate?: string | null;
         exchange_rate?: string | null;
         integration_params?: Record<string, unknown> | null;
