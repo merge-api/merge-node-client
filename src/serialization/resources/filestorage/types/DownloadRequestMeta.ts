@@ -14,7 +14,6 @@ export const DownloadRequestMeta: core.serialization.ObjectSchema<
     url: core.serialization.string(),
     method: core.serialization.string(),
     headers: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
-    body: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace DownloadRequestMeta {
@@ -23,6 +22,5 @@ export declare namespace DownloadRequestMeta {
         url: string;
         method: string;
         headers: Record<string, unknown>;
-        body: Record<string, unknown>;
     }
 }

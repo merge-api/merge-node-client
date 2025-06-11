@@ -5,8 +5,8 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { CategoryEnum } from "./CategoryEnum";
-import { AccountDetailsAndActionsStatusEnum } from "./AccountDetailsAndActionsStatusEnum";
+import { AccountDetailsAndActionsCategory } from "./AccountDetailsAndActionsCategory";
+import { AccountDetailsAndActionsStatus } from "./AccountDetailsAndActionsStatus";
 import { AccountDetailsAndActionsIntegration } from "./AccountDetailsAndActionsIntegration";
 
 export const AccountDetailsAndActions: core.serialization.ObjectSchema<
@@ -14,8 +14,8 @@ export const AccountDetailsAndActions: core.serialization.ObjectSchema<
     Merge.accounting.AccountDetailsAndActions
 > = core.serialization.object({
     id: core.serialization.string(),
-    category: CategoryEnum.optional(),
-    status: AccountDetailsAndActionsStatusEnum,
+    category: AccountDetailsAndActionsCategory.optional(),
+    status: AccountDetailsAndActionsStatus,
     statusDetail: core.serialization.property("status_detail", core.serialization.string().optional()),
     endUserOriginId: core.serialization.property("end_user_origin_id", core.serialization.string().optional()),
     endUserOrganizationName: core.serialization.property("end_user_organization_name", core.serialization.string()),
@@ -26,13 +26,17 @@ export const AccountDetailsAndActions: core.serialization.ObjectSchema<
     integration: AccountDetailsAndActionsIntegration.optional(),
     accountType: core.serialization.property("account_type", core.serialization.string()),
     completedAt: core.serialization.property("completed_at", core.serialization.date()),
+    integrationSpecificFields: core.serialization.property(
+        "integration_specific_fields",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    ),
 });
 
 export declare namespace AccountDetailsAndActions {
     export interface Raw {
         id: string;
-        category?: CategoryEnum.Raw | null;
-        status: AccountDetailsAndActionsStatusEnum.Raw;
+        category?: AccountDetailsAndActionsCategory.Raw | null;
+        status: AccountDetailsAndActionsStatus.Raw;
         status_detail?: string | null;
         end_user_origin_id?: string | null;
         end_user_organization_name: string;
@@ -43,5 +47,6 @@ export declare namespace AccountDetailsAndActions {
         integration?: AccountDetailsAndActionsIntegration.Raw | null;
         account_type: string;
         completed_at: string;
+        integration_specific_fields?: Record<string, unknown> | null;
     }
 }

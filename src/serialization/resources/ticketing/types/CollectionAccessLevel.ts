@@ -5,13 +5,13 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { AccessLevelEnum } from "./AccessLevelEnum";
+import { CollectionAccessLevelEnum } from "./CollectionAccessLevelEnum";
 
 export const CollectionAccessLevel: core.serialization.Schema<
     serializers.ticketing.CollectionAccessLevel.Raw,
     Merge.ticketing.CollectionAccessLevel
-> = core.serialization.undiscriminatedUnion([AccessLevelEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([CollectionAccessLevelEnum, core.serialization.string()]);
 
 export declare namespace CollectionAccessLevel {
-    export type Raw = AccessLevelEnum.Raw | string;
+    export type Raw = CollectionAccessLevelEnum.Raw | string;
 }

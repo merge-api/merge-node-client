@@ -25,6 +25,15 @@ export interface Collection {
     /** The collection's description. */
     description?: string;
     /**
+     * The level of access a User has to the Collection and its sub-objects.
+     *
+     * * `PRIVATE` - PRIVATE
+     * * `COMPANY` - COMPANY
+     * * `PUBLIC` - PUBLIC
+     * * `PARENT_COLLECTION` - PARENT_COLLECTION
+     */
+    accessLevel?: Merge.ticketing.CollectionAccessLevel;
+    /**
      * The collection's type.
      *
      * * `LIST` - LIST
@@ -35,14 +44,6 @@ export interface Collection {
     parentCollection?: Merge.ticketing.CollectionParentCollection;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
-    /**
-     * The level of access a User has to the Collection and its sub-objects.
-     *
-     * * `PRIVATE` - PRIVATE
-     * * `COMPANY` - COMPANY
-     * * `PUBLIC` - PUBLIC
-     */
-    accessLevel?: Merge.ticketing.CollectionAccessLevel;
     fieldMappings?: Record<string, unknown>;
     remoteData?: Merge.ticketing.RemoteData[];
 }

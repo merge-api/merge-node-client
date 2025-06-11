@@ -14,8 +14,8 @@ import * as Merge from "../../../index";
  */
 export interface AccountDetailsAndActions {
     id: string;
-    category?: Merge.crm.CategoryEnum;
-    status: Merge.crm.AccountDetailsAndActionsStatusEnum;
+    category?: Merge.crm.AccountDetailsAndActionsCategory;
+    status: Merge.crm.AccountDetailsAndActionsStatus;
     statusDetail?: string;
     endUserOriginId?: string;
     endUserOrganizationName: string;

@@ -5,6 +5,6 @@
 import * as Merge from "../../../index";
 
 export interface IgnoreCommonModelRequest {
-    reason: Merge.crm.ReasonEnum;
+    reason: Merge.crm.IgnoreCommonModelRequestReason;
     message?: string;
 }

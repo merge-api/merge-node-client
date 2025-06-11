@@ -52,7 +52,7 @@ export interface TrackingCategoriesListRequest {
      */
     modifiedBefore?: Date;
     /**
-     * If provided, will only return TrackingCategories with this name.
+     * If provided, will only return tracking categories with this name.
      */
     name?: string;
     /**

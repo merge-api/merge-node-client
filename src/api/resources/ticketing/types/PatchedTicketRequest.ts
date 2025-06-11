@@ -43,6 +43,15 @@ export interface PatchedTicketRequest {
     contact?: string;
     /** The ticket's parent ticket. */
     parentTicket?: string;
+    /**
+     * The description of who is able to access a given ticket, or where access is inherited from.
+     *
+     * * `COMPANY` - COMPANY
+     * * `PUBLIC` - PUBLIC
+     * * `PRIVATE` - PRIVATE
+     * * `COLLECTION` - COLLECTION
+     */
+    accessLevel?: Merge.ticketing.PatchedTicketRequestAccessLevel;
     tags?: (string | undefined)[];
     roles?: (string | undefined)[];
     /** When the ticket was completed. */

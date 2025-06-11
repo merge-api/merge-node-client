@@ -4,4 +4,6 @@
 
 export interface CustomObjectRequest {
     fields: Record<string, unknown>;
+    integrationParams?: Record<string, unknown>;
+    linkedAccountParams?: Record<string, unknown>;
 }

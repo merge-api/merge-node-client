@@ -131,8 +131,8 @@ export class Stages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -232,8 +232,8 @@ export class Stages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -307,6 +307,7 @@ export class Stages {
             includeRemoteFields,
             includeShellData,
             isCommonModelField,
+            isCustom,
             pageSize,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
@@ -334,6 +335,10 @@ export class Stages {
             _queryParams["is_common_model_field"] = isCommonModelField.toString();
         }
 
+        if (isCustom != null) {
+            _queryParams["is_custom"] = isCustom.toString();
+        }
+
         if (pageSize != null) {
             _queryParams["page_size"] = pageSize.toString();
         }
@@ -354,8 +359,8 @@ export class Stages {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

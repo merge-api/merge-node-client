@@ -19,7 +19,7 @@ export interface SyncStatus {
     nextSyncStart?: Date;
     lastSyncResult?: Merge.crm.SyncStatusLastSyncResult;
     lastSyncFinished?: Date;
-    status: Merge.crm.StatusFd5Enum;
+    status: Merge.crm.SyncStatusStatus;
     isInitialSync: boolean;
     selectiveSyncConfigurationsUsage?: Merge.crm.SelectiveSyncConfigurationsUsageEnum;
 }

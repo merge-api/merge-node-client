@@ -10,5 +10,6 @@ import * as Merge from "../../../index";
  * * `PRIVATE` - PRIVATE
  * * `COMPANY` - COMPANY
  * * `PUBLIC` - PUBLIC
+ * * `PARENT_COLLECTION` - PARENT_COLLECTION
  */
-export type CollectionAccessLevel = Merge.ticketing.AccessLevelEnum | string;
+export type CollectionAccessLevel = Merge.ticketing.CollectionAccessLevelEnum | string;
