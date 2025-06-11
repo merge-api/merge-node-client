@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { PatchedTicketRequestStatus } from "./PatchedTicketRequestStatus";
+import { PatchedTicketRequestAccessLevel } from "./PatchedTicketRequestAccessLevel";
 import { PatchedTicketRequestPriority } from "./PatchedTicketRequestPriority";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
 
@@ -28,6 +29,7 @@ export const PatchedTicketRequest: core.serialization.ObjectSchema<
     account: core.serialization.string().optional(),
     contact: core.serialization.string().optional(),
     parentTicket: core.serialization.property("parent_ticket", core.serialization.string().optional()),
+    accessLevel: core.serialization.property("access_level", PatchedTicketRequestAccessLevel.optional()),
     tags: core.serialization.list(core.serialization.string().optional()).optional(),
     roles: core.serialization.list(core.serialization.string().optional()).optional(),
     completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
@@ -58,6 +60,7 @@ export declare namespace PatchedTicketRequest {
         account?: string | null;
         contact?: string | null;
         parent_ticket?: string | null;
+        access_level?: PatchedTicketRequestAccessLevel.Raw | null;
         tags?: (string | null | undefined)[] | null;
         roles?: (string | null | undefined)[] | null;
         completed_at?: string | null;

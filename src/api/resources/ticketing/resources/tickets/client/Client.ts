@@ -246,8 +246,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -342,8 +342,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -465,8 +465,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -564,8 +564,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -682,8 +682,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -768,8 +768,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -820,20 +820,33 @@ export class Tickets {
     /**
      * Returns metadata for `Ticket` POSTs.
      *
+     * @param {Merge.ticketing.TicketsMetaPostRetrieveRequest} request
      * @param {Tickets.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.ticketing.tickets.metaPostRetrieve()
      */
     public metaPostRetrieve(
+        request: Merge.ticketing.TicketsMetaPostRetrieveRequest = {},
         requestOptions?: Tickets.RequestOptions,
     ): core.HttpResponsePromise<Merge.ticketing.MetaResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__metaPostRetrieve(request, requestOptions));
     }
 
     private async __metaPostRetrieve(
+        request: Merge.ticketing.TicketsMetaPostRetrieveRequest = {},
         requestOptions?: Tickets.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.ticketing.MetaResponse>> {
+        const { collectionId, ticketType } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (collectionId != null) {
+            _queryParams["collection_id"] = collectionId;
+        }
+
+        if (ticketType != null) {
+            _queryParams["ticket_type"] = ticketType;
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -850,13 +863,14 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
             },
             contentType: "application/json",
+            queryParameters: _queryParams,
             requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -919,8 +933,16 @@ export class Tickets {
         request: Merge.ticketing.TicketsRemoteFieldClassesListRequest = {},
         requestOptions?: Tickets.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedRemoteFieldClassList>> {
-        const { cursor, ids, includeDeletedData, includeRemoteData, includeShellData, isCommonModelField, pageSize } =
-            request;
+        const {
+            cursor,
+            ids,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            isCommonModelField,
+            isCustom,
+            pageSize,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
@@ -946,6 +968,10 @@ export class Tickets {
             _queryParams["is_common_model_field"] = isCommonModelField.toString();
         }
 
+        if (isCustom != null) {
+            _queryParams["is_custom"] = isCustom.toString();
+        }
+
         if (pageSize != null) {
             _queryParams["page_size"] = pageSize.toString();
         }
@@ -966,8 +992,8 @@ export class Tickets {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

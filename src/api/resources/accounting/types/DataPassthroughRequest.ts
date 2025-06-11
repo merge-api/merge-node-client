@@ -13,7 +13,7 @@ import * as Merge from "../../../index";
  * Create a `DataPassthrough` to get team hierarchies from your Rippling integration.
  */
 export interface DataPassthroughRequest {
-    method: Merge.accounting.MethodEnum;
+    method: Merge.accounting.DataPassthroughRequestMethod;
     /** The path of the request in the third party's platform. */
     path: string;
     /** An optional override of the third party's base url for the request. */

@@ -72,6 +72,7 @@ export class Files {
             modifiedAfter,
             modifiedBefore,
             name,
+            orderBy,
             pageSize,
             remoteId,
         } = request;
@@ -130,6 +131,12 @@ export class Files {
             _queryParams["name"] = name;
         }
 
+        if (orderBy != null) {
+            _queryParams["order_by"] = serializers.filestorage.FilesListRequestOrderBy.jsonOrThrow(orderBy, {
+                unrecognizedObjectKeys: "strip",
+            });
+        }
+
         if (pageSize != null) {
             _queryParams["page_size"] = pageSize.toString();
         }
@@ -154,8 +161,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -250,8 +257,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -356,8 +363,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -446,8 +453,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -533,8 +540,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -603,8 +610,26 @@ export class Files {
         request: Merge.filestorage.FilesDownloadRequestMetaListRequest = {},
         requestOptions?: Files.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.filestorage.PaginatedDownloadRequestMetaList>> {
-        const { cursor, includeDeletedData, mimeType, pageSize } = request;
+        const {
+            createdAfter,
+            createdBefore,
+            cursor,
+            includeDeletedData,
+            mimeTypes,
+            modifiedAfter,
+            modifiedBefore,
+            orderBy,
+            pageSize,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (createdAfter != null) {
+            _queryParams["created_after"] = createdAfter;
+        }
+
+        if (createdBefore != null) {
+            _queryParams["created_before"] = createdBefore;
+        }
+
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -613,8 +638,23 @@ export class Files {
             _queryParams["include_deleted_data"] = includeDeletedData.toString();
         }
 
-        if (mimeType != null) {
-            _queryParams["mime_type"] = mimeType;
+        if (mimeTypes != null) {
+            _queryParams["mime_types"] = mimeTypes;
+        }
+
+        if (modifiedAfter != null) {
+            _queryParams["modified_after"] = modifiedAfter;
+        }
+
+        if (modifiedBefore != null) {
+            _queryParams["modified_before"] = modifiedBefore;
+        }
+
+        if (orderBy != null) {
+            _queryParams["order_by"] = serializers.filestorage.FilesDownloadRequestMetaListRequestOrderBy.jsonOrThrow(
+                orderBy,
+                { unrecognizedObjectKeys: "strip" },
+            );
         }
 
         if (pageSize != null) {
@@ -637,8 +677,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -720,8 +760,8 @@ export class Files {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
+                "X-Fern-SDK-Version": "2.0.0",
+                "User-Agent": "@mergeapi/merge-node-client/2.0.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

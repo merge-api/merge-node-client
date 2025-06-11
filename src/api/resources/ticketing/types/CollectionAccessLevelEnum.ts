@@ -6,10 +6,12 @@
  * * `PRIVATE` - PRIVATE
  * * `COMPANY` - COMPANY
  * * `PUBLIC` - PUBLIC
+ * * `PARENT_COLLECTION` - PARENT_COLLECTION
  */
-export type AccessLevelEnum = "PRIVATE" | "COMPANY" | "PUBLIC";
-export const AccessLevelEnum = {
+export type CollectionAccessLevelEnum = "PRIVATE" | "COMPANY" | "PUBLIC" | "PARENT_COLLECTION";
+export const CollectionAccessLevelEnum = {
     Private: "PRIVATE",
     Company: "COMPANY",
     Public: "PUBLIC",
+    ParentCollection: "PARENT_COLLECTION",
 } as const;

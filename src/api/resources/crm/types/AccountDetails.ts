@@ -8,7 +8,7 @@ export interface AccountDetails {
     id?: string;
     integration?: string;
     integrationSlug?: string;
-    category?: Merge.crm.CategoryEnum;
+    category?: Merge.crm.AccountDetailsCategory;
     endUserOriginId?: string;
     endUserOrganizationName?: string;
     endUserEmailAddress?: string;

@@ -5,19 +5,19 @@
 import * as serializers from "../../../../../../index";
 import * as Merge from "../../../../../../../api/index";
 import * as core from "../../../../../../../core";
-import { ReasonEnum } from "../../../../types/ReasonEnum";
+import { IgnoreCommonModelRequestReason } from "../../types/IgnoreCommonModelRequestReason";
 
 export const IgnoreCommonModelRequest: core.serialization.Schema<
     serializers.ats.IgnoreCommonModelRequest.Raw,
     Merge.ats.IgnoreCommonModelRequest
 > = core.serialization.object({
-    reason: ReasonEnum,
+    reason: IgnoreCommonModelRequestReason,
     message: core.serialization.string().optional(),
 });
 
 export declare namespace IgnoreCommonModelRequest {
     export interface Raw {
-        reason: ReasonEnum.Raw;
+        reason: IgnoreCommonModelRequestReason.Raw;
         message?: string | null;
     }
 }

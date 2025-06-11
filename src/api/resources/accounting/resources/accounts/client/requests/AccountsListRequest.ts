@@ -10,9 +10,13 @@ import * as Merge from "../../../../../../index";
  */
 export interface AccountsListRequest {
     /**
-     * If provided, will only provide accounts with the passed in enum.
+     * If provided, will only return accounts with the passed in enum.
      */
     accountType?: string;
+    /**
+     * If provided, will only return accounts with this classification.
+     */
+    classification?: string;
     /**
      * If provided, will only return accounts for this company.
      */

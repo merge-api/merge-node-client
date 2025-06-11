@@ -1,4 +1,6 @@
+export * from "./AccountDetailsCategory";
 export * from "./AccountDetails";
+export * from "./AccountDetailsAndActionsCategory";
 export * from "./AccountDetailsAndActions";
 export * from "./AccountDetailsAndActionsIntegration";
 export * from "./AccountDetailsAndActionsStatusEnum";

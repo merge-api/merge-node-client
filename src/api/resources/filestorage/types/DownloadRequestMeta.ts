@@ -7,5 +7,4 @@ export interface DownloadRequestMeta {
     url: string;
     method: string;
     headers: Record<string, unknown>;
-    body: Record<string, unknown>;
 }

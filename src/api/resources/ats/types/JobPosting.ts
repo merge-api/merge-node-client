@@ -34,7 +34,7 @@ export interface JobPosting {
      * * `INTERNAL` - INTERNAL
      * * `PENDING` - PENDING
      */
-    status?: Merge.ats.JobPostingStatusEnum;
+    status?: Merge.ats.JobPostingStatus;
     /** The job posting’s content. */
     content?: string;
     /** When the third party's job posting was created. */

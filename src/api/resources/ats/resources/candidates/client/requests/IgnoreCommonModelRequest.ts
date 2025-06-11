@@ -11,6 +11,6 @@ import * as Merge from "../../../../../../index";
  *     }
  */
 export interface IgnoreCommonModelRequest {
-    reason: Merge.ats.ReasonEnum;
+    reason: Merge.ats.IgnoreCommonModelRequestReason;
     message?: string;
 }

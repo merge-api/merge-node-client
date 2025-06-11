@@ -51,6 +51,15 @@ export interface Ticket {
     /** The ticket's parent ticket. */
     parentTicket?: Merge.ticketing.TicketParentTicket;
     attachments?: (Merge.ticketing.TicketAttachmentsItem | undefined)[];
+    /**
+     * The description of who is able to access a given ticket, or where access is inherited from.
+     *
+     * * `COMPANY` - COMPANY
+     * * `PUBLIC` - PUBLIC
+     * * `PRIVATE` - PRIVATE
+     * * `COLLECTION` - COLLECTION
+     */
+    accessLevel?: Merge.ticketing.TicketAccessLevel;
     tags?: (string | undefined)[];
     roles?: (string | undefined)[];
     /** When the third party's ticket was created. */

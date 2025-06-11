@@ -8,7 +8,7 @@ export interface AccountDetails {
     id?: string;
     integration?: string;
     integrationSlug?: string;
-    category?: Merge.hris.CategoryEnum;
+    category?: Merge.hris.AccountDetailsCategory;
     endUserOriginId?: string;
     endUserOrganizationName?: string;
     endUserEmailAddress?: string;

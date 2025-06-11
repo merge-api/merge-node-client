@@ -26,6 +26,8 @@ export interface FileRequest {
     description?: string;
     /** The folder that the file belongs to. */
     folder?: Merge.filestorage.FileRequestFolder;
+    /** This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations. */
+    checksum?: Record<string, unknown>;
     /** The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param `expand=permissions` to see more details under `GET /files`. */
     permissions?: Merge.filestorage.FileRequestPermissions;
     /** The drive that the file belongs to. */
