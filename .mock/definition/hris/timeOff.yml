@@ -1,0 +1,599 @@
+types:
+  TimeOffListRequestExpand:
+    enum:
+      - approver
+      - employee
+      - value: employee,approver
+        name: EmployeeApprover
+    source:
+      openapi: openapi/openapi.yml
+  TimeOffListRequestRemoteFields:
+    enum:
+      - request_type
+      - value: request_type,status
+        name: RequestTypeStatus
+      - value: request_type,status,units
+        name: RequestTypeStatusUnits
+      - value: request_type,units
+        name: RequestTypeUnits
+      - status
+      - value: status,units
+        name: StatusUnits
+      - units
+    source:
+      openapi: openapi/openapi.yml
+  TimeOffListRequestRequestType:
+    enum:
+      - BEREAVEMENT
+      - JURY_DUTY
+      - PERSONAL
+      - SICK
+      - VACATION
+      - VOLUNTEER
+    source:
+      openapi: openapi/openapi.yml
+  TimeOffListRequestShowEnumOrigins:
+    enum:
+      - request_type
+      - value: request_type,status
+        name: RequestTypeStatus
+      - value: request_type,status,units
+        name: RequestTypeStatusUnits
+      - value: request_type,units
+        name: RequestTypeUnits
+      - status
+      - value: status,units
+        name: StatusUnits
+      - units
+    source:
+      openapi: openapi/openapi.yml
+  TimeOffListRequestStatus:
+    enum:
+      - APPROVED
+      - CANCELLED
+      - DECLINED
+      - DELETED
+      - REQUESTED
+    source:
+      openapi: openapi/openapi.yml
+  TimeOffRetrieveRequestExpand:
+    enum:
+      - approver
+      - employee
+      - value: employee,approver
+        name: EmployeeApprover
+    source:
+      openapi: openapi/openapi.yml
+  TimeOffRetrieveRequestRemoteFields:
+    enum:
+      - request_type
+      - value: request_type,status
+        name: RequestTypeStatus
+      - value: request_type,status,units
+        name: RequestTypeStatusUnits
+      - value: request_type,units
+        name: RequestTypeUnits
+      - status
+      - value: status,units
+        name: StatusUnits
+      - units
+    source:
+      openapi: openapi/openapi.yml
+  TimeOffRetrieveRequestShowEnumOrigins:
+    enum:
+      - request_type
+      - value: request_type,status
+        name: RequestTypeStatus
+      - value: request_type,status,units
+        name: RequestTypeStatusUnits
+      - value: request_type,units
+        name: RequestTypeUnits
+      - status
+      - value: status,units
+        name: StatusUnits
+      - units
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /hris/v1/time-off
+      method: GET
+      auth: true
+      docs: Returns a list of `TimeOff` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: TimeOffListRequest
+        query-parameters:
+          approver_id:
+            type: optional<string>
+            docs: If provided, will only return time off for this approver.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          employee_id:
+            type: optional<string>
+            docs: If provided, will only return time off for this employee.
+          ended_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return employees that ended after this
+              datetime.
+          ended_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return time-offs that ended before this
+              datetime.
+          expand:
+            type: optional<TimeOffListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_fields:
+            type: optional<TimeOffListRequestRemoteFields>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          request_type:
+            type: optional<TimeOffListRequestRequestType>
+            docs: >-
+              If provided, will only return TimeOff with this request type.
+              Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY',
+              'VOLUNTEER', 'BEREAVEMENT')
+
+
+              * `VACATION` - VACATION
+
+              * `SICK` - SICK
+
+              * `PERSONAL` - PERSONAL
+
+              * `JURY_DUTY` - JURY_DUTY
+
+              * `VOLUNTEER` - VOLUNTEER
+
+              * `BEREAVEMENT` - BEREAVEMENT
+          show_enum_origins:
+            type: optional<TimeOffListRequestShowEnumOrigins>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+          started_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return time-offs that started after this
+              datetime.
+          started_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return time-offs that started before this
+              datetime.
+          status:
+            type: optional<TimeOffListRequestStatus>
+            docs: >-
+              If provided, will only return TimeOff with this status. Options:
+              ('REQUESTED', 'APPROVED', 'DECLINED', 'CANCELLED', 'DELETED')
+
+
+              * `REQUESTED` - REQUESTED
+
+              * `APPROVED` - APPROVED
+
+              * `DECLINED` - DECLINED
+
+              * `CANCELLED` - CANCELLED
+
+              * `DELETED` - DELETED
+      response:
+        docs: ''
+        type: root.PaginatedTimeOffList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 91b2b905-e866-40c8-8be2-efe53827a0aa
+                  remote_id: '19202938'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  employee: employee
+                  approver: approver
+                  status: REQUESTED
+                  employee_note: Moving into the new apartment Kendall Roy gave me!
+                  units: HOURS
+                  amount: 3
+                  request_type: VACATION
+                  start_time: '2020-11-10T00:00:00Z'
+                  end_time: '2020-11-17T00:00:00Z'
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /leave
+                      data:
+                        - Varies by platform
+    create:
+      path: /hris/v1/time-off
+      method: POST
+      auth: true
+      docs: Creates a `TimeOff` object with the given values.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: TimeOffEndpointRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            model: root.TimeOffRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.TimeOffResponse
+        status-code: 201
+      examples:
+        - headers: {}
+          request:
+            model: {}
+          response:
+            body:
+              model:
+                id: 91b2b905-e866-40c8-8be2-efe53827a0aa
+                remote_id: '19202938'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                employee: employee
+                approver: approver
+                status: REQUESTED
+                employee_note: Moving into the new apartment Kendall Roy gave me!
+                units: HOURS
+                amount: 3
+                request_type: VACATION
+                start_time: '2020-11-10T00:00:00Z'
+                end_time: '2020-11-17T00:00:00Z'
+                remote_was_deleted: true
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /leave
+                    data:
+                      - Varies by platform
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    retrieve:
+      path: /hris/v1/time-off/{id}
+      method: GET
+      auth: true
+      docs: Returns a `TimeOff` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: TimeOffRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<TimeOffRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<TimeOffRetrieveRequestRemoteFields>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<TimeOffRetrieveRequestShowEnumOrigins>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.TimeOff
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: 91b2b905-e866-40c8-8be2-efe53827a0aa
+              remote_id: '19202938'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              employee: employee
+              approver: approver
+              status: REQUESTED
+              employee_note: Moving into the new apartment Kendall Roy gave me!
+              units: HOURS
+              amount: 3
+              request_type: VACATION
+              start_time: '2020-11-10T00:00:00Z'
+              end_time: '2020-11-17T00:00:00Z'
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /leave
+                  data:
+                    - Varies by platform
+    metaPostRetrieve:
+      path: /hris/v1/time-off/meta/post
+      method: GET
+      auth: true
+      docs: Returns metadata for `TimeOff` POSTs.
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.MetaResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              request_schema:
+                type: object
+                properties:
+                  model:
+                    type: object
+                    required:
+                      - last_name
+                      - first_name
+                      - merge_categories
+                      - new_york_city_neighborhood
+                      - favorite_tv_shows
+                      - favorite_watch
+                    properties:
+                      email_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            email_address_type:
+                              type: string
+                              title: email_address_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: email_addresses
+                        description: Array of email_addresses objects
+                      urls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            url_type:
+                              type: string
+                              title: url_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: urls
+                        description: Array of urls objects
+                      first_name:
+                        type: string
+                        title: first_name
+                        description: The first name.
+                      last_name:
+                        type: string
+                        title: last_name
+                        description: The last name.
+                      phone_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            phone_number_type:
+                              type: string
+                              title: phone_number_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: phone_numbers
+                        description: Array of phone_numbers objects
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: tags
+                        description: Array of tags names
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              title: id
+                            file_url:
+                              type: string
+                              title: file_url
+                            file_name:
+                              type: string
+                              title: file_name
+                            attachment_type:
+                              type: string
+                              title: attachment_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: attachments
+                        description: 'Array of attachments objects '
+                      merge_categories:
+                        type: array
+                        categories:
+                          type: string
+                          enum:
+                            - HRIS
+                            - ATS
+                            - Accounting
+                            - Ticketing
+                            - File Storage
+                            - CRM
+                            - Marketing Automation
+                          enum_information:
+                            - value: HRIS
+                              description: Merge HRIS Category
+                            - value: ATS
+                              description: Merge ATS Category
+                            - value: Accounting
+                              description: Merge Accounting Category
+                            - value: Ticketing
+                              description: Merge Ticketing Category
+                            - value: File Storage
+                              description: Merge File Storage Category
+                            - value: CRM
+                              description: Merge CRM Category
+                            - value: Marketing Automation
+                              description: Merge Marketing Automation Category
+                        title: Merge Categories
+                        description: Array of Merge's Unified API Categories
+                      new_york_city_neighborhood:
+                        type: string
+                        title: Borough
+                        description: One of the 5 Boroughs of New York City
+                      favorite_tv_shows:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: Favorite TV Shows
+                        description: Array of TV Show objects on merge.tv_shows
+                      favorite_watch:
+                        type: string
+                        title: Favorite Watch
+                        description: Favorite watch of all time
+              remote_field_classes:
+                key: value
+              status:
+                linked_account_status: linked_account_status
+                can_make_request: true
+              has_conditional_params: true
+              has_required_linked_account_params: true
+  source:
+    openapi: openapi/openapi.yml

@@ -1,0 +1,454 @@
+types:
+  JobsListRequestExpand:
+    enum:
+      - departments
+      - value: departments,hiring_managers
+        name: DepartmentsHiringManagers
+      - value: departments,hiring_managers,job_postings
+        name: DepartmentsHiringManagersJobPostings
+      - value: departments,hiring_managers,job_postings,recruiters
+        name: DepartmentsHiringManagersJobPostingsRecruiters
+      - value: departments,hiring_managers,recruiters
+        name: DepartmentsHiringManagersRecruiters
+      - value: departments,job_postings
+        name: DepartmentsJobPostings
+      - value: departments,job_postings,recruiters
+        name: DepartmentsJobPostingsRecruiters
+      - value: departments,offices
+        name: DepartmentsOffices
+      - value: departments,offices,hiring_managers
+        name: DepartmentsOfficesHiringManagers
+      - value: departments,offices,hiring_managers,job_postings
+        name: DepartmentsOfficesHiringManagersJobPostings
+      - value: departments,offices,hiring_managers,job_postings,recruiters
+        name: DepartmentsOfficesHiringManagersJobPostingsRecruiters
+      - value: departments,offices,hiring_managers,recruiters
+        name: DepartmentsOfficesHiringManagersRecruiters
+      - value: departments,offices,job_postings
+        name: DepartmentsOfficesJobPostings
+      - value: departments,offices,job_postings,recruiters
+        name: DepartmentsOfficesJobPostingsRecruiters
+      - value: departments,offices,recruiters
+        name: DepartmentsOfficesRecruiters
+      - value: departments,recruiters
+        name: DepartmentsRecruiters
+      - hiring_managers
+      - value: hiring_managers,job_postings
+        name: HiringManagersJobPostings
+      - value: hiring_managers,job_postings,recruiters
+        name: HiringManagersJobPostingsRecruiters
+      - value: hiring_managers,recruiters
+        name: HiringManagersRecruiters
+      - job_postings
+      - value: job_postings,recruiters
+        name: JobPostingsRecruiters
+      - offices
+      - value: offices,hiring_managers
+        name: OfficesHiringManagers
+      - value: offices,hiring_managers,job_postings
+        name: OfficesHiringManagersJobPostings
+      - value: offices,hiring_managers,job_postings,recruiters
+        name: OfficesHiringManagersJobPostingsRecruiters
+      - value: offices,hiring_managers,recruiters
+        name: OfficesHiringManagersRecruiters
+      - value: offices,job_postings
+        name: OfficesJobPostings
+      - value: offices,job_postings,recruiters
+        name: OfficesJobPostingsRecruiters
+      - value: offices,recruiters
+        name: OfficesRecruiters
+      - recruiters
+    source:
+      openapi: openapi/openapi.yml
+  JobsListRequestStatus:
+    enum:
+      - ARCHIVED
+      - CLOSED
+      - DRAFT
+      - OPEN
+      - PENDING
+    source:
+      openapi: openapi/openapi.yml
+  JobsRetrieveRequestExpand:
+    enum:
+      - departments
+      - value: departments,hiring_managers
+        name: DepartmentsHiringManagers
+      - value: departments,hiring_managers,job_postings
+        name: DepartmentsHiringManagersJobPostings
+      - value: departments,hiring_managers,job_postings,recruiters
+        name: DepartmentsHiringManagersJobPostingsRecruiters
+      - value: departments,hiring_managers,recruiters
+        name: DepartmentsHiringManagersRecruiters
+      - value: departments,job_postings
+        name: DepartmentsJobPostings
+      - value: departments,job_postings,recruiters
+        name: DepartmentsJobPostingsRecruiters
+      - value: departments,offices
+        name: DepartmentsOffices
+      - value: departments,offices,hiring_managers
+        name: DepartmentsOfficesHiringManagers
+      - value: departments,offices,hiring_managers,job_postings
+        name: DepartmentsOfficesHiringManagersJobPostings
+      - value: departments,offices,hiring_managers,job_postings,recruiters
+        name: DepartmentsOfficesHiringManagersJobPostingsRecruiters
+      - value: departments,offices,hiring_managers,recruiters
+        name: DepartmentsOfficesHiringManagersRecruiters
+      - value: departments,offices,job_postings
+        name: DepartmentsOfficesJobPostings
+      - value: departments,offices,job_postings,recruiters
+        name: DepartmentsOfficesJobPostingsRecruiters
+      - value: departments,offices,recruiters
+        name: DepartmentsOfficesRecruiters
+      - value: departments,recruiters
+        name: DepartmentsRecruiters
+      - hiring_managers
+      - value: hiring_managers,job_postings
+        name: HiringManagersJobPostings
+      - value: hiring_managers,job_postings,recruiters
+        name: HiringManagersJobPostingsRecruiters
+      - value: hiring_managers,recruiters
+        name: HiringManagersRecruiters
+      - job_postings
+      - value: job_postings,recruiters
+        name: JobPostingsRecruiters
+      - offices
+      - value: offices,hiring_managers
+        name: OfficesHiringManagers
+      - value: offices,hiring_managers,job_postings
+        name: OfficesHiringManagersJobPostings
+      - value: offices,hiring_managers,job_postings,recruiters
+        name: OfficesHiringManagersJobPostingsRecruiters
+      - value: offices,hiring_managers,recruiters
+        name: OfficesHiringManagersRecruiters
+      - value: offices,job_postings
+        name: OfficesJobPostings
+      - value: offices,job_postings,recruiters
+        name: OfficesJobPostingsRecruiters
+      - value: offices,recruiters
+        name: OfficesRecruiters
+      - recruiters
+    source:
+      openapi: openapi/openapi.yml
+  JobsScreeningQuestionsListRequestExpand:
+    enum:
+      - job
+      - options
+      - value: options,job
+        name: OptionsJob
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /ats/v1/jobs
+      method: GET
+      auth: true
+      docs: Returns a list of `Job` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: JobsListRequest
+        query-parameters:
+          code:
+            type: optional<string>
+            docs: If provided, will only return jobs with this code.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<JobsListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          offices:
+            type: optional<string>
+            docs: >-
+              If provided, will only return jobs for this office; multiple
+              offices can be separated by commas.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_fields:
+            type: optional<literal<"status">>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          show_enum_origins:
+            type: optional<literal<"status">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+          status:
+            type: optional<JobsListRequestStatus>
+            docs: >-
+              If provided, will only return jobs with this status. Options:
+              ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING')
+
+
+              * `OPEN` - OPEN
+
+              * `CLOSED` - CLOSED
+
+              * `DRAFT` - DRAFT
+
+              * `ARCHIVED` - ARCHIVED
+
+              * `PENDING` - PENDING
+      response:
+        docs: ''
+        type: root.PaginatedJobList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+                  remote_id: '8765432'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  name: Software Engineer (Merge is actually hiring btw)
+                  description: >-
+                    <b>If you're reading this documentation, you might be a good
+                    fit for Merge!</b>
+                  code: C0025
+                  status: OPEN
+                  type: POSTING
+                  job_postings:
+                    - 2r3c1341-a20f-4e51-b72c-f3830a16c97b
+                    - 543ed912-33ec-444e-a215-8d71cc42fc12
+                  job_posting_urls:
+                    - created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      value: https://merge.dev/careers
+                      url_type: JOB_POSTING
+                  remote_created_at: '2021-10-15T00:00:00Z'
+                  remote_updated_at: '2021-10-16T00:00:00Z'
+                  confidential: true
+                  departments:
+                    - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+                    - d6e687d6-0c36-48a1-8114-35324b5cb38f
+                  offices:
+                    - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+                  hiring_managers:
+                    - 787ed912-33ec-444e-a215-8d71cc42fc12
+                  recruiters:
+                    - 787ed912-33ec-444e-a215-8d71cc42fc12
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /positions
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /ats/v1/jobs/{id}
+      method: GET
+      auth: true
+      docs: Returns a `Job` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: JobsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<JobsRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<literal<"status">>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<literal<"status">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.Job
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+              remote_id: '8765432'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              name: Software Engineer (Merge is actually hiring btw)
+              description: >-
+                <b>If you're reading this documentation, you might be a good fit
+                for Merge!</b>
+              code: C0025
+              status: OPEN
+              type: POSTING
+              job_postings:
+                - 2r3c1341-a20f-4e51-b72c-f3830a16c97b
+                - 543ed912-33ec-444e-a215-8d71cc42fc12
+              job_posting_urls:
+                - created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  value: https://merge.dev/careers
+                  url_type: JOB_POSTING
+                  remote_was_deleted: true
+              remote_created_at: '2021-10-15T00:00:00Z'
+              remote_updated_at: '2021-10-16T00:00:00Z'
+              confidential: true
+              departments:
+                - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+                - d6e687d6-0c36-48a1-8114-35324b5cb38f
+              offices:
+                - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+              hiring_managers:
+                - 787ed912-33ec-444e-a215-8d71cc42fc12
+              recruiters:
+                - 787ed912-33ec-444e-a215-8d71cc42fc12
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /positions
+                  data:
+                    - Varies by platform
+    screeningQuestionsList:
+      path: /ats/v1/jobs/{job_id}/screening-questions
+      method: GET
+      auth: true
+      docs: Returns a list of `ScreeningQuestion` objects.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        job_id: string
+      request:
+        name: JobsScreeningQuestionsListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<JobsScreeningQuestionsListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedScreeningQuestionList
+        status-code: 200
+      examples:
+        - path-parameters:
+            job_id: job_id
+          headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 0238cbc6-6040-430a-848e-aaiehfhdbadf4ae
+                  remote_id: '23729392'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  job: job
+                  description: >-
+                    Are you currently authorized to work for any employer in the
+                    country outlined for this role?
+                  title: Work Authorisation
+                  type: DATE
+                  required: true
+                  options:
+                    - remote_id: '19281'
+                      label: I am currently authorised
+                    - remote_id: '38372'
+                      label: I am currently not eligible
+                  remote_was_deleted: true
+  source:
+    openapi: openapi/openapi.yml

@@ -46,11 +46,14 @@ export declare namespace Hris {
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
+        /** Additional headers to include in requests. */
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
         fetcher?: core.FetchFunction;
     }
 }
 
 export class Hris {
+    protected readonly _options: Hris.Options;
     protected _accountDetails: AccountDetails | undefined;
     protected _accountToken: AccountToken | undefined;
     protected _asyncPassthrough: AsyncPassthrough | undefined;
@@ -85,7 +88,9 @@ export class Hris {
     protected _timesheetEntries: TimesheetEntries | undefined;
     protected _webhookReceivers: WebhookReceivers | undefined;
 
-    constructor(protected readonly _options: Hris.Options) {}
+    constructor(_options: Hris.Options) {
+        this._options = _options;
+    }
 
     public get accountDetails(): AccountDetails {
         return (this._accountDetails ??= new AccountDetails(this._options));

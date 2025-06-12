@@ -11,10 +11,20 @@ export const CustomObjectRequest: core.serialization.ObjectSchema<
     Merge.crm.CustomObjectRequest
 > = core.serialization.object({
     fields: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    integrationParams: core.serialization.property(
+        "integration_params",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    ),
+    linkedAccountParams: core.serialization.property(
+        "linked_account_params",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    ),
 });
 
 export declare namespace CustomObjectRequest {
     export interface Raw {
         fields: Record<string, unknown>;
+        integration_params?: Record<string, unknown> | null;
+        linked_account_params?: Record<string, unknown> | null;
     }
 }

@@ -14,8 +14,8 @@ import * as Merge from "../../../index";
  */
 export interface AccountDetailsAndActions {
     id: string;
-    category?: Merge.ticketing.CategoryEnum;
-    status: Merge.ticketing.AccountDetailsAndActionsStatusEnum;
+    category?: Merge.ticketing.AccountDetailsAndActionsCategory;
+    status: Merge.ticketing.AccountDetailsAndActionsStatus;
     statusDetail?: string;
     endUserOriginId?: string;
     endUserOrganizationName: string;
@@ -28,4 +28,5 @@ export interface AccountDetailsAndActions {
     integration?: Merge.ticketing.AccountDetailsAndActionsIntegration;
     accountType: string;
     completedAt: Date;
+    integrationSpecificFields?: Record<string, unknown>;
 }

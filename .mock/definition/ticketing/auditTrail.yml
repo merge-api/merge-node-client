@@ -1,0 +1,94 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /ticketing/v1/audit-trail
+      method: GET
+      auth: true
+      docs: Gets a list of audit trail events.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: AuditTrailListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          end_date:
+            type: optional<string>
+            docs: >-
+              If included, will only include audit trail events that occurred
+              before this time
+          event_type:
+            type: optional<string>
+            docs: >-
+              If included, will only include events with the given event type.
+              Possible values include: `CREATED_REMOTE_PRODUCTION_API_KEY`,
+              `DELETED_REMOTE_PRODUCTION_API_KEY`, `CREATED_TEST_API_KEY`,
+              `DELETED_TEST_API_KEY`, `REGENERATED_PRODUCTION_API_KEY`,
+              `REGENERATED_WEBHOOK_SIGNATURE`, `INVITED_USER`,
+              `TWO_FACTOR_AUTH_ENABLED`, `TWO_FACTOR_AUTH_DISABLED`,
+              `DELETED_LINKED_ACCOUNT`,
+              `DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT`,
+              `CREATED_DESTINATION`, `DELETED_DESTINATION`,
+              `CHANGED_DESTINATION`, `CHANGED_SCOPES`,
+              `CHANGED_PERSONAL_INFORMATION`, `CHANGED_ORGANIZATION_SETTINGS`,
+              `ENABLED_INTEGRATION`, `DISABLED_INTEGRATION`, `ENABLED_CATEGORY`,
+              `DISABLED_CATEGORY`, `CHANGED_PASSWORD`, `RESET_PASSWORD`,
+              `ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION`,
+              `ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT`,
+              `DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION`,
+              `DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT`,
+              `CREATED_INTEGRATION_WIDE_FIELD_MAPPING`,
+              `CREATED_LINKED_ACCOUNT_FIELD_MAPPING`,
+              `CHANGED_INTEGRATION_WIDE_FIELD_MAPPING`,
+              `CHANGED_LINKED_ACCOUNT_FIELD_MAPPING`,
+              `DELETED_INTEGRATION_WIDE_FIELD_MAPPING`,
+              `DELETED_LINKED_ACCOUNT_FIELD_MAPPING`,
+              `CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE`,
+              `CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE`,
+              `DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE`,
+              `FORCED_LINKED_ACCOUNT_RESYNC`, `MUTED_ISSUE`,
+              `GENERATED_MAGIC_LINK`, `ENABLED_MERGE_WEBHOOK`,
+              `DISABLED_MERGE_WEBHOOK`, `MERGE_WEBHOOK_TARGET_CHANGED`,
+              `END_USER_CREDENTIALS_ACCESSED`
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          start_date:
+            type: optional<string>
+            docs: >-
+              If included, will only include audit trail events that occurred
+              after this time
+          user_email:
+            type: optional<string>
+            docs: >-
+              If provided, this will return events associated with the specified
+              user email. Please note that the email address reflects the user's
+              email at the time of the event, and may not be their current
+              email.
+      response:
+        docs: ''
+        type: root.PaginatedAuditLogEventList
+        status-code: 200
+      examples:
+        - response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: b5ceea2a-7171-47ce-8090-165cfce5572c
+                  user_name: Gil Feig
+                  user_email: hello@merge.dev
+                  role: ADMIN
+                  ip_address: 192.0.2.123
+                  event_type: CREATED_REMOTE_PRODUCTION_API_KEY
+                  event_description: >-
+                    Organization-wide Scopes for model hris.Employee updated
+                    from Read to Read+Write
+                  created_at: '2024-01-15T09:30:00Z'
+  source:
+    openapi: openapi/openapi.yml

@@ -14,6 +14,7 @@ import { TicketRequestAccount } from "./TicketRequestAccount";
 import { TicketRequestContact } from "./TicketRequestContact";
 import { TicketRequestParentTicket } from "./TicketRequestParentTicket";
 import { TicketRequestAttachmentsItem } from "./TicketRequestAttachmentsItem";
+import { TicketRequestAccessLevel } from "./TicketRequestAccessLevel";
 import { TicketRequestPriority } from "./TicketRequestPriority";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
 
@@ -37,6 +38,7 @@ export const TicketRequest: core.serialization.ObjectSchema<
     contact: TicketRequestContact.optional(),
     parentTicket: core.serialization.property("parent_ticket", TicketRequestParentTicket.optional()),
     attachments: core.serialization.list(TicketRequestAttachmentsItem.optional()).optional(),
+    accessLevel: core.serialization.property("access_level", TicketRequestAccessLevel.optional()),
     tags: core.serialization.list(core.serialization.string().optional()).optional(),
     roles: core.serialization.list(core.serialization.string().optional()).optional(),
     completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
@@ -68,6 +70,7 @@ export declare namespace TicketRequest {
         contact?: TicketRequestContact.Raw | null;
         parent_ticket?: TicketRequestParentTicket.Raw | null;
         attachments?: (TicketRequestAttachmentsItem.Raw | null | undefined)[] | null;
+        access_level?: TicketRequestAccessLevel.Raw | null;
         tags?: (string | null | undefined)[] | null;
         roles?: (string | null | undefined)[] | null;
         completed_at?: string | null;

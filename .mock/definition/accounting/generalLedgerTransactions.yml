@@ -1,0 +1,289 @@
+types:
+  GeneralLedgerTransactionsListRequestExpand:
+    enum:
+      - accounting_period
+      - company
+      - value: company,accounting_period
+        name: CompanyAccountingPeriod
+      - general_ledger_transaction_lines
+      - value: general_ledger_transaction_lines,accounting_period
+        name: GeneralLedgerTransactionLinesAccountingPeriod
+      - value: general_ledger_transaction_lines,company
+        name: GeneralLedgerTransactionLinesCompany
+      - value: general_ledger_transaction_lines,company,accounting_period
+        name: GeneralLedgerTransactionLinesCompanyAccountingPeriod
+      - tracking_categories
+      - value: tracking_categories,accounting_period
+        name: TrackingCategoriesAccountingPeriod
+      - value: tracking_categories,company
+        name: TrackingCategoriesCompany
+      - value: tracking_categories,company,accounting_period
+        name: TrackingCategoriesCompanyAccountingPeriod
+      - value: tracking_categories,general_ledger_transaction_lines
+        name: TrackingCategoriesGeneralLedgerTransactionLines
+      - value: tracking_categories,general_ledger_transaction_lines,accounting_period
+        name: TrackingCategoriesGeneralLedgerTransactionLinesAccountingPeriod
+      - value: tracking_categories,general_ledger_transaction_lines,company
+        name: TrackingCategoriesGeneralLedgerTransactionLinesCompany
+      - value: >-
+          tracking_categories,general_ledger_transaction_lines,company,accounting_period
+        name: TrackingCategoriesGeneralLedgerTransactionLinesCompanyAccountingPeriod
+    source:
+      openapi: openapi/openapi.yml
+  GeneralLedgerTransactionsRetrieveRequestExpand:
+    enum:
+      - accounting_period
+      - company
+      - value: company,accounting_period
+        name: CompanyAccountingPeriod
+      - general_ledger_transaction_lines
+      - value: general_ledger_transaction_lines,accounting_period
+        name: GeneralLedgerTransactionLinesAccountingPeriod
+      - value: general_ledger_transaction_lines,company
+        name: GeneralLedgerTransactionLinesCompany
+      - value: general_ledger_transaction_lines,company,accounting_period
+        name: GeneralLedgerTransactionLinesCompanyAccountingPeriod
+      - tracking_categories
+      - value: tracking_categories,accounting_period
+        name: TrackingCategoriesAccountingPeriod
+      - value: tracking_categories,company
+        name: TrackingCategoriesCompany
+      - value: tracking_categories,company,accounting_period
+        name: TrackingCategoriesCompanyAccountingPeriod
+      - value: tracking_categories,general_ledger_transaction_lines
+        name: TrackingCategoriesGeneralLedgerTransactionLines
+      - value: tracking_categories,general_ledger_transaction_lines,accounting_period
+        name: TrackingCategoriesGeneralLedgerTransactionLinesAccountingPeriod
+      - value: tracking_categories,general_ledger_transaction_lines,company
+        name: TrackingCategoriesGeneralLedgerTransactionLinesCompany
+      - value: >-
+          tracking_categories,general_ledger_transaction_lines,company,accounting_period
+        name: TrackingCategoriesGeneralLedgerTransactionLinesCompanyAccountingPeriod
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /accounting/v1/general-ledger-transactions
+      method: GET
+      auth: true
+      docs: Returns a list of `GeneralLedgerTransaction` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: GeneralLedgerTransactionsListRequest
+        query-parameters:
+          company_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return general ledger transactions for this
+              company.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<GeneralLedgerTransactionsListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          posted_date_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects posted after this datetime.
+          posted_date_before:
+            type: optional<datetime>
+            docs: If provided, will only return objects posted before this datetime.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+      response:
+        docs: ''
+        type: root.PaginatedGeneralLedgerTransactionList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: b26fd49a-cbae-470a-a8f8-bcbc119e0390
+                  remote_id: '987300'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  underlying_transaction_remote_id: '1234'
+                  underlying_transaction_type: INVOICE
+                  accounting_period: accounting_period
+                  company: company
+                  remote_updated_at: '2020-03-31T00:00:00Z'
+                  remote_created_at: '2020-03-31T00:00:00Z'
+                  tracking_categories:
+                    - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                    - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                    - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  posting_date: '2020-03-31T00:00:00Z'
+                  general_ledger_transaction_lines:
+                    - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                      remote_id: '123'
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      account: a47e11b6-c73b-4a0c-be31-130fc48177fa
+                      company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                      contact: d6e687d6-0c36-48a1-8114-35324b5cb38f
+                      base_currency: USD
+                      transaction_currency: USD
+                      exchange_rate: exchange_rate
+                      description: Invoice created
+                      tracking_categories:
+                        - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                        - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                        - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                      debit_amount: debit_amount
+                      credit_amount: credit_amount
+                      item: a47e11b6-c73b-4a0c-be31-130fc48177fa
+                      foreign_debit_amount: foreign_debit_amount
+                      foreign_credit_amount: foreign_credit_amount
+                      remote_was_deleted: false
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /platform-endpoint
+    retrieve:
+      path: /accounting/v1/general-ledger-transactions/{id}
+      method: GET
+      auth: true
+      docs: Returns a `GeneralLedgerTransaction` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: GeneralLedgerTransactionsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<GeneralLedgerTransactionsRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.GeneralLedgerTransaction
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: b26fd49a-cbae-470a-a8f8-bcbc119e0390
+              remote_id: '987300'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              underlying_transaction_remote_id: '1234'
+              underlying_transaction_type: INVOICE
+              accounting_period: accounting_period
+              company: company
+              remote_updated_at: '2020-03-31T00:00:00Z'
+              remote_created_at: '2020-03-31T00:00:00Z'
+              tracking_categories:
+                - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                - a47e11b6-c73b-4a0c-be31-130fc48177fa
+              posting_date: '2020-03-31T00:00:00Z'
+              general_ledger_transaction_lines:
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '123'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  account: a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                  employee: employee
+                  contact: d6e687d6-0c36-48a1-8114-35324b5cb38f
+                  project: project
+                  base_currency: USD
+                  transaction_currency: USD
+                  exchange_rate: exchange_rate
+                  description: Invoice created
+                  tracking_categories:
+                    - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                    - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                    - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  debit_amount: debit_amount
+                  credit_amount: credit_amount
+                  item: a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  foreign_debit_amount: foreign_debit_amount
+                  foreign_credit_amount: foreign_credit_amount
+                  remote_was_deleted: false
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /platform-endpoint
+                  data:
+                    key: value
+  source:
+    openapi: openapi/openapi.yml

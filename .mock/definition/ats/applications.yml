@@ -1,0 +1,1903 @@
+types:
+  ApplicationsListRequestExpand:
+    enum:
+      - candidate
+      - value: candidate,credited_to
+        name: CandidateCreditedTo
+      - value: candidate,credited_to,current_stage
+        name: CandidateCreditedToCurrentStage
+      - value: candidate,credited_to,current_stage,reject_reason
+        name: CandidateCreditedToCurrentStageRejectReason
+      - value: candidate,credited_to,reject_reason
+        name: CandidateCreditedToRejectReason
+      - value: candidate,current_stage
+        name: CandidateCurrentStage
+      - value: candidate,current_stage,reject_reason
+        name: CandidateCurrentStageRejectReason
+      - value: candidate,job
+        name: CandidateJob
+      - value: candidate,job,credited_to
+        name: CandidateJobCreditedTo
+      - value: candidate,job,credited_to,current_stage
+        name: CandidateJobCreditedToCurrentStage
+      - value: candidate,job,credited_to,current_stage,reject_reason
+        name: CandidateJobCreditedToCurrentStageRejectReason
+      - value: candidate,job,credited_to,reject_reason
+        name: CandidateJobCreditedToRejectReason
+      - value: candidate,job,current_stage
+        name: CandidateJobCurrentStage
+      - value: candidate,job,current_stage,reject_reason
+        name: CandidateJobCurrentStageRejectReason
+      - value: candidate,job,reject_reason
+        name: CandidateJobRejectReason
+      - value: candidate,reject_reason
+        name: CandidateRejectReason
+      - credited_to
+      - value: credited_to,current_stage
+        name: CreditedToCurrentStage
+      - value: credited_to,current_stage,reject_reason
+        name: CreditedToCurrentStageRejectReason
+      - value: credited_to,reject_reason
+        name: CreditedToRejectReason
+      - current_stage
+      - value: current_stage,reject_reason
+        name: CurrentStageRejectReason
+      - job
+      - value: job,credited_to
+        name: JobCreditedTo
+      - value: job,credited_to,current_stage
+        name: JobCreditedToCurrentStage
+      - value: job,credited_to,current_stage,reject_reason
+        name: JobCreditedToCurrentStageRejectReason
+      - value: job,credited_to,reject_reason
+        name: JobCreditedToRejectReason
+      - value: job,current_stage
+        name: JobCurrentStage
+      - value: job,current_stage,reject_reason
+        name: JobCurrentStageRejectReason
+      - value: job,reject_reason
+        name: JobRejectReason
+      - offers
+      - value: offers,candidate
+        name: OffersCandidate
+      - value: offers,candidate,credited_to
+        name: OffersCandidateCreditedTo
+      - value: offers,candidate,credited_to,current_stage
+        name: OffersCandidateCreditedToCurrentStage
+      - value: offers,candidate,credited_to,current_stage,reject_reason
+        name: OffersCandidateCreditedToCurrentStageRejectReason
+      - value: offers,candidate,credited_to,reject_reason
+        name: OffersCandidateCreditedToRejectReason
+      - value: offers,candidate,current_stage
+        name: OffersCandidateCurrentStage
+      - value: offers,candidate,current_stage,reject_reason
+        name: OffersCandidateCurrentStageRejectReason
+      - value: offers,candidate,job
+        name: OffersCandidateJob
+      - value: offers,candidate,job,credited_to
+        name: OffersCandidateJobCreditedTo
+      - value: offers,candidate,job,credited_to,current_stage
+        name: OffersCandidateJobCreditedToCurrentStage
+      - value: offers,candidate,job,credited_to,current_stage,reject_reason
+        name: OffersCandidateJobCreditedToCurrentStageRejectReason
+      - value: offers,candidate,job,credited_to,reject_reason
+        name: OffersCandidateJobCreditedToRejectReason
+      - value: offers,candidate,job,current_stage
+        name: OffersCandidateJobCurrentStage
+      - value: offers,candidate,job,current_stage,reject_reason
+        name: OffersCandidateJobCurrentStageRejectReason
+      - value: offers,candidate,job,reject_reason
+        name: OffersCandidateJobRejectReason
+      - value: offers,candidate,reject_reason
+        name: OffersCandidateRejectReason
+      - value: offers,credited_to
+        name: OffersCreditedTo
+      - value: offers,credited_to,current_stage
+        name: OffersCreditedToCurrentStage
+      - value: offers,credited_to,current_stage,reject_reason
+        name: OffersCreditedToCurrentStageRejectReason
+      - value: offers,credited_to,reject_reason
+        name: OffersCreditedToRejectReason
+      - value: offers,current_stage
+        name: OffersCurrentStage
+      - value: offers,current_stage,reject_reason
+        name: OffersCurrentStageRejectReason
+      - value: offers,job
+        name: OffersJob
+      - value: offers,job,credited_to
+        name: OffersJobCreditedTo
+      - value: offers,job,credited_to,current_stage
+        name: OffersJobCreditedToCurrentStage
+      - value: offers,job,credited_to,current_stage,reject_reason
+        name: OffersJobCreditedToCurrentStageRejectReason
+      - value: offers,job,credited_to,reject_reason
+        name: OffersJobCreditedToRejectReason
+      - value: offers,job,current_stage
+        name: OffersJobCurrentStage
+      - value: offers,job,current_stage,reject_reason
+        name: OffersJobCurrentStageRejectReason
+      - value: offers,job,reject_reason
+        name: OffersJobRejectReason
+      - value: offers,reject_reason
+        name: OffersRejectReason
+      - value: offers,screening_question_answers
+        name: OffersScreeningQuestionAnswers
+      - value: offers,screening_question_answers,candidate
+        name: OffersScreeningQuestionAnswersCandidate
+      - value: offers,screening_question_answers,candidate,credited_to
+        name: OffersScreeningQuestionAnswersCandidateCreditedTo
+      - value: offers,screening_question_answers,candidate,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersCandidateCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason
+      - value: offers,screening_question_answers,candidate,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateCreditedToRejectReason
+      - value: offers,screening_question_answers,candidate,current_stage
+        name: OffersScreeningQuestionAnswersCandidateCurrentStage
+      - value: >-
+          offers,screening_question_answers,candidate,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateCurrentStageRejectReason
+      - value: offers,screening_question_answers,candidate,job
+        name: OffersScreeningQuestionAnswersCandidateJob
+      - value: offers,screening_question_answers,candidate,job,credited_to
+        name: OffersScreeningQuestionAnswersCandidateJobCreditedTo
+      - value: >-
+          offers,screening_question_answers,candidate,job,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,candidate,job,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateJobCreditedToRejectReason
+      - value: offers,screening_question_answers,candidate,job,current_stage
+        name: OffersScreeningQuestionAnswersCandidateJobCurrentStage
+      - value: >-
+          offers,screening_question_answers,candidate,job,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateJobCurrentStageRejectReason
+      - value: offers,screening_question_answers,candidate,job,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateJobRejectReason
+      - value: offers,screening_question_answers,candidate,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateRejectReason
+      - value: offers,screening_question_answers,credited_to
+        name: OffersScreeningQuestionAnswersCreditedTo
+      - value: offers,screening_question_answers,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,credited_to,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersCreditedToCurrentStageRejectReason
+      - value: offers,screening_question_answers,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersCreditedToRejectReason
+      - value: offers,screening_question_answers,current_stage
+        name: OffersScreeningQuestionAnswersCurrentStage
+      - value: offers,screening_question_answers,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersCurrentStageRejectReason
+      - value: offers,screening_question_answers,job
+        name: OffersScreeningQuestionAnswersJob
+      - value: offers,screening_question_answers,job,credited_to
+        name: OffersScreeningQuestionAnswersJobCreditedTo
+      - value: offers,screening_question_answers,job,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,job,credited_to,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason
+      - value: offers,screening_question_answers,job,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersJobCreditedToRejectReason
+      - value: offers,screening_question_answers,job,current_stage
+        name: OffersScreeningQuestionAnswersJobCurrentStage
+      - value: offers,screening_question_answers,job,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersJobCurrentStageRejectReason
+      - value: offers,screening_question_answers,job,reject_reason
+        name: OffersScreeningQuestionAnswersJobRejectReason
+      - value: offers,screening_question_answers,reject_reason
+        name: OffersScreeningQuestionAnswersRejectReason
+      - value: offers,screening_question_answers,screening_question_answers.question
+        name: OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestion
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,credited_to
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,credited_to
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job
+        name: OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,credited_to
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason
+      - value: offers,screening_question_answers.question
+        name: OffersScreeningQuestionAnswersQuestion
+      - value: offers,screening_question_answers.question,candidate
+        name: OffersScreeningQuestionAnswersQuestionCandidate
+      - value: offers,screening_question_answers.question,candidate,credited_to
+        name: OffersScreeningQuestionAnswersQuestionCandidateCreditedTo
+      - value: >-
+          offers,screening_question_answers.question,candidate,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers.question,candidate,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason
+      - value: offers,screening_question_answers.question,candidate,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCandidateCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,candidate,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,candidate,job
+        name: OffersScreeningQuestionAnswersQuestionCandidateJob
+      - value: offers,screening_question_answers.question,candidate,job,credited_to
+        name: OffersScreeningQuestionAnswersQuestionCandidateJobCreditedTo
+      - value: >-
+          offers,screening_question_answers.question,candidate,job,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers.question,candidate,job,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason
+      - value: offers,screening_question_answers.question,candidate,job,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCandidateJobCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,candidate,job,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,candidate,job,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCandidateJobRejectReason
+      - value: offers,screening_question_answers.question,candidate,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCandidateRejectReason
+      - value: offers,screening_question_answers.question,credited_to
+        name: OffersScreeningQuestionAnswersQuestionCreditedTo
+      - value: offers,screening_question_answers.question,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCreditedToRejectReason
+      - value: offers,screening_question_answers.question,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCurrentStage
+      - value: offers,screening_question_answers.question,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,job
+        name: OffersScreeningQuestionAnswersQuestionJob
+      - value: offers,screening_question_answers.question,job,credited_to
+        name: OffersScreeningQuestionAnswersQuestionJobCreditedTo
+      - value: >-
+          offers,screening_question_answers.question,job,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers.question,job,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionJobCreditedToRejectReason
+      - value: offers,screening_question_answers.question,job,current_stage
+        name: OffersScreeningQuestionAnswersQuestionJobCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,job,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,job,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionJobRejectReason
+      - value: offers,screening_question_answers.question,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionRejectReason
+      - reject_reason
+      - screening_question_answers
+      - value: screening_question_answers,candidate
+        name: ScreeningQuestionAnswersCandidate
+      - value: screening_question_answers,candidate,credited_to
+        name: ScreeningQuestionAnswersCandidateCreditedTo
+      - value: screening_question_answers,candidate,credited_to,current_stage
+        name: ScreeningQuestionAnswersCandidateCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,candidate,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason
+      - value: screening_question_answers,candidate,credited_to,reject_reason
+        name: ScreeningQuestionAnswersCandidateCreditedToRejectReason
+      - value: screening_question_answers,candidate,current_stage
+        name: ScreeningQuestionAnswersCandidateCurrentStage
+      - value: screening_question_answers,candidate,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCandidateCurrentStageRejectReason
+      - value: screening_question_answers,candidate,job
+        name: ScreeningQuestionAnswersCandidateJob
+      - value: screening_question_answers,candidate,job,credited_to
+        name: ScreeningQuestionAnswersCandidateJobCreditedTo
+      - value: screening_question_answers,candidate,job,credited_to,current_stage
+        name: ScreeningQuestionAnswersCandidateJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,candidate,job,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason
+      - value: screening_question_answers,candidate,job,credited_to,reject_reason
+        name: ScreeningQuestionAnswersCandidateJobCreditedToRejectReason
+      - value: screening_question_answers,candidate,job,current_stage
+        name: ScreeningQuestionAnswersCandidateJobCurrentStage
+      - value: screening_question_answers,candidate,job,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCandidateJobCurrentStageRejectReason
+      - value: screening_question_answers,candidate,job,reject_reason
+        name: ScreeningQuestionAnswersCandidateJobRejectReason
+      - value: screening_question_answers,candidate,reject_reason
+        name: ScreeningQuestionAnswersCandidateRejectReason
+      - value: screening_question_answers,credited_to
+        name: ScreeningQuestionAnswersCreditedTo
+      - value: screening_question_answers,credited_to,current_stage
+        name: ScreeningQuestionAnswersCreditedToCurrentStage
+      - value: screening_question_answers,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCreditedToCurrentStageRejectReason
+      - value: screening_question_answers,credited_to,reject_reason
+        name: ScreeningQuestionAnswersCreditedToRejectReason
+      - value: screening_question_answers,current_stage
+        name: ScreeningQuestionAnswersCurrentStage
+      - value: screening_question_answers,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCurrentStageRejectReason
+      - value: screening_question_answers,job
+        name: ScreeningQuestionAnswersJob
+      - value: screening_question_answers,job,credited_to
+        name: ScreeningQuestionAnswersJobCreditedTo
+      - value: screening_question_answers,job,credited_to,current_stage
+        name: ScreeningQuestionAnswersJobCreditedToCurrentStage
+      - value: screening_question_answers,job,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason
+      - value: screening_question_answers,job,credited_to,reject_reason
+        name: ScreeningQuestionAnswersJobCreditedToRejectReason
+      - value: screening_question_answers,job,current_stage
+        name: ScreeningQuestionAnswersJobCurrentStage
+      - value: screening_question_answers,job,current_stage,reject_reason
+        name: ScreeningQuestionAnswersJobCurrentStageRejectReason
+      - value: screening_question_answers,job,reject_reason
+        name: ScreeningQuestionAnswersJobRejectReason
+      - value: screening_question_answers,reject_reason
+        name: ScreeningQuestionAnswersRejectReason
+      - value: screening_question_answers,screening_question_answers.question
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestion
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,credited_to
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,credited_to
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,credited_to
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo
+      - value: >-
+          screening_question_answers,screening_question_answers.question,credited_to,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,credited_to,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,current_stage
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason
+      - value: screening_question_answers,screening_question_answers.question,job
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,credited_to
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,credited_to,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,reject_reason
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason
+      - value: screening_question_answers.question
+        name: ScreeningQuestionAnswersQuestion
+      - value: screening_question_answers.question,candidate
+        name: ScreeningQuestionAnswersQuestionCandidate
+      - value: screening_question_answers.question,candidate,credited_to
+        name: ScreeningQuestionAnswersQuestionCandidateCreditedTo
+      - value: >-
+          screening_question_answers.question,candidate,credited_to,current_stage
+        name: ScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage
+      - value: >-
+          screening_question_answers.question,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers.question,candidate,credited_to,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason
+      - value: screening_question_answers.question,candidate,current_stage
+        name: ScreeningQuestionAnswersQuestionCandidateCurrentStage
+      - value: >-
+          screening_question_answers.question,candidate,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason
+      - value: screening_question_answers.question,candidate,job
+        name: ScreeningQuestionAnswersQuestionCandidateJob
+      - value: screening_question_answers.question,candidate,job,credited_to
+        name: ScreeningQuestionAnswersQuestionCandidateJobCreditedTo
+      - value: >-
+          screening_question_answers.question,candidate,job,credited_to,current_stage
+        name: ScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers.question,candidate,job,credited_to,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason
+      - value: screening_question_answers.question,candidate,job,current_stage
+        name: ScreeningQuestionAnswersQuestionCandidateJobCurrentStage
+      - value: >-
+          screening_question_answers.question,candidate,job,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason
+      - value: screening_question_answers.question,candidate,job,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateJobRejectReason
+      - value: screening_question_answers.question,candidate,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateRejectReason
+      - value: screening_question_answers.question,credited_to
+        name: ScreeningQuestionAnswersQuestionCreditedTo
+      - value: screening_question_answers.question,credited_to,current_stage
+        name: ScreeningQuestionAnswersQuestionCreditedToCurrentStage
+      - value: >-
+          screening_question_answers.question,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason
+      - value: screening_question_answers.question,credited_to,reject_reason
+        name: ScreeningQuestionAnswersQuestionCreditedToRejectReason
+      - value: screening_question_answers.question,current_stage
+        name: ScreeningQuestionAnswersQuestionCurrentStage
+      - value: screening_question_answers.question,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionCurrentStageRejectReason
+      - value: screening_question_answers.question,job
+        name: ScreeningQuestionAnswersQuestionJob
+      - value: screening_question_answers.question,job,credited_to
+        name: ScreeningQuestionAnswersQuestionJobCreditedTo
+      - value: screening_question_answers.question,job,credited_to,current_stage
+        name: ScreeningQuestionAnswersQuestionJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers.question,job,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason
+      - value: screening_question_answers.question,job,credited_to,reject_reason
+        name: ScreeningQuestionAnswersQuestionJobCreditedToRejectReason
+      - value: screening_question_answers.question,job,current_stage
+        name: ScreeningQuestionAnswersQuestionJobCurrentStage
+      - value: screening_question_answers.question,job,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionJobCurrentStageRejectReason
+      - value: screening_question_answers.question,job,reject_reason
+        name: ScreeningQuestionAnswersQuestionJobRejectReason
+      - value: screening_question_answers.question,reject_reason
+        name: ScreeningQuestionAnswersQuestionRejectReason
+    source:
+      openapi: openapi/openapi.yml
+  ApplicationsRetrieveRequestExpand:
+    enum:
+      - candidate
+      - value: candidate,credited_to
+        name: CandidateCreditedTo
+      - value: candidate,credited_to,current_stage
+        name: CandidateCreditedToCurrentStage
+      - value: candidate,credited_to,current_stage,reject_reason
+        name: CandidateCreditedToCurrentStageRejectReason
+      - value: candidate,credited_to,reject_reason
+        name: CandidateCreditedToRejectReason
+      - value: candidate,current_stage
+        name: CandidateCurrentStage
+      - value: candidate,current_stage,reject_reason
+        name: CandidateCurrentStageRejectReason
+      - value: candidate,job
+        name: CandidateJob
+      - value: candidate,job,credited_to
+        name: CandidateJobCreditedTo
+      - value: candidate,job,credited_to,current_stage
+        name: CandidateJobCreditedToCurrentStage
+      - value: candidate,job,credited_to,current_stage,reject_reason
+        name: CandidateJobCreditedToCurrentStageRejectReason
+      - value: candidate,job,credited_to,reject_reason
+        name: CandidateJobCreditedToRejectReason
+      - value: candidate,job,current_stage
+        name: CandidateJobCurrentStage
+      - value: candidate,job,current_stage,reject_reason
+        name: CandidateJobCurrentStageRejectReason
+      - value: candidate,job,reject_reason
+        name: CandidateJobRejectReason
+      - value: candidate,reject_reason
+        name: CandidateRejectReason
+      - credited_to
+      - value: credited_to,current_stage
+        name: CreditedToCurrentStage
+      - value: credited_to,current_stage,reject_reason
+        name: CreditedToCurrentStageRejectReason
+      - value: credited_to,reject_reason
+        name: CreditedToRejectReason
+      - current_stage
+      - value: current_stage,reject_reason
+        name: CurrentStageRejectReason
+      - job
+      - value: job,credited_to
+        name: JobCreditedTo
+      - value: job,credited_to,current_stage
+        name: JobCreditedToCurrentStage
+      - value: job,credited_to,current_stage,reject_reason
+        name: JobCreditedToCurrentStageRejectReason
+      - value: job,credited_to,reject_reason
+        name: JobCreditedToRejectReason
+      - value: job,current_stage
+        name: JobCurrentStage
+      - value: job,current_stage,reject_reason
+        name: JobCurrentStageRejectReason
+      - value: job,reject_reason
+        name: JobRejectReason
+      - offers
+      - value: offers,candidate
+        name: OffersCandidate
+      - value: offers,candidate,credited_to
+        name: OffersCandidateCreditedTo
+      - value: offers,candidate,credited_to,current_stage
+        name: OffersCandidateCreditedToCurrentStage
+      - value: offers,candidate,credited_to,current_stage,reject_reason
+        name: OffersCandidateCreditedToCurrentStageRejectReason
+      - value: offers,candidate,credited_to,reject_reason
+        name: OffersCandidateCreditedToRejectReason
+      - value: offers,candidate,current_stage
+        name: OffersCandidateCurrentStage
+      - value: offers,candidate,current_stage,reject_reason
+        name: OffersCandidateCurrentStageRejectReason
+      - value: offers,candidate,job
+        name: OffersCandidateJob
+      - value: offers,candidate,job,credited_to
+        name: OffersCandidateJobCreditedTo
+      - value: offers,candidate,job,credited_to,current_stage
+        name: OffersCandidateJobCreditedToCurrentStage
+      - value: offers,candidate,job,credited_to,current_stage,reject_reason
+        name: OffersCandidateJobCreditedToCurrentStageRejectReason
+      - value: offers,candidate,job,credited_to,reject_reason
+        name: OffersCandidateJobCreditedToRejectReason
+      - value: offers,candidate,job,current_stage
+        name: OffersCandidateJobCurrentStage
+      - value: offers,candidate,job,current_stage,reject_reason
+        name: OffersCandidateJobCurrentStageRejectReason
+      - value: offers,candidate,job,reject_reason
+        name: OffersCandidateJobRejectReason
+      - value: offers,candidate,reject_reason
+        name: OffersCandidateRejectReason
+      - value: offers,credited_to
+        name: OffersCreditedTo
+      - value: offers,credited_to,current_stage
+        name: OffersCreditedToCurrentStage
+      - value: offers,credited_to,current_stage,reject_reason
+        name: OffersCreditedToCurrentStageRejectReason
+      - value: offers,credited_to,reject_reason
+        name: OffersCreditedToRejectReason
+      - value: offers,current_stage
+        name: OffersCurrentStage
+      - value: offers,current_stage,reject_reason
+        name: OffersCurrentStageRejectReason
+      - value: offers,job
+        name: OffersJob
+      - value: offers,job,credited_to
+        name: OffersJobCreditedTo
+      - value: offers,job,credited_to,current_stage
+        name: OffersJobCreditedToCurrentStage
+      - value: offers,job,credited_to,current_stage,reject_reason
+        name: OffersJobCreditedToCurrentStageRejectReason
+      - value: offers,job,credited_to,reject_reason
+        name: OffersJobCreditedToRejectReason
+      - value: offers,job,current_stage
+        name: OffersJobCurrentStage
+      - value: offers,job,current_stage,reject_reason
+        name: OffersJobCurrentStageRejectReason
+      - value: offers,job,reject_reason
+        name: OffersJobRejectReason
+      - value: offers,reject_reason
+        name: OffersRejectReason
+      - value: offers,screening_question_answers
+        name: OffersScreeningQuestionAnswers
+      - value: offers,screening_question_answers,candidate
+        name: OffersScreeningQuestionAnswersCandidate
+      - value: offers,screening_question_answers,candidate,credited_to
+        name: OffersScreeningQuestionAnswersCandidateCreditedTo
+      - value: offers,screening_question_answers,candidate,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersCandidateCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason
+      - value: offers,screening_question_answers,candidate,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateCreditedToRejectReason
+      - value: offers,screening_question_answers,candidate,current_stage
+        name: OffersScreeningQuestionAnswersCandidateCurrentStage
+      - value: >-
+          offers,screening_question_answers,candidate,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateCurrentStageRejectReason
+      - value: offers,screening_question_answers,candidate,job
+        name: OffersScreeningQuestionAnswersCandidateJob
+      - value: offers,screening_question_answers,candidate,job,credited_to
+        name: OffersScreeningQuestionAnswersCandidateJobCreditedTo
+      - value: >-
+          offers,screening_question_answers,candidate,job,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,candidate,job,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateJobCreditedToRejectReason
+      - value: offers,screening_question_answers,candidate,job,current_stage
+        name: OffersScreeningQuestionAnswersCandidateJobCurrentStage
+      - value: >-
+          offers,screening_question_answers,candidate,job,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateJobCurrentStageRejectReason
+      - value: offers,screening_question_answers,candidate,job,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateJobRejectReason
+      - value: offers,screening_question_answers,candidate,reject_reason
+        name: OffersScreeningQuestionAnswersCandidateRejectReason
+      - value: offers,screening_question_answers,credited_to
+        name: OffersScreeningQuestionAnswersCreditedTo
+      - value: offers,screening_question_answers,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,credited_to,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersCreditedToCurrentStageRejectReason
+      - value: offers,screening_question_answers,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersCreditedToRejectReason
+      - value: offers,screening_question_answers,current_stage
+        name: OffersScreeningQuestionAnswersCurrentStage
+      - value: offers,screening_question_answers,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersCurrentStageRejectReason
+      - value: offers,screening_question_answers,job
+        name: OffersScreeningQuestionAnswersJob
+      - value: offers,screening_question_answers,job,credited_to
+        name: OffersScreeningQuestionAnswersJobCreditedTo
+      - value: offers,screening_question_answers,job,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,job,credited_to,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason
+      - value: offers,screening_question_answers,job,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersJobCreditedToRejectReason
+      - value: offers,screening_question_answers,job,current_stage
+        name: OffersScreeningQuestionAnswersJobCurrentStage
+      - value: offers,screening_question_answers,job,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersJobCurrentStageRejectReason
+      - value: offers,screening_question_answers,job,reject_reason
+        name: OffersScreeningQuestionAnswersJobRejectReason
+      - value: offers,screening_question_answers,reject_reason
+        name: OffersScreeningQuestionAnswersRejectReason
+      - value: offers,screening_question_answers,screening_question_answers.question
+        name: OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestion
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,credited_to
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,job,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,candidate,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,credited_to
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job
+        name: OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,credited_to
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,job,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason
+      - value: >-
+          offers,screening_question_answers,screening_question_answers.question,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason
+      - value: offers,screening_question_answers.question
+        name: OffersScreeningQuestionAnswersQuestion
+      - value: offers,screening_question_answers.question,candidate
+        name: OffersScreeningQuestionAnswersQuestionCandidate
+      - value: offers,screening_question_answers.question,candidate,credited_to
+        name: OffersScreeningQuestionAnswersQuestionCandidateCreditedTo
+      - value: >-
+          offers,screening_question_answers.question,candidate,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers.question,candidate,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason
+      - value: offers,screening_question_answers.question,candidate,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCandidateCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,candidate,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,candidate,job
+        name: OffersScreeningQuestionAnswersQuestionCandidateJob
+      - value: offers,screening_question_answers.question,candidate,job,credited_to
+        name: OffersScreeningQuestionAnswersQuestionCandidateJobCreditedTo
+      - value: >-
+          offers,screening_question_answers.question,candidate,job,credited_to,current_stage
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers.question,candidate,job,credited_to,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason
+      - value: offers,screening_question_answers.question,candidate,job,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCandidateJobCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,candidate,job,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,candidate,job,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCandidateJobRejectReason
+      - value: offers,screening_question_answers.question,candidate,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCandidateRejectReason
+      - value: offers,screening_question_answers.question,credited_to
+        name: OffersScreeningQuestionAnswersQuestionCreditedTo
+      - value: offers,screening_question_answers.question,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCreditedToRejectReason
+      - value: offers,screening_question_answers.question,current_stage
+        name: OffersScreeningQuestionAnswersQuestionCurrentStage
+      - value: offers,screening_question_answers.question,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,job
+        name: OffersScreeningQuestionAnswersQuestionJob
+      - value: offers,screening_question_answers.question,job,credited_to
+        name: OffersScreeningQuestionAnswersQuestionJobCreditedTo
+      - value: >-
+          offers,screening_question_answers.question,job,credited_to,current_stage
+        name: OffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,job,credited_to,current_stage,reject_reason
+        name: >-
+          OffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason
+      - value: >-
+          offers,screening_question_answers.question,job,credited_to,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionJobCreditedToRejectReason
+      - value: offers,screening_question_answers.question,job,current_stage
+        name: OffersScreeningQuestionAnswersQuestionJobCurrentStage
+      - value: >-
+          offers,screening_question_answers.question,job,current_stage,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason
+      - value: offers,screening_question_answers.question,job,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionJobRejectReason
+      - value: offers,screening_question_answers.question,reject_reason
+        name: OffersScreeningQuestionAnswersQuestionRejectReason
+      - reject_reason
+      - screening_question_answers
+      - value: screening_question_answers,candidate
+        name: ScreeningQuestionAnswersCandidate
+      - value: screening_question_answers,candidate,credited_to
+        name: ScreeningQuestionAnswersCandidateCreditedTo
+      - value: screening_question_answers,candidate,credited_to,current_stage
+        name: ScreeningQuestionAnswersCandidateCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,candidate,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason
+      - value: screening_question_answers,candidate,credited_to,reject_reason
+        name: ScreeningQuestionAnswersCandidateCreditedToRejectReason
+      - value: screening_question_answers,candidate,current_stage
+        name: ScreeningQuestionAnswersCandidateCurrentStage
+      - value: screening_question_answers,candidate,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCandidateCurrentStageRejectReason
+      - value: screening_question_answers,candidate,job
+        name: ScreeningQuestionAnswersCandidateJob
+      - value: screening_question_answers,candidate,job,credited_to
+        name: ScreeningQuestionAnswersCandidateJobCreditedTo
+      - value: screening_question_answers,candidate,job,credited_to,current_stage
+        name: ScreeningQuestionAnswersCandidateJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,candidate,job,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason
+      - value: screening_question_answers,candidate,job,credited_to,reject_reason
+        name: ScreeningQuestionAnswersCandidateJobCreditedToRejectReason
+      - value: screening_question_answers,candidate,job,current_stage
+        name: ScreeningQuestionAnswersCandidateJobCurrentStage
+      - value: screening_question_answers,candidate,job,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCandidateJobCurrentStageRejectReason
+      - value: screening_question_answers,candidate,job,reject_reason
+        name: ScreeningQuestionAnswersCandidateJobRejectReason
+      - value: screening_question_answers,candidate,reject_reason
+        name: ScreeningQuestionAnswersCandidateRejectReason
+      - value: screening_question_answers,credited_to
+        name: ScreeningQuestionAnswersCreditedTo
+      - value: screening_question_answers,credited_to,current_stage
+        name: ScreeningQuestionAnswersCreditedToCurrentStage
+      - value: screening_question_answers,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCreditedToCurrentStageRejectReason
+      - value: screening_question_answers,credited_to,reject_reason
+        name: ScreeningQuestionAnswersCreditedToRejectReason
+      - value: screening_question_answers,current_stage
+        name: ScreeningQuestionAnswersCurrentStage
+      - value: screening_question_answers,current_stage,reject_reason
+        name: ScreeningQuestionAnswersCurrentStageRejectReason
+      - value: screening_question_answers,job
+        name: ScreeningQuestionAnswersJob
+      - value: screening_question_answers,job,credited_to
+        name: ScreeningQuestionAnswersJobCreditedTo
+      - value: screening_question_answers,job,credited_to,current_stage
+        name: ScreeningQuestionAnswersJobCreditedToCurrentStage
+      - value: screening_question_answers,job,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason
+      - value: screening_question_answers,job,credited_to,reject_reason
+        name: ScreeningQuestionAnswersJobCreditedToRejectReason
+      - value: screening_question_answers,job,current_stage
+        name: ScreeningQuestionAnswersJobCurrentStage
+      - value: screening_question_answers,job,current_stage,reject_reason
+        name: ScreeningQuestionAnswersJobCurrentStageRejectReason
+      - value: screening_question_answers,job,reject_reason
+        name: ScreeningQuestionAnswersJobRejectReason
+      - value: screening_question_answers,reject_reason
+        name: ScreeningQuestionAnswersRejectReason
+      - value: screening_question_answers,screening_question_answers.question
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestion
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,credited_to
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,credited_to
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,job,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,candidate,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,credited_to
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo
+      - value: >-
+          screening_question_answers,screening_question_answers.question,credited_to,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,credited_to,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,current_stage
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason
+      - value: screening_question_answers,screening_question_answers.question,job
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,credited_to
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,credited_to,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,current_stage
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,job,reject_reason
+        name: >-
+          ScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason
+      - value: >-
+          screening_question_answers,screening_question_answers.question,reject_reason
+        name: ScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason
+      - value: screening_question_answers.question
+        name: ScreeningQuestionAnswersQuestion
+      - value: screening_question_answers.question,candidate
+        name: ScreeningQuestionAnswersQuestionCandidate
+      - value: screening_question_answers.question,candidate,credited_to
+        name: ScreeningQuestionAnswersQuestionCandidateCreditedTo
+      - value: >-
+          screening_question_answers.question,candidate,credited_to,current_stage
+        name: ScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage
+      - value: >-
+          screening_question_answers.question,candidate,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers.question,candidate,credited_to,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason
+      - value: screening_question_answers.question,candidate,current_stage
+        name: ScreeningQuestionAnswersQuestionCandidateCurrentStage
+      - value: >-
+          screening_question_answers.question,candidate,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason
+      - value: screening_question_answers.question,candidate,job
+        name: ScreeningQuestionAnswersQuestionCandidateJob
+      - value: screening_question_answers.question,candidate,job,credited_to
+        name: ScreeningQuestionAnswersQuestionCandidateJobCreditedTo
+      - value: >-
+          screening_question_answers.question,candidate,job,credited_to,current_stage
+        name: ScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason
+        name: >-
+          ScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason
+      - value: >-
+          screening_question_answers.question,candidate,job,credited_to,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason
+      - value: screening_question_answers.question,candidate,job,current_stage
+        name: ScreeningQuestionAnswersQuestionCandidateJobCurrentStage
+      - value: >-
+          screening_question_answers.question,candidate,job,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason
+      - value: screening_question_answers.question,candidate,job,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateJobRejectReason
+      - value: screening_question_answers.question,candidate,reject_reason
+        name: ScreeningQuestionAnswersQuestionCandidateRejectReason
+      - value: screening_question_answers.question,credited_to
+        name: ScreeningQuestionAnswersQuestionCreditedTo
+      - value: screening_question_answers.question,credited_to,current_stage
+        name: ScreeningQuestionAnswersQuestionCreditedToCurrentStage
+      - value: >-
+          screening_question_answers.question,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason
+      - value: screening_question_answers.question,credited_to,reject_reason
+        name: ScreeningQuestionAnswersQuestionCreditedToRejectReason
+      - value: screening_question_answers.question,current_stage
+        name: ScreeningQuestionAnswersQuestionCurrentStage
+      - value: screening_question_answers.question,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionCurrentStageRejectReason
+      - value: screening_question_answers.question,job
+        name: ScreeningQuestionAnswersQuestionJob
+      - value: screening_question_answers.question,job,credited_to
+        name: ScreeningQuestionAnswersQuestionJobCreditedTo
+      - value: screening_question_answers.question,job,credited_to,current_stage
+        name: ScreeningQuestionAnswersQuestionJobCreditedToCurrentStage
+      - value: >-
+          screening_question_answers.question,job,credited_to,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason
+      - value: screening_question_answers.question,job,credited_to,reject_reason
+        name: ScreeningQuestionAnswersQuestionJobCreditedToRejectReason
+      - value: screening_question_answers.question,job,current_stage
+        name: ScreeningQuestionAnswersQuestionJobCurrentStage
+      - value: screening_question_answers.question,job,current_stage,reject_reason
+        name: ScreeningQuestionAnswersQuestionJobCurrentStageRejectReason
+      - value: screening_question_answers.question,job,reject_reason
+        name: ScreeningQuestionAnswersQuestionJobRejectReason
+      - value: screening_question_answers.question,reject_reason
+        name: ScreeningQuestionAnswersQuestionRejectReason
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /ats/v1/applications
+      method: GET
+      auth: true
+      docs: Returns a list of `Application` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: ApplicationsListRequest
+        query-parameters:
+          candidate_id:
+            type: optional<string>
+            docs: If provided, will only return applications for this candidate.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          credited_to_id:
+            type: optional<string>
+            docs: If provided, will only return applications credited to this user.
+          current_stage_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return applications at this interview
+              stage.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<ApplicationsListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          job_id:
+            type: optional<string>
+            docs: If provided, will only return applications for this job.
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          reject_reason_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return applications with this reject
+              reason.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          source:
+            type: optional<string>
+            docs: If provided, will only return applications with this source.
+      response:
+        docs: ''
+        type: root.PaginatedApplicationList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+                  remote_id: '98796'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  candidate: candidate
+                  job: job
+                  applied_at: '2021-10-15T00:00:00Z'
+                  rejected_at: '2021-11-15T00:00:00Z'
+                  offers:
+                    - e9b5c11d-c588-468e-8567-cd6992e42b62
+                  source: Campus recruiting event
+                  credited_to: credited_to
+                  screening_question_answers:
+                    - screening_question_answers
+                    - screening_question_answers
+                  current_stage: current_stage
+                  reject_reason: reject_reason
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /candidacies
+                      data:
+                        - Varies by platform
+    create:
+      path: /ats/v1/applications
+      method: POST
+      auth: true
+      docs: >
+        Creates an `Application` object with the given values.
+
+        For certain integrations, but not all, our API detects duplicate
+        candidates and will associate applications with existing records in the
+        third-party. New candidates are created and automatically linked to the
+        application.
+
+
+        See our [Help Center
+        article](https://help.merge.dev/en/articles/10012366-updates-to-post-applications-oct-2024)
+        for detailed support per integration.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: ApplicationEndpointRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            model: root.ApplicationRequest
+            remote_user_id: string
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.ApplicationResponse
+        status-code: 201
+      examples:
+        - headers: {}
+          request:
+            model: {}
+            remote_user_id: remote_user_id
+          response:
+            body:
+              model:
+                id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+                remote_id: '98796'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                candidate: candidate
+                job: job
+                applied_at: '2021-10-15T00:00:00Z'
+                rejected_at: '2021-11-15T00:00:00Z'
+                offers:
+                  - e9b5c11d-c588-468e-8567-cd6992e42b62
+                source: Campus recruiting event
+                credited_to: credited_to
+                screening_question_answers:
+                  - screening_question_answers
+                  - screening_question_answers
+                current_stage: current_stage
+                reject_reason: reject_reason
+                remote_was_deleted: true
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /candidacies
+                    data:
+                      - Varies by platform
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    retrieve:
+      path: /ats/v1/applications/{id}
+      method: GET
+      auth: true
+      docs: Returns an `Application` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: ApplicationsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<ApplicationsRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.Application
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+              remote_id: '98796'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              candidate: candidate
+              job: job
+              applied_at: '2021-10-15T00:00:00Z'
+              rejected_at: '2021-11-15T00:00:00Z'
+              offers:
+                - e9b5c11d-c588-468e-8567-cd6992e42b62
+              source: Campus recruiting event
+              credited_to: credited_to
+              screening_question_answers:
+                - screening_question_answers
+                - screening_question_answers
+              current_stage: current_stage
+              reject_reason: reject_reason
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /candidacies
+                  data:
+                    - Varies by platform
+    changeStageCreate:
+      path: /ats/v1/applications/{id}/change-stage
+      method: POST
+      auth: true
+      docs: Updates the `current_stage` field of an `Application` object
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: UpdateApplicationStageRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            job_interview_stage:
+              type: optional<string>
+              docs: The interview stage to move the application to.
+              validation:
+                format: uuid
+            remote_user_id:
+              type: optional<string>
+              validation:
+                minLength: 1
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.ApplicationResponse
+        status-code: 201
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          request: {}
+          response:
+            body:
+              model:
+                id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+                remote_id: '98796'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                candidate: candidate
+                job: job
+                applied_at: '2021-10-15T00:00:00Z'
+                rejected_at: '2021-11-15T00:00:00Z'
+                offers:
+                  - e9b5c11d-c588-468e-8567-cd6992e42b62
+                source: Campus recruiting event
+                credited_to: credited_to
+                screening_question_answers:
+                  - screening_question_answers
+                  - screening_question_answers
+                current_stage: current_stage
+                reject_reason: reject_reason
+                remote_was_deleted: true
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /candidacies
+                    data:
+                      - Varies by platform
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    metaPostRetrieve:
+      path: /ats/v1/applications/meta/post
+      method: GET
+      auth: true
+      docs: Returns metadata for `Application` POSTs.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: ApplicationsMetaPostRetrieveRequest
+        query-parameters:
+          application_remote_template_id:
+            type: optional<string>
+            docs: >-
+              The template ID associated with the nested application in the
+              request.
+      response:
+        docs: ''
+        type: root.MetaResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              request_schema:
+                type: object
+                properties:
+                  model:
+                    type: object
+                    required:
+                      - last_name
+                      - first_name
+                      - merge_categories
+                      - new_york_city_neighborhood
+                      - favorite_tv_shows
+                      - favorite_watch
+                    properties:
+                      email_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            email_address_type:
+                              type: string
+                              title: email_address_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: email_addresses
+                        description: Array of email_addresses objects
+                      urls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            url_type:
+                              type: string
+                              title: url_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: urls
+                        description: Array of urls objects
+                      first_name:
+                        type: string
+                        title: first_name
+                        description: The first name.
+                      last_name:
+                        type: string
+                        title: last_name
+                        description: The last name.
+                      phone_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            phone_number_type:
+                              type: string
+                              title: phone_number_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: phone_numbers
+                        description: Array of phone_numbers objects
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: tags
+                        description: Array of tags names
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              title: id
+                            file_url:
+                              type: string
+                              title: file_url
+                            file_name:
+                              type: string
+                              title: file_name
+                            attachment_type:
+                              type: string
+                              title: attachment_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: attachments
+                        description: 'Array of attachments objects '
+                      merge_categories:
+                        type: array
+                        categories:
+                          type: string
+                          enum:
+                            - HRIS
+                            - ATS
+                            - Accounting
+                            - Ticketing
+                            - File Storage
+                            - CRM
+                            - Marketing Automation
+                          enum_information:
+                            - value: HRIS
+                              description: Merge HRIS Category
+                            - value: ATS
+                              description: Merge ATS Category
+                            - value: Accounting
+                              description: Merge Accounting Category
+                            - value: Ticketing
+                              description: Merge Ticketing Category
+                            - value: File Storage
+                              description: Merge File Storage Category
+                            - value: CRM
+                              description: Merge CRM Category
+                            - value: Marketing Automation
+                              description: Merge Marketing Automation Category
+                        title: Merge Categories
+                        description: Array of Merge's Unified API Categories
+                      new_york_city_neighborhood:
+                        type: string
+                        title: Borough
+                        description: One of the 5 Boroughs of New York City
+                      favorite_tv_shows:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: Favorite TV Shows
+                        description: Array of TV Show objects on merge.tv_shows
+                      favorite_watch:
+                        type: string
+                        title: Favorite Watch
+                        description: Favorite watch of all time
+              remote_field_classes:
+                key: value
+              status:
+                linked_account_status: linked_account_status
+                can_make_request: true
+              has_conditional_params: true
+              has_required_linked_account_params: true
+  source:
+    openapi: openapi/openapi.yml

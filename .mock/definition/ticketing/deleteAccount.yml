@@ -1,0 +1,15 @@
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    delete:
+      path: /ticketing/v1/delete-account
+      method: POST
+      auth: true
+      docs: Delete a linked account.
+      source:
+        openapi: openapi/openapi.yml
+      examples:
+        - headers: {}
+  source:
+    openapi: openapi/openapi.yml

@@ -1,0 +1,253 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /ticketing/v1/collections
+      method: GET
+      auth: true
+      docs: Returns a list of `Collection` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: CollectionsListRequest
+        query-parameters:
+          collection_type:
+            type: optional<string>
+            docs: If provided, will only return collections of the given type.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<literal<"parent_collection">>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          parent_collection_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return collections whose parent collection
+              matches the given id.
+          remote_fields:
+            type: optional<literal<"collection_type">>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          show_enum_origins:
+            type: optional<literal<"collection_type">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.PaginatedCollectionList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: fb8c55b6-1cb8-4b4c-9fb6-17924231619d
+                  remote_id: '19202938'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  name: Q1 Platform
+                  description: For tracking all tasks related to Platform for Q1
+                  access_level: PRIVATE
+                  collection_type: LIST
+                  parent_collection: parent_collection
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /platform-endpoint
+    viewersList:
+      path: /ticketing/v1/collections/{collection_id}/viewers
+      method: GET
+      auth: true
+      docs: >-
+        Returns a list of `Viewer` objects that point to a User id or Team id
+        that is either an assignee or viewer on a `Collection` with the given
+        id. [Learn
+        more.](https://help.merge.dev/en/articles/10333658-ticketing-access-control-list-acls)
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        collection_id: string
+      request:
+        name: CollectionsViewersListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<CollectionsViewersListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedViewerList
+        status-code: 200
+      examples:
+        - path-parameters:
+            collection_id: collection_id
+          headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 17a54124-287f-494d-965e-3c5b330c9a68
+                  remote_id: '088899'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  team: team
+                  user: user
+    retrieve:
+      path: /ticketing/v1/collections/{id}
+      method: GET
+      auth: true
+      docs: Returns a `Collection` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: CollectionsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<literal<"parent_collection">>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<literal<"collection_type">>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<literal<"collection_type">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.Collection
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: fb8c55b6-1cb8-4b4c-9fb6-17924231619d
+              remote_id: '19202938'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              name: Q1 Platform
+              description: For tracking all tasks related to Platform for Q1
+              access_level: PRIVATE
+              collection_type: LIST
+              parent_collection: parent_collection
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /platform-endpoint
+                  data:
+                    key: value
+  source:
+    openapi: openapi/openapi.yml
+types:
+  CollectionsViewersListRequestExpand:
+    enum:
+      - team
+      - user
+      - value: user,team
+        name: UserTeam
+    source:
+      openapi: openapi/openapi.yml

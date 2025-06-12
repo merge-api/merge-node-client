@@ -1,0 +1,300 @@
+types:
+  EeocsListRequestRemoteFields:
+    enum:
+      - disability_status
+      - value: disability_status,gender
+        name: DisabilityStatusGender
+      - value: disability_status,gender,race
+        name: DisabilityStatusGenderRace
+      - value: disability_status,gender,race,veteran_status
+        name: DisabilityStatusGenderRaceVeteranStatus
+      - value: disability_status,gender,veteran_status
+        name: DisabilityStatusGenderVeteranStatus
+      - value: disability_status,race
+        name: DisabilityStatusRace
+      - value: disability_status,race,veteran_status
+        name: DisabilityStatusRaceVeteranStatus
+      - value: disability_status,veteran_status
+        name: DisabilityStatusVeteranStatus
+      - gender
+      - value: gender,race
+        name: GenderRace
+      - value: gender,race,veteran_status
+        name: GenderRaceVeteranStatus
+      - value: gender,veteran_status
+        name: GenderVeteranStatus
+      - race
+      - value: race,veteran_status
+        name: RaceVeteranStatus
+      - veteran_status
+    source:
+      openapi: openapi/openapi.yml
+  EeocsListRequestShowEnumOrigins:
+    enum:
+      - disability_status
+      - value: disability_status,gender
+        name: DisabilityStatusGender
+      - value: disability_status,gender,race
+        name: DisabilityStatusGenderRace
+      - value: disability_status,gender,race,veteran_status
+        name: DisabilityStatusGenderRaceVeteranStatus
+      - value: disability_status,gender,veteran_status
+        name: DisabilityStatusGenderVeteranStatus
+      - value: disability_status,race
+        name: DisabilityStatusRace
+      - value: disability_status,race,veteran_status
+        name: DisabilityStatusRaceVeteranStatus
+      - value: disability_status,veteran_status
+        name: DisabilityStatusVeteranStatus
+      - gender
+      - value: gender,race
+        name: GenderRace
+      - value: gender,race,veteran_status
+        name: GenderRaceVeteranStatus
+      - value: gender,veteran_status
+        name: GenderVeteranStatus
+      - race
+      - value: race,veteran_status
+        name: RaceVeteranStatus
+      - veteran_status
+    source:
+      openapi: openapi/openapi.yml
+  EeocsRetrieveRequestRemoteFields:
+    enum:
+      - disability_status
+      - value: disability_status,gender
+        name: DisabilityStatusGender
+      - value: disability_status,gender,race
+        name: DisabilityStatusGenderRace
+      - value: disability_status,gender,race,veteran_status
+        name: DisabilityStatusGenderRaceVeteranStatus
+      - value: disability_status,gender,veteran_status
+        name: DisabilityStatusGenderVeteranStatus
+      - value: disability_status,race
+        name: DisabilityStatusRace
+      - value: disability_status,race,veteran_status
+        name: DisabilityStatusRaceVeteranStatus
+      - value: disability_status,veteran_status
+        name: DisabilityStatusVeteranStatus
+      - gender
+      - value: gender,race
+        name: GenderRace
+      - value: gender,race,veteran_status
+        name: GenderRaceVeteranStatus
+      - value: gender,veteran_status
+        name: GenderVeteranStatus
+      - race
+      - value: race,veteran_status
+        name: RaceVeteranStatus
+      - veteran_status
+    source:
+      openapi: openapi/openapi.yml
+  EeocsRetrieveRequestShowEnumOrigins:
+    enum:
+      - disability_status
+      - value: disability_status,gender
+        name: DisabilityStatusGender
+      - value: disability_status,gender,race
+        name: DisabilityStatusGenderRace
+      - value: disability_status,gender,race,veteran_status
+        name: DisabilityStatusGenderRaceVeteranStatus
+      - value: disability_status,gender,veteran_status
+        name: DisabilityStatusGenderVeteranStatus
+      - value: disability_status,race
+        name: DisabilityStatusRace
+      - value: disability_status,race,veteran_status
+        name: DisabilityStatusRaceVeteranStatus
+      - value: disability_status,veteran_status
+        name: DisabilityStatusVeteranStatus
+      - gender
+      - value: gender,race
+        name: GenderRace
+      - value: gender,race,veteran_status
+        name: GenderRaceVeteranStatus
+      - value: gender,veteran_status
+        name: GenderVeteranStatus
+      - race
+      - value: race,veteran_status
+        name: RaceVeteranStatus
+      - veteran_status
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /ats/v1/eeocs
+      method: GET
+      auth: true
+      docs: Returns a list of `EEOC` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: EeocsListRequest
+        query-parameters:
+          candidate_id:
+            type: optional<string>
+            docs: If provided, will only return EEOC info for this candidate.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<literal<"candidate">>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_fields:
+            type: optional<EeocsListRequestRemoteFields>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          show_enum_origins:
+            type: optional<EeocsListRequestShowEnumOrigins>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.PaginatedEeocList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: f7dd7b4f-237e-4772-8bd4-3246384c6c58
+                  remote_id: '76'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  candidate: candidate
+                  submitted_at: '2021-10-15T00:00:00Z'
+                  race: AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+                  gender: MALE
+                  veteran_status: I_AM_NOT_A_PROTECTED_VETERAN
+                  disability_status: YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /eeoc
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /ats/v1/eeocs/{id}
+      method: GET
+      auth: true
+      docs: Returns an `EEOC` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: EeocsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<literal<"candidate">>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<EeocsRetrieveRequestRemoteFields>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<EeocsRetrieveRequestShowEnumOrigins>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.Eeoc
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: f7dd7b4f-237e-4772-8bd4-3246384c6c58
+              remote_id: '76'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              candidate: candidate
+              submitted_at: '2021-10-15T00:00:00Z'
+              race: AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+              gender: MALE
+              veteran_status: I_AM_NOT_A_PROTECTED_VETERAN
+              disability_status: YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /eeoc
+                  data:
+                    - Varies by platform
+  source:
+    openapi: openapi/openapi.yml

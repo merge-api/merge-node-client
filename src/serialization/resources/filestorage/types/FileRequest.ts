@@ -20,6 +20,7 @@ export const FileRequest: core.serialization.ObjectSchema<
     mimeType: core.serialization.property("mime_type", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
     folder: FileRequestFolder.optional(),
+    checksum: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     permissions: FileRequestPermissions.optional(),
     drive: FileRequestDrive.optional(),
     integrationParams: core.serialization.property(
@@ -41,6 +42,7 @@ export declare namespace FileRequest {
         mime_type?: string | null;
         description?: string | null;
         folder?: FileRequestFolder.Raw | null;
+        checksum?: Record<string, unknown> | null;
         permissions?: FileRequestPermissions.Raw | null;
         drive?: FileRequestDrive.Raw | null;
         integration_params?: Record<string, unknown> | null;

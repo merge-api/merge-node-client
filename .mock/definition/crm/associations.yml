@@ -1,0 +1,142 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    custom_object_classes_custom_objects_associations_list:
+      path: >-
+        /crm/v1/custom-object-classes/{custom_object_class_id}/custom-objects/{object_id}/associations
+      method: GET
+      auth: true
+      docs: Returns a list of `Association` objects.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        custom_object_class_id: string
+        object_id: string
+      request:
+        name: CustomObjectClassesCustomObjectsAssociationsListRequest
+        query-parameters:
+          association_type_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return opportunities with this
+              association_type.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<literal<"association_type">>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+      response:
+        docs: ''
+        type: root.PaginatedAssociationList
+        status-code: 200
+      examples:
+        - path-parameters:
+            custom_object_class_id: custom_object_class_id
+            object_id: object_id
+          headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  source_object: a8f5d29f-4e50-473f-8f12-27128ffcd37a
+                  target_object: da0b1963-be70-469c-9f8c-06a81d0fe759
+                  association_type: association_type
+    custom_object_classes_custom_objects_associations_update:
+      path: >-
+        /crm/v1/custom-object-classes/{source_class_id}/custom-objects/{source_object_id}/associations/{target_class_id}/{target_object_id}/{association_type_id}
+      method: PUT
+      auth: true
+      docs: >-
+        Creates an Association between `source_object_id` and `target_object_id`
+        of type `association_type_id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        association_type_id: string
+        source_class_id: string
+        source_object_id: string
+        target_class_id: string
+        target_object_id: string
+      request:
+        name: CustomObjectClassesCustomObjectsAssociationsUpdateRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+      response:
+        docs: ''
+        type: root.Association
+        status-code: 200
+      examples:
+        - path-parameters:
+            association_type_id: association_type_id
+            source_class_id: source_class_id
+            source_object_id: source_object_id
+            target_class_id: target_class_id
+            target_object_id: target_object_id
+          headers: {}
+          response:
+            body:
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              source_object: a8f5d29f-4e50-473f-8f12-27128ffcd37a
+              target_object: da0b1963-be70-469c-9f8c-06a81d0fe759
+              association_type: association_type
+  source:
+    openapi: openapi/openapi.yml

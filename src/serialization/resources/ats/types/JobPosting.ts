@@ -7,7 +7,7 @@ import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { JobPostingJobPostingUrlsItem } from "./JobPostingJobPostingUrlsItem";
 import { JobPostingJob } from "./JobPostingJob";
-import { JobPostingStatusEnum } from "./JobPostingStatusEnum";
+import { JobPostingStatus } from "./JobPostingStatus";
 import { RemoteData } from "./RemoteData";
 
 export const JobPosting: core.serialization.ObjectSchema<serializers.ats.JobPosting.Raw, Merge.ats.JobPosting> =
@@ -22,7 +22,7 @@ export const JobPosting: core.serialization.ObjectSchema<serializers.ats.JobPost
             core.serialization.list(JobPostingJobPostingUrlsItem).optional(),
         ),
         job: JobPostingJob.optional(),
-        status: JobPostingStatusEnum.optional(),
+        status: JobPostingStatus.optional(),
         content: core.serialization.string().optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
@@ -44,7 +44,7 @@ export declare namespace JobPosting {
         title?: string | null;
         job_posting_urls?: JobPostingJobPostingUrlsItem.Raw[] | null;
         job?: JobPostingJob.Raw | null;
-        status?: JobPostingStatusEnum.Raw | null;
+        status?: JobPostingStatus.Raw | null;
         content?: string | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;

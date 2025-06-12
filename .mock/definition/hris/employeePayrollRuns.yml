@@ -1,0 +1,301 @@
+types:
+  EmployeePayrollRunsListRequestExpand:
+    enum:
+      - employee
+      - value: employee,payroll_run
+        name: EmployeePayrollRun
+      - payroll_run
+    source:
+      openapi: openapi/openapi.yml
+  EmployeePayrollRunsRetrieveRequestExpand:
+    enum:
+      - employee
+      - value: employee,payroll_run
+        name: EmployeePayrollRun
+      - payroll_run
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /hris/v1/employee-payroll-runs
+      method: GET
+      auth: true
+      docs: Returns a list of `EmployeePayrollRun` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: EmployeePayrollRunsListRequest
+        query-parameters:
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          employee_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return employee payroll runs for this
+              employee.
+          ended_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return employee payroll runs ended after
+              this datetime.
+          ended_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return employee payroll runs ended before
+              this datetime.
+          expand:
+            type: optional<EmployeePayrollRunsListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          payroll_run_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return employee payroll runs for this
+              employee.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          started_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return employee payroll runs started after
+              this datetime.
+          started_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return employee payroll runs started before
+              this datetime.
+      response:
+        docs: ''
+        type: root.PaginatedEmployeePayrollRunList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: fb8c55b6-1cb8-4b4c-9fb6-17924231619d
+                  remote_id: '19202938'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  employee: employee
+                  payroll_run: payroll_run
+                  gross_pay: 1342.67
+                  net_pay: 865.78
+                  start_date: '2020-11-08T00:00:00Z'
+                  end_date: '2020-11-09T00:00:00Z'
+                  check_date: '2020-11-10T00:00:00Z'
+                  earnings:
+                    - id: babbced6-3a81-4775-8da2-490dc6385259
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      employee_payroll_run: 35347df1-95e7-46e2-93cc-66f1191edca5
+                      amount: 1002.34
+                      type: SALARY
+                    - id: babbced6-3a81-4775-8da2-490dc6385259
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      employee_payroll_run: 35347df1-95e7-46e2-93cc-66f1191edca5
+                      amount: 8342.34
+                      type: OVERTIME
+                  deductions:
+                    - id: 5fd439fc-1b64-4755-b275-64918936c365
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      employee_payroll_run: 35347df1-95e7-46e2-93cc-66f1191edca5
+                      name: Social Security
+                      employee_deduction: 34.54
+                      company_deduction: 78.78
+                  taxes:
+                    - id: e3a825fd-c38d-4095-a717-df98c4cb9ebc
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      employee_payroll_run: 35347df1-95e7-46e2-93cc-66f1191edca5
+                      name: California State Income Tax
+                      amount: 100.25
+                      employer_tax: true
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /employee-payroll
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /hris/v1/employee-payroll-runs/{id}
+      method: GET
+      auth: true
+      docs: Returns an `EmployeePayrollRun` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: EmployeePayrollRunsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<EmployeePayrollRunsRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.EmployeePayrollRun
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: fb8c55b6-1cb8-4b4c-9fb6-17924231619d
+              remote_id: '19202938'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              employee: employee
+              payroll_run: payroll_run
+              gross_pay: 1342.67
+              net_pay: 865.78
+              start_date: '2020-11-08T00:00:00Z'
+              end_date: '2020-11-09T00:00:00Z'
+              check_date: '2020-11-10T00:00:00Z'
+              earnings:
+                - id: babbced6-3a81-4775-8da2-490dc6385259
+                  remote_id: '52802'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  employee_payroll_run: 35347df1-95e7-46e2-93cc-66f1191edca5
+                  amount: 1002.34
+                  type: SALARY
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /platform-endpoint
+                - id: babbced6-3a81-4775-8da2-490dc6385259
+                  remote_id: '52802'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  employee_payroll_run: 35347df1-95e7-46e2-93cc-66f1191edca5
+                  amount: 8342.34
+                  type: OVERTIME
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /platform-endpoint
+              deductions:
+                - id: 5fd439fc-1b64-4755-b275-64918936c365
+                  remote_id: '93478612'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  employee_payroll_run: 35347df1-95e7-46e2-93cc-66f1191edca5
+                  name: Social Security
+                  employee_deduction: 34.54
+                  company_deduction: 78.78
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /payroll-deduction
+                      data:
+                        - Varies by platform
+              taxes:
+                - id: e3a825fd-c38d-4095-a717-df98c4cb9ebc
+                  remote_id: '26806834'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  employee_payroll_run: 35347df1-95e7-46e2-93cc-66f1191edca5
+                  name: California State Income Tax
+                  amount: 100.25
+                  employer_tax: true
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /platform-endpoint
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /employee-payroll
+                  data:
+                    - Varies by platform
+  source:
+    openapi: openapi/openapi.yml

@@ -1,0 +1,135 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    create:
+      path: /filestorage/v1/link-token
+      method: POST
+      auth: true
+      docs: Creates a link token to be used when linking a new end user.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: EndUserDetailsRequest
+        body:
+          properties:
+            end_user_email_address:
+              type: string
+              docs: >-
+                Your end user's email address. This is purely for identification
+                purposes - setting this value will not cause any emails to be
+                sent.
+              validation:
+                minLength: 1
+                maxLength: 100
+            end_user_organization_name:
+              type: string
+              docs: Your end user's organization.
+              validation:
+                minLength: 1
+                maxLength: 100
+            end_user_origin_id:
+              type: string
+              docs: >-
+                This unique identifier typically represents the ID for your end
+                user in your product's database. This value must be distinct
+                from other Linked Accounts' unique identifiers.
+              validation:
+                minLength: 1
+                maxLength: 100
+            categories:
+              docs: The integration categories to show in Merge Link.
+              type: list<root.CategoriesEnum>
+            integration:
+              type: optional<string>
+              docs: >-
+                The slug of a specific pre-selected integration for this linking
+                flow token. For examples of slugs, see
+                https://docs.merge.dev/guides/merge-link/single-integration/.
+              validation:
+                minLength: 1
+            link_expiry_mins:
+              type: optional<integer>
+              docs: >-
+                An integer number of minutes between [30, 720 or 10080 if for a
+                Magic Link URL] for how long this token is valid. Defaults to
+                30.
+              default: 30
+              validation:
+                min: 30
+                max: 10080
+            should_create_magic_link_url:
+              type: optional<boolean>
+              docs: >-
+                Whether to generate a Magic Link URL. Defaults to false. For
+                more information on Magic Link, see
+                https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.
+              default: false
+            hide_admin_magic_link:
+              type: optional<boolean>
+              docs: >-
+                Whether to generate a Magic Link URL on the Admin Needed screen
+                during the linking flow. Defaults to false. For more information
+                on Magic Link, see
+                https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.
+              default: false
+            common_models:
+              type: optional<list<root.CommonModelScopesBodyRequest>>
+              docs: >-
+                An array of objects to specify the models and fields that will
+                be disabled for a given Linked Account. Each object uses
+                model_id, enabled_actions, and disabled_fields to specify the
+                model, method, and fields that are scoped for a given Linked
+                Account.
+            category_common_model_scopes:
+              type: >-
+                optional<map<string,
+                optional<list<root.IndividualCommonModelScopeDeserializerRequest>>>>
+              docs: >-
+                When creating a Link Token, you can set permissions for Common
+                Models that will apply to the account that is going to be
+                linked. Any model or field not specified in link token payload
+                will default to existing settings.
+            language:
+              type: optional<root.LanguageEnum>
+              docs: >-
+                The following subset of IETF language tags can be used to
+                configure localization.
+
+
+                * `en` - en
+
+                * `de` - de
+            are_syncs_disabled:
+              type: optional<boolean>
+              docs: >-
+                The boolean that indicates whether initial, periodic, and force
+                syncs will be disabled.
+              default: false
+            integration_specific_config:
+              type: optional<map<string, unknown>>
+              docs: >-
+                A JSON object containing integration-specific configuration
+                options.
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.LinkToken
+        status-code: 200
+      examples:
+        - request:
+            end_user_email_address: example@gmail.com
+            end_user_organization_name: Test Organization
+            end_user_origin_id: '12345'
+            categories:
+              - hris
+              - ats
+          response:
+            body:
+              link_token: necdP7FtdASl1fQwm62be2_dM4wBG8_GactqoUV0
+              integration_name: Lever
+              magic_link_url: https://link.merge.dev/asdfjkl12345jsndfgi2i83n
+  source:
+    openapi: openapi/openapi.yml

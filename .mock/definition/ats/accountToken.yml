@@ -1,0 +1,44 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    retrieve:
+      path: /ats/v1/account-token/{public_token}
+      method: GET
+      auth: true
+      docs: >-
+        Returns the account token for the end user with the provided public
+        token.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        public_token: string
+      response:
+        docs: ''
+        type: root.AccountToken
+        status-code: 200
+      examples:
+        - path-parameters:
+            public_token: public_token
+          response:
+            body:
+              account_token: T9klMDQrcHdm9jrtHuOS2Nf06BIHwMNjpPXPMB
+              integration:
+                name: name
+                abbreviated_name: abbreviated_name
+                categories:
+                  - hris
+                image: image
+                square_image: square_image
+                color: color
+                slug: slug
+                api_endpoints_to_documentation_urls:
+                  key: value
+                webhook_setup_guide_url: webhook_setup_guide_url
+                category_beta_status:
+                  key: value
+              id: 0496d4c2-42e6-4072-80b3-7b69bfdc76fd
+  source:
+    openapi: openapi/openapi.yml

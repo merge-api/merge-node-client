@@ -1,0 +1,205 @@
+types:
+  CompanyInfoListRequestExpand:
+    enum:
+      - addresses
+      - value: addresses,phone_numbers
+        name: AddressesPhoneNumbers
+      - phone_numbers
+    source:
+      openapi: openapi/openapi.yml
+  CompanyInfoRetrieveRequestExpand:
+    enum:
+      - addresses
+      - value: addresses,phone_numbers
+        name: AddressesPhoneNumbers
+      - phone_numbers
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /accounting/v1/company-info
+      method: GET
+      auth: true
+      docs: Returns a list of `CompanyInfo` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: CompanyInfoListRequest
+        query-parameters:
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<CompanyInfoListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+      response:
+        docs: ''
+        type: root.PaginatedCompanyInfoList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 65d8ffd0-211b-4ba4-b85a-fbe2ce220982
+                  remote_id: '19202938'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  name: Merge Pickleball Company
+                  legal_name: Merge Pickleball Company Inc.
+                  tax_number: 11-0011000
+                  fiscal_year_end_month: 12
+                  fiscal_year_end_day: 31
+                  currency: XUA
+                  remote_created_at: '2020-03-31T00:00:00Z'
+                  addresses:
+                    - created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      street_1: 2920 Broadway
+                      street_2: 2nd Floor
+                      city: New York
+                      state: NY
+                      country: US
+                      zip_code: '10027'
+                  phone_numbers:
+                    - created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /actions
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /accounting/v1/company-info/{id}
+      method: GET
+      auth: true
+      docs: Returns a `CompanyInfo` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: CompanyInfoRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<CompanyInfoRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.CompanyInfo
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: 65d8ffd0-211b-4ba4-b85a-fbe2ce220982
+              remote_id: '19202938'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              name: Merge Pickleball Company
+              legal_name: Merge Pickleball Company Inc.
+              tax_number: 11-0011000
+              fiscal_year_end_month: 12
+              fiscal_year_end_day: 31
+              currency: XUA
+              remote_created_at: '2020-03-31T00:00:00Z'
+              urls:
+                - urls
+              addresses:
+                - created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  type: BILLING
+                  street_1: 2920 Broadway
+                  street_2: 2nd Floor
+                  city: New York
+                  state: NY
+                  country_subdivision: NY
+                  country: US
+                  zip_code: '10027'
+              phone_numbers:
+                - created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  number: '+3198675309'
+                  type: Mobile
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /actions
+                  data:
+                    - Varies by platform
+  source:
+    openapi: openapi/openapi.yml

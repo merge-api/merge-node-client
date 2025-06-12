@@ -1,0 +1,1289 @@
+types:
+  PurchaseOrdersListRequestExpand:
+    enum:
+      - accounting_period
+      - value: accounting_period,payment_term
+        name: AccountingPeriodPaymentTerm
+      - company
+      - value: company,accounting_period
+        name: CompanyAccountingPeriod
+      - value: company,accounting_period,payment_term
+        name: CompanyAccountingPeriodPaymentTerm
+      - value: company,payment_term
+        name: CompanyPaymentTerm
+      - delivery_address
+      - value: delivery_address,accounting_period
+        name: DeliveryAddressAccountingPeriod
+      - value: delivery_address,accounting_period,payment_term
+        name: DeliveryAddressAccountingPeriodPaymentTerm
+      - value: delivery_address,company
+        name: DeliveryAddressCompany
+      - value: delivery_address,company,accounting_period
+        name: DeliveryAddressCompanyAccountingPeriod
+      - value: delivery_address,company,accounting_period,payment_term
+        name: DeliveryAddressCompanyAccountingPeriodPaymentTerm
+      - value: delivery_address,company,payment_term
+        name: DeliveryAddressCompanyPaymentTerm
+      - value: delivery_address,payment_term
+        name: DeliveryAddressPaymentTerm
+      - value: delivery_address,vendor
+        name: DeliveryAddressVendor
+      - value: delivery_address,vendor,accounting_period
+        name: DeliveryAddressVendorAccountingPeriod
+      - value: delivery_address,vendor,accounting_period,payment_term
+        name: DeliveryAddressVendorAccountingPeriodPaymentTerm
+      - value: delivery_address,vendor,company
+        name: DeliveryAddressVendorCompany
+      - value: delivery_address,vendor,company,accounting_period
+        name: DeliveryAddressVendorCompanyAccountingPeriod
+      - value: delivery_address,vendor,company,accounting_period,payment_term
+        name: DeliveryAddressVendorCompanyAccountingPeriodPaymentTerm
+      - value: delivery_address,vendor,company,payment_term
+        name: DeliveryAddressVendorCompanyPaymentTerm
+      - value: delivery_address,vendor,payment_term
+        name: DeliveryAddressVendorPaymentTerm
+      - line_items
+      - value: line_items,accounting_period
+        name: LineItemsAccountingPeriod
+      - value: line_items,accounting_period,payment_term
+        name: LineItemsAccountingPeriodPaymentTerm
+      - value: line_items,company
+        name: LineItemsCompany
+      - value: line_items,company,accounting_period
+        name: LineItemsCompanyAccountingPeriod
+      - value: line_items,company,accounting_period,payment_term
+        name: LineItemsCompanyAccountingPeriodPaymentTerm
+      - value: line_items,company,payment_term
+        name: LineItemsCompanyPaymentTerm
+      - value: line_items,delivery_address
+        name: LineItemsDeliveryAddress
+      - value: line_items,delivery_address,accounting_period
+        name: LineItemsDeliveryAddressAccountingPeriod
+      - value: line_items,delivery_address,accounting_period,payment_term
+        name: LineItemsDeliveryAddressAccountingPeriodPaymentTerm
+      - value: line_items,delivery_address,company
+        name: LineItemsDeliveryAddressCompany
+      - value: line_items,delivery_address,company,accounting_period
+        name: LineItemsDeliveryAddressCompanyAccountingPeriod
+      - value: line_items,delivery_address,company,accounting_period,payment_term
+        name: LineItemsDeliveryAddressCompanyAccountingPeriodPaymentTerm
+      - value: line_items,delivery_address,company,payment_term
+        name: LineItemsDeliveryAddressCompanyPaymentTerm
+      - value: line_items,delivery_address,payment_term
+        name: LineItemsDeliveryAddressPaymentTerm
+      - value: line_items,delivery_address,vendor
+        name: LineItemsDeliveryAddressVendor
+      - value: line_items,delivery_address,vendor,accounting_period
+        name: LineItemsDeliveryAddressVendorAccountingPeriod
+      - value: line_items,delivery_address,vendor,accounting_period,payment_term
+        name: LineItemsDeliveryAddressVendorAccountingPeriodPaymentTerm
+      - value: line_items,delivery_address,vendor,company
+        name: LineItemsDeliveryAddressVendorCompany
+      - value: line_items,delivery_address,vendor,company,accounting_period
+        name: LineItemsDeliveryAddressVendorCompanyAccountingPeriod
+      - value: >-
+          line_items,delivery_address,vendor,company,accounting_period,payment_term
+        name: LineItemsDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm
+      - value: line_items,delivery_address,vendor,company,payment_term
+        name: LineItemsDeliveryAddressVendorCompanyPaymentTerm
+      - value: line_items,delivery_address,vendor,payment_term
+        name: LineItemsDeliveryAddressVendorPaymentTerm
+      - value: line_items,payment_term
+        name: LineItemsPaymentTerm
+      - value: line_items,tracking_categories
+        name: LineItemsTrackingCategories
+      - value: line_items,tracking_categories,accounting_period
+        name: LineItemsTrackingCategoriesAccountingPeriod
+      - value: line_items,tracking_categories,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,company
+        name: LineItemsTrackingCategoriesCompany
+      - value: line_items,tracking_categories,company,accounting_period
+        name: LineItemsTrackingCategoriesCompanyAccountingPeriod
+      - value: line_items,tracking_categories,company,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesCompanyAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,company,payment_term
+        name: LineItemsTrackingCategoriesCompanyPaymentTerm
+      - value: line_items,tracking_categories,delivery_address
+        name: LineItemsTrackingCategoriesDeliveryAddress
+      - value: line_items,tracking_categories,delivery_address,accounting_period
+        name: LineItemsTrackingCategoriesDeliveryAddressAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,delivery_address,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,company
+        name: LineItemsTrackingCategoriesDeliveryAddressCompany
+      - value: >-
+          line_items,tracking_categories,delivery_address,company,accounting_period
+        name: LineItemsTrackingCategoriesDeliveryAddressCompanyAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,delivery_address,company,accounting_period,payment_term
+        name: >-
+          LineItemsTrackingCategoriesDeliveryAddressCompanyAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,company,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressCompanyPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,vendor
+        name: LineItemsTrackingCategoriesDeliveryAddressVendor
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,accounting_period
+        name: LineItemsTrackingCategoriesDeliveryAddressVendorAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,accounting_period,payment_term
+        name: >-
+          LineItemsTrackingCategoriesDeliveryAddressVendorAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,vendor,company
+        name: LineItemsTrackingCategoriesDeliveryAddressVendorCompany
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,company,accounting_period
+        name: >-
+          LineItemsTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,company,accounting_period,payment_term
+        name: >-
+          LineItemsTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,company,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressVendorCompanyPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,vendor,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressVendorPaymentTerm
+      - value: line_items,tracking_categories,payment_term
+        name: LineItemsTrackingCategoriesPaymentTerm
+      - value: line_items,tracking_categories,vendor
+        name: LineItemsTrackingCategoriesVendor
+      - value: line_items,tracking_categories,vendor,accounting_period
+        name: LineItemsTrackingCategoriesVendorAccountingPeriod
+      - value: line_items,tracking_categories,vendor,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesVendorAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,vendor,company
+        name: LineItemsTrackingCategoriesVendorCompany
+      - value: line_items,tracking_categories,vendor,company,accounting_period
+        name: LineItemsTrackingCategoriesVendorCompanyAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,vendor,company,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesVendorCompanyAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,vendor,company,payment_term
+        name: LineItemsTrackingCategoriesVendorCompanyPaymentTerm
+      - value: line_items,tracking_categories,vendor,payment_term
+        name: LineItemsTrackingCategoriesVendorPaymentTerm
+      - value: line_items,vendor
+        name: LineItemsVendor
+      - value: line_items,vendor,accounting_period
+        name: LineItemsVendorAccountingPeriod
+      - value: line_items,vendor,accounting_period,payment_term
+        name: LineItemsVendorAccountingPeriodPaymentTerm
+      - value: line_items,vendor,company
+        name: LineItemsVendorCompany
+      - value: line_items,vendor,company,accounting_period
+        name: LineItemsVendorCompanyAccountingPeriod
+      - value: line_items,vendor,company,accounting_period,payment_term
+        name: LineItemsVendorCompanyAccountingPeriodPaymentTerm
+      - value: line_items,vendor,company,payment_term
+        name: LineItemsVendorCompanyPaymentTerm
+      - value: line_items,vendor,payment_term
+        name: LineItemsVendorPaymentTerm
+      - payment_term
+      - tracking_categories
+      - value: tracking_categories,accounting_period
+        name: TrackingCategoriesAccountingPeriod
+      - value: tracking_categories,accounting_period,payment_term
+        name: TrackingCategoriesAccountingPeriodPaymentTerm
+      - value: tracking_categories,company
+        name: TrackingCategoriesCompany
+      - value: tracking_categories,company,accounting_period
+        name: TrackingCategoriesCompanyAccountingPeriod
+      - value: tracking_categories,company,accounting_period,payment_term
+        name: TrackingCategoriesCompanyAccountingPeriodPaymentTerm
+      - value: tracking_categories,company,payment_term
+        name: TrackingCategoriesCompanyPaymentTerm
+      - value: tracking_categories,delivery_address
+        name: TrackingCategoriesDeliveryAddress
+      - value: tracking_categories,delivery_address,accounting_period
+        name: TrackingCategoriesDeliveryAddressAccountingPeriod
+      - value: tracking_categories,delivery_address,accounting_period,payment_term
+        name: TrackingCategoriesDeliveryAddressAccountingPeriodPaymentTerm
+      - value: tracking_categories,delivery_address,company
+        name: TrackingCategoriesDeliveryAddressCompany
+      - value: tracking_categories,delivery_address,company,accounting_period
+        name: TrackingCategoriesDeliveryAddressCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,delivery_address,company,accounting_period,payment_term
+        name: TrackingCategoriesDeliveryAddressCompanyAccountingPeriodPaymentTerm
+      - value: tracking_categories,delivery_address,company,payment_term
+        name: TrackingCategoriesDeliveryAddressCompanyPaymentTerm
+      - value: tracking_categories,delivery_address,payment_term
+        name: TrackingCategoriesDeliveryAddressPaymentTerm
+      - value: tracking_categories,delivery_address,vendor
+        name: TrackingCategoriesDeliveryAddressVendor
+      - value: tracking_categories,delivery_address,vendor,accounting_period
+        name: TrackingCategoriesDeliveryAddressVendorAccountingPeriod
+      - value: >-
+          tracking_categories,delivery_address,vendor,accounting_period,payment_term
+        name: TrackingCategoriesDeliveryAddressVendorAccountingPeriodPaymentTerm
+      - value: tracking_categories,delivery_address,vendor,company
+        name: TrackingCategoriesDeliveryAddressVendorCompany
+      - value: tracking_categories,delivery_address,vendor,company,accounting_period
+        name: TrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,delivery_address,vendor,company,accounting_period,payment_term
+        name: >-
+          TrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm
+      - value: tracking_categories,delivery_address,vendor,company,payment_term
+        name: TrackingCategoriesDeliveryAddressVendorCompanyPaymentTerm
+      - value: tracking_categories,delivery_address,vendor,payment_term
+        name: TrackingCategoriesDeliveryAddressVendorPaymentTerm
+      - value: tracking_categories,payment_term
+        name: TrackingCategoriesPaymentTerm
+      - value: tracking_categories,vendor
+        name: TrackingCategoriesVendor
+      - value: tracking_categories,vendor,accounting_period
+        name: TrackingCategoriesVendorAccountingPeriod
+      - value: tracking_categories,vendor,accounting_period,payment_term
+        name: TrackingCategoriesVendorAccountingPeriodPaymentTerm
+      - value: tracking_categories,vendor,company
+        name: TrackingCategoriesVendorCompany
+      - value: tracking_categories,vendor,company,accounting_period
+        name: TrackingCategoriesVendorCompanyAccountingPeriod
+      - value: tracking_categories,vendor,company,accounting_period,payment_term
+        name: TrackingCategoriesVendorCompanyAccountingPeriodPaymentTerm
+      - value: tracking_categories,vendor,company,payment_term
+        name: TrackingCategoriesVendorCompanyPaymentTerm
+      - value: tracking_categories,vendor,payment_term
+        name: TrackingCategoriesVendorPaymentTerm
+      - vendor
+      - value: vendor,accounting_period
+        name: VendorAccountingPeriod
+      - value: vendor,accounting_period,payment_term
+        name: VendorAccountingPeriodPaymentTerm
+      - value: vendor,company
+        name: VendorCompany
+      - value: vendor,company,accounting_period
+        name: VendorCompanyAccountingPeriod
+      - value: vendor,company,accounting_period,payment_term
+        name: VendorCompanyAccountingPeriodPaymentTerm
+      - value: vendor,company,payment_term
+        name: VendorCompanyPaymentTerm
+      - value: vendor,payment_term
+        name: VendorPaymentTerm
+    source:
+      openapi: openapi/openapi.yml
+  PurchaseOrdersRetrieveRequestExpand:
+    enum:
+      - accounting_period
+      - value: accounting_period,payment_term
+        name: AccountingPeriodPaymentTerm
+      - company
+      - value: company,accounting_period
+        name: CompanyAccountingPeriod
+      - value: company,accounting_period,payment_term
+        name: CompanyAccountingPeriodPaymentTerm
+      - value: company,payment_term
+        name: CompanyPaymentTerm
+      - delivery_address
+      - value: delivery_address,accounting_period
+        name: DeliveryAddressAccountingPeriod
+      - value: delivery_address,accounting_period,payment_term
+        name: DeliveryAddressAccountingPeriodPaymentTerm
+      - value: delivery_address,company
+        name: DeliveryAddressCompany
+      - value: delivery_address,company,accounting_period
+        name: DeliveryAddressCompanyAccountingPeriod
+      - value: delivery_address,company,accounting_period,payment_term
+        name: DeliveryAddressCompanyAccountingPeriodPaymentTerm
+      - value: delivery_address,company,payment_term
+        name: DeliveryAddressCompanyPaymentTerm
+      - value: delivery_address,payment_term
+        name: DeliveryAddressPaymentTerm
+      - value: delivery_address,vendor
+        name: DeliveryAddressVendor
+      - value: delivery_address,vendor,accounting_period
+        name: DeliveryAddressVendorAccountingPeriod
+      - value: delivery_address,vendor,accounting_period,payment_term
+        name: DeliveryAddressVendorAccountingPeriodPaymentTerm
+      - value: delivery_address,vendor,company
+        name: DeliveryAddressVendorCompany
+      - value: delivery_address,vendor,company,accounting_period
+        name: DeliveryAddressVendorCompanyAccountingPeriod
+      - value: delivery_address,vendor,company,accounting_period,payment_term
+        name: DeliveryAddressVendorCompanyAccountingPeriodPaymentTerm
+      - value: delivery_address,vendor,company,payment_term
+        name: DeliveryAddressVendorCompanyPaymentTerm
+      - value: delivery_address,vendor,payment_term
+        name: DeliveryAddressVendorPaymentTerm
+      - line_items
+      - value: line_items,accounting_period
+        name: LineItemsAccountingPeriod
+      - value: line_items,accounting_period,payment_term
+        name: LineItemsAccountingPeriodPaymentTerm
+      - value: line_items,company
+        name: LineItemsCompany
+      - value: line_items,company,accounting_period
+        name: LineItemsCompanyAccountingPeriod
+      - value: line_items,company,accounting_period,payment_term
+        name: LineItemsCompanyAccountingPeriodPaymentTerm
+      - value: line_items,company,payment_term
+        name: LineItemsCompanyPaymentTerm
+      - value: line_items,delivery_address
+        name: LineItemsDeliveryAddress
+      - value: line_items,delivery_address,accounting_period
+        name: LineItemsDeliveryAddressAccountingPeriod
+      - value: line_items,delivery_address,accounting_period,payment_term
+        name: LineItemsDeliveryAddressAccountingPeriodPaymentTerm
+      - value: line_items,delivery_address,company
+        name: LineItemsDeliveryAddressCompany
+      - value: line_items,delivery_address,company,accounting_period
+        name: LineItemsDeliveryAddressCompanyAccountingPeriod
+      - value: line_items,delivery_address,company,accounting_period,payment_term
+        name: LineItemsDeliveryAddressCompanyAccountingPeriodPaymentTerm
+      - value: line_items,delivery_address,company,payment_term
+        name: LineItemsDeliveryAddressCompanyPaymentTerm
+      - value: line_items,delivery_address,payment_term
+        name: LineItemsDeliveryAddressPaymentTerm
+      - value: line_items,delivery_address,vendor
+        name: LineItemsDeliveryAddressVendor
+      - value: line_items,delivery_address,vendor,accounting_period
+        name: LineItemsDeliveryAddressVendorAccountingPeriod
+      - value: line_items,delivery_address,vendor,accounting_period,payment_term
+        name: LineItemsDeliveryAddressVendorAccountingPeriodPaymentTerm
+      - value: line_items,delivery_address,vendor,company
+        name: LineItemsDeliveryAddressVendorCompany
+      - value: line_items,delivery_address,vendor,company,accounting_period
+        name: LineItemsDeliveryAddressVendorCompanyAccountingPeriod
+      - value: >-
+          line_items,delivery_address,vendor,company,accounting_period,payment_term
+        name: LineItemsDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm
+      - value: line_items,delivery_address,vendor,company,payment_term
+        name: LineItemsDeliveryAddressVendorCompanyPaymentTerm
+      - value: line_items,delivery_address,vendor,payment_term
+        name: LineItemsDeliveryAddressVendorPaymentTerm
+      - value: line_items,payment_term
+        name: LineItemsPaymentTerm
+      - value: line_items,tracking_categories
+        name: LineItemsTrackingCategories
+      - value: line_items,tracking_categories,accounting_period
+        name: LineItemsTrackingCategoriesAccountingPeriod
+      - value: line_items,tracking_categories,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,company
+        name: LineItemsTrackingCategoriesCompany
+      - value: line_items,tracking_categories,company,accounting_period
+        name: LineItemsTrackingCategoriesCompanyAccountingPeriod
+      - value: line_items,tracking_categories,company,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesCompanyAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,company,payment_term
+        name: LineItemsTrackingCategoriesCompanyPaymentTerm
+      - value: line_items,tracking_categories,delivery_address
+        name: LineItemsTrackingCategoriesDeliveryAddress
+      - value: line_items,tracking_categories,delivery_address,accounting_period
+        name: LineItemsTrackingCategoriesDeliveryAddressAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,delivery_address,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,company
+        name: LineItemsTrackingCategoriesDeliveryAddressCompany
+      - value: >-
+          line_items,tracking_categories,delivery_address,company,accounting_period
+        name: LineItemsTrackingCategoriesDeliveryAddressCompanyAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,delivery_address,company,accounting_period,payment_term
+        name: >-
+          LineItemsTrackingCategoriesDeliveryAddressCompanyAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,company,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressCompanyPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,vendor
+        name: LineItemsTrackingCategoriesDeliveryAddressVendor
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,accounting_period
+        name: LineItemsTrackingCategoriesDeliveryAddressVendorAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,accounting_period,payment_term
+        name: >-
+          LineItemsTrackingCategoriesDeliveryAddressVendorAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,vendor,company
+        name: LineItemsTrackingCategoriesDeliveryAddressVendorCompany
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,company,accounting_period
+        name: >-
+          LineItemsTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,company,accounting_period,payment_term
+        name: >-
+          LineItemsTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm
+      - value: >-
+          line_items,tracking_categories,delivery_address,vendor,company,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressVendorCompanyPaymentTerm
+      - value: line_items,tracking_categories,delivery_address,vendor,payment_term
+        name: LineItemsTrackingCategoriesDeliveryAddressVendorPaymentTerm
+      - value: line_items,tracking_categories,payment_term
+        name: LineItemsTrackingCategoriesPaymentTerm
+      - value: line_items,tracking_categories,vendor
+        name: LineItemsTrackingCategoriesVendor
+      - value: line_items,tracking_categories,vendor,accounting_period
+        name: LineItemsTrackingCategoriesVendorAccountingPeriod
+      - value: line_items,tracking_categories,vendor,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesVendorAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,vendor,company
+        name: LineItemsTrackingCategoriesVendorCompany
+      - value: line_items,tracking_categories,vendor,company,accounting_period
+        name: LineItemsTrackingCategoriesVendorCompanyAccountingPeriod
+      - value: >-
+          line_items,tracking_categories,vendor,company,accounting_period,payment_term
+        name: LineItemsTrackingCategoriesVendorCompanyAccountingPeriodPaymentTerm
+      - value: line_items,tracking_categories,vendor,company,payment_term
+        name: LineItemsTrackingCategoriesVendorCompanyPaymentTerm
+      - value: line_items,tracking_categories,vendor,payment_term
+        name: LineItemsTrackingCategoriesVendorPaymentTerm
+      - value: line_items,vendor
+        name: LineItemsVendor
+      - value: line_items,vendor,accounting_period
+        name: LineItemsVendorAccountingPeriod
+      - value: line_items,vendor,accounting_period,payment_term
+        name: LineItemsVendorAccountingPeriodPaymentTerm
+      - value: line_items,vendor,company
+        name: LineItemsVendorCompany
+      - value: line_items,vendor,company,accounting_period
+        name: LineItemsVendorCompanyAccountingPeriod
+      - value: line_items,vendor,company,accounting_period,payment_term
+        name: LineItemsVendorCompanyAccountingPeriodPaymentTerm
+      - value: line_items,vendor,company,payment_term
+        name: LineItemsVendorCompanyPaymentTerm
+      - value: line_items,vendor,payment_term
+        name: LineItemsVendorPaymentTerm
+      - payment_term
+      - tracking_categories
+      - value: tracking_categories,accounting_period
+        name: TrackingCategoriesAccountingPeriod
+      - value: tracking_categories,accounting_period,payment_term
+        name: TrackingCategoriesAccountingPeriodPaymentTerm
+      - value: tracking_categories,company
+        name: TrackingCategoriesCompany
+      - value: tracking_categories,company,accounting_period
+        name: TrackingCategoriesCompanyAccountingPeriod
+      - value: tracking_categories,company,accounting_period,payment_term
+        name: TrackingCategoriesCompanyAccountingPeriodPaymentTerm
+      - value: tracking_categories,company,payment_term
+        name: TrackingCategoriesCompanyPaymentTerm
+      - value: tracking_categories,delivery_address
+        name: TrackingCategoriesDeliveryAddress
+      - value: tracking_categories,delivery_address,accounting_period
+        name: TrackingCategoriesDeliveryAddressAccountingPeriod
+      - value: tracking_categories,delivery_address,accounting_period,payment_term
+        name: TrackingCategoriesDeliveryAddressAccountingPeriodPaymentTerm
+      - value: tracking_categories,delivery_address,company
+        name: TrackingCategoriesDeliveryAddressCompany
+      - value: tracking_categories,delivery_address,company,accounting_period
+        name: TrackingCategoriesDeliveryAddressCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,delivery_address,company,accounting_period,payment_term
+        name: TrackingCategoriesDeliveryAddressCompanyAccountingPeriodPaymentTerm
+      - value: tracking_categories,delivery_address,company,payment_term
+        name: TrackingCategoriesDeliveryAddressCompanyPaymentTerm
+      - value: tracking_categories,delivery_address,payment_term
+        name: TrackingCategoriesDeliveryAddressPaymentTerm
+      - value: tracking_categories,delivery_address,vendor
+        name: TrackingCategoriesDeliveryAddressVendor
+      - value: tracking_categories,delivery_address,vendor,accounting_period
+        name: TrackingCategoriesDeliveryAddressVendorAccountingPeriod
+      - value: >-
+          tracking_categories,delivery_address,vendor,accounting_period,payment_term
+        name: TrackingCategoriesDeliveryAddressVendorAccountingPeriodPaymentTerm
+      - value: tracking_categories,delivery_address,vendor,company
+        name: TrackingCategoriesDeliveryAddressVendorCompany
+      - value: tracking_categories,delivery_address,vendor,company,accounting_period
+        name: TrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,delivery_address,vendor,company,accounting_period,payment_term
+        name: >-
+          TrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm
+      - value: tracking_categories,delivery_address,vendor,company,payment_term
+        name: TrackingCategoriesDeliveryAddressVendorCompanyPaymentTerm
+      - value: tracking_categories,delivery_address,vendor,payment_term
+        name: TrackingCategoriesDeliveryAddressVendorPaymentTerm
+      - value: tracking_categories,payment_term
+        name: TrackingCategoriesPaymentTerm
+      - value: tracking_categories,vendor
+        name: TrackingCategoriesVendor
+      - value: tracking_categories,vendor,accounting_period
+        name: TrackingCategoriesVendorAccountingPeriod
+      - value: tracking_categories,vendor,accounting_period,payment_term
+        name: TrackingCategoriesVendorAccountingPeriodPaymentTerm
+      - value: tracking_categories,vendor,company
+        name: TrackingCategoriesVendorCompany
+      - value: tracking_categories,vendor,company,accounting_period
+        name: TrackingCategoriesVendorCompanyAccountingPeriod
+      - value: tracking_categories,vendor,company,accounting_period,payment_term
+        name: TrackingCategoriesVendorCompanyAccountingPeriodPaymentTerm
+      - value: tracking_categories,vendor,company,payment_term
+        name: TrackingCategoriesVendorCompanyPaymentTerm
+      - value: tracking_categories,vendor,payment_term
+        name: TrackingCategoriesVendorPaymentTerm
+      - vendor
+      - value: vendor,accounting_period
+        name: VendorAccountingPeriod
+      - value: vendor,accounting_period,payment_term
+        name: VendorAccountingPeriodPaymentTerm
+      - value: vendor,company
+        name: VendorCompany
+      - value: vendor,company,accounting_period
+        name: VendorCompanyAccountingPeriod
+      - value: vendor,company,accounting_period,payment_term
+        name: VendorCompanyAccountingPeriodPaymentTerm
+      - value: vendor,company,payment_term
+        name: VendorCompanyPaymentTerm
+      - value: vendor,payment_term
+        name: VendorPaymentTerm
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /accounting/v1/purchase-orders
+      method: GET
+      auth: true
+      docs: Returns a list of `PurchaseOrder` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: PurchaseOrdersListRequest
+        query-parameters:
+          company_id:
+            type: optional<string>
+            docs: If provided, will only return purchase orders for this company.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<PurchaseOrdersListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_remote_fields:
+            type: optional<boolean>
+            docs: >-
+              Whether to include all remote fields, including fields that Merge
+              did not map to common models, in a normalized format.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          issue_date_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          issue_date_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_fields:
+            type: optional<literal<"status">>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          show_enum_origins:
+            type: optional<literal<"status">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.PaginatedPurchaseOrderList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 0048ea5b-911e-4dff-9364-92070dea62ff
+                  remote_id: '239741'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  status: DRAFT
+                  issue_date: '2020-03-31T00:00:00Z'
+                  purchase_order_number: PO1234
+                  delivery_date: '2020-04-15T00:00:00Z'
+                  delivery_address: delivery_address
+                  customer: 3e442c5d-8f51-4103-b5c9-dcee39c30a08
+                  vendor: vendor
+                  memo: private note
+                  company: company
+                  total_amount: 260
+                  currency: XUA
+                  exchange_rate: '2.9'
+                  payment_term: payment_term
+                  line_items:
+                    - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                      remote_id: '121222'
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      description: Pickleball paddles
+                      unit_price: 25
+                      quantity: 10
+                      item: 0958cbc6-6040-430a-848e-aafacbadf4ae
+                      tracking_categories:
+                        - f1214c24-2702-4617-b74b-3ddecfc0d384
+                        - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                        - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                      tax_amount: tax_amount
+                      total_line_amount: total_line_amount
+                      currency: USD
+                      tax_rate: a12e7c20-1922-9df7-s75n-edfeewnn7384
+                      exchange_rate: '2.9'
+                      company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                      remote_was_deleted: false
+                    - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      description: Pickleball Balls
+                      unit_price: 1
+                      quantity: 10
+                      item: 249c9faa-3045-4a31-953b-8f22d3613301
+                      tracking_categories:
+                        - f1214c24-2702-4617-b74b-3ddecfc0d384
+                        - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                        - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                      tax_amount: tax_amount
+                      total_line_amount: total_line_amount
+                  inclusive_of_tax: true
+                  tracking_categories:
+                    - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                    - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                    - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  accounting_period: accounting_period
+                  remote_created_at: '2020-03-31T00:00:00Z'
+                  remote_updated_at: '2020-03-31T00:00:00Z'
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /actions
+                      data:
+                        - Varies by platform
+                  remote_fields:
+                    - remote_field_class: remote_field_class
+    create:
+      path: /accounting/v1/purchase-orders
+      method: POST
+      auth: true
+      docs: Creates a `PurchaseOrder` object with the given values.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: PurchaseOrderEndpointRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            model: root.PurchaseOrderRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.PurchaseOrderResponse
+        status-code: 201
+      examples:
+        - headers: {}
+          request:
+            model: {}
+          response:
+            body:
+              model:
+                id: 0048ea5b-911e-4dff-9364-92070dea62ff
+                remote_id: '239741'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                status: DRAFT
+                issue_date: '2020-03-31T00:00:00Z'
+                purchase_order_number: PO1234
+                delivery_date: '2020-04-15T00:00:00Z'
+                delivery_address: delivery_address
+                customer: 3e442c5d-8f51-4103-b5c9-dcee39c30a08
+                vendor: vendor
+                memo: private note
+                company: company
+                total_amount: 260
+                currency: XUA
+                exchange_rate: '2.9'
+                payment_term: payment_term
+                line_items:
+                  - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                    remote_id: '121222'
+                    created_at: '2021-09-15T00:00:00Z'
+                    modified_at: '2021-10-16T00:00:00Z'
+                    description: Pickleball paddles
+                    unit_price: 25
+                    quantity: 10
+                    item: 0958cbc6-6040-430a-848e-aafacbadf4ae
+                    tracking_categories:
+                      - f1214c24-2702-4617-b74b-3ddecfc0d384
+                      - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                      - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                    tax_amount: tax_amount
+                    total_line_amount: total_line_amount
+                    currency: USD
+                    tax_rate: a12e7c20-1922-9df7-s75n-edfeewnn7384
+                    exchange_rate: '2.9'
+                    company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                    remote_was_deleted: false
+                  - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                    created_at: '2021-09-15T00:00:00Z'
+                    modified_at: '2021-10-16T00:00:00Z'
+                    description: Pickleball Balls
+                    unit_price: 1
+                    quantity: 10
+                    item: 249c9faa-3045-4a31-953b-8f22d3613301
+                    tracking_categories:
+                      - f1214c24-2702-4617-b74b-3ddecfc0d384
+                      - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                      - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                    tax_amount: tax_amount
+                    total_line_amount: total_line_amount
+                inclusive_of_tax: true
+                tracking_categories:
+                  - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                  - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                  - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                accounting_period: accounting_period
+                remote_created_at: '2020-03-31T00:00:00Z'
+                remote_updated_at: '2020-03-31T00:00:00Z'
+                remote_was_deleted: true
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /actions
+                    data:
+                      - Varies by platform
+                remote_fields:
+                  - remote_field_class: remote_field_class
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    retrieve:
+      path: /accounting/v1/purchase-orders/{id}
+      method: GET
+      auth: true
+      docs: Returns a `PurchaseOrder` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: PurchaseOrdersRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<PurchaseOrdersRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_remote_fields:
+            type: optional<boolean>
+            docs: >-
+              Whether to include all remote fields, including fields that Merge
+              did not map to common models, in a normalized format.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<literal<"status">>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<literal<"status">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.PurchaseOrder
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: 0048ea5b-911e-4dff-9364-92070dea62ff
+              remote_id: '239741'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              status: DRAFT
+              issue_date: '2020-03-31T00:00:00Z'
+              purchase_order_number: PO1234
+              delivery_date: '2020-04-15T00:00:00Z'
+              delivery_address: delivery_address
+              customer: 3e442c5d-8f51-4103-b5c9-dcee39c30a08
+              vendor: vendor
+              memo: private note
+              company: company
+              total_amount: 260
+              currency: XUA
+              exchange_rate: '2.9'
+              payment_term: payment_term
+              line_items:
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '121222'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  description: Pickleball paddles
+                  unit_price: 25
+                  quantity: 10
+                  item: 0958cbc6-6040-430a-848e-aafacbadf4ae
+                  account: account
+                  tracking_category: tracking_category
+                  tracking_categories:
+                    - f1214c24-2702-4617-b74b-3ddecfc0d384
+                    - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                    - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  tax_amount: tax_amount
+                  total_line_amount: total_line_amount
+                  currency: USD
+                  tax_rate: a12e7c20-1922-9df7-s75n-edfeewnn7384
+                  exchange_rate: '2.9'
+                  company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                  remote_was_deleted: false
+                  remote_fields:
+                    - remote_field_class: remote_field_class
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '121222'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  description: Pickleball Balls
+                  unit_price: 1
+                  quantity: 10
+                  item: 249c9faa-3045-4a31-953b-8f22d3613301
+                  account: account
+                  tracking_category: tracking_category
+                  tracking_categories:
+                    - f1214c24-2702-4617-b74b-3ddecfc0d384
+                    - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                    - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  tax_amount: tax_amount
+                  total_line_amount: total_line_amount
+                  currency: XUA
+                  tax_rate: a12e7c20-1922-9df7-s75n-edfeewnn7384
+                  exchange_rate: '2.9'
+                  company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                  remote_was_deleted: true
+                  remote_fields:
+                    - remote_field_class: remote_field_class
+              inclusive_of_tax: true
+              tracking_categories:
+                - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                - a47e11b6-c73b-4a0c-be31-130fc48177fa
+              accounting_period: accounting_period
+              remote_created_at: '2020-03-31T00:00:00Z'
+              remote_updated_at: '2020-03-31T00:00:00Z'
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /actions
+                  data:
+                    - Varies by platform
+              remote_fields:
+                - remote_field_class: remote_field_class
+                  value:
+                    key: value
+    lineItemsRemoteFieldClassesList:
+      path: /accounting/v1/purchase-orders/line-items/remote-field-classes
+      method: GET
+      auth: true
+      docs: Returns a list of `RemoteFieldClass` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: PurchaseOrdersLineItemsRemoteFieldClassesListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          is_common_model_field:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote field classes with this
+              is_common_model_field value
+          is_custom:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote fields classes with this
+              is_custom value
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedRemoteFieldClassList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: id
+                  display_name: display_name
+                  remote_key_name: remote_key_name
+                  description: description
+                  is_custom: true
+                  is_required: true
+                  field_type: string
+                  field_format: string
+                  field_choices:
+                    - field_choices
+    metaPostRetrieve:
+      path: /accounting/v1/purchase-orders/meta/post
+      method: GET
+      auth: true
+      docs: Returns metadata for `PurchaseOrder` POSTs.
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.MetaResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              request_schema:
+                type: object
+                properties:
+                  model:
+                    type: object
+                    required:
+                      - last_name
+                      - first_name
+                      - merge_categories
+                      - new_york_city_neighborhood
+                      - favorite_tv_shows
+                      - favorite_watch
+                    properties:
+                      email_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            email_address_type:
+                              type: string
+                              title: email_address_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: email_addresses
+                        description: Array of email_addresses objects
+                      urls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            url_type:
+                              type: string
+                              title: url_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: urls
+                        description: Array of urls objects
+                      first_name:
+                        type: string
+                        title: first_name
+                        description: The first name.
+                      last_name:
+                        type: string
+                        title: last_name
+                        description: The last name.
+                      phone_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            phone_number_type:
+                              type: string
+                              title: phone_number_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: phone_numbers
+                        description: Array of phone_numbers objects
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: tags
+                        description: Array of tags names
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              title: id
+                            file_url:
+                              type: string
+                              title: file_url
+                            file_name:
+                              type: string
+                              title: file_name
+                            attachment_type:
+                              type: string
+                              title: attachment_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: attachments
+                        description: 'Array of attachments objects '
+                      merge_categories:
+                        type: array
+                        categories:
+                          type: string
+                          enum:
+                            - HRIS
+                            - ATS
+                            - Accounting
+                            - Ticketing
+                            - File Storage
+                            - CRM
+                            - Marketing Automation
+                          enum_information:
+                            - value: HRIS
+                              description: Merge HRIS Category
+                            - value: ATS
+                              description: Merge ATS Category
+                            - value: Accounting
+                              description: Merge Accounting Category
+                            - value: Ticketing
+                              description: Merge Ticketing Category
+                            - value: File Storage
+                              description: Merge File Storage Category
+                            - value: CRM
+                              description: Merge CRM Category
+                            - value: Marketing Automation
+                              description: Merge Marketing Automation Category
+                        title: Merge Categories
+                        description: Array of Merge's Unified API Categories
+                      new_york_city_neighborhood:
+                        type: string
+                        title: Borough
+                        description: One of the 5 Boroughs of New York City
+                      favorite_tv_shows:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: Favorite TV Shows
+                        description: Array of TV Show objects on merge.tv_shows
+                      favorite_watch:
+                        type: string
+                        title: Favorite Watch
+                        description: Favorite watch of all time
+              remote_field_classes:
+                key: value
+              status:
+                linked_account_status: linked_account_status
+                can_make_request: true
+              has_conditional_params: true
+              has_required_linked_account_params: true
+    remoteFieldClassesList:
+      path: /accounting/v1/purchase-orders/remote-field-classes
+      method: GET
+      auth: true
+      docs: Returns a list of `RemoteFieldClass` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: PurchaseOrdersRemoteFieldClassesListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          is_common_model_field:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote field classes with this
+              is_common_model_field value
+          is_custom:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote fields classes with this
+              is_custom value
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedRemoteFieldClassList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: id
+                  display_name: display_name
+                  remote_key_name: remote_key_name
+                  description: description
+                  is_custom: true
+                  is_required: true
+                  field_type: string
+                  field_format: string
+                  field_choices:
+                    - field_choices
+  source:
+    openapi: openapi/openapi.yml

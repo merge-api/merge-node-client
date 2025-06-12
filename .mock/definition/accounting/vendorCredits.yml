@@ -1,0 +1,683 @@
+types:
+  VendorCreditsListRequestExpand:
+    enum:
+      - accounting_period
+      - company
+      - value: company,accounting_period
+        name: CompanyAccountingPeriod
+      - lines
+      - value: lines,accounting_period
+        name: LinesAccountingPeriod
+      - value: lines,company
+        name: LinesCompany
+      - value: lines,company,accounting_period
+        name: LinesCompanyAccountingPeriod
+      - value: lines,tracking_categories
+        name: LinesTrackingCategories
+      - value: lines,tracking_categories,accounting_period
+        name: LinesTrackingCategoriesAccountingPeriod
+      - value: lines,tracking_categories,company
+        name: LinesTrackingCategoriesCompany
+      - value: lines,tracking_categories,company,accounting_period
+        name: LinesTrackingCategoriesCompanyAccountingPeriod
+      - value: lines,tracking_categories,vendor
+        name: LinesTrackingCategoriesVendor
+      - value: lines,tracking_categories,vendor,accounting_period
+        name: LinesTrackingCategoriesVendorAccountingPeriod
+      - value: lines,tracking_categories,vendor,company
+        name: LinesTrackingCategoriesVendorCompany
+      - value: lines,tracking_categories,vendor,company,accounting_period
+        name: LinesTrackingCategoriesVendorCompanyAccountingPeriod
+      - value: lines,vendor
+        name: LinesVendor
+      - value: lines,vendor,accounting_period
+        name: LinesVendorAccountingPeriod
+      - value: lines,vendor,company
+        name: LinesVendorCompany
+      - value: lines,vendor,company,accounting_period
+        name: LinesVendorCompanyAccountingPeriod
+      - tracking_categories
+      - value: tracking_categories,accounting_period
+        name: TrackingCategoriesAccountingPeriod
+      - value: tracking_categories,company
+        name: TrackingCategoriesCompany
+      - value: tracking_categories,company,accounting_period
+        name: TrackingCategoriesCompanyAccountingPeriod
+      - value: tracking_categories,vendor
+        name: TrackingCategoriesVendor
+      - value: tracking_categories,vendor,accounting_period
+        name: TrackingCategoriesVendorAccountingPeriod
+      - value: tracking_categories,vendor,company
+        name: TrackingCategoriesVendorCompany
+      - value: tracking_categories,vendor,company,accounting_period
+        name: TrackingCategoriesVendorCompanyAccountingPeriod
+      - vendor
+      - value: vendor,accounting_period
+        name: VendorAccountingPeriod
+      - value: vendor,company
+        name: VendorCompany
+      - value: vendor,company,accounting_period
+        name: VendorCompanyAccountingPeriod
+    source:
+      openapi: openapi/openapi.yml
+  VendorCreditsRetrieveRequestExpand:
+    enum:
+      - accounting_period
+      - company
+      - value: company,accounting_period
+        name: CompanyAccountingPeriod
+      - lines
+      - value: lines,accounting_period
+        name: LinesAccountingPeriod
+      - value: lines,company
+        name: LinesCompany
+      - value: lines,company,accounting_period
+        name: LinesCompanyAccountingPeriod
+      - value: lines,tracking_categories
+        name: LinesTrackingCategories
+      - value: lines,tracking_categories,accounting_period
+        name: LinesTrackingCategoriesAccountingPeriod
+      - value: lines,tracking_categories,company
+        name: LinesTrackingCategoriesCompany
+      - value: lines,tracking_categories,company,accounting_period
+        name: LinesTrackingCategoriesCompanyAccountingPeriod
+      - value: lines,tracking_categories,vendor
+        name: LinesTrackingCategoriesVendor
+      - value: lines,tracking_categories,vendor,accounting_period
+        name: LinesTrackingCategoriesVendorAccountingPeriod
+      - value: lines,tracking_categories,vendor,company
+        name: LinesTrackingCategoriesVendorCompany
+      - value: lines,tracking_categories,vendor,company,accounting_period
+        name: LinesTrackingCategoriesVendorCompanyAccountingPeriod
+      - value: lines,vendor
+        name: LinesVendor
+      - value: lines,vendor,accounting_period
+        name: LinesVendorAccountingPeriod
+      - value: lines,vendor,company
+        name: LinesVendorCompany
+      - value: lines,vendor,company,accounting_period
+        name: LinesVendorCompanyAccountingPeriod
+      - tracking_categories
+      - value: tracking_categories,accounting_period
+        name: TrackingCategoriesAccountingPeriod
+      - value: tracking_categories,company
+        name: TrackingCategoriesCompany
+      - value: tracking_categories,company,accounting_period
+        name: TrackingCategoriesCompanyAccountingPeriod
+      - value: tracking_categories,vendor
+        name: TrackingCategoriesVendor
+      - value: tracking_categories,vendor,accounting_period
+        name: TrackingCategoriesVendorAccountingPeriod
+      - value: tracking_categories,vendor,company
+        name: TrackingCategoriesVendorCompany
+      - value: tracking_categories,vendor,company,accounting_period
+        name: TrackingCategoriesVendorCompanyAccountingPeriod
+      - vendor
+      - value: vendor,accounting_period
+        name: VendorAccountingPeriod
+      - value: vendor,company
+        name: VendorCompany
+      - value: vendor,company,accounting_period
+        name: VendorCompanyAccountingPeriod
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /accounting/v1/vendor-credits
+      method: GET
+      auth: true
+      docs: Returns a list of `VendorCredit` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: VendorCreditsListRequest
+        query-parameters:
+          company_id:
+            type: optional<string>
+            docs: If provided, will only return vendor credits for this company.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<VendorCreditsListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          transaction_date_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          transaction_date_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+      response:
+        docs: ''
+        type: root.PaginatedVendorCreditList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '088899'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  number: '6'
+                  transaction_date: '2020-03-31T00:00:00Z'
+                  vendor: vendor
+                  total_amount: 10000
+                  currency: XUA
+                  exchange_rate: '2.9'
+                  inclusive_of_tax: true
+                  company: company
+                  lines:
+                    - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                      remote_id: '121222'
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      net_amount: 25.54
+                      tracking_categories:
+                        - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                        - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                        - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                      description: Gifted Merge Credit
+                      account: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+                      company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                      project: 22e65a5d-2df5-4e6e-884a-e538d0339000
+                      contact: 908934-49j9-093f-0989-908923908
+                      tax_rate: a12e7c20-1922-9df7-s75n-edfeewnn7384
+                      exchange_rate: '2.9'
+                      remote_was_deleted: false
+                    - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                      remote_id: '121223'
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      net_amount: 10
+                      tracking_categories:
+                        - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                        - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                        - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                      description: Refund for overpayment
+                      account: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+                  tracking_categories:
+                    - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                    - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                    - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  applied_to_lines:
+                    - created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      invoice: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+                      applied_date: '2020-03-31T00:00:00Z'
+                      applied_amount: '2.9'
+                  remote_was_deleted: true
+                  accounting_period: accounting_period
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /actions
+                      data:
+                        - Varies by platform
+    create:
+      path: /accounting/v1/vendor-credits
+      method: POST
+      auth: true
+      docs: Creates a `VendorCredit` object with the given values.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: VendorCreditEndpointRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            model: root.VendorCreditRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.VendorCreditResponse
+        status-code: 201
+      examples:
+        - headers: {}
+          request:
+            model: {}
+          response:
+            body:
+              model:
+                id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                remote_id: '088899'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                number: '6'
+                transaction_date: '2020-03-31T00:00:00Z'
+                vendor: vendor
+                total_amount: 10000
+                currency: XUA
+                exchange_rate: '2.9'
+                inclusive_of_tax: true
+                company: company
+                lines:
+                  - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                    remote_id: '121222'
+                    created_at: '2021-09-15T00:00:00Z'
+                    modified_at: '2021-10-16T00:00:00Z'
+                    net_amount: 25.54
+                    tracking_categories:
+                      - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                      - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                      - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                    description: Gifted Merge Credit
+                    account: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+                    company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                    project: 22e65a5d-2df5-4e6e-884a-e538d0339000
+                    contact: 908934-49j9-093f-0989-908923908
+                    tax_rate: a12e7c20-1922-9df7-s75n-edfeewnn7384
+                    exchange_rate: '2.9'
+                    remote_was_deleted: false
+                  - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                    remote_id: '121223'
+                    created_at: '2021-09-15T00:00:00Z'
+                    modified_at: '2021-10-16T00:00:00Z'
+                    net_amount: 10
+                    tracking_categories:
+                      - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                      - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                      - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                    description: Refund for overpayment
+                    account: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+                tracking_categories:
+                  - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                  - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                  - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                applied_to_lines:
+                  - created_at: '2021-09-15T00:00:00Z'
+                    modified_at: '2021-10-16T00:00:00Z'
+                    invoice: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+                    applied_date: '2020-03-31T00:00:00Z'
+                    applied_amount: '2.9'
+                remote_was_deleted: true
+                accounting_period: accounting_period
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /actions
+                    data:
+                      - Varies by platform
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    retrieve:
+      path: /accounting/v1/vendor-credits/{id}
+      method: GET
+      auth: true
+      docs: Returns a `VendorCredit` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: VendorCreditsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<VendorCreditsRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.VendorCredit
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+              remote_id: '088899'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              number: '6'
+              transaction_date: '2020-03-31T00:00:00Z'
+              vendor: vendor
+              total_amount: 10000
+              currency: XUA
+              exchange_rate: '2.9'
+              inclusive_of_tax: true
+              company: company
+              lines:
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '121222'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  net_amount: 25.54
+                  tracking_category: tracking_category
+                  tracking_categories:
+                    - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                    - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                    - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  description: Gifted Merge Credit
+                  account: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+                  company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                  project: 22e65a5d-2df5-4e6e-884a-e538d0339000
+                  contact: 908934-49j9-093f-0989-908923908
+                  tax_rate: a12e7c20-1922-9df7-s75n-edfeewnn7384
+                  exchange_rate: '2.9'
+                  remote_was_deleted: false
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '121223'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  net_amount: 10
+                  tracking_category: tracking_category
+                  tracking_categories:
+                    - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                    - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                    - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  description: Refund for overpayment
+                  account: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+                  company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
+                  project: project
+                  contact: contact
+                  tax_rate: a12e7c20-1922-9df7-s75n-edfeewnn7384
+                  exchange_rate: '2.9'
+                  remote_was_deleted: true
+              tracking_categories:
+                - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                - a47e11b6-c73b-4a0c-be31-130fc48177fa
+              applied_to_lines:
+                - remote_id: '088899'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  invoice: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+                  applied_date: '2020-03-31T00:00:00Z'
+                  applied_amount: '2.9'
+                  remote_was_deleted: true
+              remote_was_deleted: true
+              accounting_period: accounting_period
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /actions
+                  data:
+                    - Varies by platform
+    metaPostRetrieve:
+      path: /accounting/v1/vendor-credits/meta/post
+      method: GET
+      auth: true
+      docs: Returns metadata for `VendorCredit` POSTs.
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.MetaResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              request_schema:
+                type: object
+                properties:
+                  model:
+                    type: object
+                    required:
+                      - last_name
+                      - first_name
+                      - merge_categories
+                      - new_york_city_neighborhood
+                      - favorite_tv_shows
+                      - favorite_watch
+                    properties:
+                      email_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            email_address_type:
+                              type: string
+                              title: email_address_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: email_addresses
+                        description: Array of email_addresses objects
+                      urls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            url_type:
+                              type: string
+                              title: url_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: urls
+                        description: Array of urls objects
+                      first_name:
+                        type: string
+                        title: first_name
+                        description: The first name.
+                      last_name:
+                        type: string
+                        title: last_name
+                        description: The last name.
+                      phone_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            phone_number_type:
+                              type: string
+                              title: phone_number_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: phone_numbers
+                        description: Array of phone_numbers objects
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: tags
+                        description: Array of tags names
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              title: id
+                            file_url:
+                              type: string
+                              title: file_url
+                            file_name:
+                              type: string
+                              title: file_name
+                            attachment_type:
+                              type: string
+                              title: attachment_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: attachments
+                        description: 'Array of attachments objects '
+                      merge_categories:
+                        type: array
+                        categories:
+                          type: string
+                          enum:
+                            - HRIS
+                            - ATS
+                            - Accounting
+                            - Ticketing
+                            - File Storage
+                            - CRM
+                            - Marketing Automation
+                          enum_information:
+                            - value: HRIS
+                              description: Merge HRIS Category
+                            - value: ATS
+                              description: Merge ATS Category
+                            - value: Accounting
+                              description: Merge Accounting Category
+                            - value: Ticketing
+                              description: Merge Ticketing Category
+                            - value: File Storage
+                              description: Merge File Storage Category
+                            - value: CRM
+                              description: Merge CRM Category
+                            - value: Marketing Automation
+                              description: Merge Marketing Automation Category
+                        title: Merge Categories
+                        description: Array of Merge's Unified API Categories
+                      new_york_city_neighborhood:
+                        type: string
+                        title: Borough
+                        description: One of the 5 Boroughs of New York City
+                      favorite_tv_shows:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: Favorite TV Shows
+                        description: Array of TV Show objects on merge.tv_shows
+                      favorite_watch:
+                        type: string
+                        title: Favorite Watch
+                        description: Favorite watch of all time
+              remote_field_classes:
+                key: value
+              status:
+                linked_account_status: linked_account_status
+                can_make_request: true
+              has_conditional_params: true
+              has_required_linked_account_params: true
+  source:
+    openapi: openapi/openapi.yml

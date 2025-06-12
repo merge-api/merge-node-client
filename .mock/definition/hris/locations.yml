@@ -1,0 +1,218 @@
+types:
+  LocationsListRequestLocationType:
+    enum:
+      - HOME
+      - WORK
+    source:
+      openapi: openapi/openapi.yml
+  LocationsListRequestRemoteFields:
+    enum:
+      - country
+      - value: country,location_type
+        name: CountryLocationType
+      - location_type
+    source:
+      openapi: openapi/openapi.yml
+  LocationsListRequestShowEnumOrigins:
+    enum:
+      - country
+      - value: country,location_type
+        name: CountryLocationType
+      - location_type
+    source:
+      openapi: openapi/openapi.yml
+  LocationsRetrieveRequestRemoteFields:
+    enum:
+      - country
+      - value: country,location_type
+        name: CountryLocationType
+      - location_type
+    source:
+      openapi: openapi/openapi.yml
+  LocationsRetrieveRequestShowEnumOrigins:
+    enum:
+      - country
+      - value: country,location_type
+        name: CountryLocationType
+      - location_type
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /hris/v1/locations
+      method: GET
+      auth: true
+      docs: Returns a list of `Location` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: LocationsListRequest
+        query-parameters:
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          location_type:
+            type: optional<LocationsListRequestLocationType>
+            docs: |-
+              If provided, will only return locations with this location_type
+
+              * `HOME` - HOME
+              * `WORK` - WORK
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_fields:
+            type: optional<LocationsListRequestRemoteFields>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          show_enum_origins:
+            type: optional<LocationsListRequestShowEnumOrigins>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.PaginatedLocationList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: f5e6a151-f44e-449a-afb1-8fd781905958
+                  remote_id: '93018402'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  name: NYC Office
+                  phone_number: '+1111111111'
+                  street_1: 2920 Broadway
+                  street_2: 2nd Floor
+                  city: 'New York '
+                  state: NY
+                  zip_code: '10027'
+                  country: AF
+                  location_type: HOME
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /locations
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /hris/v1/locations/{id}
+      method: GET
+      auth: true
+      docs: Returns a `Location` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: LocationsRetrieveRequest
+        query-parameters:
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<LocationsRetrieveRequestRemoteFields>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<LocationsRetrieveRequestShowEnumOrigins>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.Location
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: f5e6a151-f44e-449a-afb1-8fd781905958
+              remote_id: '93018402'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              name: NYC Office
+              phone_number: '+1111111111'
+              street_1: 2920 Broadway
+              street_2: 2nd Floor
+              city: 'New York '
+              state: NY
+              zip_code: '10027'
+              country: AF
+              location_type: HOME
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /locations
+                  data:
+                    - Varies by platform
+  source:
+    openapi: openapi/openapi.yml

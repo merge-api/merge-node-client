@@ -1,0 +1,4730 @@
+types:
+  AccessRoleEnum:
+    enum:
+      - SUPER_ADMIN
+      - ADMIN
+      - TEAM_MEMBER
+      - LIMITED_TEAM_MEMBER
+      - INTERVIEWER
+    docs: |-
+      * `SUPER_ADMIN` - SUPER_ADMIN
+      * `ADMIN` - ADMIN
+      * `TEAM_MEMBER` - TEAM_MEMBER
+      * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER
+      * `INTERVIEWER` - INTERVIEWER
+    source:
+      openapi: openapi/openapi.yml
+  AccountDetailsCategory:
+    discriminated: false
+    union:
+      - CategoryEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  AccountDetails:
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      integration:
+        type: optional<string>
+        access: read-only
+      integration_slug:
+        type: optional<string>
+        access: read-only
+      category: optional<AccountDetailsCategory>
+      end_user_origin_id:
+        type: optional<string>
+        access: read-only
+      end_user_organization_name:
+        type: optional<string>
+        access: read-only
+      end_user_email_address:
+        type: optional<string>
+        validation:
+          format: email
+        access: read-only
+      status:
+        type: optional<string>
+        access: read-only
+      webhook_listener_url:
+        type: optional<string>
+        validation:
+          format: uri
+        access: read-only
+      is_duplicate:
+        type: optional<boolean>
+        docs: >-
+          Whether a Production Linked Account's credentials match another
+          existing Production Linked Account. This field is `null` for Test
+          Linked Accounts, incomplete Production Linked Accounts, and ignored
+          duplicate Production Linked Account sets.
+        access: read-only
+      account_type:
+        type: optional<string>
+        access: read-only
+      completed_at:
+        type: optional<datetime>
+        docs: The time at which account completes the linking flow.
+    source:
+      openapi: openapi/openapi.yml
+  AccountDetailsAndActionsCategory:
+    discriminated: false
+    union:
+      - CategoryEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  AccountDetailsAndActionsStatus:
+    discriminated: false
+    union:
+      - AccountDetailsAndActionsStatusEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  AccountDetailsAndActions:
+    docs: >-
+      # The LinkedAccount Object
+
+      ### Description
+
+      The `LinkedAccount` object is used to represent an end user's link with a
+      specific integration.
+
+
+      ### Usage Example
+
+      View a list of your organization's `LinkedAccount` objects.
+    properties:
+      id: string
+      category: optional<AccountDetailsAndActionsCategory>
+      status: AccountDetailsAndActionsStatus
+      status_detail: optional<string>
+      end_user_origin_id: optional<string>
+      end_user_organization_name: string
+      end_user_email_address: string
+      subdomain:
+        type: optional<string>
+        docs: The tenant or domain the customer has provided access to.
+      webhook_listener_url: string
+      is_duplicate:
+        type: optional<boolean>
+        docs: >-
+          Whether a Production Linked Account's credentials match another
+          existing Production Linked Account. This field is `null` for Test
+          Linked Accounts, incomplete Production Linked Accounts, and ignored
+          duplicate Production Linked Account sets.
+      integration: optional<AccountDetailsAndActionsIntegration>
+      account_type: string
+      completed_at: datetime
+      integration_specific_fields: optional<map<string, unknown>>
+    source:
+      openapi: openapi/openapi.yml
+  AccountDetailsAndActionsIntegration:
+    properties:
+      name: string
+      categories: list<CategoriesEnum>
+      image: optional<string>
+      square_image: optional<string>
+      color: string
+      slug: string
+      passthrough_available: boolean
+      available_model_operations: optional<list<ModelOperation>>
+    source:
+      openapi: openapi/openapi.yml
+  AccountDetailsAndActionsStatusEnum:
+    enum:
+      - COMPLETE
+      - INCOMPLETE
+      - RELINK_NEEDED
+      - IDLE
+    docs: |-
+      * `COMPLETE` - COMPLETE
+      * `INCOMPLETE` - INCOMPLETE
+      * `RELINK_NEEDED` - RELINK_NEEDED
+      * `IDLE` - IDLE
+    source:
+      openapi: openapi/openapi.yml
+  AccountIntegration:
+    properties:
+      name:
+        type: string
+        docs: Company name.
+      abbreviated_name:
+        type: optional<string>
+        docs: >-
+          Optional. This shortened name appears in places with limited space,
+          usually in conjunction with the platform's logo (e.g., Merge Link
+          menu).<br><br>Example: <i>Workforce Now (in lieu of ADP Workforce
+          Now), SuccessFactors (in lieu of SAP SuccessFactors)</i>
+      categories:
+        type: optional<list<CategoriesEnum>>
+        docs: >-
+          Category or categories this integration belongs to. Multiple
+          categories should be comma separated, i.e. [ats, hris].
+        access: read-only
+      image:
+        type: optional<string>
+        docs: Company logo in rectangular shape.
+        validation:
+          format: uri
+      square_image:
+        type: optional<string>
+        docs: Company logo in square shape.
+        validation:
+          format: uri
+      color:
+        type: optional<string>
+        docs: >-
+          The color of this integration used for buttons and text throughout the
+          app and landing pages. <b>Choose a darker, saturated color.</b>
+        validation:
+          pattern: ^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$
+          maxLength: 18
+      slug:
+        type: optional<string>
+        access: read-only
+      api_endpoints_to_documentation_urls:
+        type: optional<map<string, unknown>>
+        docs: >-
+          Mapping of API endpoints to documentation urls for support. Example:
+          {'GET': [['/common-model-scopes',
+          'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions',
+          'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']],
+          'POST': []}
+      webhook_setup_guide_url:
+        type: optional<string>
+        docs: >-
+          Setup guide URL for third party webhook creation. Exposed in Merge
+          Docs.
+      category_beta_status:
+        type: optional<map<string, unknown>>
+        docs: Category or categories this integration is in beta status for.
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  AccountToken:
+    properties:
+      account_token: string
+      integration: AccountIntegration
+      id: string
+    source:
+      openapi: openapi/openapi.yml
+  ActivityUser:
+    discriminated: false
+    docs: The user that performed the action.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ActivityActivityType:
+    discriminated: false
+    docs: |-
+      The activity's type.
+
+      * `NOTE` - NOTE
+      * `EMAIL` - EMAIL
+      * `OTHER` - OTHER
+    union:
+      - ActivityTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ActivityVisibility:
+    discriminated: false
+    docs: |-
+      The activity's visibility.
+
+      * `ADMIN_ONLY` - ADMIN_ONLY
+      * `PUBLIC` - PUBLIC
+      * `PRIVATE` - PRIVATE
+    union:
+      - VisibilityEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Activity:
+    docs: >-
+      # The Activity Object
+
+      ### Description
+
+      The `Activity` object is used to represent an activity for a candidate
+      performed by a user.
+
+      ### Usage Example
+
+      Fetch from the `LIST Activities` endpoint and filter by `ID` to show all
+      activities.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      user:
+        type: optional<ActivityUser>
+        docs: The user that performed the action.
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's activity was created.
+      activity_type:
+        type: optional<ActivityActivityType>
+        docs: |-
+          The activity's type.
+
+          * `NOTE` - NOTE
+          * `EMAIL` - EMAIL
+          * `OTHER` - OTHER
+      subject:
+        type: optional<string>
+        docs: The activity's subject.
+      body:
+        type: optional<string>
+        docs: The activity's body.
+      visibility:
+        type: optional<ActivityVisibility>
+        docs: |-
+          The activity's visibility.
+
+          * `ADMIN_ONLY` - ADMIN_ONLY
+          * `PUBLIC` - PUBLIC
+          * `PRIVATE` - PRIVATE
+      candidate:
+        type: optional<string>
+        validation:
+          format: uuid
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  ActivityRequestUser:
+    discriminated: false
+    docs: The user that performed the action.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ActivityRequestActivityType:
+    discriminated: false
+    docs: |-
+      The activity's type.
+
+      * `NOTE` - NOTE
+      * `EMAIL` - EMAIL
+      * `OTHER` - OTHER
+    union:
+      - ActivityTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ActivityRequestVisibility:
+    discriminated: false
+    docs: |-
+      The activity's visibility.
+
+      * `ADMIN_ONLY` - ADMIN_ONLY
+      * `PUBLIC` - PUBLIC
+      * `PRIVATE` - PRIVATE
+    union:
+      - VisibilityEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ActivityRequest:
+    docs: >-
+      # The Activity Object
+
+      ### Description
+
+      The `Activity` object is used to represent an activity for a candidate
+      performed by a user.
+
+      ### Usage Example
+
+      Fetch from the `LIST Activities` endpoint and filter by `ID` to show all
+      activities.
+    properties:
+      user:
+        type: optional<ActivityRequestUser>
+        docs: The user that performed the action.
+      activity_type:
+        type: optional<ActivityRequestActivityType>
+        docs: |-
+          The activity's type.
+
+          * `NOTE` - NOTE
+          * `EMAIL` - EMAIL
+          * `OTHER` - OTHER
+      subject:
+        type: optional<string>
+        docs: The activity's subject.
+      body:
+        type: optional<string>
+        docs: The activity's body.
+      visibility:
+        type: optional<ActivityRequestVisibility>
+        docs: |-
+          The activity's visibility.
+
+          * `ADMIN_ONLY` - ADMIN_ONLY
+          * `PUBLIC` - PUBLIC
+          * `PRIVATE` - PRIVATE
+      candidate:
+        type: optional<string>
+        validation:
+          format: uuid
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  ActivityResponse:
+    properties:
+      model: Activity
+      warnings: list<WarningValidationProblem>
+      errors: list<ErrorValidationProblem>
+      logs: optional<list<DebugModeLog>>
+    source:
+      openapi: openapi/openapi.yml
+  ActivityTypeEnum:
+    enum:
+      - NOTE
+      - EMAIL
+      - OTHER
+    docs: |-
+      * `NOTE` - NOTE
+      * `EMAIL` - EMAIL
+      * `OTHER` - OTHER
+    source:
+      openapi: openapi/openapi.yml
+  AdvancedMetadata:
+    properties:
+      id:
+        type: string
+        validation:
+          format: uuid
+      display_name: optional<string>
+      description: optional<string>
+      is_required: optional<boolean>
+      is_custom: optional<boolean>
+      field_choices: optional<list<unknown>>
+    source:
+      openapi: openapi/openapi.yml
+  ApplicationCandidate:
+    discriminated: false
+    docs: The candidate applying.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Candidate
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationJob:
+    discriminated: false
+    docs: The job being applied for.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Job
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationOffersItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Offer
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationCreditedTo:
+    discriminated: false
+    docs: The user credited for this application.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationScreeningQuestionAnswersItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - ScreeningQuestionAnswer
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationCurrentStage:
+    discriminated: false
+    docs: The application's current stage.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - JobInterviewStage
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationRejectReason:
+    discriminated: false
+    docs: The application's reason for rejection.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RejectReason
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Application:
+    docs: >-
+      # The Application Object
+
+      ### Description
+
+      The Application Object is used to represent a candidate's journey through
+      a particular Job's recruiting process. If a Candidate applies for multiple
+      Jobs, there will be a separate Application for each Job if the third-party
+      integration allows it.
+
+
+      ### Usage Example
+
+      Fetch from the `LIST Applications` endpoint and filter by `ID` to show all
+      applications.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      candidate:
+        type: optional<ApplicationCandidate>
+        docs: The candidate applying.
+      job:
+        type: optional<ApplicationJob>
+        docs: The job being applied for.
+      applied_at:
+        type: optional<datetime>
+        docs: When the application was submitted.
+      rejected_at:
+        type: optional<datetime>
+        docs: When the application was rejected.
+      offers: optional<list<optional<ApplicationOffersItem>>>
+      source:
+        type: optional<string>
+        docs: The application's source.
+      credited_to:
+        type: optional<ApplicationCreditedTo>
+        docs: The user credited for this application.
+      screening_question_answers: optional<list<ApplicationScreeningQuestionAnswersItem>>
+      current_stage:
+        type: optional<ApplicationCurrentStage>
+        docs: The application's current stage.
+      reject_reason:
+        type: optional<ApplicationRejectReason>
+        docs: The application's reason for rejection.
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  ApplicationRequestCandidate:
+    discriminated: false
+    docs: The candidate applying.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Candidate
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationRequestJob:
+    discriminated: false
+    docs: The job being applied for.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Job
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationRequestOffersItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Offer
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationRequestCreditedTo:
+    discriminated: false
+    docs: The user credited for this application.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationRequestScreeningQuestionAnswersItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - ScreeningQuestionAnswerRequest
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationRequestCurrentStage:
+    discriminated: false
+    docs: The application's current stage.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - JobInterviewStage
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationRequestRejectReason:
+    discriminated: false
+    docs: The application's reason for rejection.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RejectReason
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ApplicationRequest:
+    docs: >-
+      # The Application Object
+
+      ### Description
+
+      The Application Object is used to represent a candidate's journey through
+      a particular Job's recruiting process. If a Candidate applies for multiple
+      Jobs, there will be a separate Application for each Job if the third-party
+      integration allows it.
+
+
+      ### Usage Example
+
+      Fetch from the `LIST Applications` endpoint and filter by `ID` to show all
+      applications.
+    properties:
+      candidate:
+        type: optional<ApplicationRequestCandidate>
+        docs: The candidate applying.
+      job:
+        type: optional<ApplicationRequestJob>
+        docs: The job being applied for.
+      applied_at:
+        type: optional<datetime>
+        docs: When the application was submitted.
+      rejected_at:
+        type: optional<datetime>
+        docs: When the application was rejected.
+      offers: optional<list<optional<ApplicationRequestOffersItem>>>
+      source:
+        type: optional<string>
+        docs: The application's source.
+      credited_to:
+        type: optional<ApplicationRequestCreditedTo>
+        docs: The user credited for this application.
+      screening_question_answers: optional<list<ApplicationRequestScreeningQuestionAnswersItem>>
+      current_stage:
+        type: optional<ApplicationRequestCurrentStage>
+        docs: The application's current stage.
+      reject_reason:
+        type: optional<ApplicationRequestRejectReason>
+        docs: The application's reason for rejection.
+      remote_template_id:
+        type: optional<string>
+        validation:
+          minLength: 1
+        access: write-only
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  ApplicationResponse:
+    properties:
+      model: Application
+      warnings: list<WarningValidationProblem>
+      errors: list<ErrorValidationProblem>
+      logs: optional<list<DebugModeLog>>
+    source:
+      openapi: openapi/openapi.yml
+  AsyncPassthroughReciept:
+    properties:
+      async_passthrough_receipt_id:
+        type: string
+        validation:
+          format: uuid
+    source:
+      openapi: openapi/openapi.yml
+  AttachmentAttachmentType:
+    discriminated: false
+    docs: |-
+      The attachment's type.
+
+      * `RESUME` - RESUME
+      * `COVER_LETTER` - COVER_LETTER
+      * `OFFER_LETTER` - OFFER_LETTER
+      * `OTHER` - OTHER
+    union:
+      - AttachmentTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Attachment:
+    docs: >-
+      # The Attachment Object
+
+      ### Description
+
+      The `Attachment` object is used to represent a file attached to a
+      candidate.
+
+      ### Usage Example
+
+      Fetch from the `LIST Attachments` endpoint and view attachments accessible
+      by a company.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      file_name:
+        type: optional<string>
+        docs: The attachment's name.
+      file_url:
+        type: optional<string>
+        docs: The attachment's url.
+        validation:
+          format: uri
+          maxLength: 2000
+      candidate:
+        type: optional<string>
+        docs: ''
+        validation:
+          format: uuid
+      attachment_type:
+        type: optional<AttachmentAttachmentType>
+        docs: |-
+          The attachment's type.
+
+          * `RESUME` - RESUME
+          * `COVER_LETTER` - COVER_LETTER
+          * `OFFER_LETTER` - OFFER_LETTER
+          * `OTHER` - OTHER
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  AttachmentRequestAttachmentType:
+    discriminated: false
+    docs: |-
+      The attachment's type.
+
+      * `RESUME` - RESUME
+      * `COVER_LETTER` - COVER_LETTER
+      * `OFFER_LETTER` - OFFER_LETTER
+      * `OTHER` - OTHER
+    union:
+      - AttachmentTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  AttachmentRequest:
+    docs: >-
+      # The Attachment Object
+
+      ### Description
+
+      The `Attachment` object is used to represent a file attached to a
+      candidate.
+
+      ### Usage Example
+
+      Fetch from the `LIST Attachments` endpoint and view attachments accessible
+      by a company.
+    properties:
+      file_name:
+        type: optional<string>
+        docs: The attachment's name.
+      file_url:
+        type: optional<string>
+        docs: The attachment's url.
+        validation:
+          format: uri
+          maxLength: 2000
+      candidate:
+        type: optional<string>
+        docs: ''
+        validation:
+          format: uuid
+      attachment_type:
+        type: optional<AttachmentRequestAttachmentType>
+        docs: |-
+          The attachment's type.
+
+          * `RESUME` - RESUME
+          * `COVER_LETTER` - COVER_LETTER
+          * `OFFER_LETTER` - OFFER_LETTER
+          * `OTHER` - OTHER
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  AttachmentResponse:
+    properties:
+      model: Attachment
+      warnings: list<WarningValidationProblem>
+      errors: list<ErrorValidationProblem>
+      logs: optional<list<DebugModeLog>>
+    source:
+      openapi: openapi/openapi.yml
+  AttachmentTypeEnum:
+    enum:
+      - RESUME
+      - COVER_LETTER
+      - OFFER_LETTER
+      - OTHER
+    docs: |-
+      * `RESUME` - RESUME
+      * `COVER_LETTER` - COVER_LETTER
+      * `OFFER_LETTER` - OFFER_LETTER
+      * `OTHER` - OTHER
+    source:
+      openapi: openapi/openapi.yml
+  AuditLogEventRole:
+    discriminated: false
+    docs: >-
+      Designates the role of the user (or SYSTEM/API if action not taken by a
+      user) at the time of this Event occurring.
+
+
+      * `ADMIN` - ADMIN
+
+      * `DEVELOPER` - DEVELOPER
+
+      * `MEMBER` - MEMBER
+
+      * `API` - API
+
+      * `SYSTEM` - SYSTEM
+
+      * `MERGE_TEAM` - MERGE_TEAM
+    union:
+      - RoleEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  AuditLogEventEventType:
+    discriminated: false
+    docs: >-
+      Designates the type of event that occurred.
+
+
+      * `CREATED_REMOTE_PRODUCTION_API_KEY` - CREATED_REMOTE_PRODUCTION_API_KEY
+
+      * `DELETED_REMOTE_PRODUCTION_API_KEY` - DELETED_REMOTE_PRODUCTION_API_KEY
+
+      * `CREATED_TEST_API_KEY` - CREATED_TEST_API_KEY
+
+      * `DELETED_TEST_API_KEY` - DELETED_TEST_API_KEY
+
+      * `REGENERATED_PRODUCTION_API_KEY` - REGENERATED_PRODUCTION_API_KEY
+
+      * `REGENERATED_WEBHOOK_SIGNATURE` - REGENERATED_WEBHOOK_SIGNATURE
+
+      * `INVITED_USER` - INVITED_USER
+
+      * `TWO_FACTOR_AUTH_ENABLED` - TWO_FACTOR_AUTH_ENABLED
+
+      * `TWO_FACTOR_AUTH_DISABLED` - TWO_FACTOR_AUTH_DISABLED
+
+      * `DELETED_LINKED_ACCOUNT` - DELETED_LINKED_ACCOUNT
+
+      * `DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT` -
+      DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT
+
+      * `CREATED_DESTINATION` - CREATED_DESTINATION
+
+      * `DELETED_DESTINATION` - DELETED_DESTINATION
+
+      * `CHANGED_DESTINATION` - CHANGED_DESTINATION
+
+      * `CHANGED_SCOPES` - CHANGED_SCOPES
+
+      * `CHANGED_PERSONAL_INFORMATION` - CHANGED_PERSONAL_INFORMATION
+
+      * `CHANGED_ORGANIZATION_SETTINGS` - CHANGED_ORGANIZATION_SETTINGS
+
+      * `ENABLED_INTEGRATION` - ENABLED_INTEGRATION
+
+      * `DISABLED_INTEGRATION` - DISABLED_INTEGRATION
+
+      * `ENABLED_CATEGORY` - ENABLED_CATEGORY
+
+      * `DISABLED_CATEGORY` - DISABLED_CATEGORY
+
+      * `CHANGED_PASSWORD` - CHANGED_PASSWORD
+
+      * `RESET_PASSWORD` - RESET_PASSWORD
+
+      * `ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION` -
+      ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION
+
+      * `ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT` -
+      ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT
+
+      * `DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION` -
+      DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION
+
+      * `DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT` -
+      DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT
+
+      * `CREATED_INTEGRATION_WIDE_FIELD_MAPPING` -
+      CREATED_INTEGRATION_WIDE_FIELD_MAPPING
+
+      * `CREATED_LINKED_ACCOUNT_FIELD_MAPPING` -
+      CREATED_LINKED_ACCOUNT_FIELD_MAPPING
+
+      * `CHANGED_INTEGRATION_WIDE_FIELD_MAPPING` -
+      CHANGED_INTEGRATION_WIDE_FIELD_MAPPING
+
+      * `CHANGED_LINKED_ACCOUNT_FIELD_MAPPING` -
+      CHANGED_LINKED_ACCOUNT_FIELD_MAPPING
+
+      * `DELETED_INTEGRATION_WIDE_FIELD_MAPPING` -
+      DELETED_INTEGRATION_WIDE_FIELD_MAPPING
+
+      * `DELETED_LINKED_ACCOUNT_FIELD_MAPPING` -
+      DELETED_LINKED_ACCOUNT_FIELD_MAPPING
+
+      * `CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE` -
+      CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+
+      * `CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE` -
+      CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+
+      * `DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE` -
+      DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+
+      * `FORCED_LINKED_ACCOUNT_RESYNC` - FORCED_LINKED_ACCOUNT_RESYNC
+
+      * `MUTED_ISSUE` - MUTED_ISSUE
+
+      * `GENERATED_MAGIC_LINK` - GENERATED_MAGIC_LINK
+
+      * `ENABLED_MERGE_WEBHOOK` - ENABLED_MERGE_WEBHOOK
+
+      * `DISABLED_MERGE_WEBHOOK` - DISABLED_MERGE_WEBHOOK
+
+      * `MERGE_WEBHOOK_TARGET_CHANGED` - MERGE_WEBHOOK_TARGET_CHANGED
+
+      * `END_USER_CREDENTIALS_ACCESSED` - END_USER_CREDENTIALS_ACCESSED
+    union:
+      - EventTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  AuditLogEvent:
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      user_name:
+        type: optional<string>
+        docs: The User's full name at the time of this Event occurring.
+        validation:
+          maxLength: 200
+      user_email:
+        type: optional<string>
+        docs: The User's email at the time of this Event occurring.
+        validation:
+          format: email
+          maxLength: 254
+      role:
+        type: AuditLogEventRole
+        docs: >-
+          Designates the role of the user (or SYSTEM/API if action not taken by
+          a user) at the time of this Event occurring.
+
+
+          * `ADMIN` - ADMIN
+
+          * `DEVELOPER` - DEVELOPER
+
+          * `MEMBER` - MEMBER
+
+          * `API` - API
+
+          * `SYSTEM` - SYSTEM
+
+          * `MERGE_TEAM` - MERGE_TEAM
+      ip_address:
+        type: string
+        validation:
+          maxLength: 45
+      event_type:
+        type: AuditLogEventEventType
+        docs: >-
+          Designates the type of event that occurred.
+
+
+          * `CREATED_REMOTE_PRODUCTION_API_KEY` -
+          CREATED_REMOTE_PRODUCTION_API_KEY
+
+          * `DELETED_REMOTE_PRODUCTION_API_KEY` -
+          DELETED_REMOTE_PRODUCTION_API_KEY
+
+          * `CREATED_TEST_API_KEY` - CREATED_TEST_API_KEY
+
+          * `DELETED_TEST_API_KEY` - DELETED_TEST_API_KEY
+
+          * `REGENERATED_PRODUCTION_API_KEY` - REGENERATED_PRODUCTION_API_KEY
+
+          * `REGENERATED_WEBHOOK_SIGNATURE` - REGENERATED_WEBHOOK_SIGNATURE
+
+          * `INVITED_USER` - INVITED_USER
+
+          * `TWO_FACTOR_AUTH_ENABLED` - TWO_FACTOR_AUTH_ENABLED
+
+          * `TWO_FACTOR_AUTH_DISABLED` - TWO_FACTOR_AUTH_DISABLED
+
+          * `DELETED_LINKED_ACCOUNT` - DELETED_LINKED_ACCOUNT
+
+          * `DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT` -
+          DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT
+
+          * `CREATED_DESTINATION` - CREATED_DESTINATION
+
+          * `DELETED_DESTINATION` - DELETED_DESTINATION
+
+          * `CHANGED_DESTINATION` - CHANGED_DESTINATION
+
+          * `CHANGED_SCOPES` - CHANGED_SCOPES
+
+          * `CHANGED_PERSONAL_INFORMATION` - CHANGED_PERSONAL_INFORMATION
+
+          * `CHANGED_ORGANIZATION_SETTINGS` - CHANGED_ORGANIZATION_SETTINGS
+
+          * `ENABLED_INTEGRATION` - ENABLED_INTEGRATION
+
+          * `DISABLED_INTEGRATION` - DISABLED_INTEGRATION
+
+          * `ENABLED_CATEGORY` - ENABLED_CATEGORY
+
+          * `DISABLED_CATEGORY` - DISABLED_CATEGORY
+
+          * `CHANGED_PASSWORD` - CHANGED_PASSWORD
+
+          * `RESET_PASSWORD` - RESET_PASSWORD
+
+          * `ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION` -
+          ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION
+
+          * `ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT` -
+          ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT
+
+          * `DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION` -
+          DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION
+
+          * `DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT` -
+          DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT
+
+          * `CREATED_INTEGRATION_WIDE_FIELD_MAPPING` -
+          CREATED_INTEGRATION_WIDE_FIELD_MAPPING
+
+          * `CREATED_LINKED_ACCOUNT_FIELD_MAPPING` -
+          CREATED_LINKED_ACCOUNT_FIELD_MAPPING
+
+          * `CHANGED_INTEGRATION_WIDE_FIELD_MAPPING` -
+          CHANGED_INTEGRATION_WIDE_FIELD_MAPPING
+
+          * `CHANGED_LINKED_ACCOUNT_FIELD_MAPPING` -
+          CHANGED_LINKED_ACCOUNT_FIELD_MAPPING
+
+          * `DELETED_INTEGRATION_WIDE_FIELD_MAPPING` -
+          DELETED_INTEGRATION_WIDE_FIELD_MAPPING
+
+          * `DELETED_LINKED_ACCOUNT_FIELD_MAPPING` -
+          DELETED_LINKED_ACCOUNT_FIELD_MAPPING
+
+          * `CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE` -
+          CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+
+          * `CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE` -
+          CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+
+          * `DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE` -
+          DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+
+          * `FORCED_LINKED_ACCOUNT_RESYNC` - FORCED_LINKED_ACCOUNT_RESYNC
+
+          * `MUTED_ISSUE` - MUTED_ISSUE
+
+          * `GENERATED_MAGIC_LINK` - GENERATED_MAGIC_LINK
+
+          * `ENABLED_MERGE_WEBHOOK` - ENABLED_MERGE_WEBHOOK
+
+          * `DISABLED_MERGE_WEBHOOK` - DISABLED_MERGE_WEBHOOK
+
+          * `MERGE_WEBHOOK_TARGET_CHANGED` - MERGE_WEBHOOK_TARGET_CHANGED
+
+          * `END_USER_CREDENTIALS_ACCESSED` - END_USER_CREDENTIALS_ACCESSED
+      event_description: string
+      created_at:
+        type: optional<datetime>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  AvailableActions:
+    docs: >-
+      # The AvailableActions Object
+
+      ### Description
+
+      The `Activity` object is used to see all available model/operation
+      combinations for an integration.
+
+
+      ### Usage Example
+
+      Fetch all the actions available for the `Zenefits` integration.
+    properties:
+      integration: AccountIntegration
+      passthrough_available: boolean
+      available_model_operations: optional<list<ModelOperation>>
+    source:
+      openapi: openapi/openapi.yml
+  CandidateApplicationsItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Application
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  CandidateAttachmentsItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Attachment
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Candidate:
+    docs: >-
+      # The Candidate Object
+
+      ### Description
+
+      The `Candidate` object is used to represent profile information about a
+      given Candidate. Because it is specific to a Candidate, this information
+      stays constant across applications.
+
+      ### Usage Example
+
+      Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all
+      candidates.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      first_name:
+        type: optional<string>
+        docs: The candidate's first name.
+      last_name:
+        type: optional<string>
+        docs: The candidate's last name.
+      company:
+        type: optional<string>
+        docs: The candidate's current company.
+      title:
+        type: optional<string>
+        docs: The candidate's current title.
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's candidate was created.
+      remote_updated_at:
+        type: optional<datetime>
+        docs: When the third party's candidate was updated.
+      last_interaction_at:
+        type: optional<datetime>
+        docs: When the most recent interaction with the candidate occurred.
+      is_private:
+        type: optional<boolean>
+        docs: Whether or not the candidate is private.
+      can_email:
+        type: optional<boolean>
+        docs: Whether or not the candidate can be emailed.
+      locations:
+        type: optional<list<optional<string>>>
+        docs: The candidate's locations.
+      phone_numbers: optional<list<PhoneNumber>>
+      email_addresses: optional<list<EmailAddress>>
+      urls: optional<list<Url>>
+      tags:
+        type: optional<list<optional<string>>>
+        docs: Array of `Tag` names as strings.
+      applications:
+        type: optional<list<optional<CandidateApplicationsItem>>>
+        docs: Array of `Application` object IDs.
+      attachments:
+        type: optional<list<optional<CandidateAttachmentsItem>>>
+        docs: Array of `Attachment` object IDs.
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  CandidateRequestApplicationsItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Application
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  CandidateRequestAttachmentsItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Attachment
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  CandidateRequest:
+    docs: >-
+      # The Candidate Object
+
+      ### Description
+
+      The `Candidate` object is used to represent profile information about a
+      given Candidate. Because it is specific to a Candidate, this information
+      stays constant across applications.
+
+      ### Usage Example
+
+      Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all
+      candidates.
+    properties:
+      first_name:
+        type: optional<string>
+        docs: The candidate's first name.
+      last_name:
+        type: optional<string>
+        docs: The candidate's last name.
+      company:
+        type: optional<string>
+        docs: The candidate's current company.
+      title:
+        type: optional<string>
+        docs: The candidate's current title.
+      last_interaction_at:
+        type: optional<datetime>
+        docs: When the most recent interaction with the candidate occurred.
+      is_private:
+        type: optional<boolean>
+        docs: Whether or not the candidate is private.
+      can_email:
+        type: optional<boolean>
+        docs: Whether or not the candidate can be emailed.
+      locations:
+        type: optional<list<optional<string>>>
+        docs: The candidate's locations.
+      phone_numbers: optional<list<PhoneNumberRequest>>
+      email_addresses: optional<list<EmailAddressRequest>>
+      urls: optional<list<UrlRequest>>
+      tags:
+        type: optional<list<optional<string>>>
+        docs: Array of `Tag` names as strings.
+      applications:
+        type: optional<list<optional<CandidateRequestApplicationsItem>>>
+        docs: Array of `Application` object IDs.
+      attachments:
+        type: optional<list<optional<CandidateRequestAttachmentsItem>>>
+        docs: Array of `Attachment` object IDs.
+      remote_template_id:
+        type: optional<string>
+        validation:
+          minLength: 1
+        access: write-only
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  CandidateResponse:
+    properties:
+      model: Candidate
+      warnings: list<WarningValidationProblem>
+      errors: list<ErrorValidationProblem>
+      logs: optional<list<DebugModeLog>>
+    source:
+      openapi: openapi/openapi.yml
+  CategoriesEnum:
+    enum:
+      - hris
+      - ats
+      - accounting
+      - ticketing
+      - crm
+      - mktg
+      - filestorage
+    docs: |-
+      * `hris` - hris
+      * `ats` - ats
+      * `accounting` - accounting
+      * `ticketing` - ticketing
+      * `crm` - crm
+      * `mktg` - mktg
+      * `filestorage` - filestorage
+    source:
+      openapi: openapi/openapi.yml
+  CategoryEnum:
+    enum:
+      - hris
+      - ats
+      - accounting
+      - ticketing
+      - crm
+      - mktg
+      - filestorage
+    docs: |-
+      * `hris` - hris
+      * `ats` - ats
+      * `accounting` - accounting
+      * `ticketing` - ticketing
+      * `crm` - crm
+      * `mktg` - mktg
+      * `filestorage` - filestorage
+    source:
+      openapi: openapi/openapi.yml
+  CommonModelScopeApi:
+    properties:
+      common_models:
+        docs: The common models you want to update the scopes for
+        type: list<IndividualCommonModelScopeDeserializer>
+    source:
+      openapi: openapi/openapi.yml
+  CommonModelScopesBodyRequest:
+    properties:
+      model_id:
+        type: string
+        validation:
+          minLength: 1
+      enabled_actions: list<EnabledActionsEnum>
+      disabled_fields: list<string>
+    source:
+      openapi: openapi/openapi.yml
+  DataPassthroughRequest:
+    docs: >-
+      # The DataPassthrough Object
+
+      ### Description
+
+      The `DataPassthrough` object is used to send information to an
+      otherwise-unsupported third-party endpoint.
+
+
+      ### Usage Example
+
+      Create a `DataPassthrough` to get team hierarchies from your Rippling
+      integration.
+    properties:
+      method: MethodEnum
+      path:
+        type: string
+        docs: The path of the request in the third party's platform.
+        validation:
+          minLength: 1
+      base_url_override:
+        type: optional<string>
+        docs: An optional override of the third party's base url for the request.
+        validation:
+          minLength: 1
+      data:
+        type: optional<string>
+        docs: >-
+          The data with the request. You must include a `request_format`
+          parameter matching the data's format
+        validation:
+          minLength: 1
+      multipart_form_data:
+        type: optional<list<MultipartFormFieldRequest>>
+        docs: >-
+          Pass an array of `MultipartFormField` objects in here instead of using
+          the `data` param if `request_format` is set to `MULTIPART`.
+      headers:
+        type: optional<map<string, unknown>>
+        docs: >-
+          The headers to use for the request (Merge will handle the account's
+          authorization headers). `Content-Type` header is required for
+          passthrough. Choose content type corresponding to expected format of
+          receiving server.
+      request_format: optional<RequestFormatEnum>
+      normalize_response:
+        type: optional<boolean>
+        docs: >-
+          Optional. If true, the response will always be an object of the form
+          `{"type": T, "value": ...}` where `T` will be one of `string, boolean,
+          number, null, array, object`.
+    source:
+      openapi: openapi/openapi.yml
+  DebugModeLog:
+    properties:
+      log_id: string
+      dashboard_view: string
+      log_summary: DebugModelLogSummary
+    source:
+      openapi: openapi/openapi.yml
+  DebugModelLogSummary:
+    properties:
+      url: string
+      method: string
+      status_code: integer
+    source:
+      openapi: openapi/openapi.yml
+  Department:
+    docs: >-
+      # The Department Object
+
+      ### Description
+
+      The `Department` object is used to represent a department within a
+      company.
+
+      ### Usage Example
+
+      Fetch from the `LIST Departments` endpoint and view the departments within
+      a company.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      name:
+        type: optional<string>
+        docs: The department's name.
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  DisabilityStatusEnum:
+    enum:
+      - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+      - NO_I_DONT_HAVE_A_DISABILITY
+      - I_DONT_WISH_TO_ANSWER
+    docs: >-
+      * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` -
+      YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+
+      * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY
+
+      * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
+    source:
+      openapi: openapi/openapi.yml
+  EeocCandidate:
+    discriminated: false
+    docs: The candidate being represented.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Candidate
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  EeocRace:
+    discriminated: false
+    docs: >-
+      The candidate's race.
+
+
+      * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+
+      * `ASIAN` - ASIAN
+
+      * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN
+
+      * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO
+
+      * `WHITE` - WHITE
+
+      * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` -
+      NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
+
+      * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES
+
+      * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
+    union:
+      - RaceEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  EeocGender:
+    discriminated: false
+    docs: |-
+      The candidate's gender.
+
+      * `MALE` - MALE
+      * `FEMALE` - FEMALE
+      * `NON-BINARY` - NON-BINARY
+      * `OTHER` - OTHER
+      * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
+    union:
+      - GenderEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  EeocVeteranStatus:
+    discriminated: false
+    docs: >-
+      The candidate's veteran status.
+
+
+      * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN
+
+      *
+      `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN`
+      - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
+
+      * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
+    union:
+      - VeteranStatusEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  EeocDisabilityStatus:
+    discriminated: false
+    docs: >-
+      The candidate's disability status.
+
+
+      * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` -
+      YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+
+      * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY
+
+      * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
+    union:
+      - DisabilityStatusEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Eeoc:
+    docs: >-
+      # The EEOC Object
+
+      ### Description
+
+      The `EEOC` object is used to represent the Equal Employment Opportunity
+      Commission information for a candidate (race, gender, veteran status,
+      disability status).
+
+      ### Usage Example
+
+      Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all
+      EEOC information for a candidate.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      candidate:
+        type: optional<EeocCandidate>
+        docs: The candidate being represented.
+      submitted_at:
+        type: optional<datetime>
+        docs: When the information was submitted.
+      race:
+        type: optional<EeocRace>
+        docs: >-
+          The candidate's race.
+
+
+          * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` -
+          AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+
+          * `ASIAN` - ASIAN
+
+          * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN
+
+          * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO
+
+          * `WHITE` - WHITE
+
+          * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` -
+          NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
+
+          * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES
+
+          * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
+      gender:
+        type: optional<EeocGender>
+        docs: |-
+          The candidate's gender.
+
+          * `MALE` - MALE
+          * `FEMALE` - FEMALE
+          * `NON-BINARY` - NON-BINARY
+          * `OTHER` - OTHER
+          * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
+      veteran_status:
+        type: optional<EeocVeteranStatus>
+        docs: >-
+          The candidate's veteran status.
+
+
+          * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN
+
+          *
+          `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN`
+          -
+          I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
+
+          * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
+      disability_status:
+        type: optional<EeocDisabilityStatus>
+        docs: >-
+          The candidate's disability status.
+
+
+          * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` -
+          YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+
+          * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY
+
+          * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  EmailAddressEmailAddressType:
+    discriminated: false
+    docs: |-
+      The type of email address.
+
+      * `PERSONAL` - PERSONAL
+      * `WORK` - WORK
+      * `OTHER` - OTHER
+    union:
+      - EmailAddressTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  EmailAddress:
+    docs: >-
+      # The EmailAddress Object
+
+      ### Description
+
+      The `EmailAddress` object is used to represent a candidate's email
+      address.
+
+      ### Usage Example
+
+      Fetch from the `GET Candidate` endpoint and view their email addresses.
+    properties:
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      value:
+        type: optional<string>
+        docs: The email address.
+        validation:
+          format: email
+          maxLength: 254
+      email_address_type:
+        type: optional<EmailAddressEmailAddressType>
+        docs: |-
+          The type of email address.
+
+          * `PERSONAL` - PERSONAL
+          * `WORK` - WORK
+          * `OTHER` - OTHER
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  EmailAddressRequestEmailAddressType:
+    discriminated: false
+    docs: |-
+      The type of email address.
+
+      * `PERSONAL` - PERSONAL
+      * `WORK` - WORK
+      * `OTHER` - OTHER
+    union:
+      - EmailAddressTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  EmailAddressRequest:
+    docs: >-
+      # The EmailAddress Object
+
+      ### Description
+
+      The `EmailAddress` object is used to represent a candidate's email
+      address.
+
+      ### Usage Example
+
+      Fetch from the `GET Candidate` endpoint and view their email addresses.
+    properties:
+      value:
+        type: optional<string>
+        docs: The email address.
+        validation:
+          format: email
+          maxLength: 254
+      email_address_type:
+        type: optional<EmailAddressRequestEmailAddressType>
+        docs: |-
+          The type of email address.
+
+          * `PERSONAL` - PERSONAL
+          * `WORK` - WORK
+          * `OTHER` - OTHER
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  EmailAddressTypeEnum:
+    enum:
+      - PERSONAL
+      - WORK
+      - OTHER
+    docs: |-
+      * `PERSONAL` - PERSONAL
+      * `WORK` - WORK
+      * `OTHER` - OTHER
+    source:
+      openapi: openapi/openapi.yml
+  EnabledActionsEnum:
+    enum:
+      - READ
+      - WRITE
+    docs: |-
+      * `READ` - READ
+      * `WRITE` - WRITE
+    source:
+      openapi: openapi/openapi.yml
+  EncodingEnum:
+    enum:
+      - RAW
+      - BASE64
+      - GZIP_BASE64
+    docs: |-
+      * `RAW` - RAW
+      * `BASE64` - BASE64
+      * `GZIP_BASE64` - GZIP_BASE64
+    source:
+      openapi: openapi/openapi.yml
+  ErrorValidationProblem:
+    properties:
+      source: optional<ValidationProblemSource>
+      title: string
+      detail: string
+      problem_type: string
+    source:
+      openapi: openapi/openapi.yml
+  EventTypeEnum:
+    enum:
+      - CREATED_REMOTE_PRODUCTION_API_KEY
+      - DELETED_REMOTE_PRODUCTION_API_KEY
+      - CREATED_TEST_API_KEY
+      - DELETED_TEST_API_KEY
+      - REGENERATED_PRODUCTION_API_KEY
+      - INVITED_USER
+      - TWO_FACTOR_AUTH_ENABLED
+      - TWO_FACTOR_AUTH_DISABLED
+      - DELETED_LINKED_ACCOUNT
+      - DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT
+      - CREATED_DESTINATION
+      - DELETED_DESTINATION
+      - CHANGED_DESTINATION
+      - CHANGED_SCOPES
+      - CHANGED_PERSONAL_INFORMATION
+      - CHANGED_ORGANIZATION_SETTINGS
+      - ENABLED_INTEGRATION
+      - DISABLED_INTEGRATION
+      - ENABLED_CATEGORY
+      - DISABLED_CATEGORY
+      - CHANGED_PASSWORD
+      - RESET_PASSWORD
+      - ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION
+      - ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT
+      - DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION
+      - DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT
+      - CREATED_INTEGRATION_WIDE_FIELD_MAPPING
+      - CREATED_LINKED_ACCOUNT_FIELD_MAPPING
+      - CHANGED_INTEGRATION_WIDE_FIELD_MAPPING
+      - CHANGED_LINKED_ACCOUNT_FIELD_MAPPING
+      - DELETED_INTEGRATION_WIDE_FIELD_MAPPING
+      - DELETED_LINKED_ACCOUNT_FIELD_MAPPING
+      - CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+      - CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+      - DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+      - FORCED_LINKED_ACCOUNT_RESYNC
+      - MUTED_ISSUE
+      - GENERATED_MAGIC_LINK
+      - ENABLED_MERGE_WEBHOOK
+      - DISABLED_MERGE_WEBHOOK
+      - MERGE_WEBHOOK_TARGET_CHANGED
+      - END_USER_CREDENTIALS_ACCESSED
+    docs: >-
+      * `CREATED_REMOTE_PRODUCTION_API_KEY` - CREATED_REMOTE_PRODUCTION_API_KEY
+
+      * `DELETED_REMOTE_PRODUCTION_API_KEY` - DELETED_REMOTE_PRODUCTION_API_KEY
+
+      * `CREATED_TEST_API_KEY` - CREATED_TEST_API_KEY
+
+      * `DELETED_TEST_API_KEY` - DELETED_TEST_API_KEY
+
+      * `REGENERATED_PRODUCTION_API_KEY` - REGENERATED_PRODUCTION_API_KEY
+
+      * `REGENERATED_WEBHOOK_SIGNATURE` - REGENERATED_WEBHOOK_SIGNATURE
+
+      * `INVITED_USER` - INVITED_USER
+
+      * `TWO_FACTOR_AUTH_ENABLED` - TWO_FACTOR_AUTH_ENABLED
+
+      * `TWO_FACTOR_AUTH_DISABLED` - TWO_FACTOR_AUTH_DISABLED
+
+      * `DELETED_LINKED_ACCOUNT` - DELETED_LINKED_ACCOUNT
+
+      * `DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT` -
+      DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT
+
+      * `CREATED_DESTINATION` - CREATED_DESTINATION
+
+      * `DELETED_DESTINATION` - DELETED_DESTINATION
+
+      * `CHANGED_DESTINATION` - CHANGED_DESTINATION
+
+      * `CHANGED_SCOPES` - CHANGED_SCOPES
+
+      * `CHANGED_PERSONAL_INFORMATION` - CHANGED_PERSONAL_INFORMATION
+
+      * `CHANGED_ORGANIZATION_SETTINGS` - CHANGED_ORGANIZATION_SETTINGS
+
+      * `ENABLED_INTEGRATION` - ENABLED_INTEGRATION
+
+      * `DISABLED_INTEGRATION` - DISABLED_INTEGRATION
+
+      * `ENABLED_CATEGORY` - ENABLED_CATEGORY
+
+      * `DISABLED_CATEGORY` - DISABLED_CATEGORY
+
+      * `CHANGED_PASSWORD` - CHANGED_PASSWORD
+
+      * `RESET_PASSWORD` - RESET_PASSWORD
+
+      * `ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION` -
+      ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION
+
+      * `ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT` -
+      ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT
+
+      * `DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION` -
+      DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION
+
+      * `DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT` -
+      DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT
+
+      * `CREATED_INTEGRATION_WIDE_FIELD_MAPPING` -
+      CREATED_INTEGRATION_WIDE_FIELD_MAPPING
+
+      * `CREATED_LINKED_ACCOUNT_FIELD_MAPPING` -
+      CREATED_LINKED_ACCOUNT_FIELD_MAPPING
+
+      * `CHANGED_INTEGRATION_WIDE_FIELD_MAPPING` -
+      CHANGED_INTEGRATION_WIDE_FIELD_MAPPING
+
+      * `CHANGED_LINKED_ACCOUNT_FIELD_MAPPING` -
+      CHANGED_LINKED_ACCOUNT_FIELD_MAPPING
+
+      * `DELETED_INTEGRATION_WIDE_FIELD_MAPPING` -
+      DELETED_INTEGRATION_WIDE_FIELD_MAPPING
+
+      * `DELETED_LINKED_ACCOUNT_FIELD_MAPPING` -
+      DELETED_LINKED_ACCOUNT_FIELD_MAPPING
+
+      * `CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE` -
+      CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+
+      * `CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE` -
+      CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+
+      * `DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE` -
+      DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE
+
+      * `FORCED_LINKED_ACCOUNT_RESYNC` - FORCED_LINKED_ACCOUNT_RESYNC
+
+      * `MUTED_ISSUE` - MUTED_ISSUE
+
+      * `GENERATED_MAGIC_LINK` - GENERATED_MAGIC_LINK
+
+      * `ENABLED_MERGE_WEBHOOK` - ENABLED_MERGE_WEBHOOK
+
+      * `DISABLED_MERGE_WEBHOOK` - DISABLED_MERGE_WEBHOOK
+
+      * `MERGE_WEBHOOK_TARGET_CHANGED` - MERGE_WEBHOOK_TARGET_CHANGED
+
+      * `END_USER_CREDENTIALS_ACCESSED` - END_USER_CREDENTIALS_ACCESSED
+    source:
+      openapi: openapi/openapi.yml
+  ExternalTargetFieldApi:
+    properties:
+      name:
+        type: optional<string>
+        access: read-only
+      description:
+        type: optional<string>
+        access: read-only
+      is_mapped:
+        type: optional<string>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  ExternalTargetFieldApiResponse:
+    properties:
+      Activity: optional<list<ExternalTargetFieldApi>>
+      Application: optional<list<ExternalTargetFieldApi>>
+      Attachment: optional<list<ExternalTargetFieldApi>>
+      Candidate: optional<list<ExternalTargetFieldApi>>
+      Department: optional<list<ExternalTargetFieldApi>>
+      EEOC: optional<list<ExternalTargetFieldApi>>
+      ScheduledInterview: optional<list<ExternalTargetFieldApi>>
+      Job: optional<list<ExternalTargetFieldApi>>
+      JobPosting: optional<list<ExternalTargetFieldApi>>
+      JobInterviewStage: optional<list<ExternalTargetFieldApi>>
+      Offer: optional<list<ExternalTargetFieldApi>>
+      Office: optional<list<ExternalTargetFieldApi>>
+      RejectReason: optional<list<ExternalTargetFieldApi>>
+      Scorecard: optional<list<ExternalTargetFieldApi>>
+      Tag: optional<list<ExternalTargetFieldApi>>
+      RemoteUser: optional<list<ExternalTargetFieldApi>>
+    source:
+      openapi: openapi/openapi.yml
+  FieldMappingApiInstanceTargetField:
+    properties:
+      name: string
+      description: string
+      is_organization_wide: boolean
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo:
+    properties:
+      method: optional<string>
+      url_path: optional<string>
+      field_traversal_path: optional<list<string>>
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  FieldMappingApiInstanceRemoteField:
+    properties:
+      remote_key_name: optional<string>
+      schema: optional<map<string, unknown>>
+      remote_endpoint_info: FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  FieldMappingApiInstance:
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      is_integration_wide:
+        type: optional<boolean>
+        access: read-only
+      target_field:
+        type: optional<FieldMappingApiInstanceTargetField>
+        access: read-only
+      remote_field:
+        type: optional<FieldMappingApiInstanceRemoteField>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  FieldMappingApiInstanceResponse:
+    properties:
+      Activity: optional<list<FieldMappingApiInstance>>
+      Application: optional<list<FieldMappingApiInstance>>
+      Attachment: optional<list<FieldMappingApiInstance>>
+      Candidate: optional<list<FieldMappingApiInstance>>
+      Department: optional<list<FieldMappingApiInstance>>
+      EEOC: optional<list<FieldMappingApiInstance>>
+      ScheduledInterview: optional<list<FieldMappingApiInstance>>
+      Job: optional<list<FieldMappingApiInstance>>
+      JobPosting: optional<list<FieldMappingApiInstance>>
+      JobInterviewStage: optional<list<FieldMappingApiInstance>>
+      Offer: optional<list<FieldMappingApiInstance>>
+      Office: optional<list<FieldMappingApiInstance>>
+      RejectReason: optional<list<FieldMappingApiInstance>>
+      Scorecard: optional<list<FieldMappingApiInstance>>
+      Tag: optional<list<FieldMappingApiInstance>>
+      RemoteUser: optional<list<FieldMappingApiInstance>>
+    source:
+      openapi: openapi/openapi.yml
+  FieldMappingInstanceResponse:
+    properties:
+      model: FieldMappingApiInstance
+      warnings: list<WarningValidationProblem>
+      errors: list<ErrorValidationProblem>
+      logs: optional<list<DebugModeLog>>
+    source:
+      openapi: openapi/openapi.yml
+  FieldPermissionDeserializer:
+    properties:
+      enabled_fields: optional<list<unknown>>
+      disabled_fields: optional<list<unknown>>
+    source:
+      openapi: openapi/openapi.yml
+  FieldPermissionDeserializerRequest:
+    properties:
+      enabled_fields: optional<list<unknown>>
+      disabled_fields: optional<list<unknown>>
+    source:
+      openapi: openapi/openapi.yml
+  GenderEnum:
+    enum:
+      - MALE
+      - FEMALE
+      - value: NON-BINARY
+        name: NonBinary
+      - OTHER
+      - DECLINE_TO_SELF_IDENTIFY
+    docs: |-
+      * `MALE` - MALE
+      * `FEMALE` - FEMALE
+      * `NON-BINARY` - NON-BINARY
+      * `OTHER` - OTHER
+      * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
+    source:
+      openapi: openapi/openapi.yml
+  IndividualCommonModelScopeDeserializer:
+    properties:
+      model_name: string
+      model_permissions: optional<map<string, ModelPermissionDeserializer>>
+      field_permissions: optional<FieldPermissionDeserializer>
+    source:
+      openapi: openapi/openapi.yml
+  IndividualCommonModelScopeDeserializerRequest:
+    properties:
+      model_name:
+        type: string
+        validation:
+          minLength: 1
+      model_permissions: optional<map<string, ModelPermissionDeserializerRequest>>
+      field_permissions: optional<FieldPermissionDeserializerRequest>
+    source:
+      openapi: openapi/openapi.yml
+  IssueStatus:
+    discriminated: false
+    docs: |-
+      Status of the issue. Options: ('ONGOING', 'RESOLVED')
+
+      * `ONGOING` - ONGOING
+      * `RESOLVED` - RESOLVED
+    union:
+      - IssueStatusEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Issue:
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      status:
+        type: optional<IssueStatus>
+        docs: |-
+          Status of the issue. Options: ('ONGOING', 'RESOLVED')
+
+          * `ONGOING` - ONGOING
+          * `RESOLVED` - RESOLVED
+      error_description: string
+      end_user:
+        type: optional<map<string, unknown>>
+        access: read-only
+      first_incident_time: optional<datetime>
+      last_incident_time: optional<datetime>
+      is_muted:
+        type: optional<boolean>
+        access: read-only
+      error_details:
+        type: optional<list<string>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  IssueStatusEnum:
+    enum:
+      - ONGOING
+      - RESOLVED
+    docs: |-
+      * `ONGOING` - ONGOING
+      * `RESOLVED` - RESOLVED
+    source:
+      openapi: openapi/openapi.yml
+  JobStatus:
+    discriminated: false
+    docs: |-
+      The job's status.
+
+      * `OPEN` - OPEN
+      * `CLOSED` - CLOSED
+      * `DRAFT` - DRAFT
+      * `ARCHIVED` - ARCHIVED
+      * `PENDING` - PENDING
+    union:
+      - JobStatusEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  JobType:
+    discriminated: false
+    docs: |-
+      The job's type.
+
+      * `POSTING` - POSTING
+      * `REQUISITION` - REQUISITION
+      * `PROFILE` - PROFILE
+    union:
+      - JobTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  JobDepartmentsItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Department
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  JobOfficesItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Office
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  JobHiringManagersItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  JobRecruitersItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Job:
+    docs: >-
+      # The Job Object
+
+      ### Description
+
+      The `Job` object can be used to track any jobs that are currently or will
+      be open/closed for applications.
+
+      ### Usage Example
+
+      Fetch from the `LIST Jobs` endpoint to show all job postings.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      name:
+        type: optional<string>
+        docs: The job's name.
+      description:
+        type: optional<string>
+        docs: The job's description.
+      code:
+        type: optional<string>
+        docs: >-
+          The job's code. Typically an additional identifier used to reference
+          the particular job that is displayed on the ATS.
+      status:
+        type: optional<JobStatus>
+        docs: |-
+          The job's status.
+
+          * `OPEN` - OPEN
+          * `CLOSED` - CLOSED
+          * `DRAFT` - DRAFT
+          * `ARCHIVED` - ARCHIVED
+          * `PENDING` - PENDING
+      type:
+        type: optional<JobType>
+        docs: |-
+          The job's type.
+
+          * `POSTING` - POSTING
+          * `REQUISITION` - REQUISITION
+          * `PROFILE` - PROFILE
+      job_postings:
+        type: optional<list<optional<string>>>
+        docs: IDs of `JobPosting` objects that serve as job postings for this `Job`.
+      job_posting_urls: optional<list<Url>>
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's job was created.
+      remote_updated_at:
+        type: optional<datetime>
+        docs: When the third party's job was updated.
+      confidential:
+        type: optional<boolean>
+        docs: Whether the job is confidential.
+      departments:
+        type: optional<list<optional<JobDepartmentsItem>>>
+        docs: IDs of `Department` objects for this `Job`.
+      offices:
+        type: optional<list<optional<JobOfficesItem>>>
+        docs: IDs of `Office` objects for this `Job`.
+      hiring_managers:
+        type: optional<list<optional<JobHiringManagersItem>>>
+        docs: >-
+          IDs of `RemoteUser` objects that serve as hiring managers for this
+          `Job`.
+      recruiters:
+        type: optional<list<optional<JobRecruitersItem>>>
+        docs: IDs of `RemoteUser` objects that serve as recruiters for this `Job`.
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  JobInterviewStageJob:
+    discriminated: false
+    docs: >-
+      This field is populated only if the stage is specific to a particular job.
+      If the stage is generic, this field will not be populated.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Job
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  JobInterviewStage:
+    docs: >-
+      # The JobInterviewStage Object
+
+      ### Description
+
+      The `JobInterviewStage` object is used to represent a particular
+      recruiting stage for an `Application`. A given `Application` typically has
+      the `JobInterviewStage` object represented in the current_stage field.
+
+      ### Usage Example
+
+      Fetch from the `LIST JobInterviewStages` endpoint and view the job
+      interview stages used by a company.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      name:
+        type: optional<string>
+        docs: >-
+          Standard stage names are offered by ATS systems but can be modified by
+          users.
+      job:
+        type: optional<JobInterviewStageJob>
+        docs: >-
+          This field is populated only if the stage is specific to a particular
+          job. If the stage is generic, this field will not be populated.
+      stage_order:
+        type: optional<integer>
+        docs: >-
+          The stage’s order, with the lowest values ordered first. If the
+          third-party does not return details on the order of stages, this field
+          will not be populated.
+        validation:
+          min: -2147483648
+          max: 2147483647
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  JobPostingJobPostingUrlsItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Url
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  JobPostingJob:
+    discriminated: false
+    docs: ID of `Job` object for this `JobPosting`.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Job
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  JobPostingStatus:
+    discriminated: false
+    docs: |-
+      The job posting's status.
+
+      * `PUBLISHED` - PUBLISHED
+      * `CLOSED` - CLOSED
+      * `DRAFT` - DRAFT
+      * `INTERNAL` - INTERNAL
+      * `PENDING` - PENDING
+    union:
+      - JobPostingStatusEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  JobPosting:
+    docs: >-
+      # The JobPosting Object
+
+      ### Description
+
+      The `JobPosting` object represents an external announcement on a job board
+      created by an organization to attract qualified candidates to apply for a
+      specific `Job` opening
+
+      ### Usage Example
+
+      Fetch from the `LIST JobPostings` endpoint to show all job postings.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      title:
+        type: optional<string>
+        docs: The job posting’s title.
+      job_posting_urls:
+        type: optional<list<JobPostingJobPostingUrlsItem>>
+        docs: >-
+          The Url object is used to represent hyperlinks for a candidate to
+          apply to a given job.
+      job:
+        type: optional<JobPostingJob>
+        docs: ID of `Job` object for this `JobPosting`.
+      status:
+        type: optional<JobPostingStatus>
+        docs: |-
+          The job posting's status.
+
+          * `PUBLISHED` - PUBLISHED
+          * `CLOSED` - CLOSED
+          * `DRAFT` - DRAFT
+          * `INTERNAL` - INTERNAL
+          * `PENDING` - PENDING
+      content:
+        type: optional<string>
+        docs: The job posting’s content.
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's job posting was created.
+      remote_updated_at:
+        type: optional<datetime>
+        docs: When the third party's job posting was updated.
+      is_internal:
+        type: optional<boolean>
+        docs: Indicates whether the job posting is internal or external.
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  JobPostingStatusEnum:
+    enum:
+      - PUBLISHED
+      - CLOSED
+      - DRAFT
+      - INTERNAL
+      - PENDING
+    docs: |-
+      * `PUBLISHED` - PUBLISHED
+      * `CLOSED` - CLOSED
+      * `DRAFT` - DRAFT
+      * `INTERNAL` - INTERNAL
+      * `PENDING` - PENDING
+    source:
+      openapi: openapi/openapi.yml
+  JobStatusEnum:
+    enum:
+      - OPEN
+      - CLOSED
+      - DRAFT
+      - ARCHIVED
+      - PENDING
+    docs: |-
+      * `OPEN` - OPEN
+      * `CLOSED` - CLOSED
+      * `DRAFT` - DRAFT
+      * `ARCHIVED` - ARCHIVED
+      * `PENDING` - PENDING
+    source:
+      openapi: openapi/openapi.yml
+  JobTypeEnum:
+    enum:
+      - POSTING
+      - REQUISITION
+      - PROFILE
+    docs: |-
+      * `POSTING` - POSTING
+      * `REQUISITION` - REQUISITION
+      * `PROFILE` - PROFILE
+    source:
+      openapi: openapi/openapi.yml
+  LanguageEnum:
+    enum:
+      - en
+      - de
+    docs: |-
+      * `en` - en
+      * `de` - de
+    source:
+      openapi: openapi/openapi.yml
+  LastSyncResultEnum:
+    enum:
+      - SYNCING
+      - DONE
+      - FAILED
+      - DISABLED
+      - PAUSED
+      - PARTIALLY_SYNCED
+    docs: |-
+      * `SYNCING` - SYNCING
+      * `DONE` - DONE
+      * `FAILED` - FAILED
+      * `DISABLED` - DISABLED
+      * `PAUSED` - PAUSED
+      * `PARTIALLY_SYNCED` - PARTIALLY_SYNCED
+    source:
+      openapi: openapi/openapi.yml
+  LinkToken:
+    properties:
+      link_token: string
+      integration_name: optional<string>
+      magic_link_url: optional<string>
+    source:
+      openapi: openapi/openapi.yml
+  LinkedAccountStatus:
+    properties:
+      linked_account_status: string
+      can_make_request: boolean
+    source:
+      openapi: openapi/openapi.yml
+  MetaResponse:
+    properties:
+      request_schema: map<string, unknown>
+      remote_field_classes: optional<map<string, unknown>>
+      status: optional<LinkedAccountStatus>
+      has_conditional_params: boolean
+      has_required_linked_account_params: boolean
+    source:
+      openapi: openapi/openapi.yml
+  MethodEnum:
+    enum:
+      - GET
+      - OPTIONS
+      - HEAD
+      - POST
+      - PUT
+      - PATCH
+      - DELETE
+    docs: |-
+      * `GET` - GET
+      * `OPTIONS` - OPTIONS
+      * `HEAD` - HEAD
+      * `POST` - POST
+      * `PUT` - PUT
+      * `PATCH` - PATCH
+      * `DELETE` - DELETE
+    source:
+      openapi: openapi/openapi.yml
+  ModelOperation:
+    docs: >-
+      # The ModelOperation Object
+
+      ### Description
+
+      The `ModelOperation` object is used to represent the operations that are
+      currently supported for a given model.
+
+
+      ### Usage Example
+
+      View what operations are supported for the `Candidate` endpoint.
+    properties:
+      model_name: string
+      available_operations: list<string>
+      required_post_parameters: list<string>
+      supported_fields: list<string>
+    source:
+      openapi: openapi/openapi.yml
+  ModelPermissionDeserializer:
+    properties:
+      is_enabled: optional<boolean>
+    source:
+      openapi: openapi/openapi.yml
+  ModelPermissionDeserializerRequest:
+    properties:
+      is_enabled: optional<boolean>
+    source:
+      openapi: openapi/openapi.yml
+  MultipartFormFieldRequestEncoding:
+    discriminated: false
+    docs: |-
+      The encoding of the value of `data`. Defaults to `RAW` if not defined.
+
+      * `RAW` - RAW
+      * `BASE64` - BASE64
+      * `GZIP_BASE64` - GZIP_BASE64
+    union:
+      - EncodingEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  MultipartFormFieldRequest:
+    docs: >-
+      # The MultipartFormField Object
+
+      ### Description
+
+      The `MultipartFormField` object is used to represent fields in an HTTP
+      request using `multipart/form-data`.
+
+
+      ### Usage Example
+
+      Create a `MultipartFormField` to define a multipart form entry.
+    properties:
+      name:
+        type: string
+        docs: The name of the form field
+        validation:
+          minLength: 1
+      data:
+        type: string
+        docs: The data for the form field.
+        validation:
+          minLength: 1
+      encoding:
+        type: optional<MultipartFormFieldRequestEncoding>
+        docs: |-
+          The encoding of the value of `data`. Defaults to `RAW` if not defined.
+
+          * `RAW` - RAW
+          * `BASE64` - BASE64
+          * `GZIP_BASE64` - GZIP_BASE64
+      file_name:
+        type: optional<string>
+        docs: The file name of the form field, if the field is for a file.
+        validation:
+          minLength: 1
+      content_type:
+        type: optional<string>
+        docs: The MIME type of the file, if the field is for a file.
+        validation:
+          minLength: 1
+    source:
+      openapi: openapi/openapi.yml
+  OfferApplication:
+    discriminated: false
+    docs: The application who is receiving the offer.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Application
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  OfferCreator:
+    discriminated: false
+    docs: The user who created the offer.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  OfferStatus:
+    discriminated: false
+    docs: |-
+      The offer's status.
+
+      * `DRAFT` - DRAFT
+      * `APPROVAL-SENT` - APPROVAL-SENT
+      * `APPROVED` - APPROVED
+      * `SENT` - SENT
+      * `SENT-MANUALLY` - SENT-MANUALLY
+      * `OPENED` - OPENED
+      * `DENIED` - DENIED
+      * `SIGNED` - SIGNED
+      * `DEPRECATED` - DEPRECATED
+    union:
+      - OfferStatusEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Offer:
+    docs: >-
+      # The Offer Object
+
+      ### Description
+
+      The `Offer` object is used to represent an offer for a candidate's
+      application specific to a job.
+
+      ### Usage Example
+
+      Fetch from the `LIST Offers` endpoint and filter by `ID` to show all
+      offers.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      application:
+        type: optional<OfferApplication>
+        docs: The application who is receiving the offer.
+      creator:
+        type: optional<OfferCreator>
+        docs: The user who created the offer.
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's offer was created.
+      closed_at:
+        type: optional<datetime>
+        docs: When the offer was closed.
+      sent_at:
+        type: optional<datetime>
+        docs: When the offer was sent.
+      start_date:
+        type: optional<datetime>
+        docs: The employment start date on the offer.
+      status:
+        type: optional<OfferStatus>
+        docs: |-
+          The offer's status.
+
+          * `DRAFT` - DRAFT
+          * `APPROVAL-SENT` - APPROVAL-SENT
+          * `APPROVED` - APPROVED
+          * `SENT` - SENT
+          * `SENT-MANUALLY` - SENT-MANUALLY
+          * `OPENED` - OPENED
+          * `DENIED` - DENIED
+          * `SIGNED` - SIGNED
+          * `DEPRECATED` - DEPRECATED
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  OfferStatusEnum:
+    enum:
+      - DRAFT
+      - value: APPROVAL-SENT
+        name: ApprovalSent
+      - APPROVED
+      - SENT
+      - value: SENT-MANUALLY
+        name: SentManually
+      - OPENED
+      - DENIED
+      - SIGNED
+      - DEPRECATED
+    docs: |-
+      * `DRAFT` - DRAFT
+      * `APPROVAL-SENT` - APPROVAL-SENT
+      * `APPROVED` - APPROVED
+      * `SENT` - SENT
+      * `SENT-MANUALLY` - SENT-MANUALLY
+      * `OPENED` - OPENED
+      * `DENIED` - DENIED
+      * `SIGNED` - SIGNED
+      * `DEPRECATED` - DEPRECATED
+    source:
+      openapi: openapi/openapi.yml
+  Office:
+    docs: >-
+      # The Office Object
+
+      ### Description
+
+      The `Office` object is used to represent an office within a company. A
+      given `Job` has the `Office` ID in its offices field.
+
+      ### Usage Example
+
+      Fetch from the `LIST Offices` endpoint and view the offices within a
+      company.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      name:
+        type: optional<string>
+        docs: The office's name.
+      location:
+        type: optional<string>
+        docs: The office's location.
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  OverallRecommendationEnum:
+    enum:
+      - DEFINITELY_NO
+      - 'NO'
+      - 'YES'
+      - STRONG_YES
+      - NO_DECISION
+    docs: |-
+      * `DEFINITELY_NO` - DEFINITELY_NO
+      * `NO` - NO
+      * `YES` - YES
+      * `STRONG_YES` - STRONG_YES
+      * `NO_DECISION` - NO_DECISION
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedAccountDetailsAndActionsList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<AccountDetailsAndActions>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedActivityList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Activity>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedApplicationList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Application>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedAttachmentList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Attachment>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedAuditLogEventList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<AuditLogEvent>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedCandidateList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Candidate>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedDepartmentList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Department>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedEeocList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Eeoc>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedIssueList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Issue>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedJobInterviewStageList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<JobInterviewStage>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedJobList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Job>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedJobPostingList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<JobPosting>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedOfferList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Offer>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedOfficeList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Office>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedRejectReasonList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<RejectReason>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedRemoteUserList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<RemoteUser>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedScheduledInterviewList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<ScheduledInterview>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedScorecardList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Scorecard>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedScreeningQuestionList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<ScreeningQuestion>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedSyncStatusList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<SyncStatus>>
+    source:
+      openapi: openapi/openapi.yml
+  PaginatedTagList:
+    properties:
+      next: optional<string>
+      previous: optional<string>
+      results: optional<list<Tag>>
+    source:
+      openapi: openapi/openapi.yml
+  PatchedCandidateRequest:
+    docs: >-
+      # The Candidate Object
+
+      ### Description
+
+      The `Candidate` object is used to represent profile information about a
+      given Candidate. Because it is specific to a Candidate, this information
+      stays constant across applications.
+
+      ### Usage Example
+
+      Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all
+      candidates.
+    properties:
+      first_name:
+        type: optional<string>
+        docs: The candidate's first name.
+      last_name:
+        type: optional<string>
+        docs: The candidate's last name.
+      company:
+        type: optional<string>
+        docs: The candidate's current company.
+      title:
+        type: optional<string>
+        docs: The candidate's current title.
+      last_interaction_at:
+        type: optional<datetime>
+        docs: When the most recent interaction with the candidate occurred.
+      is_private:
+        type: optional<boolean>
+        docs: Whether or not the candidate is private.
+      can_email:
+        type: optional<boolean>
+        docs: Whether or not the candidate can be emailed.
+      locations:
+        type: optional<list<optional<string>>>
+        docs: The candidate's locations.
+      phone_numbers: optional<list<PhoneNumberRequest>>
+      email_addresses: optional<list<EmailAddressRequest>>
+      urls: optional<list<UrlRequest>>
+      tags:
+        type: optional<list<optional<string>>>
+        docs: Array of `Tag` names as strings.
+      applications:
+        type: optional<list<optional<string>>>
+        docs: Array of `Application` object IDs.
+      attachments:
+        type: optional<list<optional<string>>>
+        docs: Array of `Attachment` object IDs.
+      remote_template_id:
+        type: optional<string>
+        validation:
+          minLength: 1
+        access: write-only
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  PhoneNumberPhoneNumberType:
+    discriminated: false
+    docs: |-
+      The type of phone number.
+
+      * `HOME` - HOME
+      * `WORK` - WORK
+      * `MOBILE` - MOBILE
+      * `SKYPE` - SKYPE
+      * `OTHER` - OTHER
+    union:
+      - PhoneNumberTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  PhoneNumber:
+    docs: |-
+      # The PhoneNumber Object
+      ### Description
+      The `PhoneNumber` object is used to represent a candidate's phone number.
+      ### Usage Example
+      Fetch from the `GET Candidate` endpoint and view their phone numbers.
+    properties:
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      value:
+        type: optional<string>
+        docs: The phone number.
+      phone_number_type:
+        type: optional<PhoneNumberPhoneNumberType>
+        docs: |-
+          The type of phone number.
+
+          * `HOME` - HOME
+          * `WORK` - WORK
+          * `MOBILE` - MOBILE
+          * `SKYPE` - SKYPE
+          * `OTHER` - OTHER
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  PhoneNumberRequestPhoneNumberType:
+    discriminated: false
+    docs: |-
+      The type of phone number.
+
+      * `HOME` - HOME
+      * `WORK` - WORK
+      * `MOBILE` - MOBILE
+      * `SKYPE` - SKYPE
+      * `OTHER` - OTHER
+    union:
+      - PhoneNumberTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  PhoneNumberRequest:
+    docs: |-
+      # The PhoneNumber Object
+      ### Description
+      The `PhoneNumber` object is used to represent a candidate's phone number.
+      ### Usage Example
+      Fetch from the `GET Candidate` endpoint and view their phone numbers.
+    properties:
+      value:
+        type: optional<string>
+        docs: The phone number.
+      phone_number_type:
+        type: optional<PhoneNumberRequestPhoneNumberType>
+        docs: |-
+          The type of phone number.
+
+          * `HOME` - HOME
+          * `WORK` - WORK
+          * `MOBILE` - MOBILE
+          * `SKYPE` - SKYPE
+          * `OTHER` - OTHER
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  PhoneNumberTypeEnum:
+    enum:
+      - HOME
+      - WORK
+      - MOBILE
+      - SKYPE
+      - OTHER
+    docs: |-
+      * `HOME` - HOME
+      * `WORK` - WORK
+      * `MOBILE` - MOBILE
+      * `SKYPE` - SKYPE
+      * `OTHER` - OTHER
+    source:
+      openapi: openapi/openapi.yml
+  RaceEnum:
+    enum:
+      - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+      - ASIAN
+      - BLACK_OR_AFRICAN_AMERICAN
+      - HISPANIC_OR_LATINO
+      - WHITE
+      - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
+      - TWO_OR_MORE_RACES
+      - DECLINE_TO_SELF_IDENTIFY
+    docs: >-
+      * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+
+      * `ASIAN` - ASIAN
+
+      * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN
+
+      * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO
+
+      * `WHITE` - WHITE
+
+      * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` -
+      NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
+
+      * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES
+
+      * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY
+    source:
+      openapi: openapi/openapi.yml
+  ReasonEnum:
+    enum:
+      - GENERAL_CUSTOMER_REQUEST
+      - GDPR
+      - OTHER
+    docs: |-
+      * `GENERAL_CUSTOMER_REQUEST` - GENERAL_CUSTOMER_REQUEST
+      * `GDPR` - GDPR
+      * `OTHER` - OTHER
+    source:
+      openapi: openapi/openapi.yml
+  RejectReason:
+    docs: >-
+      # The RejectReason Object
+
+      ### Description
+
+      The `RejectReason` object is used to represent a reason for rejecting an
+      application. These can typically be configured within an ATS system.
+
+      ### Usage Example
+
+      Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show
+      all reasons.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      name:
+        type: optional<string>
+        docs: The rejection reason’s name.
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  RemoteData:
+    docs: >-
+      # The RemoteData Object
+
+      ### Description
+
+      The `RemoteData` object is used to represent the full data pulled from the
+      third-party API for an object.
+
+
+      ### Usage Example
+
+      TODO
+    properties:
+      path:
+        type: string
+        docs: The third-party API path that is being called.
+      data:
+        type: optional<unknown>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  RemoteEndpointInfo:
+    properties:
+      method: string
+      url_path: string
+      field_traversal_path: list<unknown>
+    source:
+      openapi: openapi/openapi.yml
+  RemoteFieldApiCoverage:
+    discriminated: false
+    union:
+      - integer
+      - double
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  RemoteFieldApi:
+    properties:
+      schema: map<string, unknown>
+      remote_key_name: string
+      remote_endpoint_info: RemoteEndpointInfo
+      example_values: optional<list<unknown>>
+      advanced_metadata: optional<AdvancedMetadata>
+      coverage:
+        type: optional<RemoteFieldApiCoverage>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  RemoteFieldApiResponse:
+    properties:
+      Activity: optional<list<RemoteFieldApi>>
+      Application: optional<list<RemoteFieldApi>>
+      Attachment: optional<list<RemoteFieldApi>>
+      Candidate: optional<list<RemoteFieldApi>>
+      Department: optional<list<RemoteFieldApi>>
+      EEOC: optional<list<RemoteFieldApi>>
+      ScheduledInterview: optional<list<RemoteFieldApi>>
+      Job: optional<list<RemoteFieldApi>>
+      JobPosting: optional<list<RemoteFieldApi>>
+      JobInterviewStage: optional<list<RemoteFieldApi>>
+      Offer: optional<list<RemoteFieldApi>>
+      Office: optional<list<RemoteFieldApi>>
+      RejectReason: optional<list<RemoteFieldApi>>
+      Scorecard: optional<list<RemoteFieldApi>>
+      Tag: optional<list<RemoteFieldApi>>
+      RemoteUser: optional<list<RemoteFieldApi>>
+    source:
+      openapi: openapi/openapi.yml
+  RemoteKey:
+    docs: >-
+      # The RemoteKey Object
+
+      ### Description
+
+      The `RemoteKey` object is used to represent a request for a new remote
+      key.
+
+
+      ### Usage Example
+
+      Post a `GenerateRemoteKey` to receive a new `RemoteKey`.
+    properties:
+      name: string
+      key: string
+    source:
+      openapi: openapi/openapi.yml
+  RemoteResponseResponseType:
+    discriminated: false
+    union:
+      - ResponseTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  RemoteResponse:
+    docs: >-
+      # The RemoteResponse Object
+
+      ### Description
+
+      The `RemoteResponse` object is used to represent information returned from
+      a third-party endpoint.
+
+
+      ### Usage Example
+
+      View the `RemoteResponse` returned from your `DataPassthrough`.
+    properties:
+      method: string
+      path: string
+      status: integer
+      response: unknown
+      response_headers: optional<map<string, unknown>>
+      response_type: optional<RemoteResponseResponseType>
+      headers: optional<map<string, unknown>>
+    source:
+      openapi: openapi/openapi.yml
+  RemoteUserAccessRole:
+    discriminated: false
+    docs: |-
+      The user's role.
+
+      * `SUPER_ADMIN` - SUPER_ADMIN
+      * `ADMIN` - ADMIN
+      * `TEAM_MEMBER` - TEAM_MEMBER
+      * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER
+      * `INTERVIEWER` - INTERVIEWER
+    union:
+      - AccessRoleEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  RemoteUser:
+    docs: >-
+      # The RemoteUser Object
+
+      ### Description
+
+      The `RemoteUser` object is used to represent a user with a login to the
+      ATS system.
+
+      ### Usage Example
+
+      Fetch from the `LIST RemoteUsers` endpoint to show all users for a third
+      party.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      first_name:
+        type: optional<string>
+        docs: The user's first name.
+      last_name:
+        type: optional<string>
+        docs: The user's last name.
+      email:
+        type: optional<string>
+        docs: The user's email.
+        validation:
+          format: email
+          maxLength: 254
+      disabled:
+        type: optional<boolean>
+        docs: Whether the user's account had been disabled.
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's user was created.
+      access_role:
+        type: optional<RemoteUserAccessRole>
+        docs: |-
+          The user's role.
+
+          * `SUPER_ADMIN` - SUPER_ADMIN
+          * `ADMIN` - ADMIN
+          * `TEAM_MEMBER` - TEAM_MEMBER
+          * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER
+          * `INTERVIEWER` - INTERVIEWER
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  RequestFormatEnum:
+    enum:
+      - JSON
+      - XML
+      - MULTIPART
+    docs: |-
+      * `JSON` - JSON
+      * `XML` - XML
+      * `MULTIPART` - MULTIPART
+    source:
+      openapi: openapi/openapi.yml
+  ResponseTypeEnum:
+    enum:
+      - JSON
+      - BASE64_GZIP
+    docs: |-
+      * `JSON` - JSON
+      * `BASE64_GZIP` - BASE64_GZIP
+    source:
+      openapi: openapi/openapi.yml
+  RoleEnum:
+    enum:
+      - ADMIN
+      - DEVELOPER
+      - MEMBER
+      - API
+      - SYSTEM
+      - MERGE_TEAM
+    docs: |-
+      * `ADMIN` - ADMIN
+      * `DEVELOPER` - DEVELOPER
+      * `MEMBER` - MEMBER
+      * `API` - API
+      * `SYSTEM` - SYSTEM
+      * `MERGE_TEAM` - MERGE_TEAM
+    source:
+      openapi: openapi/openapi.yml
+  ScheduledInterviewApplication:
+    discriminated: false
+    docs: The application being interviewed.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Application
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterviewJobInterviewStage:
+    discriminated: false
+    docs: The stage of the interview.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - JobInterviewStage
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterviewOrganizer:
+    discriminated: false
+    docs: The user organizing the interview.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterviewInterviewersItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterviewStatus:
+    discriminated: false
+    docs: |-
+      The interview's status.
+
+      * `SCHEDULED` - SCHEDULED
+      * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
+      * `COMPLETE` - COMPLETE
+    union:
+      - ScheduledInterviewStatusEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterview:
+    docs: >-
+      # The ScheduledInterview Object
+
+      ### Description
+
+      The `ScheduledInterview` object is used to represent a scheduled interview
+      for a given candidate’s application to a job. An `Application` can have
+      multiple `ScheduledInterview`s depending on the particular hiring process.
+
+      ### Usage Example
+
+      Fetch from the `LIST ScheduledInterviews` endpoint and filter by
+      `interviewers` to show all office locations.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      application:
+        type: optional<ScheduledInterviewApplication>
+        docs: The application being interviewed.
+      job_interview_stage:
+        type: optional<ScheduledInterviewJobInterviewStage>
+        docs: The stage of the interview.
+      organizer:
+        type: optional<ScheduledInterviewOrganizer>
+        docs: The user organizing the interview.
+      interviewers:
+        type: optional<list<optional<ScheduledInterviewInterviewersItem>>>
+        docs: Array of `RemoteUser` IDs.
+      location:
+        type: optional<string>
+        docs: The interview's location.
+      start_at:
+        type: optional<datetime>
+        docs: When the interview was started.
+      end_at:
+        type: optional<datetime>
+        docs: When the interview was ended.
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's interview was created.
+      remote_updated_at:
+        type: optional<datetime>
+        docs: When the third party's interview was updated.
+      status:
+        type: optional<ScheduledInterviewStatus>
+        docs: |-
+          The interview's status.
+
+          * `SCHEDULED` - SCHEDULED
+          * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
+          * `COMPLETE` - COMPLETE
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  ScheduledInterviewRequestApplication:
+    discriminated: false
+    docs: The application being interviewed.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Application
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterviewRequestJobInterviewStage:
+    discriminated: false
+    docs: The stage of the interview.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - JobInterviewStage
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterviewRequestOrganizer:
+    discriminated: false
+    docs: The user organizing the interview.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterviewRequestInterviewersItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterviewRequestStatus:
+    discriminated: false
+    docs: |-
+      The interview's status.
+
+      * `SCHEDULED` - SCHEDULED
+      * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
+      * `COMPLETE` - COMPLETE
+    union:
+      - ScheduledInterviewStatusEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScheduledInterviewRequest:
+    docs: >-
+      # The ScheduledInterview Object
+
+      ### Description
+
+      The `ScheduledInterview` object is used to represent a scheduled interview
+      for a given candidate’s application to a job. An `Application` can have
+      multiple `ScheduledInterview`s depending on the particular hiring process.
+
+      ### Usage Example
+
+      Fetch from the `LIST ScheduledInterviews` endpoint and filter by
+      `interviewers` to show all office locations.
+    properties:
+      application:
+        type: optional<ScheduledInterviewRequestApplication>
+        docs: The application being interviewed.
+      job_interview_stage:
+        type: optional<ScheduledInterviewRequestJobInterviewStage>
+        docs: The stage of the interview.
+      organizer:
+        type: optional<ScheduledInterviewRequestOrganizer>
+        docs: The user organizing the interview.
+      interviewers:
+        type: optional<list<optional<ScheduledInterviewRequestInterviewersItem>>>
+        docs: Array of `RemoteUser` IDs.
+      location:
+        type: optional<string>
+        docs: The interview's location.
+      start_at:
+        type: optional<datetime>
+        docs: When the interview was started.
+      end_at:
+        type: optional<datetime>
+        docs: When the interview was ended.
+      status:
+        type: optional<ScheduledInterviewRequestStatus>
+        docs: |-
+          The interview's status.
+
+          * `SCHEDULED` - SCHEDULED
+          * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
+          * `COMPLETE` - COMPLETE
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  ScheduledInterviewResponse:
+    properties:
+      model: ScheduledInterview
+      warnings: list<WarningValidationProblem>
+      errors: list<ErrorValidationProblem>
+      logs: optional<list<DebugModeLog>>
+    source:
+      openapi: openapi/openapi.yml
+  ScheduledInterviewStatusEnum:
+    enum:
+      - SCHEDULED
+      - AWAITING_FEEDBACK
+      - COMPLETE
+    docs: |-
+      * `SCHEDULED` - SCHEDULED
+      * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK
+      * `COMPLETE` - COMPLETE
+    source:
+      openapi: openapi/openapi.yml
+  ScorecardApplication:
+    discriminated: false
+    docs: The application being scored.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Application
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScorecardInterview:
+    discriminated: false
+    docs: The interview being scored.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - ScheduledInterview
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScorecardInterviewer:
+    discriminated: false
+    docs: The interviewer doing the scoring.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - RemoteUser
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScorecardOverallRecommendation:
+    discriminated: false
+    docs: |-
+      The inteviewer's recommendation.
+
+      * `DEFINITELY_NO` - DEFINITELY_NO
+      * `NO` - NO
+      * `YES` - YES
+      * `STRONG_YES` - STRONG_YES
+      * `NO_DECISION` - NO_DECISION
+    union:
+      - OverallRecommendationEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Scorecard:
+    docs: >-
+      # The Scorecard Object
+
+      ### Description
+
+      The `Scorecard` object is used to represent an interviewer's candidate
+      recommendation based on a particular interview.
+
+      ### Usage Example
+
+      Fetch from the `LIST Scorecards` endpoint and filter by `application` to
+      show all scorecard for an applicant.
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      application:
+        type: optional<ScorecardApplication>
+        docs: The application being scored.
+      interview:
+        type: optional<ScorecardInterview>
+        docs: The interview being scored.
+      interviewer:
+        type: optional<ScorecardInterviewer>
+        docs: The interviewer doing the scoring.
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's scorecard was created.
+      submitted_at:
+        type: optional<datetime>
+        docs: When the scorecard was submitted.
+      overall_recommendation:
+        type: optional<ScorecardOverallRecommendation>
+        docs: |-
+          The inteviewer's recommendation.
+
+          * `DEFINITELY_NO` - DEFINITELY_NO
+          * `NO` - NO
+          * `YES` - YES
+          * `STRONG_YES` - STRONG_YES
+          * `NO_DECISION` - NO_DECISION
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data:
+        type: optional<list<RemoteData>>
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  ScreeningQuestionJob:
+    discriminated: false
+    docs: The job associated with the screening question.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Job
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScreeningQuestionType:
+    discriminated: false
+    docs: |-
+      The data type for the screening question.
+
+      * `DATE` - DATE
+      * `FILE` - FILE
+      * `SINGLE_SELECT` - SINGLE_SELECT
+      * `MULTI_SELECT` - MULTI_SELECT
+      * `SINGLE_LINE_TEXT` - SINGLE_LINE_TEXT
+      * `MULTI_LINE_TEXT` - MULTI_LINE_TEXT
+      * `NUMERIC` - NUMERIC
+      * `BOOLEAN` - BOOLEAN
+    union:
+      - ScreeningQuestionTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScreeningQuestion:
+    docs: >-
+      # The ScreeningQuestion Object
+
+      ### Description
+
+      The `ScreeningQuestion` object is used to represent questions asked to
+      screen candidates for a job.
+
+
+      ### Usage Example
+
+      TODO
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      job:
+        type: optional<ScreeningQuestionJob>
+        docs: The job associated with the screening question.
+      description:
+        type: optional<string>
+        docs: The description of the screening question
+        validation:
+          maxLength: 500
+      title:
+        type: optional<string>
+        docs: The title of the screening question
+        validation:
+          maxLength: 2500
+      type:
+        type: optional<ScreeningQuestionType>
+        docs: |-
+          The data type for the screening question.
+
+          * `DATE` - DATE
+          * `FILE` - FILE
+          * `SINGLE_SELECT` - SINGLE_SELECT
+          * `MULTI_SELECT` - MULTI_SELECT
+          * `SINGLE_LINE_TEXT` - SINGLE_LINE_TEXT
+          * `MULTI_LINE_TEXT` - MULTI_LINE_TEXT
+          * `NUMERIC` - NUMERIC
+          * `BOOLEAN` - BOOLEAN
+      required:
+        type: optional<boolean>
+        docs: Whether or not the screening question is required.
+      options: optional<list<unknown>>
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+    source:
+      openapi: openapi/openapi.yml
+  ScreeningQuestionAnswerQuestion:
+    discriminated: false
+    docs: >-
+      The screening question associated with the candidate’s answer. To
+      determine the data type of the answer, you can expand on the screening
+      question by adding `screening_question_answers.question` to the `expand`
+      query parameter.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - ScreeningQuestion
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScreeningQuestionAnswer:
+    docs: >-
+      # The ScreeningQuestionAnswer Object
+
+      ### Description
+
+      The `ScreeningQuestionAnswer` object is used to represent candidate
+      responses to a screening question, for a specific application.
+
+
+      ### Usage Example
+
+      TODO
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      question:
+        type: optional<ScreeningQuestionAnswerQuestion>
+        docs: >-
+          The screening question associated with the candidate’s answer. To
+          determine the data type of the answer, you can expand on the screening
+          question by adding `screening_question_answers.question` to the
+          `expand` query parameter.
+      answer:
+        type: optional<string>
+        docs: The candidate’s response to the screening question.
+        validation:
+          maxLength: 10000
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  ScreeningQuestionAnswerRequestQuestion:
+    discriminated: false
+    docs: >-
+      The screening question associated with the candidate’s answer. To
+      determine the data type of the answer, you can expand on the screening
+      question by adding `screening_question_answers.question` to the `expand`
+      query parameter.
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - ScreeningQuestion
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  ScreeningQuestionAnswerRequest:
+    docs: >-
+      # The ScreeningQuestionAnswer Object
+
+      ### Description
+
+      The `ScreeningQuestionAnswer` object is used to represent candidate
+      responses to a screening question, for a specific application.
+
+
+      ### Usage Example
+
+      TODO
+    properties:
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      question:
+        type: optional<ScreeningQuestionAnswerRequestQuestion>
+        docs: >-
+          The screening question associated with the candidate’s answer. To
+          determine the data type of the answer, you can expand on the screening
+          question by adding `screening_question_answers.question` to the
+          `expand` query parameter.
+      answer:
+        type: optional<string>
+        docs: The candidate’s response to the screening question.
+        validation:
+          maxLength: 10000
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  ScreeningQuestionOption:
+    docs: >-
+      # The ScreeningQuestionOption Object
+
+      ### Description
+
+      The `ScreeningQuestionOption` object is used to represent options for a
+      `ScreeningQuestion` object
+
+
+      ### Usage Example
+
+      TODO
+    properties:
+      id:
+        type: optional<string>
+        validation:
+          format: uuid
+        access: read-only
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      label:
+        type: optional<string>
+        docs: Available response options
+        validation:
+          maxLength: 300
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+    source:
+      openapi: openapi/openapi.yml
+  ScreeningQuestionTypeEnum:
+    enum:
+      - DATE
+      - FILE
+      - SINGLE_SELECT
+      - MULTI_SELECT
+      - SINGLE_LINE_TEXT
+      - MULTI_LINE_TEXT
+      - NUMERIC
+      - BOOLEAN
+    docs: |-
+      * `DATE` - DATE
+      * `FILE` - FILE
+      * `SINGLE_SELECT` - SINGLE_SELECT
+      * `MULTI_SELECT` - MULTI_SELECT
+      * `SINGLE_LINE_TEXT` - SINGLE_LINE_TEXT
+      * `MULTI_LINE_TEXT` - MULTI_LINE_TEXT
+      * `NUMERIC` - NUMERIC
+      * `BOOLEAN` - BOOLEAN
+    source:
+      openapi: openapi/openapi.yml
+  SelectiveSyncConfigurationsUsageEnum:
+    enum:
+      - IN_NEXT_SYNC
+      - IN_LAST_SYNC
+    docs: |-
+      * `IN_NEXT_SYNC` - IN_NEXT_SYNC
+      * `IN_LAST_SYNC` - IN_LAST_SYNC
+    source:
+      openapi: openapi/openapi.yml
+  StatusFd5Enum:
+    enum:
+      - SYNCING
+      - DONE
+      - FAILED
+      - DISABLED
+      - PAUSED
+      - PARTIALLY_SYNCED
+    docs: |-
+      * `SYNCING` - SYNCING
+      * `DONE` - DONE
+      * `FAILED` - FAILED
+      * `DISABLED` - DISABLED
+      * `PAUSED` - PAUSED
+      * `PARTIALLY_SYNCED` - PARTIALLY_SYNCED
+    source:
+      openapi: openapi/openapi.yml
+  SyncStatusLastSyncResult:
+    discriminated: false
+    union:
+      - LastSyncResultEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  SyncStatusStatus:
+    discriminated: false
+    union:
+      - StatusFd5Enum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  SyncStatus:
+    docs: >-
+      # The SyncStatus Object
+
+      ### Description
+
+      The `SyncStatus` object is used to represent the syncing state of an
+      account
+
+
+      ### Usage Example
+
+      View the `SyncStatus` for an account to see how recently its models were
+      synced.
+    properties:
+      model_name: string
+      model_id: string
+      last_sync_start: optional<datetime>
+      next_sync_start: optional<datetime>
+      last_sync_result: optional<SyncStatusLastSyncResult>
+      last_sync_finished: optional<datetime>
+      status: SyncStatusStatus
+      is_initial_sync: boolean
+      selective_sync_configurations_usage: optional<SelectiveSyncConfigurationsUsageEnum>
+    source:
+      openapi: openapi/openapi.yml
+  Tag:
+    docs: >-
+      # The Tag Object
+
+      ### Description
+
+      The `Tag` object is used to represent a tag for a candidate.
+
+      ### Usage Example
+
+      Fetch from the `LIST Tags` endpoint and view the tags used within a
+      company.
+    properties:
+      remote_id:
+        type: optional<string>
+        docs: The third-party API ID of the matching object.
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      name:
+        type: optional<string>
+        docs: The tag's name.
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+      field_mappings:
+        type: optional<map<string, unknown>>
+        access: read-only
+      remote_data: optional<list<optional<map<string, unknown>>>>
+    source:
+      openapi: openapi/openapi.yml
+  UrlUrlType:
+    discriminated: false
+    docs: |-
+      The type of site.
+
+      * `PERSONAL` - PERSONAL
+      * `COMPANY` - COMPANY
+      * `PORTFOLIO` - PORTFOLIO
+      * `BLOG` - BLOG
+      * `SOCIAL_MEDIA` - SOCIAL_MEDIA
+      * `OTHER` - OTHER
+      * `JOB_POSTING` - JOB_POSTING
+    union:
+      - UrlTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  Url:
+    docs: >-
+      # The Url Object
+
+      ### Description
+
+      The `Url` object is used to represent hyperlinks associated with the
+      parent model.
+
+      ### Usage Example
+
+      Fetch from the `GET Candidate` endpoint and view their website urls.
+    properties:
+      created_at:
+        type: optional<datetime>
+        docs: The datetime that this object was created by Merge.
+        access: read-only
+      modified_at:
+        type: optional<datetime>
+        docs: The datetime that this object was modified by Merge.
+        access: read-only
+      value:
+        type: optional<string>
+        docs: The site's url.
+        validation:
+          format: uri
+          maxLength: 2000
+      url_type:
+        type: optional<UrlUrlType>
+        docs: |-
+          The type of site.
+
+          * `PERSONAL` - PERSONAL
+          * `COMPANY` - COMPANY
+          * `PORTFOLIO` - PORTFOLIO
+          * `BLOG` - BLOG
+          * `SOCIAL_MEDIA` - SOCIAL_MEDIA
+          * `OTHER` - OTHER
+          * `JOB_POSTING` - JOB_POSTING
+      remote_was_deleted:
+        type: optional<boolean>
+        docs: >-
+          Indicates whether or not this object has been deleted in the third
+          party platform. Full coverage deletion detection is a premium add-on.
+          Native deletion detection is offered for free with limited coverage.
+          [Learn
+          more](https://docs.merge.dev/integrations/hris/supported-features/).
+        access: read-only
+    source:
+      openapi: openapi/openapi.yml
+  UrlRequestUrlType:
+    discriminated: false
+    docs: |-
+      The type of site.
+
+      * `PERSONAL` - PERSONAL
+      * `COMPANY` - COMPANY
+      * `PORTFOLIO` - PORTFOLIO
+      * `BLOG` - BLOG
+      * `SOCIAL_MEDIA` - SOCIAL_MEDIA
+      * `OTHER` - OTHER
+      * `JOB_POSTING` - JOB_POSTING
+    union:
+      - UrlTypeEnum
+      - string
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  UrlRequest:
+    docs: >-
+      # The Url Object
+
+      ### Description
+
+      The `Url` object is used to represent hyperlinks associated with the
+      parent model.
+
+      ### Usage Example
+
+      Fetch from the `GET Candidate` endpoint and view their website urls.
+    properties:
+      value:
+        type: optional<string>
+        docs: The site's url.
+        validation:
+          format: uri
+          maxLength: 2000
+      url_type:
+        type: optional<UrlRequestUrlType>
+        docs: |-
+          The type of site.
+
+          * `PERSONAL` - PERSONAL
+          * `COMPANY` - COMPANY
+          * `PORTFOLIO` - PORTFOLIO
+          * `BLOG` - BLOG
+          * `SOCIAL_MEDIA` - SOCIAL_MEDIA
+          * `OTHER` - OTHER
+          * `JOB_POSTING` - JOB_POSTING
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
+  UrlTypeEnum:
+    enum:
+      - PERSONAL
+      - COMPANY
+      - PORTFOLIO
+      - BLOG
+      - SOCIAL_MEDIA
+      - OTHER
+      - JOB_POSTING
+    docs: |-
+      * `PERSONAL` - PERSONAL
+      * `COMPANY` - COMPANY
+      * `PORTFOLIO` - PORTFOLIO
+      * `BLOG` - BLOG
+      * `SOCIAL_MEDIA` - SOCIAL_MEDIA
+      * `OTHER` - OTHER
+      * `JOB_POSTING` - JOB_POSTING
+    source:
+      openapi: openapi/openapi.yml
+  ValidationProblemSource:
+    properties:
+      pointer: string
+    source:
+      openapi: openapi/openapi.yml
+  VeteranStatusEnum:
+    enum:
+      - I_AM_NOT_A_PROTECTED_VETERAN
+      - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
+      - I_DONT_WISH_TO_ANSWER
+    docs: >-
+      * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN
+
+      *
+      `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN`
+      - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
+
+      * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER
+    source:
+      openapi: openapi/openapi.yml
+  VisibilityEnum:
+    enum:
+      - ADMIN_ONLY
+      - PUBLIC
+      - PRIVATE
+    docs: |-
+      * `ADMIN_ONLY` - ADMIN_ONLY
+      * `PUBLIC` - PUBLIC
+      * `PRIVATE` - PRIVATE
+    source:
+      openapi: openapi/openapi.yml
+  WarningValidationProblem:
+    properties:
+      source: optional<ValidationProblemSource>
+      title: string
+      detail: string
+      problem_type: string
+    source:
+      openapi: openapi/openapi.yml
+  WebhookReceiver:
+    properties:
+      event: string
+      is_active: boolean
+      key: optional<string>
+    source:
+      openapi: openapi/openapi.yml

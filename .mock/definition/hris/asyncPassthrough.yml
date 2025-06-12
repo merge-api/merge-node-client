@@ -1,0 +1,70 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    create:
+      path: /hris/v1/async-passthrough
+      method: POST
+      auth: true
+      docs: >-
+        Asynchronously pull data from an endpoint not currently supported by
+        Merge.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        body: root.DataPassthroughRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.AsyncPassthroughReciept
+        status-code: 200
+      examples:
+        - headers: {}
+          request:
+            method: GET
+            path: /scooters
+          response:
+            body:
+              async_passthrough_receipt_id: fd29020f-2695-445e-922e-dcd5e81903fd
+    retrieve:
+      path: /hris/v1/async-passthrough/{async_passthrough_receipt_id}
+      method: GET
+      auth: true
+      docs: Retrieves data from earlier async-passthrough POST request
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        async_passthrough_receipt_id: string
+      response:
+        docs: ''
+        type: AsyncPassthroughRetrieveResponse
+        status-code: 200
+      examples:
+        - path-parameters:
+            async_passthrough_receipt_id: async_passthrough_receipt_id
+          headers: {}
+          response:
+            body:
+              method: GET
+              path: /scooters
+              status: 200
+              response:
+                key: value
+              response_headers:
+                X-Page-Token: value
+              response_type: JSON
+              headers:
+                EXTRA-HEADER: value
+                Authorization: <redacted>
+  source:
+    openapi: openapi/openapi.yml
+types:
+  AsyncPassthroughRetrieveResponse:
+    discriminated: false
+    union:
+      - root.RemoteResponse
+      - string
+    source:
+      openapi: openapi/openapi.yml

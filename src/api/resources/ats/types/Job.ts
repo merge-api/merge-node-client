@@ -42,7 +42,7 @@ export interface Job {
      * * `REQUISITION` - REQUISITION
      * * `PROFILE` - PROFILE
      */
-    type?: Merge.ats.JobTypeEnum;
+    type?: Merge.ats.JobType;
     /** IDs of `JobPosting` objects that serve as job postings for this `Job`. */
     jobPostings?: (string | undefined)[];
     jobPostingUrls?: Merge.ats.Url[];
