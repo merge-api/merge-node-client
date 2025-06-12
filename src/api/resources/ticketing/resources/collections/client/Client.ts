@@ -5,6 +5,7 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
+import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
@@ -17,6 +18,8 @@ export declare namespace Collections {
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
+        /** Additional headers to include in requests. */
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -30,12 +33,16 @@ export declare namespace Collections {
         /** Override the X-Account-Token header */
         accountToken?: string | undefined;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string>;
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
     }
 }
 
 export class Collections {
-    constructor(protected readonly _options: Collections.Options) {}
+    protected readonly _options: Collections.Options;
+
+    constructor(_options: Collections.Options) {
+        this._options = _options;
+    }
 
     /**
      * Returns a list of `Collection` objects.
@@ -143,23 +150,15 @@ export class Collections {
                 "ticketing/v1/collections",
             ),
             method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             queryParameters: _queryParams,
-            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -181,6 +180,7 @@ export class Collections {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -189,12 +189,14 @@ export class Collections {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ticketing/v1/collections.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -258,23 +260,15 @@ export class Collections {
                 `ticketing/v1/collections/${encodeURIComponent(collectionId)}/viewers`,
             ),
             method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             queryParameters: _queryParams,
-            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -296,6 +290,7 @@ export class Collections {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -304,6 +299,7 @@ export class Collections {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
@@ -312,6 +308,7 @@ export class Collections {
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -369,23 +366,15 @@ export class Collections {
                 `ticketing/v1/collections/${encodeURIComponent(id)}`,
             ),
             method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             queryParameters: _queryParams,
-            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -407,6 +396,7 @@ export class Collections {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -415,12 +405,14 @@ export class Collections {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ticketing/v1/collections/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

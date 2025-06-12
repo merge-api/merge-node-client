@@ -62,6 +62,10 @@ export interface FilesListRequest {
      */
     name?: string;
     /**
+     * Overrides the default ordering for this endpoint. Possible values include: created_at, -created_at, modified_at, -modified_at.
+     */
+    orderBy?: Merge.filestorage.FilesListRequestOrderBy;
+    /**
      * Number of results to return per page.
      */
     pageSize?: number;

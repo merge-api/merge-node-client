@@ -1,0 +1,146 @@
+types:
+  ProjectsListRequestExpand:
+    enum:
+      - company
+      - value: company,contact
+        name: CompanyContact
+      - contact
+    source:
+      openapi: openapi/openapi.yml
+  ProjectsRetrieveRequestExpand:
+    enum:
+      - company
+      - value: company,contact
+        name: CompanyContact
+      - contact
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /accounting/v1/projects
+      method: GET
+      auth: true
+      docs: Returns a list of `Project` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: ProjectsListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<ProjectsListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedProjectList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '088899'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  name: Permissions Mapping
+                  is_active: true
+                  company: company
+                  contact: contact
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /actions
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /accounting/v1/projects/{id}
+      method: GET
+      auth: true
+      docs: Returns a `Project` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: ProjectsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<ProjectsRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.Project
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+              remote_id: '088899'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              name: Permissions Mapping
+              is_active: true
+              company: company
+              contact: contact
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /actions
+                  data:
+                    - Varies by platform
+  source:
+    openapi: openapi/openapi.yml

@@ -1,0 +1,20 @@
+name: api
+error-discrimination:
+  strategy: status-code
+display-name: Merge
+default-environment: Production
+environments:
+  Production: https://api.merge.dev/api
+  Sandbox: https://api-sandbox.merge.dev/api
+  ProductionEu: https://api-eu.merge.dev/api
+auth: BearerAuthScheme
+auth-schemes:
+  BearerAuthScheme:
+    scheme: bearer
+    token:
+      name: api_key
+headers:
+  X-Account-Token:
+    type: optional<string>
+    docs: Token identifying the end user.
+    name: accountToken

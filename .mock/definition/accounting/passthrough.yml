@@ -1,0 +1,40 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    create:
+      path: /accounting/v1/passthrough
+      method: POST
+      auth: true
+      docs: Pull data from an endpoint not currently supported by Merge.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        body: root.DataPassthroughRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.RemoteResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          request:
+            method: GET
+            path: /scooters
+          response:
+            body:
+              method: GET
+              path: /scooters
+              status: 200
+              response:
+                key: value
+              response_headers:
+                X-Page-Token: value
+              response_type: JSON
+              headers:
+                EXTRA-HEADER: value
+                Authorization: <redacted>
+  source:
+    openapi: openapi/openapi.yml

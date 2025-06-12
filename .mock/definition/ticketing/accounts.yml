@@ -1,0 +1,142 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /ticketing/v1/accounts
+      method: GET
+      auth: true
+      docs: Returns a list of `Account` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: AccountsListRequest
+        query-parameters:
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+      response:
+        docs: ''
+        type: root.PaginatedAccountList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 17a54124-287f-494d-965e-3c5b330c9a68
+                  remote_id: '19202938'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  name: Waystar Royco
+                  domains:
+                    - waystar-royco.com
+                    - royco.com
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /actions
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /ticketing/v1/accounts/{id}
+      method: GET
+      auth: true
+      docs: Returns an `Account` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: AccountsRetrieveRequest
+        query-parameters:
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.Account
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: 17a54124-287f-494d-965e-3c5b330c9a68
+              remote_id: '19202938'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              name: Waystar Royco
+              domains:
+                - waystar-royco.com
+                - royco.com
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /actions
+                  data:
+                    - Varies by platform
+  source:
+    openapi: openapi/openapi.yml

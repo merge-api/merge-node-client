@@ -14,7 +14,7 @@ import * as Merge from "../../../index";
  */
 export interface AccountDetailsAndActions {
     id: string;
-    category?: Merge.hris.CategoryEnum;
+    category?: Merge.hris.AccountDetailsAndActionsCategory;
     status: Merge.hris.AccountDetailsAndActionsStatusEnum;
     statusDetail?: string;
     endUserOriginId?: string;
@@ -28,4 +28,5 @@ export interface AccountDetailsAndActions {
     integration?: Merge.hris.AccountDetailsAndActionsIntegration;
     accountType: string;
     completedAt: Date;
+    integrationSpecificFields?: Record<string, unknown>;
 }

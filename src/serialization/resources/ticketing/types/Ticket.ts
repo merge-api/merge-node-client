@@ -12,6 +12,7 @@ import { TicketStatus } from "./TicketStatus";
 import { TicketCollectionsItem } from "./TicketCollectionsItem";
 import { TicketAccount } from "./TicketAccount";
 import { TicketContact } from "./TicketContact";
+import { TicketAccessLevel } from "./TicketAccessLevel";
 import { TicketPriority } from "./TicketPriority";
 import { RemoteData } from "./RemoteData";
 import { RemoteField } from "./RemoteField";
@@ -43,6 +44,7 @@ export const Ticket: core.serialization.ObjectSchema<serializers.ticketing.Ticke
         attachments: core.serialization
             .list(core.serialization.lazy(() => serializers.ticketing.TicketAttachmentsItem).optional())
             .optional(),
+        accessLevel: core.serialization.property("access_level", TicketAccessLevel.optional()),
         tags: core.serialization.list(core.serialization.string().optional()).optional(),
         roles: core.serialization.list(core.serialization.string().optional()).optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
@@ -78,6 +80,7 @@ export declare namespace Ticket {
         contact?: TicketContact.Raw | null;
         parent_ticket?: serializers.ticketing.TicketParentTicket.Raw | null;
         attachments?: (serializers.ticketing.TicketAttachmentsItem.Raw | null | undefined)[] | null;
+        access_level?: TicketAccessLevel.Raw | null;
         tags?: (string | null | undefined)[] | null;
         roles?: (string | null | undefined)[] | null;
         remote_created_at?: string | null;

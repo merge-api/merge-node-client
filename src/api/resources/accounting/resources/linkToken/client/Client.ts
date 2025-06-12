@@ -5,6 +5,7 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
+import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
 import * as serializers from "../../../../../../serialization/index";
 import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
@@ -17,6 +18,8 @@ export declare namespace LinkToken {
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
+        /** Additional headers to include in requests. */
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -30,12 +33,16 @@ export declare namespace LinkToken {
         /** Override the X-Account-Token header */
         accountToken?: string | undefined;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string>;
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
     }
 }
 
 export class LinkToken {
-    constructor(protected readonly _options: LinkToken.Options) {}
+    protected readonly _options: LinkToken.Options;
+
+    constructor(_options: LinkToken.Options) {
+        this._options = _options;
+    }
 
     /**
      * Creates a link token to be used when linking a new end user.
@@ -70,20 +77,14 @@ export class LinkToken {
                 "accounting/v1/link-token",
             ),
             method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             contentType: "application/json",
             requestType: "json",
             body: serializers.accounting.EndUserDetailsRequest.jsonOrThrow(request, {
@@ -110,6 +111,7 @@ export class LinkToken {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -118,12 +120,14 @@ export class LinkToken {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /accounting/v1/link-token.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

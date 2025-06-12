@@ -1,0 +1,37 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    sync_status_resync_create:
+      path: /hris/v1/sync-status/resync
+      method: POST
+      auth: true
+      docs: >-
+        Force re-sync of all models. This endpoint is available for monthly,
+        quarterly, and highest sync frequency customers on the Professional or
+        Enterprise plans. Doing so will consume a sync credit for the relevant
+        linked account. Force re-syncs can also be triggered manually in the
+        Merge Dashboard and is available for all customers.
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: list<root.SyncStatus>
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              - model_name: Employee
+                model_id: hris.Employee
+                last_sync_start: '2021-03-30T19:44:18Z'
+                next_sync_start: '2021-03-30T20:44:18Z'
+                last_sync_result: SYNCING
+                last_sync_finished: '2021-03-30T19:55:18Z'
+                status: SYNCING
+                is_initial_sync: true
+                selective_sync_configurations_usage: IN_NEXT_SYNC
+  source:
+    openapi: openapi/openapi.yml

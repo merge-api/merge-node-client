@@ -1,0 +1,2151 @@
+types:
+  TicketsListRequestExpand:
+    enum:
+      - account
+      - value: account,contact
+        name: AccountContact
+      - value: account,contact,creator
+        name: AccountContactCreator
+      - value: account,contact,creator,parent_ticket
+        name: AccountContactCreatorParentTicket
+      - value: account,contact,parent_ticket
+        name: AccountContactParentTicket
+      - value: account,creator
+        name: AccountCreator
+      - value: account,creator,parent_ticket
+        name: AccountCreatorParentTicket
+      - value: account,parent_ticket
+        name: AccountParentTicket
+      - assigned_teams
+      - value: assigned_teams,account
+        name: AssignedTeamsAccount
+      - value: assigned_teams,account,contact
+        name: AssignedTeamsAccountContact
+      - value: assigned_teams,account,contact,creator
+        name: AssignedTeamsAccountContactCreator
+      - value: assigned_teams,account,contact,creator,parent_ticket
+        name: AssignedTeamsAccountContactCreatorParentTicket
+      - value: assigned_teams,account,contact,parent_ticket
+        name: AssignedTeamsAccountContactParentTicket
+      - value: assigned_teams,account,creator
+        name: AssignedTeamsAccountCreator
+      - value: assigned_teams,account,creator,parent_ticket
+        name: AssignedTeamsAccountCreatorParentTicket
+      - value: assigned_teams,account,parent_ticket
+        name: AssignedTeamsAccountParentTicket
+      - value: assigned_teams,contact
+        name: AssignedTeamsContact
+      - value: assigned_teams,contact,creator
+        name: AssignedTeamsContactCreator
+      - value: assigned_teams,contact,creator,parent_ticket
+        name: AssignedTeamsContactCreatorParentTicket
+      - value: assigned_teams,contact,parent_ticket
+        name: AssignedTeamsContactParentTicket
+      - value: assigned_teams,creator
+        name: AssignedTeamsCreator
+      - value: assigned_teams,creator,parent_ticket
+        name: AssignedTeamsCreatorParentTicket
+      - value: assigned_teams,parent_ticket
+        name: AssignedTeamsParentTicket
+      - assignees
+      - value: assignees,account
+        name: AssigneesAccount
+      - value: assignees,account,contact
+        name: AssigneesAccountContact
+      - value: assignees,account,contact,creator
+        name: AssigneesAccountContactCreator
+      - value: assignees,account,contact,creator,parent_ticket
+        name: AssigneesAccountContactCreatorParentTicket
+      - value: assignees,account,contact,parent_ticket
+        name: AssigneesAccountContactParentTicket
+      - value: assignees,account,creator
+        name: AssigneesAccountCreator
+      - value: assignees,account,creator,parent_ticket
+        name: AssigneesAccountCreatorParentTicket
+      - value: assignees,account,parent_ticket
+        name: AssigneesAccountParentTicket
+      - value: assignees,assigned_teams
+        name: AssigneesAssignedTeams
+      - value: assignees,assigned_teams,account
+        name: AssigneesAssignedTeamsAccount
+      - value: assignees,assigned_teams,account,contact
+        name: AssigneesAssignedTeamsAccountContact
+      - value: assignees,assigned_teams,account,contact,creator
+        name: AssigneesAssignedTeamsAccountContactCreator
+      - value: assignees,assigned_teams,account,contact,creator,parent_ticket
+        name: AssigneesAssignedTeamsAccountContactCreatorParentTicket
+      - value: assignees,assigned_teams,account,contact,parent_ticket
+        name: AssigneesAssignedTeamsAccountContactParentTicket
+      - value: assignees,assigned_teams,account,creator
+        name: AssigneesAssignedTeamsAccountCreator
+      - value: assignees,assigned_teams,account,creator,parent_ticket
+        name: AssigneesAssignedTeamsAccountCreatorParentTicket
+      - value: assignees,assigned_teams,account,parent_ticket
+        name: AssigneesAssignedTeamsAccountParentTicket
+      - value: assignees,assigned_teams,contact
+        name: AssigneesAssignedTeamsContact
+      - value: assignees,assigned_teams,contact,creator
+        name: AssigneesAssignedTeamsContactCreator
+      - value: assignees,assigned_teams,contact,creator,parent_ticket
+        name: AssigneesAssignedTeamsContactCreatorParentTicket
+      - value: assignees,assigned_teams,contact,parent_ticket
+        name: AssigneesAssignedTeamsContactParentTicket
+      - value: assignees,assigned_teams,creator
+        name: AssigneesAssignedTeamsCreator
+      - value: assignees,assigned_teams,creator,parent_ticket
+        name: AssigneesAssignedTeamsCreatorParentTicket
+      - value: assignees,assigned_teams,parent_ticket
+        name: AssigneesAssignedTeamsParentTicket
+      - value: assignees,collections
+        name: AssigneesCollections
+      - value: assignees,collections,account
+        name: AssigneesCollectionsAccount
+      - value: assignees,collections,account,contact
+        name: AssigneesCollectionsAccountContact
+      - value: assignees,collections,account,contact,creator
+        name: AssigneesCollectionsAccountContactCreator
+      - value: assignees,collections,account,contact,creator,parent_ticket
+        name: AssigneesCollectionsAccountContactCreatorParentTicket
+      - value: assignees,collections,account,contact,parent_ticket
+        name: AssigneesCollectionsAccountContactParentTicket
+      - value: assignees,collections,account,creator
+        name: AssigneesCollectionsAccountCreator
+      - value: assignees,collections,account,creator,parent_ticket
+        name: AssigneesCollectionsAccountCreatorParentTicket
+      - value: assignees,collections,account,parent_ticket
+        name: AssigneesCollectionsAccountParentTicket
+      - value: assignees,collections,assigned_teams
+        name: AssigneesCollectionsAssignedTeams
+      - value: assignees,collections,assigned_teams,account
+        name: AssigneesCollectionsAssignedTeamsAccount
+      - value: assignees,collections,assigned_teams,account,contact
+        name: AssigneesCollectionsAssignedTeamsAccountContact
+      - value: assignees,collections,assigned_teams,account,contact,creator
+        name: AssigneesCollectionsAssignedTeamsAccountContactCreator
+      - value: >-
+          assignees,collections,assigned_teams,account,contact,creator,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsAccountContactCreatorParentTicket
+      - value: assignees,collections,assigned_teams,account,contact,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsAccountContactParentTicket
+      - value: assignees,collections,assigned_teams,account,creator
+        name: AssigneesCollectionsAssignedTeamsAccountCreator
+      - value: assignees,collections,assigned_teams,account,creator,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsAccountCreatorParentTicket
+      - value: assignees,collections,assigned_teams,account,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsAccountParentTicket
+      - value: assignees,collections,assigned_teams,contact
+        name: AssigneesCollectionsAssignedTeamsContact
+      - value: assignees,collections,assigned_teams,contact,creator
+        name: AssigneesCollectionsAssignedTeamsContactCreator
+      - value: assignees,collections,assigned_teams,contact,creator,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsContactCreatorParentTicket
+      - value: assignees,collections,assigned_teams,contact,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsContactParentTicket
+      - value: assignees,collections,assigned_teams,creator
+        name: AssigneesCollectionsAssignedTeamsCreator
+      - value: assignees,collections,assigned_teams,creator,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsCreatorParentTicket
+      - value: assignees,collections,assigned_teams,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsParentTicket
+      - value: assignees,collections,contact
+        name: AssigneesCollectionsContact
+      - value: assignees,collections,contact,creator
+        name: AssigneesCollectionsContactCreator
+      - value: assignees,collections,contact,creator,parent_ticket
+        name: AssigneesCollectionsContactCreatorParentTicket
+      - value: assignees,collections,contact,parent_ticket
+        name: AssigneesCollectionsContactParentTicket
+      - value: assignees,collections,creator
+        name: AssigneesCollectionsCreator
+      - value: assignees,collections,creator,parent_ticket
+        name: AssigneesCollectionsCreatorParentTicket
+      - value: assignees,collections,parent_ticket
+        name: AssigneesCollectionsParentTicket
+      - value: assignees,contact
+        name: AssigneesContact
+      - value: assignees,contact,creator
+        name: AssigneesContactCreator
+      - value: assignees,contact,creator,parent_ticket
+        name: AssigneesContactCreatorParentTicket
+      - value: assignees,contact,parent_ticket
+        name: AssigneesContactParentTicket
+      - value: assignees,creator
+        name: AssigneesCreator
+      - value: assignees,creator,parent_ticket
+        name: AssigneesCreatorParentTicket
+      - value: assignees,parent_ticket
+        name: AssigneesParentTicket
+      - attachments
+      - value: attachments,account
+        name: AttachmentsAccount
+      - value: attachments,account,contact
+        name: AttachmentsAccountContact
+      - value: attachments,account,contact,creator
+        name: AttachmentsAccountContactCreator
+      - value: attachments,account,contact,creator,parent_ticket
+        name: AttachmentsAccountContactCreatorParentTicket
+      - value: attachments,account,contact,parent_ticket
+        name: AttachmentsAccountContactParentTicket
+      - value: attachments,account,creator
+        name: AttachmentsAccountCreator
+      - value: attachments,account,creator,parent_ticket
+        name: AttachmentsAccountCreatorParentTicket
+      - value: attachments,account,parent_ticket
+        name: AttachmentsAccountParentTicket
+      - value: attachments,assigned_teams
+        name: AttachmentsAssignedTeams
+      - value: attachments,assigned_teams,account
+        name: AttachmentsAssignedTeamsAccount
+      - value: attachments,assigned_teams,account,contact
+        name: AttachmentsAssignedTeamsAccountContact
+      - value: attachments,assigned_teams,account,contact,creator
+        name: AttachmentsAssignedTeamsAccountContactCreator
+      - value: attachments,assigned_teams,account,contact,creator,parent_ticket
+        name: AttachmentsAssignedTeamsAccountContactCreatorParentTicket
+      - value: attachments,assigned_teams,account,contact,parent_ticket
+        name: AttachmentsAssignedTeamsAccountContactParentTicket
+      - value: attachments,assigned_teams,account,creator
+        name: AttachmentsAssignedTeamsAccountCreator
+      - value: attachments,assigned_teams,account,creator,parent_ticket
+        name: AttachmentsAssignedTeamsAccountCreatorParentTicket
+      - value: attachments,assigned_teams,account,parent_ticket
+        name: AttachmentsAssignedTeamsAccountParentTicket
+      - value: attachments,assigned_teams,contact
+        name: AttachmentsAssignedTeamsContact
+      - value: attachments,assigned_teams,contact,creator
+        name: AttachmentsAssignedTeamsContactCreator
+      - value: attachments,assigned_teams,contact,creator,parent_ticket
+        name: AttachmentsAssignedTeamsContactCreatorParentTicket
+      - value: attachments,assigned_teams,contact,parent_ticket
+        name: AttachmentsAssignedTeamsContactParentTicket
+      - value: attachments,assigned_teams,creator
+        name: AttachmentsAssignedTeamsCreator
+      - value: attachments,assigned_teams,creator,parent_ticket
+        name: AttachmentsAssignedTeamsCreatorParentTicket
+      - value: attachments,assigned_teams,parent_ticket
+        name: AttachmentsAssignedTeamsParentTicket
+      - value: attachments,assignees
+        name: AttachmentsAssignees
+      - value: attachments,assignees,account
+        name: AttachmentsAssigneesAccount
+      - value: attachments,assignees,account,contact
+        name: AttachmentsAssigneesAccountContact
+      - value: attachments,assignees,account,contact,creator
+        name: AttachmentsAssigneesAccountContactCreator
+      - value: attachments,assignees,account,contact,creator,parent_ticket
+        name: AttachmentsAssigneesAccountContactCreatorParentTicket
+      - value: attachments,assignees,account,contact,parent_ticket
+        name: AttachmentsAssigneesAccountContactParentTicket
+      - value: attachments,assignees,account,creator
+        name: AttachmentsAssigneesAccountCreator
+      - value: attachments,assignees,account,creator,parent_ticket
+        name: AttachmentsAssigneesAccountCreatorParentTicket
+      - value: attachments,assignees,account,parent_ticket
+        name: AttachmentsAssigneesAccountParentTicket
+      - value: attachments,assignees,assigned_teams
+        name: AttachmentsAssigneesAssignedTeams
+      - value: attachments,assignees,assigned_teams,account
+        name: AttachmentsAssigneesAssignedTeamsAccount
+      - value: attachments,assignees,assigned_teams,account,contact
+        name: AttachmentsAssigneesAssignedTeamsAccountContact
+      - value: attachments,assignees,assigned_teams,account,contact,creator
+        name: AttachmentsAssigneesAssignedTeamsAccountContactCreator
+      - value: >-
+          attachments,assignees,assigned_teams,account,contact,creator,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsAccountContactCreatorParentTicket
+      - value: attachments,assignees,assigned_teams,account,contact,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsAccountContactParentTicket
+      - value: attachments,assignees,assigned_teams,account,creator
+        name: AttachmentsAssigneesAssignedTeamsAccountCreator
+      - value: attachments,assignees,assigned_teams,account,creator,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsAccountCreatorParentTicket
+      - value: attachments,assignees,assigned_teams,account,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsAccountParentTicket
+      - value: attachments,assignees,assigned_teams,contact
+        name: AttachmentsAssigneesAssignedTeamsContact
+      - value: attachments,assignees,assigned_teams,contact,creator
+        name: AttachmentsAssigneesAssignedTeamsContactCreator
+      - value: attachments,assignees,assigned_teams,contact,creator,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsContactCreatorParentTicket
+      - value: attachments,assignees,assigned_teams,contact,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsContactParentTicket
+      - value: attachments,assignees,assigned_teams,creator
+        name: AttachmentsAssigneesAssignedTeamsCreator
+      - value: attachments,assignees,assigned_teams,creator,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsCreatorParentTicket
+      - value: attachments,assignees,assigned_teams,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsParentTicket
+      - value: attachments,assignees,collections
+        name: AttachmentsAssigneesCollections
+      - value: attachments,assignees,collections,account
+        name: AttachmentsAssigneesCollectionsAccount
+      - value: attachments,assignees,collections,account,contact
+        name: AttachmentsAssigneesCollectionsAccountContact
+      - value: attachments,assignees,collections,account,contact,creator
+        name: AttachmentsAssigneesCollectionsAccountContactCreator
+      - value: >-
+          attachments,assignees,collections,account,contact,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAccountContactCreatorParentTicket
+      - value: attachments,assignees,collections,account,contact,parent_ticket
+        name: AttachmentsAssigneesCollectionsAccountContactParentTicket
+      - value: attachments,assignees,collections,account,creator
+        name: AttachmentsAssigneesCollectionsAccountCreator
+      - value: attachments,assignees,collections,account,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAccountCreatorParentTicket
+      - value: attachments,assignees,collections,account,parent_ticket
+        name: AttachmentsAssigneesCollectionsAccountParentTicket
+      - value: attachments,assignees,collections,assigned_teams
+        name: AttachmentsAssigneesCollectionsAssignedTeams
+      - value: attachments,assignees,collections,assigned_teams,account
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccount
+      - value: attachments,assignees,collections,assigned_teams,account,contact
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountContact
+      - value: >-
+          attachments,assignees,collections,assigned_teams,account,contact,creator
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountContactCreator
+      - value: >-
+          attachments,assignees,collections,assigned_teams,account,contact,creator,parent_ticket
+        name: >-
+          AttachmentsAssigneesCollectionsAssignedTeamsAccountContactCreatorParentTicket
+      - value: >-
+          attachments,assignees,collections,assigned_teams,account,contact,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountContactParentTicket
+      - value: attachments,assignees,collections,assigned_teams,account,creator
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountCreator
+      - value: >-
+          attachments,assignees,collections,assigned_teams,account,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountCreatorParentTicket
+      - value: attachments,assignees,collections,assigned_teams,account,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountParentTicket
+      - value: attachments,assignees,collections,assigned_teams,contact
+        name: AttachmentsAssigneesCollectionsAssignedTeamsContact
+      - value: attachments,assignees,collections,assigned_teams,contact,creator
+        name: AttachmentsAssigneesCollectionsAssignedTeamsContactCreator
+      - value: >-
+          attachments,assignees,collections,assigned_teams,contact,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsContactCreatorParentTicket
+      - value: attachments,assignees,collections,assigned_teams,contact,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsContactParentTicket
+      - value: attachments,assignees,collections,assigned_teams,creator
+        name: AttachmentsAssigneesCollectionsAssignedTeamsCreator
+      - value: attachments,assignees,collections,assigned_teams,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsCreatorParentTicket
+      - value: attachments,assignees,collections,assigned_teams,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsParentTicket
+      - value: attachments,assignees,collections,contact
+        name: AttachmentsAssigneesCollectionsContact
+      - value: attachments,assignees,collections,contact,creator
+        name: AttachmentsAssigneesCollectionsContactCreator
+      - value: attachments,assignees,collections,contact,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsContactCreatorParentTicket
+      - value: attachments,assignees,collections,contact,parent_ticket
+        name: AttachmentsAssigneesCollectionsContactParentTicket
+      - value: attachments,assignees,collections,creator
+        name: AttachmentsAssigneesCollectionsCreator
+      - value: attachments,assignees,collections,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsCreatorParentTicket
+      - value: attachments,assignees,collections,parent_ticket
+        name: AttachmentsAssigneesCollectionsParentTicket
+      - value: attachments,assignees,contact
+        name: AttachmentsAssigneesContact
+      - value: attachments,assignees,contact,creator
+        name: AttachmentsAssigneesContactCreator
+      - value: attachments,assignees,contact,creator,parent_ticket
+        name: AttachmentsAssigneesContactCreatorParentTicket
+      - value: attachments,assignees,contact,parent_ticket
+        name: AttachmentsAssigneesContactParentTicket
+      - value: attachments,assignees,creator
+        name: AttachmentsAssigneesCreator
+      - value: attachments,assignees,creator,parent_ticket
+        name: AttachmentsAssigneesCreatorParentTicket
+      - value: attachments,assignees,parent_ticket
+        name: AttachmentsAssigneesParentTicket
+      - value: attachments,collections
+        name: AttachmentsCollections
+      - value: attachments,collections,account
+        name: AttachmentsCollectionsAccount
+      - value: attachments,collections,account,contact
+        name: AttachmentsCollectionsAccountContact
+      - value: attachments,collections,account,contact,creator
+        name: AttachmentsCollectionsAccountContactCreator
+      - value: attachments,collections,account,contact,creator,parent_ticket
+        name: AttachmentsCollectionsAccountContactCreatorParentTicket
+      - value: attachments,collections,account,contact,parent_ticket
+        name: AttachmentsCollectionsAccountContactParentTicket
+      - value: attachments,collections,account,creator
+        name: AttachmentsCollectionsAccountCreator
+      - value: attachments,collections,account,creator,parent_ticket
+        name: AttachmentsCollectionsAccountCreatorParentTicket
+      - value: attachments,collections,account,parent_ticket
+        name: AttachmentsCollectionsAccountParentTicket
+      - value: attachments,collections,assigned_teams
+        name: AttachmentsCollectionsAssignedTeams
+      - value: attachments,collections,assigned_teams,account
+        name: AttachmentsCollectionsAssignedTeamsAccount
+      - value: attachments,collections,assigned_teams,account,contact
+        name: AttachmentsCollectionsAssignedTeamsAccountContact
+      - value: attachments,collections,assigned_teams,account,contact,creator
+        name: AttachmentsCollectionsAssignedTeamsAccountContactCreator
+      - value: >-
+          attachments,collections,assigned_teams,account,contact,creator,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsAccountContactCreatorParentTicket
+      - value: attachments,collections,assigned_teams,account,contact,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsAccountContactParentTicket
+      - value: attachments,collections,assigned_teams,account,creator
+        name: AttachmentsCollectionsAssignedTeamsAccountCreator
+      - value: attachments,collections,assigned_teams,account,creator,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsAccountCreatorParentTicket
+      - value: attachments,collections,assigned_teams,account,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsAccountParentTicket
+      - value: attachments,collections,assigned_teams,contact
+        name: AttachmentsCollectionsAssignedTeamsContact
+      - value: attachments,collections,assigned_teams,contact,creator
+        name: AttachmentsCollectionsAssignedTeamsContactCreator
+      - value: attachments,collections,assigned_teams,contact,creator,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsContactCreatorParentTicket
+      - value: attachments,collections,assigned_teams,contact,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsContactParentTicket
+      - value: attachments,collections,assigned_teams,creator
+        name: AttachmentsCollectionsAssignedTeamsCreator
+      - value: attachments,collections,assigned_teams,creator,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsCreatorParentTicket
+      - value: attachments,collections,assigned_teams,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsParentTicket
+      - value: attachments,collections,contact
+        name: AttachmentsCollectionsContact
+      - value: attachments,collections,contact,creator
+        name: AttachmentsCollectionsContactCreator
+      - value: attachments,collections,contact,creator,parent_ticket
+        name: AttachmentsCollectionsContactCreatorParentTicket
+      - value: attachments,collections,contact,parent_ticket
+        name: AttachmentsCollectionsContactParentTicket
+      - value: attachments,collections,creator
+        name: AttachmentsCollectionsCreator
+      - value: attachments,collections,creator,parent_ticket
+        name: AttachmentsCollectionsCreatorParentTicket
+      - value: attachments,collections,parent_ticket
+        name: AttachmentsCollectionsParentTicket
+      - value: attachments,contact
+        name: AttachmentsContact
+      - value: attachments,contact,creator
+        name: AttachmentsContactCreator
+      - value: attachments,contact,creator,parent_ticket
+        name: AttachmentsContactCreatorParentTicket
+      - value: attachments,contact,parent_ticket
+        name: AttachmentsContactParentTicket
+      - value: attachments,creator
+        name: AttachmentsCreator
+      - value: attachments,creator,parent_ticket
+        name: AttachmentsCreatorParentTicket
+      - value: attachments,parent_ticket
+        name: AttachmentsParentTicket
+      - collections
+      - value: collections,account
+        name: CollectionsAccount
+      - value: collections,account,contact
+        name: CollectionsAccountContact
+      - value: collections,account,contact,creator
+        name: CollectionsAccountContactCreator
+      - value: collections,account,contact,creator,parent_ticket
+        name: CollectionsAccountContactCreatorParentTicket
+      - value: collections,account,contact,parent_ticket
+        name: CollectionsAccountContactParentTicket
+      - value: collections,account,creator
+        name: CollectionsAccountCreator
+      - value: collections,account,creator,parent_ticket
+        name: CollectionsAccountCreatorParentTicket
+      - value: collections,account,parent_ticket
+        name: CollectionsAccountParentTicket
+      - value: collections,assigned_teams
+        name: CollectionsAssignedTeams
+      - value: collections,assigned_teams,account
+        name: CollectionsAssignedTeamsAccount
+      - value: collections,assigned_teams,account,contact
+        name: CollectionsAssignedTeamsAccountContact
+      - value: collections,assigned_teams,account,contact,creator
+        name: CollectionsAssignedTeamsAccountContactCreator
+      - value: collections,assigned_teams,account,contact,creator,parent_ticket
+        name: CollectionsAssignedTeamsAccountContactCreatorParentTicket
+      - value: collections,assigned_teams,account,contact,parent_ticket
+        name: CollectionsAssignedTeamsAccountContactParentTicket
+      - value: collections,assigned_teams,account,creator
+        name: CollectionsAssignedTeamsAccountCreator
+      - value: collections,assigned_teams,account,creator,parent_ticket
+        name: CollectionsAssignedTeamsAccountCreatorParentTicket
+      - value: collections,assigned_teams,account,parent_ticket
+        name: CollectionsAssignedTeamsAccountParentTicket
+      - value: collections,assigned_teams,contact
+        name: CollectionsAssignedTeamsContact
+      - value: collections,assigned_teams,contact,creator
+        name: CollectionsAssignedTeamsContactCreator
+      - value: collections,assigned_teams,contact,creator,parent_ticket
+        name: CollectionsAssignedTeamsContactCreatorParentTicket
+      - value: collections,assigned_teams,contact,parent_ticket
+        name: CollectionsAssignedTeamsContactParentTicket
+      - value: collections,assigned_teams,creator
+        name: CollectionsAssignedTeamsCreator
+      - value: collections,assigned_teams,creator,parent_ticket
+        name: CollectionsAssignedTeamsCreatorParentTicket
+      - value: collections,assigned_teams,parent_ticket
+        name: CollectionsAssignedTeamsParentTicket
+      - value: collections,contact
+        name: CollectionsContact
+      - value: collections,contact,creator
+        name: CollectionsContactCreator
+      - value: collections,contact,creator,parent_ticket
+        name: CollectionsContactCreatorParentTicket
+      - value: collections,contact,parent_ticket
+        name: CollectionsContactParentTicket
+      - value: collections,creator
+        name: CollectionsCreator
+      - value: collections,creator,parent_ticket
+        name: CollectionsCreatorParentTicket
+      - value: collections,parent_ticket
+        name: CollectionsParentTicket
+      - contact
+      - value: contact,creator
+        name: ContactCreator
+      - value: contact,creator,parent_ticket
+        name: ContactCreatorParentTicket
+      - value: contact,parent_ticket
+        name: ContactParentTicket
+      - creator
+      - value: creator,parent_ticket
+        name: CreatorParentTicket
+      - parent_ticket
+    source:
+      openapi: openapi/openapi.yml
+  TicketsListRequestPriority:
+    enum:
+      - HIGH
+      - LOW
+      - NORMAL
+      - URGENT
+    source:
+      openapi: openapi/openapi.yml
+  TicketsListRequestRemoteFields:
+    enum:
+      - priority
+      - value: priority,status
+        name: PriorityStatus
+      - value: priority,status,ticket_type
+        name: PriorityStatusTicketType
+      - value: priority,ticket_type
+        name: PriorityTicketType
+      - status
+      - value: status,ticket_type
+        name: StatusTicketType
+      - ticket_type
+    source:
+      openapi: openapi/openapi.yml
+  TicketsListRequestShowEnumOrigins:
+    enum:
+      - priority
+      - value: priority,status
+        name: PriorityStatus
+      - value: priority,status,ticket_type
+        name: PriorityStatusTicketType
+      - value: priority,ticket_type
+        name: PriorityTicketType
+      - status
+      - value: status,ticket_type
+        name: StatusTicketType
+      - ticket_type
+    source:
+      openapi: openapi/openapi.yml
+  TicketsRetrieveRequestExpand:
+    enum:
+      - account
+      - value: account,contact
+        name: AccountContact
+      - value: account,contact,creator
+        name: AccountContactCreator
+      - value: account,contact,creator,parent_ticket
+        name: AccountContactCreatorParentTicket
+      - value: account,contact,parent_ticket
+        name: AccountContactParentTicket
+      - value: account,creator
+        name: AccountCreator
+      - value: account,creator,parent_ticket
+        name: AccountCreatorParentTicket
+      - value: account,parent_ticket
+        name: AccountParentTicket
+      - assigned_teams
+      - value: assigned_teams,account
+        name: AssignedTeamsAccount
+      - value: assigned_teams,account,contact
+        name: AssignedTeamsAccountContact
+      - value: assigned_teams,account,contact,creator
+        name: AssignedTeamsAccountContactCreator
+      - value: assigned_teams,account,contact,creator,parent_ticket
+        name: AssignedTeamsAccountContactCreatorParentTicket
+      - value: assigned_teams,account,contact,parent_ticket
+        name: AssignedTeamsAccountContactParentTicket
+      - value: assigned_teams,account,creator
+        name: AssignedTeamsAccountCreator
+      - value: assigned_teams,account,creator,parent_ticket
+        name: AssignedTeamsAccountCreatorParentTicket
+      - value: assigned_teams,account,parent_ticket
+        name: AssignedTeamsAccountParentTicket
+      - value: assigned_teams,contact
+        name: AssignedTeamsContact
+      - value: assigned_teams,contact,creator
+        name: AssignedTeamsContactCreator
+      - value: assigned_teams,contact,creator,parent_ticket
+        name: AssignedTeamsContactCreatorParentTicket
+      - value: assigned_teams,contact,parent_ticket
+        name: AssignedTeamsContactParentTicket
+      - value: assigned_teams,creator
+        name: AssignedTeamsCreator
+      - value: assigned_teams,creator,parent_ticket
+        name: AssignedTeamsCreatorParentTicket
+      - value: assigned_teams,parent_ticket
+        name: AssignedTeamsParentTicket
+      - assignees
+      - value: assignees,account
+        name: AssigneesAccount
+      - value: assignees,account,contact
+        name: AssigneesAccountContact
+      - value: assignees,account,contact,creator
+        name: AssigneesAccountContactCreator
+      - value: assignees,account,contact,creator,parent_ticket
+        name: AssigneesAccountContactCreatorParentTicket
+      - value: assignees,account,contact,parent_ticket
+        name: AssigneesAccountContactParentTicket
+      - value: assignees,account,creator
+        name: AssigneesAccountCreator
+      - value: assignees,account,creator,parent_ticket
+        name: AssigneesAccountCreatorParentTicket
+      - value: assignees,account,parent_ticket
+        name: AssigneesAccountParentTicket
+      - value: assignees,assigned_teams
+        name: AssigneesAssignedTeams
+      - value: assignees,assigned_teams,account
+        name: AssigneesAssignedTeamsAccount
+      - value: assignees,assigned_teams,account,contact
+        name: AssigneesAssignedTeamsAccountContact
+      - value: assignees,assigned_teams,account,contact,creator
+        name: AssigneesAssignedTeamsAccountContactCreator
+      - value: assignees,assigned_teams,account,contact,creator,parent_ticket
+        name: AssigneesAssignedTeamsAccountContactCreatorParentTicket
+      - value: assignees,assigned_teams,account,contact,parent_ticket
+        name: AssigneesAssignedTeamsAccountContactParentTicket
+      - value: assignees,assigned_teams,account,creator
+        name: AssigneesAssignedTeamsAccountCreator
+      - value: assignees,assigned_teams,account,creator,parent_ticket
+        name: AssigneesAssignedTeamsAccountCreatorParentTicket
+      - value: assignees,assigned_teams,account,parent_ticket
+        name: AssigneesAssignedTeamsAccountParentTicket
+      - value: assignees,assigned_teams,contact
+        name: AssigneesAssignedTeamsContact
+      - value: assignees,assigned_teams,contact,creator
+        name: AssigneesAssignedTeamsContactCreator
+      - value: assignees,assigned_teams,contact,creator,parent_ticket
+        name: AssigneesAssignedTeamsContactCreatorParentTicket
+      - value: assignees,assigned_teams,contact,parent_ticket
+        name: AssigneesAssignedTeamsContactParentTicket
+      - value: assignees,assigned_teams,creator
+        name: AssigneesAssignedTeamsCreator
+      - value: assignees,assigned_teams,creator,parent_ticket
+        name: AssigneesAssignedTeamsCreatorParentTicket
+      - value: assignees,assigned_teams,parent_ticket
+        name: AssigneesAssignedTeamsParentTicket
+      - value: assignees,collections
+        name: AssigneesCollections
+      - value: assignees,collections,account
+        name: AssigneesCollectionsAccount
+      - value: assignees,collections,account,contact
+        name: AssigneesCollectionsAccountContact
+      - value: assignees,collections,account,contact,creator
+        name: AssigneesCollectionsAccountContactCreator
+      - value: assignees,collections,account,contact,creator,parent_ticket
+        name: AssigneesCollectionsAccountContactCreatorParentTicket
+      - value: assignees,collections,account,contact,parent_ticket
+        name: AssigneesCollectionsAccountContactParentTicket
+      - value: assignees,collections,account,creator
+        name: AssigneesCollectionsAccountCreator
+      - value: assignees,collections,account,creator,parent_ticket
+        name: AssigneesCollectionsAccountCreatorParentTicket
+      - value: assignees,collections,account,parent_ticket
+        name: AssigneesCollectionsAccountParentTicket
+      - value: assignees,collections,assigned_teams
+        name: AssigneesCollectionsAssignedTeams
+      - value: assignees,collections,assigned_teams,account
+        name: AssigneesCollectionsAssignedTeamsAccount
+      - value: assignees,collections,assigned_teams,account,contact
+        name: AssigneesCollectionsAssignedTeamsAccountContact
+      - value: assignees,collections,assigned_teams,account,contact,creator
+        name: AssigneesCollectionsAssignedTeamsAccountContactCreator
+      - value: >-
+          assignees,collections,assigned_teams,account,contact,creator,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsAccountContactCreatorParentTicket
+      - value: assignees,collections,assigned_teams,account,contact,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsAccountContactParentTicket
+      - value: assignees,collections,assigned_teams,account,creator
+        name: AssigneesCollectionsAssignedTeamsAccountCreator
+      - value: assignees,collections,assigned_teams,account,creator,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsAccountCreatorParentTicket
+      - value: assignees,collections,assigned_teams,account,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsAccountParentTicket
+      - value: assignees,collections,assigned_teams,contact
+        name: AssigneesCollectionsAssignedTeamsContact
+      - value: assignees,collections,assigned_teams,contact,creator
+        name: AssigneesCollectionsAssignedTeamsContactCreator
+      - value: assignees,collections,assigned_teams,contact,creator,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsContactCreatorParentTicket
+      - value: assignees,collections,assigned_teams,contact,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsContactParentTicket
+      - value: assignees,collections,assigned_teams,creator
+        name: AssigneesCollectionsAssignedTeamsCreator
+      - value: assignees,collections,assigned_teams,creator,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsCreatorParentTicket
+      - value: assignees,collections,assigned_teams,parent_ticket
+        name: AssigneesCollectionsAssignedTeamsParentTicket
+      - value: assignees,collections,contact
+        name: AssigneesCollectionsContact
+      - value: assignees,collections,contact,creator
+        name: AssigneesCollectionsContactCreator
+      - value: assignees,collections,contact,creator,parent_ticket
+        name: AssigneesCollectionsContactCreatorParentTicket
+      - value: assignees,collections,contact,parent_ticket
+        name: AssigneesCollectionsContactParentTicket
+      - value: assignees,collections,creator
+        name: AssigneesCollectionsCreator
+      - value: assignees,collections,creator,parent_ticket
+        name: AssigneesCollectionsCreatorParentTicket
+      - value: assignees,collections,parent_ticket
+        name: AssigneesCollectionsParentTicket
+      - value: assignees,contact
+        name: AssigneesContact
+      - value: assignees,contact,creator
+        name: AssigneesContactCreator
+      - value: assignees,contact,creator,parent_ticket
+        name: AssigneesContactCreatorParentTicket
+      - value: assignees,contact,parent_ticket
+        name: AssigneesContactParentTicket
+      - value: assignees,creator
+        name: AssigneesCreator
+      - value: assignees,creator,parent_ticket
+        name: AssigneesCreatorParentTicket
+      - value: assignees,parent_ticket
+        name: AssigneesParentTicket
+      - attachments
+      - value: attachments,account
+        name: AttachmentsAccount
+      - value: attachments,account,contact
+        name: AttachmentsAccountContact
+      - value: attachments,account,contact,creator
+        name: AttachmentsAccountContactCreator
+      - value: attachments,account,contact,creator,parent_ticket
+        name: AttachmentsAccountContactCreatorParentTicket
+      - value: attachments,account,contact,parent_ticket
+        name: AttachmentsAccountContactParentTicket
+      - value: attachments,account,creator
+        name: AttachmentsAccountCreator
+      - value: attachments,account,creator,parent_ticket
+        name: AttachmentsAccountCreatorParentTicket
+      - value: attachments,account,parent_ticket
+        name: AttachmentsAccountParentTicket
+      - value: attachments,assigned_teams
+        name: AttachmentsAssignedTeams
+      - value: attachments,assigned_teams,account
+        name: AttachmentsAssignedTeamsAccount
+      - value: attachments,assigned_teams,account,contact
+        name: AttachmentsAssignedTeamsAccountContact
+      - value: attachments,assigned_teams,account,contact,creator
+        name: AttachmentsAssignedTeamsAccountContactCreator
+      - value: attachments,assigned_teams,account,contact,creator,parent_ticket
+        name: AttachmentsAssignedTeamsAccountContactCreatorParentTicket
+      - value: attachments,assigned_teams,account,contact,parent_ticket
+        name: AttachmentsAssignedTeamsAccountContactParentTicket
+      - value: attachments,assigned_teams,account,creator
+        name: AttachmentsAssignedTeamsAccountCreator
+      - value: attachments,assigned_teams,account,creator,parent_ticket
+        name: AttachmentsAssignedTeamsAccountCreatorParentTicket
+      - value: attachments,assigned_teams,account,parent_ticket
+        name: AttachmentsAssignedTeamsAccountParentTicket
+      - value: attachments,assigned_teams,contact
+        name: AttachmentsAssignedTeamsContact
+      - value: attachments,assigned_teams,contact,creator
+        name: AttachmentsAssignedTeamsContactCreator
+      - value: attachments,assigned_teams,contact,creator,parent_ticket
+        name: AttachmentsAssignedTeamsContactCreatorParentTicket
+      - value: attachments,assigned_teams,contact,parent_ticket
+        name: AttachmentsAssignedTeamsContactParentTicket
+      - value: attachments,assigned_teams,creator
+        name: AttachmentsAssignedTeamsCreator
+      - value: attachments,assigned_teams,creator,parent_ticket
+        name: AttachmentsAssignedTeamsCreatorParentTicket
+      - value: attachments,assigned_teams,parent_ticket
+        name: AttachmentsAssignedTeamsParentTicket
+      - value: attachments,assignees
+        name: AttachmentsAssignees
+      - value: attachments,assignees,account
+        name: AttachmentsAssigneesAccount
+      - value: attachments,assignees,account,contact
+        name: AttachmentsAssigneesAccountContact
+      - value: attachments,assignees,account,contact,creator
+        name: AttachmentsAssigneesAccountContactCreator
+      - value: attachments,assignees,account,contact,creator,parent_ticket
+        name: AttachmentsAssigneesAccountContactCreatorParentTicket
+      - value: attachments,assignees,account,contact,parent_ticket
+        name: AttachmentsAssigneesAccountContactParentTicket
+      - value: attachments,assignees,account,creator
+        name: AttachmentsAssigneesAccountCreator
+      - value: attachments,assignees,account,creator,parent_ticket
+        name: AttachmentsAssigneesAccountCreatorParentTicket
+      - value: attachments,assignees,account,parent_ticket
+        name: AttachmentsAssigneesAccountParentTicket
+      - value: attachments,assignees,assigned_teams
+        name: AttachmentsAssigneesAssignedTeams
+      - value: attachments,assignees,assigned_teams,account
+        name: AttachmentsAssigneesAssignedTeamsAccount
+      - value: attachments,assignees,assigned_teams,account,contact
+        name: AttachmentsAssigneesAssignedTeamsAccountContact
+      - value: attachments,assignees,assigned_teams,account,contact,creator
+        name: AttachmentsAssigneesAssignedTeamsAccountContactCreator
+      - value: >-
+          attachments,assignees,assigned_teams,account,contact,creator,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsAccountContactCreatorParentTicket
+      - value: attachments,assignees,assigned_teams,account,contact,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsAccountContactParentTicket
+      - value: attachments,assignees,assigned_teams,account,creator
+        name: AttachmentsAssigneesAssignedTeamsAccountCreator
+      - value: attachments,assignees,assigned_teams,account,creator,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsAccountCreatorParentTicket
+      - value: attachments,assignees,assigned_teams,account,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsAccountParentTicket
+      - value: attachments,assignees,assigned_teams,contact
+        name: AttachmentsAssigneesAssignedTeamsContact
+      - value: attachments,assignees,assigned_teams,contact,creator
+        name: AttachmentsAssigneesAssignedTeamsContactCreator
+      - value: attachments,assignees,assigned_teams,contact,creator,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsContactCreatorParentTicket
+      - value: attachments,assignees,assigned_teams,contact,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsContactParentTicket
+      - value: attachments,assignees,assigned_teams,creator
+        name: AttachmentsAssigneesAssignedTeamsCreator
+      - value: attachments,assignees,assigned_teams,creator,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsCreatorParentTicket
+      - value: attachments,assignees,assigned_teams,parent_ticket
+        name: AttachmentsAssigneesAssignedTeamsParentTicket
+      - value: attachments,assignees,collections
+        name: AttachmentsAssigneesCollections
+      - value: attachments,assignees,collections,account
+        name: AttachmentsAssigneesCollectionsAccount
+      - value: attachments,assignees,collections,account,contact
+        name: AttachmentsAssigneesCollectionsAccountContact
+      - value: attachments,assignees,collections,account,contact,creator
+        name: AttachmentsAssigneesCollectionsAccountContactCreator
+      - value: >-
+          attachments,assignees,collections,account,contact,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAccountContactCreatorParentTicket
+      - value: attachments,assignees,collections,account,contact,parent_ticket
+        name: AttachmentsAssigneesCollectionsAccountContactParentTicket
+      - value: attachments,assignees,collections,account,creator
+        name: AttachmentsAssigneesCollectionsAccountCreator
+      - value: attachments,assignees,collections,account,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAccountCreatorParentTicket
+      - value: attachments,assignees,collections,account,parent_ticket
+        name: AttachmentsAssigneesCollectionsAccountParentTicket
+      - value: attachments,assignees,collections,assigned_teams
+        name: AttachmentsAssigneesCollectionsAssignedTeams
+      - value: attachments,assignees,collections,assigned_teams,account
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccount
+      - value: attachments,assignees,collections,assigned_teams,account,contact
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountContact
+      - value: >-
+          attachments,assignees,collections,assigned_teams,account,contact,creator
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountContactCreator
+      - value: >-
+          attachments,assignees,collections,assigned_teams,account,contact,creator,parent_ticket
+        name: >-
+          AttachmentsAssigneesCollectionsAssignedTeamsAccountContactCreatorParentTicket
+      - value: >-
+          attachments,assignees,collections,assigned_teams,account,contact,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountContactParentTicket
+      - value: attachments,assignees,collections,assigned_teams,account,creator
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountCreator
+      - value: >-
+          attachments,assignees,collections,assigned_teams,account,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountCreatorParentTicket
+      - value: attachments,assignees,collections,assigned_teams,account,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsAccountParentTicket
+      - value: attachments,assignees,collections,assigned_teams,contact
+        name: AttachmentsAssigneesCollectionsAssignedTeamsContact
+      - value: attachments,assignees,collections,assigned_teams,contact,creator
+        name: AttachmentsAssigneesCollectionsAssignedTeamsContactCreator
+      - value: >-
+          attachments,assignees,collections,assigned_teams,contact,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsContactCreatorParentTicket
+      - value: attachments,assignees,collections,assigned_teams,contact,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsContactParentTicket
+      - value: attachments,assignees,collections,assigned_teams,creator
+        name: AttachmentsAssigneesCollectionsAssignedTeamsCreator
+      - value: attachments,assignees,collections,assigned_teams,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsCreatorParentTicket
+      - value: attachments,assignees,collections,assigned_teams,parent_ticket
+        name: AttachmentsAssigneesCollectionsAssignedTeamsParentTicket
+      - value: attachments,assignees,collections,contact
+        name: AttachmentsAssigneesCollectionsContact
+      - value: attachments,assignees,collections,contact,creator
+        name: AttachmentsAssigneesCollectionsContactCreator
+      - value: attachments,assignees,collections,contact,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsContactCreatorParentTicket
+      - value: attachments,assignees,collections,contact,parent_ticket
+        name: AttachmentsAssigneesCollectionsContactParentTicket
+      - value: attachments,assignees,collections,creator
+        name: AttachmentsAssigneesCollectionsCreator
+      - value: attachments,assignees,collections,creator,parent_ticket
+        name: AttachmentsAssigneesCollectionsCreatorParentTicket
+      - value: attachments,assignees,collections,parent_ticket
+        name: AttachmentsAssigneesCollectionsParentTicket
+      - value: attachments,assignees,contact
+        name: AttachmentsAssigneesContact
+      - value: attachments,assignees,contact,creator
+        name: AttachmentsAssigneesContactCreator
+      - value: attachments,assignees,contact,creator,parent_ticket
+        name: AttachmentsAssigneesContactCreatorParentTicket
+      - value: attachments,assignees,contact,parent_ticket
+        name: AttachmentsAssigneesContactParentTicket
+      - value: attachments,assignees,creator
+        name: AttachmentsAssigneesCreator
+      - value: attachments,assignees,creator,parent_ticket
+        name: AttachmentsAssigneesCreatorParentTicket
+      - value: attachments,assignees,parent_ticket
+        name: AttachmentsAssigneesParentTicket
+      - value: attachments,collections
+        name: AttachmentsCollections
+      - value: attachments,collections,account
+        name: AttachmentsCollectionsAccount
+      - value: attachments,collections,account,contact
+        name: AttachmentsCollectionsAccountContact
+      - value: attachments,collections,account,contact,creator
+        name: AttachmentsCollectionsAccountContactCreator
+      - value: attachments,collections,account,contact,creator,parent_ticket
+        name: AttachmentsCollectionsAccountContactCreatorParentTicket
+      - value: attachments,collections,account,contact,parent_ticket
+        name: AttachmentsCollectionsAccountContactParentTicket
+      - value: attachments,collections,account,creator
+        name: AttachmentsCollectionsAccountCreator
+      - value: attachments,collections,account,creator,parent_ticket
+        name: AttachmentsCollectionsAccountCreatorParentTicket
+      - value: attachments,collections,account,parent_ticket
+        name: AttachmentsCollectionsAccountParentTicket
+      - value: attachments,collections,assigned_teams
+        name: AttachmentsCollectionsAssignedTeams
+      - value: attachments,collections,assigned_teams,account
+        name: AttachmentsCollectionsAssignedTeamsAccount
+      - value: attachments,collections,assigned_teams,account,contact
+        name: AttachmentsCollectionsAssignedTeamsAccountContact
+      - value: attachments,collections,assigned_teams,account,contact,creator
+        name: AttachmentsCollectionsAssignedTeamsAccountContactCreator
+      - value: >-
+          attachments,collections,assigned_teams,account,contact,creator,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsAccountContactCreatorParentTicket
+      - value: attachments,collections,assigned_teams,account,contact,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsAccountContactParentTicket
+      - value: attachments,collections,assigned_teams,account,creator
+        name: AttachmentsCollectionsAssignedTeamsAccountCreator
+      - value: attachments,collections,assigned_teams,account,creator,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsAccountCreatorParentTicket
+      - value: attachments,collections,assigned_teams,account,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsAccountParentTicket
+      - value: attachments,collections,assigned_teams,contact
+        name: AttachmentsCollectionsAssignedTeamsContact
+      - value: attachments,collections,assigned_teams,contact,creator
+        name: AttachmentsCollectionsAssignedTeamsContactCreator
+      - value: attachments,collections,assigned_teams,contact,creator,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsContactCreatorParentTicket
+      - value: attachments,collections,assigned_teams,contact,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsContactParentTicket
+      - value: attachments,collections,assigned_teams,creator
+        name: AttachmentsCollectionsAssignedTeamsCreator
+      - value: attachments,collections,assigned_teams,creator,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsCreatorParentTicket
+      - value: attachments,collections,assigned_teams,parent_ticket
+        name: AttachmentsCollectionsAssignedTeamsParentTicket
+      - value: attachments,collections,contact
+        name: AttachmentsCollectionsContact
+      - value: attachments,collections,contact,creator
+        name: AttachmentsCollectionsContactCreator
+      - value: attachments,collections,contact,creator,parent_ticket
+        name: AttachmentsCollectionsContactCreatorParentTicket
+      - value: attachments,collections,contact,parent_ticket
+        name: AttachmentsCollectionsContactParentTicket
+      - value: attachments,collections,creator
+        name: AttachmentsCollectionsCreator
+      - value: attachments,collections,creator,parent_ticket
+        name: AttachmentsCollectionsCreatorParentTicket
+      - value: attachments,collections,parent_ticket
+        name: AttachmentsCollectionsParentTicket
+      - value: attachments,contact
+        name: AttachmentsContact
+      - value: attachments,contact,creator
+        name: AttachmentsContactCreator
+      - value: attachments,contact,creator,parent_ticket
+        name: AttachmentsContactCreatorParentTicket
+      - value: attachments,contact,parent_ticket
+        name: AttachmentsContactParentTicket
+      - value: attachments,creator
+        name: AttachmentsCreator
+      - value: attachments,creator,parent_ticket
+        name: AttachmentsCreatorParentTicket
+      - value: attachments,parent_ticket
+        name: AttachmentsParentTicket
+      - collections
+      - value: collections,account
+        name: CollectionsAccount
+      - value: collections,account,contact
+        name: CollectionsAccountContact
+      - value: collections,account,contact,creator
+        name: CollectionsAccountContactCreator
+      - value: collections,account,contact,creator,parent_ticket
+        name: CollectionsAccountContactCreatorParentTicket
+      - value: collections,account,contact,parent_ticket
+        name: CollectionsAccountContactParentTicket
+      - value: collections,account,creator
+        name: CollectionsAccountCreator
+      - value: collections,account,creator,parent_ticket
+        name: CollectionsAccountCreatorParentTicket
+      - value: collections,account,parent_ticket
+        name: CollectionsAccountParentTicket
+      - value: collections,assigned_teams
+        name: CollectionsAssignedTeams
+      - value: collections,assigned_teams,account
+        name: CollectionsAssignedTeamsAccount
+      - value: collections,assigned_teams,account,contact
+        name: CollectionsAssignedTeamsAccountContact
+      - value: collections,assigned_teams,account,contact,creator
+        name: CollectionsAssignedTeamsAccountContactCreator
+      - value: collections,assigned_teams,account,contact,creator,parent_ticket
+        name: CollectionsAssignedTeamsAccountContactCreatorParentTicket
+      - value: collections,assigned_teams,account,contact,parent_ticket
+        name: CollectionsAssignedTeamsAccountContactParentTicket
+      - value: collections,assigned_teams,account,creator
+        name: CollectionsAssignedTeamsAccountCreator
+      - value: collections,assigned_teams,account,creator,parent_ticket
+        name: CollectionsAssignedTeamsAccountCreatorParentTicket
+      - value: collections,assigned_teams,account,parent_ticket
+        name: CollectionsAssignedTeamsAccountParentTicket
+      - value: collections,assigned_teams,contact
+        name: CollectionsAssignedTeamsContact
+      - value: collections,assigned_teams,contact,creator
+        name: CollectionsAssignedTeamsContactCreator
+      - value: collections,assigned_teams,contact,creator,parent_ticket
+        name: CollectionsAssignedTeamsContactCreatorParentTicket
+      - value: collections,assigned_teams,contact,parent_ticket
+        name: CollectionsAssignedTeamsContactParentTicket
+      - value: collections,assigned_teams,creator
+        name: CollectionsAssignedTeamsCreator
+      - value: collections,assigned_teams,creator,parent_ticket
+        name: CollectionsAssignedTeamsCreatorParentTicket
+      - value: collections,assigned_teams,parent_ticket
+        name: CollectionsAssignedTeamsParentTicket
+      - value: collections,contact
+        name: CollectionsContact
+      - value: collections,contact,creator
+        name: CollectionsContactCreator
+      - value: collections,contact,creator,parent_ticket
+        name: CollectionsContactCreatorParentTicket
+      - value: collections,contact,parent_ticket
+        name: CollectionsContactParentTicket
+      - value: collections,creator
+        name: CollectionsCreator
+      - value: collections,creator,parent_ticket
+        name: CollectionsCreatorParentTicket
+      - value: collections,parent_ticket
+        name: CollectionsParentTicket
+      - contact
+      - value: contact,creator
+        name: ContactCreator
+      - value: contact,creator,parent_ticket
+        name: ContactCreatorParentTicket
+      - value: contact,parent_ticket
+        name: ContactParentTicket
+      - creator
+      - value: creator,parent_ticket
+        name: CreatorParentTicket
+      - parent_ticket
+    source:
+      openapi: openapi/openapi.yml
+  TicketsRetrieveRequestRemoteFields:
+    enum:
+      - priority
+      - value: priority,status
+        name: PriorityStatus
+      - value: priority,status,ticket_type
+        name: PriorityStatusTicketType
+      - value: priority,ticket_type
+        name: PriorityTicketType
+      - status
+      - value: status,ticket_type
+        name: StatusTicketType
+      - ticket_type
+    source:
+      openapi: openapi/openapi.yml
+  TicketsRetrieveRequestShowEnumOrigins:
+    enum:
+      - priority
+      - value: priority,status
+        name: PriorityStatus
+      - value: priority,status,ticket_type
+        name: PriorityStatusTicketType
+      - value: priority,ticket_type
+        name: PriorityTicketType
+      - status
+      - value: status,ticket_type
+        name: StatusTicketType
+      - ticket_type
+    source:
+      openapi: openapi/openapi.yml
+  TicketsViewersListRequestExpand:
+    enum:
+      - team
+      - user
+      - value: user,team
+        name: UserTeam
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /ticketing/v1/tickets
+      method: GET
+      auth: true
+      docs: Returns a list of `Ticket` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: TicketsListRequest
+        query-parameters:
+          account_id:
+            type: optional<string>
+            docs: If provided, will only return tickets for this account.
+          assignee_ids:
+            type: optional<string>
+            docs: >-
+              If provided, will only return tickets assigned to the
+              assignee_ids; multiple assignee_ids can be separated by commas.
+          collection_ids:
+            type: optional<string>
+            docs: >-
+              If provided, will only return tickets assigned to the
+              collection_ids; multiple collection_ids can be separated by
+              commas.
+          completed_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return tickets completed after this
+              datetime.
+          completed_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return tickets completed before this
+              datetime.
+          contact_id:
+            type: optional<string>
+            docs: If provided, will only return tickets for this contact.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          due_after:
+            type: optional<datetime>
+            docs: If provided, will only return tickets due after this datetime.
+          due_before:
+            type: optional<datetime>
+            docs: If provided, will only return tickets due before this datetime.
+          expand:
+            type: optional<TicketsListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_remote_fields:
+            type: optional<boolean>
+            docs: >-
+              Whether to include all remote fields, including fields that Merge
+              did not map to common models, in a normalized format.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          parent_ticket_id:
+            type: optional<string>
+            docs: If provided, will only return sub tickets of the parent_ticket_id.
+          priority:
+            type: optional<TicketsListRequestPriority>
+            docs: |-
+              If provided, will only return tickets of this priority.
+
+              * `URGENT` - URGENT
+              * `HIGH` - HIGH
+              * `NORMAL` - NORMAL
+              * `LOW` - LOW
+          remote_created_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return tickets created in the third party
+              platform after this datetime.
+          remote_created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return tickets created in the third party
+              platform before this datetime.
+          remote_fields:
+            type: optional<TicketsListRequestRemoteFields>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          remote_updated_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return tickets updated in the third party
+              platform after this datetime.
+          remote_updated_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return tickets updated in the third party
+              platform before this datetime.
+          show_enum_origins:
+            type: optional<TicketsListRequestShowEnumOrigins>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+          status:
+            type: optional<string>
+            docs: If provided, will only return tickets of this status.
+          tags:
+            type: optional<string>
+            docs: >-
+              If provided, will only return tickets matching the tags; multiple
+              tags can be separated by commas.
+          ticket_type:
+            type: optional<string>
+            docs: If provided, will only return tickets of this type.
+          ticket_url:
+            type: optional<string>
+            docs: >-
+              If provided, will only return tickets where the URL matches or
+              contains the substring
+            validation:
+              format: uri
+      response:
+        docs: ''
+        type: root.PaginatedTicketList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 0958cbc6-6040-430a-848e-aafacbadf4ae
+                  remote_id: '19202938'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  name: Please add more integrations
+                  assignees:
+                    - 17a54124-287f-494d-965e-3c5b330c9a68
+                  assigned_teams:
+                    - 4857c306-c1f9-489e-a6b6-90902f736dfe
+                  creator: creator
+                  due_date: '2022-10-11T00:00:00Z'
+                  status: OPEN
+                  description: >-
+                    Can you please add more integrations? It'll make syncing
+                    data much easier!
+                  collections:
+                    - fb8c55b6-1cb8-4b4c-9fb6-17924231619d
+                  ticket_type: incident
+                  account: account
+                  contact: contact
+                  parent_ticket: parent_ticket
+                  attachments:
+                    - 42747df1-95e7-46e2-93cc-66f1191edca5
+                    - 92f972d0-2526-434b-9409-4c3b468e08f0
+                  access_level: COMPANY
+                  tags:
+                    - enterprise
+                    - other-tag
+                  roles:
+                    - 21a54124-397f-494d-985e-3c5b330b8a68
+                    - 17a54124-287f-494d-965e-3c5b330c9a68
+                  remote_created_at: '2021-11-10T00:00:00Z'
+                  remote_updated_at: '2021-12-09T00:00:00Z'
+                  completed_at: '2021-12-09T00:00:00Z'
+                  remote_was_deleted: true
+                  ticket_url: https://thirdpartysoftware.com/project/3/issue/1
+                  priority: URGENT
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /platform-endpoint
+                  remote_fields:
+                    - remote_field_class: remote_field_class
+    create:
+      path: /ticketing/v1/tickets
+      method: POST
+      auth: true
+      docs: Creates a `Ticket` object with the given values.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: TicketEndpointRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            model: root.TicketRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.TicketResponse
+        status-code: 201
+      examples:
+        - headers: {}
+          request:
+            model: {}
+          response:
+            body:
+              model:
+                id: 0958cbc6-6040-430a-848e-aafacbadf4ae
+                remote_id: '19202938'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                name: Please add more integrations
+                assignees:
+                  - 17a54124-287f-494d-965e-3c5b330c9a68
+                assigned_teams:
+                  - 4857c306-c1f9-489e-a6b6-90902f736dfe
+                creator: creator
+                due_date: '2022-10-11T00:00:00Z'
+                status: OPEN
+                description: >-
+                  Can you please add more integrations? It'll make syncing data
+                  much easier!
+                collections:
+                  - fb8c55b6-1cb8-4b4c-9fb6-17924231619d
+                ticket_type: incident
+                account: account
+                contact: contact
+                parent_ticket: parent_ticket
+                attachments:
+                  - 42747df1-95e7-46e2-93cc-66f1191edca5
+                  - 92f972d0-2526-434b-9409-4c3b468e08f0
+                access_level: COMPANY
+                tags:
+                  - enterprise
+                  - other-tag
+                roles:
+                  - 21a54124-397f-494d-985e-3c5b330b8a68
+                  - 17a54124-287f-494d-965e-3c5b330c9a68
+                remote_created_at: '2021-11-10T00:00:00Z'
+                remote_updated_at: '2021-12-09T00:00:00Z'
+                completed_at: '2021-12-09T00:00:00Z'
+                remote_was_deleted: true
+                ticket_url: https://thirdpartysoftware.com/project/3/issue/1
+                priority: URGENT
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /platform-endpoint
+                remote_fields:
+                  - remote_field_class: remote_field_class
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    retrieve:
+      path: /ticketing/v1/tickets/{id}
+      method: GET
+      auth: true
+      docs: Returns a `Ticket` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: TicketsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<TicketsRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_remote_fields:
+            type: optional<boolean>
+            docs: >-
+              Whether to include all remote fields, including fields that Merge
+              did not map to common models, in a normalized format.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<TicketsRetrieveRequestRemoteFields>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<TicketsRetrieveRequestShowEnumOrigins>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.Ticket
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: 0958cbc6-6040-430a-848e-aafacbadf4ae
+              remote_id: '19202938'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              name: Please add more integrations
+              assignees:
+                - 17a54124-287f-494d-965e-3c5b330c9a68
+              assigned_teams:
+                - 4857c306-c1f9-489e-a6b6-90902f736dfe
+              creator: creator
+              due_date: '2022-10-11T00:00:00Z'
+              status: OPEN
+              description: >-
+                Can you please add more integrations? It'll make syncing data
+                much easier!
+              collections:
+                - fb8c55b6-1cb8-4b4c-9fb6-17924231619d
+              ticket_type: incident
+              account: account
+              contact: contact
+              parent_ticket: parent_ticket
+              attachments:
+                - 42747df1-95e7-46e2-93cc-66f1191edca5
+                - 92f972d0-2526-434b-9409-4c3b468e08f0
+              access_level: COMPANY
+              tags:
+                - enterprise
+                - other-tag
+              roles:
+                - 21a54124-397f-494d-985e-3c5b330b8a68
+                - 17a54124-287f-494d-965e-3c5b330c9a68
+              remote_created_at: '2021-11-10T00:00:00Z'
+              remote_updated_at: '2021-12-09T00:00:00Z'
+              completed_at: '2021-12-09T00:00:00Z'
+              remote_was_deleted: true
+              ticket_url: https://thirdpartysoftware.com/project/3/issue/1
+              priority: URGENT
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /platform-endpoint
+                  data:
+                    key: value
+              remote_fields:
+                - remote_field_class: remote_field_class
+                  value:
+                    key: value
+    partialUpdate:
+      path: /ticketing/v1/tickets/{id}
+      method: PATCH
+      auth: true
+      docs: Updates a `Ticket` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: PatchedTicketEndpointRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            model: root.PatchedTicketRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.TicketResponse
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          request:
+            model: {}
+          response:
+            body:
+              model:
+                id: 0958cbc6-6040-430a-848e-aafacbadf4ae
+                remote_id: '19202938'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                name: Please add more integrations
+                assignees:
+                  - 17a54124-287f-494d-965e-3c5b330c9a68
+                assigned_teams:
+                  - 4857c306-c1f9-489e-a6b6-90902f736dfe
+                creator: creator
+                due_date: '2022-10-11T00:00:00Z'
+                status: OPEN
+                description: >-
+                  Can you please add more integrations? It'll make syncing data
+                  much easier!
+                collections:
+                  - fb8c55b6-1cb8-4b4c-9fb6-17924231619d
+                ticket_type: incident
+                account: account
+                contact: contact
+                parent_ticket: parent_ticket
+                attachments:
+                  - 42747df1-95e7-46e2-93cc-66f1191edca5
+                  - 92f972d0-2526-434b-9409-4c3b468e08f0
+                access_level: COMPANY
+                tags:
+                  - enterprise
+                  - other-tag
+                roles:
+                  - 21a54124-397f-494d-985e-3c5b330b8a68
+                  - 17a54124-287f-494d-965e-3c5b330c9a68
+                remote_created_at: '2021-11-10T00:00:00Z'
+                remote_updated_at: '2021-12-09T00:00:00Z'
+                completed_at: '2021-12-09T00:00:00Z'
+                remote_was_deleted: true
+                ticket_url: https://thirdpartysoftware.com/project/3/issue/1
+                priority: URGENT
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /platform-endpoint
+                remote_fields:
+                  - remote_field_class: remote_field_class
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    viewersList:
+      path: /ticketing/v1/tickets/{ticket_id}/viewers
+      method: GET
+      auth: true
+      docs: >-
+        Returns a list of `Viewer` objects that point to a User id or Team id
+        that is either an assignee or viewer on a `Ticket` with the given id.
+        [Learn
+        more.](https://help.merge.dev/en/articles/10333658-ticketing-access-control-list-acls)
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        ticket_id: string
+      request:
+        name: TicketsViewersListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<TicketsViewersListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedViewerList
+        status-code: 200
+      examples:
+        - path-parameters:
+            ticket_id: ticket_id
+          headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 17a54124-287f-494d-965e-3c5b330c9a68
+                  remote_id: '088899'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  team: team
+                  user: user
+    metaPatchRetrieve:
+      path: /ticketing/v1/tickets/meta/patch/{id}
+      method: GET
+      auth: true
+      docs: Returns metadata for `Ticket` PATCHs.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      response:
+        docs: ''
+        type: root.MetaResponse
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              request_schema:
+                type: object
+                properties:
+                  model:
+                    type: object
+                    required:
+                      - last_name
+                      - first_name
+                      - merge_categories
+                      - new_york_city_neighborhood
+                      - favorite_tv_shows
+                      - favorite_watch
+                    properties:
+                      email_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            email_address_type:
+                              type: string
+                              title: email_address_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: email_addresses
+                        description: Array of email_addresses objects
+                      urls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            url_type:
+                              type: string
+                              title: url_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: urls
+                        description: Array of urls objects
+                      first_name:
+                        type: string
+                        title: first_name
+                        description: The first name.
+                      last_name:
+                        type: string
+                        title: last_name
+                        description: The last name.
+                      phone_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            phone_number_type:
+                              type: string
+                              title: phone_number_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: phone_numbers
+                        description: Array of phone_numbers objects
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: tags
+                        description: Array of tags names
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              title: id
+                            file_url:
+                              type: string
+                              title: file_url
+                            file_name:
+                              type: string
+                              title: file_name
+                            attachment_type:
+                              type: string
+                              title: attachment_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: attachments
+                        description: 'Array of attachments objects '
+                      merge_categories:
+                        type: array
+                        categories:
+                          type: string
+                          enum:
+                            - HRIS
+                            - ATS
+                            - Accounting
+                            - Ticketing
+                            - File Storage
+                            - CRM
+                            - Marketing Automation
+                          enum_information:
+                            - value: HRIS
+                              description: Merge HRIS Category
+                            - value: ATS
+                              description: Merge ATS Category
+                            - value: Accounting
+                              description: Merge Accounting Category
+                            - value: Ticketing
+                              description: Merge Ticketing Category
+                            - value: File Storage
+                              description: Merge File Storage Category
+                            - value: CRM
+                              description: Merge CRM Category
+                            - value: Marketing Automation
+                              description: Merge Marketing Automation Category
+                        title: Merge Categories
+                        description: Array of Merge's Unified API Categories
+                      new_york_city_neighborhood:
+                        type: string
+                        title: Borough
+                        description: One of the 5 Boroughs of New York City
+                      favorite_tv_shows:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: Favorite TV Shows
+                        description: Array of TV Show objects on merge.tv_shows
+                      favorite_watch:
+                        type: string
+                        title: Favorite Watch
+                        description: Favorite watch of all time
+              remote_field_classes:
+                key: value
+              status:
+                linked_account_status: linked_account_status
+                can_make_request: true
+              has_conditional_params: true
+              has_required_linked_account_params: true
+    metaPostRetrieve:
+      path: /ticketing/v1/tickets/meta/post
+      method: GET
+      auth: true
+      docs: Returns metadata for `Ticket` POSTs.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: TicketsMetaPostRetrieveRequest
+        query-parameters:
+          collection_id:
+            type: optional<string>
+            docs: If provided, will only return tickets for this collection.
+          ticket_type:
+            type: optional<string>
+            docs: If provided, will only return tickets for this ticket type.
+      response:
+        docs: ''
+        type: root.MetaResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              request_schema:
+                type: object
+                properties:
+                  model:
+                    type: object
+                    required:
+                      - last_name
+                      - first_name
+                      - merge_categories
+                      - new_york_city_neighborhood
+                      - favorite_tv_shows
+                      - favorite_watch
+                    properties:
+                      email_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            email_address_type:
+                              type: string
+                              title: email_address_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: email_addresses
+                        description: Array of email_addresses objects
+                      urls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            url_type:
+                              type: string
+                              title: url_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: urls
+                        description: Array of urls objects
+                      first_name:
+                        type: string
+                        title: first_name
+                        description: The first name.
+                      last_name:
+                        type: string
+                        title: last_name
+                        description: The last name.
+                      phone_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            phone_number_type:
+                              type: string
+                              title: phone_number_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: phone_numbers
+                        description: Array of phone_numbers objects
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: tags
+                        description: Array of tags names
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              title: id
+                            file_url:
+                              type: string
+                              title: file_url
+                            file_name:
+                              type: string
+                              title: file_name
+                            attachment_type:
+                              type: string
+                              title: attachment_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: attachments
+                        description: 'Array of attachments objects '
+                      merge_categories:
+                        type: array
+                        categories:
+                          type: string
+                          enum:
+                            - HRIS
+                            - ATS
+                            - Accounting
+                            - Ticketing
+                            - File Storage
+                            - CRM
+                            - Marketing Automation
+                          enum_information:
+                            - value: HRIS
+                              description: Merge HRIS Category
+                            - value: ATS
+                              description: Merge ATS Category
+                            - value: Accounting
+                              description: Merge Accounting Category
+                            - value: Ticketing
+                              description: Merge Ticketing Category
+                            - value: File Storage
+                              description: Merge File Storage Category
+                            - value: CRM
+                              description: Merge CRM Category
+                            - value: Marketing Automation
+                              description: Merge Marketing Automation Category
+                        title: Merge Categories
+                        description: Array of Merge's Unified API Categories
+                      new_york_city_neighborhood:
+                        type: string
+                        title: Borough
+                        description: One of the 5 Boroughs of New York City
+                      favorite_tv_shows:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: Favorite TV Shows
+                        description: Array of TV Show objects on merge.tv_shows
+                      favorite_watch:
+                        type: string
+                        title: Favorite Watch
+                        description: Favorite watch of all time
+              remote_field_classes:
+                key: value
+              status:
+                linked_account_status: linked_account_status
+                can_make_request: true
+              has_conditional_params: true
+              has_required_linked_account_params: true
+    remoteFieldClassesList:
+      path: /ticketing/v1/tickets/remote-field-classes
+      method: GET
+      auth: true
+      docs: Returns a list of `RemoteFieldClass` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: TicketsRemoteFieldClassesListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          ids:
+            type: optional<string>
+            docs: >-
+              If provided, will only return remote field classes with the `ids`
+              in this list
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          is_common_model_field:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote field classes with this
+              is_common_model_field value
+          is_custom:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote fields classes with this
+              is_custom value
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedRemoteFieldClassList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: id
+                  display_name: display_name
+                  remote_key_name: remote_key_name
+                  description: description
+                  is_custom: true
+                  is_required: true
+                  field_type: field_type
+                  field_format: field_format
+                  field_choices:
+                    - {}
+  source:
+    openapi: openapi/openapi.yml

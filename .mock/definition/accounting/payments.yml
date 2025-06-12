@@ -1,0 +1,1482 @@
+types:
+  PaymentsListRequestExpand:
+    enum:
+      - account
+      - value: account,accounting_period
+        name: AccountAccountingPeriod
+      - value: account,accounting_period,payment_method
+        name: AccountAccountingPeriodPaymentMethod
+      - value: account,company
+        name: AccountCompany
+      - value: account,company,accounting_period
+        name: AccountCompanyAccountingPeriod
+      - value: account,company,accounting_period,payment_method
+        name: AccountCompanyAccountingPeriodPaymentMethod
+      - value: account,company,payment_method
+        name: AccountCompanyPaymentMethod
+      - value: account,payment_method
+        name: AccountPaymentMethod
+      - accounting_period
+      - value: accounting_period,payment_method
+        name: AccountingPeriodPaymentMethod
+      - applied_to_lines
+      - value: applied_to_lines,account
+        name: AppliedToLinesAccount
+      - value: applied_to_lines,account,accounting_period
+        name: AppliedToLinesAccountAccountingPeriod
+      - value: applied_to_lines,account,accounting_period,payment_method
+        name: AppliedToLinesAccountAccountingPeriodPaymentMethod
+      - value: applied_to_lines,account,company
+        name: AppliedToLinesAccountCompany
+      - value: applied_to_lines,account,company,accounting_period
+        name: AppliedToLinesAccountCompanyAccountingPeriod
+      - value: applied_to_lines,account,company,accounting_period,payment_method
+        name: AppliedToLinesAccountCompanyAccountingPeriodPaymentMethod
+      - value: applied_to_lines,account,company,payment_method
+        name: AppliedToLinesAccountCompanyPaymentMethod
+      - value: applied_to_lines,account,payment_method
+        name: AppliedToLinesAccountPaymentMethod
+      - value: applied_to_lines,accounting_period
+        name: AppliedToLinesAccountingPeriod
+      - value: applied_to_lines,accounting_period,payment_method
+        name: AppliedToLinesAccountingPeriodPaymentMethod
+      - value: applied_to_lines,company
+        name: AppliedToLinesCompany
+      - value: applied_to_lines,company,accounting_period
+        name: AppliedToLinesCompanyAccountingPeriod
+      - value: applied_to_lines,company,accounting_period,payment_method
+        name: AppliedToLinesCompanyAccountingPeriodPaymentMethod
+      - value: applied_to_lines,company,payment_method
+        name: AppliedToLinesCompanyPaymentMethod
+      - value: applied_to_lines,contact
+        name: AppliedToLinesContact
+      - value: applied_to_lines,contact,account
+        name: AppliedToLinesContactAccount
+      - value: applied_to_lines,contact,account,accounting_period
+        name: AppliedToLinesContactAccountAccountingPeriod
+      - value: applied_to_lines,contact,account,accounting_period,payment_method
+        name: AppliedToLinesContactAccountAccountingPeriodPaymentMethod
+      - value: applied_to_lines,contact,account,company
+        name: AppliedToLinesContactAccountCompany
+      - value: applied_to_lines,contact,account,company,accounting_period
+        name: AppliedToLinesContactAccountCompanyAccountingPeriod
+      - value: >-
+          applied_to_lines,contact,account,company,accounting_period,payment_method
+        name: AppliedToLinesContactAccountCompanyAccountingPeriodPaymentMethod
+      - value: applied_to_lines,contact,account,company,payment_method
+        name: AppliedToLinesContactAccountCompanyPaymentMethod
+      - value: applied_to_lines,contact,account,payment_method
+        name: AppliedToLinesContactAccountPaymentMethod
+      - value: applied_to_lines,contact,accounting_period
+        name: AppliedToLinesContactAccountingPeriod
+      - value: applied_to_lines,contact,accounting_period,payment_method
+        name: AppliedToLinesContactAccountingPeriodPaymentMethod
+      - value: applied_to_lines,contact,company
+        name: AppliedToLinesContactCompany
+      - value: applied_to_lines,contact,company,accounting_period
+        name: AppliedToLinesContactCompanyAccountingPeriod
+      - value: applied_to_lines,contact,company,accounting_period,payment_method
+        name: AppliedToLinesContactCompanyAccountingPeriodPaymentMethod
+      - value: applied_to_lines,contact,company,payment_method
+        name: AppliedToLinesContactCompanyPaymentMethod
+      - value: applied_to_lines,contact,payment_method
+        name: AppliedToLinesContactPaymentMethod
+      - value: applied_to_lines,payment_method
+        name: AppliedToLinesPaymentMethod
+      - company
+      - value: company,accounting_period
+        name: CompanyAccountingPeriod
+      - value: company,accounting_period,payment_method
+        name: CompanyAccountingPeriodPaymentMethod
+      - value: company,payment_method
+        name: CompanyPaymentMethod
+      - contact
+      - value: contact,account
+        name: ContactAccount
+      - value: contact,account,accounting_period
+        name: ContactAccountAccountingPeriod
+      - value: contact,account,accounting_period,payment_method
+        name: ContactAccountAccountingPeriodPaymentMethod
+      - value: contact,account,company
+        name: ContactAccountCompany
+      - value: contact,account,company,accounting_period
+        name: ContactAccountCompanyAccountingPeriod
+      - value: contact,account,company,accounting_period,payment_method
+        name: ContactAccountCompanyAccountingPeriodPaymentMethod
+      - value: contact,account,company,payment_method
+        name: ContactAccountCompanyPaymentMethod
+      - value: contact,account,payment_method
+        name: ContactAccountPaymentMethod
+      - value: contact,accounting_period
+        name: ContactAccountingPeriod
+      - value: contact,accounting_period,payment_method
+        name: ContactAccountingPeriodPaymentMethod
+      - value: contact,company
+        name: ContactCompany
+      - value: contact,company,accounting_period
+        name: ContactCompanyAccountingPeriod
+      - value: contact,company,accounting_period,payment_method
+        name: ContactCompanyAccountingPeriodPaymentMethod
+      - value: contact,company,payment_method
+        name: ContactCompanyPaymentMethod
+      - value: contact,payment_method
+        name: ContactPaymentMethod
+      - payment_method
+      - tracking_categories
+      - value: tracking_categories,account
+        name: TrackingCategoriesAccount
+      - value: tracking_categories,account,accounting_period
+        name: TrackingCategoriesAccountAccountingPeriod
+      - value: tracking_categories,account,accounting_period,payment_method
+        name: TrackingCategoriesAccountAccountingPeriodPaymentMethod
+      - value: tracking_categories,account,company
+        name: TrackingCategoriesAccountCompany
+      - value: tracking_categories,account,company,accounting_period
+        name: TrackingCategoriesAccountCompanyAccountingPeriod
+      - value: tracking_categories,account,company,accounting_period,payment_method
+        name: TrackingCategoriesAccountCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,account,company,payment_method
+        name: TrackingCategoriesAccountCompanyPaymentMethod
+      - value: tracking_categories,account,payment_method
+        name: TrackingCategoriesAccountPaymentMethod
+      - value: tracking_categories,accounting_period
+        name: TrackingCategoriesAccountingPeriod
+      - value: tracking_categories,accounting_period,payment_method
+        name: TrackingCategoriesAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines
+        name: TrackingCategoriesAppliedToLines
+      - value: tracking_categories,applied_to_lines,account
+        name: TrackingCategoriesAppliedToLinesAccount
+      - value: tracking_categories,applied_to_lines,account,accounting_period
+        name: TrackingCategoriesAppliedToLinesAccountAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,account,accounting_period,payment_method
+        name: TrackingCategoriesAppliedToLinesAccountAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,account,company
+        name: TrackingCategoriesAppliedToLinesAccountCompany
+      - value: tracking_categories,applied_to_lines,account,company,accounting_period
+        name: TrackingCategoriesAppliedToLinesAccountCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,account,company,accounting_period,payment_method
+        name: >-
+          TrackingCategoriesAppliedToLinesAccountCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,account,company,payment_method
+        name: TrackingCategoriesAppliedToLinesAccountCompanyPaymentMethod
+      - value: tracking_categories,applied_to_lines,account,payment_method
+        name: TrackingCategoriesAppliedToLinesAccountPaymentMethod
+      - value: tracking_categories,applied_to_lines,accounting_period
+        name: TrackingCategoriesAppliedToLinesAccountingPeriod
+      - value: tracking_categories,applied_to_lines,accounting_period,payment_method
+        name: TrackingCategoriesAppliedToLinesAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,company
+        name: TrackingCategoriesAppliedToLinesCompany
+      - value: tracking_categories,applied_to_lines,company,accounting_period
+        name: TrackingCategoriesAppliedToLinesCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,company,accounting_period,payment_method
+        name: TrackingCategoriesAppliedToLinesCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,company,payment_method
+        name: TrackingCategoriesAppliedToLinesCompanyPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact
+        name: TrackingCategoriesAppliedToLinesContact
+      - value: tracking_categories,applied_to_lines,contact,account
+        name: TrackingCategoriesAppliedToLinesContactAccount
+      - value: tracking_categories,applied_to_lines,contact,account,accounting_period
+        name: TrackingCategoriesAppliedToLinesContactAccountAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,account,accounting_period,payment_method
+        name: >-
+          TrackingCategoriesAppliedToLinesContactAccountAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,account,company
+        name: TrackingCategoriesAppliedToLinesContactAccountCompany
+      - value: >-
+          tracking_categories,applied_to_lines,contact,account,company,accounting_period
+        name: TrackingCategoriesAppliedToLinesContactAccountCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,account,company,accounting_period,payment_method
+        name: >-
+          TrackingCategoriesAppliedToLinesContactAccountCompanyAccountingPeriodPaymentMethod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,account,company,payment_method
+        name: TrackingCategoriesAppliedToLinesContactAccountCompanyPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,account,payment_method
+        name: TrackingCategoriesAppliedToLinesContactAccountPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,accounting_period
+        name: TrackingCategoriesAppliedToLinesContactAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,accounting_period,payment_method
+        name: TrackingCategoriesAppliedToLinesContactAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,company
+        name: TrackingCategoriesAppliedToLinesContactCompany
+      - value: tracking_categories,applied_to_lines,contact,company,accounting_period
+        name: TrackingCategoriesAppliedToLinesContactCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,company,accounting_period,payment_method
+        name: >-
+          TrackingCategoriesAppliedToLinesContactCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,company,payment_method
+        name: TrackingCategoriesAppliedToLinesContactCompanyPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,payment_method
+        name: TrackingCategoriesAppliedToLinesContactPaymentMethod
+      - value: tracking_categories,applied_to_lines,payment_method
+        name: TrackingCategoriesAppliedToLinesPaymentMethod
+      - value: tracking_categories,company
+        name: TrackingCategoriesCompany
+      - value: tracking_categories,company,accounting_period
+        name: TrackingCategoriesCompanyAccountingPeriod
+      - value: tracking_categories,company,accounting_period,payment_method
+        name: TrackingCategoriesCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,company,payment_method
+        name: TrackingCategoriesCompanyPaymentMethod
+      - value: tracking_categories,contact
+        name: TrackingCategoriesContact
+      - value: tracking_categories,contact,account
+        name: TrackingCategoriesContactAccount
+      - value: tracking_categories,contact,account,accounting_period
+        name: TrackingCategoriesContactAccountAccountingPeriod
+      - value: tracking_categories,contact,account,accounting_period,payment_method
+        name: TrackingCategoriesContactAccountAccountingPeriodPaymentMethod
+      - value: tracking_categories,contact,account,company
+        name: TrackingCategoriesContactAccountCompany
+      - value: tracking_categories,contact,account,company,accounting_period
+        name: TrackingCategoriesContactAccountCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,contact,account,company,accounting_period,payment_method
+        name: TrackingCategoriesContactAccountCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,contact,account,company,payment_method
+        name: TrackingCategoriesContactAccountCompanyPaymentMethod
+      - value: tracking_categories,contact,account,payment_method
+        name: TrackingCategoriesContactAccountPaymentMethod
+      - value: tracking_categories,contact,accounting_period
+        name: TrackingCategoriesContactAccountingPeriod
+      - value: tracking_categories,contact,accounting_period,payment_method
+        name: TrackingCategoriesContactAccountingPeriodPaymentMethod
+      - value: tracking_categories,contact,company
+        name: TrackingCategoriesContactCompany
+      - value: tracking_categories,contact,company,accounting_period
+        name: TrackingCategoriesContactCompanyAccountingPeriod
+      - value: tracking_categories,contact,company,accounting_period,payment_method
+        name: TrackingCategoriesContactCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,contact,company,payment_method
+        name: TrackingCategoriesContactCompanyPaymentMethod
+      - value: tracking_categories,contact,payment_method
+        name: TrackingCategoriesContactPaymentMethod
+      - value: tracking_categories,payment_method
+        name: TrackingCategoriesPaymentMethod
+    source:
+      openapi: openapi/openapi.yml
+  PaymentsRetrieveRequestExpand:
+    enum:
+      - account
+      - value: account,accounting_period
+        name: AccountAccountingPeriod
+      - value: account,accounting_period,payment_method
+        name: AccountAccountingPeriodPaymentMethod
+      - value: account,company
+        name: AccountCompany
+      - value: account,company,accounting_period
+        name: AccountCompanyAccountingPeriod
+      - value: account,company,accounting_period,payment_method
+        name: AccountCompanyAccountingPeriodPaymentMethod
+      - value: account,company,payment_method
+        name: AccountCompanyPaymentMethod
+      - value: account,payment_method
+        name: AccountPaymentMethod
+      - accounting_period
+      - value: accounting_period,payment_method
+        name: AccountingPeriodPaymentMethod
+      - applied_to_lines
+      - value: applied_to_lines,account
+        name: AppliedToLinesAccount
+      - value: applied_to_lines,account,accounting_period
+        name: AppliedToLinesAccountAccountingPeriod
+      - value: applied_to_lines,account,accounting_period,payment_method
+        name: AppliedToLinesAccountAccountingPeriodPaymentMethod
+      - value: applied_to_lines,account,company
+        name: AppliedToLinesAccountCompany
+      - value: applied_to_lines,account,company,accounting_period
+        name: AppliedToLinesAccountCompanyAccountingPeriod
+      - value: applied_to_lines,account,company,accounting_period,payment_method
+        name: AppliedToLinesAccountCompanyAccountingPeriodPaymentMethod
+      - value: applied_to_lines,account,company,payment_method
+        name: AppliedToLinesAccountCompanyPaymentMethod
+      - value: applied_to_lines,account,payment_method
+        name: AppliedToLinesAccountPaymentMethod
+      - value: applied_to_lines,accounting_period
+        name: AppliedToLinesAccountingPeriod
+      - value: applied_to_lines,accounting_period,payment_method
+        name: AppliedToLinesAccountingPeriodPaymentMethod
+      - value: applied_to_lines,company
+        name: AppliedToLinesCompany
+      - value: applied_to_lines,company,accounting_period
+        name: AppliedToLinesCompanyAccountingPeriod
+      - value: applied_to_lines,company,accounting_period,payment_method
+        name: AppliedToLinesCompanyAccountingPeriodPaymentMethod
+      - value: applied_to_lines,company,payment_method
+        name: AppliedToLinesCompanyPaymentMethod
+      - value: applied_to_lines,contact
+        name: AppliedToLinesContact
+      - value: applied_to_lines,contact,account
+        name: AppliedToLinesContactAccount
+      - value: applied_to_lines,contact,account,accounting_period
+        name: AppliedToLinesContactAccountAccountingPeriod
+      - value: applied_to_lines,contact,account,accounting_period,payment_method
+        name: AppliedToLinesContactAccountAccountingPeriodPaymentMethod
+      - value: applied_to_lines,contact,account,company
+        name: AppliedToLinesContactAccountCompany
+      - value: applied_to_lines,contact,account,company,accounting_period
+        name: AppliedToLinesContactAccountCompanyAccountingPeriod
+      - value: >-
+          applied_to_lines,contact,account,company,accounting_period,payment_method
+        name: AppliedToLinesContactAccountCompanyAccountingPeriodPaymentMethod
+      - value: applied_to_lines,contact,account,company,payment_method
+        name: AppliedToLinesContactAccountCompanyPaymentMethod
+      - value: applied_to_lines,contact,account,payment_method
+        name: AppliedToLinesContactAccountPaymentMethod
+      - value: applied_to_lines,contact,accounting_period
+        name: AppliedToLinesContactAccountingPeriod
+      - value: applied_to_lines,contact,accounting_period,payment_method
+        name: AppliedToLinesContactAccountingPeriodPaymentMethod
+      - value: applied_to_lines,contact,company
+        name: AppliedToLinesContactCompany
+      - value: applied_to_lines,contact,company,accounting_period
+        name: AppliedToLinesContactCompanyAccountingPeriod
+      - value: applied_to_lines,contact,company,accounting_period,payment_method
+        name: AppliedToLinesContactCompanyAccountingPeriodPaymentMethod
+      - value: applied_to_lines,contact,company,payment_method
+        name: AppliedToLinesContactCompanyPaymentMethod
+      - value: applied_to_lines,contact,payment_method
+        name: AppliedToLinesContactPaymentMethod
+      - value: applied_to_lines,payment_method
+        name: AppliedToLinesPaymentMethod
+      - company
+      - value: company,accounting_period
+        name: CompanyAccountingPeriod
+      - value: company,accounting_period,payment_method
+        name: CompanyAccountingPeriodPaymentMethod
+      - value: company,payment_method
+        name: CompanyPaymentMethod
+      - contact
+      - value: contact,account
+        name: ContactAccount
+      - value: contact,account,accounting_period
+        name: ContactAccountAccountingPeriod
+      - value: contact,account,accounting_period,payment_method
+        name: ContactAccountAccountingPeriodPaymentMethod
+      - value: contact,account,company
+        name: ContactAccountCompany
+      - value: contact,account,company,accounting_period
+        name: ContactAccountCompanyAccountingPeriod
+      - value: contact,account,company,accounting_period,payment_method
+        name: ContactAccountCompanyAccountingPeriodPaymentMethod
+      - value: contact,account,company,payment_method
+        name: ContactAccountCompanyPaymentMethod
+      - value: contact,account,payment_method
+        name: ContactAccountPaymentMethod
+      - value: contact,accounting_period
+        name: ContactAccountingPeriod
+      - value: contact,accounting_period,payment_method
+        name: ContactAccountingPeriodPaymentMethod
+      - value: contact,company
+        name: ContactCompany
+      - value: contact,company,accounting_period
+        name: ContactCompanyAccountingPeriod
+      - value: contact,company,accounting_period,payment_method
+        name: ContactCompanyAccountingPeriodPaymentMethod
+      - value: contact,company,payment_method
+        name: ContactCompanyPaymentMethod
+      - value: contact,payment_method
+        name: ContactPaymentMethod
+      - payment_method
+      - tracking_categories
+      - value: tracking_categories,account
+        name: TrackingCategoriesAccount
+      - value: tracking_categories,account,accounting_period
+        name: TrackingCategoriesAccountAccountingPeriod
+      - value: tracking_categories,account,accounting_period,payment_method
+        name: TrackingCategoriesAccountAccountingPeriodPaymentMethod
+      - value: tracking_categories,account,company
+        name: TrackingCategoriesAccountCompany
+      - value: tracking_categories,account,company,accounting_period
+        name: TrackingCategoriesAccountCompanyAccountingPeriod
+      - value: tracking_categories,account,company,accounting_period,payment_method
+        name: TrackingCategoriesAccountCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,account,company,payment_method
+        name: TrackingCategoriesAccountCompanyPaymentMethod
+      - value: tracking_categories,account,payment_method
+        name: TrackingCategoriesAccountPaymentMethod
+      - value: tracking_categories,accounting_period
+        name: TrackingCategoriesAccountingPeriod
+      - value: tracking_categories,accounting_period,payment_method
+        name: TrackingCategoriesAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines
+        name: TrackingCategoriesAppliedToLines
+      - value: tracking_categories,applied_to_lines,account
+        name: TrackingCategoriesAppliedToLinesAccount
+      - value: tracking_categories,applied_to_lines,account,accounting_period
+        name: TrackingCategoriesAppliedToLinesAccountAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,account,accounting_period,payment_method
+        name: TrackingCategoriesAppliedToLinesAccountAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,account,company
+        name: TrackingCategoriesAppliedToLinesAccountCompany
+      - value: tracking_categories,applied_to_lines,account,company,accounting_period
+        name: TrackingCategoriesAppliedToLinesAccountCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,account,company,accounting_period,payment_method
+        name: >-
+          TrackingCategoriesAppliedToLinesAccountCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,account,company,payment_method
+        name: TrackingCategoriesAppliedToLinesAccountCompanyPaymentMethod
+      - value: tracking_categories,applied_to_lines,account,payment_method
+        name: TrackingCategoriesAppliedToLinesAccountPaymentMethod
+      - value: tracking_categories,applied_to_lines,accounting_period
+        name: TrackingCategoriesAppliedToLinesAccountingPeriod
+      - value: tracking_categories,applied_to_lines,accounting_period,payment_method
+        name: TrackingCategoriesAppliedToLinesAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,company
+        name: TrackingCategoriesAppliedToLinesCompany
+      - value: tracking_categories,applied_to_lines,company,accounting_period
+        name: TrackingCategoriesAppliedToLinesCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,company,accounting_period,payment_method
+        name: TrackingCategoriesAppliedToLinesCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,company,payment_method
+        name: TrackingCategoriesAppliedToLinesCompanyPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact
+        name: TrackingCategoriesAppliedToLinesContact
+      - value: tracking_categories,applied_to_lines,contact,account
+        name: TrackingCategoriesAppliedToLinesContactAccount
+      - value: tracking_categories,applied_to_lines,contact,account,accounting_period
+        name: TrackingCategoriesAppliedToLinesContactAccountAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,account,accounting_period,payment_method
+        name: >-
+          TrackingCategoriesAppliedToLinesContactAccountAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,account,company
+        name: TrackingCategoriesAppliedToLinesContactAccountCompany
+      - value: >-
+          tracking_categories,applied_to_lines,contact,account,company,accounting_period
+        name: TrackingCategoriesAppliedToLinesContactAccountCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,account,company,accounting_period,payment_method
+        name: >-
+          TrackingCategoriesAppliedToLinesContactAccountCompanyAccountingPeriodPaymentMethod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,account,company,payment_method
+        name: TrackingCategoriesAppliedToLinesContactAccountCompanyPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,account,payment_method
+        name: TrackingCategoriesAppliedToLinesContactAccountPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,accounting_period
+        name: TrackingCategoriesAppliedToLinesContactAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,accounting_period,payment_method
+        name: TrackingCategoriesAppliedToLinesContactAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,company
+        name: TrackingCategoriesAppliedToLinesContactCompany
+      - value: tracking_categories,applied_to_lines,contact,company,accounting_period
+        name: TrackingCategoriesAppliedToLinesContactCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,applied_to_lines,contact,company,accounting_period,payment_method
+        name: >-
+          TrackingCategoriesAppliedToLinesContactCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,company,payment_method
+        name: TrackingCategoriesAppliedToLinesContactCompanyPaymentMethod
+      - value: tracking_categories,applied_to_lines,contact,payment_method
+        name: TrackingCategoriesAppliedToLinesContactPaymentMethod
+      - value: tracking_categories,applied_to_lines,payment_method
+        name: TrackingCategoriesAppliedToLinesPaymentMethod
+      - value: tracking_categories,company
+        name: TrackingCategoriesCompany
+      - value: tracking_categories,company,accounting_period
+        name: TrackingCategoriesCompanyAccountingPeriod
+      - value: tracking_categories,company,accounting_period,payment_method
+        name: TrackingCategoriesCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,company,payment_method
+        name: TrackingCategoriesCompanyPaymentMethod
+      - value: tracking_categories,contact
+        name: TrackingCategoriesContact
+      - value: tracking_categories,contact,account
+        name: TrackingCategoriesContactAccount
+      - value: tracking_categories,contact,account,accounting_period
+        name: TrackingCategoriesContactAccountAccountingPeriod
+      - value: tracking_categories,contact,account,accounting_period,payment_method
+        name: TrackingCategoriesContactAccountAccountingPeriodPaymentMethod
+      - value: tracking_categories,contact,account,company
+        name: TrackingCategoriesContactAccountCompany
+      - value: tracking_categories,contact,account,company,accounting_period
+        name: TrackingCategoriesContactAccountCompanyAccountingPeriod
+      - value: >-
+          tracking_categories,contact,account,company,accounting_period,payment_method
+        name: TrackingCategoriesContactAccountCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,contact,account,company,payment_method
+        name: TrackingCategoriesContactAccountCompanyPaymentMethod
+      - value: tracking_categories,contact,account,payment_method
+        name: TrackingCategoriesContactAccountPaymentMethod
+      - value: tracking_categories,contact,accounting_period
+        name: TrackingCategoriesContactAccountingPeriod
+      - value: tracking_categories,contact,accounting_period,payment_method
+        name: TrackingCategoriesContactAccountingPeriodPaymentMethod
+      - value: tracking_categories,contact,company
+        name: TrackingCategoriesContactCompany
+      - value: tracking_categories,contact,company,accounting_period
+        name: TrackingCategoriesContactCompanyAccountingPeriod
+      - value: tracking_categories,contact,company,accounting_period,payment_method
+        name: TrackingCategoriesContactCompanyAccountingPeriodPaymentMethod
+      - value: tracking_categories,contact,company,payment_method
+        name: TrackingCategoriesContactCompanyPaymentMethod
+      - value: tracking_categories,contact,payment_method
+        name: TrackingCategoriesContactPaymentMethod
+      - value: tracking_categories,payment_method
+        name: TrackingCategoriesPaymentMethod
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /accounting/v1/payments
+      method: GET
+      auth: true
+      docs: Returns a list of `Payment` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: PaymentsListRequest
+        query-parameters:
+          account_id:
+            type: optional<string>
+            docs: If provided, will only return payments for this account.
+          company_id:
+            type: optional<string>
+            docs: If provided, will only return payments for this company.
+          contact_id:
+            type: optional<string>
+            docs: If provided, will only return payments for this contact.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<PaymentsListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_remote_fields:
+            type: optional<boolean>
+            docs: >-
+              Whether to include all remote fields, including fields that Merge
+              did not map to common models, in a normalized format.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          transaction_date_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          transaction_date_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+      response:
+        docs: ''
+        type: root.PaginatedPaymentList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: b26fd49a-cbae-470a-a8f8-bcbc119e0390
+                  remote_id: '987300'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  transaction_date: '2020-03-31T00:00:00Z'
+                  contact: contact
+                  account: account
+                  payment_method: payment_method
+                  currency: XUA
+                  exchange_rate: '2.9'
+                  company: company
+                  total_amount: 50
+                  type: ACCOUNTS_PAYABLE
+                  tracking_categories:
+                    - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                    - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                    - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  accounting_period: accounting_period
+                  applied_to_lines:
+                    - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                      remote_id: '234'
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      applied_amount: applied_amount
+                      applied_date: '2020-03-31T00:00:00Z'
+                      related_object_id: a47e11b6-c73b-4a0c-be31-130fc48177fa
+                      related_object_type: INVOICE
+                    - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                      remote_id: '235'
+                      created_at: '2021-09-15T00:00:00Z'
+                      modified_at: '2021-10-16T00:00:00Z'
+                      applied_amount: applied_amount
+                      applied_date: '2020-03-31T00:00:00Z'
+                      related_object_id: 9b96a886-29a5-452b-8733-2a1e03497cf4
+                      related_object_type: CREDIT_NOTE
+                  remote_updated_at: '2020-03-31T00:00:00Z'
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /actions
+                      data:
+                        - Varies by platform
+                  remote_fields:
+                    - remote_field_class: remote_field_class
+    create:
+      path: /accounting/v1/payments
+      method: POST
+      auth: true
+      docs: Creates a `Payment` object with the given values.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: PaymentEndpointRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            model: root.PaymentRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.PaymentResponse
+        status-code: 201
+      examples:
+        - headers: {}
+          request:
+            model: {}
+          response:
+            body:
+              model:
+                id: b26fd49a-cbae-470a-a8f8-bcbc119e0390
+                remote_id: '987300'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                transaction_date: '2020-03-31T00:00:00Z'
+                contact: contact
+                account: account
+                payment_method: payment_method
+                currency: XUA
+                exchange_rate: '2.9'
+                company: company
+                total_amount: 50
+                type: ACCOUNTS_PAYABLE
+                tracking_categories:
+                  - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                  - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                  - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                accounting_period: accounting_period
+                applied_to_lines:
+                  - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                    remote_id: '234'
+                    created_at: '2021-09-15T00:00:00Z'
+                    modified_at: '2021-10-16T00:00:00Z'
+                    applied_amount: applied_amount
+                    applied_date: '2020-03-31T00:00:00Z'
+                    related_object_id: a47e11b6-c73b-4a0c-be31-130fc48177fa
+                    related_object_type: INVOICE
+                  - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                    remote_id: '235'
+                    created_at: '2021-09-15T00:00:00Z'
+                    modified_at: '2021-10-16T00:00:00Z'
+                    applied_amount: applied_amount
+                    applied_date: '2020-03-31T00:00:00Z'
+                    related_object_id: 9b96a886-29a5-452b-8733-2a1e03497cf4
+                    related_object_type: CREDIT_NOTE
+                remote_updated_at: '2020-03-31T00:00:00Z'
+                remote_was_deleted: true
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /actions
+                    data:
+                      - Varies by platform
+                remote_fields:
+                  - remote_field_class: remote_field_class
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    retrieve:
+      path: /accounting/v1/payments/{id}
+      method: GET
+      auth: true
+      docs: Returns a `Payment` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: PaymentsRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<PaymentsRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_remote_fields:
+            type: optional<boolean>
+            docs: >-
+              Whether to include all remote fields, including fields that Merge
+              did not map to common models, in a normalized format.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.Payment
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: b26fd49a-cbae-470a-a8f8-bcbc119e0390
+              remote_id: '987300'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              transaction_date: '2020-03-31T00:00:00Z'
+              contact: contact
+              account: account
+              payment_method: payment_method
+              currency: XUA
+              exchange_rate: '2.9'
+              company: company
+              total_amount: 50
+              type: ACCOUNTS_PAYABLE
+              tracking_categories:
+                - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                - a47e11b6-c73b-4a0c-be31-130fc48177fa
+              accounting_period: accounting_period
+              applied_to_lines:
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '234'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  applied_amount: applied_amount
+                  applied_date: '2020-03-31T00:00:00Z'
+                  related_object_id: a47e11b6-c73b-4a0c-be31-130fc48177fa
+                  related_object_type: INVOICE
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '235'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  applied_amount: applied_amount
+                  applied_date: '2020-03-31T00:00:00Z'
+                  related_object_id: 9b96a886-29a5-452b-8733-2a1e03497cf4
+                  related_object_type: CREDIT_NOTE
+              remote_updated_at: '2020-03-31T00:00:00Z'
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /actions
+                  data:
+                    - Varies by platform
+              remote_fields:
+                - remote_field_class: remote_field_class
+                  value:
+                    key: value
+    partialUpdate:
+      path: /accounting/v1/payments/{id}
+      method: PATCH
+      auth: true
+      docs: Updates a `Payment` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: PatchedPaymentEndpointRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            model: root.PatchedPaymentRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.PaymentResponse
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          request:
+            model: {}
+          response:
+            body:
+              model:
+                id: b26fd49a-cbae-470a-a8f8-bcbc119e0390
+                remote_id: '987300'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                transaction_date: '2020-03-31T00:00:00Z'
+                contact: contact
+                account: account
+                payment_method: payment_method
+                currency: XUA
+                exchange_rate: '2.9'
+                company: company
+                total_amount: 50
+                type: ACCOUNTS_PAYABLE
+                tracking_categories:
+                  - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
+                  - 9b840d2-686a-465a-8a8e-7b028498f8e4
+                  - a47e11b6-c73b-4a0c-be31-130fc48177fa
+                accounting_period: accounting_period
+                applied_to_lines:
+                  - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                    remote_id: '234'
+                    created_at: '2021-09-15T00:00:00Z'
+                    modified_at: '2021-10-16T00:00:00Z'
+                    applied_amount: applied_amount
+                    applied_date: '2020-03-31T00:00:00Z'
+                    related_object_id: a47e11b6-c73b-4a0c-be31-130fc48177fa
+                    related_object_type: INVOICE
+                  - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                    remote_id: '235'
+                    created_at: '2021-09-15T00:00:00Z'
+                    modified_at: '2021-10-16T00:00:00Z'
+                    applied_amount: applied_amount
+                    applied_date: '2020-03-31T00:00:00Z'
+                    related_object_id: 9b96a886-29a5-452b-8733-2a1e03497cf4
+                    related_object_type: CREDIT_NOTE
+                remote_updated_at: '2020-03-31T00:00:00Z'
+                remote_was_deleted: true
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /actions
+                    data:
+                      - Varies by platform
+                remote_fields:
+                  - remote_field_class: remote_field_class
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    lineItemsRemoteFieldClassesList:
+      path: /accounting/v1/payments/line-items/remote-field-classes
+      method: GET
+      auth: true
+      docs: Returns a list of `RemoteFieldClass` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: PaymentsLineItemsRemoteFieldClassesListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          is_common_model_field:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote field classes with this
+              is_common_model_field value
+          is_custom:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote fields classes with this
+              is_custom value
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedRemoteFieldClassList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: id
+                  display_name: display_name
+                  remote_key_name: remote_key_name
+                  description: description
+                  is_custom: true
+                  is_required: true
+                  field_type: string
+                  field_format: string
+                  field_choices:
+                    - field_choices
+    metaPatchRetrieve:
+      path: /accounting/v1/payments/meta/patch/{id}
+      method: GET
+      auth: true
+      docs: Returns metadata for `Payment` PATCHs.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      response:
+        docs: ''
+        type: root.MetaResponse
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              request_schema:
+                type: object
+                properties:
+                  model:
+                    type: object
+                    required:
+                      - last_name
+                      - first_name
+                      - merge_categories
+                      - new_york_city_neighborhood
+                      - favorite_tv_shows
+                      - favorite_watch
+                    properties:
+                      email_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            email_address_type:
+                              type: string
+                              title: email_address_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: email_addresses
+                        description: Array of email_addresses objects
+                      urls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            url_type:
+                              type: string
+                              title: url_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: urls
+                        description: Array of urls objects
+                      first_name:
+                        type: string
+                        title: first_name
+                        description: The first name.
+                      last_name:
+                        type: string
+                        title: last_name
+                        description: The last name.
+                      phone_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            phone_number_type:
+                              type: string
+                              title: phone_number_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: phone_numbers
+                        description: Array of phone_numbers objects
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: tags
+                        description: Array of tags names
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              title: id
+                            file_url:
+                              type: string
+                              title: file_url
+                            file_name:
+                              type: string
+                              title: file_name
+                            attachment_type:
+                              type: string
+                              title: attachment_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: attachments
+                        description: 'Array of attachments objects '
+                      merge_categories:
+                        type: array
+                        categories:
+                          type: string
+                          enum:
+                            - HRIS
+                            - ATS
+                            - Accounting
+                            - Ticketing
+                            - File Storage
+                            - CRM
+                            - Marketing Automation
+                          enum_information:
+                            - value: HRIS
+                              description: Merge HRIS Category
+                            - value: ATS
+                              description: Merge ATS Category
+                            - value: Accounting
+                              description: Merge Accounting Category
+                            - value: Ticketing
+                              description: Merge Ticketing Category
+                            - value: File Storage
+                              description: Merge File Storage Category
+                            - value: CRM
+                              description: Merge CRM Category
+                            - value: Marketing Automation
+                              description: Merge Marketing Automation Category
+                        title: Merge Categories
+                        description: Array of Merge's Unified API Categories
+                      new_york_city_neighborhood:
+                        type: string
+                        title: Borough
+                        description: One of the 5 Boroughs of New York City
+                      favorite_tv_shows:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: Favorite TV Shows
+                        description: Array of TV Show objects on merge.tv_shows
+                      favorite_watch:
+                        type: string
+                        title: Favorite Watch
+                        description: Favorite watch of all time
+              remote_field_classes:
+                key: value
+              status:
+                linked_account_status: linked_account_status
+                can_make_request: true
+              has_conditional_params: true
+              has_required_linked_account_params: true
+    metaPostRetrieve:
+      path: /accounting/v1/payments/meta/post
+      method: GET
+      auth: true
+      docs: Returns metadata for `Payment` POSTs.
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.MetaResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              request_schema:
+                type: object
+                properties:
+                  model:
+                    type: object
+                    required:
+                      - last_name
+                      - first_name
+                      - merge_categories
+                      - new_york_city_neighborhood
+                      - favorite_tv_shows
+                      - favorite_watch
+                    properties:
+                      email_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            email_address_type:
+                              type: string
+                              title: email_address_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: email_addresses
+                        description: Array of email_addresses objects
+                      urls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            url_type:
+                              type: string
+                              title: url_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: urls
+                        description: Array of urls objects
+                      first_name:
+                        type: string
+                        title: first_name
+                        description: The first name.
+                      last_name:
+                        type: string
+                        title: last_name
+                        description: The last name.
+                      phone_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            phone_number_type:
+                              type: string
+                              title: phone_number_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: phone_numbers
+                        description: Array of phone_numbers objects
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: tags
+                        description: Array of tags names
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              title: id
+                            file_url:
+                              type: string
+                              title: file_url
+                            file_name:
+                              type: string
+                              title: file_name
+                            attachment_type:
+                              type: string
+                              title: attachment_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: attachments
+                        description: 'Array of attachments objects '
+                      merge_categories:
+                        type: array
+                        categories:
+                          type: string
+                          enum:
+                            - HRIS
+                            - ATS
+                            - Accounting
+                            - Ticketing
+                            - File Storage
+                            - CRM
+                            - Marketing Automation
+                          enum_information:
+                            - value: HRIS
+                              description: Merge HRIS Category
+                            - value: ATS
+                              description: Merge ATS Category
+                            - value: Accounting
+                              description: Merge Accounting Category
+                            - value: Ticketing
+                              description: Merge Ticketing Category
+                            - value: File Storage
+                              description: Merge File Storage Category
+                            - value: CRM
+                              description: Merge CRM Category
+                            - value: Marketing Automation
+                              description: Merge Marketing Automation Category
+                        title: Merge Categories
+                        description: Array of Merge's Unified API Categories
+                      new_york_city_neighborhood:
+                        type: string
+                        title: Borough
+                        description: One of the 5 Boroughs of New York City
+                      favorite_tv_shows:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: Favorite TV Shows
+                        description: Array of TV Show objects on merge.tv_shows
+                      favorite_watch:
+                        type: string
+                        title: Favorite Watch
+                        description: Favorite watch of all time
+              remote_field_classes:
+                key: value
+              status:
+                linked_account_status: linked_account_status
+                can_make_request: true
+              has_conditional_params: true
+              has_required_linked_account_params: true
+    remoteFieldClassesList:
+      path: /accounting/v1/payments/remote-field-classes
+      method: GET
+      auth: true
+      docs: Returns a list of `RemoteFieldClass` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: PaymentsRemoteFieldClassesListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          is_common_model_field:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote field classes with this
+              is_common_model_field value
+          is_custom:
+            type: optional<boolean>
+            docs: >-
+              If provided, will only return remote fields classes with this
+              is_custom value
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedRemoteFieldClassList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: id
+                  display_name: display_name
+                  remote_key_name: remote_key_name
+                  description: description
+                  is_custom: true
+                  is_required: true
+                  field_type: string
+                  field_format: string
+                  field_choices:
+                    - field_choices
+  source:
+    openapi: openapi/openapi.yml

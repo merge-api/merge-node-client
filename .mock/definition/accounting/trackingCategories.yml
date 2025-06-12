@@ -1,0 +1,182 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /accounting/v1/tracking-categories
+      method: GET
+      auth: true
+      docs: Returns a list of `TrackingCategory` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: TrackingCategoriesListRequest
+        query-parameters:
+          category_type:
+            type: optional<string>
+            docs: If provided, will only return tracking categories with this type.
+          company_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return tracking categories for this
+              company.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<literal<"company">>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          name:
+            type: optional<string>
+            docs: If provided, will only return tracking categories with this name.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_fields:
+            type: optional<literal<"status">>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          show_enum_origins:
+            type: optional<literal<"status">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+          status:
+            type: optional<string>
+            docs: >-
+              If provided, will only return tracking categories with this
+              status.
+      response:
+        docs: ''
+        type: root.PaginatedTrackingCategoryList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+                  remote_id: '948201'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  name: Marketing Department
+                  status: ACTIVE
+                  category_type: CLASS
+                  parent_category: d25d609b-945f-4762-b55a-1c8fb220c43c
+                  company: company
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+    retrieve:
+      path: /accounting/v1/tracking-categories/{id}
+      method: GET
+      auth: true
+      docs: Returns a `TrackingCategory` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: TrackingCategoriesRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<literal<"company">>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<literal<"status">>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<literal<"status">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.TrackingCategory
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+              remote_id: '948201'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              name: Marketing Department
+              status: ACTIVE
+              category_type: CLASS
+              parent_category: d25d609b-945f-4762-b55a-1c8fb220c43c
+              company: company
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+  source:
+    openapi: openapi/openapi.yml

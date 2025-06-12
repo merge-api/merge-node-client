@@ -1,0 +1,61 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /crm/v1/webhook-receivers
+      method: GET
+      auth: true
+      docs: Returns a list of `WebhookReceiver` objects.
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: list<root.WebhookReceiver>
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              - event: event
+                is_active: true
+                key: key
+    create:
+      path: /crm/v1/webhook-receivers
+      method: POST
+      auth: true
+      docs: Creates a `WebhookReceiver` object with the given values.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: WebhookReceiverRequest
+        body:
+          properties:
+            event:
+              type: string
+              validation:
+                minLength: 1
+            is_active: boolean
+            key:
+              type: optional<string>
+              validation:
+                minLength: 1
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.WebhookReceiver
+        status-code: 201
+      examples:
+        - headers: {}
+          request:
+            event: event
+            is_active: true
+          response:
+            body:
+              event: event
+              is_active: true
+              key: key
+  source:
+    openapi: openapi/openapi.yml

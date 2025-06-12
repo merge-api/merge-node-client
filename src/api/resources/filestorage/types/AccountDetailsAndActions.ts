@@ -28,4 +28,5 @@ export interface AccountDetailsAndActions {
     integration?: Merge.filestorage.AccountDetailsAndActionsIntegration;
     accountType: string;
     completedAt: Date;
+    integrationSpecificFields?: Record<string, unknown>;
 }

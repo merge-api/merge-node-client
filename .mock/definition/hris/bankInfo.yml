@@ -1,0 +1,212 @@
+types:
+  BankInfoListRequestAccountType:
+    enum:
+      - CHECKING
+      - SAVINGS
+    source:
+      openapi: openapi/openapi.yml
+  BankInfoListRequestOrderBy:
+    enum:
+      - value: '-remote_created_at'
+        name: RemoteCreatedAtDescending
+      - value: remote_created_at
+        name: RemoteCreatedAtAscending
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /hris/v1/bank-info
+      method: GET
+      auth: true
+      docs: Returns a list of `BankInfo` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: BankInfoListRequest
+        query-parameters:
+          account_type:
+            type: optional<BankInfoListRequestAccountType>
+            docs: >-
+              If provided, will only return BankInfo's with this account type.
+              Options: ('SAVINGS', 'CHECKING')
+
+
+              * `SAVINGS` - SAVINGS
+
+              * `CHECKING` - CHECKING
+          bank_name:
+            type: optional<string>
+            docs: If provided, will only return BankInfo's with this bank name.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          employee_id:
+            type: optional<string>
+            docs: If provided, will only return bank accounts for this employee.
+          expand:
+            type: optional<literal<"employee">>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          order_by:
+            type: optional<BankInfoListRequestOrderBy>
+            docs: >-
+              Overrides the default ordering for this endpoint. Possible values
+              include: remote_created_at, -remote_created_at.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_fields:
+            type: optional<literal<"account_type">>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          show_enum_origins:
+            type: optional<literal<"account_type">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.PaginatedBankInfoList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: fd1e0fb5-8f92-4ec9-9f32-179cf732867d
+                  remote_id: '123234'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  employee: employee
+                  account_number: '439291590'
+                  routing_number: '089690059'
+                  bank_name: Chase
+                  account_type: SAVINGS
+                  remote_created_at: '2021-12-06T10:11:26Z'
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /bank-info
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /hris/v1/bank-info/{id}
+      method: GET
+      auth: true
+      docs: Returns a `BankInfo` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: BankInfoRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<literal<"employee">>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<literal<"account_type">>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<literal<"account_type">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.BankInfo
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: fd1e0fb5-8f92-4ec9-9f32-179cf732867d
+              remote_id: '123234'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              employee: employee
+              account_number: '439291590'
+              routing_number: '089690059'
+              bank_name: Chase
+              account_type: SAVINGS
+              remote_created_at: '2021-12-06T10:11:26Z'
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /bank-info
+                  data:
+                    - Varies by platform
+  source:
+    openapi: openapi/openapi.yml

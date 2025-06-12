@@ -1,0 +1,61 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    retrieve:
+      path: /accounting/v1/addresses/{id}
+      method: GET
+      auth: true
+      docs: Returns an `Address` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: AddressesRetrieveRequest
+        query-parameters:
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<literal<"type">>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<literal<"type">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.Address
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              type: BILLING
+              street_1: 2920 Broadway
+              street_2: 2nd Floor
+              city: New York
+              state:
+                key: value
+              country_subdivision: NY
+              country: AF
+              zip_code: '10027'
+  source:
+    openapi: openapi/openapi.yml

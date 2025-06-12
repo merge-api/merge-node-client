@@ -1,0 +1,150 @@
+types:
+  LinkedAccountsListRequestCategory:
+    enum:
+      - accounting
+      - ats
+      - crm
+      - filestorage
+      - hris
+      - mktg
+      - ticketing
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /ats/v1/linked-accounts
+      method: GET
+      auth: true
+      docs: List linked accounts for your organization.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: LinkedAccountsListRequest
+        query-parameters:
+          category:
+            type: optional<LinkedAccountsListRequestCategory>
+            docs: >-
+              Options: `accounting`, `ats`, `crm`, `filestorage`, `hris`,
+              `mktg`, `ticketing`
+
+
+              * `hris` - hris
+
+              * `ats` - ats
+
+              * `accounting` - accounting
+
+              * `ticketing` - ticketing
+
+              * `crm` - crm
+
+              * `mktg` - mktg
+
+              * `filestorage` - filestorage
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          end_user_email_address:
+            type: optional<string>
+            docs: >-
+              If provided, will only return linked accounts associated with the
+              given email address.
+          end_user_organization_name:
+            type: optional<string>
+            docs: >-
+              If provided, will only return linked accounts associated with the
+              given organization name.
+          end_user_origin_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return linked accounts associated with the
+              given origin ID.
+          end_user_origin_ids:
+            type: optional<string>
+            docs: >-
+              Comma-separated list of EndUser origin IDs, making it possible to
+              specify multiple EndUsers at once.
+          id:
+            type: optional<string>
+            validation:
+              format: uuid
+          ids:
+            type: optional<string>
+            docs: >-
+              Comma-separated list of LinkedAccount IDs, making it possible to
+              specify multiple LinkedAccounts at once.
+          include_duplicates:
+            type: optional<boolean>
+            docs: >-
+              If `true`, will include complete production duplicates of the
+              account specified by the `id` query parameter in the response.
+              `id` must be for a complete production linked account.
+          integration_name:
+            type: optional<string>
+            docs: >-
+              If provided, will only return linked accounts associated with the
+              given integration name.
+          is_test_account:
+            type: optional<string>
+            docs: >-
+              If included, will only include test linked accounts. If not
+              included, will only include non-test linked accounts.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          status:
+            type: optional<string>
+            docs: >-
+              Filter by status. Options: `COMPLETE`, `IDLE`, `INCOMPLETE`,
+              `RELINK_NEEDED`
+      response:
+        docs: ''
+        type: root.PaginatedAccountDetailsAndActionsList
+        status-code: 200
+      examples:
+        - response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: e59b1821-f85c-4e28-a6b3-1804156f3563
+                  category: hris
+                  status: COMPLETE
+                  status_detail: Invalid login credentials
+                  end_user_origin_id: 3ac95cde-6c7f-4eef-afec-be710b42308d
+                  end_user_organization_name: Foo Bar, LLC
+                  end_user_email_address: hradmin@foobar.dev
+                  subdomain: foobar
+                  webhook_listener_url: >-
+                    https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4
+                  is_duplicate: true
+                  integration:
+                    name: name
+                    categories:
+                      - hris
+                    color: color
+                    slug: slug
+                    passthrough_available: true
+                    available_model_operations:
+                      - model_name: Candidate
+                        available_operations:
+                          - FETCH
+                          - CREATE
+                        required_post_parameters:
+                          - remote_user_id
+                        supported_fields:
+                          - first_name
+                          - last_name
+                          - company
+                          - title
+                  account_type: PRODUCTION
+                  completed_at: '2024-08-26T20:11:19Z'
+                  integration_specific_fields:
+                    integration_specific_field: Varies by platform
+  source:
+    openapi: openapi/openapi.yml

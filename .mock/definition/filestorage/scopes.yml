@@ -1,0 +1,160 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    default_scopes_retrieve:
+      path: /filestorage/v1/default-scopes
+      method: GET
+      auth: true
+      docs: >-
+        Get the default permissions for Merge Common Models and fields across
+        all Linked Accounts of a given category. [Learn
+        more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.CommonModelScopeApi
+        status-code: 200
+      examples:
+        - response:
+            body:
+              common_models:
+                - model_name: Employee
+                  model_permissions:
+                    READ:
+                      is_enabled: true
+                    WRITE:
+                      is_enabled: false
+                  field_permissions:
+                    enabled_fields:
+                      - avatar
+                      - created_at
+                      - custom_fields
+                      - date_of_birth
+                      - first_name
+                      - gender
+                      - remote_created_at
+                      - remote_data
+                    disabled_fields:
+                      - company
+                      - employments
+                      - groups
+                      - home_location
+                      - manager
+                      - work_location
+    linked_account_scopes_retrieve:
+      path: /filestorage/v1/linked-account-scopes
+      method: GET
+      auth: true
+      docs: >-
+        Get all available permissions for Merge Common Models and fields for a
+        single Linked Account. [Learn
+        more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.CommonModelScopeApi
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              common_models:
+                - model_name: Employee
+                  model_permissions:
+                    READ:
+                      is_enabled: true
+                    WRITE:
+                      is_enabled: false
+                  field_permissions:
+                    enabled_fields:
+                      - avatar
+                      - created_at
+                      - custom_fields
+                      - date_of_birth
+                      - first_name
+                      - gender
+                      - remote_created_at
+                      - remote_data
+                    disabled_fields:
+                      - company
+                      - employments
+                      - groups
+                      - home_location
+                      - manager
+                      - work_location
+    linked_account_scopes_create:
+      path: /filestorage/v1/linked-account-scopes
+      method: POST
+      auth: true
+      docs: >-
+        Update permissions for any Common Model or field for a single Linked
+        Account. Any Scopes not set in this POST request will inherit the
+        default Scopes. [Learn
+        more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes)
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: LinkedAccountCommonModelScopeDeserializerRequest
+        body:
+          properties:
+            common_models:
+              docs: The common models you want to update the scopes for
+              type: list<root.IndividualCommonModelScopeDeserializerRequest>
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.CommonModelScopeApi
+        status-code: 200
+      examples:
+        - headers: {}
+          request:
+            common_models:
+              - model_name: Employee
+                model_permissions:
+                  READ:
+                    is_enabled: true
+                  WRITE:
+                    is_enabled: false
+                field_permissions:
+                  enabled_fields:
+                    - avatar
+                    - home_location
+                  disabled_fields:
+                    - work_location
+              - model_name: Benefit
+                model_permissions:
+                  WRITE:
+                    is_enabled: false
+          response:
+            body:
+              common_models:
+                - model_name: Employee
+                  model_permissions:
+                    READ:
+                      is_enabled: true
+                    WRITE:
+                      is_enabled: false
+                  field_permissions:
+                    enabled_fields:
+                      - avatar
+                      - created_at
+                      - custom_fields
+                      - date_of_birth
+                      - first_name
+                      - gender
+                      - remote_created_at
+                      - remote_data
+                    disabled_fields:
+                      - company
+                      - employments
+                      - groups
+                      - home_location
+                      - manager
+                      - work_location
+  source:
+    openapi: openapi/openapi.yml

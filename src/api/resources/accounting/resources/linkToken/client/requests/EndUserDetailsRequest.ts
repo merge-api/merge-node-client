@@ -43,7 +43,7 @@ export interface EndUserDetailsRequest {
      * * `en` - en
      * * `de` - de
      */
-    language?: Merge.accounting.LanguageEnum;
+    language?: Merge.accounting.EndUserDetailsRequestLanguage;
     /** The boolean that indicates whether initial, periodic, and force syncs will be disabled. */
     areSyncsDisabled?: boolean;
     /** A JSON object containing integration-specific configuration options. */

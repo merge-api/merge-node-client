@@ -1,0 +1,892 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    field_mappings_retrieve:
+      path: /ats/v1/field-mappings
+      method: GET
+      auth: true
+      docs: >-
+        Get all Field Mappings for this Linked Account. Field Mappings are
+        mappings between third-party Remote Fields and user defined Merge
+        fields. [Learn
+        more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: FieldMappingsRetrieveRequest
+        query-parameters:
+          exclude_remote_field_metadata:
+            type: optional<boolean>
+            docs: >-
+              If `true`, remote fields metadata is excluded from each field
+              mapping instance (i.e. `remote_fields.remote_key_name` and
+              `remote_fields.schema` will be null). This will increase the speed
+              of the request since these fields require some calculations.
+      response:
+        docs: ''
+        type: root.FieldMappingApiInstanceResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              Activity:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              Application:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              Attachment:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              Candidate:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              Department:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              EEOC:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              ScheduledInterview:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              Job:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              JobPosting:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              JobInterviewStage:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              Offer:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              Office:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              RejectReason:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              Scorecard:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              Tag:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+              RemoteUser:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  is_integration_wide: true
+                  target_field:
+                    name: example_target_field_name
+                    description: this is a example description of a target field
+                    is_organization_wide: true
+                  remote_field:
+                    remote_key_name: example_remote_field_key
+                    schema:
+                      type: string
+                    remote_endpoint_info:
+                      method: GET
+                      url_path: /example-url-path
+                      field_traversal_path:
+                        - example_remote_field_key
+    field_mappings_create:
+      path: /ats/v1/field-mappings
+      method: POST
+      auth: true
+      docs: >-
+        Create new Field Mappings that will be available after the next
+        scheduled sync. This will cause the next sync for this Linked Account to
+        sync **ALL** data from start.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: CreateFieldMappingRequest
+        query-parameters:
+          exclude_remote_field_metadata:
+            type: optional<boolean>
+            docs: >-
+              If `true`, remote fields metadata is excluded from each field
+              mapping instance (i.e. `remote_fields.remote_key_name` and
+              `remote_fields.schema` will be null). This will increase the speed
+              of the request since these fields require some calculations.
+        body:
+          properties:
+            target_field_name:
+              type: string
+              docs: >-
+                The name of the target field you want this remote field to map
+                to.
+              validation:
+                minLength: 1
+            target_field_description:
+              type: string
+              docs: >-
+                The description of the target field you want this remote field
+                to map to.
+              validation:
+                minLength: 1
+            remote_field_traversal_path:
+              docs: >-
+                The field traversal path of the remote field listed when you hit
+                the GET /remote-fields endpoint.
+              type: list<unknown>
+            remote_method:
+              type: string
+              docs: >-
+                The method of the remote endpoint where the remote field is
+                coming from.
+              validation:
+                minLength: 1
+            remote_url_path:
+              type: string
+              docs: >-
+                The path of the remote endpoint where the remote field is coming
+                from.
+              validation:
+                minLength: 1
+            common_model_name:
+              type: string
+              docs: >-
+                The name of the Common Model that the remote field corresponds
+                to in a given category.
+              validation:
+                minLength: 1
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.FieldMappingInstanceResponse
+        status-code: 201
+      examples:
+        - headers: {}
+          request:
+            target_field_name: example_target_field_name
+            target_field_description: this is a example description of the target field
+            remote_field_traversal_path:
+              - example_remote_field
+            remote_method: GET
+            remote_url_path: /example-url-path
+            common_model_name: ExampleCommonModel
+          response:
+            body:
+              model:
+                id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                is_integration_wide: true
+                target_field:
+                  name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_organization_wide: true
+                remote_field:
+                  remote_key_name: example_remote_field_key
+                  schema:
+                    type: string
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_remote_field_key
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    field_mappings_destroy:
+      path: /ats/v1/field-mappings/{field_mapping_id}
+      method: DELETE
+      auth: true
+      docs: >-
+        Deletes Field Mappings for a Linked Account. All data related to this
+        Field Mapping will be deleted and these changes will be reflected after
+        the next scheduled sync. This will cause the next sync for this Linked
+        Account to sync **ALL** data from start.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        field_mapping_id: string
+      response:
+        docs: ''
+        type: root.FieldMappingInstanceResponse
+        status-code: 204
+      examples:
+        - path-parameters:
+            field_mapping_id: field_mapping_id
+          headers: {}
+          response:
+            body:
+              model:
+                id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                is_integration_wide: true
+                target_field:
+                  name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_organization_wide: true
+                remote_field:
+                  remote_key_name: example_remote_field_key
+                  schema:
+                    type: string
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_remote_field_key
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    field_mappings_partial_update:
+      path: /ats/v1/field-mappings/{field_mapping_id}
+      method: PATCH
+      auth: true
+      docs: >-
+        Create or update existing Field Mappings for a Linked Account. Changes
+        will be reflected after the next scheduled sync. This will cause the
+        next sync for this Linked Account to sync **ALL** data from start.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        field_mapping_id: string
+      request:
+        name: PatchedEditFieldMappingRequest
+        body:
+          properties:
+            remote_field_traversal_path:
+              type: optional<list<unknown>>
+              docs: >-
+                The field traversal path of the remote field listed when you hit
+                the GET /remote-fields endpoint.
+            remote_method:
+              type: optional<string>
+              docs: >-
+                The method of the remote endpoint where the remote field is
+                coming from.
+              validation:
+                minLength: 1
+            remote_url_path:
+              type: optional<string>
+              docs: >-
+                The path of the remote endpoint where the remote field is coming
+                from.
+              validation:
+                minLength: 1
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.FieldMappingInstanceResponse
+        status-code: 200
+      examples:
+        - path-parameters:
+            field_mapping_id: field_mapping_id
+          headers: {}
+          request: {}
+          response:
+            body:
+              model:
+                id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                is_integration_wide: true
+                target_field:
+                  name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_organization_wide: true
+                remote_field:
+                  remote_key_name: example_remote_field_key
+                  schema:
+                    type: string
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_remote_field_key
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    remote_fields_retrieve:
+      path: /ats/v1/remote-fields
+      method: GET
+      auth: true
+      docs: >-
+        Get all remote fields for a Linked Account. Remote fields are
+        third-party fields that are accessible after initial sync if remote_data
+        is enabled. You can use remote fields to override existing Merge fields
+        or map a new Merge field. [Learn
+        more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: RemoteFieldsRetrieveRequest
+        query-parameters:
+          common_models:
+            type: optional<string>
+            docs: >-
+              A comma seperated list of Common Model names. If included, will
+              only return Remote Fields for those Common Models.
+          include_example_values:
+            type: optional<string>
+            docs: >-
+              If true, will include example values, where available, for remote
+              fields in the 3rd party platform. These examples come from active
+              data from your customers.
+      response:
+        docs: ''
+        type: root.RemoteFieldApiResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              Activity:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              Application:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              Attachment:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              Candidate:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              Department:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              EEOC:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              ScheduledInterview:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              Job:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              JobPosting:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              JobInterviewStage:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              Offer:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              Office:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              RejectReason:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              Scorecard:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              Tag:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+              RemoteUser:
+                - schema:
+                    type: string
+                  remote_key_name: example_remote_key_name
+                  remote_endpoint_info:
+                    method: GET
+                    url_path: /example-url-path
+                    field_traversal_path:
+                      - example_key_name
+                  example_values:
+                    - example
+                  advanced_metadata:
+                    id: id
+                  coverage: 1
+    target_fields_retrieve:
+      path: /ats/v1/target-fields
+      method: GET
+      auth: true
+      docs: >-
+        Get all organization-wide Target Fields, this will not include any
+        Linked Account specific Target Fields. Organization-wide Target Fields
+        are additional fields appended to the Merge Common Model for all Linked
+        Accounts in a category. [Learn
+        more](https://docs.merge.dev/supplemental-data/field-mappings/target-fields/).
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.ExternalTargetFieldApiResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              Activity:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              Application:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              Attachment:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              Candidate:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              Department:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              EEOC:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              ScheduledInterview:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              Job:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              JobPosting:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              JobInterviewStage:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              Offer:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              Office:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              RejectReason:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              Scorecard:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              Tag:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+              RemoteUser:
+                - name: example_target_field_name
+                  description: this is a example description of a target field
+                  is_mapped: is_mapped
+  source:
+    openapi: openapi/openapi.yml

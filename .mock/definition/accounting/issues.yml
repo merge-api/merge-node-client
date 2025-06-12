@@ -1,0 +1,129 @@
+types:
+  IssuesListRequestStatus:
+    enum:
+      - ONGOING
+      - RESOLVED
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /accounting/v1/issues
+      method: GET
+      auth: true
+      docs: Gets all issues for Organization.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: IssuesListRequest
+        query-parameters:
+          account_token: optional<string>
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          end_date:
+            type: optional<string>
+            docs: >-
+              If included, will only include issues whose most recent action
+              occurred before this time
+          end_user_organization_name: optional<string>
+          first_incident_time_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return issues whose first incident time was
+              after this datetime.
+          first_incident_time_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return issues whose first incident time was
+              before this datetime.
+          include_muted:
+            type: optional<string>
+            docs: If true, will include muted issues
+          integration_name: optional<string>
+          last_incident_time_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return issues whose last incident time was
+              after this datetime.
+          last_incident_time_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return issues whose last incident time was
+              before this datetime.
+          linked_account_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only include issues pertaining to the linked
+              account passed in.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          start_date:
+            type: optional<string>
+            docs: >-
+              If included, will only include issues whose most recent action
+              occurred after this time
+          status:
+            type: optional<IssuesListRequestStatus>
+            docs: |-
+              Status of the issue. Options: ('ONGOING', 'RESOLVED')
+
+              * `ONGOING` - ONGOING
+              * `RESOLVED` - RESOLVED
+      response:
+        docs: ''
+        type: root.PaginatedIssueList
+        status-code: 200
+      examples:
+        - response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  status: ONGOING
+                  error_description: Missing Permissions
+                  end_user:
+                    key: value
+                  first_incident_time: '2022-12-05T16:19:15Z'
+                  last_incident_time: '2022-12-05T16:19:15Z'
+                  is_muted: true
+                  error_details:
+                    - Missing employee permissions.
+                    - Missing time off permissions.
+    retrieve:
+      path: /accounting/v1/issues/{id}
+      method: GET
+      auth: true
+      docs: Get a specific issue.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      response:
+        docs: ''
+        type: root.Issue
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          response:
+            body:
+              id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+              status: ONGOING
+              error_description: Missing Permissions
+              end_user:
+                key: value
+              first_incident_time: '2022-12-05T16:19:15Z'
+              last_incident_time: '2022-12-05T16:19:15Z'
+              is_muted: true
+              error_details:
+                - Missing employee permissions.
+                - Missing time off permissions.
+  source:
+    openapi: openapi/openapi.yml

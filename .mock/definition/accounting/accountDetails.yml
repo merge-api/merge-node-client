@@ -1,0 +1,36 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    retrieve:
+      path: /accounting/v1/account-details
+      method: GET
+      auth: true
+      docs: Get details for a linked account.
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.AccountDetails
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              id: 0496d4c2-42e6-4072-80b3-7b69bfdc76fd
+              integration: BambooHR
+              integration_slug: bamboohr
+              category: hris
+              end_user_origin_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+              end_user_organization_name: Waystar Royco
+              end_user_email_address: kendall.roy@waystar-royco.com
+              status: COMPLETE
+              webhook_listener_url: >-
+                https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4
+              is_duplicate: true
+              account_type: PRODUCTION
+              completed_at: '2024-08-26T20:11:19Z'
+  source:
+    openapi: openapi/openapi.yml

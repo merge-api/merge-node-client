@@ -1,0 +1,173 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /ats/v1/users
+      method: GET
+      auth: true
+      docs: Returns a list of `RemoteUser` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: UsersListRequest
+        query-parameters:
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          email:
+            type: optional<string>
+            docs: >-
+              If provided, will only return remote users with the given email
+              address
+            validation:
+              format: email
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_fields:
+            type: optional<literal<"access_role">>
+            docs: Deprecated. Use show_enum_origins.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          show_enum_origins:
+            type: optional<literal<"access_role">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.PaginatedRemoteUserList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: b82302de-852e-4e60-b050-edf9da3b7c02
+                  remote_id: '344321'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  first_name: Shensi
+                  last_name: Ding
+                  email: hello@merge.dev
+                  disabled: true
+                  remote_created_at: '2020-11-10T00:00:00Z'
+                  access_role: SUPER_ADMIN
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /users
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /ats/v1/users/{id}
+      method: GET
+      auth: true
+      docs: Returns a `RemoteUser` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: UsersRetrieveRequest
+        query-parameters:
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          remote_fields:
+            type: optional<literal<"access_role">>
+            docs: Deprecated. Use show_enum_origins.
+          show_enum_origins:
+            type: optional<literal<"access_role">>
+            docs: >-
+              A comma separated list of enum field names for which you'd like
+              the original values to be returned, instead of Merge's normalized
+              enum values. [Learn
+              more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
+      response:
+        docs: ''
+        type: root.RemoteUser
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: b82302de-852e-4e60-b050-edf9da3b7c02
+              remote_id: '344321'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              first_name: Shensi
+              last_name: Ding
+              email: hello@merge.dev
+              disabled: true
+              remote_created_at: '2020-11-10T00:00:00Z'
+              access_role: SUPER_ADMIN
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /users
+                  data:
+                    - Varies by platform
+  source:
+    openapi: openapi/openapi.yml

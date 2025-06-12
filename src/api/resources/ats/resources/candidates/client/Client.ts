@@ -6,6 +6,7 @@ import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
 import * as serializers from "../../../../../../serialization/index";
+import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
 import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
@@ -17,6 +18,8 @@ export declare namespace Candidates {
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
+        /** Additional headers to include in requests. */
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -30,12 +33,16 @@ export declare namespace Candidates {
         /** Override the X-Account-Token header */
         accountToken?: string | undefined;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string>;
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
     }
 }
 
 export class Candidates {
-    constructor(protected readonly _options: Candidates.Options) {}
+    protected readonly _options: Candidates.Options;
+
+    constructor(_options: Candidates.Options) {
+        this._options = _options;
+    }
 
     /**
      * Returns a list of `Candidate` objects.
@@ -145,23 +152,15 @@ export class Candidates {
                 "ats/v1/candidates",
             ),
             method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             queryParameters: _queryParams,
-            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -183,6 +182,7 @@ export class Candidates {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -191,12 +191,14 @@ export class Candidates {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ats/v1/candidates.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -242,20 +244,14 @@ export class Candidates {
                 "ats/v1/candidates",
             ),
             method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             contentType: "application/json",
             queryParameters: _queryParams,
             requestType: "json",
@@ -281,6 +277,7 @@ export class Candidates {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -289,12 +286,14 @@ export class Candidates {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /ats/v1/candidates.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -346,23 +345,15 @@ export class Candidates {
                 `ats/v1/candidates/${encodeURIComponent(id)}`,
             ),
             method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             queryParameters: _queryParams,
-            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -384,6 +375,7 @@ export class Candidates {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -392,12 +384,14 @@ export class Candidates {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ats/v1/candidates/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -446,20 +440,14 @@ export class Candidates {
                 `ats/v1/candidates/${encodeURIComponent(id)}`,
             ),
             method: "PATCH",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             contentType: "application/json",
             queryParameters: _queryParams,
             requestType: "json",
@@ -487,6 +475,7 @@ export class Candidates {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -495,12 +484,14 @@ export class Candidates {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling PATCH /ats/v1/candidates/{id}.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -538,20 +529,14 @@ export class Candidates {
                 `ats/v1/candidates/ignore/${encodeURIComponent(modelId)}`,
             ),
             method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             contentType: "application/json",
             requestType: "json",
             body: serializers.ats.IgnoreCommonModelRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -567,6 +552,7 @@ export class Candidates {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -575,6 +561,7 @@ export class Candidates {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
@@ -583,6 +570,7 @@ export class Candidates {
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -615,22 +603,14 @@ export class Candidates {
                 `ats/v1/candidates/meta/patch/${encodeURIComponent(id)}`,
             ),
             method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -652,6 +632,7 @@ export class Candidates {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -660,6 +641,7 @@ export class Candidates {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError(
@@ -668,6 +650,7 @@ export class Candidates {
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -697,22 +680,14 @@ export class Candidates {
                 "ats/v1/candidates/meta/post",
             ),
             method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -734,6 +709,7 @@ export class Candidates {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -742,12 +718,14 @@ export class Candidates {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ats/v1/candidates/meta/post.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

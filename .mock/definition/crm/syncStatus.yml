@@ -1,0 +1,55 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /crm/v1/sync-status
+      method: GET
+      auth: true
+      docs: >-
+        Get sync status for the current sync and the most recently finished
+        sync. `last_sync_start` represents the most recent time any sync began.
+        `last_sync_finished` represents the most recent time any sync completed.
+        These timestamps may correspond to different sync instances which may
+        result in a sync start time being later than a separate sync completed
+        time. To ensure you are retrieving the latest available data reference
+        the `last_sync_finished` timestamp where `last_sync_result` is `DONE`.
+        Possible values for `status` and `last_sync_result` are `DISABLED`,
+        `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`. Learn more
+        about sync status in our [Help
+        Center](https://help.merge.dev/en/articles/8184193-merge-sync-statuses).
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: SyncStatusListRequest
+        query-parameters:
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedSyncStatusList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - model_name: Account
+                  model_id: crm.Account
+                  last_sync_start: '2021-03-30T19:44:18Z'
+                  next_sync_start: '2021-03-30T20:44:18Z'
+                  last_sync_result: SYNCING
+                  last_sync_finished: '2021-03-30T19:55:18Z'
+                  status: SYNCING
+                  is_initial_sync: true
+                  selective_sync_configurations_usage: IN_NEXT_SYNC
+  source:
+    openapi: openapi/openapi.yml

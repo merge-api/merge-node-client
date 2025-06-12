@@ -1,0 +1,36 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    create:
+      path: /hris/v1/generate-key
+      method: POST
+      auth: true
+      docs: Create a remote key.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: GenerateRemoteKeyRequest
+        body:
+          properties:
+            name:
+              type: string
+              docs: The name of the remote key
+              validation:
+                minLength: 1
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.RemoteKey
+        status-code: 200
+      examples:
+        - request:
+            name: Remote Deployment Key 1
+          response:
+            body:
+              name: Remote Deployment Key 1
+              key: hXY57W0g0WkdRHjCaPvwijK63fwfN-o_Wh7f30SLTq_uPCOLo-WFcA
+  source:
+    openapi: openapi/openapi.yml

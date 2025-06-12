@@ -5,6 +5,7 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
+import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
@@ -17,6 +18,8 @@ export declare namespace ForceResync {
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
+        /** Additional headers to include in requests. */
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -30,12 +33,16 @@ export declare namespace ForceResync {
         /** Override the X-Account-Token header */
         accountToken?: string | undefined;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string>;
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
     }
 }
 
 export class ForceResync {
-    constructor(protected readonly _options: ForceResync.Options) {}
+    protected readonly _options: ForceResync.Options;
+
+    constructor(_options: ForceResync.Options) {
+        this._options = _options;
+    }
 
     /**
      * Force re-sync of all models. This endpoint is available for monthly, quarterly, and highest sync frequency customers on the Professional or Enterprise plans. Doing so will consume a sync credit for the relevant linked account. Force re-syncs can also be triggered manually in the Merge Dashboard and is available for all customers.
@@ -62,22 +69,14 @@ export class ForceResync {
                 "ats/v1/sync-status/resync",
             ),
             method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token":
-                    (await core.Supplier.get(this._options.accountToken)) != null
-                        ? await core.Supplier.get(this._options.accountToken)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@mergeapi/merge-node-client/1.1.9",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Account-Token": requestOptions?.accountToken,
+                }),
+                requestOptions?.headers,
+            ),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -99,6 +98,7 @@ export class ForceResync {
             throw new errors.MergeError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -107,12 +107,14 @@ export class ForceResync {
                 throw new errors.MergeError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /ats/v1/sync-status/resync.");
             case "unknown":
                 throw new errors.MergeError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

@@ -23,6 +23,7 @@ export const File_: core.serialization.ObjectSchema<serializers.filestorage.File
         mimeType: core.serialization.property("mime_type", core.serialization.string().optional()),
         description: core.serialization.string().optional(),
         folder: FileFolder.optional(),
+        checksum: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         permissions: FilePermissions.optional(),
         drive: FileDrive.optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
@@ -48,6 +49,7 @@ export declare namespace File_ {
         mime_type?: string | null;
         description?: string | null;
         folder?: FileFolder.Raw | null;
+        checksum?: Record<string, unknown> | null;
         permissions?: FilePermissions.Raw | null;
         drive?: FileDrive.Raw | null;
         remote_created_at?: string | null;

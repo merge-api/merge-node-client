@@ -6,7 +6,7 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { JobStatus } from "./JobStatus";
-import { JobTypeEnum } from "./JobTypeEnum";
+import { JobType } from "./JobType";
 import { Url } from "./Url";
 import { JobDepartmentsItem } from "./JobDepartmentsItem";
 import { JobOfficesItem } from "./JobOfficesItem";
@@ -23,7 +23,7 @@ export const Job: core.serialization.ObjectSchema<serializers.ats.Job.Raw, Merge
     description: core.serialization.string().optional(),
     code: core.serialization.string().optional(),
     status: JobStatus.optional(),
-    type: JobTypeEnum.optional(),
+    type: JobType.optional(),
     jobPostings: core.serialization.property(
         "job_postings",
         core.serialization.list(core.serialization.string().optional()).optional(),
@@ -57,7 +57,7 @@ export declare namespace Job {
         description?: string | null;
         code?: string | null;
         status?: JobStatus.Raw | null;
-        type?: JobTypeEnum.Raw | null;
+        type?: JobType.Raw | null;
         job_postings?: (string | null | undefined)[] | null;
         job_posting_urls?: Url.Raw[] | null;
         remote_created_at?: string | null;

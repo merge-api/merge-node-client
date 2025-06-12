@@ -59,11 +59,14 @@ export declare namespace Accounting {
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
+        /** Additional headers to include in requests. */
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
         fetcher?: core.FetchFunction;
     }
 }
 
 export class Accounting {
+    protected readonly _options: Accounting.Options;
     protected _accountDetails: AccountDetails | undefined;
     protected _accountToken: AccountToken | undefined;
     protected _accountingPeriods: AccountingPeriods | undefined;
@@ -111,7 +114,9 @@ export class Accounting {
     protected _vendorCredits: VendorCredits | undefined;
     protected _webhookReceivers: WebhookReceivers | undefined;
 
-    constructor(protected readonly _options: Accounting.Options) {}
+    constructor(_options: Accounting.Options) {
+        this._options = _options;
+    }
 
     public get accountDetails(): AccountDetails {
         return (this._accountDetails ??= new AccountDetails(this._options));

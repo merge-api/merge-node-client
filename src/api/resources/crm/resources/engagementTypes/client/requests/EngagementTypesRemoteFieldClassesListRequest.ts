@@ -32,6 +32,10 @@ export interface EngagementTypesRemoteFieldClassesListRequest {
      */
     isCommonModelField?: boolean;
     /**
+     * If provided, will only return remote fields classes with this is_custom value
+     */
+    isCustom?: boolean;
+    /**
      * Number of results to return per page.
      */
     pageSize?: number;

@@ -35,11 +35,14 @@ export declare namespace Filestorage {
         apiKey: core.Supplier<core.BearerToken>;
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
+        /** Additional headers to include in requests. */
+        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
         fetcher?: core.FetchFunction;
     }
 }
 
 export class Filestorage {
+    protected readonly _options: Filestorage.Options;
     protected _accountDetails: AccountDetails | undefined;
     protected _accountToken: AccountToken | undefined;
     protected _asyncPassthrough: AsyncPassthrough | undefined;
@@ -63,7 +66,9 @@ export class Filestorage {
     protected _users: Users | undefined;
     protected _webhookReceivers: WebhookReceivers | undefined;
 
-    constructor(protected readonly _options: Filestorage.Options) {}
+    constructor(_options: Filestorage.Options) {
+        this._options = _options;
+    }
 
     public get accountDetails(): AccountDetails {
         return (this._accountDetails ??= new AccountDetails(this._options));

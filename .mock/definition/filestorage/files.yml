@@ -1,0 +1,672 @@
+types:
+  FilesListRequestExpand:
+    enum:
+      - drive
+      - folder
+      - value: folder,drive
+        name: FolderDrive
+      - permissions
+      - value: permissions,drive
+        name: PermissionsDrive
+      - value: permissions,folder
+        name: PermissionsFolder
+      - value: permissions,folder,drive
+        name: PermissionsFolderDrive
+    source:
+      openapi: openapi/openapi.yml
+  FilesListRequestOrderBy:
+    enum:
+      - value: '-created_at'
+        name: CreatedAtDescending
+      - value: '-modified_at'
+        name: ModifiedAtDescending
+      - value: created_at
+        name: CreatedAtAscending
+      - value: modified_at
+        name: ModifiedAtAscending
+    source:
+      openapi: openapi/openapi.yml
+  FilesRetrieveRequestExpand:
+    enum:
+      - drive
+      - folder
+      - value: folder,drive
+        name: FolderDrive
+      - permissions
+      - value: permissions,drive
+        name: PermissionsDrive
+      - value: permissions,folder
+        name: PermissionsFolder
+      - value: permissions,folder,drive
+        name: PermissionsFolderDrive
+    source:
+      openapi: openapi/openapi.yml
+  FilesDownloadRequestMetaListRequestOrderBy:
+    enum:
+      - value: '-created_at'
+        name: CreatedAtDescending
+      - value: '-modified_at'
+        name: ModifiedAtDescending
+      - value: created_at
+        name: CreatedAtAscending
+      - value: modified_at
+        name: ModifiedAtAscending
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /filestorage/v1/files
+      method: GET
+      auth: true
+      docs: Returns a list of `File` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: FilesListRequest
+        query-parameters:
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          drive_id:
+            type: optional<string>
+            docs: >-
+              Specifying a drive id returns only the files in that drive.
+              Specifying null returns only the files outside the top-level
+              drive.
+          expand:
+            type: optional<FilesListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          folder_id:
+            type: optional<string>
+            docs: >-
+              Specifying a folder id returns only the files in that folder.
+              Specifying null returns only the files in root directory.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          mime_type:
+            type: optional<string>
+            docs: >-
+              If provided, will only return files with these mime_types.
+              Multiple values can be separated by commas.
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          name:
+            type: optional<string>
+            docs: >-
+              If provided, will only return files with this name. This performs
+              an exact match.
+          order_by:
+            type: optional<FilesListRequestOrderBy>
+            docs: >-
+              Overrides the default ordering for this endpoint. Possible values
+              include: created_at, -created_at, modified_at, -modified_at.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+      response:
+        docs: ''
+        type: root.PaginatedFileList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 45ce474c-dhcj-43a6-754r-629f799f7d68
+                  remote_id: '12'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  name: merge_file_storage_launch.docx
+                  file_url: https://drive.com/1234
+                  file_thumbnail_url: https://drive.com/1234/thumbnail.png
+                  size: 254
+                  mime_type: >-
+                    application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                  description: >-
+                    Use common model scopes to redact data returned in Merge's
+                    Common Models!
+                  folder: folder
+                  checksum:
+                    type: sha256
+                    content_hash: >-
+                      e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                  permissions: permissions
+                  drive: drive
+                  remote_created_at: '2022-02-02T00:00:00Z'
+                  remote_updated_at: '2022-02-03T00:00:00Z'
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /files
+                      data:
+                        - Varies by platform
+    create:
+      path: /filestorage/v1/files
+      method: POST
+      auth: true
+      docs: Creates a `File` object with the given values.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: FileStorageFileEndpointRequest
+        query-parameters:
+          is_debug_mode:
+            type: optional<boolean>
+            docs: >-
+              Whether to include debug fields (such as log file links) in the
+              response.
+          run_async:
+            type: optional<boolean>
+            docs: Whether or not third-party updates should be run asynchronously.
+        body:
+          properties:
+            model: root.FileRequest
+        content-type: application/json
+      response:
+        docs: ''
+        type: root.FileStorageFileResponse
+        status-code: 201
+      examples:
+        - headers: {}
+          request:
+            model: {}
+          response:
+            body:
+              model:
+                id: 45ce474c-dhcj-43a6-754r-629f799f7d68
+                remote_id: '12'
+                created_at: '2021-09-15T00:00:00Z'
+                modified_at: '2021-10-16T00:00:00Z'
+                name: merge_file_storage_launch.docx
+                file_url: https://drive.com/1234
+                file_thumbnail_url: https://drive.com/1234/thumbnail.png
+                size: 254
+                mime_type: >-
+                  application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                description: >-
+                  Use common model scopes to redact data returned in Merge's
+                  Common Models!
+                folder: folder
+                checksum:
+                  type: sha256
+                  content_hash: >-
+                    e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                permissions: permissions
+                drive: drive
+                remote_created_at: '2022-02-02T00:00:00Z'
+                remote_updated_at: '2022-02-03T00:00:00Z'
+                remote_was_deleted: true
+                field_mappings:
+                  organization_defined_targets:
+                    custom_key: custom_value
+                  linked_account_defined_targets:
+                    custom_key: custom_value
+                remote_data:
+                  - path: /files
+                    data:
+                      - Varies by platform
+              warnings:
+                - source:
+                    pointer: pointer
+                  title: Unrecognized Field
+                  detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+              errors:
+                - source:
+                    pointer: pointer
+                  title: Missing Required Field
+                  detail: custom_fields is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+              logs:
+                - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  dashboard_view: >-
+                    https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    url: www.exampleintegration.com/api/v1/exampleapi
+                    method: POST
+                    status_code: 200
+    retrieve:
+      path: /filestorage/v1/files/{id}
+      method: GET
+      auth: true
+      docs: Returns a `File` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: FilesRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<FilesRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.File
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: 45ce474c-dhcj-43a6-754r-629f799f7d68
+              remote_id: '12'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              name: merge_file_storage_launch.docx
+              file_url: https://drive.com/1234
+              file_thumbnail_url: https://drive.com/1234/thumbnail.png
+              size: 254
+              mime_type: >-
+                application/vnd.openxmlformats-officedocument.wordprocessingml.document
+              description: >-
+                Use common model scopes to redact data returned in Merge's
+                Common Models!
+              folder: folder
+              checksum:
+                type: sha256
+                content_hash: >-
+                  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+              permissions: permissions
+              drive: drive
+              remote_created_at: '2022-02-02T00:00:00Z'
+              remote_updated_at: '2022-02-03T00:00:00Z'
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /files
+                  data:
+                    - Varies by platform
+    downloadRetrieve:
+      path: /filestorage/v1/files/{id}/download
+      method: GET
+      auth: true
+      docs: Returns the `File` content with the given `id` as a stream of bytes.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: FilesDownloadRetrieveRequest
+        query-parameters:
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          mime_type:
+            type: optional<string>
+            docs: >-
+              If provided, specifies the export format of the file to be
+              downloaded. For information on supported export formats, please
+              refer to our <a
+              href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification'
+              target='_blank'>export format help center article</a>.
+      response:
+        docs: ''
+        type: file
+        status-code: 200
+    downloadRequestMetaRetrieve:
+      path: /filestorage/v1/files/{id}/download/request-meta
+      method: GET
+      auth: true
+      docs: >-
+        Returns metadata to construct an authenticated file download request for
+        a singular file, allowing you to download file directly from the
+        third-party.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: FilesDownloadRequestMetaRetrieveRequest
+        query-parameters:
+          mime_type:
+            type: optional<string>
+            docs: >-
+              If provided, specifies the export format of the file to be
+              downloaded. For information on supported export formats, please
+              refer to our <a
+              href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification'
+              target='_blank'>export format help center article</a>.
+      response:
+        docs: ''
+        type: root.DownloadRequestMeta
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers: {}
+          response:
+            body:
+              id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+              url: https://www.googleapis.com/drive/v3/files/234?alt=media
+              method: GET
+              headers:
+                Authorization: Bearer 1234
+    downloadRequestMetaList:
+      path: /filestorage/v1/files/download/request-meta
+      method: GET
+      auth: true
+      docs: >-
+        Returns metadata to construct authenticated file download requests,
+        allowing you to download files directly from the third-party.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: FilesDownloadRequestMetaListRequest
+        query-parameters:
+          created_after:
+            type: optional<string>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<string>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          mime_types:
+            type: optional<string>
+            docs: >-
+              A comma-separated list of preferred MIME types in order of
+              priority. If supported by the third-party provider, the file(s)
+              will be returned in the first supported MIME type from the list.
+              The default MIME type is PDF. To see supported MIME types by file
+              type, refer to our <a
+              href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification'
+              target='_blank'>export format help center article</a>.
+          modified_after:
+            type: optional<string>
+            docs: >-
+              If provided, will only return objects modified after this
+              datetime.
+          modified_before:
+            type: optional<string>
+            docs: >-
+              If provided, will only return objects modified before this
+              datetime.
+          order_by:
+            type: optional<FilesDownloadRequestMetaListRequestOrderBy>
+            docs: >-
+              Overrides the default ordering for this endpoint. Possible values
+              include: created_at, -created_at, modified_at, -modified_at.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+      response:
+        docs: ''
+        type: root.PaginatedDownloadRequestMetaList
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  url: https://www.googleapis.com/drive/v3/files/234?alt=media
+                  method: GET
+                  headers:
+                    Authorization: Bearer 1234
+    metaPostRetrieve:
+      path: /filestorage/v1/files/meta/post
+      method: GET
+      auth: true
+      docs: Returns metadata for `FileStorageFile` POSTs.
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.MetaResponse
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              request_schema:
+                type: object
+                properties:
+                  model:
+                    type: object
+                    required:
+                      - last_name
+                      - first_name
+                      - merge_categories
+                      - new_york_city_neighborhood
+                      - favorite_tv_shows
+                      - favorite_watch
+                    properties:
+                      email_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            email_address_type:
+                              type: string
+                              title: email_address_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: email_addresses
+                        description: Array of email_addresses objects
+                      urls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            url_type:
+                              type: string
+                              title: url_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: urls
+                        description: Array of urls objects
+                      first_name:
+                        type: string
+                        title: first_name
+                        description: The first name.
+                      last_name:
+                        type: string
+                        title: last_name
+                        description: The last name.
+                      phone_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              title: value
+                            phone_number_type:
+                              type: string
+                              title: phone_number_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: phone_numbers
+                        description: Array of phone_numbers objects
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: tags
+                        description: Array of tags names
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              title: id
+                            file_url:
+                              type: string
+                              title: file_url
+                            file_name:
+                              type: string
+                              title: file_name
+                            attachment_type:
+                              type: string
+                              title: attachment_type
+                            integration_params:
+                              type: object
+                              title: integration_params
+                              properties: {}
+                            linked_account_params:
+                              type: object
+                              title: linked_account_params
+                              properties: {}
+                        title: attachments
+                        description: 'Array of attachments objects '
+                      merge_categories:
+                        type: array
+                        categories:
+                          type: string
+                          enum:
+                            - HRIS
+                            - ATS
+                            - Accounting
+                            - Ticketing
+                            - File Storage
+                            - CRM
+                            - Marketing Automation
+                          enum_information:
+                            - value: HRIS
+                              description: Merge HRIS Category
+                            - value: ATS
+                              description: Merge ATS Category
+                            - value: Accounting
+                              description: Merge Accounting Category
+                            - value: Ticketing
+                              description: Merge Ticketing Category
+                            - value: File Storage
+                              description: Merge File Storage Category
+                            - value: CRM
+                              description: Merge CRM Category
+                            - value: Marketing Automation
+                              description: Merge Marketing Automation Category
+                        title: Merge Categories
+                        description: Array of Merge's Unified API Categories
+                      new_york_city_neighborhood:
+                        type: string
+                        title: Borough
+                        description: One of the 5 Boroughs of New York City
+                      favorite_tv_shows:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        title: Favorite TV Shows
+                        description: Array of TV Show objects on merge.tv_shows
+                      favorite_watch:
+                        type: string
+                        title: Favorite Watch
+                        description: Favorite watch of all time
+              remote_field_classes:
+                key: value
+              status:
+                linked_account_status: linked_account_status
+                can_make_request: true
+              has_conditional_params: true
+              has_required_linked_account_params: true
+  source:
+    openapi: openapi/openapi.yml

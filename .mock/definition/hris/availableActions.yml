@@ -1,0 +1,50 @@
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    retrieve:
+      path: /hris/v1/available-actions
+      method: GET
+      auth: true
+      docs: Returns a list of models and actions available for an account.
+      source:
+        openapi: openapi/openapi.yml
+      response:
+        docs: ''
+        type: root.AvailableActions
+        status-code: 200
+      examples:
+        - headers: {}
+          response:
+            body:
+              integration:
+                name: name
+                abbreviated_name: abbreviated_name
+                categories:
+                  - hris
+                image: image
+                square_image: square_image
+                color: color
+                slug: slug
+                api_endpoints_to_documentation_urls:
+                  key: value
+                webhook_setup_guide_url: webhook_setup_guide_url
+                category_beta_status:
+                  key: value
+              passthrough_available: true
+              available_model_operations:
+                - model_name: Candidate
+                  available_operations:
+                    - FETCH
+                    - CREATE
+                  required_post_parameters:
+                    - remote_user_id
+                  supported_fields:
+                    - first_name
+                    - last_name
+                    - company
+                    - title
+  source:
+    openapi: openapi/openapi.yml
