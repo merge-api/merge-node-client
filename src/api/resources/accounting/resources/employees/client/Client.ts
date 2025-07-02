@@ -64,8 +64,33 @@ export class Employees {
         request: Merge.accounting.EmployeesListRequest = {},
         requestOptions?: Employees.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.PaginatedEmployeeList>> {
-        const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
+        const {
+            companyId,
+            createdAfter,
+            createdBefore,
+            cursor,
+            expand,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            modifiedAfter,
+            modifiedBefore,
+            pageSize,
+            remoteId,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (companyId != null) {
+            _queryParams["company_id"] = companyId;
+        }
+
+        if (createdAfter != null) {
+            _queryParams["created_after"] = createdAfter.toISOString();
+        }
+
+        if (createdBefore != null) {
+            _queryParams["created_before"] = createdBefore.toISOString();
+        }
+
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
         }
@@ -86,8 +111,20 @@ export class Employees {
             _queryParams["include_shell_data"] = includeShellData.toString();
         }
 
+        if (modifiedAfter != null) {
+            _queryParams["modified_after"] = modifiedAfter.toISOString();
+        }
+
+        if (modifiedBefore != null) {
+            _queryParams["modified_before"] = modifiedBefore.toISOString();
+        }
+
         if (pageSize != null) {
             _queryParams["page_size"] = pageSize.toString();
+        }
+
+        if (remoteId != null) {
+            _queryParams["remote_id"] = remoteId;
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
