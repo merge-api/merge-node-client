@@ -31,6 +31,17 @@ service:
       request:
         name: ProjectsListRequest
         query-parameters:
+          company_id:
+            type: optional<string>
+            docs: If provided, will only return projects for this company.
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
           cursor:
             type: optional<string>
             docs: The pagination cursor value.
@@ -57,9 +68,22 @@ service:
             docs: >-
               Whether to include shell records. Shell records are empty records
               (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
           page_size:
             type: optional<integer>
             docs: Number of results to return per page.
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
       response:
         docs: ''
         type: root.PaginatedProjectList
