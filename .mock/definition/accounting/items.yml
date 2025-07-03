@@ -219,6 +219,7 @@ service:
                   modified_at: '2021-10-16T00:00:00Z'
                   name: Pickleball Paddle
                   status: ACTIVE
+                  type: INVENTORY
                   unit_price: 10
                   purchase_price: 25
                   purchase_account: purchase_account
@@ -276,6 +277,7 @@ service:
                 modified_at: '2021-10-16T00:00:00Z'
                 name: Pickleball Paddle
                 status: ACTIVE
+                type: INVENTORY
                 unit_price: 10
                 purchase_price: 25
                 purchase_account: purchase_account
@@ -367,6 +369,7 @@ service:
               modified_at: '2021-10-16T00:00:00Z'
               name: Pickleball Paddle
               status: ACTIVE
+              type: INVENTORY
               unit_price: 10
               purchase_price: 25
               purchase_account: purchase_account
@@ -428,6 +431,7 @@ service:
                 modified_at: '2021-10-16T00:00:00Z'
                 name: Pickleball Paddle
                 status: ACTIVE
+                type: INVENTORY
                 unit_price: 10
                 purchase_price: 25
                 purchase_account: purchase_account

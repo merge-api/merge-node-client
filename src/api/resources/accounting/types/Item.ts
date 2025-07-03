@@ -29,6 +29,15 @@ export interface Item {
      * * `ARCHIVED` - ARCHIVED
      */
     status?: Merge.accounting.ItemStatus;
+    /**
+     * The item's type.
+     *
+     * * `INVENTORY` - INVENTORY
+     * * `NON_INVENTORY` - NON_INVENTORY
+     * * `SERVICE` - SERVICE
+     * * `UNKNOWN` - UNKNOWN
+     */
+    type?: Merge.accounting.ItemType;
     /** The item's unit price. */
     unitPrice?: number;
     /** The price at which the item is purchased from a vendor. */
