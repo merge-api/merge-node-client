@@ -8,8 +8,8 @@ import { mergeHeaders } from "./core/headers.js";
 import { Filestorage } from "./api/resources/filestorage/client/Client";
 import { Hris } from "./api/resources/hris/client/Client";
 import { Ticketing } from "./api/resources/ticketing/client/Client";
-import { Crm } from "./api/resources/crm/client/Client";
 import { Ats } from "./api/resources/ats/client/Client";
+import { Crm } from "./api/resources/crm/client/Client";
 import { Accounting } from "./api/resources/accounting/client/Client";
 
 export declare namespace MergeClient {
@@ -44,8 +44,8 @@ export class MergeClient {
     protected _filestorage: Filestorage | undefined;
     protected _hris: Hris | undefined;
     protected _ticketing: Ticketing | undefined;
-    protected _crm: Crm | undefined;
     protected _ats: Ats | undefined;
+    protected _crm: Crm | undefined;
     protected _accounting: Accounting | undefined;
 
     constructor(_options: MergeClient.Options) {
@@ -56,8 +56,8 @@ export class MergeClient {
                     "X-Account-Token": _options?.accountToken,
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                    "X-Fern-SDK-Version": "2.0.1",
-                    "User-Agent": "@mergeapi/merge-node-client/2.0.1",
+                    "X-Fern-SDK-Version": "2.1.0",
+                    "User-Agent": "@mergeapi/merge-node-client/2.1.0",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                 },
@@ -78,12 +78,12 @@ export class MergeClient {
         return (this._ticketing ??= new Ticketing(this._options));
     }
 
-    public get crm(): Crm {
-        return (this._crm ??= new Crm(this._options));
-    }
-
     public get ats(): Ats {
         return (this._ats ??= new Ats(this._options));
+    }
+
+    public get crm(): Crm {
+        return (this._crm ??= new Crm(this._options));
     }
 
     public get accounting(): Accounting {

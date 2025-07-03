@@ -653,7 +653,7 @@ service:
                       remote_id: '234'
                       created_at: '2021-09-15T00:00:00Z'
                       modified_at: '2021-10-16T00:00:00Z'
-                      applied_amount: applied_amount
+                      applied_amount: '25'
                       applied_date: '2020-03-31T00:00:00Z'
                       related_object_id: a47e11b6-c73b-4a0c-be31-130fc48177fa
                       related_object_type: INVOICE
@@ -661,7 +661,7 @@ service:
                       remote_id: '235'
                       created_at: '2021-09-15T00:00:00Z'
                       modified_at: '2021-10-16T00:00:00Z'
-                      applied_amount: applied_amount
+                      applied_amount: '25'
                       applied_date: '2020-03-31T00:00:00Z'
                       related_object_id: 9b96a886-29a5-452b-8733-2a1e03497cf4
                       related_object_type: CREDIT_NOTE
@@ -734,7 +734,7 @@ service:
                     remote_id: '234'
                     created_at: '2021-09-15T00:00:00Z'
                     modified_at: '2021-10-16T00:00:00Z'
-                    applied_amount: applied_amount
+                    applied_amount: '25'
                     applied_date: '2020-03-31T00:00:00Z'
                     related_object_id: a47e11b6-c73b-4a0c-be31-130fc48177fa
                     related_object_type: INVOICE
@@ -742,7 +742,7 @@ service:
                     remote_id: '235'
                     created_at: '2021-09-15T00:00:00Z'
                     modified_at: '2021-10-16T00:00:00Z'
-                    applied_amount: applied_amount
+                    applied_amount: '25'
                     applied_date: '2020-03-31T00:00:00Z'
                     related_object_id: 9b96a886-29a5-452b-8733-2a1e03497cf4
                     related_object_type: CREDIT_NOTE
@@ -844,7 +844,7 @@ service:
                   remote_id: '234'
                   created_at: '2021-09-15T00:00:00Z'
                   modified_at: '2021-10-16T00:00:00Z'
-                  applied_amount: applied_amount
+                  applied_amount: '25'
                   applied_date: '2020-03-31T00:00:00Z'
                   related_object_id: a47e11b6-c73b-4a0c-be31-130fc48177fa
                   related_object_type: INVOICE
@@ -852,7 +852,7 @@ service:
                   remote_id: '235'
                   created_at: '2021-09-15T00:00:00Z'
                   modified_at: '2021-10-16T00:00:00Z'
-                  applied_amount: applied_amount
+                  applied_amount: '25'
                   applied_date: '2020-03-31T00:00:00Z'
                   related_object_id: 9b96a886-29a5-452b-8733-2a1e03497cf4
                   related_object_type: CREDIT_NOTE
@@ -931,7 +931,7 @@ service:
                     remote_id: '234'
                     created_at: '2021-09-15T00:00:00Z'
                     modified_at: '2021-10-16T00:00:00Z'
-                    applied_amount: applied_amount
+                    applied_amount: '25'
                     applied_date: '2020-03-31T00:00:00Z'
                     related_object_id: a47e11b6-c73b-4a0c-be31-130fc48177fa
                     related_object_type: INVOICE
@@ -939,7 +939,7 @@ service:
                     remote_id: '235'
                     created_at: '2021-09-15T00:00:00Z'
                     modified_at: '2021-10-16T00:00:00Z'
-                    applied_amount: applied_amount
+                    applied_amount: '25'
                     applied_date: '2020-03-31T00:00:00Z'
                     related_object_id: 9b96a886-29a5-452b-8733-2a1e03497cf4
                     related_object_type: CREDIT_NOTE

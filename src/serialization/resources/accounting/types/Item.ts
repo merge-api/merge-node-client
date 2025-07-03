@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { ItemStatus } from "./ItemStatus";
+import { ItemType } from "./ItemType";
 import { ItemPurchaseAccount } from "./ItemPurchaseAccount";
 import { ItemSalesAccount } from "./ItemSalesAccount";
 import { ItemCompany } from "./ItemCompany";
@@ -21,6 +22,7 @@ export const Item: core.serialization.ObjectSchema<serializers.accounting.Item.R
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
         name: core.serialization.string().optional(),
         status: ItemStatus.optional(),
+        type: ItemType.optional(),
         unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
         purchasePrice: core.serialization.property("purchase_price", core.serialization.number().optional()),
         purchaseAccount: core.serialization.property("purchase_account", ItemPurchaseAccount.optional()),
@@ -45,6 +47,7 @@ export declare namespace Item {
         modified_at?: string | null;
         name?: string | null;
         status?: ItemStatus.Raw | null;
+        type?: ItemType.Raw | null;
         unit_price?: number | null;
         purchase_price?: number | null;
         purchase_account?: ItemPurchaseAccount.Raw | null;

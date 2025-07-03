@@ -24,6 +24,7 @@ import { CreditNotes } from "../resources/creditNotes/client/Client";
 import { Scopes } from "../resources/scopes/client/Client";
 import { DeleteAccount } from "../resources/deleteAccount/client/Client";
 import { Employees } from "../resources/employees/client/Client";
+import { ExpenseReports } from "../resources/expenseReports/client/Client";
 import { Expenses } from "../resources/expenses/client/Client";
 import { FieldMapping } from "../resources/fieldMapping/client/Client";
 import { GeneralLedgerTransactions } from "../resources/generalLedgerTransactions/client/Client";
@@ -87,6 +88,7 @@ export class Accounting {
     protected _scopes: Scopes | undefined;
     protected _deleteAccount: DeleteAccount | undefined;
     protected _employees: Employees | undefined;
+    protected _expenseReports: ExpenseReports | undefined;
     protected _expenses: Expenses | undefined;
     protected _fieldMapping: FieldMapping | undefined;
     protected _generalLedgerTransactions: GeneralLedgerTransactions | undefined;
@@ -196,6 +198,10 @@ export class Accounting {
 
     public get employees(): Employees {
         return (this._employees ??= new Employees(this._options));
+    }
+
+    public get expenseReports(): ExpenseReports {
+        return (this._expenseReports ??= new ExpenseReports(this._options));
     }
 
     public get expenses(): Expenses {

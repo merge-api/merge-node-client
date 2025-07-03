@@ -211,6 +211,26 @@ describe("FieldMapping", () => {
                     },
                 },
             ],
+            ExpenseReport: [
+                {
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    is_integration_wide: true,
+                    target_field: {
+                        name: "example_target_field_name",
+                        description: "this is a example description of a target field",
+                        is_organization_wide: true,
+                    },
+                    remote_field: {
+                        remote_key_name: "example_remote_field_key",
+                        schema: { type: "string" },
+                        remote_endpoint_info: {
+                            method: "GET",
+                            url_path: "/example-url-path",
+                            field_traversal_path: ["example_remote_field_key"],
+                        },
+                    },
+                },
+            ],
             TrackingCategory: [
                 {
                     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -721,6 +741,28 @@ describe("FieldMapping", () => {
                 },
             ],
             purchaseOrder: [
+                {
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    isIntegrationWide: true,
+                    targetField: {
+                        name: "example_target_field_name",
+                        description: "this is a example description of a target field",
+                        isOrganizationWide: true,
+                    },
+                    remoteField: {
+                        remoteKeyName: "example_remote_field_key",
+                        schema: {
+                            type: "string",
+                        },
+                        remoteEndpointInfo: {
+                            method: "GET",
+                            urlPath: "/example-url-path",
+                            fieldTraversalPath: ["example_remote_field_key"],
+                        },
+                    },
+                },
+            ],
+            expenseReport: [
                 {
                     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
                     isIntegrationWide: true,
@@ -2330,6 +2372,13 @@ describe("FieldMapping", () => {
                     is_mapped: "is_mapped",
                 },
             ],
+            ExpenseReport: [
+                {
+                    name: "example_target_field_name",
+                    description: "this is a example description of a target field",
+                    is_mapped: "is_mapped",
+                },
+            ],
             TrackingCategory: [
                 {
                     name: "example_target_field_name",
@@ -2510,6 +2559,13 @@ describe("FieldMapping", () => {
                 },
             ],
             purchaseOrder: [
+                {
+                    name: "example_target_field_name",
+                    description: "this is a example description of a target field",
+                    isMapped: "is_mapped",
+                },
+            ],
+            expenseReport: [
                 {
                     name: "example_target_field_name",
                     description: "this is a example description of a target field",
