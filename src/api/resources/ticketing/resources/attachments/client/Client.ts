@@ -5,8 +5,7 @@
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
-import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
-import urlJoin from "url-join";
+import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers";
 import * as serializers from "../../../../../../serialization/index";
 import * as errors from "../../../../../../errors/index";
 import * as stream from "stream";
@@ -33,6 +32,8 @@ export declare namespace Attachments {
         abortSignal?: AbortSignal;
         /** Override the X-Account-Token header */
         accountToken?: string | undefined;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
         headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
     }
@@ -134,7 +135,7 @@ export class Attachments {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -149,7 +150,7 @@ export class Attachments {
                 }),
                 requestOptions?.headers,
             ),
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -225,7 +226,7 @@ export class Attachments {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -241,7 +242,7 @@ export class Attachments {
                 requestOptions?.headers,
             ),
             contentType: "application/json",
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             requestType: "json",
             body: serializers.ticketing.TicketingAttachmentEndpointRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
@@ -326,7 +327,7 @@ export class Attachments {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -341,7 +342,7 @@ export class Attachments {
                 }),
                 requestOptions?.headers,
             ),
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -411,7 +412,7 @@ export class Attachments {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)<stream.Readable>({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -426,7 +427,7 @@ export class Attachments {
                 }),
                 requestOptions?.headers,
             ),
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             responseType: "streaming",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -481,7 +482,7 @@ export class Attachments {
         requestOptions?: Attachments.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.ticketing.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -496,6 +497,7 @@ export class Attachments {
                 }),
                 requestOptions?.headers,
             ),
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

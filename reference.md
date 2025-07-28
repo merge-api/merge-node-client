@@ -1,5 +1,6372 @@
 # Reference
 
+## Crm AccountDetails
+
+<details><summary><code>client.crm.accountDetails.<a href="/src/api/resources/crm/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get details for a linked account.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accountDetails.retrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountDetails.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm AccountToken
+
+<details><summary><code>client.crm.accountToken.<a href="/src/api/resources/crm/resources/accountToken/client/Client.ts">retrieve</a>(publicToken) -> Merge.AccountToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the account token for the end user with the provided public token.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accountToken.retrieve("public_token");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**publicToken:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountToken.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Accounts
+
+<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Account` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accounts.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.AccountsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">create</a>({ ...params }) -> Merge.CrmAccountResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Account` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accounts.create({
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CrmAccountEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Account</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Account` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accounts.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.AccountsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.CrmAccountResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an `Account` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accounts.partialUpdate("id", {
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.PatchedCrmAccountEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `CRMAccount` PATCHs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accounts.metaPatchRetrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `CRMAccount` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accounts.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accounts.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.AccountsRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm AsyncPassthrough
+
+<details><summary><code>client.crm.asyncPassthrough.<a href="/src/api/resources/crm/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Asynchronously pull data from an endpoint not currently supported by Merge.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.asyncPassthrough.create({
+    method: "GET",
+    path: "/scooters",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.DataPassthroughRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AsyncPassthrough.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.asyncPassthrough.<a href="/src/api/resources/crm/resources/asyncPassthrough/client/Client.ts">retrieve</a>(asyncPassthroughReceiptId) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves data from earlier async-passthrough POST request
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.asyncPassthrough.retrieve("async_passthrough_receipt_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**asyncPassthroughReceiptId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AsyncPassthrough.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm AuditTrail
+
+<details><summary><code>client.crm.auditTrail.<a href="/src/api/resources/crm/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a list of audit trail events.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.auditTrail.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.AuditTrailListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuditTrail.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm AvailableActions
+
+<details><summary><code>client.crm.availableActions.<a href="/src/api/resources/crm/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of models and actions available for an account.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.availableActions.retrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AvailableActions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Contacts
+
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedContactList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Contact` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.contacts.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.ContactsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Contacts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">create</a>({ ...params }) -> Merge.CrmContactResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Contact` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.contacts.create({
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CrmContactEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Contacts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Contact</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Contact` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.contacts.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.ContactsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Contacts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.CrmContactResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a `Contact` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.contacts.partialUpdate("id", {
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.PatchedCrmContactEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Contacts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">ignoreCreate</a>(modelId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.contacts.ignoreCreate("model_id", {
+    reason: "GENERAL_CUSTOMER_REQUEST",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**modelId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.IgnoreCommonModelRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Contacts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `CRMContact` PATCHs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.contacts.metaPatchRetrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Contacts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `CRMContact` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.contacts.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Contacts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.contacts.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.ContactsRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Contacts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm CustomObjectClasses
+
+<details><summary><code>client.crm.customObjectClasses.<a href="/src/api/resources/crm/resources/customObjectClasses/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCustomObjectClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `CustomObjectClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.customObjectClasses.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CustomObjectClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomObjectClasses.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.customObjectClasses.<a href="/src/api/resources/crm/resources/customObjectClasses/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CustomObjectClass</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `CustomObjectClass` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.customObjectClasses.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CustomObjectClassesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomObjectClasses.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm AssociationTypes
+
+<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesList</a>(customObjectClassId, { ...params }) -> Merge.PaginatedAssociationTypeList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `AssociationType` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.associationTypes.customObjectClassesAssociationTypesList("custom_object_class_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customObjectClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CustomObjectClassesAssociationTypesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AssociationTypes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesCreate</a>(customObjectClassId, { ...params }) -> Merge.CrmAssociationTypeResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `AssociationType` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.associationTypes.customObjectClassesAssociationTypesCreate("custom_object_class_id", {
+    model: {
+        sourceObjectClass: {
+            id: "id",
+            originType: "CUSTOM_OBJECT",
+        },
+        targetObjectClasses: [
+            {
+                id: "id",
+                originType: "CUSTOM_OBJECT",
+            },
+        ],
+        remoteKeyName: "remote_key_name",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customObjectClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CrmAssociationTypeEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AssociationTypes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesRetrieve</a>(customObjectClassId, id, { ...params }) -> Merge.AssociationType</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `AssociationType` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.associationTypes.customObjectClassesAssociationTypesRetrieve("custom_object_class_id", "id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customObjectClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CustomObjectClassesAssociationTypesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AssociationTypes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesMetaPostRetrieve</a>(customObjectClassId) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `CRMAssociationType` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.associationTypes.customObjectClassesAssociationTypesMetaPostRetrieve("custom_object_class_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customObjectClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AssociationTypes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm CustomObjects
+
+<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsList</a>(customObjectClassId, { ...params }) -> Merge.PaginatedCustomObjectList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `CustomObject` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.customObjects.customObjectClassesCustomObjectsList("custom_object_class_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customObjectClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CustomObjectClassesCustomObjectsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomObjects.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsCreate</a>(customObjectClassId, { ...params }) -> Merge.CrmCustomObjectResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `CustomObject` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.customObjects.customObjectClassesCustomObjectsCreate("custom_object_class_id", {
+    model: {
+        fields: {
+            test_field: "hello",
+        },
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customObjectClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CrmCustomObjectEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomObjects.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsRetrieve</a>(customObjectClassId, id, { ...params }) -> Merge.CustomObject</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `CustomObject` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.customObjects.customObjectClassesCustomObjectsRetrieve("custom_object_class_id", "id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customObjectClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CustomObjectClassesCustomObjectsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomObjects.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsMetaPostRetrieve</a>(customObjectClassId) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `CRMCustomObject` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.customObjects.customObjectClassesCustomObjectsMetaPostRetrieve("custom_object_class_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customObjectClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomObjects.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CustomObjectClassesCustomObjectsRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomObjects.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Associations
+
+<details><summary><code>client.crm.associations.<a href="/src/api/resources/crm/resources/associations/client/Client.ts">customObjectClassesCustomObjectsAssociationsList</a>(customObjectClassId, objectId, { ...params }) -> Merge.PaginatedAssociationList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Association` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customObjectClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**objectId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CustomObjectClassesCustomObjectsAssociationsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Associations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.associations.<a href="/src/api/resources/crm/resources/associations/client/Client.ts">customObjectClassesCustomObjectsAssociationsUpdate</a>(associationTypeId, sourceClassId, sourceObjectId, targetClassId, targetObjectId, { ...params }) -> Merge.Association</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an Association between `source_object_id` and `target_object_id` of type `association_type_id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.associations.customObjectClassesCustomObjectsAssociationsUpdate(
+    "association_type_id",
+    "source_class_id",
+    "source_object_id",
+    "target_class_id",
+    "target_object_id",
+);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**associationTypeId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sourceClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sourceObjectId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**targetClassId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**targetObjectId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CustomObjectClassesCustomObjectsAssociationsUpdateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Associations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Scopes
+
+<details><summary><code>client.crm.scopes.<a href="/src/api/resources/crm/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.scopes.defaultScopesRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Scopes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.scopes.<a href="/src/api/resources/crm/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all available permissions for Merge Common Models and fields for a single Linked Account. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.scopes.linkedAccountScopesRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Scopes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.scopes.<a href="/src/api/resources/crm/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes)
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.scopes.linkedAccountScopesCreate({
+    commonModels: [
+        {
+            modelName: "Employee",
+            modelPermissions: {
+                READ: {
+                    isEnabled: true,
+                },
+                WRITE: {
+                    isEnabled: false,
+                },
+            },
+            fieldPermissions: {
+                enabledFields: ["avatar", "home_location"],
+                disabledFields: ["work_location"],
+            },
+        },
+        {
+            modelName: "Benefit",
+            modelPermissions: {
+                WRITE: {
+                    isEnabled: false,
+                },
+            },
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.LinkedAccountCommonModelScopeDeserializerRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Scopes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm DeleteAccount
+
+<details><summary><code>client.crm.deleteAccount.<a href="/src/api/resources/crm/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a linked account.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.deleteAccount.delete();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `DeleteAccount.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm EngagementTypes
+
+<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEngagementTypeList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `EngagementType` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagementTypes.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.EngagementTypesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EngagementTypes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.EngagementType</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `EngagementType` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagementTypes.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.EngagementTypesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EngagementTypes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagementTypes.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.EngagementTypesRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EngagementTypes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Engagements
+
+<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEngagementList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Engagement` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagements.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.EngagementsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Engagements.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">create</a>({ ...params }) -> Merge.EngagementResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Engagement` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagements.create({
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.EngagementEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Engagements.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Engagement</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Engagement` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagements.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.EngagementsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Engagements.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.EngagementResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an `Engagement` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagements.partialUpdate("id", {
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.PatchedEngagementEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Engagements.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Engagement` PATCHs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagements.metaPatchRetrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Engagements.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Engagement` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagements.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Engagements.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.engagements.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.EngagementsRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Engagements.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm FieldMapping
+
+<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.fieldMapping.fieldMappingsRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.FieldMappingsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create new Field Mappings that will be available after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.fieldMapping.fieldMappingsCreate({
+    targetFieldName: "example_target_field_name",
+    targetFieldDescription: "this is a example description of the target field",
+    remoteFieldTraversalPath: ["example_remote_field"],
+    remoteMethod: "GET",
+    remoteUrlPath: "/example-url-path",
+    commonModelName: "ExampleCommonModel",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.CreateFieldMappingRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(fieldMappingId) -> Merge.FieldMappingInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.fieldMapping.fieldMappingsDestroy("field_mapping_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fieldMappingId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(fieldMappingId, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or update existing Field Mappings for a Linked Account. Changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fieldMappingId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.PatchedEditFieldMappingRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all remote fields for a Linked Account. Remote fields are third-party fields that are accessible after initial sync if remote_data is enabled. You can use remote fields to override existing Merge fields or map a new Merge field. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.fieldMapping.remoteFieldsRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.RemoteFieldsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all organization-wide Target Fields, this will not include any Linked Account specific Target Fields. Organization-wide Target Fields are additional fields appended to the Merge Common Model for all Linked Accounts in a category. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/target-fields/).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.fieldMapping.targetFieldsRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm GenerateKey
+
+<details><summary><code>client.crm.generateKey.<a href="/src/api/resources/crm/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a remote key.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.generateKey.create({
+    name: "Remote Deployment Key 1",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.GenerateRemoteKeyRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GenerateKey.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Issues
+
+<details><summary><code>client.crm.issues.<a href="/src/api/resources/crm/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets all issues for Organization.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.issues.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.IssuesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Issues.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.issues.<a href="/src/api/resources/crm/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a specific issue.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.issues.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Issues.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Leads
+
+<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedLeadList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Lead` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.leads.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.LeadsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Leads.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">create</a>({ ...params }) -> Merge.LeadResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Lead` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.leads.create({
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.LeadEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Leads.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Lead</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Lead` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.leads.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.LeadsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Leads.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Lead` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.leads.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Leads.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.leads.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.LeadsRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Leads.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm LinkToken
+
+<details><summary><code>client.crm.linkToken.<a href="/src/api/resources/crm/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a link token to be used when linking a new end user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.linkToken.create({
+    endUserEmailAddress: "example@gmail.com",
+    endUserOrganizationName: "Test Organization",
+    endUserOriginId: "12345",
+    categories: ["hris", "ats"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.EndUserDetailsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LinkToken.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm LinkedAccounts
+
+<details><summary><code>client.crm.linkedAccounts.<a href="/src/api/resources/crm/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List linked accounts for your organization.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.linkedAccounts.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.LinkedAccountsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LinkedAccounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Notes
+
+<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedNoteList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Note` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.notes.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.NotesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Notes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">create</a>({ ...params }) -> Merge.NoteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Note` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.notes.create({
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.NoteEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Notes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Note</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Note` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.notes.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.NotesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Notes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Note` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.notes.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Notes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.notes.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.NotesRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Notes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Opportunities
+
+<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedOpportunityList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Opportunity` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.opportunities.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.OpportunitiesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Opportunities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">create</a>({ ...params }) -> Merge.OpportunityResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Opportunity` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.opportunities.create({
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.OpportunityEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Opportunities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Opportunity</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Opportunity` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.opportunities.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.OpportunitiesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Opportunities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.OpportunityResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an `Opportunity` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.opportunities.partialUpdate("id", {
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.PatchedOpportunityEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Opportunities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Opportunity` PATCHs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.opportunities.metaPatchRetrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Opportunities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Opportunity` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.opportunities.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Opportunities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.opportunities.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.OpportunitiesRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Opportunities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Passthrough
+
+<details><summary><code>client.crm.passthrough.<a href="/src/api/resources/crm/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Pull data from an endpoint not currently supported by Merge.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.passthrough.create({
+    method: "GET",
+    path: "/scooters",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.DataPassthroughRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Passthrough.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm RegenerateKey
+
+<details><summary><code>client.crm.regenerateKey.<a href="/src/api/resources/crm/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchange remote keys.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.regenerateKey.create({
+    name: "Remote Deployment Key 1",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.RemoteKeyForRegenerationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RegenerateKey.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Stages
+
+<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedStageList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Stage` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.stages.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.StagesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Stages.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Stage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Stage` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.stages.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.StagesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Stages.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.stages.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.StagesRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Stages.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm SyncStatus
+
+<details><summary><code>client.crm.syncStatus.<a href="/src/api/resources/crm/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get sync status for the current sync and the most recently finished sync. `last_sync_start` represents the most recent time any sync began. `last_sync_finished` represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the `last_sync_finished` timestamp where `last_sync_result` is `DONE`. Possible values for `status` and `last_sync_result` are `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`. Learn more about sync status in our [Help Center](https://help.merge.dev/en/articles/8184193-merge-sync-statuses).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.syncStatus.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.SyncStatusListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SyncStatus.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm ForceResync
+
+<details><summary><code>client.crm.forceResync.<a href="/src/api/resources/crm/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Force re-sync of all models. This endpoint is available for monthly, quarterly, and highest sync frequency customers on the Professional or Enterprise plans. Doing so will consume a sync credit for the relevant linked account. Force re-syncs can also be triggered manually in the Merge Dashboard and is available for all customers.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.forceResync.syncStatusResyncCreate();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ForceResync.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Tasks
+
+<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTaskList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Task` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.tasks.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.TasksListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tasks.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">create</a>({ ...params }) -> Merge.TaskResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Task` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.tasks.create({
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.TaskEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tasks.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Task</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Task` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.tasks.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.TasksRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tasks.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.TaskResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a `Task` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.tasks.partialUpdate("id", {
+    model: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.PatchedTaskEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tasks.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Task` PATCHs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.tasks.metaPatchRetrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tasks.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Task` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.tasks.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tasks.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.tasks.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.TasksRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tasks.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm Users
+
+<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedUserList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `User` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.users.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.UsersListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.User</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `User` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.users.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.UsersRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">ignoreCreate</a>(modelId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.users.ignoreCreate("model_id", {
+    reason: "GENERAL_CUSTOMER_REQUEST",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**modelId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.IgnoreCommonModelRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.users.remoteFieldClassesList();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.UsersRemoteFieldClassesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Crm WebhookReceivers
+
+<details><summary><code>client.crm.webhookReceivers.<a href="/src/api/resources/crm/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `WebhookReceiver` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.webhookReceivers.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `WebhookReceivers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.crm.webhookReceivers.<a href="/src/api/resources/crm/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `WebhookReceiver` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.webhookReceivers.create({
+    event: "event",
+    isActive: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.crm.WebhookReceiverRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WebhookReceivers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Filestorage AccountDetails
 
 <details><summary><code>client.filestorage.accountDetails.<a href="/src/api/resources/filestorage/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
@@ -2766,6 +9133,4809 @@ await client.filestorage.webhookReceivers.create({
 <dd>
 
 **request:** `Merge.filestorage.WebhookReceiverRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WebhookReceivers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats AccountDetails
+
+<details><summary><code>client.ats.accountDetails.<a href="/src/api/resources/ats/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get details for a linked account.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.accountDetails.retrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountDetails.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats AccountToken
+
+<details><summary><code>client.ats.accountToken.<a href="/src/api/resources/ats/resources/accountToken/client/Client.ts">retrieve</a>(publicToken) -> Merge.AccountToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the account token for the end user with the provided public token.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.accountToken.retrieve("public_token");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**publicToken:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountToken.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Activities
+
+<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedActivityList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Activity` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.activities.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ActivitiesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Activities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">create</a>({ ...params }) -> Merge.ActivityResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Activity` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.activities.create({
+    model: {},
+    remoteUserId: "remote_user_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ActivityEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Activities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Activity</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Activity` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.activities.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ActivitiesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Activities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Activity` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.activities.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Activities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Applications
+
+<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedApplicationList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Application` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.applications.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ApplicationsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Applications.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">create</a>({ ...params }) -> Merge.ApplicationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Application` object with the given values.
+For certain integrations, but not all, our API detects duplicate candidates and will associate applications with existing records in the third-party. New candidates are created and automatically linked to the application.
+
+See our [Help Center article](https://help.merge.dev/en/articles/10012366-updates-to-post-applications-oct-2024) for detailed support per integration.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.applications.create({
+    model: {},
+    remoteUserId: "remote_user_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ApplicationEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Applications.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Application</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Application` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.applications.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ApplicationsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Applications.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">changeStageCreate</a>(id, { ...params }) -> Merge.ApplicationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the `current_stage` field of an `Application` object
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.applications.changeStageCreate("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.UpdateApplicationStageRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Applications.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">metaPostRetrieve</a>({ ...params }) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Application` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.applications.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ApplicationsMetaPostRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Applications.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats AsyncPassthrough
+
+<details><summary><code>client.ats.asyncPassthrough.<a href="/src/api/resources/ats/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Asynchronously pull data from an endpoint not currently supported by Merge.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.asyncPassthrough.create({
+    method: "GET",
+    path: "/scooters",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.DataPassthroughRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AsyncPassthrough.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.asyncPassthrough.<a href="/src/api/resources/ats/resources/asyncPassthrough/client/Client.ts">retrieve</a>(asyncPassthroughReceiptId) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves data from earlier async-passthrough POST request
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.asyncPassthrough.retrieve("async_passthrough_receipt_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**asyncPassthroughReceiptId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AsyncPassthrough.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Attachments
+
+<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAttachmentList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Attachment` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.attachments.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.AttachmentsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Attachments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">create</a>({ ...params }) -> Merge.AttachmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Attachment` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.attachments.create({
+    model: {},
+    remoteUserId: "remote_user_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.AttachmentEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Attachments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Attachment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Attachment` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.attachments.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.AttachmentsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Attachments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Attachment` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.attachments.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Attachments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats AuditTrail
+
+<details><summary><code>client.ats.auditTrail.<a href="/src/api/resources/ats/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a list of audit trail events.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.auditTrail.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.AuditTrailListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuditTrail.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats AvailableActions
+
+<details><summary><code>client.ats.availableActions.<a href="/src/api/resources/ats/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of models and actions available for an account.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.availableActions.retrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AvailableActions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Candidates
+
+<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCandidateList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Candidate` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.candidates.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.CandidatesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Candidates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">create</a>({ ...params }) -> Merge.CandidateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Candidate` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.candidates.create({
+    model: {},
+    remoteUserId: "remote_user_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.CandidateEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Candidates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Candidate</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Candidate` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.candidates.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.CandidatesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Candidates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.CandidateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a `Candidate` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.candidates.partialUpdate("id", {
+    model: {},
+    remoteUserId: "remote_user_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.PatchedCandidateEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Candidates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">ignoreCreate</a>(modelId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.candidates.ignoreCreate("model_id", {
+    reason: "GENERAL_CUSTOMER_REQUEST",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**modelId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.IgnoreCommonModelRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Candidates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Candidate` PATCHs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.candidates.metaPatchRetrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Candidates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Candidate` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.candidates.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Candidates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Scopes
+
+<details><summary><code>client.ats.scopes.<a href="/src/api/resources/ats/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.scopes.defaultScopesRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Scopes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.scopes.<a href="/src/api/resources/ats/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all available permissions for Merge Common Models and fields for a single Linked Account. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.scopes.linkedAccountScopesRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Scopes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.scopes.<a href="/src/api/resources/ats/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes)
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.scopes.linkedAccountScopesCreate({
+    commonModels: [
+        {
+            modelName: "Employee",
+            modelPermissions: {
+                READ: {
+                    isEnabled: true,
+                },
+                WRITE: {
+                    isEnabled: false,
+                },
+            },
+            fieldPermissions: {
+                enabledFields: ["avatar", "home_location"],
+                disabledFields: ["work_location"],
+            },
+        },
+        {
+            modelName: "Benefit",
+            modelPermissions: {
+                WRITE: {
+                    isEnabled: false,
+                },
+            },
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.LinkedAccountCommonModelScopeDeserializerRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Scopes.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats DeleteAccount
+
+<details><summary><code>client.ats.deleteAccount.<a href="/src/api/resources/ats/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a linked account.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.deleteAccount.delete();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `DeleteAccount.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Departments
+
+<details><summary><code>client.ats.departments.<a href="/src/api/resources/ats/resources/departments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedDepartmentList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Department` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.departments.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.DepartmentsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Departments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.departments.<a href="/src/api/resources/ats/resources/departments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Department</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Department` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.departments.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.DepartmentsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Departments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Eeocs
+
+<details><summary><code>client.ats.eeocs.<a href="/src/api/resources/ats/resources/eeocs/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEeocList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `EEOC` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.eeocs.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.EeocsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Eeocs.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.eeocs.<a href="/src/api/resources/ats/resources/eeocs/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Eeoc</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `EEOC` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.eeocs.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.EeocsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Eeocs.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats FieldMapping
+
+<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.fieldMapping.fieldMappingsRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.FieldMappingsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create new Field Mappings that will be available after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.fieldMapping.fieldMappingsCreate({
+    targetFieldName: "example_target_field_name",
+    targetFieldDescription: "this is a example description of the target field",
+    remoteFieldTraversalPath: ["example_remote_field"],
+    remoteMethod: "GET",
+    remoteUrlPath: "/example-url-path",
+    commonModelName: "ExampleCommonModel",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.CreateFieldMappingRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(fieldMappingId) -> Merge.FieldMappingInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.fieldMapping.fieldMappingsDestroy("field_mapping_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fieldMappingId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(fieldMappingId, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or update existing Field Mappings for a Linked Account. Changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fieldMappingId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.PatchedEditFieldMappingRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all remote fields for a Linked Account. Remote fields are third-party fields that are accessible after initial sync if remote_data is enabled. You can use remote fields to override existing Merge fields or map a new Merge field. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.fieldMapping.remoteFieldsRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.RemoteFieldsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all organization-wide Target Fields, this will not include any Linked Account specific Target Fields. Organization-wide Target Fields are additional fields appended to the Merge Common Model for all Linked Accounts in a category. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/target-fields/).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.fieldMapping.targetFieldsRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMapping.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats GenerateKey
+
+<details><summary><code>client.ats.generateKey.<a href="/src/api/resources/ats/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a remote key.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.generateKey.create({
+    name: "Remote Deployment Key 1",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.GenerateRemoteKeyRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GenerateKey.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Interviews
+
+<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedScheduledInterviewList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `ScheduledInterview` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.interviews.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.InterviewsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Interviews.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">create</a>({ ...params }) -> Merge.ScheduledInterviewResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `ScheduledInterview` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.interviews.create({
+    model: {},
+    remoteUserId: "remote_user_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ScheduledInterviewEndpointRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Interviews.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.ScheduledInterview</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `ScheduledInterview` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.interviews.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.InterviewsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Interviews.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `ScheduledInterview` POSTs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.interviews.metaPostRetrieve();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Interviews.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Issues
+
+<details><summary><code>client.ats.issues.<a href="/src/api/resources/ats/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets all issues for Organization.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.issues.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.IssuesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Issues.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.issues.<a href="/src/api/resources/ats/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a specific issue.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.issues.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Issues.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats JobInterviewStages
+
+<details><summary><code>client.ats.jobInterviewStages.<a href="/src/api/resources/ats/resources/jobInterviewStages/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJobInterviewStageList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `JobInterviewStage` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.jobInterviewStages.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.JobInterviewStagesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JobInterviewStages.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.jobInterviewStages.<a href="/src/api/resources/ats/resources/jobInterviewStages/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.JobInterviewStage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `JobInterviewStage` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.jobInterviewStages.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.JobInterviewStagesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JobInterviewStages.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats JobPostings
+
+<details><summary><code>client.ats.jobPostings.<a href="/src/api/resources/ats/resources/jobPostings/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJobPostingList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `JobPosting` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.jobPostings.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.JobPostingsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JobPostings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.jobPostings.<a href="/src/api/resources/ats/resources/jobPostings/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.JobPosting</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `JobPosting` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.jobPostings.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.JobPostingsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JobPostings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Jobs
+
+<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJobList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Job` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.jobs.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.JobsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Jobs.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Job</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Job` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.jobs.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.JobsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Jobs.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">screeningQuestionsList</a>(jobId, { ...params }) -> Merge.PaginatedScreeningQuestionList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `ScreeningQuestion` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.jobs.screeningQuestionsList("job_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**jobId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.JobsScreeningQuestionsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Jobs.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats LinkToken
+
+<details><summary><code>client.ats.linkToken.<a href="/src/api/resources/ats/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a link token to be used when linking a new end user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.linkToken.create({
+    endUserEmailAddress: "example@gmail.com",
+    endUserOrganizationName: "Test Organization",
+    endUserOriginId: "12345",
+    categories: ["hris", "ats"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.EndUserDetailsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LinkToken.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats LinkedAccounts
+
+<details><summary><code>client.ats.linkedAccounts.<a href="/src/api/resources/ats/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List linked accounts for your organization.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.linkedAccounts.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.LinkedAccountsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LinkedAccounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Offers
+
+<details><summary><code>client.ats.offers.<a href="/src/api/resources/ats/resources/offers/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedOfferList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Offer` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.offers.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.OffersListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Offers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.offers.<a href="/src/api/resources/ats/resources/offers/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Offer</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Offer` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.offers.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.OffersRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Offers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Offices
+
+<details><summary><code>client.ats.offices.<a href="/src/api/resources/ats/resources/offices/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedOfficeList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Office` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.offices.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.OfficesListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Offices.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.offices.<a href="/src/api/resources/ats/resources/offices/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Office</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Office` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.offices.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.OfficesRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Offices.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Passthrough
+
+<details><summary><code>client.ats.passthrough.<a href="/src/api/resources/ats/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Pull data from an endpoint not currently supported by Merge.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.passthrough.create({
+    method: "GET",
+    path: "/scooters",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.DataPassthroughRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Passthrough.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats RegenerateKey
+
+<details><summary><code>client.ats.regenerateKey.<a href="/src/api/resources/ats/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchange remote keys.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.regenerateKey.create({
+    name: "Remote Deployment Key 1",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.RemoteKeyForRegenerationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RegenerateKey.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats RejectReasons
+
+<details><summary><code>client.ats.rejectReasons.<a href="/src/api/resources/ats/resources/rejectReasons/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedRejectReasonList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RejectReason` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.rejectReasons.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.RejectReasonsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RejectReasons.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.rejectReasons.<a href="/src/api/resources/ats/resources/rejectReasons/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.RejectReason</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `RejectReason` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.rejectReasons.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.RejectReasonsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RejectReasons.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Scorecards
+
+<details><summary><code>client.ats.scorecards.<a href="/src/api/resources/ats/resources/scorecards/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedScorecardList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Scorecard` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.scorecards.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ScorecardsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Scorecards.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.scorecards.<a href="/src/api/resources/ats/resources/scorecards/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Scorecard</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Scorecard` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.scorecards.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.ScorecardsRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Scorecards.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats SyncStatus
+
+<details><summary><code>client.ats.syncStatus.<a href="/src/api/resources/ats/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get sync status for the current sync and the most recently finished sync. `last_sync_start` represents the most recent time any sync began. `last_sync_finished` represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the `last_sync_finished` timestamp where `last_sync_result` is `DONE`. Possible values for `status` and `last_sync_result` are `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`. Learn more about sync status in our [Help Center](https://help.merge.dev/en/articles/8184193-merge-sync-statuses).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.syncStatus.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.SyncStatusListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SyncStatus.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats ForceResync
+
+<details><summary><code>client.ats.forceResync.<a href="/src/api/resources/ats/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Force re-sync of all models. This endpoint is available for monthly, quarterly, and highest sync frequency customers on the Professional or Enterprise plans. Doing so will consume a sync credit for the relevant linked account. Force re-syncs can also be triggered manually in the Merge Dashboard and is available for all customers.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.forceResync.syncStatusResyncCreate();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ForceResync.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Tags
+
+<details><summary><code>client.ats.tags.<a href="/src/api/resources/ats/resources/tags/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTagList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Tag` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.tags.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.TagsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tags.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats Users
+
+<details><summary><code>client.ats.users.<a href="/src/api/resources/ats/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedRemoteUserList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteUser` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.users.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.UsersListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.users.<a href="/src/api/resources/ats/resources/users/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.RemoteUser</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `RemoteUser` object with the given `id`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.users.retrieve("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.UsersRetrieveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Ats WebhookReceivers
+
+<details><summary><code>client.ats.webhookReceivers.<a href="/src/api/resources/ats/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `WebhookReceiver` objects.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.webhookReceivers.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `WebhookReceivers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ats.webhookReceivers.<a href="/src/api/resources/ats/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `WebhookReceiver` object with the given values.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.webhookReceivers.create({
+    event: "event",
+    isActive: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.ats.WebhookReceiverRequest`
 
 </dd>
 </dl>
@@ -11231,11176 +22401,6 @@ await client.ticketing.webhookReceivers.create({
 <dd>
 
 **request:** `Merge.ticketing.WebhookReceiverRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `WebhookReceivers.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats AccountDetails
-
-<details><summary><code>client.ats.accountDetails.<a href="/src/api/resources/ats/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get details for a linked account.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.accountDetails.retrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountDetails.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats AccountToken
-
-<details><summary><code>client.ats.accountToken.<a href="/src/api/resources/ats/resources/accountToken/client/Client.ts">retrieve</a>(publicToken) -> Merge.AccountToken</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the account token for the end user with the provided public token.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.accountToken.retrieve("public_token");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**publicToken:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountToken.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Activities
-
-<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedActivityList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Activity` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.activities.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ActivitiesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Activities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">create</a>({ ...params }) -> Merge.ActivityResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Activity` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.activities.create({
-    model: {},
-    remoteUserId: "remote_user_id",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ActivityEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Activities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Activity</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Activity` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.activities.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ActivitiesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Activities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Activity` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.activities.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Activities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Applications
-
-<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedApplicationList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Application` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.applications.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ApplicationsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Applications.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">create</a>({ ...params }) -> Merge.ApplicationResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Application` object with the given values.
-For certain integrations, but not all, our API detects duplicate candidates and will associate applications with existing records in the third-party. New candidates are created and automatically linked to the application.
-
-See our [Help Center article](https://help.merge.dev/en/articles/10012366-updates-to-post-applications-oct-2024) for detailed support per integration.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.applications.create({
-    model: {},
-    remoteUserId: "remote_user_id",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ApplicationEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Applications.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Application</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Application` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.applications.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ApplicationsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Applications.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">changeStageCreate</a>(id, { ...params }) -> Merge.ApplicationResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates the `current_stage` field of an `Application` object
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.applications.changeStageCreate("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.UpdateApplicationStageRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Applications.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">metaPostRetrieve</a>({ ...params }) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Application` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.applications.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ApplicationsMetaPostRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Applications.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats AsyncPassthrough
-
-<details><summary><code>client.ats.asyncPassthrough.<a href="/src/api/resources/ats/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Asynchronously pull data from an endpoint not currently supported by Merge.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.asyncPassthrough.create({
-    method: "GET",
-    path: "/scooters",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.DataPassthroughRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncPassthrough.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.asyncPassthrough.<a href="/src/api/resources/ats/resources/asyncPassthrough/client/Client.ts">retrieve</a>(asyncPassthroughReceiptId) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves data from earlier async-passthrough POST request
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.asyncPassthrough.retrieve("async_passthrough_receipt_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**asyncPassthroughReceiptId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncPassthrough.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Attachments
-
-<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAttachmentList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Attachment` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.attachments.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.AttachmentsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Attachments.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">create</a>({ ...params }) -> Merge.AttachmentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Attachment` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.attachments.create({
-    model: {},
-    remoteUserId: "remote_user_id",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.AttachmentEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Attachments.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Attachment</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Attachment` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.attachments.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.AttachmentsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Attachments.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Attachment` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.attachments.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Attachments.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats AuditTrail
-
-<details><summary><code>client.ats.auditTrail.<a href="/src/api/resources/ats/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets a list of audit trail events.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.auditTrail.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.AuditTrailListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AuditTrail.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats AvailableActions
-
-<details><summary><code>client.ats.availableActions.<a href="/src/api/resources/ats/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of models and actions available for an account.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.availableActions.retrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AvailableActions.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Candidates
-
-<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCandidateList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Candidate` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.candidates.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.CandidatesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Candidates.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">create</a>({ ...params }) -> Merge.CandidateResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Candidate` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.candidates.create({
-    model: {},
-    remoteUserId: "remote_user_id",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.CandidateEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Candidates.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Candidate</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Candidate` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.candidates.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.CandidatesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Candidates.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.CandidateResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a `Candidate` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.candidates.partialUpdate("id", {
-    model: {},
-    remoteUserId: "remote_user_id",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.PatchedCandidateEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Candidates.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">ignoreCreate</a>(modelId, { ...params }) -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.candidates.ignoreCreate("model_id", {
-    reason: "GENERAL_CUSTOMER_REQUEST",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**modelId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.IgnoreCommonModelRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Candidates.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Candidate` PATCHs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.candidates.metaPatchRetrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Candidates.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Candidate` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.candidates.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Candidates.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Scopes
-
-<details><summary><code>client.ats.scopes.<a href="/src/api/resources/ats/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.scopes.defaultScopesRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Scopes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.scopes.<a href="/src/api/resources/ats/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all available permissions for Merge Common Models and fields for a single Linked Account. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.scopes.linkedAccountScopesRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Scopes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.scopes.<a href="/src/api/resources/ats/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes)
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.scopes.linkedAccountScopesCreate({
-    commonModels: [
-        {
-            modelName: "Employee",
-            modelPermissions: {
-                READ: {
-                    isEnabled: true,
-                },
-                WRITE: {
-                    isEnabled: false,
-                },
-            },
-            fieldPermissions: {
-                enabledFields: ["avatar", "home_location"],
-                disabledFields: ["work_location"],
-            },
-        },
-        {
-            modelName: "Benefit",
-            modelPermissions: {
-                WRITE: {
-                    isEnabled: false,
-                },
-            },
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.LinkedAccountCommonModelScopeDeserializerRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Scopes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats DeleteAccount
-
-<details><summary><code>client.ats.deleteAccount.<a href="/src/api/resources/ats/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete a linked account.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.deleteAccount.delete();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `DeleteAccount.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Departments
-
-<details><summary><code>client.ats.departments.<a href="/src/api/resources/ats/resources/departments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedDepartmentList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Department` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.departments.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.DepartmentsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Departments.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.departments.<a href="/src/api/resources/ats/resources/departments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Department</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Department` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.departments.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.DepartmentsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Departments.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Eeocs
-
-<details><summary><code>client.ats.eeocs.<a href="/src/api/resources/ats/resources/eeocs/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEeocList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `EEOC` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.eeocs.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.EeocsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Eeocs.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.eeocs.<a href="/src/api/resources/ats/resources/eeocs/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Eeoc</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `EEOC` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.eeocs.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.EeocsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Eeocs.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats FieldMapping
-
-<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.fieldMapping.fieldMappingsRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.FieldMappingsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create new Field Mappings that will be available after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.fieldMapping.fieldMappingsCreate({
-    targetFieldName: "example_target_field_name",
-    targetFieldDescription: "this is a example description of the target field",
-    remoteFieldTraversalPath: ["example_remote_field"],
-    remoteMethod: "GET",
-    remoteUrlPath: "/example-url-path",
-    commonModelName: "ExampleCommonModel",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.CreateFieldMappingRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(fieldMappingId) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.fieldMapping.fieldMappingsDestroy("field_mapping_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**fieldMappingId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(fieldMappingId, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create or update existing Field Mappings for a Linked Account. Changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**fieldMappingId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.PatchedEditFieldMappingRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all remote fields for a Linked Account. Remote fields are third-party fields that are accessible after initial sync if remote_data is enabled. You can use remote fields to override existing Merge fields or map a new Merge field. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.fieldMapping.remoteFieldsRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.RemoteFieldsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.fieldMapping.<a href="/src/api/resources/ats/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all organization-wide Target Fields, this will not include any Linked Account specific Target Fields. Organization-wide Target Fields are additional fields appended to the Merge Common Model for all Linked Accounts in a category. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/target-fields/).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.fieldMapping.targetFieldsRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats GenerateKey
-
-<details><summary><code>client.ats.generateKey.<a href="/src/api/resources/ats/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a remote key.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.generateKey.create({
-    name: "Remote Deployment Key 1",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.GenerateRemoteKeyRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `GenerateKey.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Interviews
-
-<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedScheduledInterviewList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `ScheduledInterview` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.interviews.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.InterviewsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Interviews.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">create</a>({ ...params }) -> Merge.ScheduledInterviewResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `ScheduledInterview` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.interviews.create({
-    model: {},
-    remoteUserId: "remote_user_id",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ScheduledInterviewEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Interviews.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.ScheduledInterview</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `ScheduledInterview` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.interviews.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.InterviewsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Interviews.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `ScheduledInterview` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.interviews.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Interviews.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Issues
-
-<details><summary><code>client.ats.issues.<a href="/src/api/resources/ats/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets all issues for Organization.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.issues.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.IssuesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Issues.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.issues.<a href="/src/api/resources/ats/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a specific issue.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.issues.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Issues.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats JobInterviewStages
-
-<details><summary><code>client.ats.jobInterviewStages.<a href="/src/api/resources/ats/resources/jobInterviewStages/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJobInterviewStageList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `JobInterviewStage` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.jobInterviewStages.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.JobInterviewStagesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JobInterviewStages.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.jobInterviewStages.<a href="/src/api/resources/ats/resources/jobInterviewStages/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.JobInterviewStage</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `JobInterviewStage` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.jobInterviewStages.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.JobInterviewStagesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JobInterviewStages.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats JobPostings
-
-<details><summary><code>client.ats.jobPostings.<a href="/src/api/resources/ats/resources/jobPostings/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJobPostingList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `JobPosting` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.jobPostings.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.JobPostingsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JobPostings.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.jobPostings.<a href="/src/api/resources/ats/resources/jobPostings/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.JobPosting</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `JobPosting` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.jobPostings.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.JobPostingsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JobPostings.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Jobs
-
-<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJobList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Job` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.jobs.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.JobsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Jobs.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Job</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Job` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.jobs.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.JobsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Jobs.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">screeningQuestionsList</a>(jobId, { ...params }) -> Merge.PaginatedScreeningQuestionList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `ScreeningQuestion` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.jobs.screeningQuestionsList("job_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**jobId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.JobsScreeningQuestionsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Jobs.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats LinkToken
-
-<details><summary><code>client.ats.linkToken.<a href="/src/api/resources/ats/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a link token to be used when linking a new end user.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.linkToken.create({
-    endUserEmailAddress: "example@gmail.com",
-    endUserOrganizationName: "Test Organization",
-    endUserOriginId: "12345",
-    categories: ["hris", "ats"],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.EndUserDetailsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LinkToken.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats LinkedAccounts
-
-<details><summary><code>client.ats.linkedAccounts.<a href="/src/api/resources/ats/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List linked accounts for your organization.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.linkedAccounts.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.LinkedAccountsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LinkedAccounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Offers
-
-<details><summary><code>client.ats.offers.<a href="/src/api/resources/ats/resources/offers/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedOfferList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Offer` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.offers.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.OffersListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Offers.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.offers.<a href="/src/api/resources/ats/resources/offers/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Offer</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Offer` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.offers.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.OffersRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Offers.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Offices
-
-<details><summary><code>client.ats.offices.<a href="/src/api/resources/ats/resources/offices/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedOfficeList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Office` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.offices.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.OfficesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Offices.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.offices.<a href="/src/api/resources/ats/resources/offices/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Office</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Office` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.offices.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.OfficesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Offices.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Passthrough
-
-<details><summary><code>client.ats.passthrough.<a href="/src/api/resources/ats/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Pull data from an endpoint not currently supported by Merge.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.passthrough.create({
-    method: "GET",
-    path: "/scooters",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.DataPassthroughRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Passthrough.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats RegenerateKey
-
-<details><summary><code>client.ats.regenerateKey.<a href="/src/api/resources/ats/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Exchange remote keys.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.regenerateKey.create({
-    name: "Remote Deployment Key 1",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.RemoteKeyForRegenerationRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RegenerateKey.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats RejectReasons
-
-<details><summary><code>client.ats.rejectReasons.<a href="/src/api/resources/ats/resources/rejectReasons/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedRejectReasonList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RejectReason` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.rejectReasons.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.RejectReasonsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RejectReasons.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.rejectReasons.<a href="/src/api/resources/ats/resources/rejectReasons/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.RejectReason</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `RejectReason` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.rejectReasons.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.RejectReasonsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RejectReasons.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Scorecards
-
-<details><summary><code>client.ats.scorecards.<a href="/src/api/resources/ats/resources/scorecards/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedScorecardList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Scorecard` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.scorecards.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ScorecardsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Scorecards.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.scorecards.<a href="/src/api/resources/ats/resources/scorecards/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Scorecard</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Scorecard` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.scorecards.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.ScorecardsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Scorecards.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats SyncStatus
-
-<details><summary><code>client.ats.syncStatus.<a href="/src/api/resources/ats/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get sync status for the current sync and the most recently finished sync. `last_sync_start` represents the most recent time any sync began. `last_sync_finished` represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the `last_sync_finished` timestamp where `last_sync_result` is `DONE`. Possible values for `status` and `last_sync_result` are `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`. Learn more about sync status in our [Help Center](https://help.merge.dev/en/articles/8184193-merge-sync-statuses).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.syncStatus.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.SyncStatusListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `SyncStatus.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats ForceResync
-
-<details><summary><code>client.ats.forceResync.<a href="/src/api/resources/ats/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Force re-sync of all models. This endpoint is available for monthly, quarterly, and highest sync frequency customers on the Professional or Enterprise plans. Doing so will consume a sync credit for the relevant linked account. Force re-syncs can also be triggered manually in the Merge Dashboard and is available for all customers.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.forceResync.syncStatusResyncCreate();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ForceResync.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Tags
-
-<details><summary><code>client.ats.tags.<a href="/src/api/resources/ats/resources/tags/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTagList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Tag` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.tags.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.TagsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tags.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats Users
-
-<details><summary><code>client.ats.users.<a href="/src/api/resources/ats/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedRemoteUserList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteUser` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.users.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.UsersListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Users.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.users.<a href="/src/api/resources/ats/resources/users/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.RemoteUser</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `RemoteUser` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.users.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.UsersRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Users.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Ats WebhookReceivers
-
-<details><summary><code>client.ats.webhookReceivers.<a href="/src/api/resources/ats/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `WebhookReceiver` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.webhookReceivers.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `WebhookReceivers.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ats.webhookReceivers.<a href="/src/api/resources/ats/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `WebhookReceiver` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.ats.webhookReceivers.create({
-    event: "event",
-    isActive: true,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.ats.WebhookReceiverRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `WebhookReceivers.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm AccountDetails
-
-<details><summary><code>client.crm.accountDetails.<a href="/src/api/resources/crm/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get details for a linked account.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.accountDetails.retrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountDetails.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm AccountToken
-
-<details><summary><code>client.crm.accountToken.<a href="/src/api/resources/crm/resources/accountToken/client/Client.ts">retrieve</a>(publicToken) -> Merge.AccountToken</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the account token for the end user with the provided public token.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.accountToken.retrieve("public_token");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**publicToken:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountToken.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Accounts
-
-<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Account` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.accounts.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.AccountsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Accounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">create</a>({ ...params }) -> Merge.CrmAccountResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Account` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.accounts.create({
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CrmAccountEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Accounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Account</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Account` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.accounts.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.AccountsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Accounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.CrmAccountResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an `Account` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.accounts.partialUpdate("id", {
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.PatchedCrmAccountEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Accounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `CRMAccount` PATCHs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.accounts.metaPatchRetrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Accounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `CRMAccount` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.accounts.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Accounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.accounts.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.AccountsRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Accounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm AsyncPassthrough
-
-<details><summary><code>client.crm.asyncPassthrough.<a href="/src/api/resources/crm/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Asynchronously pull data from an endpoint not currently supported by Merge.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.asyncPassthrough.create({
-    method: "GET",
-    path: "/scooters",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.DataPassthroughRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncPassthrough.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.asyncPassthrough.<a href="/src/api/resources/crm/resources/asyncPassthrough/client/Client.ts">retrieve</a>(asyncPassthroughReceiptId) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves data from earlier async-passthrough POST request
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.asyncPassthrough.retrieve("async_passthrough_receipt_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**asyncPassthroughReceiptId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncPassthrough.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm AuditTrail
-
-<details><summary><code>client.crm.auditTrail.<a href="/src/api/resources/crm/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets a list of audit trail events.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.auditTrail.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.AuditTrailListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AuditTrail.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm AvailableActions
-
-<details><summary><code>client.crm.availableActions.<a href="/src/api/resources/crm/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of models and actions available for an account.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.availableActions.retrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AvailableActions.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Contacts
-
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedContactList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Contact` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.contacts.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.ContactsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Contacts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">create</a>({ ...params }) -> Merge.CrmContactResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Contact` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.contacts.create({
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CrmContactEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Contacts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Contact</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Contact` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.contacts.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.ContactsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Contacts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.CrmContactResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a `Contact` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.contacts.partialUpdate("id", {
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.PatchedCrmContactEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Contacts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">ignoreCreate</a>(modelId, { ...params }) -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.contacts.ignoreCreate("model_id", {
-    reason: "GENERAL_CUSTOMER_REQUEST",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**modelId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.IgnoreCommonModelRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Contacts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `CRMContact` PATCHs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.contacts.metaPatchRetrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Contacts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `CRMContact` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.contacts.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Contacts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.contacts.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.ContactsRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Contacts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm CustomObjectClasses
-
-<details><summary><code>client.crm.customObjectClasses.<a href="/src/api/resources/crm/resources/customObjectClasses/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCustomObjectClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `CustomObjectClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.customObjectClasses.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CustomObjectClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CustomObjectClasses.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.customObjectClasses.<a href="/src/api/resources/crm/resources/customObjectClasses/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CustomObjectClass</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `CustomObjectClass` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.customObjectClasses.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CustomObjectClassesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CustomObjectClasses.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm AssociationTypes
-
-<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesList</a>(customObjectClassId, { ...params }) -> Merge.PaginatedAssociationTypeList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `AssociationType` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.associationTypes.customObjectClassesAssociationTypesList("custom_object_class_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**customObjectClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CustomObjectClassesAssociationTypesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AssociationTypes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesCreate</a>(customObjectClassId, { ...params }) -> Merge.CrmAssociationTypeResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `AssociationType` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.associationTypes.customObjectClassesAssociationTypesCreate("custom_object_class_id", {
-    model: {
-        sourceObjectClass: {
-            id: "id",
-            originType: "CUSTOM_OBJECT",
-        },
-        targetObjectClasses: [
-            {
-                id: "id",
-                originType: "CUSTOM_OBJECT",
-            },
-        ],
-        remoteKeyName: "remote_key_name",
-    },
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**customObjectClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CrmAssociationTypeEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AssociationTypes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesRetrieve</a>(customObjectClassId, id, { ...params }) -> Merge.AssociationType</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `AssociationType` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.associationTypes.customObjectClassesAssociationTypesRetrieve("custom_object_class_id", "id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**customObjectClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CustomObjectClassesAssociationTypesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AssociationTypes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesMetaPostRetrieve</a>(customObjectClassId) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `CRMAssociationType` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.associationTypes.customObjectClassesAssociationTypesMetaPostRetrieve("custom_object_class_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**customObjectClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AssociationTypes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm CustomObjects
-
-<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsList</a>(customObjectClassId, { ...params }) -> Merge.PaginatedCustomObjectList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `CustomObject` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.customObjects.customObjectClassesCustomObjectsList("custom_object_class_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**customObjectClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CustomObjectClassesCustomObjectsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CustomObjects.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsCreate</a>(customObjectClassId, { ...params }) -> Merge.CrmCustomObjectResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `CustomObject` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.customObjects.customObjectClassesCustomObjectsCreate("custom_object_class_id", {
-    model: {
-        fields: {
-            test_field: "hello",
-        },
-    },
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**customObjectClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CrmCustomObjectEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CustomObjects.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsRetrieve</a>(customObjectClassId, id, { ...params }) -> Merge.CustomObject</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `CustomObject` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.customObjects.customObjectClassesCustomObjectsRetrieve("custom_object_class_id", "id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**customObjectClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CustomObjectClassesCustomObjectsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CustomObjects.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsMetaPostRetrieve</a>(customObjectClassId) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `CRMCustomObject` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.customObjects.customObjectClassesCustomObjectsMetaPostRetrieve("custom_object_class_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**customObjectClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CustomObjects.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CustomObjectClassesCustomObjectsRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CustomObjects.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Associations
-
-<details><summary><code>client.crm.associations.<a href="/src/api/resources/crm/resources/associations/client/Client.ts">customObjectClassesCustomObjectsAssociationsList</a>(customObjectClassId, objectId, { ...params }) -> Merge.PaginatedAssociationList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Association` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**customObjectClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**objectId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CustomObjectClassesCustomObjectsAssociationsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Associations.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.associations.<a href="/src/api/resources/crm/resources/associations/client/Client.ts">customObjectClassesCustomObjectsAssociationsUpdate</a>(associationTypeId, sourceClassId, sourceObjectId, targetClassId, targetObjectId, { ...params }) -> Merge.Association</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an Association between `source_object_id` and `target_object_id` of type `association_type_id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.associations.customObjectClassesCustomObjectsAssociationsUpdate(
-    "association_type_id",
-    "source_class_id",
-    "source_object_id",
-    "target_class_id",
-    "target_object_id",
-);
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**associationTypeId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sourceClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sourceObjectId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**targetClassId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**targetObjectId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CustomObjectClassesCustomObjectsAssociationsUpdateRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Associations.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Scopes
-
-<details><summary><code>client.crm.scopes.<a href="/src/api/resources/crm/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.scopes.defaultScopesRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Scopes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.scopes.<a href="/src/api/resources/crm/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all available permissions for Merge Common Models and fields for a single Linked Account. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.scopes.linkedAccountScopesRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Scopes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.scopes.<a href="/src/api/resources/crm/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes)
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.scopes.linkedAccountScopesCreate({
-    commonModels: [
-        {
-            modelName: "Employee",
-            modelPermissions: {
-                READ: {
-                    isEnabled: true,
-                },
-                WRITE: {
-                    isEnabled: false,
-                },
-            },
-            fieldPermissions: {
-                enabledFields: ["avatar", "home_location"],
-                disabledFields: ["work_location"],
-            },
-        },
-        {
-            modelName: "Benefit",
-            modelPermissions: {
-                WRITE: {
-                    isEnabled: false,
-                },
-            },
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.LinkedAccountCommonModelScopeDeserializerRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Scopes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm DeleteAccount
-
-<details><summary><code>client.crm.deleteAccount.<a href="/src/api/resources/crm/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete a linked account.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.deleteAccount.delete();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `DeleteAccount.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm EngagementTypes
-
-<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEngagementTypeList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `EngagementType` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagementTypes.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.EngagementTypesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EngagementTypes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.EngagementType</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `EngagementType` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagementTypes.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.EngagementTypesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EngagementTypes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagementTypes.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.EngagementTypesRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EngagementTypes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Engagements
-
-<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEngagementList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Engagement` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagements.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.EngagementsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Engagements.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">create</a>({ ...params }) -> Merge.EngagementResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Engagement` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagements.create({
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.EngagementEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Engagements.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Engagement</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Engagement` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagements.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.EngagementsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Engagements.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.EngagementResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an `Engagement` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagements.partialUpdate("id", {
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.PatchedEngagementEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Engagements.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Engagement` PATCHs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagements.metaPatchRetrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Engagements.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Engagement` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagements.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Engagements.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.engagements.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.EngagementsRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Engagements.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm FieldMapping
-
-<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.fieldMapping.fieldMappingsRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.FieldMappingsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create new Field Mappings that will be available after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.fieldMapping.fieldMappingsCreate({
-    targetFieldName: "example_target_field_name",
-    targetFieldDescription: "this is a example description of the target field",
-    remoteFieldTraversalPath: ["example_remote_field"],
-    remoteMethod: "GET",
-    remoteUrlPath: "/example-url-path",
-    commonModelName: "ExampleCommonModel",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.CreateFieldMappingRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(fieldMappingId) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.fieldMapping.fieldMappingsDestroy("field_mapping_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**fieldMappingId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(fieldMappingId, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create or update existing Field Mappings for a Linked Account. Changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**fieldMappingId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.PatchedEditFieldMappingRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all remote fields for a Linked Account. Remote fields are third-party fields that are accessible after initial sync if remote_data is enabled. You can use remote fields to override existing Merge fields or map a new Merge field. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.fieldMapping.remoteFieldsRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.RemoteFieldsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.fieldMapping.<a href="/src/api/resources/crm/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all organization-wide Target Fields, this will not include any Linked Account specific Target Fields. Organization-wide Target Fields are additional fields appended to the Merge Common Model for all Linked Accounts in a category. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/target-fields/).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.fieldMapping.targetFieldsRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMapping.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm GenerateKey
-
-<details><summary><code>client.crm.generateKey.<a href="/src/api/resources/crm/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a remote key.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.generateKey.create({
-    name: "Remote Deployment Key 1",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.GenerateRemoteKeyRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `GenerateKey.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Issues
-
-<details><summary><code>client.crm.issues.<a href="/src/api/resources/crm/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets all issues for Organization.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.issues.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.IssuesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Issues.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.issues.<a href="/src/api/resources/crm/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a specific issue.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.issues.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Issues.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Leads
-
-<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedLeadList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Lead` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.leads.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.LeadsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Leads.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">create</a>({ ...params }) -> Merge.LeadResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Lead` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.leads.create({
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.LeadEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Leads.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Lead</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Lead` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.leads.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.LeadsRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Leads.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Lead` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.leads.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Leads.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.leads.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.LeadsRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Leads.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm LinkToken
-
-<details><summary><code>client.crm.linkToken.<a href="/src/api/resources/crm/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a link token to be used when linking a new end user.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.linkToken.create({
-    endUserEmailAddress: "example@gmail.com",
-    endUserOrganizationName: "Test Organization",
-    endUserOriginId: "12345",
-    categories: ["hris", "ats"],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.EndUserDetailsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LinkToken.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm LinkedAccounts
-
-<details><summary><code>client.crm.linkedAccounts.<a href="/src/api/resources/crm/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List linked accounts for your organization.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.linkedAccounts.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.LinkedAccountsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LinkedAccounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Notes
-
-<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedNoteList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Note` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.notes.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.NotesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Notes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">create</a>({ ...params }) -> Merge.NoteResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Note` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.notes.create({
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.NoteEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Notes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Note</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Note` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.notes.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.NotesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Notes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Note` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.notes.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Notes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.notes.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.NotesRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Notes.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Opportunities
-
-<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedOpportunityList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Opportunity` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.opportunities.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.OpportunitiesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Opportunities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">create</a>({ ...params }) -> Merge.OpportunityResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Opportunity` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.opportunities.create({
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.OpportunityEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Opportunities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Opportunity</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Opportunity` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.opportunities.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.OpportunitiesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Opportunities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.OpportunityResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an `Opportunity` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.opportunities.partialUpdate("id", {
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.PatchedOpportunityEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Opportunities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Opportunity` PATCHs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.opportunities.metaPatchRetrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Opportunities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Opportunity` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.opportunities.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Opportunities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.opportunities.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.OpportunitiesRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Opportunities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Passthrough
-
-<details><summary><code>client.crm.passthrough.<a href="/src/api/resources/crm/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Pull data from an endpoint not currently supported by Merge.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.passthrough.create({
-    method: "GET",
-    path: "/scooters",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.DataPassthroughRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Passthrough.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm RegenerateKey
-
-<details><summary><code>client.crm.regenerateKey.<a href="/src/api/resources/crm/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Exchange remote keys.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.regenerateKey.create({
-    name: "Remote Deployment Key 1",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.RemoteKeyForRegenerationRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RegenerateKey.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Stages
-
-<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedStageList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Stage` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.stages.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.StagesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Stages.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Stage</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Stage` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.stages.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.StagesRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Stages.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.stages.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.StagesRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Stages.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm SyncStatus
-
-<details><summary><code>client.crm.syncStatus.<a href="/src/api/resources/crm/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get sync status for the current sync and the most recently finished sync. `last_sync_start` represents the most recent time any sync began. `last_sync_finished` represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the `last_sync_finished` timestamp where `last_sync_result` is `DONE`. Possible values for `status` and `last_sync_result` are `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`. Learn more about sync status in our [Help Center](https://help.merge.dev/en/articles/8184193-merge-sync-statuses).
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.syncStatus.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.SyncStatusListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `SyncStatus.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm ForceResync
-
-<details><summary><code>client.crm.forceResync.<a href="/src/api/resources/crm/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Force re-sync of all models. This endpoint is available for monthly, quarterly, and highest sync frequency customers on the Professional or Enterprise plans. Doing so will consume a sync credit for the relevant linked account. Force re-syncs can also be triggered manually in the Merge Dashboard and is available for all customers.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.forceResync.syncStatusResyncCreate();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ForceResync.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Tasks
-
-<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTaskList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Task` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.tasks.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.TasksListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tasks.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">create</a>({ ...params }) -> Merge.TaskResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Task` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.tasks.create({
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.TaskEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tasks.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Task</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Task` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.tasks.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.TasksRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tasks.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.TaskResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a `Task` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.tasks.partialUpdate("id", {
-    model: {},
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.PatchedTaskEndpointRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tasks.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Task` PATCHs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.tasks.metaPatchRetrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tasks.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Task` POSTs.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.tasks.metaPostRetrieve();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tasks.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.tasks.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.TasksRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tasks.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm Users
-
-<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedUserList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `User` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.users.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.UsersListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Users.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.User</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `User` object with the given `id`.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.users.retrieve("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.UsersRetrieveRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Users.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">ignoreCreate</a>(modelId, { ...params }) -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The "reason" and "message" fields in the request body will be stored for audit purposes.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.users.ignoreCreate("model_id", {
-    reason: "GENERAL_CUSTOMER_REQUEST",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**modelId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.IgnoreCommonModelRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Users.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.users.remoteFieldClassesList();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.UsersRemoteFieldClassesListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Users.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Crm WebhookReceivers
-
-<details><summary><code>client.crm.webhookReceivers.<a href="/src/api/resources/crm/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `WebhookReceiver` objects.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.webhookReceivers.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `WebhookReceivers.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.webhookReceivers.<a href="/src/api/resources/crm/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `WebhookReceiver` object with the given values.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.webhookReceivers.create({
-    event: "event",
-    isActive: true,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.crm.WebhookReceiverRequest`
 
 </dd>
 </dl>

@@ -6,8 +6,7 @@ import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
 import * as serializers from "../../../../../../serialization/index";
-import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
-import urlJoin from "url-join";
+import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Employees {
@@ -32,6 +31,8 @@ export declare namespace Employees {
         abortSignal?: AbortSignal;
         /** Override the X-Account-Token header */
         accountToken?: string | undefined;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
         headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
     }
@@ -244,7 +245,7 @@ export class Employees {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -259,7 +260,7 @@ export class Employees {
                 }),
                 requestOptions?.headers,
             ),
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -335,7 +336,7 @@ export class Employees {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -351,7 +352,7 @@ export class Employees {
                 requestOptions?.headers,
             ),
             contentType: "application/json",
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             requestType: "json",
             body: serializers.hris.EmployeeEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -455,7 +456,7 @@ export class Employees {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -470,7 +471,7 @@ export class Employees {
                 }),
                 requestOptions?.headers,
             ),
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -539,7 +540,7 @@ export class Employees {
         requestOptions?: Employees.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -555,6 +556,7 @@ export class Employees {
                 requestOptions?.headers,
             ),
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: serializers.hris.IgnoreCommonModelRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -610,7 +612,7 @@ export class Employees {
         requestOptions?: Employees.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.hris.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -625,6 +627,7 @@ export class Employees {
                 }),
                 requestOptions?.headers,
             ),
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

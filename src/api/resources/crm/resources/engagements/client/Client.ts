@@ -6,8 +6,7 @@ import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
 import * as Merge from "../../../../../index";
 import * as serializers from "../../../../../../serialization/index";
-import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
-import urlJoin from "url-join";
+import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Engagements {
@@ -32,6 +31,8 @@ export declare namespace Engagements {
         abortSignal?: AbortSignal;
         /** Override the X-Account-Token header */
         accountToken?: string | undefined;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
         headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
     }
@@ -140,7 +141,7 @@ export class Engagements {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -155,7 +156,7 @@ export class Engagements {
                 }),
                 requestOptions?.headers,
             ),
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -231,7 +232,7 @@ export class Engagements {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -247,7 +248,7 @@ export class Engagements {
                 requestOptions?.headers,
             ),
             contentType: "application/json",
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             requestType: "json",
             body: serializers.crm.EngagementEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -336,7 +337,7 @@ export class Engagements {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -351,7 +352,7 @@ export class Engagements {
                 }),
                 requestOptions?.headers,
             ),
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -430,7 +431,7 @@ export class Engagements {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -446,7 +447,7 @@ export class Engagements {
                 requestOptions?.headers,
             ),
             contentType: "application/json",
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             requestType: "json",
             body: serializers.crm.PatchedEngagementEndpointRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
@@ -514,7 +515,7 @@ export class Engagements {
         requestOptions?: Engagements.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.crm.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -529,6 +530,7 @@ export class Engagements {
                 }),
                 requestOptions?.headers,
             ),
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -591,7 +593,7 @@ export class Engagements {
         requestOptions?: Engagements.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.crm.MetaResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -606,6 +608,7 @@ export class Engagements {
                 }),
                 requestOptions?.headers,
             ),
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -712,7 +715,7 @@ export class Engagements {
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
@@ -727,7 +730,7 @@ export class Engagements {
                 }),
                 requestOptions?.headers,
             ),
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
