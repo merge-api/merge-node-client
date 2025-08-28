@@ -568,6 +568,7 @@ service:
                   remote_key_name: remote_key_name
                   description: description
                   is_custom: true
+                  is_common_model_field: true
                   is_required: true
                   field_type: string
                   field_format: string

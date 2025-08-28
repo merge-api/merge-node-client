@@ -10,6 +10,7 @@ export interface RemoteFieldClass {
     remoteKeyName?: string;
     description?: string;
     isCustom?: boolean;
+    isCommonModelField?: boolean;
     isRequired?: boolean;
     fieldType?: Merge.ticketing.RemoteFieldClassFieldType;
     fieldFormat?: Merge.ticketing.RemoteFieldClassFieldFormat;
