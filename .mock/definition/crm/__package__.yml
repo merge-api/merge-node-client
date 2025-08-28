@@ -5158,6 +5158,7 @@ types:
       remote_key_name: optional<string>
       description: optional<string>
       is_custom: optional<boolean>
+      is_common_model_field: optional<boolean>
       is_required: optional<boolean>
       field_type: optional<RemoteFieldClassFieldType>
       field_format: optional<RemoteFieldClassFieldFormat>
