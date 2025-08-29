@@ -77,7 +77,9 @@ describe("ExpenseReports", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.expenseReports.list();
+        const response = await client.accounting.expenseReports.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -395,7 +397,9 @@ describe("ExpenseReports", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.expenseReports.linesList("expense_report_id");
+        const response = await client.accounting.expenseReports.linesList("expense_report_id", {
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -601,7 +605,9 @@ describe("ExpenseReports", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.expenseReports.linesRemoteFieldClassesList();
+        const response = await client.accounting.expenseReports.linesRemoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -1068,7 +1074,9 @@ describe("ExpenseReports", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.expenseReports.remoteFieldClassesList();
+        const response = await client.accounting.expenseReports.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

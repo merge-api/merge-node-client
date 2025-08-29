@@ -73,7 +73,10 @@ service:
       examples:
         - path-parameters:
             custom_object_class_id: custom_object_class_id
-          headers: {}
+          query-parameters:
+            cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -124,7 +127,8 @@ service:
       examples:
         - path-parameters:
             custom_object_class_id: custom_object_class_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           request:
             model:
               source_object_class:
@@ -208,7 +212,8 @@ service:
         - path-parameters:
             custom_object_class_id: custom_object_class_id
             id: id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               id: 5bb73c32-3c6c-4757-ab7d-7d3540a1be31
@@ -244,7 +249,8 @@ service:
       examples:
         - path-parameters:
             custom_object_class_id: custom_object_class_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               request_schema:

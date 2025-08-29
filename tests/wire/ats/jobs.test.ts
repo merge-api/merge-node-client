@@ -51,7 +51,9 @@ describe("Jobs", () => {
         };
         server.mockEndpoint().get("/ats/v1/jobs").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.ats.jobs.list();
+        const response = await client.ats.jobs.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -223,7 +225,9 @@ describe("Jobs", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.ats.jobs.screeningQuestionsList("job_id");
+        const response = await client.ats.jobs.screeningQuestionsList("job_id", {
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

@@ -21,7 +21,8 @@ service:
         type: list<root.SyncStatus>
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               - model_name: Employee

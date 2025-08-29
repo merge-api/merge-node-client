@@ -32,7 +32,9 @@ describe("Stages", () => {
         };
         server.mockEndpoint().get("/crm/v1/stages").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.crm.stages.list();
+        const response = await client.crm.stages.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -151,7 +153,9 @@ describe("Stages", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.crm.stages.remoteFieldClassesList();
+        const response = await client.crm.stages.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

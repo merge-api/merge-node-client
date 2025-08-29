@@ -91,7 +91,9 @@ describe("CreditNotes", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.creditNotes.list();
+        const response = await client.accounting.creditNotes.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -431,7 +433,6 @@ describe("CreditNotes", () => {
                     unit_price: "5.0",
                     tax_rate: "8d9fd929-436c-4fd4-a48b-0c61f68d6178",
                     total_line_amount: "5.0",
-                    tracking_category: "tracking_category",
                     tracking_categories: [
                         "8d9fd929-436c-4fd4-a48b-0c61f68d6178",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -510,7 +511,6 @@ describe("CreditNotes", () => {
                     unitPrice: "5.0",
                     taxRate: "8d9fd929-436c-4fd4-a48b-0c61f68d6178",
                     totalLineAmount: "5.0",
-                    trackingCategory: "tracking_category",
                     trackingCategories: [
                         "8d9fd929-436c-4fd4-a48b-0c61f68d6178",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",

@@ -19,7 +19,8 @@ service:
         type: root.RemoteResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           request:
             method: GET
             path: /scooters

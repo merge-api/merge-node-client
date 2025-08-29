@@ -99,7 +99,9 @@ describe("PurchaseOrders", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.purchaseOrders.list();
+        const response = await client.accounting.purchaseOrders.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -472,7 +474,6 @@ describe("PurchaseOrders", () => {
                     quantity: 10,
                     item: "0958cbc6-6040-430a-848e-aafacbadf4ae",
                     account: "account",
-                    tracking_category: "tracking_category",
                     tracking_categories: [
                         "f1214c24-2702-4617-b74b-3ddecfc0d384",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -497,7 +498,6 @@ describe("PurchaseOrders", () => {
                     quantity: 10,
                     item: "249c9faa-3045-4a31-953b-8f22d3613301",
                     account: "account",
-                    tracking_category: "tracking_category",
                     tracking_categories: [
                         "f1214c24-2702-4617-b74b-3ddecfc0d384",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -568,7 +568,6 @@ describe("PurchaseOrders", () => {
                     quantity: 10,
                     item: "0958cbc6-6040-430a-848e-aafacbadf4ae",
                     account: "account",
-                    trackingCategory: "tracking_category",
                     trackingCategories: [
                         "f1214c24-2702-4617-b74b-3ddecfc0d384",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -597,7 +596,6 @@ describe("PurchaseOrders", () => {
                     quantity: 10,
                     item: "249c9faa-3045-4a31-953b-8f22d3613301",
                     account: "account",
-                    trackingCategory: "tracking_category",
                     trackingCategories: [
                         "f1214c24-2702-4617-b74b-3ddecfc0d384",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -682,7 +680,9 @@ describe("PurchaseOrders", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList();
+        const response = await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -1149,7 +1149,9 @@ describe("PurchaseOrders", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.purchaseOrders.remoteFieldClassesList();
+        const response = await client.accounting.purchaseOrders.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

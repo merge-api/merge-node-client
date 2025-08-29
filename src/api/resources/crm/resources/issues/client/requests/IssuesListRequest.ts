@@ -6,51 +6,33 @@ import * as Merge from "../../../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+ *     }
  */
 export interface IssuesListRequest {
     accountToken?: string;
-    /**
-     * The pagination cursor value.
-     */
+    /** The pagination cursor value. */
     cursor?: string;
-    /**
-     * If included, will only include issues whose most recent action occurred before this time
-     */
+    /** If included, will only include issues whose most recent action occurred before this time */
     endDate?: string;
     endUserOrganizationName?: string;
-    /**
-     * If provided, will only return issues whose first incident time was after this datetime.
-     */
+    /** If provided, will only return issues whose first incident time was after this datetime. */
     firstIncidentTimeAfter?: Date;
-    /**
-     * If provided, will only return issues whose first incident time was before this datetime.
-     */
+    /** If provided, will only return issues whose first incident time was before this datetime. */
     firstIncidentTimeBefore?: Date;
-    /**
-     * If true, will include muted issues
-     */
+    /** If true, will include muted issues */
     includeMuted?: string;
     integrationName?: string;
-    /**
-     * If provided, will only return issues whose last incident time was after this datetime.
-     */
+    /** If provided, will only return issues whose last incident time was after this datetime. */
     lastIncidentTimeAfter?: Date;
-    /**
-     * If provided, will only return issues whose last incident time was before this datetime.
-     */
+    /** If provided, will only return issues whose last incident time was before this datetime. */
     lastIncidentTimeBefore?: Date;
-    /**
-     * If provided, will only include issues pertaining to the linked account passed in.
-     */
+    /** If provided, will only include issues pertaining to the linked account passed in. */
     linkedAccountId?: string;
-    /**
-     * Number of results to return per page.
-     */
+    /** Number of results to return per page. */
     pageSize?: number;
-    /**
-     * If included, will only include issues whose most recent action occurred after this time
-     */
+    /** If included, will only include issues whose most recent action occurred after this time */
     startDate?: string;
     /**
      * Status of the issue. Options: ('ONGOING', 'RESOLVED')

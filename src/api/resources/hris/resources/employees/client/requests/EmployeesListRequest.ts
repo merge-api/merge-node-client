@@ -6,28 +6,20 @@ import * as Merge from "../../../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+ *     }
  */
 export interface EmployeesListRequest {
-    /**
-     * If provided, will only return employees for this company.
-     */
+    /** If provided, will only return employees for this company. */
     companyId?: string;
-    /**
-     * If provided, will only return objects created after this datetime.
-     */
+    /** If provided, will only return objects created after this datetime. */
     createdAfter?: Date;
-    /**
-     * If provided, will only return objects created before this datetime.
-     */
+    /** If provided, will only return objects created before this datetime. */
     createdBefore?: Date;
-    /**
-     * The pagination cursor value.
-     */
+    /** The pagination cursor value. */
     cursor?: string;
-    /**
-     * If provided, will only return employees with this display name.
-     */
+    /** If provided, will only return employees with this display name. */
     displayFullName?: string;
     /**
      * If provided, will only return employees with this employment status.
@@ -37,112 +29,58 @@ export interface EmployeesListRequest {
      * * `INACTIVE` - INACTIVE
      */
     employmentStatus?: Merge.hris.EmployeesListRequestEmploymentStatus;
-    /**
-     * If provided, will only return employees that have an employment of the specified employment_type.
-     */
+    /** If provided, will only return employees that have an employment of the specified employment_type. */
     employmentType?: string;
-    /**
-     * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
+    /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
     expand?: Merge.hris.EmployeesListRequestExpand;
-    /**
-     * If provided, will only return employees with this first name.
-     */
+    /** If provided, will only return employees with this first name. */
     firstName?: string;
-    /**
-     * If provided, will only return employees matching the group ids; multiple groups can be separated by commas.
-     */
+    /** If provided, will only return employees matching the group ids; multiple groups can be separated by commas. */
     groups?: string;
-    /**
-     * If provided, will only return employees for this home location.
-     */
+    /** If provided, will only return employees for this home location. */
     homeLocationId?: string;
-    /**
-     * Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/).
-     */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
-    /**
-     * Whether to include the original data Merge fetched from the third-party to produce these models.
-     */
+    /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
-    /**
-     * Whether to include sensitive fields (such as social security numbers) in the response.
-     */
+    /** Whether to include sensitive fields (such as social security numbers) in the response. */
     includeSensitiveFields?: boolean;
-    /**
-     * Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
-     */
+    /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */
     includeShellData?: boolean;
-    /**
-     * If provided, will only return employees that have an employment of the specified job_title.
-     */
+    /** If provided, will only return employees that have an employment of the specified job_title. */
     jobTitle?: string;
-    /**
-     * If provided, will only return employees with this last name.
-     */
+    /** If provided, will only return employees with this last name. */
     lastName?: string;
-    /**
-     * If provided, will only return employees for this manager.
-     */
+    /** If provided, will only return employees for this manager. */
     managerId?: string;
-    /**
-     * If provided, only objects synced by Merge after this date time will be returned.
-     */
+    /** If provided, only objects synced by Merge after this date time will be returned. */
     modifiedAfter?: Date;
-    /**
-     * If provided, only objects synced by Merge before this date time will be returned.
-     */
+    /** If provided, only objects synced by Merge before this date time will be returned. */
     modifiedBefore?: Date;
-    /**
-     * Number of results to return per page.
-     */
+    /** Number of results to return per page. */
     pageSize?: number;
-    /**
-     * If provided, will only return employees for this pay group
-     */
+    /** If provided, will only return employees for this pay group */
     payGroupId?: string;
-    /**
-     * If provided, will only return Employees with this personal email
-     */
+    /** If provided, will only return Employees with this personal email */
     personalEmail?: string;
-    /**
-     * Deprecated. Use show_enum_origins.
-     */
+    /** Deprecated. Use show_enum_origins. */
     remoteFields?: Merge.hris.EmployeesListRequestRemoteFields;
-    /**
-     * The API provider's ID for the given object.
-     */
+    /** The API provider's ID for the given object. */
     remoteId?: string;
-    /**
-     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
-     */
+    /** A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter) */
     showEnumOrigins?: Merge.hris.EmployeesListRequestShowEnumOrigins;
-    /**
-     * If provided, will only return employees that started after this datetime.
-     */
+    /** If provided, will only return employees that started after this datetime. */
     startedAfter?: Date;
-    /**
-     * If provided, will only return employees that started before this datetime.
-     */
+    /** If provided, will only return employees that started before this datetime. */
     startedBefore?: Date;
-    /**
-     * If provided, will only return employees for this team.
-     */
+    /** If provided, will only return employees for this team. */
     teamId?: string;
-    /**
-     * If provided, will only return employees that were terminated after this datetime.
-     */
+    /** If provided, will only return employees that were terminated after this datetime. */
     terminatedAfter?: Date;
-    /**
-     * If provided, will only return employees that were terminated before this datetime.
-     */
+    /** If provided, will only return employees that were terminated before this datetime. */
     terminatedBefore?: Date;
-    /**
-     * If provided, will only return Employees with this work email
-     */
+    /** If provided, will only return Employees with this work email */
     workEmail?: string;
-    /**
-     * If provided, will only return employees for this location.
-     */
+    /** If provided, will only return employees for this location. */
     workLocationId?: string;
 }

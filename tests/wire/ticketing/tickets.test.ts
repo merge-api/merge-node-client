@@ -58,7 +58,9 @@ describe("Tickets", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.ticketing.tickets.list();
+        const response = await client.ticketing.tickets.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -560,7 +562,9 @@ describe("Tickets", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.ticketing.tickets.viewersList("ticket_id");
+        const response = await client.ticketing.tickets.viewersList("ticket_id", {
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -1439,7 +1443,9 @@ describe("Tickets", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.ticketing.tickets.remoteFieldClassesList();
+        const response = await client.ticketing.tickets.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

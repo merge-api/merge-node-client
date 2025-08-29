@@ -152,7 +152,9 @@ Returns a list of `Activity` objects.
 <dd>
 
 ```typescript
-await client.ats.activities.list();
+await client.ats.activities.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -409,7 +411,9 @@ Returns a list of `Application` objects.
 <dd>
 
 ```typescript
-await client.ats.applications.list();
+await client.ats.applications.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -879,7 +883,9 @@ Returns a list of `Attachment` objects.
 <dd>
 
 ```typescript
-await client.ats.attachments.list();
+await client.ats.attachments.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -1136,7 +1142,9 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.ats.auditTrail.list();
+await client.ats.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -1258,7 +1266,9 @@ Returns a list of `Candidate` objects.
 <dd>
 
 ```typescript
-await client.ats.candidates.list();
+await client.ats.candidates.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -1983,7 +1993,9 @@ Returns a list of `Department` objects.
 <dd>
 
 ```typescript
-await client.ats.departments.list();
+await client.ats.departments.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -2119,7 +2131,9 @@ Returns a list of `EEOC` objects.
 <dd>
 
 ```typescript
-await client.ats.eeocs.list();
+await client.ats.eeocs.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -2709,7 +2723,9 @@ Returns a list of `ScheduledInterview` objects.
 <dd>
 
 ```typescript
-await client.ats.interviews.list();
+await client.ats.interviews.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -2966,7 +2982,9 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.ats.issues.list();
+await client.ats.issues.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -3094,7 +3112,9 @@ Returns a list of `JobInterviewStage` objects.
 <dd>
 
 ```typescript
-await client.ats.jobInterviewStages.list();
+await client.ats.jobInterviewStages.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -3230,7 +3250,9 @@ Returns a list of `JobPosting` objects.
 <dd>
 
 ```typescript
-await client.ats.jobPostings.list();
+await client.ats.jobPostings.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -3366,7 +3388,9 @@ Returns a list of `Job` objects.
 <dd>
 
 ```typescript
-await client.ats.jobs.list();
+await client.ats.jobs.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -3500,7 +3524,9 @@ Returns a list of `ScreeningQuestion` objects.
 <dd>
 
 ```typescript
-await client.ats.jobs.screeningQuestionsList("job_id");
+await client.ats.jobs.screeningQuestionsList("job_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -3643,7 +3669,9 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.ats.linkedAccounts.list();
+await client.ats.linkedAccounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -3708,7 +3736,9 @@ Returns a list of `Offer` objects.
 <dd>
 
 ```typescript
-await client.ats.offers.list();
+await client.ats.offers.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -3844,7 +3874,9 @@ Returns a list of `Office` objects.
 <dd>
 
 ```typescript
-await client.ats.offices.list();
+await client.ats.offices.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -4115,7 +4147,9 @@ Returns a list of `RejectReason` objects.
 <dd>
 
 ```typescript
-await client.ats.rejectReasons.list();
+await client.ats.rejectReasons.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -4251,7 +4285,9 @@ Returns a list of `Scorecard` objects.
 <dd>
 
 ```typescript
-await client.ats.scorecards.list();
+await client.ats.scorecards.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -4387,7 +4423,9 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.ats.syncStatus.list();
+await client.ats.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -4509,7 +4547,9 @@ Returns a list of `Tag` objects.
 <dd>
 
 ```typescript
-await client.ats.tags.list();
+await client.ats.tags.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -4574,7 +4614,9 @@ Returns a list of `RemoteUser` objects.
 <dd>
 
 ```typescript
-await client.ats.users.list();
+await client.ats.users.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -4955,7 +4997,9 @@ Returns a list of `Account` objects.
 <dd>
 
 ```typescript
-await client.crm.accounts.list();
+await client.crm.accounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -5345,7 +5389,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.accounts.remoteFieldClassesList();
+await client.crm.accounts.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -5541,7 +5587,9 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.crm.auditTrail.list();
+await client.crm.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -5663,7 +5711,9 @@ Returns a list of `Contact` objects.
 <dd>
 
 ```typescript
-await client.crm.contacts.list();
+await client.crm.contacts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -6126,7 +6176,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.contacts.remoteFieldClassesList();
+await client.crm.contacts.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -6191,7 +6243,9 @@ Returns a list of `CustomObjectClass` objects.
 <dd>
 
 ```typescript
-await client.crm.customObjectClasses.list();
+await client.crm.customObjectClasses.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -6327,7 +6381,9 @@ Returns a list of `AssociationType` objects.
 <dd>
 
 ```typescript
-await client.crm.associationTypes.customObjectClassesAssociationTypesList("custom_object_class_id");
+await client.crm.associationTypes.customObjectClassesAssociationTypesList("custom_object_class_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -6627,7 +6683,9 @@ Returns a list of `CustomObject` objects.
 <dd>
 
 ```typescript
-await client.crm.customObjects.customObjectClassesCustomObjectsList("custom_object_class_id");
+await client.crm.customObjects.customObjectClassesCustomObjectsList("custom_object_class_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -6917,7 +6975,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClassesList();
+await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -6982,7 +7042,9 @@ Returns a list of `Association` objects.
 <dd>
 
 ```typescript
-await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id");
+await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -7430,7 +7492,9 @@ Returns a list of `EngagementType` objects.
 <dd>
 
 ```typescript
-await client.crm.engagementTypes.list();
+await client.crm.engagementTypes.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -7564,7 +7628,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.engagementTypes.remoteFieldClassesList();
+await client.crm.engagementTypes.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -7629,7 +7695,9 @@ Returns a list of `Engagement` objects.
 <dd>
 
 ```typescript
-await client.crm.engagements.list();
+await client.crm.engagements.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -8019,7 +8087,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.engagements.remoteFieldClassesList();
+await client.crm.engagements.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -8538,7 +8608,9 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.crm.issues.list();
+await client.crm.issues.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -8666,7 +8738,9 @@ Returns a list of `Lead` objects.
 <dd>
 
 ```typescript
-await client.crm.leads.list();
+await client.crm.leads.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -8920,7 +8994,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.leads.remoteFieldClassesList();
+await client.crm.leads.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -9055,7 +9131,9 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.crm.linkedAccounts.list();
+await client.crm.linkedAccounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -9120,7 +9198,9 @@ Returns a list of `Note` objects.
 <dd>
 
 ```typescript
-await client.crm.notes.list();
+await client.crm.notes.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -9374,7 +9454,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.notes.remoteFieldClassesList();
+await client.crm.notes.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -9439,7 +9521,9 @@ Returns a list of `Opportunity` objects.
 <dd>
 
 ```typescript
-await client.crm.opportunities.list();
+await client.crm.opportunities.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -9829,7 +9913,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.opportunities.remoteFieldClassesList();
+await client.crm.opportunities.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -10029,7 +10115,9 @@ Returns a list of `Stage` objects.
 <dd>
 
 ```typescript
-await client.crm.stages.list();
+await client.crm.stages.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -10163,7 +10251,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.stages.remoteFieldClassesList();
+await client.crm.stages.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -10228,7 +10318,9 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.crm.syncStatus.list();
+await client.crm.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -10350,7 +10442,9 @@ Returns a list of `Task` objects.
 <dd>
 
 ```typescript
-await client.crm.tasks.list();
+await client.crm.tasks.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -10740,7 +10834,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.tasks.remoteFieldClassesList();
+await client.crm.tasks.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -10805,7 +10901,9 @@ Returns a list of `User` objects.
 <dd>
 
 ```typescript
-await client.crm.users.list();
+await client.crm.users.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -11012,7 +11110,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.users.remoteFieldClassesList();
+await client.crm.users.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -11453,7 +11553,9 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.filestorage.auditTrail.list();
+await client.filestorage.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -11833,7 +11935,9 @@ Returns a list of `Drive` objects.
 <dd>
 
 ```typescript
-await client.filestorage.drives.list();
+await client.filestorage.drives.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -12356,7 +12460,9 @@ Returns a list of `File` objects.
 <dd>
 
 ```typescript
-await client.filestorage.files.list();
+await client.filestorage.files.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -12626,7 +12732,9 @@ Returns metadata to construct authenticated file download requests, allowing you
 <dd>
 
 ```typescript
-await client.filestorage.files.downloadRequestMetaList();
+await client.filestorage.files.downloadRequestMetaList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -12746,7 +12854,9 @@ Returns a list of `Folder` objects.
 <dd>
 
 ```typescript
-await client.filestorage.folders.list();
+await client.filestorage.folders.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -13069,7 +13179,9 @@ Returns a list of `Group` objects.
 <dd>
 
 ```typescript
-await client.filestorage.groups.list();
+await client.filestorage.groups.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -13205,7 +13317,9 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.filestorage.issues.list();
+await client.filestorage.issues.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -13403,7 +13517,9 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.filestorage.linkedAccounts.list();
+await client.filestorage.linkedAccounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -13603,7 +13719,9 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.filestorage.syncStatus.list();
+await client.filestorage.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -13725,7 +13843,9 @@ Returns a list of `User` objects.
 <dd>
 
 ```typescript
-await client.filestorage.users.list();
+await client.filestorage.users.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -14237,7 +14357,9 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.hris.auditTrail.list();
+await client.hris.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -14359,7 +14481,9 @@ Returns a list of `BankInfo` objects.
 <dd>
 
 ```typescript
-await client.hris.bankInfo.list();
+await client.hris.bankInfo.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -14495,7 +14619,9 @@ Returns a list of `Benefit` objects.
 <dd>
 
 ```typescript
-await client.hris.benefits.list();
+await client.hris.benefits.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -14631,7 +14757,9 @@ Returns a list of `Company` objects.
 <dd>
 
 ```typescript
-await client.hris.companies.list();
+await client.hris.companies.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -15025,7 +15153,9 @@ Returns a list of `Dependent` objects.
 <dd>
 
 ```typescript
-await client.hris.dependents.list();
+await client.hris.dependents.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -15161,7 +15291,9 @@ Returns a list of `EmployeePayrollRun` objects.
 <dd>
 
 ```typescript
-await client.hris.employeePayrollRuns.list();
+await client.hris.employeePayrollRuns.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -15297,7 +15429,9 @@ Returns a list of `Employee` objects.
 <dd>
 
 ```typescript
-await client.hris.employees.list();
+await client.hris.employees.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -15626,7 +15760,9 @@ Returns a list of `EmployerBenefit` objects.
 <dd>
 
 ```typescript
-await client.hris.employerBenefits.list();
+await client.hris.employerBenefits.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -15762,7 +15898,9 @@ Returns a list of `Employment` objects.
 <dd>
 
 ```typescript
-await client.hris.employments.list();
+await client.hris.employments.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -16352,7 +16490,9 @@ Returns a list of `Group` objects.
 <dd>
 
 ```typescript
-await client.hris.groups.list();
+await client.hris.groups.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -16488,7 +16628,9 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.hris.issues.list();
+await client.hris.issues.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -16686,7 +16828,9 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.hris.linkedAccounts.list();
+await client.hris.linkedAccounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -16751,7 +16895,9 @@ Returns a list of `Location` objects.
 <dd>
 
 ```typescript
-await client.hris.locations.list();
+await client.hris.locations.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -16955,7 +17101,9 @@ Returns a list of `PayGroup` objects.
 <dd>
 
 ```typescript
-await client.hris.payGroups.list();
+await client.hris.payGroups.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -17091,7 +17239,9 @@ Returns a list of `PayrollRun` objects.
 <dd>
 
 ```typescript
-await client.hris.payrollRuns.list();
+await client.hris.payrollRuns.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -17294,7 +17444,9 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.hris.syncStatus.list();
+await client.hris.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -17416,7 +17568,9 @@ Returns a list of `Team` objects.
 <dd>
 
 ```typescript
-await client.hris.teams.list();
+await client.hris.teams.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -17552,7 +17706,9 @@ Returns a list of `TimeOff` objects.
 <dd>
 
 ```typescript
-await client.hris.timeOff.list();
+await client.hris.timeOff.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -17808,7 +17964,9 @@ Returns a list of `TimeOffBalance` objects.
 <dd>
 
 ```typescript
-await client.hris.timeOffBalances.list();
+await client.hris.timeOffBalances.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -17944,7 +18102,9 @@ Returns a list of `TimesheetEntry` objects.
 <dd>
 
 ```typescript
-await client.hris.timesheetEntries.list();
+await client.hris.timesheetEntries.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -18445,7 +18605,9 @@ Returns a list of `Account` objects.
 <dd>
 
 ```typescript
-await client.ticketing.accounts.list();
+await client.ticketing.accounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -18712,7 +18874,9 @@ Returns a list of `Attachment` objects.
 <dd>
 
 ```typescript
-await client.ticketing.attachments.list();
+await client.ticketing.attachments.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -18968,7 +19132,9 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.ticketing.auditTrail.list();
+await client.ticketing.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -19090,7 +19256,9 @@ Returns a list of `Collection` objects.
 <dd>
 
 ```typescript
-await client.ticketing.collections.list();
+await client.ticketing.collections.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -19153,7 +19321,9 @@ Returns a list of `Viewer` objects that point to a User id or Team id that is ei
 <dd>
 
 ```typescript
-await client.ticketing.collections.viewersList("collection_id");
+await client.ticketing.collections.viewersList("collection_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -19297,7 +19467,9 @@ Returns a list of `Comment` objects.
 <dd>
 
 ```typescript
-await client.ticketing.comments.list();
+await client.ticketing.comments.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -19553,7 +19725,9 @@ Returns a list of `Contact` objects.
 <dd>
 
 ```typescript
-await client.ticketing.contacts.list();
+await client.ticketing.contacts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -20521,7 +20695,9 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.ticketing.issues.list();
+await client.ticketing.issues.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -20719,7 +20895,9 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.ticketing.linkedAccounts.list();
+await client.ticketing.linkedAccounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -20852,7 +21030,9 @@ Returns a list of `Project` objects.
 <dd>
 
 ```typescript
-await client.ticketing.projects.list();
+await client.ticketing.projects.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -20986,7 +21166,9 @@ Returns a list of `User` objects.
 <dd>
 
 ```typescript
-await client.ticketing.projects.usersList("parent_id");
+await client.ticketing.projects.usersList("parent_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -21126,7 +21308,9 @@ Returns a list of `Role` objects.
 <dd>
 
 ```typescript
-await client.ticketing.roles.list();
+await client.ticketing.roles.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -21262,7 +21446,9 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.ticketing.syncStatus.list();
+await client.ticketing.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -21384,7 +21570,9 @@ Returns a list of `Tag` objects.
 <dd>
 
 ```typescript
-await client.ticketing.tags.list();
+await client.ticketing.tags.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -21520,7 +21708,9 @@ Returns a list of `Team` objects.
 <dd>
 
 ```typescript
-await client.ticketing.teams.list();
+await client.ticketing.teams.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -21656,7 +21846,9 @@ Returns a list of `Ticket` objects.
 <dd>
 
 ```typescript
-await client.ticketing.tickets.list();
+await client.ticketing.tickets.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -21928,7 +22120,9 @@ Returns a list of `Viewer` objects that point to a User id or Team id that is ei
 <dd>
 
 ```typescript
-await client.ticketing.tickets.viewersList("ticket_id");
+await client.ticketing.tickets.viewersList("ticket_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -22125,7 +22319,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.ticketing.tickets.remoteFieldClassesList();
+await client.ticketing.tickets.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -22190,7 +22386,9 @@ Returns a list of `User` objects.
 <dd>
 
 ```typescript
-await client.ticketing.users.list();
+await client.ticketing.users.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -22571,7 +22769,9 @@ Returns a list of `AccountingPeriod` objects.
 <dd>
 
 ```typescript
-await client.accounting.accountingPeriods.list();
+await client.accounting.accountingPeriods.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -22707,7 +22907,9 @@ Returns a list of `Account` objects.
 <dd>
 
 ```typescript
-await client.accounting.accounts.list();
+await client.accounting.accounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -23232,7 +23434,9 @@ Returns a list of `AccountingAttachment` objects.
 <dd>
 
 ```typescript
-await client.accounting.attachments.list();
+await client.accounting.attachments.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -23488,7 +23692,9 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.accounting.auditTrail.list();
+await client.accounting.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -23610,7 +23816,9 @@ Returns a list of `BalanceSheet` objects.
 <dd>
 
 ```typescript
-await client.accounting.balanceSheets.list();
+await client.accounting.balanceSheets.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -23746,7 +23954,9 @@ Returns a list of `BankFeedAccount` objects.
 <dd>
 
 ```typescript
-await client.accounting.bankFeedAccounts.list();
+await client.accounting.bankFeedAccounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -24002,7 +24212,9 @@ Returns a list of `BankFeedTransaction` objects.
 <dd>
 
 ```typescript
-await client.accounting.bankFeedTransactions.list();
+await client.accounting.bankFeedTransactions.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -24258,7 +24470,9 @@ Returns a list of `CashFlowStatement` objects.
 <dd>
 
 ```typescript
-await client.accounting.cashFlowStatements.list();
+await client.accounting.cashFlowStatements.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -24394,7 +24608,9 @@ Returns a list of `CompanyInfo` objects.
 <dd>
 
 ```typescript
-await client.accounting.companyInfo.list();
+await client.accounting.companyInfo.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -24530,7 +24746,9 @@ Returns a list of `Contact` objects.
 <dd>
 
 ```typescript
-await client.accounting.contacts.list();
+await client.accounting.contacts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -24784,7 +25002,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.contacts.remoteFieldClassesList();
+await client.accounting.contacts.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -24849,7 +25069,9 @@ Returns a list of `CreditNote` objects.
 <dd>
 
 ```typescript
-await client.accounting.creditNotes.list();
+await client.accounting.creditNotes.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -25363,7 +25585,9 @@ Returns a list of `Employee` objects.
 <dd>
 
 ```typescript
-await client.accounting.employees.list();
+await client.accounting.employees.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -25499,7 +25723,9 @@ Returns a list of `ExpenseReport` objects.
 <dd>
 
 ```typescript
-await client.accounting.expenseReports.list();
+await client.accounting.expenseReports.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -25629,7 +25855,9 @@ Returns a list of `ExpenseReportLine` objects that point to a `ExpenseReport` wi
 <dd>
 
 ```typescript
-await client.accounting.expenseReports.linesList("expense_report_id");
+await client.accounting.expenseReports.linesList("expense_report_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -25771,7 +25999,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.expenseReports.linesRemoteFieldClassesList();
+await client.accounting.expenseReports.linesRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -25889,7 +26119,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.expenseReports.remoteFieldClassesList();
+await client.accounting.expenseReports.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -25954,7 +26186,9 @@ Returns a list of `Expense` objects.
 <dd>
 
 ```typescript
-await client.accounting.expenses.list();
+await client.accounting.expenses.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -26153,7 +26387,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.expenses.linesRemoteFieldClassesList();
+await client.accounting.expenses.linesRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -26271,7 +26507,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.expenses.remoteFieldClassesList();
+await client.accounting.expenses.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -26723,7 +26961,9 @@ Returns a list of `GeneralLedgerTransaction` objects.
 <dd>
 
 ```typescript
-await client.accounting.generalLedgerTransactions.list();
+await client.accounting.generalLedgerTransactions.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -26926,7 +27166,9 @@ Returns a list of `IncomeStatement` objects.
 <dd>
 
 ```typescript
-await client.accounting.incomeStatements.list();
+await client.accounting.incomeStatements.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -27062,7 +27304,9 @@ Returns a list of `Invoice` objects.
 <dd>
 
 ```typescript
-await client.accounting.invoices.list();
+await client.accounting.invoices.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -27335,7 +27579,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.invoices.lineItemsRemoteFieldClassesList();
+await client.accounting.invoices.lineItemsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -27516,7 +27762,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.invoices.remoteFieldClassesList();
+await client.accounting.invoices.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -27581,7 +27829,9 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.accounting.issues.list();
+await client.accounting.issues.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -27709,7 +27959,9 @@ Returns a list of `Item` objects.
 <dd>
 
 ```typescript
-await client.accounting.items.list();
+await client.accounting.items.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -28101,7 +28353,9 @@ Returns a list of `JournalEntry` objects.
 <dd>
 
 ```typescript
-await client.accounting.journalEntries.list();
+await client.accounting.journalEntries.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -28300,7 +28554,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.journalEntries.linesRemoteFieldClassesList();
+await client.accounting.journalEntries.linesRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -28418,7 +28674,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.journalEntries.remoteFieldClassesList();
+await client.accounting.journalEntries.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -28553,7 +28811,9 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.accounting.linkedAccounts.list();
+await client.accounting.linkedAccounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -28686,7 +28946,9 @@ Returns a list of `PaymentMethod` objects.
 <dd>
 
 ```typescript
-await client.accounting.paymentMethods.list();
+await client.accounting.paymentMethods.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -28822,7 +29084,9 @@ Returns a list of `PaymentTerm` objects.
 <dd>
 
 ```typescript
-await client.accounting.paymentTerms.list();
+await client.accounting.paymentTerms.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -28958,7 +29222,9 @@ Returns a list of `Payment` objects.
 <dd>
 
 ```typescript
-await client.accounting.payments.list();
+await client.accounting.payments.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -29230,7 +29496,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.payments.lineItemsRemoteFieldClassesList();
+await client.accounting.payments.lineItemsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -29411,7 +29679,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.payments.remoteFieldClassesList();
+await client.accounting.payments.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -29549,7 +29819,9 @@ Returns a list of `Project` objects.
 <dd>
 
 ```typescript
-await client.accounting.projects.list();
+await client.accounting.projects.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -29685,7 +29957,9 @@ Returns a list of `PurchaseOrder` objects.
 <dd>
 
 ```typescript
-await client.accounting.purchaseOrders.list();
+await client.accounting.purchaseOrders.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -29884,7 +30158,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList();
+await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -30002,7 +30278,9 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.accounting.purchaseOrders.remoteFieldClassesList();
+await client.accounting.purchaseOrders.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -30134,7 +30412,9 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.accounting.syncStatus.list();
+await client.accounting.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -30256,7 +30536,9 @@ Returns a list of `TaxRate` objects.
 <dd>
 
 ```typescript
-await client.accounting.taxRates.list();
+await client.accounting.taxRates.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -30392,7 +30674,9 @@ Returns a list of `TrackingCategory` objects.
 <dd>
 
 ```typescript
-await client.accounting.trackingCategories.list();
+await client.accounting.trackingCategories.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -30528,7 +30812,9 @@ Returns a list of `Transaction` objects.
 <dd>
 
 ```typescript
-await client.accounting.transactions.list();
+await client.accounting.transactions.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>
@@ -30664,7 +30950,9 @@ Returns a list of `VendorCredit` objects.
 <dd>
 
 ```typescript
-await client.accounting.vendorCredits.list();
+await client.accounting.vendorCredits.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+});
 ```
 
 </dd>

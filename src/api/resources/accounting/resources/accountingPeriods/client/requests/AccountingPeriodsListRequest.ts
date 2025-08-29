@@ -4,27 +4,19 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+ *     }
  */
 export interface AccountingPeriodsListRequest {
-    /**
-     * The pagination cursor value.
-     */
+    /** The pagination cursor value. */
     cursor?: string;
-    /**
-     * Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/).
-     */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
-    /**
-     * Whether to include the original data Merge fetched from the third-party to produce these models.
-     */
+    /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
-    /**
-     * Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
-     */
+    /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */
     includeShellData?: boolean;
-    /**
-     * Number of results to return per page.
-     */
+    /** Number of results to return per page. */
     pageSize?: number;
 }

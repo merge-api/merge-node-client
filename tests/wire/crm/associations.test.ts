@@ -34,6 +34,9 @@ describe("Associations", () => {
         const response = await client.crm.associations.customObjectClassesCustomObjectsAssociationsList(
             "custom_object_class_id",
             "object_id",
+            {
+                cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            },
         );
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",

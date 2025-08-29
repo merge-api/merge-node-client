@@ -7,12 +7,8 @@
  *     {}
  */
 export interface TicketsMetaPostRetrieveRequest {
-    /**
-     * If provided, will only return tickets for this collection.
-     */
+    /** If provided, will only return tickets for this collection. */
     collectionId?: string;
-    /**
-     * If provided, will only return tickets for this ticket type.
-     */
+    /** If provided, will only return tickets for this ticket type. */
     ticketType?: string;
 }

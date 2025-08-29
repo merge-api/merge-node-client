@@ -7,8 +7,6 @@
  *     {}
  */
 export interface ApplicationsMetaPostRetrieveRequest {
-    /**
-     * The template ID associated with the nested application in the request.
-     */
+    /** The template ID associated with the nested application in the request. */
     applicationRemoteTemplateId?: string;
 }

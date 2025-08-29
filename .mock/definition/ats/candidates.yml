@@ -110,7 +110,10 @@ service:
         type: root.PaginatedCandidateList
         status-code: 200
       examples:
-        - headers: {}
+        - query-parameters:
+            cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -194,7 +197,8 @@ service:
         type: root.CandidateResponse
         status-code: 201
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           request:
             model: {}
             remote_user_id: remote_user_id
@@ -305,7 +309,8 @@ service:
       examples:
         - path-parameters:
             id: id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               id: 521b18c2-4d01-4297-b451-19858d07c133
@@ -393,7 +398,8 @@ service:
       examples:
         - path-parameters:
             id: id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           request:
             model: {}
             remote_user_id: remote_user_id
@@ -497,7 +503,8 @@ service:
       examples:
         - path-parameters:
             model_id: model_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           request:
             reason: GENERAL_CUSTOMER_REQUEST
     metaPatchRetrieve:
@@ -516,7 +523,8 @@ service:
       examples:
         - path-parameters:
             id: id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               request_schema:
@@ -700,7 +708,8 @@ service:
         type: root.MetaResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               request_schema:

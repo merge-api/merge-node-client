@@ -34,7 +34,9 @@ describe("Users", () => {
         };
         server.mockEndpoint().get("/crm/v1/users").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.crm.users.list();
+        const response = await client.crm.users.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -178,7 +180,9 @@ describe("Users", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.crm.users.remoteFieldClassesList();
+        const response = await client.crm.users.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
