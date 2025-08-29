@@ -67,6 +67,14 @@ export class RegenerateKey {
         request: Merge.crm.RemoteKeyForRegenerationRequest,
         requestOptions?: RegenerateKey.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.crm.RemoteKey>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+            }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -75,14 +83,7 @@ export class RegenerateKey {
                 "crm/v1/regenerate-key",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Account-Token": requestOptions?.accountToken,
-                }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",

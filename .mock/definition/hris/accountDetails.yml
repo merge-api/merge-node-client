@@ -16,7 +16,8 @@ service:
         type: root.AccountDetails
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               id: 0496d4c2-42e6-4072-80b3-7b69bfdc76fd

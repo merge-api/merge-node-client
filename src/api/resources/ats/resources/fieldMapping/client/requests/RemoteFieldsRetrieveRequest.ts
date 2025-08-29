@@ -7,12 +7,8 @@
  *     {}
  */
 export interface RemoteFieldsRetrieveRequest {
-    /**
-     * A comma seperated list of Common Model names. If included, will only return Remote Fields for those Common Models.
-     */
+    /** A comma seperated list of Common Model names. If included, will only return Remote Fields for those Common Models. */
     commonModels?: string;
-    /**
-     * If true, will include example values, where available, for remote fields in the 3rd party platform. These examples come from active data from your customers.
-     */
+    /** If true, will include example values, where available, for remote fields in the 3rd party platform. These examples come from active data from your customers. */
     includeExampleValues?: string;
 }

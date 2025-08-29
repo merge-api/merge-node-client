@@ -95,7 +95,9 @@ describe("Expenses", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.expenses.list();
+        const response = await client.accounting.expenses.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -453,7 +455,6 @@ describe("Expenses", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     item: "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                     net_amount: 25.54,
-                    tracking_category: "tracking_category",
                     tracking_categories: [
                         "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -477,7 +478,6 @@ describe("Expenses", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     item: "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                     net_amount: 10,
-                    tracking_category: "tracking_category",
                     tracking_categories: [
                         "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -544,7 +544,6 @@ describe("Expenses", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     item: "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                     netAmount: 25.54,
-                    trackingCategory: "tracking_category",
                     trackingCategories: [
                         "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -568,7 +567,6 @@ describe("Expenses", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     item: "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                     netAmount: 10,
-                    trackingCategory: "tracking_category",
                     trackingCategories: [
                         "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -648,7 +646,9 @@ describe("Expenses", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.expenses.linesRemoteFieldClassesList();
+        const response = await client.accounting.expenses.linesRemoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -1115,7 +1115,9 @@ describe("Expenses", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.expenses.remoteFieldClassesList();
+        const response = await client.accounting.expenses.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

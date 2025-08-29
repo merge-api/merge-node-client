@@ -86,7 +86,9 @@ describe("JournalEntries", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.journalEntries.list();
+        const response = await client.accounting.journalEntries.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -412,7 +414,6 @@ describe("JournalEntries", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
                     net_amount: 25.54,
-                    tracking_category: "tracking_category",
                     tracking_categories: [
                         "d25d609b-945f-4762-b55a-1c8fb220c43c",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -436,7 +437,6 @@ describe("JournalEntries", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     account: "f963f34d-3d2f-4f77-b557-cf36bc7e6498",
                     net_amount: 10,
-                    tracking_category: "tracking_category",
                     tracking_categories: [
                         "d25d609b-945f-4762-b55a-1c8fb220c43c",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -502,7 +502,6 @@ describe("JournalEntries", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
                     netAmount: 25.54,
-                    trackingCategory: "tracking_category",
                     trackingCategories: [
                         "d25d609b-945f-4762-b55a-1c8fb220c43c",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -530,7 +529,6 @@ describe("JournalEntries", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     account: "f963f34d-3d2f-4f77-b557-cf36bc7e6498",
                     netAmount: 10,
-                    trackingCategory: "tracking_category",
                     trackingCategories: [
                         "d25d609b-945f-4762-b55a-1c8fb220c43c",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -618,7 +616,9 @@ describe("JournalEntries", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.journalEntries.linesRemoteFieldClassesList();
+        const response = await client.accounting.journalEntries.linesRemoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -1085,7 +1085,9 @@ describe("JournalEntries", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.journalEntries.remoteFieldClassesList();
+        const response = await client.accounting.journalEntries.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

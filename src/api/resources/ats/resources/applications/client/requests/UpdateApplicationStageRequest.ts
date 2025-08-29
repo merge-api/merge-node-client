@@ -7,13 +7,9 @@
  *     {}
  */
 export interface UpdateApplicationStageRequest {
-    /**
-     * Whether to include debug fields (such as log file links) in the response.
-     */
+    /** Whether to include debug fields (such as log file links) in the response. */
     isDebugMode?: boolean;
-    /**
-     * Whether or not third-party updates should be run asynchronously.
-     */
+    /** Whether or not third-party updates should be run asynchronously. */
     runAsync?: boolean;
     /** The interview stage to move the application to. */
     jobInterviewStage?: string;

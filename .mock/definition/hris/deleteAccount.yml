@@ -10,6 +10,7 @@ service:
       source:
         openapi: openapi/openapi.yml
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
   source:
     openapi: openapi/openapi.yml

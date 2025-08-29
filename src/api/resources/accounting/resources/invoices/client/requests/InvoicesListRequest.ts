@@ -6,84 +6,48 @@ import * as Merge from "../../../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+ *     }
  */
 export interface InvoicesListRequest {
-    /**
-     * If provided, will only return invoices for this company.
-     */
+    /** If provided, will only return invoices for this company. */
     companyId?: string;
-    /**
-     * If provided, will only return invoices for this contact.
-     */
+    /** If provided, will only return invoices for this contact. */
     contactId?: string;
-    /**
-     * If provided, will only return objects created after this datetime.
-     */
+    /** If provided, will only return objects created after this datetime. */
     createdAfter?: Date;
-    /**
-     * If provided, will only return objects created before this datetime.
-     */
+    /** If provided, will only return objects created before this datetime. */
     createdBefore?: Date;
-    /**
-     * The pagination cursor value.
-     */
+    /** The pagination cursor value. */
     cursor?: string;
-    /**
-     * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
+    /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
     expand?: Merge.accounting.InvoicesListRequestExpand;
-    /**
-     * Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/).
-     */
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
-    /**
-     * Whether to include the original data Merge fetched from the third-party to produce these models.
-     */
+    /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
-    /**
-     * Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
-     */
+    /** Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format. */
     includeRemoteFields?: boolean;
-    /**
-     * Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
-     */
+    /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */
     includeShellData?: boolean;
-    /**
-     * If provided, will only return objects created after this datetime.
-     */
+    /** If provided, will only return objects created after this datetime. */
     issueDateAfter?: Date;
-    /**
-     * If provided, will only return objects created before this datetime.
-     */
+    /** If provided, will only return objects created before this datetime. */
     issueDateBefore?: Date;
-    /**
-     * If provided, only objects synced by Merge after this date time will be returned.
-     */
+    /** If provided, only objects synced by Merge after this date time will be returned. */
     modifiedAfter?: Date;
-    /**
-     * If provided, only objects synced by Merge before this date time will be returned.
-     */
+    /** If provided, only objects synced by Merge before this date time will be returned. */
     modifiedBefore?: Date;
-    /**
-     * If provided, will only return Invoices with this number.
-     */
+    /** If provided, will only return Invoices with this number. */
     number?: string;
-    /**
-     * Number of results to return per page.
-     */
+    /** Number of results to return per page. */
     pageSize?: number;
-    /**
-     * Deprecated. Use show_enum_origins.
-     */
+    /** Deprecated. Use show_enum_origins. */
     remoteFields?: "type";
-    /**
-     * The API provider's ID for the given object.
-     */
+    /** The API provider's ID for the given object. */
     remoteId?: string;
-    /**
-     * A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter)
-     */
+    /** A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter) */
     showEnumOrigins?: "type";
     /**
      * If provided, will only return Invoices with this status.

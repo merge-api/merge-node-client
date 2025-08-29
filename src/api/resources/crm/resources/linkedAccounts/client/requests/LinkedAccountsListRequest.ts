@@ -6,7 +6,9 @@ import * as Merge from "../../../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+ *     }
  */
 export interface LinkedAccountsListRequest {
     /**
@@ -21,49 +23,27 @@ export interface LinkedAccountsListRequest {
      * * `filestorage` - filestorage
      */
     category?: Merge.crm.LinkedAccountsListRequestCategory;
-    /**
-     * The pagination cursor value.
-     */
+    /** The pagination cursor value. */
     cursor?: string;
-    /**
-     * If provided, will only return linked accounts associated with the given email address.
-     */
+    /** If provided, will only return linked accounts associated with the given email address. */
     endUserEmailAddress?: string;
-    /**
-     * If provided, will only return linked accounts associated with the given organization name.
-     */
+    /** If provided, will only return linked accounts associated with the given organization name. */
     endUserOrganizationName?: string;
-    /**
-     * If provided, will only return linked accounts associated with the given origin ID.
-     */
+    /** If provided, will only return linked accounts associated with the given origin ID. */
     endUserOriginId?: string;
-    /**
-     * Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once.
-     */
+    /** Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once. */
     endUserOriginIds?: string;
     id?: string;
-    /**
-     * Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once.
-     */
+    /** Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once. */
     ids?: string;
-    /**
-     * If `true`, will include complete production duplicates of the account specified by the `id` query parameter in the response. `id` must be for a complete production linked account.
-     */
+    /** If `true`, will include complete production duplicates of the account specified by the `id` query parameter in the response. `id` must be for a complete production linked account. */
     includeDuplicates?: boolean;
-    /**
-     * If provided, will only return linked accounts associated with the given integration name.
-     */
+    /** If provided, will only return linked accounts associated with the given integration name. */
     integrationName?: string;
-    /**
-     * If included, will only include test linked accounts. If not included, will only include non-test linked accounts.
-     */
+    /** If included, will only include test linked accounts. If not included, will only include non-test linked accounts. */
     isTestAccount?: string;
-    /**
-     * Number of results to return per page.
-     */
+    /** Number of results to return per page. */
     pageSize?: number;
-    /**
-     * Filter by status. Options: `COMPLETE`, `IDLE`, `INCOMPLETE`, `RELINK_NEEDED`
-     */
+    /** Filter by status. Options: `COMPLETE`, `IDLE`, `INCOMPLETE`, `RELINK_NEEDED` */
     status?: string;
 }

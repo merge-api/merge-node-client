@@ -1320,7 +1320,10 @@ service:
         type: root.PaginatedEmployeeList
         status-code: 200
       examples:
-        - headers: {}
+        - query-parameters:
+            cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -1347,14 +1350,12 @@ service:
                   home_location: home_location
                   work_location: work_location
                   manager: manager
-                  team: team
                   pay_group: pay_group
                   ssn: '1234567890'
                   gender: MALE
                   ethnicity: AMERICAN_INDIAN_OR_ALASKA_NATIVE
                   marital_status: SINGLE
                   date_of_birth: '1990-11-10T00:00:00Z'
-                  hire_date: '2020-10-10T00:00:00Z'
                   start_date: '2020-10-11T00:00:00Z'
                   remote_created_at: '2020-10-11T00:00:00Z'
                   employment_status: ACTIVE
@@ -1399,7 +1400,8 @@ service:
         type: root.EmployeeResponse
         status-code: 201
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           request:
             model: {}
           response:
@@ -1426,14 +1428,12 @@ service:
                 home_location: home_location
                 work_location: work_location
                 manager: manager
-                team: team
                 pay_group: pay_group
                 ssn: '1234567890'
                 gender: MALE
                 ethnicity: AMERICAN_INDIAN_OR_ALASKA_NATIVE
                 marital_status: SINGLE
                 date_of_birth: '1990-11-10T00:00:00Z'
-                hire_date: '2020-10-10T00:00:00Z'
                 start_date: '2020-10-11T00:00:00Z'
                 remote_created_at: '2020-10-11T00:00:00Z'
                 employment_status: ACTIVE
@@ -1520,7 +1520,8 @@ service:
       examples:
         - path-parameters:
             id: id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               id: 0958cbc6-6040-430a-848e-aafacbadf4ae
@@ -1544,14 +1545,12 @@ service:
               home_location: home_location
               work_location: work_location
               manager: manager
-              team: team
               pay_group: pay_group
               ssn: '1234567890'
               gender: MALE
               ethnicity: AMERICAN_INDIAN_OR_ALASKA_NATIVE
               marital_status: SINGLE
               date_of_birth: '1990-11-10T00:00:00Z'
-              hire_date: '2020-10-10T00:00:00Z'
               start_date: '2020-10-11T00:00:00Z'
               remote_created_at: '2020-10-11T00:00:00Z'
               employment_status: ACTIVE
@@ -1596,7 +1595,8 @@ service:
       examples:
         - path-parameters:
             model_id: model_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           request:
             reason: GENERAL_CUSTOMER_REQUEST
     metaPostRetrieve:
@@ -1611,7 +1611,8 @@ service:
         type: root.MetaResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               request_schema:

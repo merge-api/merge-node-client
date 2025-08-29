@@ -65,6 +65,14 @@ export class AccountToken {
         publicToken: string,
         requestOptions?: AccountToken.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.AccountToken>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+            }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -73,14 +81,7 @@ export class AccountToken {
                 `accounting/v1/account-token/${encodeURIComponent(publicToken)}`,
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Account-Token": requestOptions?.accountToken,
-                }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,

@@ -54,7 +54,9 @@ export class Associations {
      * @param {Associations.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id")
+     *     await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id", {
+     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+     *     })
      */
     public customObjectClassesCustomObjectsAssociationsList(
         customObjectClassId: string,
@@ -141,6 +143,14 @@ export class Associations {
             _queryParams["remote_id"] = remoteId;
         }
 
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+            }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -149,14 +159,7 @@ export class Associations {
                 `crm/v1/custom-object-classes/${encodeURIComponent(customObjectClassId)}/custom-objects/${encodeURIComponent(objectId)}/associations`,
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Account-Token": requestOptions?.accountToken,
-                }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -257,6 +260,14 @@ export class Associations {
             _queryParams["run_async"] = runAsync.toString();
         }
 
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+            }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -265,14 +276,7 @@ export class Associations {
                 `crm/v1/custom-object-classes/${encodeURIComponent(sourceClassId)}/custom-objects/${encodeURIComponent(sourceObjectId)}/associations/${encodeURIComponent(targetClassId)}/${encodeURIComponent(targetObjectId)}/${encodeURIComponent(associationTypeId)}`,
             ),
             method: "PUT",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Account-Token": requestOptions?.accountToken,
-                }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,

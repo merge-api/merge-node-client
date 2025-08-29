@@ -30,7 +30,8 @@ service:
         type: root.FieldMappingApiInstanceResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               Benefit:
@@ -357,7 +358,8 @@ service:
         type: root.FieldMappingInstanceResponse
         status-code: 201
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           request:
             target_field_name: example_target_field_name
             target_field_description: this is a example description of the target field
@@ -424,7 +426,8 @@ service:
       examples:
         - path-parameters:
             field_mapping_id: field_mapping_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               model:
@@ -506,7 +509,8 @@ service:
       examples:
         - path-parameters:
             field_mapping_id: field_mapping_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           request: {}
           response:
             body:
@@ -577,7 +581,8 @@ service:
         type: root.RemoteFieldApiResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               Benefit:
@@ -821,7 +826,8 @@ service:
         type: root.ExternalTargetFieldApiResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               Benefit:

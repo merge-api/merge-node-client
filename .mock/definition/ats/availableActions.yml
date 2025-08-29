@@ -16,7 +16,8 @@ service:
         type: root.AvailableActions
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               integration:

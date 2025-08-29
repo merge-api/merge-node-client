@@ -4,15 +4,13 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+ *     }
  */
 export interface SyncStatusListRequest {
-    /**
-     * The pagination cursor value.
-     */
+    /** The pagination cursor value. */
     cursor?: string;
-    /**
-     * Number of results to return per page.
-     */
+    /** Number of results to return per page. */
     pageSize?: number;
 }

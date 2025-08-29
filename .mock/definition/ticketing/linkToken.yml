@@ -136,7 +136,9 @@ service:
         type: root.LinkToken
         status-code: 200
       examples:
-        - request:
+        - headers:
+            X-Account-Token: '[object Object]'
+          request:
             end_user_email_address: example@gmail.com
             end_user_organization_name: Test Organization
             end_user_origin_id: '12345'

@@ -38,7 +38,9 @@ describe("Notes", () => {
         };
         server.mockEndpoint().get("/crm/v1/notes").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.crm.notes.list();
+        const response = await client.crm.notes.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -724,7 +726,9 @@ describe("Notes", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.crm.notes.remoteFieldClassesList();
+        const response = await client.crm.notes.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

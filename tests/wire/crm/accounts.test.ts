@@ -61,7 +61,9 @@ describe("Accounts", () => {
         };
         server.mockEndpoint().get("/crm/v1/accounts").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.crm.accounts.list();
+        const response = await client.crm.accounts.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -1463,7 +1465,9 @@ describe("Accounts", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.crm.accounts.remoteFieldClassesList();
+        const response = await client.crm.accounts.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

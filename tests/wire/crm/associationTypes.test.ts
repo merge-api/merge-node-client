@@ -36,8 +36,12 @@ describe("AssociationTypes", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response =
-            await client.crm.associationTypes.customObjectClassesAssociationTypesList("custom_object_class_id");
+        const response = await client.crm.associationTypes.customObjectClassesAssociationTypesList(
+            "custom_object_class_id",
+            {
+                cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            },
+        );
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

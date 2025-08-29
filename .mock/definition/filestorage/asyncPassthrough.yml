@@ -21,7 +21,8 @@ service:
         type: root.AsyncPassthroughReciept
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           request:
             method: GET
             path: /scooters
@@ -44,7 +45,8 @@ service:
       examples:
         - path-parameters:
             async_passthrough_receipt_id: async_passthrough_receipt_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               method: GET

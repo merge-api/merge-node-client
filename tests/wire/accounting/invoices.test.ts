@@ -114,7 +114,9 @@ describe("Invoices", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.invoices.list();
+        const response = await client.accounting.invoices.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -558,7 +560,6 @@ describe("Invoices", () => {
                     item: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
                     account: "cd0f32d4-a493-11ec-b909-0242ac120002",
                     tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                    tracking_category: "tracking_category",
                     tracking_categories: [
                         "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -668,7 +669,6 @@ describe("Invoices", () => {
                     item: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
                     account: "cd0f32d4-a493-11ec-b909-0242ac120002",
                     taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                    trackingCategory: "tracking_category",
                     trackingCategories: [
                         "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -1043,7 +1043,9 @@ describe("Invoices", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.invoices.lineItemsRemoteFieldClassesList();
+        const response = await client.accounting.invoices.lineItemsRemoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
@@ -1926,7 +1928,9 @@ describe("Invoices", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.invoices.remoteFieldClassesList();
+        const response = await client.accounting.invoices.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        });
         expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",

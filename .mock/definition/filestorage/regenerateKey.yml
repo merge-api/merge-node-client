@@ -26,7 +26,9 @@ service:
         type: root.RemoteKey
         status-code: 200
       examples:
-        - request:
+        - headers:
+            X-Account-Token: '[object Object]'
+          request:
             name: Remote Deployment Key 1
           response:
             body:

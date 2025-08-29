@@ -81,7 +81,10 @@ service:
         - path-parameters:
             custom_object_class_id: custom_object_class_id
             object_id: object_id
-          headers: {}
+          query-parameters:
+            cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -130,7 +133,8 @@ service:
             source_object_id: source_object_id
             target_class_id: target_class_id
             target_object_id: target_object_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               created_at: '2021-09-15T00:00:00Z'

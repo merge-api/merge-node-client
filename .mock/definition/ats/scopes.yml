@@ -19,7 +19,9 @@ service:
         type: root.CommonModelScopeApi
         status-code: 200
       examples:
-        - response:
+        - headers:
+            X-Account-Token: '[object Object]'
+          response:
             body:
               common_models:
                 - model_name: Employee
@@ -60,7 +62,8 @@ service:
         type: root.CommonModelScopeApi
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               common_models:
@@ -111,7 +114,8 @@ service:
         type: root.CommonModelScopeApi
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           request:
             common_models:
               - model_name: Employee

@@ -22,6 +22,8 @@ service:
       examples:
         - path-parameters:
             public_token: public_token
+          headers:
+            X-Account-Token: '[object Object]'
           response:
             body:
               account_token: T9klMDQrcHdm9jrtHuOS2Nf06BIHwMNjpPXPMB
