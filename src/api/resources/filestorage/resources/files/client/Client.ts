@@ -84,6 +84,8 @@ export class Files {
             name,
             orderBy,
             pageSize,
+            remoteCreatedAfter,
+            remoteCreatedBefore,
             remoteId,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
@@ -149,6 +151,14 @@ export class Files {
 
         if (pageSize != null) {
             _queryParams["page_size"] = pageSize.toString();
+        }
+
+        if (remoteCreatedAfter != null) {
+            _queryParams["remote_created_after"] = remoteCreatedAfter.toISOString();
+        }
+
+        if (remoteCreatedBefore != null) {
+            _queryParams["remote_created_before"] = remoteCreatedBefore.toISOString();
         }
 
         if (remoteId != null) {
@@ -608,6 +618,7 @@ export class Files {
             createdAfter,
             createdBefore,
             cursor,
+            ids,
             includeDeletedData,
             mimeTypes,
             modifiedAfter,
@@ -626,6 +637,14 @@ export class Files {
 
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
+        }
+
+        if (ids != null) {
+            if (Array.isArray(ids)) {
+                _queryParams["ids"] = ids.map((item) => item);
+            } else {
+                _queryParams["ids"] = ids;
+            }
         }
 
         if (includeDeletedData != null) {

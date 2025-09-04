@@ -76,6 +76,7 @@ export class Tickets {
             contactId,
             createdAfter,
             createdBefore,
+            creatorId,
             cursor,
             dueAfter,
             dueBefore,
@@ -132,6 +133,10 @@ export class Tickets {
 
         if (createdBefore != null) {
             _queryParams["created_before"] = createdBefore.toISOString();
+        }
+
+        if (creatorId != null) {
+            _queryParams["creator_id"] = creatorId;
         }
 
         if (cursor != null) {

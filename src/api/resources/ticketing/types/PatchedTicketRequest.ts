@@ -54,8 +54,6 @@ export interface PatchedTicketRequest {
     accessLevel?: Merge.ticketing.PatchedTicketRequestAccessLevel;
     tags?: (string | undefined)[];
     roles?: (string | undefined)[];
-    /** When the ticket was completed. */
-    completedAt?: Date;
     /** The 3rd party url of the Ticket. */
     ticketUrl?: string;
     /**
@@ -67,6 +65,8 @@ export interface PatchedTicketRequest {
      * * `LOW` - LOW
      */
     priority?: Merge.ticketing.PatchedTicketRequestPriority;
+    /** When the ticket was completed. */
+    completedAt?: Date;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.ticketing.RemoteFieldRequest[];

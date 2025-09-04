@@ -689,6 +689,11 @@ types:
       end_date:
         type: optional<datetime>
         docs: The day and time the benefit ended.
+      employer_benefit:
+        type: optional<string>
+        docs: The employer benefit plan the employee is enrolled in.
+        validation:
+          format: uuid
       remote_was_deleted:
         type: optional<boolean>
         docs: >-
@@ -698,11 +703,6 @@ types:
           [Learn
           more](https://docs.merge.dev/integrations/hris/supported-features/).
         access: read-only
-      employer_benefit:
-        type: optional<string>
-        docs: The employer benefit plan the employee is enrolled in.
-        validation:
-          format: uuid
       field_mappings:
         type: optional<map<string, unknown>>
         access: read-only

@@ -93,8 +93,8 @@ service:
                   company_contribution: 150
                   start_date: '2020-11-15T00:59:25Z'
                   end_date: '2021-10-15T00:23:25Z'
-                  remote_was_deleted: true
                   employer_benefit: 025fjlc6-6000-430a-848e-aafacbadf4fe
+                  remote_was_deleted: true
                   field_mappings:
                     organization_defined_targets:
                       custom_key: custom_value
@@ -152,8 +152,8 @@ service:
               company_contribution: 150
               start_date: '2020-11-15T00:59:25Z'
               end_date: '2021-10-15T00:23:25Z'
-              remote_was_deleted: true
               employer_benefit: 025fjlc6-6000-430a-848e-aafacbadf4fe
+              remote_was_deleted: true
               field_mappings:
                 organization_defined_targets:
                   custom_key: custom_value

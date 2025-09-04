@@ -142,6 +142,16 @@ service:
           page_size:
             type: optional<integer>
             docs: Number of results to return per page.
+          remote_created_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return files created in the third party
+              platform after this datetime.
+          remote_created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return files created in the third party
+              platform before this datetime.
           remote_id:
             type: optional<string>
             docs: The API provider's ID for the given object.
@@ -438,6 +448,12 @@ service:
           cursor:
             type: optional<string>
             docs: The pagination cursor value.
+          ids:
+            type: optional<string>
+            allow-multiple: true
+            docs: >-
+              If provided, will only return objects with the given IDs.
+              Comma-separated list of strings.
           include_deleted_data:
             type: optional<boolean>
             docs: >-

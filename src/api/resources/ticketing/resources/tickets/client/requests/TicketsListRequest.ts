@@ -27,6 +27,8 @@ export interface TicketsListRequest {
     createdAfter?: Date;
     /** If provided, will only return objects created before this datetime. */
     createdBefore?: Date;
+    /** If provided, will only return tickets created by this creator_id. */
+    creatorId?: string;
     /** The pagination cursor value. */
     cursor?: string;
     /** If provided, will only return tickets due after this datetime. */

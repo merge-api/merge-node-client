@@ -2117,9 +2117,6 @@ types:
           * `COLLECTION` - COLLECTION
       tags: optional<list<optional<string>>>
       roles: optional<list<optional<string>>>
-      completed_at:
-        type: optional<datetime>
-        docs: When the ticket was completed.
       ticket_url:
         type: optional<string>
         docs: The 3rd party url of the Ticket.
@@ -2135,6 +2132,9 @@ types:
           * `HIGH` - HIGH
           * `NORMAL` - NORMAL
           * `LOW` - LOW
+      completed_at:
+        type: optional<datetime>
+        docs: When the ticket was completed.
       integration_params:
         type: optional<map<string, unknown>>
         access: write-only
