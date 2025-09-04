@@ -13,6 +13,7 @@ export const EventTypeEnum: core.serialization.Schema<serializers.ats.EventTypeE
         "CREATED_TEST_API_KEY",
         "DELETED_TEST_API_KEY",
         "REGENERATED_PRODUCTION_API_KEY",
+        "REGENERATED_WEBHOOK_SIGNATURE",
         "INVITED_USER",
         "TWO_FACTOR_AUTH_ENABLED",
         "TWO_FACTOR_AUTH_DISABLED",
@@ -59,6 +60,7 @@ export declare namespace EventTypeEnum {
         | "CREATED_TEST_API_KEY"
         | "DELETED_TEST_API_KEY"
         | "REGENERATED_PRODUCTION_API_KEY"
+        | "REGENERATED_WEBHOOK_SIGNATURE"
         | "INVITED_USER"
         | "TWO_FACTOR_AUTH_ENABLED"
         | "TWO_FACTOR_AUTH_DISABLED"

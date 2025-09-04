@@ -440,6 +440,188 @@ export class Contacts {
     }
 
     /**
+     * Updates a `Contact` object with the given `id`.
+     *
+     * @param {string} id
+     * @param {Merge.accounting.PatchedContactEndpointRequest} request
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.contacts.partialUpdate("id", {
+     *         model: {}
+     *     })
+     */
+    public partialUpdate(
+        id: string,
+        request: Merge.accounting.PatchedContactEndpointRequest,
+        requestOptions?: Contacts.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.ContactResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__partialUpdate(id, request, requestOptions));
+    }
+
+    private async __partialUpdate(
+        id: string,
+        request: Merge.accounting.PatchedContactEndpointRequest,
+        requestOptions?: Contacts.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.ContactResponse>> {
+        const { isDebugMode, runAsync, ..._body } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (isDebugMode != null) {
+            _queryParams["is_debug_mode"] = isDebugMode.toString();
+        }
+
+        if (runAsync != null) {
+            _queryParams["run_async"] = runAsync.toString();
+        }
+
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/contacts/${encodeURIComponent(id)}`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.PatchedContactEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.ContactResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError("Timeout exceeded when calling PATCH /accounting/v1/contacts/{id}.");
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Returns metadata for `Contact` PATCHs.
+     *
+     * @param {string} id
+     * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.contacts.metaPatchRetrieve("id")
+     */
+    public metaPatchRetrieve(
+        id: string,
+        requestOptions?: Contacts.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPatchRetrieve(id, requestOptions));
+    }
+
+    private async __metaPatchRetrieve(
+        id: string,
+        requestOptions?: Contacts.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.MetaResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/contacts/meta/patch/${encodeURIComponent(id)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MergeError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.MergeTimeoutError(
+                    "Timeout exceeded when calling GET /accounting/v1/contacts/meta/patch/{id}.",
+                );
+            case "unknown":
+                throw new errors.MergeError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * Returns metadata for `Contact` POSTs.
      *
      * @param {Contacts.RequestOptions} requestOptions - Request-specific configuration.

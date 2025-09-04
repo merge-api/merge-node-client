@@ -367,6 +367,8 @@ export * from "./PaginatedTaxRateList";
 export * from "./PaginatedTrackingCategoryList";
 export * from "./PaginatedTransactionList";
 export * from "./PaginatedVendorCreditList";
+export * from "./PatchedContactRequestAddressesItem";
+export * from "./PatchedContactRequest";
 export * from "./PatchedItemRequestRequestStatus";
 export * from "./PatchedItemRequestRequestType";
 export * from "./PatchedItemRequestRequest";

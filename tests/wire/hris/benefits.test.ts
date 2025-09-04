@@ -25,8 +25,8 @@ describe("Benefits", () => {
                     company_contribution: 150,
                     start_date: "2020-11-15T00:59:25Z",
                     end_date: "2021-10-15T00:23:25Z",
-                    remote_was_deleted: true,
                     employer_benefit: "025fjlc6-6000-430a-848e-aafacbadf4fe",
+                    remote_was_deleted: true,
                     field_mappings: {
                         organization_defined_targets: { custom_key: "custom_value" },
                         linked_account_defined_targets: { custom_key: "custom_value" },
@@ -55,8 +55,8 @@ describe("Benefits", () => {
                     companyContribution: 150,
                     startDate: new Date("2020-11-15T00:59:25.000Z"),
                     endDate: new Date("2021-10-15T00:23:25.000Z"),
-                    remoteWasDeleted: true,
                     employerBenefit: "025fjlc6-6000-430a-848e-aafacbadf4fe",
+                    remoteWasDeleted: true,
                     fieldMappings: {
                         organization_defined_targets: {
                             custom_key: "custom_value",
@@ -91,8 +91,8 @@ describe("Benefits", () => {
             company_contribution: 150,
             start_date: "2020-11-15T00:59:25Z",
             end_date: "2021-10-15T00:23:25Z",
-            remote_was_deleted: true,
             employer_benefit: "025fjlc6-6000-430a-848e-aafacbadf4fe",
+            remote_was_deleted: true,
             field_mappings: {
                 organization_defined_targets: { custom_key: "custom_value" },
                 linked_account_defined_targets: { custom_key: "custom_value" },
@@ -119,8 +119,8 @@ describe("Benefits", () => {
             companyContribution: 150,
             startDate: new Date("2020-11-15T00:59:25.000Z"),
             endDate: new Date("2021-10-15T00:23:25.000Z"),
-            remoteWasDeleted: true,
             employerBenefit: "025fjlc6-6000-430a-848e-aafacbadf4fe",
+            remoteWasDeleted: true,
             fieldMappings: {
                 organization_defined_targets: {
                     custom_key: "custom_value",

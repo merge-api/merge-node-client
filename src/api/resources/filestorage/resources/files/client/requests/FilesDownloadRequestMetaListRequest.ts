@@ -17,6 +17,8 @@ export interface FilesDownloadRequestMetaListRequest {
     createdBefore?: string;
     /** The pagination cursor value. */
     cursor?: string;
+    /** If provided, will only return objects with the given IDs. Comma-separated list of strings. */
+    ids?: string | string[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
     /** A comma-separated list of preferred MIME types in order of priority. If supported by the third-party provider, the file(s) will be returned in the first supported MIME type from the list. The default MIME type is PDF. To see supported MIME types by file type, refer to our <a href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification' target='_blank'>export format help center article</a>. */

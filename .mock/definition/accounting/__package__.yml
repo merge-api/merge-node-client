@@ -41304,6 +41304,83 @@ types:
       results: optional<list<VendorCredit>>
     source:
       openapi: openapi/openapi.yml
+  PatchedContactRequestAddressesItem:
+    discriminated: false
+    union:
+      - type: string
+        validation:
+          format: uuid
+      - Address
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
+  PatchedContactRequest:
+    docs: >-
+      # The Contact Object
+
+      ### Description
+
+      A `Contact` is an individual or business entity to which products and
+      services are sold to or purchased from. The `Contact` model contains both
+      Customers, in which products and services are sold to, and Vendors (or
+      Suppliers), in which products and services are purchased from.
+
+      * A `Contact` is a Vendor/Supplier if the `is_supplier` property is true.
+
+      * A `Contact` is a customer if the `is_customer` property is true.
+
+
+      ### Usage Example
+
+      Fetch from the `LIST Contacts` endpoint and view a company's contacts.
+    properties:
+      name:
+        type: optional<string>
+        docs: The contact's name.
+      is_supplier:
+        type: optional<boolean>
+        docs: Whether the contact is a supplier.
+      is_customer:
+        type: optional<boolean>
+        docs: Whether the contact is a customer.
+      email_address:
+        type: optional<string>
+        docs: The contact's email address.
+      tax_number:
+        type: optional<string>
+        docs: The contact's tax number.
+      status:
+        type: optional<string>
+        docs: |-
+          The contact's status
+
+          * `ACTIVE` - ACTIVE
+          * `ARCHIVED` - ARCHIVED
+      currency:
+        type: optional<string>
+        docs: The currency the contact's transactions are in.
+      company:
+        type: optional<string>
+        docs: The company the contact belongs to.
+        validation:
+          format: uuid
+      addresses:
+        type: optional<list<optional<PatchedContactRequestAddressesItem>>>
+        docs: '`Address` object IDs for the given `Contacts` object.'
+      phone_numbers:
+        type: optional<list<AccountingPhoneNumberRequest>>
+        docs: '`AccountingPhoneNumber` object for the given `Contacts` object.'
+      integration_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      linked_account_params:
+        type: optional<map<string, unknown>>
+        access: write-only
+      remote_fields:
+        type: optional<list<RemoteFieldRequest>>
+        access: write-only
+    source:
+      openapi: openapi/openapi.yml
   PatchedItemRequestRequestStatus:
     discriminated: false
     docs: |-

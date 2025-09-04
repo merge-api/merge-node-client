@@ -53,6 +53,7 @@ export type EventTypeEnum =
     | "CREATED_TEST_API_KEY"
     | "DELETED_TEST_API_KEY"
     | "REGENERATED_PRODUCTION_API_KEY"
+    | "REGENERATED_WEBHOOK_SIGNATURE"
     | "INVITED_USER"
     | "TWO_FACTOR_AUTH_ENABLED"
     | "TWO_FACTOR_AUTH_DISABLED"
@@ -96,6 +97,7 @@ export const EventTypeEnum = {
     CreatedTestApiKey: "CREATED_TEST_API_KEY",
     DeletedTestApiKey: "DELETED_TEST_API_KEY",
     RegeneratedProductionApiKey: "REGENERATED_PRODUCTION_API_KEY",
+    RegeneratedWebhookSignature: "REGENERATED_WEBHOOK_SIGNATURE",
     InvitedUser: "INVITED_USER",
     TwoFactorAuthEnabled: "TWO_FACTOR_AUTH_ENABLED",
     TwoFactorAuthDisabled: "TWO_FACTOR_AUTH_DISABLED",

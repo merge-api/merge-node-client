@@ -41,6 +41,10 @@ export interface FilesListRequest {
     orderBy?: Merge.filestorage.FilesListRequestOrderBy;
     /** Number of results to return per page. */
     pageSize?: number;
+    /** If provided, will only return files created in the third party platform after this datetime. */
+    remoteCreatedAfter?: Date;
+    /** If provided, will only return files created in the third party platform before this datetime. */
+    remoteCreatedBefore?: Date;
     /** The API provider's ID for the given object. */
     remoteId?: string;
 }

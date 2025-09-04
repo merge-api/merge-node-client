@@ -32,9 +32,9 @@ export const PatchedTicketRequest: core.serialization.ObjectSchema<
     accessLevel: core.serialization.property("access_level", PatchedTicketRequestAccessLevel.optional()),
     tags: core.serialization.list(core.serialization.string().optional()).optional(),
     roles: core.serialization.list(core.serialization.string().optional()).optional(),
-    completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
     ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
     priority: PatchedTicketRequestPriority.optional(),
+    completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -63,9 +63,9 @@ export declare namespace PatchedTicketRequest {
         access_level?: PatchedTicketRequestAccessLevel.Raw | null;
         tags?: (string | null | undefined)[] | null;
         roles?: (string | null | undefined)[] | null;
-        completed_at?: string | null;
         ticket_url?: string | null;
         priority?: PatchedTicketRequestPriority.Raw | null;
+        completed_at?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
         remote_fields?: RemoteFieldRequest.Raw[] | null;
