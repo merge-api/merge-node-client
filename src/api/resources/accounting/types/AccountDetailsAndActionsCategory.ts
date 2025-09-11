@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type AccountDetailsAndActionsCategory = Merge.accounting.CategoryEnum | string;
+export type AccountDetailsAndActionsCategory = string | Merge.accounting.CategoryEnum;

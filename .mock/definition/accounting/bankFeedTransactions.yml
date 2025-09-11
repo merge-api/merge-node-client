@@ -94,7 +94,7 @@ service:
                   description: Lunch expense
                   transaction_type: payment
                   payee: Elmo's diner
-                  credit_or_debit: CREDIT
+                  credit_or_debit: credit_or_debit
                   source_transaction_id: '124569'
                   remote_was_deleted: true
                   is_processed: true
@@ -143,7 +143,7 @@ service:
                 description: Lunch expense
                 transaction_type: payment
                 payee: Elmo's diner
-                credit_or_debit: CREDIT
+                credit_or_debit: credit_or_debit
                 source_transaction_id: '124569'
                 remote_was_deleted: true
                 is_processed: true
@@ -216,7 +216,7 @@ service:
               description: Lunch expense
               transaction_type: payment
               payee: Elmo's diner
-              credit_or_debit: CREDIT
+              credit_or_debit: credit_or_debit
               source_transaction_id: '124569'
               remote_was_deleted: true
               is_processed: true

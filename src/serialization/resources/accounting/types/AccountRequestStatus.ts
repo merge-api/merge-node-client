@@ -10,8 +10,8 @@ import { AccountStatusEnum } from "./AccountStatusEnum";
 export const AccountRequestStatus: core.serialization.Schema<
     serializers.accounting.AccountRequestStatus.Raw,
     Merge.accounting.AccountRequestStatus
-> = core.serialization.undiscriminatedUnion([AccountStatusEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), AccountStatusEnum]);
 
 export declare namespace AccountRequestStatus {
-    export type Raw = AccountStatusEnum.Raw | string;
+    export type Raw = string | AccountStatusEnum.Raw;
 }

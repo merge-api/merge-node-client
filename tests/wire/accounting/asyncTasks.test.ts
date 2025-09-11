@@ -11,7 +11,7 @@ describe("AsyncTasks", () => {
         const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            status: "QUEUED",
+            status: "status",
             result: {
                 status_code: 201,
                 response: {
@@ -73,7 +73,7 @@ describe("AsyncTasks", () => {
 
         const response = await client.accounting.asyncTasks.retrieve("id");
         expect(response).toEqual({
-            status: "QUEUED",
+            status: "status",
             result: {
                 statusCode: 201,
                 response: {

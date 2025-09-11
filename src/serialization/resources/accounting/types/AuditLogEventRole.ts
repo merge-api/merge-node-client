@@ -10,8 +10,8 @@ import { RoleEnum } from "./RoleEnum";
 export const AuditLogEventRole: core.serialization.Schema<
     serializers.accounting.AuditLogEventRole.Raw,
     Merge.accounting.AuditLogEventRole
-> = core.serialization.undiscriminatedUnion([RoleEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), RoleEnum]);
 
 export declare namespace AuditLogEventRole {
-    export type Raw = RoleEnum.Raw | string;
+    export type Raw = string | RoleEnum.Raw;
 }

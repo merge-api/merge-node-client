@@ -20,7 +20,7 @@ describe("AccountingPeriods", () => {
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "April 2020 Financials",
-                    status: "ACTIVE",
+                    status: "status",
                     start_date: "2020-03-31T00:00:00Z",
                     end_date: "2020-05-01T00:00:00Z",
                     field_mappings: {
@@ -52,7 +52,7 @@ describe("AccountingPeriods", () => {
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "April 2020 Financials",
-                    status: "ACTIVE",
+                    status: "status",
                     startDate: new Date("2020-03-31T00:00:00.000Z"),
                     endDate: new Date("2020-05-01T00:00:00.000Z"),
                     fieldMappings: {
@@ -84,7 +84,7 @@ describe("AccountingPeriods", () => {
             created_at: "2021-09-15T00:00:00Z",
             modified_at: "2021-10-16T00:00:00Z",
             name: "April 2020 Financials",
-            status: "ACTIVE",
+            status: "status",
             start_date: "2020-03-31T00:00:00Z",
             end_date: "2020-05-01T00:00:00Z",
             field_mappings: {
@@ -108,7 +108,7 @@ describe("AccountingPeriods", () => {
             createdAt: new Date("2021-09-15T00:00:00.000Z"),
             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
             name: "April 2020 Financials",
-            status: "ACTIVE",
+            status: "status",
             startDate: new Date("2020-03-31T00:00:00.000Z"),
             endDate: new Date("2020-05-01T00:00:00.000Z"),
             fieldMappings: {

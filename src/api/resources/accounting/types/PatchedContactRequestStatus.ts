@@ -5,10 +5,9 @@
 import * as Merge from "../../../index";
 
 /**
- * The account's status.
+ * The contact's status
  *
  * * `ACTIVE` - ACTIVE
- * * `PENDING` - PENDING
- * * `INACTIVE` - INACTIVE
+ * * `ARCHIVED` - ARCHIVED
  */
-export type AccountStatus = string | Merge.accounting.AccountStatusEnum;
+export type PatchedContactRequestStatus = string | Merge.accounting.Status7D1Enum;

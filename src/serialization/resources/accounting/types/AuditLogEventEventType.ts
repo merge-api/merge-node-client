@@ -10,8 +10,8 @@ import { EventTypeEnum } from "./EventTypeEnum";
 export const AuditLogEventEventType: core.serialization.Schema<
     serializers.accounting.AuditLogEventEventType.Raw,
     Merge.accounting.AuditLogEventEventType
-> = core.serialization.undiscriminatedUnion([EventTypeEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), EventTypeEnum]);
 
 export declare namespace AuditLogEventEventType {
-    export type Raw = EventTypeEnum.Raw | string;
+    export type Raw = string | EventTypeEnum.Raw;
 }

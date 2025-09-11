@@ -14,4 +14,4 @@ import * as Merge from "../../../index";
  * * `SYSTEM` - SYSTEM
  * * `MERGE_TEAM` - MERGE_TEAM
  */
-export type AuditLogEventRole = Merge.accounting.RoleEnum | string;
+export type AuditLogEventRole = string | Merge.accounting.RoleEnum;

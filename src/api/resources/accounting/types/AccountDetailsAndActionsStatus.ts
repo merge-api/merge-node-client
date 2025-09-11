@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type AccountDetailsAndActionsStatus = Merge.accounting.AccountDetailsAndActionsStatusEnum | string;
+export type AccountDetailsAndActionsStatus = string | Merge.accounting.AccountDetailsAndActionsStatusEnum;

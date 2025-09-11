@@ -86,7 +86,7 @@ service:
                   created_at: '2021-09-15T00:00:00Z'
                   modified_at: '2021-10-16T00:00:00Z'
                   name: BalanceSheet
-                  currency: XUA
+                  currency: currency
                   company: company
                   date: '2021-10-01T00:00:00Z'
                   net_assets: 1000
@@ -181,7 +181,7 @@ service:
               created_at: '2021-09-15T00:00:00Z'
               modified_at: '2021-10-16T00:00:00Z'
               name: BalanceSheet
-              currency: XUA
+              currency: currency
               company: company
               date: '2021-10-01T00:00:00Z'
               net_assets: 1000

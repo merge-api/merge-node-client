@@ -10,8 +10,8 @@ import { EncodingEnum } from "./EncodingEnum";
 export const MultipartFormFieldRequestEncoding: core.serialization.Schema<
     serializers.accounting.MultipartFormFieldRequestEncoding.Raw,
     Merge.accounting.MultipartFormFieldRequestEncoding
-> = core.serialization.undiscriminatedUnion([EncodingEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), EncodingEnum]);
 
 export declare namespace MultipartFormFieldRequestEncoding {
-    export type Raw = EncodingEnum.Raw | string;
+    export type Raw = string | EncodingEnum.Raw;
 }
