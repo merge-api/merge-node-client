@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type AsyncPostTaskStatus = Merge.accounting.AsyncPostTaskStatusEnum | string;
+export type AsyncPostTaskStatus = string | Merge.accounting.AsyncPostTaskStatusEnum;

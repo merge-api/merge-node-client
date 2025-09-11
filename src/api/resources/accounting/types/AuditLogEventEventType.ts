@@ -51,4 +51,4 @@ import * as Merge from "../../../index";
  * * `MERGE_WEBHOOK_TARGET_CHANGED` - MERGE_WEBHOOK_TARGET_CHANGED
  * * `END_USER_CREDENTIALS_ACCESSED` - END_USER_CREDENTIALS_ACCESSED
  */
-export type AuditLogEventEventType = Merge.accounting.EventTypeEnum | string;
+export type AuditLogEventEventType = string | Merge.accounting.EventTypeEnum;

@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
+import { PatchedContactRequestStatus } from "./PatchedContactRequestStatus";
 import { PatchedContactRequestAddressesItem } from "./PatchedContactRequestAddressesItem";
 import { AccountingPhoneNumberRequest } from "./AccountingPhoneNumberRequest";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
@@ -18,7 +19,7 @@ export const PatchedContactRequest: core.serialization.ObjectSchema<
     isCustomer: core.serialization.property("is_customer", core.serialization.boolean().optional()),
     emailAddress: core.serialization.property("email_address", core.serialization.string().optional()),
     taxNumber: core.serialization.property("tax_number", core.serialization.string().optional()),
-    status: core.serialization.string().optional(),
+    status: PatchedContactRequestStatus.optional(),
     currency: core.serialization.string().optional(),
     company: core.serialization.string().optional(),
     addresses: core.serialization.list(PatchedContactRequestAddressesItem.optional()).optional(),
@@ -44,7 +45,7 @@ export declare namespace PatchedContactRequest {
         is_customer?: boolean | null;
         email_address?: string | null;
         tax_number?: string | null;
-        status?: string | null;
+        status?: PatchedContactRequestStatus.Raw | null;
         currency?: string | null;
         company?: string | null;
         addresses?: (PatchedContactRequestAddressesItem.Raw | null | undefined)[] | null;

@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `ACTIVE` - ACTIVE
  * * `INACTIVE` - INACTIVE
  */
-export type BankFeedAccountFeedStatus = Merge.accounting.FeedStatusEnum | string;
+export type BankFeedAccountFeedStatus = string | Merge.accounting.FeedStatusEnum;

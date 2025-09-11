@@ -10,8 +10,8 @@ import { CategoryEnum } from "./CategoryEnum";
 export const AccountDetailsCategory: core.serialization.Schema<
     serializers.accounting.AccountDetailsCategory.Raw,
     Merge.accounting.AccountDetailsCategory
-> = core.serialization.undiscriminatedUnion([CategoryEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), CategoryEnum]);
 
 export declare namespace AccountDetailsCategory {
-    export type Raw = CategoryEnum.Raw | string;
+    export type Raw = string | CategoryEnum.Raw;
 }

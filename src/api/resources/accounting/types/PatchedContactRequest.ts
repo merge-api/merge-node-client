@@ -31,7 +31,7 @@ export interface PatchedContactRequest {
      * * `ACTIVE` - ACTIVE
      * * `ARCHIVED` - ARCHIVED
      */
-    status?: string;
+    status?: Merge.accounting.PatchedContactRequestStatus;
     /** The currency the contact's transactions are in. */
     currency?: string;
     /** The company the contact belongs to. */

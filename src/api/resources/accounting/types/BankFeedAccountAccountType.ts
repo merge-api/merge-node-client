@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `BANK` - BANK
  * * `CREDIT_CARD` - CREDIT_CARD
  */
-export type BankFeedAccountAccountType = Merge.accounting.BankFeedAccountAccountTypeEnum | string;
+export type BankFeedAccountAccountType = string | Merge.accounting.BankFeedAccountAccountTypeEnum;

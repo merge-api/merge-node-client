@@ -10,8 +10,8 @@ import { ClassificationEnum } from "./ClassificationEnum";
 export const AccountRequestClassification: core.serialization.Schema<
     serializers.accounting.AccountRequestClassification.Raw,
     Merge.accounting.AccountRequestClassification
-> = core.serialization.undiscriminatedUnion([ClassificationEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), ClassificationEnum]);
 
 export declare namespace AccountRequestClassification {
-    export type Raw = ClassificationEnum.Raw | string;
+    export type Raw = string | ClassificationEnum.Raw;
 }

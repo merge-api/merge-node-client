@@ -61,11 +61,11 @@ service:
                   source_account_name: Travel Bank Account
                   source_account_number: '12567'
                   target_account_name: Netsuite Travel Bank Account
-                  currency: XUA
-                  feed_status: ACTIVE
+                  currency: currency
+                  feed_status: feed_status
                   feed_start_date: '2024-02-02T00:00:00Z'
                   source_account_balance: 123.94
-                  account_type: BANK
+                  account_type: account_type
                   remote_was_deleted: true
                   field_mappings:
                     organization_defined_targets:
@@ -115,11 +115,11 @@ service:
                 source_account_name: Travel Bank Account
                 source_account_number: '12567'
                 target_account_name: Netsuite Travel Bank Account
-                currency: XUA
-                feed_status: ACTIVE
+                currency: currency
+                feed_status: feed_status
                 feed_start_date: '2024-02-02T00:00:00Z'
                 source_account_balance: 123.94
-                account_type: BANK
+                account_type: account_type
                 remote_was_deleted: true
                 field_mappings:
                   organization_defined_targets:
@@ -190,11 +190,11 @@ service:
               source_account_name: Travel Bank Account
               source_account_number: '12567'
               target_account_name: Netsuite Travel Bank Account
-              currency: XUA
-              feed_status: ACTIVE
+              currency: currency
+              feed_status: feed_status
               feed_start_date: '2024-02-02T00:00:00Z'
               source_account_balance: 123.94
-              account_type: BANK
+              account_type: account_type
               remote_was_deleted: true
               field_mappings:
                 organization_defined_targets:
