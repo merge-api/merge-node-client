@@ -349,7 +349,7 @@ export interface ExpenseReport {
      * * `ZWR` - Zimbabwean Dollar (2008)
      * * `ZWL` - Zimbabwean Dollar (2009)
      */
-    currency?: Merge.accounting.TransactionCurrencyEnum;
+    currency?: Merge.accounting.ExpenseReportCurrency;
     /** A brief description or purpose for the expense report */
     description?: string;
     /** The accounting period the report was posted in */

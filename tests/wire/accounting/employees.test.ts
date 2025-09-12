@@ -25,7 +25,7 @@ describe("Employees", () => {
                     employee_number: "325462",
                     email_address: "johnsmith@merge.dev",
                     company: "company",
-                    status: "ACTIVE",
+                    status: "status",
                     remote_was_deleted: true,
                     field_mappings: {
                         organization_defined_targets: { custom_key: "custom_value" },
@@ -61,7 +61,7 @@ describe("Employees", () => {
                     employeeNumber: "325462",
                     emailAddress: "johnsmith@merge.dev",
                     company: "company",
-                    status: "ACTIVE",
+                    status: "status",
                     remoteWasDeleted: true,
                     fieldMappings: {
                         organization_defined_targets: {
@@ -97,7 +97,7 @@ describe("Employees", () => {
             employee_number: "325462",
             email_address: "johnsmith@merge.dev",
             company: "company",
-            status: "ACTIVE",
+            status: "status",
             remote_was_deleted: true,
             field_mappings: {
                 organization_defined_targets: { custom_key: "custom_value" },
@@ -125,7 +125,7 @@ describe("Employees", () => {
             employeeNumber: "325462",
             emailAddress: "johnsmith@merge.dev",
             company: "company",
-            status: "ACTIVE",
+            status: "status",
             remoteWasDeleted: true,
             fieldMappings: {
                 organization_defined_targets: {

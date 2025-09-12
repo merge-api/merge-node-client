@@ -357,7 +357,7 @@ service:
                   applied_payments:
                     - 4311155d-f236-4a5d-9e0f-1cb167e38f95
                   memo: Weekly Payment
-                  currency: XUA
+                  currency: currency
                   exchange_rate: '2.9'
                   company: company
                   inclusive_of_tax: true
@@ -392,7 +392,7 @@ service:
                     - 9b840d2-686a-465a-8a8e-7b028498f8e4
                     - a47e11b6-c73b-4a0c-be31-130fc48177fa
                   remote_was_deleted: true
-                  posting_status: UNPOSTED
+                  posting_status: posting_status
                   accounting_period: accounting_period
                   remote_created_at: '2020-03-31T00:00:00Z'
                   remote_updated_at: '2020-03-31T00:00:00Z'
@@ -451,7 +451,7 @@ service:
                 applied_payments:
                   - 4311155d-f236-4a5d-9e0f-1cb167e38f95
                 memo: Weekly Payment
-                currency: XUA
+                currency: currency
                 exchange_rate: '2.9'
                 company: company
                 inclusive_of_tax: true
@@ -486,7 +486,7 @@ service:
                   - 9b840d2-686a-465a-8a8e-7b028498f8e4
                   - a47e11b6-c73b-4a0c-be31-130fc48177fa
                 remote_was_deleted: true
-                posting_status: UNPOSTED
+                posting_status: posting_status
                 accounting_period: accounting_period
                 remote_created_at: '2020-03-31T00:00:00Z'
                 remote_updated_at: '2020-03-31T00:00:00Z'
@@ -574,7 +574,7 @@ service:
               applied_payments:
                 - 4311155d-f236-4a5d-9e0f-1cb167e38f95
               memo: Weekly Payment
-              currency: XUA
+              currency: currency
               exchange_rate: '2.9'
               company: company
               inclusive_of_tax: true
@@ -589,7 +589,7 @@ service:
                     - d25d609b-945f-4762-b55a-1c8fb220c43c
                     - 9b840d2-686a-465a-8a8e-7b028498f8e4
                     - a47e11b6-c73b-4a0c-be31-130fc48177fa
-                  currency: XUA
+                  currency: currency
                   company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
                   employee: 123c8r35-5kf5-12x5-r833-99bwf35210b5
                   project: 22e65a5d-2df5-4e6e-884a-e538d0339000
@@ -610,7 +610,7 @@ service:
                     - d25d609b-945f-4762-b55a-1c8fb220c43c
                     - 9b840d2-686a-465a-8a8e-7b028498f8e4
                     - a47e11b6-c73b-4a0c-be31-130fc48177fa
-                  currency: XUA
+                  currency: currency
                   company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
                   employee: 123c8r35-5kf5-12x5-r833-99bwf35210b5
                   project: project
@@ -627,7 +627,7 @@ service:
                 - 9b840d2-686a-465a-8a8e-7b028498f8e4
                 - a47e11b6-c73b-4a0c-be31-130fc48177fa
               remote_was_deleted: true
-              posting_status: UNPOSTED
+              posting_status: posting_status
               accounting_period: accounting_period
               remote_created_at: '2020-03-31T00:00:00Z'
               remote_updated_at: '2020-03-31T00:00:00Z'

@@ -10,8 +10,8 @@ import { Type2BbEnum } from "./Type2BbEnum";
 export const ItemRequestRequestType: core.serialization.Schema<
     serializers.accounting.ItemRequestRequestType.Raw,
     Merge.accounting.ItemRequestRequestType
-> = core.serialization.undiscriminatedUnion([Type2BbEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), Type2BbEnum]);
 
 export declare namespace ItemRequestRequestType {
-    export type Raw = Type2BbEnum.Raw | string;
+    export type Raw = string | Type2BbEnum.Raw;
 }

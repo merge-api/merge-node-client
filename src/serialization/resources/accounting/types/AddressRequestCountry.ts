@@ -10,8 +10,8 @@ import { CountryEnum } from "./CountryEnum";
 export const AddressRequestCountry: core.serialization.Schema<
     serializers.accounting.AddressRequestCountry.Raw,
     Merge.accounting.AddressRequestCountry
-> = core.serialization.undiscriminatedUnion([CountryEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), CountryEnum]);
 
 export declare namespace AddressRequestCountry {
-    export type Raw = CountryEnum.Raw | string;
+    export type Raw = string | CountryEnum.Raw;
 }

@@ -14,4 +14,4 @@ import * as Merge from "../../../index";
  * * `OPEN` - OPEN
  * * `VOID` - VOID
  */
-export type InvoiceRequestStatus = Merge.accounting.InvoiceStatusEnum | string;
+export type InvoiceRequestStatus = string | Merge.accounting.InvoiceStatusEnum;

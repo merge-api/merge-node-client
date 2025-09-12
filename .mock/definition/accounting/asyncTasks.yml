@@ -24,7 +24,7 @@ service:
             X-Account-Token: X-Account-Token
           response:
             body:
-              status: QUEUED
+              status: status
               result:
                 status_code: 201
                 response:

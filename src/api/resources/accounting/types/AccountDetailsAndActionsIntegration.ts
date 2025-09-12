@@ -6,7 +6,7 @@ import * as Merge from "../../../index";
 
 export interface AccountDetailsAndActionsIntegration {
     name: string;
-    categories: Merge.accounting.CategoriesEnum[];
+    categories: (Merge.accounting.AccountDetailsAndActionsIntegrationCategoriesItem | undefined)[];
     image?: string;
     squareImage?: string;
     color: string;

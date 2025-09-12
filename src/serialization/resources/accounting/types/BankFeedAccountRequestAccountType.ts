@@ -10,8 +10,8 @@ import { BankFeedAccountAccountTypeEnum } from "./BankFeedAccountAccountTypeEnum
 export const BankFeedAccountRequestAccountType: core.serialization.Schema<
     serializers.accounting.BankFeedAccountRequestAccountType.Raw,
     Merge.accounting.BankFeedAccountRequestAccountType
-> = core.serialization.undiscriminatedUnion([BankFeedAccountAccountTypeEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), BankFeedAccountAccountTypeEnum]);
 
 export declare namespace BankFeedAccountRequestAccountType {
-    export type Raw = BankFeedAccountAccountTypeEnum.Raw | string;
+    export type Raw = string | BankFeedAccountAccountTypeEnum.Raw;
 }

@@ -10,8 +10,8 @@ import { PaymentTypeEnum } from "./PaymentTypeEnum";
 export const PatchedPaymentRequestType: core.serialization.Schema<
     serializers.accounting.PatchedPaymentRequestType.Raw,
     Merge.accounting.PatchedPaymentRequestType
-> = core.serialization.undiscriminatedUnion([PaymentTypeEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), PaymentTypeEnum]);
 
 export declare namespace PatchedPaymentRequestType {
-    export type Raw = PaymentTypeEnum.Raw | string;
+    export type Raw = string | PaymentTypeEnum.Raw;
 }

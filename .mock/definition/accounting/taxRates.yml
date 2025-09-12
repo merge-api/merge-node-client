@@ -92,7 +92,7 @@ service:
                   code: '890'
                   name: State tax rate
                   description: Sales Tax
-                  status: ACTIVE
+                  status: status
                   country: US
                   total_tax_rate: 15
                   effective_tax_rate: 15
@@ -161,7 +161,7 @@ service:
               code: '890'
               name: State tax rate
               description: Sales Tax
-              status: ACTIVE
+              status: status
               country: US
               total_tax_rate: 15
               effective_tax_rate: 15

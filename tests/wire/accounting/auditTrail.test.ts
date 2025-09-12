@@ -18,9 +18,9 @@ describe("AuditTrail", () => {
                     id: "b5ceea2a-7171-47ce-8090-165cfce5572c",
                     user_name: "Gil Feig",
                     user_email: "hello@merge.dev",
-                    role: "ADMIN",
+                    role: "role",
                     ip_address: "192.0.2.123",
-                    event_type: "CREATED_REMOTE_PRODUCTION_API_KEY",
+                    event_type: "event_type",
                     event_description:
                         "Organization-wide Scopes for model hris.Employee updated from Read to Read+Write",
                     created_at: "2024-01-15T09:30:00Z",
@@ -46,9 +46,9 @@ describe("AuditTrail", () => {
                     id: "b5ceea2a-7171-47ce-8090-165cfce5572c",
                     userName: "Gil Feig",
                     userEmail: "hello@merge.dev",
-                    role: "ADMIN",
+                    role: "role",
                     ipAddress: "192.0.2.123",
-                    eventType: "CREATED_REMOTE_PRODUCTION_API_KEY",
+                    eventType: "event_type",
                     eventDescription:
                         "Organization-wide Scopes for model hris.Employee updated from Read to Read+Write",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),

@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `BILLING` - BILLING
  * * `SHIPPING` - SHIPPING
  */
-export type AddressType = Merge.accounting.AddressTypeEnum | string;
+export type AddressType = string | Merge.accounting.AddressTypeEnum;

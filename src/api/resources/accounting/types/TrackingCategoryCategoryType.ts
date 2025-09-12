@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `CLASS` - CLASS
  * * `DEPARTMENT` - DEPARTMENT
  */
-export type TrackingCategoryCategoryType = Merge.accounting.CategoryTypeEnum | string;
+export type TrackingCategoryCategoryType = string | Merge.accounting.CategoryTypeEnum;

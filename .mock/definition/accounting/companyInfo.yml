@@ -104,7 +104,7 @@ service:
                   tax_number: 11-0011000
                   fiscal_year_end_month: 12
                   fiscal_year_end_day: 31
-                  currency: XUA
+                  currency: currency
                   remote_created_at: '2020-03-31T00:00:00Z'
                   addresses:
                     - created_at: '2021-09-15T00:00:00Z'
@@ -175,14 +175,14 @@ service:
               tax_number: 11-0011000
               fiscal_year_end_month: 12
               fiscal_year_end_day: 31
-              currency: XUA
+              currency: currency
               remote_created_at: '2020-03-31T00:00:00Z'
               urls:
                 - urls
               addresses:
                 - created_at: '2021-09-15T00:00:00Z'
                   modified_at: '2021-10-16T00:00:00Z'
-                  type: BILLING
+                  type: type
                   street_1: 2920 Broadway
                   street_2: 2nd Floor
                   city: New York

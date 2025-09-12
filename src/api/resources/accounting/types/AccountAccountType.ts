@@ -21,4 +21,4 @@ import * as Merge from "../../../index";
  * * `LONG_TERM_LIABILITY` - LONG_TERM_LIABILITY
  * * `NON_POSTING` - NON_POSTING
  */
-export type AccountAccountType = Merge.accounting.AccountAccountTypeEnum | string;
+export type AccountAccountType = string | Merge.accounting.AccountAccountTypeEnum;

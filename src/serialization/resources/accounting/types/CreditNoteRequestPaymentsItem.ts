@@ -10,8 +10,8 @@ import { Payment } from "./Payment";
 export const CreditNoteRequestPaymentsItem: core.serialization.Schema<
     serializers.accounting.CreditNoteRequestPaymentsItem.Raw,
     Merge.accounting.CreditNoteRequestPaymentsItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), Payment]);
+> = core.serialization.undiscriminatedUnion([Payment, core.serialization.string()]);
 
 export declare namespace CreditNoteRequestPaymentsItem {
-    export type Raw = string | Payment.Raw;
+    export type Raw = Payment.Raw | string;
 }

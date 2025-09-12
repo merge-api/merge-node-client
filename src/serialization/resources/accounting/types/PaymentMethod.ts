@@ -16,7 +16,7 @@ export const PaymentMethod: core.serialization.ObjectSchema<
     remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
-    methodType: core.serialization.property("method_type", PaymentMethodMethodType),
+    methodType: core.serialization.property("method_type", PaymentMethodMethodType.optional()),
     name: core.serialization.string(),
     isActive: core.serialization.property("is_active", core.serialization.boolean().optional()),
     remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
@@ -33,7 +33,7 @@ export declare namespace PaymentMethod {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
-        method_type: PaymentMethodMethodType.Raw;
+        method_type?: PaymentMethodMethodType.Raw | null;
         name: string;
         is_active?: boolean | null;
         remote_updated_at?: string | null;

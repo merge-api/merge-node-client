@@ -109,8 +109,8 @@ service:
                   created_at: '2021-09-15T00:00:00Z'
                   modified_at: '2021-10-16T00:00:00Z'
                   name: Marketing Department
-                  status: ACTIVE
-                  category_type: CLASS
+                  status: status
+                  category_type: category_type
                   parent_category: d25d609b-945f-4762-b55a-1c8fb220c43c
                   company: company
                   remote_was_deleted: true
@@ -172,8 +172,8 @@ service:
               created_at: '2021-09-15T00:00:00Z'
               modified_at: '2021-10-16T00:00:00Z'
               name: Marketing Department
-              status: ACTIVE
-              category_type: CLASS
+              status: status
+              category_type: category_type
               parent_category: d25d609b-945f-4762-b55a-1c8fb220c43c
               company: company
               remote_was_deleted: true

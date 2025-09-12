@@ -155,7 +155,7 @@ service:
                   is_customer: true
                   email_address: pickleball@merge.dev
                   tax_number: 12-3456789
-                  status: ACTIVE
+                  status: status
                   currency: USD
                   remote_updated_at: '2020-03-31T00:00:00Z'
                   company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
@@ -222,7 +222,7 @@ service:
                 is_customer: true
                 email_address: pickleball@merge.dev
                 tax_number: 12-3456789
-                status: ACTIVE
+                status: status
                 currency: USD
                 remote_updated_at: '2020-03-31T00:00:00Z'
                 company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
@@ -328,7 +328,7 @@ service:
               is_customer: true
               email_address: pickleball@merge.dev
               tax_number: 12-3456789
-              status: ACTIVE
+              status: status
               currency: USD
               remote_updated_at: '2020-03-31T00:00:00Z'
               company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
@@ -401,7 +401,7 @@ service:
                 is_customer: true
                 email_address: pickleball@merge.dev
                 tax_number: 12-3456789
-                status: ACTIVE
+                status: status
                 currency: USD
                 remote_updated_at: '2020-03-31T00:00:00Z'
                 company: 595c8f97-2ac4-45b7-b000-41bdf43240b5

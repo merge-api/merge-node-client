@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type ExpenseTrackingCategoriesItem = string | Merge.accounting.TrackingCategory;
+export type ExpenseTrackingCategoriesItem = Merge.accounting.TrackingCategory | string;

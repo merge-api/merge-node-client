@@ -53,7 +53,7 @@ export class AsyncPassthrough {
      *
      * @example
      *     await client.accounting.asyncPassthrough.create({
-     *         method: "GET",
+     *         method: "method",
      *         path: "/scooters"
      *     })
      */

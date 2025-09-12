@@ -354,7 +354,7 @@ service:
                   total_amount: 10000
                   sub_total: 1.1
                   total_tax_amount: 1.1
-                  currency: XUA
+                  currency: currency
                   exchange_rate: '2.9'
                   inclusive_of_tax: true
                   company: company
@@ -454,7 +454,7 @@ service:
                 total_amount: 10000
                 sub_total: 1.1
                 total_tax_amount: 1.1
-                currency: XUA
+                currency: currency
                 exchange_rate: '2.9'
                 inclusive_of_tax: true
                 company: company
@@ -583,7 +583,7 @@ service:
               total_amount: 10000
               sub_total: 1.1
               total_tax_amount: 1.1
-              currency: XUA
+              currency: currency
               exchange_rate: '2.9'
               inclusive_of_tax: true
               company: company
@@ -602,7 +602,7 @@ service:
                     - a47e11b6-c73b-4a0c-be31-130fc48177fa
                   company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
                   employee: 7442f0d5-722d-45bd-b807-6e38489d37fe
-                  currency: XUA
+                  currency: currency
                   account: 2a56344a-a491-11ec-b909-0242ac120002
                   contact: c640b80b-fac9-409f-aa19-1f9221aec445
                   project: 22e65a5d-2df5-4e6e-884a-e538d0339000
@@ -622,7 +622,7 @@ service:
                     - a47e11b6-c73b-4a0c-be31-130fc48177fa
                   company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
                   employee: employee
-                  currency: XUA
+                  currency: currency
                   account: 2a56344a-a491-11ec-b909-0242ac120002
                   contact: contact
                   project: project

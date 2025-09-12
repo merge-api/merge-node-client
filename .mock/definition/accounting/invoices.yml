@@ -27098,7 +27098,7 @@ service:
                   memo: Weekly Payment
                   company: company
                   employee: employee
-                  currency: XUA
+                  currency: currency
                   exchange_rate: '2.9'
                   payment_term: payment_term
                   total_discount: 1.1
@@ -27218,7 +27218,7 @@ service:
                 memo: Weekly Payment
                 company: company
                 employee: employee
-                currency: XUA
+                currency: currency
                 exchange_rate: '2.9'
                 payment_term: payment_term
                 total_discount: 1.1
@@ -27374,7 +27374,7 @@ service:
               memo: Weekly Payment
               company: company
               employee: employee
-              currency: XUA
+              currency: currency
               exchange_rate: '2.9'
               payment_term: payment_term
               total_discount: 1.1
@@ -27509,7 +27509,7 @@ service:
                 memo: Weekly Payment
                 company: company
                 employee: employee
-                currency: XUA
+                currency: currency
                 exchange_rate: '2.9'
                 payment_term: payment_term
                 total_discount: 1.1

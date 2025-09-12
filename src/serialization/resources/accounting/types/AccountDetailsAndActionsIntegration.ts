@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { CategoriesEnum } from "./CategoriesEnum";
+import { AccountDetailsAndActionsIntegrationCategoriesItem } from "./AccountDetailsAndActionsIntegrationCategoriesItem";
 import { ModelOperation } from "./ModelOperation";
 
 export const AccountDetailsAndActionsIntegration: core.serialization.ObjectSchema<
@@ -13,7 +13,7 @@ export const AccountDetailsAndActionsIntegration: core.serialization.ObjectSchem
     Merge.accounting.AccountDetailsAndActionsIntegration
 > = core.serialization.object({
     name: core.serialization.string(),
-    categories: core.serialization.list(CategoriesEnum),
+    categories: core.serialization.list(AccountDetailsAndActionsIntegrationCategoriesItem.optional()),
     image: core.serialization.string().optional(),
     squareImage: core.serialization.property("square_image", core.serialization.string().optional()),
     color: core.serialization.string(),
@@ -28,7 +28,7 @@ export const AccountDetailsAndActionsIntegration: core.serialization.ObjectSchem
 export declare namespace AccountDetailsAndActionsIntegration {
     export interface Raw {
         name: string;
-        categories: CategoriesEnum.Raw[];
+        categories: (AccountDetailsAndActionsIntegrationCategoriesItem.Raw | null | undefined)[];
         image?: string | null;
         square_image?: string | null;
         color: string;

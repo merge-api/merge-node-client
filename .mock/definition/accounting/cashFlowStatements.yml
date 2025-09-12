@@ -88,7 +88,7 @@ service:
                   created_at: '2021-09-15T00:00:00Z'
                   modified_at: '2021-10-16T00:00:00Z'
                   name: CashFlow
-                  currency: XUA
+                  currency: currency
                   company: company
                   start_period: '2020-01-01T00:00:00Z'
                   end_period: '2020-03-31T00:00:00Z'
@@ -182,7 +182,7 @@ service:
               created_at: '2021-09-15T00:00:00Z'
               modified_at: '2021-10-16T00:00:00Z'
               name: CashFlow
-              currency: XUA
+              currency: currency
               company: company
               start_period: '2020-01-01T00:00:00Z'
               end_period: '2020-03-31T00:00:00Z'

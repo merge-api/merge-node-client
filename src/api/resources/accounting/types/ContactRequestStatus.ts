@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `ACTIVE` - ACTIVE
  * * `ARCHIVED` - ARCHIVED
  */
-export type ContactRequestStatus = Merge.accounting.Status7D1Enum | string;
+export type ContactRequestStatus = string | Merge.accounting.Status7D1Enum;

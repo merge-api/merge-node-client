@@ -12,4 +12,4 @@ import * as Merge from "../../../index";
  * * `APPROVED` - APPROVED
  * * `REJECTED` - REJECTED
  */
-export type ExpenseReportStatus = Merge.accounting.ExpenseReportStatusEnum | string;
+export type ExpenseReportStatus = string | Merge.accounting.ExpenseReportStatusEnum;

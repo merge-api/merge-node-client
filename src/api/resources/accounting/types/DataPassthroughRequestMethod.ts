@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type DataPassthroughRequestMethod = Merge.accounting.MethodEnum | string;
+export type DataPassthroughRequestMethod = string | Merge.accounting.MethodEnum;

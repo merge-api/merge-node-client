@@ -27,6 +27,7 @@ export const RemoteFieldApiResponse: core.serialization.ObjectSchema<
     creditNote: core.serialization.property("CreditNote", core.serialization.list(RemoteFieldApi).optional()),
     item: core.serialization.property("Item", core.serialization.list(RemoteFieldApi).optional()),
     purchaseOrder: core.serialization.property("PurchaseOrder", core.serialization.list(RemoteFieldApi).optional()),
+    expenseReport: core.serialization.property("ExpenseReport", core.serialization.list(RemoteFieldApi).optional()),
     trackingCategory: core.serialization.property(
         "TrackingCategory",
         core.serialization.list(RemoteFieldApi).optional(),
@@ -65,6 +66,7 @@ export declare namespace RemoteFieldApiResponse {
         CreditNote?: RemoteFieldApi.Raw[] | null;
         Item?: RemoteFieldApi.Raw[] | null;
         PurchaseOrder?: RemoteFieldApi.Raw[] | null;
+        ExpenseReport?: RemoteFieldApi.Raw[] | null;
         TrackingCategory?: RemoteFieldApi.Raw[] | null;
         JournalEntry?: RemoteFieldApi.Raw[] | null;
         TaxRate?: RemoteFieldApi.Raw[] | null;

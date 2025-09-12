@@ -10,8 +10,8 @@ import { LanguageEnum } from "../../../types/LanguageEnum";
 export const EndUserDetailsRequestLanguage: core.serialization.Schema<
     serializers.accounting.EndUserDetailsRequestLanguage.Raw,
     Merge.accounting.EndUserDetailsRequestLanguage
-> = core.serialization.undiscriminatedUnion([LanguageEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), LanguageEnum]);
 
 export declare namespace EndUserDetailsRequestLanguage {
-    export type Raw = LanguageEnum.Raw | string;
+    export type Raw = string | LanguageEnum.Raw;
 }

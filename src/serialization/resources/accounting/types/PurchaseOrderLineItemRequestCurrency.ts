@@ -10,8 +10,8 @@ import { TransactionCurrencyEnum } from "./TransactionCurrencyEnum";
 export const PurchaseOrderLineItemRequestCurrency: core.serialization.Schema<
     serializers.accounting.PurchaseOrderLineItemRequestCurrency.Raw,
     Merge.accounting.PurchaseOrderLineItemRequestCurrency
-> = core.serialization.undiscriminatedUnion([TransactionCurrencyEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), TransactionCurrencyEnum]);
 
 export declare namespace PurchaseOrderLineItemRequestCurrency {
-    export type Raw = TransactionCurrencyEnum.Raw | string;
+    export type Raw = string | TransactionCurrencyEnum.Raw;
 }

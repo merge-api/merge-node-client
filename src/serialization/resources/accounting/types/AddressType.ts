@@ -10,8 +10,8 @@ import { AddressTypeEnum } from "./AddressTypeEnum";
 export const AddressType: core.serialization.Schema<
     serializers.accounting.AddressType.Raw,
     Merge.accounting.AddressType
-> = core.serialization.undiscriminatedUnion([AddressTypeEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), AddressTypeEnum]);
 
 export declare namespace AddressType {
-    export type Raw = AddressTypeEnum.Raw | string;
+    export type Raw = string | AddressTypeEnum.Raw;
 }

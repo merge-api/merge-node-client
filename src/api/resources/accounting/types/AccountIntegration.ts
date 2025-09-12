@@ -10,7 +10,7 @@ export interface AccountIntegration {
     /** Optional. This shortened name appears in places with limited space, usually in conjunction with the platform's logo (e.g., Merge Link menu).<br><br>Example: <i>Workforce Now (in lieu of ADP Workforce Now), SuccessFactors (in lieu of SAP SuccessFactors)</i> */
     abbreviatedName?: string;
     /** Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris]. */
-    categories?: Merge.accounting.CategoriesEnum[];
+    categories?: (Merge.accounting.AccountIntegrationCategoriesItem | undefined)[];
     /** Company logo in rectangular shape. */
     image?: string;
     /** Company logo in square shape. */

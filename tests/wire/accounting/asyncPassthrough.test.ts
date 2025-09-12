@@ -9,7 +9,7 @@ describe("AsyncPassthrough", () => {
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
-        const rawRequestBody = { method: "GET", path: "/scooters" };
+        const rawRequestBody = { method: "method", path: "/scooters" };
         const rawResponseBody = { async_passthrough_receipt_id: "fd29020f-2695-445e-922e-dcd5e81903fd" };
         server
             .mockEndpoint()
@@ -21,7 +21,7 @@ describe("AsyncPassthrough", () => {
             .build();
 
         const response = await client.accounting.asyncPassthrough.create({
-            method: "GET",
+            method: "method",
             path: "/scooters",
         });
         expect(response).toEqual({

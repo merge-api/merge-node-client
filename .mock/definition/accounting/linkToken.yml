@@ -1,6 +1,14 @@
 imports:
   root: __package__.yml
 types:
+  EndUserDetailsRequestCategoriesItem:
+    discriminated: false
+    union:
+      - string
+      - root.CategoriesEnum
+    source:
+      openapi: openapi/openapi.yml
+    inline: true
   EndUserDetailsRequestLanguage:
     discriminated: false
     docs: >-
@@ -12,8 +20,8 @@ types:
 
       * `de` - de
     union:
-      - root.LanguageEnum
       - string
+      - root.LanguageEnum
     source:
       openapi: openapi/openapi.yml
     inline: true
@@ -58,7 +66,7 @@ service:
                 maxLength: 100
             categories:
               docs: The integration categories to show in Merge Link.
-              type: list<root.CategoriesEnum>
+              type: list<optional<EndUserDetailsRequestCategoriesItem>>
             integration:
               type: optional<string>
               docs: >-

@@ -314,4 +314,4 @@ import * as Merge from "../../../index";
  * * `ZWR` - Zimbabwean Dollar (2008)
  * * `ZWL` - Zimbabwean Dollar (2009)
  */
-export type ExpenseCurrency = Merge.accounting.TransactionCurrencyEnum | string;
+export type ExpenseCurrency = string | Merge.accounting.TransactionCurrencyEnum;

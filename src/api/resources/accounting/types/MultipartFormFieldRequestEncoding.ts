@@ -11,4 +11,4 @@ import * as Merge from "../../../index";
  * * `BASE64` - BASE64
  * * `GZIP_BASE64` - GZIP_BASE64
  */
-export type MultipartFormFieldRequestEncoding = Merge.accounting.EncodingEnum | string;
+export type MultipartFormFieldRequestEncoding = string | Merge.accounting.EncodingEnum;

@@ -10,8 +10,8 @@ import { TrackingCategory } from "./TrackingCategory";
 export const ExpenseLineRequestTrackingCategoriesItem: core.serialization.Schema<
     serializers.accounting.ExpenseLineRequestTrackingCategoriesItem.Raw,
     Merge.accounting.ExpenseLineRequestTrackingCategoriesItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), TrackingCategory]);
+> = core.serialization.undiscriminatedUnion([TrackingCategory, core.serialization.string()]);
 
 export declare namespace ExpenseLineRequestTrackingCategoriesItem {
-    export type Raw = string | TrackingCategory.Raw;
+    export type Raw = TrackingCategory.Raw | string;
 }

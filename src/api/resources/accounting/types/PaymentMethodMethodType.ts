@@ -13,4 +13,4 @@ import * as Merge from "../../../index";
  * * `CASH` - CASH
  * * `CHECK` - CHECK
  */
-export type PaymentMethodMethodType = Merge.accounting.MethodTypeEnum | string;
+export type PaymentMethodMethodType = string | Merge.accounting.MethodTypeEnum;

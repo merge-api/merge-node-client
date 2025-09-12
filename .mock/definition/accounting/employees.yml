@@ -91,7 +91,7 @@ service:
                   employee_number: '325462'
                   email_address: johnsmith@merge.dev
                   company: company
-                  status: ACTIVE
+                  status: status
                   remote_was_deleted: true
                   field_mappings:
                     organization_defined_targets:
@@ -150,7 +150,7 @@ service:
               employee_number: '325462'
               email_address: johnsmith@merge.dev
               company: company
-              status: ACTIVE
+              status: status
               remote_was_deleted: true
               field_mappings:
                 organization_defined_targets:

@@ -10,8 +10,8 @@ import { IssueStatusEnum } from "./IssueStatusEnum";
 export const IssueStatus: core.serialization.Schema<
     serializers.accounting.IssueStatus.Raw,
     Merge.accounting.IssueStatus
-> = core.serialization.undiscriminatedUnion([IssueStatusEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), IssueStatusEnum]);
 
 export declare namespace IssueStatus {
-    export type Raw = IssueStatusEnum.Raw | string;
+    export type Raw = string | IssueStatusEnum.Raw;
 }

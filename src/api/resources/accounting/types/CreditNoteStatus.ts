@@ -11,4 +11,4 @@ import * as Merge from "../../../index";
  * * `AUTHORIZED` - AUTHORIZED
  * * `PAID` - PAID
  */
-export type CreditNoteStatus = Merge.accounting.CreditNoteStatusEnum | string;
+export type CreditNoteStatus = string | Merge.accounting.CreditNoteStatusEnum;

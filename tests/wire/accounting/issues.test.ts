@@ -16,7 +16,7 @@ describe("Issues", () => {
             results: [
                 {
                     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                    status: "ONGOING",
+                    status: "status",
                     error_description: "Missing Permissions",
                     end_user: { key: "value" },
                     first_incident_time: "2022-12-05T16:19:15Z",
@@ -43,7 +43,7 @@ describe("Issues", () => {
             results: [
                 {
                     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                    status: "ONGOING",
+                    status: "status",
                     errorDescription: "Missing Permissions",
                     endUser: {
                         key: "value",
@@ -63,7 +63,7 @@ describe("Issues", () => {
 
         const rawResponseBody = {
             id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            status: "ONGOING",
+            status: "status",
             error_description: "Missing Permissions",
             end_user: { key: "value" },
             first_incident_time: "2022-12-05T16:19:15Z",
@@ -82,7 +82,7 @@ describe("Issues", () => {
         const response = await client.accounting.issues.retrieve("id");
         expect(response).toEqual({
             id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            status: "ONGOING",
+            status: "status",
             errorDescription: "Missing Permissions",
             endUser: {
                 key: "value",

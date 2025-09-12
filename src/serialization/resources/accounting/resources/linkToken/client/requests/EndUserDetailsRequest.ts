@@ -5,7 +5,7 @@
 import * as serializers from "../../../../../../index";
 import * as Merge from "../../../../../../../api/index";
 import * as core from "../../../../../../../core";
-import { CategoriesEnum } from "../../../../types/CategoriesEnum";
+import { EndUserDetailsRequestCategoriesItem } from "../../types/EndUserDetailsRequestCategoriesItem";
 import { CommonModelScopesBodyRequest } from "../../../../types/CommonModelScopesBodyRequest";
 import { IndividualCommonModelScopeDeserializerRequest } from "../../../../types/IndividualCommonModelScopeDeserializerRequest";
 import { EndUserDetailsRequestLanguage } from "../../types/EndUserDetailsRequestLanguage";
@@ -17,7 +17,7 @@ export const EndUserDetailsRequest: core.serialization.Schema<
     endUserEmailAddress: core.serialization.property("end_user_email_address", core.serialization.string()),
     endUserOrganizationName: core.serialization.property("end_user_organization_name", core.serialization.string()),
     endUserOriginId: core.serialization.property("end_user_origin_id", core.serialization.string()),
-    categories: core.serialization.list(CategoriesEnum),
+    categories: core.serialization.list(EndUserDetailsRequestCategoriesItem.optional()),
     integration: core.serialization.string().optional(),
     linkExpiryMins: core.serialization.property("link_expiry_mins", core.serialization.number().optional()),
     shouldCreateMagicLinkUrl: core.serialization.property(
@@ -51,7 +51,7 @@ export declare namespace EndUserDetailsRequest {
         end_user_email_address: string;
         end_user_organization_name: string;
         end_user_origin_id: string;
-        categories: CategoriesEnum.Raw[];
+        categories: (EndUserDetailsRequestCategoriesItem.Raw | null | undefined)[];
         integration?: string | null;
         link_expiry_mins?: number | null;
         should_create_magic_link_url?: boolean | null;

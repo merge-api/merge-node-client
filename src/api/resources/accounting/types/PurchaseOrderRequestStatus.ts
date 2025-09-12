@@ -13,4 +13,4 @@ import * as Merge from "../../../index";
  * * `BILLED` - BILLED
  * * `DELETED` - DELETED
  */
-export type PurchaseOrderRequestStatus = Merge.accounting.PurchaseOrderStatusEnum | string;
+export type PurchaseOrderRequestStatus = string | Merge.accounting.PurchaseOrderStatusEnum;
