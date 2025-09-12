@@ -24,7 +24,7 @@ service:
                 name: name
                 abbreviated_name: abbreviated_name
                 categories:
-                  - hris
+                  - categories
                 image: image
                 square_image: square_image
                 color: color

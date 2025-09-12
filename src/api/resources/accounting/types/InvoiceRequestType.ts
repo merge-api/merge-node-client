@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
  * * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
  */
-export type InvoiceRequestType = Merge.accounting.InvoiceTypeEnum | string;
+export type InvoiceRequestType = string | Merge.accounting.InvoiceTypeEnum;

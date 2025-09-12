@@ -5,13 +5,13 @@
 import * as serializers from "../../../index";
 import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import { Contact } from "./Contact";
+import { Project } from "./Project";
 
 export const ExpenseLineRequestProject: core.serialization.Schema<
     serializers.accounting.ExpenseLineRequestProject.Raw,
     Merge.accounting.ExpenseLineRequestProject
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), Contact]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), Project]);
 
 export declare namespace ExpenseLineRequestProject {
-    export type Raw = string | Contact.Raw;
+    export type Raw = string | Project.Raw;
 }

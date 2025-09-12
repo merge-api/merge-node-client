@@ -10,8 +10,8 @@ import { MethodEnum } from "./MethodEnum";
 export const DataPassthroughRequestMethod: core.serialization.Schema<
     serializers.accounting.DataPassthroughRequestMethod.Raw,
     Merge.accounting.DataPassthroughRequestMethod
-> = core.serialization.undiscriminatedUnion([MethodEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), MethodEnum]);
 
 export declare namespace DataPassthroughRequestMethod {
-    export type Raw = MethodEnum.Raw | string;
+    export type Raw = string | MethodEnum.Raw;
 }

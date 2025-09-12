@@ -10,8 +10,8 @@ import { CategoryTypeEnum } from "./CategoryTypeEnum";
 export const TrackingCategoryCategoryType: core.serialization.Schema<
     serializers.accounting.TrackingCategoryCategoryType.Raw,
     Merge.accounting.TrackingCategoryCategoryType
-> = core.serialization.undiscriminatedUnion([CategoryTypeEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), CategoryTypeEnum]);
 
 export declare namespace TrackingCategoryCategoryType {
-    export type Raw = CategoryTypeEnum.Raw | string;
+    export type Raw = string | CategoryTypeEnum.Raw;
 }

@@ -10,8 +10,8 @@ import { CreditOrDebitEnum } from "./CreditOrDebitEnum";
 export const BankFeedTransactionRequestRequestCreditOrDebit: core.serialization.Schema<
     serializers.accounting.BankFeedTransactionRequestRequestCreditOrDebit.Raw,
     Merge.accounting.BankFeedTransactionRequestRequestCreditOrDebit
-> = core.serialization.undiscriminatedUnion([CreditOrDebitEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), CreditOrDebitEnum]);
 
 export declare namespace BankFeedTransactionRequestRequestCreditOrDebit {
-    export type Raw = CreditOrDebitEnum.Raw | string;
+    export type Raw = string | CreditOrDebitEnum.Raw;
 }

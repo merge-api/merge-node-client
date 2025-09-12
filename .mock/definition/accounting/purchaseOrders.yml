@@ -647,7 +647,7 @@ service:
                   remote_id: '239741'
                   created_at: '2021-09-15T00:00:00Z'
                   modified_at: '2021-10-16T00:00:00Z'
-                  status: DRAFT
+                  status: status
                   issue_date: '2020-03-31T00:00:00Z'
                   purchase_order_number: PO1234
                   delivery_date: '2020-04-15T00:00:00Z'
@@ -657,7 +657,7 @@ service:
                   memo: private note
                   company: company
                   total_amount: 260
-                  currency: XUA
+                  currency: currency
                   exchange_rate: '2.9'
                   payment_term: payment_term
                   line_items:
@@ -751,7 +751,7 @@ service:
                 remote_id: '239741'
                 created_at: '2021-09-15T00:00:00Z'
                 modified_at: '2021-10-16T00:00:00Z'
-                status: DRAFT
+                status: status
                 issue_date: '2020-03-31T00:00:00Z'
                 purchase_order_number: PO1234
                 delivery_date: '2020-04-15T00:00:00Z'
@@ -761,7 +761,7 @@ service:
                 memo: private note
                 company: company
                 total_amount: 260
-                currency: XUA
+                currency: currency
                 exchange_rate: '2.9'
                 payment_term: payment_term
                 line_items:
@@ -894,7 +894,7 @@ service:
               remote_id: '239741'
               created_at: '2021-09-15T00:00:00Z'
               modified_at: '2021-10-16T00:00:00Z'
-              status: DRAFT
+              status: status
               issue_date: '2020-03-31T00:00:00Z'
               purchase_order_number: PO1234
               delivery_date: '2020-04-15T00:00:00Z'
@@ -904,7 +904,7 @@ service:
               memo: private note
               company: company
               total_amount: 260
-              currency: XUA
+              currency: currency
               exchange_rate: '2.9'
               payment_term: payment_term
               line_items:
@@ -945,7 +945,7 @@ service:
                     - a47e11b6-c73b-4a0c-be31-130fc48177fa
                   tax_amount: tax_amount
                   total_line_amount: total_line_amount
-                  currency: XUA
+                  currency: currency
                   tax_rate: a12e7c20-1922-9df7-s75n-edfeewnn7384
                   exchange_rate: '2.9'
                   company: 595c8f97-2ac4-45b7-b000-41bdf43240b5

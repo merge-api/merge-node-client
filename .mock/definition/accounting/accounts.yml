@@ -142,12 +142,12 @@ service:
                   modified_at: '2021-10-16T00:00:00Z'
                   name: Cash
                   description: Cash
-                  classification: ASSET
+                  classification: classification
                   type: Asset
-                  account_type: BANK
-                  status: ACTIVE
+                  account_type: account_type
+                  status: status
                   current_balance: 1.1
-                  currency: XUA
+                  currency: currency
                   account_number: X12Y9AB
                   parent_account: 22d92d6c-22f9-11ed-861d-0242ac120002
                   company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
@@ -201,12 +201,12 @@ service:
                 modified_at: '2021-10-16T00:00:00Z'
                 name: Cash
                 description: Cash
-                classification: ASSET
+                classification: classification
                 type: Asset
-                account_type: BANK
-                status: ACTIVE
+                account_type: account_type
+                status: status
                 current_balance: 1.1
-                currency: XUA
+                currency: currency
                 account_number: X12Y9AB
                 parent_account: 22d92d6c-22f9-11ed-861d-0242ac120002
                 company: 595c8f97-2ac4-45b7-b000-41bdf43240b5
@@ -294,12 +294,12 @@ service:
               modified_at: '2021-10-16T00:00:00Z'
               name: Cash
               description: Cash
-              classification: ASSET
+              classification: classification
               type: Asset
-              account_type: BANK
-              status: ACTIVE
+              account_type: account_type
+              status: status
               current_balance: 1.1
-              currency: XUA
+              currency: currency
               account_number: X12Y9AB
               parent_account: 22d92d6c-22f9-11ed-861d-0242ac120002
               company: 595c8f97-2ac4-45b7-b000-41bdf43240b5

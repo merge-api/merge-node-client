@@ -12,4 +12,4 @@ import * as Merge from "../../../index";
  * * `SERVICE` - SERVICE
  * * `UNKNOWN` - UNKNOWN
  */
-export type PatchedItemRequestRequestType = Merge.accounting.Type2BbEnum | string;
+export type PatchedItemRequestRequestType = string | Merge.accounting.Type2BbEnum;

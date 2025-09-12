@@ -9,7 +9,7 @@ describe("Passthrough", () => {
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
-        const rawRequestBody = { method: "GET", path: "/scooters" };
+        const rawRequestBody = { method: "method", path: "/scooters" };
         const rawResponseBody = {
             method: "GET",
             path: "/scooters",
@@ -29,7 +29,7 @@ describe("Passthrough", () => {
             .build();
 
         const response = await client.accounting.passthrough.create({
-            method: "GET",
+            method: "method",
             path: "/scooters",
         });
         expect(response).toEqual({

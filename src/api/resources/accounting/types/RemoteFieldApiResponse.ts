@@ -15,6 +15,7 @@ export interface RemoteFieldApiResponse {
     creditNote?: Merge.accounting.RemoteFieldApi[];
     item?: Merge.accounting.RemoteFieldApi[];
     purchaseOrder?: Merge.accounting.RemoteFieldApi[];
+    expenseReport?: Merge.accounting.RemoteFieldApi[];
     trackingCategory?: Merge.accounting.RemoteFieldApi[];
     journalEntry?: Merge.accounting.RemoteFieldApi[];
     taxRate?: Merge.accounting.RemoteFieldApi[];

@@ -21,7 +21,7 @@ export interface EndUserDetailsRequest {
     /** This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers. */
     endUserOriginId: string;
     /** The integration categories to show in Merge Link. */
-    categories: Merge.accounting.CategoriesEnum[];
+    categories: (Merge.accounting.EndUserDetailsRequestCategoriesItem | undefined)[];
     /** The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://docs.merge.dev/guides/merge-link/single-integration/. */
     integration?: string;
     /** An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30. */

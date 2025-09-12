@@ -53,7 +53,7 @@ export class Passthrough {
      *
      * @example
      *     await client.accounting.passthrough.create({
-     *         method: "GET",
+     *         method: "method",
      *         path: "/scooters"
      *     })
      */

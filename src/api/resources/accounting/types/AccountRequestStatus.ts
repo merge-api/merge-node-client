@@ -11,4 +11,4 @@ import * as Merge from "../../../index";
  * * `PENDING` - PENDING
  * * `INACTIVE` - INACTIVE
  */
-export type AccountRequestStatus = Merge.accounting.AccountStatusEnum | string;
+export type AccountRequestStatus = string | Merge.accounting.AccountStatusEnum;

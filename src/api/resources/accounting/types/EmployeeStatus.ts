@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `ACTIVE` - ACTIVE
  * * `INACTIVE` - INACTIVE
  */
-export type EmployeeStatus = Merge.accounting.Status895Enum | string;
+export type EmployeeStatus = string | Merge.accounting.Status895Enum;

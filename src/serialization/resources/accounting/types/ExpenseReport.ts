@@ -7,7 +7,7 @@ import * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import { ExpenseReportStatus } from "./ExpenseReportStatus";
 import { ExpenseReportLine } from "./ExpenseReportLine";
-import { TransactionCurrencyEnum } from "./TransactionCurrencyEnum";
+import { ExpenseReportCurrency } from "./ExpenseReportCurrency";
 import { ExpenseReportCompany } from "./ExpenseReportCompany";
 import { RemoteData } from "./RemoteData";
 import { RemoteField } from "./RemoteField";
@@ -26,7 +26,7 @@ export const ExpenseReport: core.serialization.ObjectSchema<
     status: ExpenseReportStatus.optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     lines: core.serialization.list(ExpenseReportLine).optional(),
-    currency: TransactionCurrencyEnum.optional(),
+    currency: ExpenseReportCurrency.optional(),
     description: core.serialization.string().optional(),
     accountingPeriod: core.serialization.property("accounting_period", core.serialization.string().optional()),
     company: ExpenseReportCompany.optional(),
@@ -55,7 +55,7 @@ export declare namespace ExpenseReport {
         status?: ExpenseReportStatus.Raw | null;
         total_amount?: number | null;
         lines?: ExpenseReportLine.Raw[] | null;
-        currency?: TransactionCurrencyEnum.Raw | null;
+        currency?: ExpenseReportCurrency.Raw | null;
         description?: string | null;
         accounting_period?: string | null;
         company?: ExpenseReportCompany.Raw | null;

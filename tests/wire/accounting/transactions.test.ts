@@ -26,7 +26,7 @@ describe("Transactions", () => {
                     contact: "contact",
                     inclusive_of_tax: true,
                     total_amount: "total_amount",
-                    currency: "XUA",
+                    currency: "currency",
                     exchange_rate: "2.9",
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     tracking_categories: [
@@ -112,7 +112,7 @@ describe("Transactions", () => {
                     contact: "contact",
                     inclusiveOfTax: true,
                     totalAmount: "total_amount",
-                    currency: "XUA",
+                    currency: "currency",
                     exchangeRate: "2.9",
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     trackingCategories: [
@@ -198,7 +198,7 @@ describe("Transactions", () => {
             contact: "contact",
             inclusive_of_tax: true,
             total_amount: "total_amount",
-            currency: "XUA",
+            currency: "currency",
             exchange_rate: "2.9",
             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
             tracking_categories: [
@@ -246,7 +246,7 @@ describe("Transactions", () => {
                     ],
                     total_line_amount: "total_line_amount",
                     tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                    currency: "XUA",
+                    currency: "currency",
                     exchange_rate: "2.9",
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
@@ -281,7 +281,7 @@ describe("Transactions", () => {
             contact: "contact",
             inclusiveOfTax: true,
             totalAmount: "total_amount",
-            currency: "XUA",
+            currency: "currency",
             exchangeRate: "2.9",
             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
             trackingCategories: [
@@ -329,7 +329,7 @@ describe("Transactions", () => {
                     ],
                     totalLineAmount: "total_line_amount",
                     taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                    currency: "XUA",
+                    currency: "currency",
                     exchangeRate: "2.9",
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,

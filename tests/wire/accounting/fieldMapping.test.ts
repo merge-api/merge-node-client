@@ -1623,6 +1623,20 @@ describe("FieldMapping", () => {
                     coverage: 1,
                 },
             ],
+            ExpenseReport: [
+                {
+                    schema: { type: "string" },
+                    remote_key_name: "example_remote_key_name",
+                    remote_endpoint_info: {
+                        method: "GET",
+                        url_path: "/example-url-path",
+                        field_traversal_path: ["example_key_name"],
+                    },
+                    example_values: ["example"],
+                    advanced_metadata: { id: "id" },
+                    coverage: 1,
+                },
+            ],
             TrackingCategory: [
                 {
                     schema: { type: "string" },
@@ -2007,6 +2021,24 @@ describe("FieldMapping", () => {
                 },
             ],
             purchaseOrder: [
+                {
+                    schema: {
+                        type: "string",
+                    },
+                    remoteKeyName: "example_remote_key_name",
+                    remoteEndpointInfo: {
+                        method: "GET",
+                        urlPath: "/example-url-path",
+                        fieldTraversalPath: ["example_key_name"],
+                    },
+                    exampleValues: ["example"],
+                    advancedMetadata: {
+                        id: "id",
+                    },
+                    coverage: 1,
+                },
+            ],
+            expenseReport: [
                 {
                     schema: {
                         type: "string",

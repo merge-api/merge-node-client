@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `CREDIT` - CREDIT
  * * `DEBIT` - DEBIT
  */
-export type BankFeedTransactionCreditOrDebit = Merge.accounting.CreditOrDebitEnum | string;
+export type BankFeedTransactionCreditOrDebit = string | Merge.accounting.CreditOrDebitEnum;

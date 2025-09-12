@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `UNPOSTED` - UNPOSTED
  * * `POSTED` - POSTED
  */
-export type JournalEntryPostingStatus = Merge.accounting.PostingStatusEnum | string;
+export type JournalEntryPostingStatus = string | Merge.accounting.PostingStatusEnum;

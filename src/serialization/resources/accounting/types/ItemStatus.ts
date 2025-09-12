@@ -8,8 +8,8 @@ import * as core from "../../../../core";
 import { Status7D1Enum } from "./Status7D1Enum";
 
 export const ItemStatus: core.serialization.Schema<serializers.accounting.ItemStatus.Raw, Merge.accounting.ItemStatus> =
-    core.serialization.undiscriminatedUnion([Status7D1Enum, core.serialization.string()]);
+    core.serialization.undiscriminatedUnion([core.serialization.string(), Status7D1Enum]);
 
 export declare namespace ItemStatus {
-    export type Raw = Status7D1Enum.Raw | string;
+    export type Raw = string | Status7D1Enum.Raw;
 }

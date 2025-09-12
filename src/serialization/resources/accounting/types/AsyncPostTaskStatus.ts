@@ -10,8 +10,8 @@ import { AsyncPostTaskStatusEnum } from "./AsyncPostTaskStatusEnum";
 export const AsyncPostTaskStatus: core.serialization.Schema<
     serializers.accounting.AsyncPostTaskStatus.Raw,
     Merge.accounting.AsyncPostTaskStatus
-> = core.serialization.undiscriminatedUnion([AsyncPostTaskStatusEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), AsyncPostTaskStatusEnum]);
 
 export declare namespace AsyncPostTaskStatus {
-    export type Raw = AsyncPostTaskStatusEnum.Raw | string;
+    export type Raw = string | AsyncPostTaskStatusEnum.Raw;
 }

@@ -24,7 +24,7 @@ service:
         - headers:
             X-Account-Token: X-Account-Token
           request:
-            method: GET
+            method: method
             path: /scooters
           response:
             body:

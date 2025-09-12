@@ -87,9 +87,9 @@ service:
                 - id: b5ceea2a-7171-47ce-8090-165cfce5572c
                   user_name: Gil Feig
                   user_email: hello@merge.dev
-                  role: ADMIN
+                  role: role
                   ip_address: 192.0.2.123
-                  event_type: CREATED_REMOTE_PRODUCTION_API_KEY
+                  event_type: event_type
                   event_description: >-
                     Organization-wide Scopes for model hris.Employee updated
                     from Read to Read+Write

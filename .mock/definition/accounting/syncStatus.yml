@@ -51,7 +51,7 @@ service:
                   next_sync_start: '2021-03-30T20:44:18Z'
                   last_sync_result: SYNCING
                   last_sync_finished: '2021-03-30T19:55:18Z'
-                  status: SYNCING
+                  status: status
                   is_initial_sync: true
                   selective_sync_configurations_usage: IN_NEXT_SYNC
   source:

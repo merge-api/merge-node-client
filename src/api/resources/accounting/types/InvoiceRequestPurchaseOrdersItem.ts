@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type InvoiceRequestPurchaseOrdersItem = string | Merge.accounting.PurchaseOrder;
+export type InvoiceRequestPurchaseOrdersItem = Merge.accounting.PurchaseOrder | string;

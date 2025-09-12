@@ -10,8 +10,8 @@ import { MethodTypeEnum } from "./MethodTypeEnum";
 export const PaymentMethodMethodType: core.serialization.Schema<
     serializers.accounting.PaymentMethodMethodType.Raw,
     Merge.accounting.PaymentMethodMethodType
-> = core.serialization.undiscriminatedUnion([MethodTypeEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), MethodTypeEnum]);
 
 export declare namespace PaymentMethodMethodType {
-    export type Raw = MethodTypeEnum.Raw | string;
+    export type Raw = string | MethodTypeEnum.Raw;
 }

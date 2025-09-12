@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `SALES` - SALES
  * * `PURCHASE` - PURCHASE
  */
-export type TaxComponentComponentType = Merge.accounting.ComponentTypeEnum | string;
+export type TaxComponentComponentType = string | Merge.accounting.ComponentTypeEnum;

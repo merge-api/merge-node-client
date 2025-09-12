@@ -10,8 +10,8 @@ import { Status7D1Enum } from "./Status7D1Enum";
 export const PatchedItemRequestRequestStatus: core.serialization.Schema<
     serializers.accounting.PatchedItemRequestRequestStatus.Raw,
     Merge.accounting.PatchedItemRequestRequestStatus
-> = core.serialization.undiscriminatedUnion([Status7D1Enum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), Status7D1Enum]);
 
 export declare namespace PatchedItemRequestRequestStatus {
-    export type Raw = Status7D1Enum.Raw | string;
+    export type Raw = string | Status7D1Enum.Raw;
 }

@@ -10,8 +10,8 @@ import { PostingStatusEnum } from "./PostingStatusEnum";
 export const JournalEntryPostingStatus: core.serialization.Schema<
     serializers.accounting.JournalEntryPostingStatus.Raw,
     Merge.accounting.JournalEntryPostingStatus
-> = core.serialization.undiscriminatedUnion([PostingStatusEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), PostingStatusEnum]);
 
 export declare namespace JournalEntryPostingStatus {
-    export type Raw = PostingStatusEnum.Raw | string;
+    export type Raw = string | PostingStatusEnum.Raw;
 }

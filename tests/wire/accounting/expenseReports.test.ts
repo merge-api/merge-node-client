@@ -22,7 +22,7 @@ describe("ExpenseReports", () => {
                     report_date: "2024-01-31T00:00:00Z",
                     report_identifier: "EXP-2024-001",
                     employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
-                    status: "DRAFT",
+                    status: "status",
                     total_amount: 150,
                     lines: [
                         {
@@ -51,7 +51,7 @@ describe("ExpenseReports", () => {
                             remote_was_deleted: false,
                         },
                     ],
-                    currency: "XUA",
+                    currency: "currency",
                     description: "January 2024 Travel Expenses",
                     accounting_period: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
                     company: "company",
@@ -92,7 +92,7 @@ describe("ExpenseReports", () => {
                     reportDate: new Date("2024-01-31T00:00:00.000Z"),
                     reportIdentifier: "EXP-2024-001",
                     employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
-                    status: "DRAFT",
+                    status: "status",
                     totalAmount: 150,
                     lines: [
                         {
@@ -121,7 +121,7 @@ describe("ExpenseReports", () => {
                             remoteWasDeleted: false,
                         },
                     ],
-                    currency: "XUA",
+                    currency: "currency",
                     description: "January 2024 Travel Expenses",
                     accountingPeriod: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
                     company: "company",
@@ -171,7 +171,7 @@ describe("ExpenseReports", () => {
                 report_date: "2024-01-31T00:00:00Z",
                 report_identifier: "EXP-2024-001",
                 employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
-                status: "DRAFT",
+                status: "status",
                 total_amount: 150,
                 lines: [
                     {
@@ -200,7 +200,7 @@ describe("ExpenseReports", () => {
                         remote_was_deleted: false,
                     },
                 ],
-                currency: "XUA",
+                currency: "currency",
                 description: "January 2024 Travel Expenses",
                 accounting_period: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
                 company: "company",
@@ -264,7 +264,7 @@ describe("ExpenseReports", () => {
                 reportDate: new Date("2024-01-31T00:00:00.000Z"),
                 reportIdentifier: "EXP-2024-001",
                 employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
-                status: "DRAFT",
+                status: "status",
                 totalAmount: 150,
                 lines: [
                     {
@@ -293,7 +293,7 @@ describe("ExpenseReports", () => {
                         remoteWasDeleted: false,
                     },
                 ],
-                currency: "XUA",
+                currency: "currency",
                 description: "January 2024 Travel Expenses",
                 accountingPeriod: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
                 company: "company",
@@ -450,7 +450,7 @@ describe("ExpenseReports", () => {
             report_date: "2024-01-31T00:00:00Z",
             report_identifier: "EXP-2024-001",
             employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
-            status: "DRAFT",
+            status: "status",
             total_amount: 150,
             lines: [
                 {
@@ -480,7 +480,7 @@ describe("ExpenseReports", () => {
                     remote_fields: [{ remote_field_class: "remote_field_class" }],
                 },
             ],
-            currency: "XUA",
+            currency: "currency",
             description: "January 2024 Travel Expenses",
             accounting_period: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
             company: "company",
@@ -510,7 +510,7 @@ describe("ExpenseReports", () => {
             reportDate: new Date("2024-01-31T00:00:00.000Z"),
             reportIdentifier: "EXP-2024-001",
             employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
-            status: "DRAFT",
+            status: "status",
             totalAmount: 150,
             lines: [
                 {
@@ -544,7 +544,7 @@ describe("ExpenseReports", () => {
                     ],
                 },
             ],
-            currency: "XUA",
+            currency: "currency",
             description: "January 2024 Travel Expenses",
             accountingPeriod: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
             company: "company",

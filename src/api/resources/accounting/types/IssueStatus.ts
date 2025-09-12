@@ -10,4 +10,4 @@ import * as Merge from "../../../index";
  * * `ONGOING` - ONGOING
  * * `RESOLVED` - RESOLVED
  */
-export type IssueStatus = Merge.accounting.IssueStatusEnum | string;
+export type IssueStatus = string | Merge.accounting.IssueStatusEnum;

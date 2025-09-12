@@ -10,8 +10,8 @@ import { CreditNoteStatusEnum } from "./CreditNoteStatusEnum";
 export const CreditNoteRequestStatus: core.serialization.Schema<
     serializers.accounting.CreditNoteRequestStatus.Raw,
     Merge.accounting.CreditNoteRequestStatus
-> = core.serialization.undiscriminatedUnion([CreditNoteStatusEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), CreditNoteStatusEnum]);
 
 export declare namespace CreditNoteRequestStatus {
-    export type Raw = CreditNoteStatusEnum.Raw | string;
+    export type Raw = string | CreditNoteStatusEnum.Raw;
 }

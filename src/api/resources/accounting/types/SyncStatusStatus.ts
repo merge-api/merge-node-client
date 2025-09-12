@@ -4,4 +4,4 @@
 
 import * as Merge from "../../../index";
 
-export type SyncStatusStatus = Merge.accounting.StatusFd5Enum | string;
+export type SyncStatusStatus = string | Merge.accounting.StatusFd5Enum;

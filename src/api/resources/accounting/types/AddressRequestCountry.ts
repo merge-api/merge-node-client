@@ -257,4 +257,4 @@ import * as Merge from "../../../index";
  * * `ZM` - Zambia
  * * `ZW` - Zimbabwe
  */
-export type AddressRequestCountry = Merge.accounting.CountryEnum | string;
+export type AddressRequestCountry = string | Merge.accounting.CountryEnum;

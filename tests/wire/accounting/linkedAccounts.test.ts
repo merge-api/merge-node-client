@@ -16,8 +16,8 @@ describe("LinkedAccounts", () => {
             results: [
                 {
                     id: "e59b1821-f85c-4e28-a6b3-1804156f3563",
-                    category: "hris",
-                    status: "COMPLETE",
+                    category: "category",
+                    status: "status",
                     status_detail: "Invalid login credentials",
                     end_user_origin_id: "3ac95cde-6c7f-4eef-afec-be710b42308d",
                     end_user_organization_name: "Foo Bar, LLC",
@@ -27,7 +27,7 @@ describe("LinkedAccounts", () => {
                     is_duplicate: true,
                     integration: {
                         name: "name",
-                        categories: ["hris"],
+                        categories: [],
                         color: "color",
                         slug: "slug",
                         passthrough_available: true,
@@ -63,8 +63,8 @@ describe("LinkedAccounts", () => {
             results: [
                 {
                     id: "e59b1821-f85c-4e28-a6b3-1804156f3563",
-                    category: "hris",
-                    status: "COMPLETE",
+                    category: "category",
+                    status: "status",
                     statusDetail: "Invalid login credentials",
                     endUserOriginId: "3ac95cde-6c7f-4eef-afec-be710b42308d",
                     endUserOrganizationName: "Foo Bar, LLC",
@@ -74,7 +74,7 @@ describe("LinkedAccounts", () => {
                     isDuplicate: true,
                     integration: {
                         name: "name",
-                        categories: ["hris"],
+                        categories: [],
                         color: "color",
                         slug: "slug",
                         passthroughAvailable: true,

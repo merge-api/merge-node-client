@@ -90,7 +90,7 @@ service:
               previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
               results:
                 - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  status: ONGOING
+                  status: status
                   error_description: Missing Permissions
                   end_user:
                     key: value
@@ -121,7 +121,7 @@ service:
           response:
             body:
               id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              status: ONGOING
+              status: status
               error_description: Missing Permissions
               end_user:
                 key: value

@@ -10,8 +10,8 @@ import { ComponentTypeEnum } from "./ComponentTypeEnum";
 export const TaxComponentComponentType: core.serialization.Schema<
     serializers.accounting.TaxComponentComponentType.Raw,
     Merge.accounting.TaxComponentComponentType
-> = core.serialization.undiscriminatedUnion([ComponentTypeEnum, core.serialization.string()]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), ComponentTypeEnum]);
 
 export declare namespace TaxComponentComponentType {
-    export type Raw = ComponentTypeEnum.Raw | string;
+    export type Raw = string | ComponentTypeEnum.Raw;
 }

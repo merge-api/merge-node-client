@@ -641,11 +641,11 @@ service:
                   contact: contact
                   account: account
                   payment_method: payment_method
-                  currency: XUA
+                  currency: currency
                   exchange_rate: '2.9'
                   company: company
                   total_amount: 50
-                  type: ACCOUNTS_PAYABLE
+                  type: type
                   tracking_categories:
                     - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
                     - 9b840d2-686a-465a-8a8e-7b028498f8e4
@@ -723,11 +723,11 @@ service:
                 contact: contact
                 account: account
                 payment_method: payment_method
-                currency: XUA
+                currency: currency
                 exchange_rate: '2.9'
                 company: company
                 total_amount: 50
-                type: ACCOUNTS_PAYABLE
+                type: type
                 tracking_categories:
                   - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
                   - 9b840d2-686a-465a-8a8e-7b028498f8e4
@@ -834,11 +834,11 @@ service:
               contact: contact
               account: account
               payment_method: payment_method
-              currency: XUA
+              currency: currency
               exchange_rate: '2.9'
               company: company
               total_amount: 50
-              type: ACCOUNTS_PAYABLE
+              type: type
               tracking_categories:
                 - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
                 - 9b840d2-686a-465a-8a8e-7b028498f8e4
@@ -922,11 +922,11 @@ service:
                 contact: contact
                 account: account
                 payment_method: payment_method
-                currency: XUA
+                currency: currency
                 exchange_rate: '2.9'
                 company: company
                 total_amount: 50
-                type: ACCOUNTS_PAYABLE
+                type: type
                 tracking_categories:
                   - b38c59b0-a9d7-4740-b1ee-5436c6751e3d
                   - 9b840d2-686a-465a-8a8e-7b028498f8e4

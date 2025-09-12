@@ -14,7 +14,7 @@ describe("AvailableActions", () => {
             integration: {
                 name: "name",
                 abbreviated_name: "abbreviated_name",
-                categories: ["hris"],
+                categories: ["categories"],
                 image: "image",
                 square_image: "square_image",
                 color: "color",
@@ -46,7 +46,7 @@ describe("AvailableActions", () => {
             integration: {
                 name: "name",
                 abbreviatedName: "abbreviated_name",
-                categories: ["hris"],
+                categories: ["categories"],
                 image: "image",
                 squareImage: "square_image",
                 color: "color",

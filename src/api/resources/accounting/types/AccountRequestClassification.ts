@@ -13,4 +13,4 @@ import * as Merge from "../../../index";
  * * `LIABILITY` - LIABILITY
  * * `REVENUE` - REVENUE
  */
-export type AccountRequestClassification = Merge.accounting.ClassificationEnum | string;
+export type AccountRequestClassification = string | Merge.accounting.ClassificationEnum;

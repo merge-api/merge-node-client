@@ -49,14 +49,14 @@ service:
             body:
               created_at: '2021-09-15T00:00:00Z'
               modified_at: '2021-10-16T00:00:00Z'
-              type: BILLING
+              type: type
               street_1: 2920 Broadway
               street_2: 2nd Floor
               city: New York
               state:
                 key: value
               country_subdivision: NY
-              country: AF
+              country: country
               zip_code: '10027'
   source:
     openapi: openapi/openapi.yml

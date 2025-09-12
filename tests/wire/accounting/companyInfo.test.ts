@@ -24,7 +24,7 @@ describe("CompanyInfo", () => {
                     tax_number: "11-0011000",
                     fiscal_year_end_month: 12,
                     fiscal_year_end_day: 31,
-                    currency: "XUA",
+                    currency: "currency",
                     remote_created_at: "2020-03-31T00:00:00Z",
                     addresses: [
                         {
@@ -73,7 +73,7 @@ describe("CompanyInfo", () => {
                     taxNumber: "11-0011000",
                     fiscalYearEndMonth: 12,
                     fiscalYearEndDay: 31,
-                    currency: "XUA",
+                    currency: "currency",
                     remoteCreatedAt: new Date("2020-03-31T00:00:00.000Z"),
                     addresses: [
                         {
@@ -127,14 +127,14 @@ describe("CompanyInfo", () => {
             tax_number: "11-0011000",
             fiscal_year_end_month: 12,
             fiscal_year_end_day: 31,
-            currency: "XUA",
+            currency: "currency",
             remote_created_at: "2020-03-31T00:00:00Z",
             urls: ["urls"],
             addresses: [
                 {
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
-                    type: "BILLING",
+                    type: "type",
                     street_1: "2920 Broadway",
                     street_2: "2nd Floor",
                     city: "New York",
@@ -178,14 +178,14 @@ describe("CompanyInfo", () => {
             taxNumber: "11-0011000",
             fiscalYearEndMonth: 12,
             fiscalYearEndDay: 31,
-            currency: "XUA",
+            currency: "currency",
             remoteCreatedAt: new Date("2020-03-31T00:00:00.000Z"),
             urls: ["urls"],
             addresses: [
                 {
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
-                    type: "BILLING",
+                    type: "type",
                     street1: "2920 Broadway",
                     street2: "2nd Floor",
                     city: "New York",

@@ -220,7 +220,7 @@ service:
                   transaction_date: '2020-03-31T00:00:00Z'
                   vendor: vendor
                   total_amount: 10000
-                  currency: XUA
+                  currency: currency
                   exchange_rate: '2.9'
                   inclusive_of_tax: true
                   company: company
@@ -316,7 +316,7 @@ service:
                 transaction_date: '2020-03-31T00:00:00Z'
                 vendor: vendor
                 total_amount: 10000
-                currency: XUA
+                currency: currency
                 exchange_rate: '2.9'
                 inclusive_of_tax: true
                 company: company
@@ -436,7 +436,7 @@ service:
               transaction_date: '2020-03-31T00:00:00Z'
               vendor: vendor
               total_amount: 10000
-              currency: XUA
+              currency: currency
               exchange_rate: '2.9'
               inclusive_of_tax: true
               company: company

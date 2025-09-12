@@ -10,4 +10,4 @@ import * as Merge from "../../../../../index";
  * * `en` - en
  * * `de` - de
  */
-export type EndUserDetailsRequestLanguage = Merge.accounting.LanguageEnum | string;
+export type EndUserDetailsRequestLanguage = string | Merge.accounting.LanguageEnum;
