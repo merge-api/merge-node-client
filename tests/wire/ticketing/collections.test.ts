@@ -24,6 +24,9 @@ describe("Collections", () => {
                     access_level: "PRIVATE",
                     collection_type: "LIST",
                     parent_collection: "parent_collection",
+                    collection_url: "https://example.com",
+                    remote_created_at: "2022-01-01T00:00:00Z",
+                    remote_updated_at: "2022-01-01T00:00:00Z",
                     remote_was_deleted: true,
                     field_mappings: {
                         organization_defined_targets: { custom_key: "custom_value" },
@@ -58,6 +61,9 @@ describe("Collections", () => {
                     accessLevel: "PRIVATE",
                     collectionType: "LIST",
                     parentCollection: "parent_collection",
+                    collectionUrl: "https://example.com",
+                    remoteCreatedAt: new Date("2022-01-01T00:00:00.000Z"),
+                    remoteUpdatedAt: new Date("2022-01-01T00:00:00.000Z"),
                     remoteWasDeleted: true,
                     fieldMappings: {
                         organization_defined_targets: {
@@ -136,6 +142,9 @@ describe("Collections", () => {
             access_level: "PRIVATE",
             collection_type: "LIST",
             parent_collection: "parent_collection",
+            collection_url: "https://example.com",
+            remote_created_at: "2022-01-01T00:00:00Z",
+            remote_updated_at: "2022-01-01T00:00:00Z",
             remote_was_deleted: true,
             field_mappings: {
                 organization_defined_targets: { custom_key: "custom_value" },
@@ -162,6 +171,9 @@ describe("Collections", () => {
             accessLevel: "PRIVATE",
             collectionType: "LIST",
             parentCollection: "parent_collection",
+            collectionUrl: "https://example.com",
+            remoteCreatedAt: new Date("2022-01-01T00:00:00.000Z"),
+            remoteUpdatedAt: new Date("2022-01-01T00:00:00.000Z"),
             remoteWasDeleted: true,
             fieldMappings: {
                 organization_defined_targets: {

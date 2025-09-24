@@ -71,6 +71,7 @@ export class Dependents {
             createdAfter,
             createdBefore,
             cursor,
+            employeeId,
             includeDeletedData,
             includeRemoteData,
             includeSensitiveFields,
@@ -91,6 +92,10 @@ export class Dependents {
 
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
+        }
+
+        if (employeeId != null) {
+            _queryParams["employee_id"] = employeeId;
         }
 
         if (includeDeletedData != null) {

@@ -78,6 +78,7 @@ export class Collections {
             includeShellData,
             modifiedAfter,
             modifiedBefore,
+            name,
             pageSize,
             parentCollectionId,
             remoteFields,
@@ -123,6 +124,10 @@ export class Collections {
 
         if (modifiedBefore != null) {
             _queryParams["modified_before"] = modifiedBefore.toISOString();
+        }
+
+        if (name != null) {
+            _queryParams["name"] = name;
         }
 
         if (pageSize != null) {

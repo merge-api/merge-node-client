@@ -49,6 +49,8 @@ export interface TicketsListRequest {
     modifiedAfter?: Date;
     /** If provided, only objects synced by Merge before this date time will be returned. */
     modifiedBefore?: Date;
+    /** If provided, will only return tickets with this name. */
+    name?: string;
     /** Number of results to return per page. */
     pageSize?: number;
     /** If provided, will only return sub tickets of the parent_ticket_id. */

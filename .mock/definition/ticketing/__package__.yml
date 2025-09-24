@@ -843,6 +843,18 @@ types:
       parent_collection:
         type: optional<CollectionParentCollection>
         docs: The parent collection for this collection.
+      collection_url:
+        type: optional<string>
+        docs: The 3rd party url of the Collection.
+        validation:
+          format: uri
+          maxLength: 2000
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's collection was created.
+      remote_updated_at:
+        type: optional<datetime>
+        docs: When the third party's collection was updated.
       remote_was_deleted:
         type: optional<boolean>
         docs: >-

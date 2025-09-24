@@ -73,6 +73,7 @@ export class Employees {
             createdBefore,
             cursor,
             displayFullName,
+            employeeNumber,
             employmentStatus,
             employmentType,
             expand,
@@ -121,6 +122,10 @@ export class Employees {
 
         if (displayFullName != null) {
             _queryParams["display_full_name"] = displayFullName;
+        }
+
+        if (employeeNumber != null) {
+            _queryParams["employee_number"] = employeeNumber;
         }
 
         if (employmentStatus != null) {

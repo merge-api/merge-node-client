@@ -71,6 +71,7 @@ export class Contacts {
             createdAfter,
             createdBefore,
             cursor,
+            emailAddress,
             expand,
             includeDeletedData,
             includeRemoteData,
@@ -91,6 +92,10 @@ export class Contacts {
 
         if (cursor != null) {
             _queryParams["cursor"] = cursor;
+        }
+
+        if (emailAddress != null) {
+            _queryParams["email_address"] = emailAddress;
         }
 
         if (expand != null) {

@@ -87,6 +87,7 @@ export class Tickets {
             includeShellData,
             modifiedAfter,
             modifiedBefore,
+            name,
             pageSize,
             parentTicketId,
             priority,
@@ -179,6 +180,10 @@ export class Tickets {
 
         if (modifiedBefore != null) {
             _queryParams["modified_before"] = modifiedBefore.toISOString();
+        }
+
+        if (name != null) {
+            _queryParams["name"] = name;
         }
 
         if (pageSize != null) {

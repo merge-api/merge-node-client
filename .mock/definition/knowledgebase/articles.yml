@@ -1,0 +1,757 @@
+types:
+  ArticlesListRequestExpand:
+    enum:
+      - attachments
+      - value: attachments,author
+        name: AttachmentsAuthor
+      - value: attachments,author,last_edited_by
+        name: AttachmentsAuthorLastEditedBy
+      - value: attachments,author,last_edited_by,parent_article
+        name: AttachmentsAuthorLastEditedByParentArticle
+      - value: attachments,author,last_edited_by,parent_article,parent_container
+        name: AttachmentsAuthorLastEditedByParentArticleParentContainer
+      - value: >-
+          attachments,author,last_edited_by,parent_article,parent_container,root_container
+        name: AttachmentsAuthorLastEditedByParentArticleParentContainerRootContainer
+      - value: attachments,author,last_edited_by,parent_article,root_container
+        name: AttachmentsAuthorLastEditedByParentArticleRootContainer
+      - value: attachments,author,last_edited_by,parent_container
+        name: AttachmentsAuthorLastEditedByParentContainer
+      - value: attachments,author,last_edited_by,parent_container,root_container
+        name: AttachmentsAuthorLastEditedByParentContainerRootContainer
+      - value: attachments,author,last_edited_by,root_container
+        name: AttachmentsAuthorLastEditedByRootContainer
+      - value: attachments,author,parent_article
+        name: AttachmentsAuthorParentArticle
+      - value: attachments,author,parent_article,parent_container
+        name: AttachmentsAuthorParentArticleParentContainer
+      - value: attachments,author,parent_article,parent_container,root_container
+        name: AttachmentsAuthorParentArticleParentContainerRootContainer
+      - value: attachments,author,parent_article,root_container
+        name: AttachmentsAuthorParentArticleRootContainer
+      - value: attachments,author,parent_container
+        name: AttachmentsAuthorParentContainer
+      - value: attachments,author,parent_container,root_container
+        name: AttachmentsAuthorParentContainerRootContainer
+      - value: attachments,author,root_container
+        name: AttachmentsAuthorRootContainer
+      - value: attachments,last_edited_by
+        name: AttachmentsLastEditedBy
+      - value: attachments,last_edited_by,parent_article
+        name: AttachmentsLastEditedByParentArticle
+      - value: attachments,last_edited_by,parent_article,parent_container
+        name: AttachmentsLastEditedByParentArticleParentContainer
+      - value: >-
+          attachments,last_edited_by,parent_article,parent_container,root_container
+        name: AttachmentsLastEditedByParentArticleParentContainerRootContainer
+      - value: attachments,last_edited_by,parent_article,root_container
+        name: AttachmentsLastEditedByParentArticleRootContainer
+      - value: attachments,last_edited_by,parent_container
+        name: AttachmentsLastEditedByParentContainer
+      - value: attachments,last_edited_by,parent_container,root_container
+        name: AttachmentsLastEditedByParentContainerRootContainer
+      - value: attachments,last_edited_by,root_container
+        name: AttachmentsLastEditedByRootContainer
+      - value: attachments,parent_article
+        name: AttachmentsParentArticle
+      - value: attachments,parent_article,parent_container
+        name: AttachmentsParentArticleParentContainer
+      - value: attachments,parent_article,parent_container,root_container
+        name: AttachmentsParentArticleParentContainerRootContainer
+      - value: attachments,parent_article,root_container
+        name: AttachmentsParentArticleRootContainer
+      - value: attachments,parent_container
+        name: AttachmentsParentContainer
+      - value: attachments,parent_container,root_container
+        name: AttachmentsParentContainerRootContainer
+      - value: attachments,root_container
+        name: AttachmentsRootContainer
+      - author
+      - value: author,last_edited_by
+        name: AuthorLastEditedBy
+      - value: author,last_edited_by,parent_article
+        name: AuthorLastEditedByParentArticle
+      - value: author,last_edited_by,parent_article,parent_container
+        name: AuthorLastEditedByParentArticleParentContainer
+      - value: author,last_edited_by,parent_article,parent_container,root_container
+        name: AuthorLastEditedByParentArticleParentContainerRootContainer
+      - value: author,last_edited_by,parent_article,root_container
+        name: AuthorLastEditedByParentArticleRootContainer
+      - value: author,last_edited_by,parent_container
+        name: AuthorLastEditedByParentContainer
+      - value: author,last_edited_by,parent_container,root_container
+        name: AuthorLastEditedByParentContainerRootContainer
+      - value: author,last_edited_by,root_container
+        name: AuthorLastEditedByRootContainer
+      - value: author,parent_article
+        name: AuthorParentArticle
+      - value: author,parent_article,parent_container
+        name: AuthorParentArticleParentContainer
+      - value: author,parent_article,parent_container,root_container
+        name: AuthorParentArticleParentContainerRootContainer
+      - value: author,parent_article,root_container
+        name: AuthorParentArticleRootContainer
+      - value: author,parent_container
+        name: AuthorParentContainer
+      - value: author,parent_container,root_container
+        name: AuthorParentContainerRootContainer
+      - value: author,root_container
+        name: AuthorRootContainer
+      - last_edited_by
+      - value: last_edited_by,parent_article
+        name: LastEditedByParentArticle
+      - value: last_edited_by,parent_article,parent_container
+        name: LastEditedByParentArticleParentContainer
+      - value: last_edited_by,parent_article,parent_container,root_container
+        name: LastEditedByParentArticleParentContainerRootContainer
+      - value: last_edited_by,parent_article,root_container
+        name: LastEditedByParentArticleRootContainer
+      - value: last_edited_by,parent_container
+        name: LastEditedByParentContainer
+      - value: last_edited_by,parent_container,root_container
+        name: LastEditedByParentContainerRootContainer
+      - value: last_edited_by,root_container
+        name: LastEditedByRootContainer
+      - parent_article
+      - value: parent_article,parent_container
+        name: ParentArticleParentContainer
+      - value: parent_article,parent_container,root_container
+        name: ParentArticleParentContainerRootContainer
+      - value: parent_article,root_container
+        name: ParentArticleRootContainer
+      - parent_container
+      - value: parent_container,root_container
+        name: ParentContainerRootContainer
+      - permissions
+      - value: permissions,attachments
+        name: PermissionsAttachments
+      - value: permissions,attachments,author
+        name: PermissionsAttachmentsAuthor
+      - value: permissions,attachments,author,last_edited_by
+        name: PermissionsAttachmentsAuthorLastEditedBy
+      - value: permissions,attachments,author,last_edited_by,parent_article
+        name: PermissionsAttachmentsAuthorLastEditedByParentArticle
+      - value: >-
+          permissions,attachments,author,last_edited_by,parent_article,parent_container
+        name: PermissionsAttachmentsAuthorLastEditedByParentArticleParentContainer
+      - value: >-
+          permissions,attachments,author,last_edited_by,parent_article,parent_container,root_container
+        name: >-
+          PermissionsAttachmentsAuthorLastEditedByParentArticleParentContainerRootContainer
+      - value: >-
+          permissions,attachments,author,last_edited_by,parent_article,root_container
+        name: PermissionsAttachmentsAuthorLastEditedByParentArticleRootContainer
+      - value: permissions,attachments,author,last_edited_by,parent_container
+        name: PermissionsAttachmentsAuthorLastEditedByParentContainer
+      - value: >-
+          permissions,attachments,author,last_edited_by,parent_container,root_container
+        name: PermissionsAttachmentsAuthorLastEditedByParentContainerRootContainer
+      - value: permissions,attachments,author,last_edited_by,root_container
+        name: PermissionsAttachmentsAuthorLastEditedByRootContainer
+      - value: permissions,attachments,author,parent_article
+        name: PermissionsAttachmentsAuthorParentArticle
+      - value: permissions,attachments,author,parent_article,parent_container
+        name: PermissionsAttachmentsAuthorParentArticleParentContainer
+      - value: >-
+          permissions,attachments,author,parent_article,parent_container,root_container
+        name: PermissionsAttachmentsAuthorParentArticleParentContainerRootContainer
+      - value: permissions,attachments,author,parent_article,root_container
+        name: PermissionsAttachmentsAuthorParentArticleRootContainer
+      - value: permissions,attachments,author,parent_container
+        name: PermissionsAttachmentsAuthorParentContainer
+      - value: permissions,attachments,author,parent_container,root_container
+        name: PermissionsAttachmentsAuthorParentContainerRootContainer
+      - value: permissions,attachments,author,root_container
+        name: PermissionsAttachmentsAuthorRootContainer
+      - value: permissions,attachments,last_edited_by
+        name: PermissionsAttachmentsLastEditedBy
+      - value: permissions,attachments,last_edited_by,parent_article
+        name: PermissionsAttachmentsLastEditedByParentArticle
+      - value: permissions,attachments,last_edited_by,parent_article,parent_container
+        name: PermissionsAttachmentsLastEditedByParentArticleParentContainer
+      - value: >-
+          permissions,attachments,last_edited_by,parent_article,parent_container,root_container
+        name: >-
+          PermissionsAttachmentsLastEditedByParentArticleParentContainerRootContainer
+      - value: permissions,attachments,last_edited_by,parent_article,root_container
+        name: PermissionsAttachmentsLastEditedByParentArticleRootContainer
+      - value: permissions,attachments,last_edited_by,parent_container
+        name: PermissionsAttachmentsLastEditedByParentContainer
+      - value: permissions,attachments,last_edited_by,parent_container,root_container
+        name: PermissionsAttachmentsLastEditedByParentContainerRootContainer
+      - value: permissions,attachments,last_edited_by,root_container
+        name: PermissionsAttachmentsLastEditedByRootContainer
+      - value: permissions,attachments,parent_article
+        name: PermissionsAttachmentsParentArticle
+      - value: permissions,attachments,parent_article,parent_container
+        name: PermissionsAttachmentsParentArticleParentContainer
+      - value: permissions,attachments,parent_article,parent_container,root_container
+        name: PermissionsAttachmentsParentArticleParentContainerRootContainer
+      - value: permissions,attachments,parent_article,root_container
+        name: PermissionsAttachmentsParentArticleRootContainer
+      - value: permissions,attachments,parent_container
+        name: PermissionsAttachmentsParentContainer
+      - value: permissions,attachments,parent_container,root_container
+        name: PermissionsAttachmentsParentContainerRootContainer
+      - value: permissions,attachments,root_container
+        name: PermissionsAttachmentsRootContainer
+      - value: permissions,author
+        name: PermissionsAuthor
+      - value: permissions,author,last_edited_by
+        name: PermissionsAuthorLastEditedBy
+      - value: permissions,author,last_edited_by,parent_article
+        name: PermissionsAuthorLastEditedByParentArticle
+      - value: permissions,author,last_edited_by,parent_article,parent_container
+        name: PermissionsAuthorLastEditedByParentArticleParentContainer
+      - value: >-
+          permissions,author,last_edited_by,parent_article,parent_container,root_container
+        name: PermissionsAuthorLastEditedByParentArticleParentContainerRootContainer
+      - value: permissions,author,last_edited_by,parent_article,root_container
+        name: PermissionsAuthorLastEditedByParentArticleRootContainer
+      - value: permissions,author,last_edited_by,parent_container
+        name: PermissionsAuthorLastEditedByParentContainer
+      - value: permissions,author,last_edited_by,parent_container,root_container
+        name: PermissionsAuthorLastEditedByParentContainerRootContainer
+      - value: permissions,author,last_edited_by,root_container
+        name: PermissionsAuthorLastEditedByRootContainer
+      - value: permissions,author,parent_article
+        name: PermissionsAuthorParentArticle
+      - value: permissions,author,parent_article,parent_container
+        name: PermissionsAuthorParentArticleParentContainer
+      - value: permissions,author,parent_article,parent_container,root_container
+        name: PermissionsAuthorParentArticleParentContainerRootContainer
+      - value: permissions,author,parent_article,root_container
+        name: PermissionsAuthorParentArticleRootContainer
+      - value: permissions,author,parent_container
+        name: PermissionsAuthorParentContainer
+      - value: permissions,author,parent_container,root_container
+        name: PermissionsAuthorParentContainerRootContainer
+      - value: permissions,author,root_container
+        name: PermissionsAuthorRootContainer
+      - value: permissions,last_edited_by
+        name: PermissionsLastEditedBy
+      - value: permissions,last_edited_by,parent_article
+        name: PermissionsLastEditedByParentArticle
+      - value: permissions,last_edited_by,parent_article,parent_container
+        name: PermissionsLastEditedByParentArticleParentContainer
+      - value: >-
+          permissions,last_edited_by,parent_article,parent_container,root_container
+        name: PermissionsLastEditedByParentArticleParentContainerRootContainer
+      - value: permissions,last_edited_by,parent_article,root_container
+        name: PermissionsLastEditedByParentArticleRootContainer
+      - value: permissions,last_edited_by,parent_container
+        name: PermissionsLastEditedByParentContainer
+      - value: permissions,last_edited_by,parent_container,root_container
+        name: PermissionsLastEditedByParentContainerRootContainer
+      - value: permissions,last_edited_by,root_container
+        name: PermissionsLastEditedByRootContainer
+      - value: permissions,parent_article
+        name: PermissionsParentArticle
+      - value: permissions,parent_article,parent_container
+        name: PermissionsParentArticleParentContainer
+      - value: permissions,parent_article,parent_container,root_container
+        name: PermissionsParentArticleParentContainerRootContainer
+      - value: permissions,parent_article,root_container
+        name: PermissionsParentArticleRootContainer
+      - value: permissions,parent_container
+        name: PermissionsParentContainer
+      - value: permissions,parent_container,root_container
+        name: PermissionsParentContainerRootContainer
+      - value: permissions,root_container
+        name: PermissionsRootContainer
+      - root_container
+    source:
+      openapi: openapi/openapi.yml
+  ArticlesRetrieveRequestExpand:
+    enum:
+      - attachments
+      - value: attachments,author
+        name: AttachmentsAuthor
+      - value: attachments,author,last_edited_by
+        name: AttachmentsAuthorLastEditedBy
+      - value: attachments,author,last_edited_by,parent_article
+        name: AttachmentsAuthorLastEditedByParentArticle
+      - value: attachments,author,last_edited_by,parent_article,parent_container
+        name: AttachmentsAuthorLastEditedByParentArticleParentContainer
+      - value: >-
+          attachments,author,last_edited_by,parent_article,parent_container,root_container
+        name: AttachmentsAuthorLastEditedByParentArticleParentContainerRootContainer
+      - value: attachments,author,last_edited_by,parent_article,root_container
+        name: AttachmentsAuthorLastEditedByParentArticleRootContainer
+      - value: attachments,author,last_edited_by,parent_container
+        name: AttachmentsAuthorLastEditedByParentContainer
+      - value: attachments,author,last_edited_by,parent_container,root_container
+        name: AttachmentsAuthorLastEditedByParentContainerRootContainer
+      - value: attachments,author,last_edited_by,root_container
+        name: AttachmentsAuthorLastEditedByRootContainer
+      - value: attachments,author,parent_article
+        name: AttachmentsAuthorParentArticle
+      - value: attachments,author,parent_article,parent_container
+        name: AttachmentsAuthorParentArticleParentContainer
+      - value: attachments,author,parent_article,parent_container,root_container
+        name: AttachmentsAuthorParentArticleParentContainerRootContainer
+      - value: attachments,author,parent_article,root_container
+        name: AttachmentsAuthorParentArticleRootContainer
+      - value: attachments,author,parent_container
+        name: AttachmentsAuthorParentContainer
+      - value: attachments,author,parent_container,root_container
+        name: AttachmentsAuthorParentContainerRootContainer
+      - value: attachments,author,root_container
+        name: AttachmentsAuthorRootContainer
+      - value: attachments,last_edited_by
+        name: AttachmentsLastEditedBy
+      - value: attachments,last_edited_by,parent_article
+        name: AttachmentsLastEditedByParentArticle
+      - value: attachments,last_edited_by,parent_article,parent_container
+        name: AttachmentsLastEditedByParentArticleParentContainer
+      - value: >-
+          attachments,last_edited_by,parent_article,parent_container,root_container
+        name: AttachmentsLastEditedByParentArticleParentContainerRootContainer
+      - value: attachments,last_edited_by,parent_article,root_container
+        name: AttachmentsLastEditedByParentArticleRootContainer
+      - value: attachments,last_edited_by,parent_container
+        name: AttachmentsLastEditedByParentContainer
+      - value: attachments,last_edited_by,parent_container,root_container
+        name: AttachmentsLastEditedByParentContainerRootContainer
+      - value: attachments,last_edited_by,root_container
+        name: AttachmentsLastEditedByRootContainer
+      - value: attachments,parent_article
+        name: AttachmentsParentArticle
+      - value: attachments,parent_article,parent_container
+        name: AttachmentsParentArticleParentContainer
+      - value: attachments,parent_article,parent_container,root_container
+        name: AttachmentsParentArticleParentContainerRootContainer
+      - value: attachments,parent_article,root_container
+        name: AttachmentsParentArticleRootContainer
+      - value: attachments,parent_container
+        name: AttachmentsParentContainer
+      - value: attachments,parent_container,root_container
+        name: AttachmentsParentContainerRootContainer
+      - value: attachments,root_container
+        name: AttachmentsRootContainer
+      - author
+      - value: author,last_edited_by
+        name: AuthorLastEditedBy
+      - value: author,last_edited_by,parent_article
+        name: AuthorLastEditedByParentArticle
+      - value: author,last_edited_by,parent_article,parent_container
+        name: AuthorLastEditedByParentArticleParentContainer
+      - value: author,last_edited_by,parent_article,parent_container,root_container
+        name: AuthorLastEditedByParentArticleParentContainerRootContainer
+      - value: author,last_edited_by,parent_article,root_container
+        name: AuthorLastEditedByParentArticleRootContainer
+      - value: author,last_edited_by,parent_container
+        name: AuthorLastEditedByParentContainer
+      - value: author,last_edited_by,parent_container,root_container
+        name: AuthorLastEditedByParentContainerRootContainer
+      - value: author,last_edited_by,root_container
+        name: AuthorLastEditedByRootContainer
+      - value: author,parent_article
+        name: AuthorParentArticle
+      - value: author,parent_article,parent_container
+        name: AuthorParentArticleParentContainer
+      - value: author,parent_article,parent_container,root_container
+        name: AuthorParentArticleParentContainerRootContainer
+      - value: author,parent_article,root_container
+        name: AuthorParentArticleRootContainer
+      - value: author,parent_container
+        name: AuthorParentContainer
+      - value: author,parent_container,root_container
+        name: AuthorParentContainerRootContainer
+      - value: author,root_container
+        name: AuthorRootContainer
+      - last_edited_by
+      - value: last_edited_by,parent_article
+        name: LastEditedByParentArticle
+      - value: last_edited_by,parent_article,parent_container
+        name: LastEditedByParentArticleParentContainer
+      - value: last_edited_by,parent_article,parent_container,root_container
+        name: LastEditedByParentArticleParentContainerRootContainer
+      - value: last_edited_by,parent_article,root_container
+        name: LastEditedByParentArticleRootContainer
+      - value: last_edited_by,parent_container
+        name: LastEditedByParentContainer
+      - value: last_edited_by,parent_container,root_container
+        name: LastEditedByParentContainerRootContainer
+      - value: last_edited_by,root_container
+        name: LastEditedByRootContainer
+      - parent_article
+      - value: parent_article,parent_container
+        name: ParentArticleParentContainer
+      - value: parent_article,parent_container,root_container
+        name: ParentArticleParentContainerRootContainer
+      - value: parent_article,root_container
+        name: ParentArticleRootContainer
+      - parent_container
+      - value: parent_container,root_container
+        name: ParentContainerRootContainer
+      - permissions
+      - value: permissions,attachments
+        name: PermissionsAttachments
+      - value: permissions,attachments,author
+        name: PermissionsAttachmentsAuthor
+      - value: permissions,attachments,author,last_edited_by
+        name: PermissionsAttachmentsAuthorLastEditedBy
+      - value: permissions,attachments,author,last_edited_by,parent_article
+        name: PermissionsAttachmentsAuthorLastEditedByParentArticle
+      - value: >-
+          permissions,attachments,author,last_edited_by,parent_article,parent_container
+        name: PermissionsAttachmentsAuthorLastEditedByParentArticleParentContainer
+      - value: >-
+          permissions,attachments,author,last_edited_by,parent_article,parent_container,root_container
+        name: >-
+          PermissionsAttachmentsAuthorLastEditedByParentArticleParentContainerRootContainer
+      - value: >-
+          permissions,attachments,author,last_edited_by,parent_article,root_container
+        name: PermissionsAttachmentsAuthorLastEditedByParentArticleRootContainer
+      - value: permissions,attachments,author,last_edited_by,parent_container
+        name: PermissionsAttachmentsAuthorLastEditedByParentContainer
+      - value: >-
+          permissions,attachments,author,last_edited_by,parent_container,root_container
+        name: PermissionsAttachmentsAuthorLastEditedByParentContainerRootContainer
+      - value: permissions,attachments,author,last_edited_by,root_container
+        name: PermissionsAttachmentsAuthorLastEditedByRootContainer
+      - value: permissions,attachments,author,parent_article
+        name: PermissionsAttachmentsAuthorParentArticle
+      - value: permissions,attachments,author,parent_article,parent_container
+        name: PermissionsAttachmentsAuthorParentArticleParentContainer
+      - value: >-
+          permissions,attachments,author,parent_article,parent_container,root_container
+        name: PermissionsAttachmentsAuthorParentArticleParentContainerRootContainer
+      - value: permissions,attachments,author,parent_article,root_container
+        name: PermissionsAttachmentsAuthorParentArticleRootContainer
+      - value: permissions,attachments,author,parent_container
+        name: PermissionsAttachmentsAuthorParentContainer
+      - value: permissions,attachments,author,parent_container,root_container
+        name: PermissionsAttachmentsAuthorParentContainerRootContainer
+      - value: permissions,attachments,author,root_container
+        name: PermissionsAttachmentsAuthorRootContainer
+      - value: permissions,attachments,last_edited_by
+        name: PermissionsAttachmentsLastEditedBy
+      - value: permissions,attachments,last_edited_by,parent_article
+        name: PermissionsAttachmentsLastEditedByParentArticle
+      - value: permissions,attachments,last_edited_by,parent_article,parent_container
+        name: PermissionsAttachmentsLastEditedByParentArticleParentContainer
+      - value: >-
+          permissions,attachments,last_edited_by,parent_article,parent_container,root_container
+        name: >-
+          PermissionsAttachmentsLastEditedByParentArticleParentContainerRootContainer
+      - value: permissions,attachments,last_edited_by,parent_article,root_container
+        name: PermissionsAttachmentsLastEditedByParentArticleRootContainer
+      - value: permissions,attachments,last_edited_by,parent_container
+        name: PermissionsAttachmentsLastEditedByParentContainer
+      - value: permissions,attachments,last_edited_by,parent_container,root_container
+        name: PermissionsAttachmentsLastEditedByParentContainerRootContainer
+      - value: permissions,attachments,last_edited_by,root_container
+        name: PermissionsAttachmentsLastEditedByRootContainer
+      - value: permissions,attachments,parent_article
+        name: PermissionsAttachmentsParentArticle
+      - value: permissions,attachments,parent_article,parent_container
+        name: PermissionsAttachmentsParentArticleParentContainer
+      - value: permissions,attachments,parent_article,parent_container,root_container
+        name: PermissionsAttachmentsParentArticleParentContainerRootContainer
+      - value: permissions,attachments,parent_article,root_container
+        name: PermissionsAttachmentsParentArticleRootContainer
+      - value: permissions,attachments,parent_container
+        name: PermissionsAttachmentsParentContainer
+      - value: permissions,attachments,parent_container,root_container
+        name: PermissionsAttachmentsParentContainerRootContainer
+      - value: permissions,attachments,root_container
+        name: PermissionsAttachmentsRootContainer
+      - value: permissions,author
+        name: PermissionsAuthor
+      - value: permissions,author,last_edited_by
+        name: PermissionsAuthorLastEditedBy
+      - value: permissions,author,last_edited_by,parent_article
+        name: PermissionsAuthorLastEditedByParentArticle
+      - value: permissions,author,last_edited_by,parent_article,parent_container
+        name: PermissionsAuthorLastEditedByParentArticleParentContainer
+      - value: >-
+          permissions,author,last_edited_by,parent_article,parent_container,root_container
+        name: PermissionsAuthorLastEditedByParentArticleParentContainerRootContainer
+      - value: permissions,author,last_edited_by,parent_article,root_container
+        name: PermissionsAuthorLastEditedByParentArticleRootContainer
+      - value: permissions,author,last_edited_by,parent_container
+        name: PermissionsAuthorLastEditedByParentContainer
+      - value: permissions,author,last_edited_by,parent_container,root_container
+        name: PermissionsAuthorLastEditedByParentContainerRootContainer
+      - value: permissions,author,last_edited_by,root_container
+        name: PermissionsAuthorLastEditedByRootContainer
+      - value: permissions,author,parent_article
+        name: PermissionsAuthorParentArticle
+      - value: permissions,author,parent_article,parent_container
+        name: PermissionsAuthorParentArticleParentContainer
+      - value: permissions,author,parent_article,parent_container,root_container
+        name: PermissionsAuthorParentArticleParentContainerRootContainer
+      - value: permissions,author,parent_article,root_container
+        name: PermissionsAuthorParentArticleRootContainer
+      - value: permissions,author,parent_container
+        name: PermissionsAuthorParentContainer
+      - value: permissions,author,parent_container,root_container
+        name: PermissionsAuthorParentContainerRootContainer
+      - value: permissions,author,root_container
+        name: PermissionsAuthorRootContainer
+      - value: permissions,last_edited_by
+        name: PermissionsLastEditedBy
+      - value: permissions,last_edited_by,parent_article
+        name: PermissionsLastEditedByParentArticle
+      - value: permissions,last_edited_by,parent_article,parent_container
+        name: PermissionsLastEditedByParentArticleParentContainer
+      - value: >-
+          permissions,last_edited_by,parent_article,parent_container,root_container
+        name: PermissionsLastEditedByParentArticleParentContainerRootContainer
+      - value: permissions,last_edited_by,parent_article,root_container
+        name: PermissionsLastEditedByParentArticleRootContainer
+      - value: permissions,last_edited_by,parent_container
+        name: PermissionsLastEditedByParentContainer
+      - value: permissions,last_edited_by,parent_container,root_container
+        name: PermissionsLastEditedByParentContainerRootContainer
+      - value: permissions,last_edited_by,root_container
+        name: PermissionsLastEditedByRootContainer
+      - value: permissions,parent_article
+        name: PermissionsParentArticle
+      - value: permissions,parent_article,parent_container
+        name: PermissionsParentArticleParentContainer
+      - value: permissions,parent_article,parent_container,root_container
+        name: PermissionsParentArticleParentContainerRootContainer
+      - value: permissions,parent_article,root_container
+        name: PermissionsParentArticleRootContainer
+      - value: permissions,parent_container
+        name: PermissionsParentContainer
+      - value: permissions,parent_container,root_container
+        name: PermissionsParentContainerRootContainer
+      - value: permissions,root_container
+        name: PermissionsRootContainer
+      - root_container
+    source:
+      openapi: openapi/openapi.yml
+imports:
+  root: __package__.yml
+service:
+  auth: false
+  base-path: ''
+  endpoints:
+    list:
+      path: /knowledgebase/v1/articles
+      method: GET
+      auth: true
+      docs: Returns a list of `Article` objects.
+      source:
+        openapi: openapi/openapi.yml
+      request:
+        name: ArticlesListRequest
+        query-parameters:
+          created_after:
+            type: optional<datetime>
+            docs: If provided, will only return objects created after this datetime.
+          created_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, will only return objects created before this
+              datetime.
+          cursor:
+            type: optional<string>
+            docs: The pagination cursor value.
+          expand:
+            type: optional<ArticlesListRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_deleted_data:
+            type: optional<boolean>
+            docs: >-
+              Indicates whether or not this object has been deleted in the third
+              party platform. Full coverage deletion detection is a premium
+              add-on. Native deletion detection is offered for free with limited
+              coverage. [Learn
+              more](https://docs.merge.dev/integrations/hris/supported-features/).
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+          modified_after:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge after this date time
+              will be returned.
+          modified_before:
+            type: optional<datetime>
+            docs: >-
+              If provided, only objects synced by Merge before this date time
+              will be returned.
+          page_size:
+            type: optional<integer>
+            docs: Number of results to return per page.
+          parent_article_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return sub articles of the
+              parent_article_id.
+            validation:
+              format: uuid
+          parent_container_id:
+            type: optional<string>
+            docs: >-
+              If provided, will only return sub articles of the
+              parent_container_id.
+            validation:
+              format: uuid
+          remote_id:
+            type: optional<string>
+            docs: The API provider's ID for the given object.
+          type:
+            type: optional<string>
+            docs: If provided, will only return articles of the given type.
+      response:
+        docs: ''
+        type: root.PaginatedArticleList
+        status-code: 200
+      examples:
+        - query-parameters:
+            cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          headers:
+            X-Account-Token: X-Account-Token
+          response:
+            body:
+              next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+              previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+              results:
+                - id: 134e0111-0f67-44f6-98f0-597000290bb3
+                  remote_id: '800293'
+                  created_at: '2021-09-15T00:00:00Z'
+                  modified_at: '2021-10-16T00:00:00Z'
+                  title: Test Article
+                  description: >-
+                    This article describes how Merge is the #1 player in the
+                    Unified API space
+                  author: author
+                  last_edited_by: last_edited_by
+                  visibility: PUBLIC
+                  article_content_download_url: >-
+                    https://s3.amazonaws.com/finance-department-bucket/2022/tax-certificate.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3SGQVQG7FGA6KKA6%2F20221104%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221104T140227Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=b228dbec8c1008c80c162e1210e4503dceead1e4d4751b4d9787314fd6da4d55
+                  checksum: >-
+                    b228dbec8c1008c80c162e1210e4503dceead1e4d4751b4d9787314fd6da4d55
+                  article_url: myworkspace.atlassian.net/wiki/test-article
+                  status: DRAFT
+                  type: PAGE
+                  remote_created_at: '2021-09-15T00:00:00Z'
+                  remote_updated_at: '2021-09-16T00:00:00Z'
+                  parent_article: parent_article
+                  parent_container: parent_container
+                  root_container: root_container
+                  permissions:
+                    - id: 31ce489c-asdf-68b1-754r-629f799f7123
+                      remote_id: '102895'
+                      created_at: '2020-03-31T00:00:00Z'
+                      modified_at: '2020-06-20T00:00:00Z'
+                      user: 21ce474c-asdf-34a2-754r-629f799f7d12
+                      type: USER
+                      roles:
+                        - OWNER
+                  attachments:
+                    - 640b80b-fac9-409f-aa19-1f9221aec445
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+                  remote_data:
+                    - path: /articles
+                      data:
+                        - Varies by platform
+    retrieve:
+      path: /knowledgebase/v1/articles/{id}
+      method: GET
+      auth: true
+      docs: Returns an `Article` object with the given `id`.
+      source:
+        openapi: openapi/openapi.yml
+      path-parameters:
+        id: string
+      request:
+        name: ArticlesRetrieveRequest
+        query-parameters:
+          expand:
+            type: optional<ArticlesRetrieveRequestExpand>
+            docs: >-
+              Which relations should be returned in expanded form. Multiple
+              relation names should be comma separated without spaces.
+          include_remote_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include the original data Merge fetched from the
+              third-party to produce these models.
+          include_shell_data:
+            type: optional<boolean>
+            docs: >-
+              Whether to include shell records. Shell records are empty records
+              (they may contain some metadata but all other fields are null).
+      response:
+        docs: ''
+        type: root.Article
+        status-code: 200
+      examples:
+        - path-parameters:
+            id: id
+          headers:
+            X-Account-Token: X-Account-Token
+          response:
+            body:
+              id: 134e0111-0f67-44f6-98f0-597000290bb3
+              remote_id: '800293'
+              created_at: '2021-09-15T00:00:00Z'
+              modified_at: '2021-10-16T00:00:00Z'
+              title: Test Article
+              description: >-
+                This article describes how Merge is the #1 player in the Unified
+                API space
+              author: author
+              last_edited_by: last_edited_by
+              visibility: PUBLIC
+              article_content_download_url: >-
+                https://s3.amazonaws.com/finance-department-bucket/2022/tax-certificate.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3SGQVQG7FGA6KKA6%2F20221104%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221104T140227Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=b228dbec8c1008c80c162e1210e4503dceead1e4d4751b4d9787314fd6da4d55
+              checksum: b228dbec8c1008c80c162e1210e4503dceead1e4d4751b4d9787314fd6da4d55
+              article_url: myworkspace.atlassian.net/wiki/test-article
+              status: DRAFT
+              type: PAGE
+              remote_created_at: '2021-09-15T00:00:00Z'
+              remote_updated_at: '2021-09-16T00:00:00Z'
+              parent_article: parent_article
+              parent_container: parent_container
+              root_container: root_container
+              permissions:
+                - id: 31ce489c-asdf-68b1-754r-629f799f7123
+                  remote_id: '102895'
+                  created_at: '2020-03-31T00:00:00Z'
+                  modified_at: '2020-06-20T00:00:00Z'
+                  user: 21ce474c-asdf-34a2-754r-629f799f7d12
+                  type: USER
+                  roles:
+                    - OWNER
+                  remote_was_deleted: true
+                  field_mappings:
+                    organization_defined_targets:
+                      custom_key: custom_value
+                    linked_account_defined_targets:
+                      custom_key: custom_value
+              attachments:
+                - 640b80b-fac9-409f-aa19-1f9221aec445
+              remote_was_deleted: true
+              field_mappings:
+                organization_defined_targets:
+                  custom_key: custom_value
+                linked_account_defined_targets:
+                  custom_key: custom_value
+              remote_data:
+                - path: /articles
+                  data:
+                    - Varies by platform
+  source:
+    openapi: openapi/openapi.yml

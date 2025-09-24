@@ -21,6 +21,8 @@ export interface EmployeesListRequest {
     cursor?: string;
     /** If provided, will only return employees with this display name. */
     displayFullName?: string;
+    /** If provided, will only return employees with this employee number. */
+    employeeNumber?: string;
     /**
      * If provided, will only return employees with this employment status.
      *

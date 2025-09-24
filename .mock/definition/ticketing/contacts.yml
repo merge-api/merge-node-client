@@ -25,6 +25,9 @@ service:
           cursor:
             type: optional<string>
             docs: The pagination cursor value.
+          email_address:
+            type: optional<string>
+            docs: If provided, will only return Contacts that match this email.
           expand:
             type: optional<literal<"account">>
             docs: >-

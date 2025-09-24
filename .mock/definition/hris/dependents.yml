@@ -25,6 +25,9 @@ service:
           cursor:
             type: optional<string>
             docs: The pagination cursor value.
+          employee_id:
+            type: optional<string>
+            docs: If provided, will only return dependents for this employee.
           include_deleted_data:
             type: optional<boolean>
             docs: >-

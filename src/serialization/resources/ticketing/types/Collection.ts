@@ -25,6 +25,9 @@ export const Collection: core.serialization.ObjectSchema<
         "parent_collection",
         core.serialization.lazy(() => serializers.ticketing.CollectionParentCollection).optional(),
     ),
+    collectionUrl: core.serialization.property("collection_url", core.serialization.string().optional()),
+    remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
+    remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
@@ -44,6 +47,9 @@ export declare namespace Collection {
         access_level?: CollectionAccessLevel.Raw | null;
         collection_type?: CollectionCollectionType.Raw | null;
         parent_collection?: serializers.ticketing.CollectionParentCollection.Raw | null;
+        collection_url?: string | null;
+        remote_created_at?: string | null;
+        remote_updated_at?: string | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: RemoteData.Raw[] | null;

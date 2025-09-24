@@ -6,9 +6,10 @@ import * as environments from "./environments";
 import * as core from "./core";
 import { mergeHeaders } from "./core/headers";
 import { Ats } from "./api/resources/ats/client/Client";
-import { Filestorage } from "./api/resources/filestorage/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
+import { Filestorage } from "./api/resources/filestorage/client/Client";
 import { Hris } from "./api/resources/hris/client/Client";
+import { Knowledgebase } from "./api/resources/knowledgebase/client/Client";
 import { Ticketing } from "./api/resources/ticketing/client/Client";
 import { Accounting } from "./api/resources/accounting/client/Client";
 
@@ -44,9 +45,10 @@ export declare namespace MergeClient {
 export class MergeClient {
     protected readonly _options: MergeClient.Options;
     protected _ats: Ats | undefined;
-    protected _filestorage: Filestorage | undefined;
     protected _crm: Crm | undefined;
+    protected _filestorage: Filestorage | undefined;
     protected _hris: Hris | undefined;
+    protected _knowledgebase: Knowledgebase | undefined;
     protected _ticketing: Ticketing | undefined;
     protected _accounting: Accounting | undefined;
 
@@ -58,8 +60,8 @@ export class MergeClient {
                     "X-Account-Token": _options?.accountToken,
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "@mergeapi/merge-node-client",
-                    "X-Fern-SDK-Version": "2.2.0",
-                    "User-Agent": "@mergeapi/merge-node-client/2.2.0",
+                    "X-Fern-SDK-Version": "2.3.0",
+                    "User-Agent": "@mergeapi/merge-node-client/2.3.0",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                 },
@@ -72,16 +74,20 @@ export class MergeClient {
         return (this._ats ??= new Ats(this._options));
     }
 
-    public get filestorage(): Filestorage {
-        return (this._filestorage ??= new Filestorage(this._options));
-    }
-
     public get crm(): Crm {
         return (this._crm ??= new Crm(this._options));
     }
 
+    public get filestorage(): Filestorage {
+        return (this._filestorage ??= new Filestorage(this._options));
+    }
+
     public get hris(): Hris {
         return (this._hris ??= new Hris(this._options));
+    }
+
+    public get knowledgebase(): Knowledgebase {
+        return (this._knowledgebase ??= new Knowledgebase(this._options));
     }
 
     public get ticketing(): Ticketing {
