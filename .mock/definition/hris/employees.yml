@@ -1183,6 +1183,9 @@ service:
           display_full_name:
             type: optional<string>
             docs: If provided, will only return employees with this display name.
+          employee_number:
+            type: optional<string>
+            docs: If provided, will only return employees with this employee number.
           employment_status:
             type: optional<EmployeesListRequestEmploymentStatus>
             docs: >-

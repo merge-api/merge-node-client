@@ -1208,6 +1208,9 @@ service:
             docs: >-
               If provided, only objects synced by Merge before this date time
               will be returned.
+          name:
+            type: optional<string>
+            docs: If provided, will only return tickets with this name.
           page_size:
             type: optional<integer>
             docs: Number of results to return per page.

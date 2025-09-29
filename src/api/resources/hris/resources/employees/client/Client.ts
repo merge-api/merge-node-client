@@ -18,7 +18,7 @@ export declare namespace Employees {
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -34,7 +34,7 @@ export declare namespace Employees {
         /** Additional query string parameters to include in the request. */
         queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -73,6 +73,7 @@ export class Employees {
             createdBefore,
             cursor,
             displayFullName,
+            employeeNumber,
             employmentStatus,
             employmentType,
             expand,
@@ -121,6 +122,10 @@ export class Employees {
 
         if (displayFullName != null) {
             _queryParams["display_full_name"] = displayFullName;
+        }
+
+        if (employeeNumber != null) {
+            _queryParams["employee_number"] = employeeNumber;
         }
 
         if (employmentStatus != null) {

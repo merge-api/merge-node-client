@@ -18,7 +18,7 @@ export declare namespace Collections {
         /** Override the X-Account-Token header */
         accountToken?: core.Supplier<string | undefined>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -34,7 +34,7 @@ export declare namespace Collections {
         /** Additional query string parameters to include in the request. */
         queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -78,6 +78,7 @@ export class Collections {
             includeShellData,
             modifiedAfter,
             modifiedBefore,
+            name,
             pageSize,
             parentCollectionId,
             remoteFields,
@@ -123,6 +124,10 @@ export class Collections {
 
         if (modifiedBefore != null) {
             _queryParams["modified_before"] = modifiedBefore.toISOString();
+        }
+
+        if (name != null) {
+            _queryParams["name"] = name;
         }
 
         if (pageSize != null) {
