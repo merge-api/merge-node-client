@@ -27,7 +27,11 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Compile
-        run: yarn && yarn test    
+        run: yarn && yarn test
+        env:
+          SDK_TESTING_KEY: ${{ secrets.SDK_TESTING_KEY }}
+          SDK_TESTING_KNOWLEDGEBASE_ACCOUNT_TOKEN: ${{ secrets.SDK_TESTING_KNOWLEDGEBASE_ACCOUNT_TOKEN }}
+          SDK_TESTING_FILE_STORAGE_ACCOUNT_TOKEN: ${{ secrets.SDK_TESTING_FILE_STORAGE_ACCOUNT_TOKEN }}    
 
   publish:
     needs: [ compile, test ]
