@@ -1,1 +1,1 @@
-export { type IssuesListRequest } from "./IssuesListRequest";
+export type { IssuesListRequest } from "./IssuesListRequest";

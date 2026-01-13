@@ -1,2 +1,2 @@
-export { type CustomObjectClassesCustomObjectsAssociationsListRequest } from "./CustomObjectClassesCustomObjectsAssociationsListRequest";
-export { type CustomObjectClassesCustomObjectsAssociationsUpdateRequest } from "./CustomObjectClassesCustomObjectsAssociationsUpdateRequest";
+export type { CustomObjectClassesCustomObjectsAssociationsListRequest } from "./CustomObjectClassesCustomObjectsAssociationsListRequest";
+export type { CustomObjectClassesCustomObjectsAssociationsUpdateRequest } from "./CustomObjectClassesCustomObjectsAssociationsUpdateRequest";

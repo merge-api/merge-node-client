@@ -1,3 +1,5 @@
-export { type AttachmentsListRequest } from "./AttachmentsListRequest";
-export { type AccountingAttachmentEndpointRequest } from "./AccountingAttachmentEndpointRequest";
-export { type AttachmentsRetrieveRequest } from "./AttachmentsRetrieveRequest";
+export type { AttachmentsAsyncBulkCreateRequest } from "./AttachmentsAsyncBulkCreateRequest";
+export type { AttachmentsBatchObjectsListRequest } from "./AttachmentsBatchObjectsListRequest";
+export type { AttachmentsCreateRequest } from "./AttachmentsCreateRequest";
+export type { AttachmentsListRequest } from "./AttachmentsListRequest";
+export type { AttachmentsRetrieveRequest } from "./AttachmentsRetrieveRequest";
