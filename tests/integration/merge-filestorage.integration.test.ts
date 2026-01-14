@@ -1,13 +1,13 @@
 import { MergeClient } from "../../src/Client";
 
 describe("Merge FileStorage Client Integration", () => {
-  const apiKey = process.env.MERGE_API_KEY_INTEGRATION_TESTS;
-  const accountToken = process.env.MERGE_ACCOUNT_TOKEN_FILESTORAGE;
+  const apiKey = process.env.SDK_TESTING_KEY;
+  const accountToken = process.env.SDK_TESTING_FILE_STORAGE_ACCOUNT_TOKEN;
   let client: MergeClient;
 
   beforeAll(() => {
-    if (!apiKey) throw new Error("MERGE_API_KEY_INTEGRATION_TESTS env var not set");
-    if (!accountToken) throw new Error("MERGE_ACCOUNT_TOKEN_FILESTORAGE env var not set");
+    if (!apiKey) throw new Error("SDK_TESTING_KEY env var not set");
+    if (!accountToken) throw new Error("SDK_TESTING_FILE_STORAGE_ACCOUNT_TOKEN env var not set");
     client = new MergeClient({ apiKey, accountToken });
   });
 

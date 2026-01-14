@@ -1,13 +1,13 @@
 import { MergeClient } from "../../src/Client";
 
 describe("Merge Accounting Client Integration", () => {
-  const apiKey = process.env.MERGE_API_KEY_ACCOUNTING;
-  const accountToken = process.env.MERGE_ACCOUNT_TOKEN_ACCOUNTING;
+  const apiKey = process.env.SDK_TESTING_KEY_ACCOUNTING;
+  const accountToken = process.env.SDK_TESTING_ACCOUNTING_ACCOUNT_TOKEN;
   let client: MergeClient;
 
   beforeAll(() => {
-    if (!apiKey) throw new Error("MERGE_API_KEY_ACCOUNTING env var not set");
-    if (!accountToken) throw new Error("MERGE_ACCOUNT_TOKEN_ACCOUNTING env var not set");
+    if (!apiKey) throw new Error("SDK_TESTING_KEY_ACCOUNTING env var not set");
+    if (!accountToken) throw new Error("SDK_TESTING_ACCOUNTING_ACCOUNT_TOKEN env var not set");
     client = new MergeClient({ apiKey, accountToken });
   });
 
