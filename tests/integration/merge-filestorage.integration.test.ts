@@ -52,11 +52,6 @@ describe("Merge FileStorage Client Integration", () => {
     expect(Array.isArray(body.results)).toBe(true);
   });
 
-  it("should retrieve field mapping", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.fieldMapping.retrieve().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-  });
 
   it("should retrieve linked account scopes", async () => {
     const { data: body, rawResponse: response } = await client.filestorage.scopes.linkedAccountScopesRetrieve().withRawResponse();

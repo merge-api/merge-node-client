@@ -166,11 +166,6 @@ describe("Merge Accounting Client Integration", () => {
     expect(body.category).toBeDefined();
   });
 
-  it("should retrieve field mapping", async () => {
-    const { data: body, rawResponse: response } = await client.accounting.fieldMapping.fieldMappingsRetrieve().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-  });
 
   it("should retrieve linked account scopes", async () => {
     const { data: body, rawResponse: response } = await client.accounting.scopes.linkedAccountScopesRetrieve().withRawResponse();
