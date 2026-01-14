@@ -1,7 +1,7 @@
 {
     "cliVersion": "3.39.2",
     "generatorName": "fernapi/fern-typescript-sdk",
-    "generatorVersion": "3.31.0",
+    "generatorVersion": "3.43.7",
     "generatorConfig": {
         "namespaceExport": "Merge",
         "allowCustomFetcher": true,
@@ -18,5 +18,6 @@
         "generateSubpackageExports": true,
         "packageManager": "yarn",
         "testFramework": "jest"
-    }
+    },
+    "sdkVersion": "2.2.0"
 }

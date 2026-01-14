@@ -14,7 +14,6 @@ export interface AttachmentRequest {
     fileName?: string;
     /** The attachment's url. */
     fileUrl?: string;
-    /** */
     candidate?: string;
     /**
      * The attachment's type.
