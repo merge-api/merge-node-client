@@ -2,3 +2,29 @@
 
 README.md
 LICENSE.md
+
+# Preserve backward compatibility types
+src/api/resources/filestorage/types/FilePermissionsItem.ts
+src/api/resources/filestorage/types/FileRequestPermissionsItem.ts
+src/api/resources/filestorage/types/FolderPermissionsItem.ts
+src/api/resources/filestorage/types/FolderRequestPermissionsItem.ts
+
+# Preserve files that reference the backward compatibility types
+src/api/resources/filestorage/types/FilePermissions.ts
+src/api/resources/filestorage/types/FileRequestPermissions.ts
+src/api/resources/filestorage/types/FolderPermissions.ts
+src/api/resources/filestorage/types/FolderRequestPermissions.ts
+src/api/resources/filestorage/types/index.ts
+
+# Preserve serialization backward compatibility types
+src/serialization/resources/filestorage/types/FilePermissionsItem.ts
+src/serialization/resources/filestorage/types/FileRequestPermissionsItem.ts
+src/serialization/resources/filestorage/types/FolderPermissionsItem.ts
+src/serialization/resources/filestorage/types/FolderRequestPermissionsItem.ts
+
+# Preserve serialization files that reference the backward compatibility types
+src/serialization/resources/filestorage/types/FilePermissions.ts
+src/serialization/resources/filestorage/types/FileRequestPermissions.ts
+src/serialization/resources/filestorage/types/FolderPermissions.ts
+src/serialization/resources/filestorage/types/FolderRequestPermissions.ts
+src/serialization/resources/filestorage/types/index.ts

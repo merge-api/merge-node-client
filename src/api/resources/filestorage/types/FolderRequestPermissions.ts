@@ -8,4 +8,4 @@ import type * as Merge from "../../../index";
 export type FolderRequestPermissions =
     | string
     | Merge.filestorage.PermissionRequest
-    | Merge.filestorage.FolderRequestPermissionsTwoItem[];
+    | Merge.filestorage.FolderRequestPermissionsItem[];

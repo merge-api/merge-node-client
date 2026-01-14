@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param `expand=permissions` to see more details under `GET /folders`.
  */
-export type FolderPermissions = string | Merge.filestorage.Permission | Merge.filestorage.FolderPermissionsTwoItem[];
+export type FolderPermissions = string | Merge.filestorage.Permission | Merge.filestorage.FolderPermissionsItem[];

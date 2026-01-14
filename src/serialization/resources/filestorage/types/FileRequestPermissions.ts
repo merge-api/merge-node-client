@@ -3,7 +3,7 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { FileRequestPermissionsTwoItem } from "./FileRequestPermissionsTwoItem";
+import { FileRequestPermissionsItem } from "./FileRequestPermissionsItem";
 import { PermissionRequest } from "./PermissionRequest";
 
 export const FileRequestPermissions: core.serialization.Schema<
@@ -12,9 +12,9 @@ export const FileRequestPermissions: core.serialization.Schema<
 > = core.serialization.undiscriminatedUnion([
     core.serialization.string(),
     PermissionRequest,
-    core.serialization.list(FileRequestPermissionsTwoItem),
+    core.serialization.list(FileRequestPermissionsItem),
 ]);
 
 export declare namespace FileRequestPermissions {
-    export type Raw = string | PermissionRequest.Raw | FileRequestPermissionsTwoItem.Raw[];
+    export type Raw = string | PermissionRequest.Raw | FileRequestPermissionsItem.Raw[];
 }
