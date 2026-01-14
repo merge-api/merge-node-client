@@ -6,7 +6,12 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("CommentsClient", () => {
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -94,7 +99,12 @@ describe("CommentsClient", () => {
 
     test("create", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { model: {} };
         const rawResponseBody = {
             model: {
@@ -223,7 +233,12 @@ describe("CommentsClient", () => {
 
     test("retrieve", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "0958cbc6-6040-430a-848e-aafacbadf4ae",
@@ -289,7 +304,12 @@ describe("CommentsClient", () => {
 
     test("metaPostRetrieve", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             request_schema: {

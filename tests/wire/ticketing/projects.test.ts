@@ -6,7 +6,12 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("ProjectsClient", () => {
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -81,7 +86,12 @@ describe("ProjectsClient", () => {
 
     test("retrieve", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "fb8c55b6-1cb8-4b4c-9fb6-17924231619d",
@@ -136,7 +146,12 @@ describe("ProjectsClient", () => {
 
     test("usersList", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",

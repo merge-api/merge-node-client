@@ -6,7 +6,12 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("ApplicationsClient", () => {
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -104,7 +109,12 @@ describe("ApplicationsClient", () => {
 
     test("create", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { model: {}, remote_user_id: "remote_user_id" };
         const rawResponseBody = {
             model: {
@@ -240,7 +250,12 @@ describe("ApplicationsClient", () => {
 
     test("retrieve", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "92e8a369-fffe-430d-b93a-f7e8a16563f1",
@@ -312,7 +327,12 @@ describe("ApplicationsClient", () => {
 
     test("changeStageCreate", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = {
             model: {
@@ -446,7 +466,12 @@ describe("ApplicationsClient", () => {
 
     test("metaPostRetrieve", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             request_schema: {

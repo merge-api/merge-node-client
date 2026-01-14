@@ -6,7 +6,12 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("CompanyInfoClient", () => {
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -136,7 +141,12 @@ describe("CompanyInfoClient", () => {
 
     test("retrieve", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             id: "65d8ffd0-211b-4ba4-b85a-fbe2ce220982",

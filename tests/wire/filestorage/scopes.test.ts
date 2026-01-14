@@ -6,7 +6,12 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("ScopesClient", () => {
     test("default_scopes_retrieve", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             common_models: [
@@ -84,7 +89,12 @@ describe("ScopesClient", () => {
 
     test("linked_account_scopes_retrieve", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
 
         const rawResponseBody = {
             common_models: [
@@ -162,7 +172,12 @@ describe("ScopesClient", () => {
 
     test("linked_account_scopes_create", async () => {
         const server = mockServerPool.createServer();
-        const client = new MergeClient({ apiKey: "test", accountToken: "test", environment: server.baseUrl });
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {
             common_models: [
                 {

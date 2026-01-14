@@ -2,25 +2,26 @@
 
 import type * as stream from "stream";
 import type { BaseClientOptions, BaseRequestOptions } from "../../../../../../BaseClient";
-import { normalizeClientOptions } from "../../../../../../BaseClient";
+import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../../../BaseClient";
 import * as core from "../../../../../../core";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers";
 import * as environments from "../../../../../../environments";
+import { handleNonStatusCodeError } from "../../../../../../errors/handleNonStatusCodeError";
 import * as errors from "../../../../../../errors/index";
 import * as serializers from "../../../../../../serialization/index";
 import type * as Merge from "../../../../../index";
 
 export declare namespace AttachmentsClient {
-    export interface Options extends BaseClientOptions {}
+    export type Options = BaseClientOptions;
 
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
 export class AttachmentsClient {
-    protected readonly _options: AttachmentsClient.Options;
+    protected readonly _options: NormalizedClientOptionsWithAuth<AttachmentsClient.Options>;
 
     constructor(options: AttachmentsClient.Options) {
-        this._options = normalizeClientOptions(options);
+        this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
@@ -72,65 +73,26 @@ export class AttachmentsClient {
             remoteId,
             ticketId,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (createdAfter != null) {
-            _queryParams.created_after = createdAfter.toISOString();
-        }
-
-        if (createdBefore != null) {
-            _queryParams.created_before = createdBefore.toISOString();
-        }
-
-        if (cursor != null) {
-            _queryParams.cursor = cursor;
-        }
-
-        if (expand != null) {
-            _queryParams.expand = expand;
-        }
-
-        if (includeDeletedData != null) {
-            _queryParams.include_deleted_data = includeDeletedData.toString();
-        }
-
-        if (includeRemoteData != null) {
-            _queryParams.include_remote_data = includeRemoteData.toString();
-        }
-
-        if (includeShellData != null) {
-            _queryParams.include_shell_data = includeShellData.toString();
-        }
-
-        if (modifiedAfter != null) {
-            _queryParams.modified_after = modifiedAfter.toISOString();
-        }
-
-        if (modifiedBefore != null) {
-            _queryParams.modified_before = modifiedBefore.toISOString();
-        }
-
-        if (pageSize != null) {
-            _queryParams.page_size = pageSize.toString();
-        }
-
-        if (remoteCreatedAfter != null) {
-            _queryParams.remote_created_after = remoteCreatedAfter.toISOString();
-        }
-
-        if (remoteId != null) {
-            _queryParams.remote_id = remoteId;
-        }
-
-        if (ticketId != null) {
-            _queryParams.ticket_id = ticketId;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            created_after: createdAfter?.toISOString(),
+            created_before: createdBefore?.toISOString(),
+            cursor,
+            expand: expand != null ? expand : undefined,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+            modified_after: modifiedAfter?.toISOString(),
+            modified_before: modifiedBefore?.toISOString(),
+            page_size: pageSize,
+            remote_created_after: remoteCreatedAfter?.toISOString(),
+            remote_id: remoteId,
+            ticket_id: ticketId,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-            }),
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -170,21 +132,7 @@ export class AttachmentsClient {
             });
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MergeError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ticketing/v1/attachments.");
-            case "unknown":
-                throw new errors.MergeError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/ticketing/v1/attachments");
     }
 
     /**
@@ -212,21 +160,15 @@ export class AttachmentsClient {
         requestOptions?: AttachmentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.ticketing.TicketingAttachmentResponse>> {
         const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (isDebugMode != null) {
-            _queryParams.is_debug_mode = isDebugMode.toString();
-        }
-
-        if (runAsync != null) {
-            _queryParams.run_async = runAsync.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-            }),
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -271,21 +213,7 @@ export class AttachmentsClient {
             });
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MergeError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.MergeTimeoutError("Timeout exceeded when calling POST /ticketing/v1/attachments.");
-            case "unknown":
-                throw new errors.MergeError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/ticketing/v1/attachments");
     }
 
     /**
@@ -316,25 +244,16 @@ export class AttachmentsClient {
         requestOptions?: AttachmentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.ticketing.Attachment>> {
         const { expand, includeRemoteData, includeShellData } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (expand != null) {
-            _queryParams.expand = expand;
-        }
-
-        if (includeRemoteData != null) {
-            _queryParams.include_remote_data = includeRemoteData.toString();
-        }
-
-        if (includeShellData != null) {
-            _queryParams.include_shell_data = includeShellData.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            expand: expand != null ? expand : undefined,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-            }),
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -374,21 +293,12 @@ export class AttachmentsClient {
             });
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MergeError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.MergeTimeoutError("Timeout exceeded when calling GET /ticketing/v1/attachments/{id}.");
-            case "unknown":
-                throw new errors.MergeError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/ticketing/v1/attachments/{id}",
+        );
     }
 
     /**
@@ -408,21 +318,15 @@ export class AttachmentsClient {
         requestOptions?: AttachmentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<stream.Readable>> {
         const { includeShellData, mimeType } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (includeShellData != null) {
-            _queryParams.include_shell_data = includeShellData.toString();
-        }
-
-        if (mimeType != null) {
-            _queryParams.mime_type = mimeType;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            include_shell_data: includeShellData,
+            mime_type: mimeType,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-            }),
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)<stream.Readable>({
@@ -454,23 +358,12 @@ export class AttachmentsClient {
             });
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MergeError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/attachments/{id}/download.",
-                );
-            case "unknown":
-                throw new errors.MergeError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/ticketing/v1/attachments/{id}/download",
+        );
     }
 
     /**
@@ -490,12 +383,11 @@ export class AttachmentsClient {
     private async __metaPostRetrieve(
         requestOptions?: AttachmentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.ticketing.MetaResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-            }),
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -535,26 +427,11 @@ export class AttachmentsClient {
             });
         }
 
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MergeError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.MergeTimeoutError(
-                    "Timeout exceeded when calling GET /ticketing/v1/attachments/meta/post.",
-                );
-            case "unknown":
-                throw new errors.MergeError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    protected async _getAuthorizationHeader(): Promise<string> {
-        return `Bearer ${await core.Supplier.get(this._options.apiKey)}`;
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/ticketing/v1/attachments/meta/post",
+        );
     }
 }

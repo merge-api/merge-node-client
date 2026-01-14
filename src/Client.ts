@@ -7,37 +7,33 @@ import { FilestorageClient } from "./api/resources/filestorage/client/Client";
 import { HrisClient } from "./api/resources/hris/client/Client";
 import { TicketingClient } from "./api/resources/ticketing/client/Client";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient";
-import { normalizeClientOptions } from "./BaseClient";
+import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "./BaseClient";
 
 export declare namespace MergeClient {
-    export interface Options extends BaseClientOptions {}
+    export type Options = BaseClientOptions;
 
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
 export class MergeClient {
-    protected readonly _options: MergeClient.Options;
-    protected _ats: AtsClient | undefined;
-    protected _filestorage: FilestorageClient | undefined;
+    protected readonly _options: NormalizedClientOptionsWithAuth<MergeClient.Options>;
     protected _crm: CrmClient | undefined;
+    protected _filestorage: FilestorageClient | undefined;
     protected _ticketing: TicketingClient | undefined;
     protected _hris: HrisClient | undefined;
+    protected _ats: AtsClient | undefined;
     protected _accounting: AccountingClient | undefined;
 
     constructor(options: MergeClient.Options) {
-        this._options = normalizeClientOptions(options);
-    }
-
-    public get ats(): AtsClient {
-        return (this._ats ??= new AtsClient(this._options));
-    }
-
-    public get filestorage(): FilestorageClient {
-        return (this._filestorage ??= new FilestorageClient(this._options));
+        this._options = normalizeClientOptionsWithAuth(options);
     }
 
     public get crm(): CrmClient {
         return (this._crm ??= new CrmClient(this._options));
+    }
+
+    public get filestorage(): FilestorageClient {
+        return (this._filestorage ??= new FilestorageClient(this._options));
     }
 
     public get ticketing(): TicketingClient {
@@ -46,6 +42,10 @@ export class MergeClient {
 
     public get hris(): HrisClient {
         return (this._hris ??= new HrisClient(this._options));
+    }
+
+    public get ats(): AtsClient {
+        return (this._ats ??= new AtsClient(this._options));
     }
 
     public get accounting(): AccountingClient {

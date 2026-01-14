@@ -2,7 +2,10 @@
     "name": "@mergeapi/merge-node-client",
     "version": "2.2.0",
     "private": false,
-    "repository": "github:merge-api/merge-node-client",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/merge-api/merge-node-client.git"
+    },
     "main": "./index.js",
     "types": "./index.d.ts",
     "scripts": {
