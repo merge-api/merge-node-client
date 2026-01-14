@@ -1,1 +1,1 @@
-export { type AddressesRetrieveRequest } from "./AddressesRetrieveRequest";
+export type { AddressesRetrieveRequest } from "./AddressesRetrieveRequest";

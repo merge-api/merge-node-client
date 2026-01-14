@@ -1,2 +1,2 @@
-export { type OffersListRequest } from "./OffersListRequest";
-export { type OffersRetrieveRequest } from "./OffersRetrieveRequest";
+export type { OffersListRequest } from "./OffersListRequest";
+export type { OffersRetrieveRequest } from "./OffersRetrieveRequest";

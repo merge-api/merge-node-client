@@ -1,1 +1,1 @@
-export { type EndUserDetailsRequest } from "./EndUserDetailsRequest";
+export type { EndUserDetailsRequest } from "./EndUserDetailsRequest";

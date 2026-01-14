@@ -1,7 +1,8 @@
-import { DefaultBodyType, HttpHandler, HttpResponse, HttpResponseResolver, http } from "msw";
+import { type DefaultBodyType, type HttpHandler, HttpResponse, type HttpResponseResolver, http } from "msw";
 
 import { url } from "../../src/core";
 import { toJson } from "../../src/core/json";
+import { withFormUrlEncoded } from "./withFormUrlEncoded";
 import { withHeaders } from "./withHeaders";
 import { withJson } from "./withJson";
 
@@ -26,6 +27,7 @@ interface RequestHeadersStage extends RequestBodyStage, ResponseStage {
 
 interface RequestBodyStage extends ResponseStage {
     jsonBody(body: unknown): ResponseStage;
+    formUrlEncodedBody(body: unknown): ResponseStage;
 }
 
 interface ResponseStage {
@@ -135,6 +137,16 @@ class RequestBuilder implements MethodStage, RequestHeadersStage, RequestBodySta
         return this;
     }
 
+    formUrlEncodedBody(body: unknown): ResponseStage {
+        if (body === undefined) {
+            throw new Error(
+                "Undefined is not valid for form-urlencoded. Do not call formUrlEncodedBody if you want an empty body.",
+            );
+        }
+        this.predicates.push((resolver) => withFormUrlEncoded(body, resolver));
+        return this;
+    }
+
     respondWith(): ResponseStatusStage {
         return new ResponseBuilder(this.method, this.buildUrl(), this.predicates, this.handlerOptions);
     }
@@ -191,10 +203,15 @@ class ResponseBuilder implements ResponseStatusStage, ResponseHeaderStage, Respo
 
     public build(): HttpHandler {
         const responseResolver: HttpResponseResolver = () => {
-            return new HttpResponse(this.responseBody, {
+            const response = new HttpResponse(this.responseBody, {
                 status: this.responseStatusCode,
                 headers: this.responseHeaders,
             });
+            // if no Content-Type header is set, delete the default text content type that is set
+            if (Object.keys(this.responseHeaders).some((key) => key.toLowerCase() === "content-type") === false) {
+                response.headers.delete("Content-Type");
+            }
+            return response;
         };
 
         const finalResolver = this.requestPredicates.reduceRight((acc, predicate) => predicate(acc), responseResolver);

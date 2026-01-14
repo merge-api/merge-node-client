@@ -1,13 +1,9 @@
-import { getBinaryResponse } from "./BinaryResponse";
-import { isResponseWithBody } from "./ResponseWithBody";
 import { fromJson } from "../json";
+import { getBinaryResponse } from "./BinaryResponse";
 
 import { chooseStreamWrapper } from "./stream-wrappers/chooseStreamWrapper";
 
 export async function getResponseBody(response: Response, responseType?: string): Promise<unknown> {
-    if (!isResponseWithBody(response)) {
-        return undefined;
-    }
     switch (responseType) {
         case "binary-response":
             return getBinaryResponse(response);
@@ -16,8 +12,27 @@ export async function getResponseBody(response: Response, responseType?: string)
         case "arrayBuffer":
             return await response.arrayBuffer();
         case "sse":
+            if (response.body == null) {
+                return {
+                    ok: false,
+                    error: {
+                        reason: "body-is-null",
+                        statusCode: response.status,
+                    },
+                };
+            }
             return response.body;
         case "streaming":
+            if (response.body == null) {
+                return {
+                    ok: false,
+                    error: {
+                        reason: "body-is-null",
+                        statusCode: response.status,
+                    },
+                };
+            }
+
             return chooseStreamWrapper(response.body);
 
         case "text":
@@ -28,9 +43,9 @@ export async function getResponseBody(response: Response, responseType?: string)
     const text = await response.text();
     if (text.length > 0) {
         try {
-            let responseBody = fromJson(text);
+            const responseBody = fromJson(text);
             return responseBody;
-        } catch (err) {
+        } catch (_err) {
             return {
                 ok: false,
                 error: {

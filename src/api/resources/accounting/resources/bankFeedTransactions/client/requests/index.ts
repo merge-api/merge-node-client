@@ -1,3 +1,3 @@
-export { type BankFeedTransactionsListRequest } from "./BankFeedTransactionsListRequest";
-export { type BankFeedTransactionEndpointRequest } from "./BankFeedTransactionEndpointRequest";
-export { type BankFeedTransactionsRetrieveRequest } from "./BankFeedTransactionsRetrieveRequest";
+export type { BankFeedTransactionEndpointRequest } from "./BankFeedTransactionEndpointRequest";
+export type { BankFeedTransactionsListRequest } from "./BankFeedTransactionsListRequest";
+export type { BankFeedTransactionsRetrieveRequest } from "./BankFeedTransactionsRetrieveRequest";
