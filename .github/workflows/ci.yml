@@ -34,6 +34,11 @@ jobs:
 
       - name: Test
         run: yarn test
+        env:
+          MERGE_API_KEY_INTEGRATION_TESTS: ${{ secrets.MERGE_API_KEY_INTEGRATION_TESTS }}
+          MERGE_ACCOUNT_TOKEN_ACCOUNTING: ${{ secrets.MERGE_ACCOUNT_TOKEN_ACCOUNTING }}
+          MERGE_ACCOUNT_TOKEN_FILESTORAGE: ${{ secrets.MERGE_ACCOUNT_TOKEN_FILESTORAGE }}
+          MERGE_API_KEY_ACCOUNTING: ${{ secrets.MERGE_API_KEY_ACCOUNTING }}
 
   publish:
     needs: [ compile, test ]

@@ -11,8 +11,19 @@ export default {
                 "^(\.{1,2}/.*)\.js$": "$1",
             },
             roots: ["<rootDir>/tests"],
-            testPathIgnorePatterns: ["/tests/wire/"],
+            testPathIgnorePatterns: ["/tests/wire/", "/tests/integration/"],
             setupFilesAfterEnv: ["<rootDir>/tests/setup.ts"],
+        },
+        {
+            displayName: "integration",
+            preset: "ts-jest",
+            testEnvironment: "node",
+            moduleNameMapper: {
+                "^(\.{1,2}/.*)\.js$": "$1",
+            },
+            roots: ["<rootDir>/tests/integration"],
+            setupFilesAfterEnv: ["<rootDir>/tests/setup.ts"],
+            testTimeout: 30000,
         },
         {
             displayName: "wire",
