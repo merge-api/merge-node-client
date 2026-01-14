@@ -12,155 +12,154 @@ describe("Merge Accounting Client Integration", () => {
   });
 
   it("should retrieve account details", async () => {
-    const { response, body } = await client.accounting.accountDetails.retrieve({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.accountDetails.retrieve().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list accounts", async () => {
-    const { response, body } = await client.accounting.accounts.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.accounts.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
     expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list attachments", async () => {
-    const { response, body } = await client.accounting.attachments.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.attachments.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list balance sheets", async () => {
-    const { response, body } = await client.accounting.balanceSheets.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.balanceSheets.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list vendor credits", async () => {
-    const { response, body } = await client.accounting.vendorCredits.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.vendorCredits.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list transactions", async () => {
-    const { response, body } = await client.accounting.transactions.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.transactions.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list tracking categories", async () => {
-    const { response, body } = await client.accounting.trackingCategories.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.trackingCategories.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list tax rates", async () => {
-    const { response, body } = await client.accounting.taxRates.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.taxRates.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list purchase orders", async () => {
-    const { response, body } = await client.accounting.purchaseOrders.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.purchaseOrders.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list projects", async () => {
-    const { response, body } = await client.accounting.projects.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.projects.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list payment terms", async () => {
-    const { response, body } = await client.accounting.paymentTerms.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.paymentTerms.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list payment methods", async () => {
-    const { response, body } = await client.accounting.paymentMethods.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.paymentMethods.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list payments", async () => {
-    const { response, body } = await client.accounting.payments.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.payments.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list journal entries", async () => {
-    const { response, body } = await client.accounting.journalEntries.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.journalEntries.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list items", async () => {
-    const { response, body } = await client.accounting.items.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.items.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list invoices", async () => {
-    const { response, body } = await client.accounting.invoices.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.invoices.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list invoices with query params", async () => {
-    const { response, body } = await client.accounting.invoices.list({
+    const { data: body, rawResponse: response } = await client.accounting.invoices.list({
       expand: ["employee", "accounting_period", "company"],
-      withResponse: true,
-    });
+    }).withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list income statements", async () => {
-    const { response, body } = await client.accounting.incomeStatements.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.incomeStatements.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list general ledger transactions", async () => {
-    const { response, body } = await client.accounting.generalLedgerTransactions.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.generalLedgerTransactions.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list expenses", async () => {
-    const { response, body } = await client.accounting.expenses.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.expenses.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list employees", async () => {
-    const { response, body } = await client.accounting.employees.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.employees.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list credit notes", async () => {
-    const { response, body } = await client.accounting.creditNotes.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.creditNotes.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list contacts", async () => {
-    const { response, body } = await client.accounting.contacts.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.contacts.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list company info", async () => {
-    const { response, body } = await client.accounting.companyInfo.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.companyInfo.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should retrieve account details fields exist", async () => {
-    const { response, body } = await client.accounting.accountDetails.retrieve({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.accountDetails.retrieve().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
     expect(body.integration).toBeDefined();
@@ -168,25 +167,25 @@ describe("Merge Accounting Client Integration", () => {
   });
 
   it("should retrieve field mapping", async () => {
-    const { response, body } = await client.accounting.fieldMapping.retrieve({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.fieldMapping.fieldMappingsRetrieve().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should retrieve linked account scopes", async () => {
-    const { response, body } = await client.accounting.scopes.getLinkedAccountScopes({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.scopes.linkedAccountScopesRetrieve().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should retrieve default scopes", async () => {
-    const { response, body } = await client.accounting.scopes.getDefaultScopes({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.scopes.defaultScopesRetrieve().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
 
   it("should list sync status", async () => {
-    const { response, body } = await client.accounting.syncStatus.list({ withResponse: true });
+    const { data: body, rawResponse: response } = await client.accounting.syncStatus.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
   });
