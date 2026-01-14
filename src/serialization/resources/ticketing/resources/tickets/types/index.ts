@@ -2,6 +2,7 @@ export * from "./TicketsListRequestExpand";
 export * from "./TicketsListRequestPriority";
 export * from "./TicketsListRequestRemoteFields";
 export * from "./TicketsListRequestShowEnumOrigins";
+export * from "./TicketsListRequestStatus";
 export * from "./TicketsRetrieveRequestExpand";
 export * from "./TicketsRetrieveRequestRemoteFields";
 export * from "./TicketsRetrieveRequestShowEnumOrigins";
