@@ -1,6 +1,6 @@
-export type { FileStorageFileEndpointRequest } from "./FileStorageFileEndpointRequest";
-export type { FilesDownloadRequestMetaListRequest } from "./FilesDownloadRequestMetaListRequest";
-export type { FilesDownloadRequestMetaRetrieveRequest } from "./FilesDownloadRequestMetaRetrieveRequest";
-export type { FilesDownloadRetrieveRequest } from "./FilesDownloadRetrieveRequest";
-export type { FilesListRequest } from "./FilesListRequest";
-export type { FilesRetrieveRequest } from "./FilesRetrieveRequest";
+export { type ListFilesRequest } from "./ListFilesRequest";
+export { type FileStorageFileEndpointRequest } from "./FileStorageFileEndpointRequest";
+export { type RetrieveFilesRequest } from "./RetrieveFilesRequest";
+export { type DownloadRetrieveFilesRequest } from "./DownloadRetrieveFilesRequest";
+export { type DownloadRequestMetaRetrieveFilesRequest } from "./DownloadRequestMetaRetrieveFilesRequest";
+export { type DownloadRequestMetaListFilesRequest } from "./DownloadRequestMetaListFilesRequest";

@@ -8,32 +8,26 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Set up node
-        uses: actions/setup-node@v6
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        uses: actions/setup-node@v3
 
       - name: Compile
-        run: yarn build
+        run: yarn && yarn build
 
   test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Set up node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v3
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Test
-        run: yarn test
+      - name: Compile
+        run: yarn && yarn test    
 
   publish:
     needs: [ compile, test ]
@@ -41,29 +35,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
-
+        uses: actions/checkout@v4
       - name: Set up node
-        uses: actions/setup-node@v6
-
+        uses: actions/setup-node@v3
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
+        run: yarn install
       - name: Build
         run: yarn build
 
       - name: Publish to npm
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          publish() {  # use latest npm to ensure OIDC support
-            npx -y npm@latest publish "$@"
-          }
           if [[ ${GITHUB_REF} == *alpha* ]]; then
-            publish --access public --tag alpha
+            npm publish --access public --tag alpha
           elif [[ ${GITHUB_REF} == *beta* ]]; then
-            publish --access public --tag beta
+            npm publish --access public --tag beta
           else
-            publish --access public
+            npm publish --access public
           fi
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,2 +1,2 @@
-export * from "./ProjectsListRequestExpand";
-export * from "./ProjectsRetrieveRequestExpand";
+export * from "./ListProjectsRequestExpand";
+export * from "./RetrieveProjectsRequestExpand";

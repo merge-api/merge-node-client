@@ -1,7 +1,5 @@
 export * as Merge from "./api";
-export type { BaseClientOptions, BaseRequestOptions } from "./BaseClient";
+export { MergeError, MergeTimeoutError } from "./errors";
+export * as serialization from "./serialization";
 export { MergeClient } from "./Client";
 export { MergeEnvironment } from "./environments";
-export { MergeError, MergeTimeoutError } from "./errors";
-export * from "./exports";
-export * as serialization from "./serialization";
