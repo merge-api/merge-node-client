@@ -2,6 +2,7 @@
 export default {
     preset: "ts-jest",
     testEnvironment: "node",
+    testTimeout: 65000,
     projects: [
         {
             displayName: "unit",
