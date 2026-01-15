@@ -1,2 +1,2 @@
-export * from "./EmployeePayrollRunsListRequestExpand";
-export * from "./EmployeePayrollRunsRetrieveRequestExpand";
+export * from "./EmployeePayrollRunsListRequestExpandItem";
+export * from "./EmployeePayrollRunsRetrieveRequestExpandItem";

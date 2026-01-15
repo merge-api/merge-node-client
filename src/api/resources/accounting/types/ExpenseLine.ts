@@ -339,7 +339,7 @@ export interface ExpenseLine {
      * * `ZWR` - Zimbabwean Dollar (2008)
      * * `ZWL` - Zimbabwean Dollar (2009)
      */
-    currency?: Merge.accounting.ExpenseLineCurrency;
+    currency?: Merge.accounting.TransactionCurrencyEnum;
     /** The expense's payment account. */
     account?: Merge.accounting.ExpenseLineAccount;
     /** The expense's contact. */

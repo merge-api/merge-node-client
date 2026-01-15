@@ -26,5 +26,4 @@ export interface AccountDetailsAndActions {
     integration?: Merge.ticketing.AccountDetailsAndActionsIntegration;
     accountType: string;
     completedAt: Date;
-    integrationSpecificFields?: Record<string, unknown>;
 }

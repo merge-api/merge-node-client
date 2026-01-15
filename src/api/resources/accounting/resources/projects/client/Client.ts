@@ -31,18 +31,11 @@ export class ProjectsClient {
      *
      * @example
      *     await client.accounting.projects.list({
-     *         companyId: "company_id",
-     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "company",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
-     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         pageSize: 1,
-     *         remoteId: "remote_id"
+     *         pageSize: 1
      *     })
      */
     public list(
@@ -56,38 +49,24 @@ export class ProjectsClient {
         request: Merge.accounting.ProjectsListRequest = {},
         requestOptions?: ProjectsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.PaginatedProjectList>> {
-        const {
-            companyId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            remoteId,
-        } = request;
+        const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
         const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
             cursor,
-            expand:
-                expand != null
-                    ? serializers.accounting.ProjectsListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ProjectsListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ProjectsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
             page_size: pageSize,
-            remote_id: remoteId,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -145,7 +124,6 @@ export class ProjectsClient {
      *
      * @example
      *     await client.accounting.projects.retrieve("id", {
-     *         expand: "company",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -165,12 +143,17 @@ export class ProjectsClient {
     ): Promise<core.WithRawResponse<Merge.accounting.Project>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.ProjectsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ProjectsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ProjectsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

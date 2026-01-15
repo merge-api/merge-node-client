@@ -1,2 +1,2 @@
-export * from "./UsersListRequestExpand";
-export * from "./UsersRetrieveRequestExpand";
+export * from "./UsersListRequestExpandItem";
+export * from "./UsersRetrieveRequestExpandItem";

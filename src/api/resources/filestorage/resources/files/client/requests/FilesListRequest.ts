@@ -9,7 +9,6 @@ import type * as Merge from "../../../../../../index";
  *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
  *         driveId: "drive_id",
- *         expand: "drive",
  *         folderId: "folder_id",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
@@ -20,8 +19,6 @@ import type * as Merge from "../../../../../../index";
  *         name: "name",
  *         orderBy: "-created_at",
  *         pageSize: 1,
- *         remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
- *         remoteCreatedBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         remoteId: "remote_id"
  *     }
  */
@@ -35,7 +32,7 @@ export interface FilesListRequest {
     /** Specifying a drive id returns only the files in that drive. Specifying null returns only the files outside the top-level drive. */
     driveId?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.filestorage.FilesListRequestExpand;
+    expand?: Merge.filestorage.FilesListRequestExpandItem | Merge.filestorage.FilesListRequestExpandItem[];
     /** Specifying a folder id returns only the files in that folder. Specifying null returns only the files in root directory. */
     folderId?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
@@ -56,10 +53,6 @@ export interface FilesListRequest {
     orderBy?: Merge.filestorage.FilesListRequestOrderBy;
     /** Number of results to return per page. */
     pageSize?: number;
-    /** If provided, will only return files created in the third party platform after this datetime. */
-    remoteCreatedAfter?: Date;
-    /** If provided, will only return files created in the third party platform before this datetime. */
-    remoteCreatedBefore?: Date;
     /** The API provider's ID for the given object. */
     remoteId?: string;
 }

@@ -32,7 +32,7 @@ export interface RolesListRequest {
     modifiedAfter?: Date;
     /** If provided, only objects synced by Merge before this date time will be returned. */
     modifiedBefore?: Date;
-    /** Number of results to return per page. The maximum limit is 100. */
+    /** Number of results to return per page. */
     pageSize?: number;
     /** The API provider's ID for the given object. */
     remoteId?: string;

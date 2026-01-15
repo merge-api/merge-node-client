@@ -6,7 +6,7 @@ import type * as serializers from "../../../../../../index";
 import { CategoriesEnum } from "../../../../types/CategoriesEnum";
 import { CommonModelScopesBodyRequest } from "../../../../types/CommonModelScopesBodyRequest";
 import { IndividualCommonModelScopeDeserializerRequest } from "../../../../types/IndividualCommonModelScopeDeserializerRequest";
-import { LanguageEnum } from "../../../../types/LanguageEnum";
+import { EndUserDetailsRequestLanguage } from "../../types/EndUserDetailsRequestLanguage";
 
 export const EndUserDetailsRequest: core.serialization.Schema<
     serializers.filestorage.EndUserDetailsRequest.Raw,
@@ -36,7 +36,7 @@ export const EndUserDetailsRequest: core.serialization.Schema<
             )
             .optional(),
     ),
-    language: LanguageEnum.optional(),
+    language: EndUserDetailsRequestLanguage.optional(),
     areSyncsDisabled: core.serialization.property("are_syncs_disabled", core.serialization.boolean().optional()),
     integrationSpecificConfig: core.serialization.property(
         "integration_specific_config",
@@ -59,7 +59,7 @@ export declare namespace EndUserDetailsRequest {
             string,
             IndividualCommonModelScopeDeserializerRequest.Raw[] | null | undefined
         > | null;
-        language?: LanguageEnum.Raw | null;
+        language?: EndUserDetailsRequestLanguage.Raw | null;
         are_syncs_disabled?: boolean | null;
         integration_specific_config?: Record<string, unknown> | null;
     }

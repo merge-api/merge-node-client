@@ -338,7 +338,7 @@ export interface CompanyInfo {
      * * `ZWR` - Zimbabwean Dollar (2008)
      * * `ZWL` - Zimbabwean Dollar (2009)
      */
-    currency?: Merge.accounting.CompanyInfoCurrency;
+    currency?: unknown;
     /** When the third party's company was created. */
     remoteCreatedAt?: Date;
     /** The company's urls. */

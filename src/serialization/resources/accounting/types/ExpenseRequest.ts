@@ -8,10 +8,10 @@ import { ExpenseRequestAccount } from "./ExpenseRequestAccount";
 import { ExpenseRequestAccountingPeriod } from "./ExpenseRequestAccountingPeriod";
 import { ExpenseRequestCompany } from "./ExpenseRequestCompany";
 import { ExpenseRequestContact } from "./ExpenseRequestContact";
-import { ExpenseRequestCurrency } from "./ExpenseRequestCurrency";
 import { ExpenseRequestEmployee } from "./ExpenseRequestEmployee";
 import { ExpenseRequestTrackingCategoriesItem } from "./ExpenseRequestTrackingCategoriesItem";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
+import { TransactionCurrencyEnum } from "./TransactionCurrencyEnum";
 
 export const ExpenseRequest: core.serialization.ObjectSchema<
     serializers.accounting.ExpenseRequest.Raw,
@@ -23,7 +23,7 @@ export const ExpenseRequest: core.serialization.ObjectSchema<
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     subTotal: core.serialization.property("sub_total", core.serialization.number().optional()),
     totalTaxAmount: core.serialization.property("total_tax_amount", core.serialization.number().optional()),
-    currency: ExpenseRequestCurrency.optional(),
+    currency: TransactionCurrencyEnum.optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     company: ExpenseRequestCompany.optional(),
@@ -54,7 +54,7 @@ export declare namespace ExpenseRequest {
         total_amount?: number | null;
         sub_total?: number | null;
         total_tax_amount?: number | null;
-        currency?: ExpenseRequestCurrency.Raw | null;
+        currency?: TransactionCurrencyEnum.Raw | null;
         exchange_rate?: string | null;
         inclusive_of_tax?: boolean | null;
         company?: ExpenseRequestCompany.Raw | null;
