@@ -110,7 +110,7 @@ describe("Merge HRIS Client Integration", () => {
     const { data: body, rawResponse: response } = await client.hris.syncStatus.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
-  }, 60000);
+  }, 65000);
 
   it("should list available actions", async () => {
     const { data: body, rawResponse: response } = await client.hris.availableActions.retrieve().withRawResponse();

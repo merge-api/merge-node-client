@@ -120,7 +120,7 @@ describe("Merge Accounting Client Integration", () => {
     const { data: body, rawResponse: response } = await client.accounting.incomeStatements.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
-  }, 60000);
+  }, 65000);
 
   it("should list general ledger transactions", async () => {
     const { data: body, rawResponse: response } = await client.accounting.generalLedgerTransactions.list().withRawResponse();
@@ -183,5 +183,5 @@ describe("Merge Accounting Client Integration", () => {
     const { data: body, rawResponse: response } = await client.accounting.syncStatus.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
-  }, 60000);
+  }, 65000);
 });

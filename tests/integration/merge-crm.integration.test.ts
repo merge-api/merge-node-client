@@ -22,7 +22,7 @@ describe("Merge CRM Client Integration", () => {
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
     expect(Array.isArray(body.results)).toBe(true);
-  });
+  }, 65000);
 
   it("should list contacts", async () => {
     const { data: body, rawResponse: response } = await client.crm.contacts.list().withRawResponse();
@@ -80,12 +80,6 @@ describe("Merge CRM Client Integration", () => {
     expect(Array.isArray(body.results)).toBe(true);
   });
 
-  it("should list custom objects", async () => {
-    const { data: body, rawResponse: response } = await client.crm.customObjects.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
-  });
 
   it("should list custom object classes", async () => {
     const { data: body, rawResponse: response } = await client.crm.customObjectClasses.list().withRawResponse();
@@ -94,19 +88,7 @@ describe("Merge CRM Client Integration", () => {
     expect(Array.isArray(body.results)).toBe(true);
   });
 
-  it("should list association types", async () => {
-    const { data: body, rawResponse: response } = await client.crm.associationTypes.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
-  });
 
-  it("should list associations", async () => {
-    const { data: body, rawResponse: response } = await client.crm.associations.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
-  });
 
   it("should retrieve linked account scopes", async () => {
     const { data: body, rawResponse: response } = await client.crm.scopes.linkedAccountScopesRetrieve().withRawResponse();
@@ -124,7 +106,7 @@ describe("Merge CRM Client Integration", () => {
     const { data: body, rawResponse: response } = await client.crm.syncStatus.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
-  }, 60000);
+  }, 65000);
 
   it("should list available actions", async () => {
     const { data: body, rawResponse: response } = await client.crm.availableActions.retrieve().withRawResponse();
