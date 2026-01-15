@@ -16,7 +16,6 @@ export const RemoteFieldClass: core.serialization.ObjectSchema<
     remoteKeyName: core.serialization.property("remote_key_name", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
     isCustom: core.serialization.property("is_custom", core.serialization.boolean().optional()),
-    isCommonModelField: core.serialization.property("is_common_model_field", core.serialization.boolean().optional()),
     isRequired: core.serialization.property("is_required", core.serialization.boolean().optional()),
     fieldType: core.serialization.property("field_type", FieldTypeEnum.optional()),
     fieldFormat: core.serialization.property("field_format", FieldFormatEnum.optional()),
@@ -34,7 +33,6 @@ export declare namespace RemoteFieldClass {
         remote_key_name?: string | null;
         description?: string | null;
         is_custom?: boolean | null;
-        is_common_model_field?: boolean | null;
         is_required?: boolean | null;
         field_type?: FieldTypeEnum.Raw | null;
         field_format?: FieldFormatEnum.Raw | null;

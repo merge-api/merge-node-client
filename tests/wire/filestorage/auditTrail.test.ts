@@ -31,22 +31,14 @@ describe("AuditTrailClient", () => {
             ],
         };
         server
-            .mockEndpoint()
+            .mockEndpoint({ once: false })
             .get("/filestorage/v1/audit-trail")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.filestorage.auditTrail.list({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            endDate: "end_date",
-            eventType: "event_type",
-            pageSize: 1,
-            startDate: "start_date",
-            userEmail: "user_email",
-        });
-        expect(response).toEqual({
+        const expected = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -62,6 +54,19 @@ describe("AuditTrailClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
             ],
+        };
+        const page = await client.filestorage.auditTrail.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            endDate: "end_date",
+            eventType: "event_type",
+            pageSize: 1,
+            startDate: "start_date",
+            userEmail: "user_email",
         });
+
+        expect(expected.results).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.results).toEqual(nextPage.data);
     });
 });

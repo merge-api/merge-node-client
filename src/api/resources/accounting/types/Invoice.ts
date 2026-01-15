@@ -27,7 +27,7 @@ export interface Invoice {
      * * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
      * * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
      */
-    type?: Merge.accounting.InvoiceType;
+    type?: Merge.accounting.InvoiceTypeEnum;
     /** The invoice's contact. */
     contact?: Merge.accounting.InvoiceContact;
     /** The invoice's number. */

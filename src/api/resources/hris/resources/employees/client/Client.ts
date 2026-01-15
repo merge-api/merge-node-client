@@ -36,10 +36,8 @@ export class EmployeesClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         displayFullName: "display_full_name",
-     *         employeeNumber: "employee_number",
      *         employmentStatus: "ACTIVE",
      *         employmentType: "employment_type",
-     *         expand: "company",
      *         firstName: "first_name",
      *         groups: "groups",
      *         homeLocationId: "home_location_id",
@@ -67,154 +65,167 @@ export class EmployeesClient {
      *         workLocationId: "work_location_id"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.hris.EmployeesListRequest = {},
         requestOptions?: EmployeesClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.hris.PaginatedEmployeeList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.hris.EmployeesListRequest = {},
-        requestOptions?: EmployeesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.hris.PaginatedEmployeeList>> {
-        const {
-            companyId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            displayFullName,
-            employeeNumber,
-            employmentStatus,
-            employmentType,
-            expand,
-            firstName,
-            groups,
-            homeLocationId,
-            includeDeletedData,
-            includeRemoteData,
-            includeSensitiveFields,
-            includeShellData,
-            jobTitle,
-            lastName,
-            managerId,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            payGroupId,
-            personalEmail,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-            startedAfter,
-            startedBefore,
-            teamId,
-            terminatedAfter,
-            terminatedBefore,
-            workEmail,
-            workLocationId,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            display_full_name: displayFullName,
-            employee_number: employeeNumber,
-            employment_status:
-                employmentStatus != null
-                    ? serializers.hris.EmployeesListRequestEmploymentStatus.jsonOrThrow(employmentStatus, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            employment_type: employmentType,
-            expand:
-                expand != null
-                    ? serializers.hris.EmployeesListRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            first_name: firstName,
-            groups,
-            home_location_id: homeLocationId,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_sensitive_fields: includeSensitiveFields,
-            include_shell_data: includeShellData,
-            job_title: jobTitle,
-            last_name: lastName,
-            manager_id: managerId,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            pay_group_id: payGroupId,
-            personal_email: personalEmail,
-            remote_fields:
-                remoteFields != null
-                    ? serializers.hris.EmployeesListRequestRemoteFields.jsonOrThrow(remoteFields, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            remote_id: remoteId,
-            show_enum_origins:
-                showEnumOrigins != null
-                    ? serializers.hris.EmployeesListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            started_after: startedAfter?.toISOString(),
-            started_before: startedBefore?.toISOString(),
-            team_id: teamId,
-            terminated_after: terminatedAfter?.toISOString(),
-            terminated_before: terminatedBefore?.toISOString(),
-            work_email: workEmail,
-            work_location_id: workLocationId,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.hris.Employee, Merge.hris.PaginatedEmployeeList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.hris.EmployeesListRequest,
+            ): Promise<core.WithRawResponse<Merge.hris.PaginatedEmployeeList>> => {
+                const {
+                    companyId,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    displayFullName,
+                    employmentStatus,
+                    employmentType,
+                    expand,
+                    firstName,
+                    groups,
+                    homeLocationId,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeSensitiveFields,
+                    includeShellData,
+                    jobTitle,
+                    lastName,
+                    managerId,
+                    modifiedAfter,
+                    modifiedBefore,
+                    pageSize,
+                    payGroupId,
+                    personalEmail,
+                    remoteFields,
+                    remoteId,
+                    showEnumOrigins,
+                    startedAfter,
+                    startedBefore,
+                    teamId,
+                    terminatedAfter,
+                    terminatedBefore,
+                    workEmail,
+                    workLocationId,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    company_id: companyId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    display_full_name: displayFullName,
+                    employment_status:
+                        employmentStatus != null
+                            ? serializers.hris.EmployeesListRequestEmploymentStatus.jsonOrThrow(employmentStatus, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    employment_type: employmentType,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.hris.EmployeesListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.hris.EmployeesListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    first_name: firstName,
+                    groups,
+                    home_location_id: homeLocationId,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_sensitive_fields: includeSensitiveFields,
+                    include_shell_data: includeShellData,
+                    job_title: jobTitle,
+                    last_name: lastName,
+                    manager_id: managerId,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    page_size: pageSize,
+                    pay_group_id: payGroupId,
+                    personal_email: personalEmail,
+                    remote_fields:
+                        remoteFields != null
+                            ? serializers.hris.EmployeesListRequestRemoteFields.jsonOrThrow(remoteFields, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    remote_id: remoteId,
+                    show_enum_origins:
+                        showEnumOrigins != null
+                            ? serializers.hris.EmployeesListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    started_after: startedAfter?.toISOString(),
+                    started_before: startedBefore?.toISOString(),
+                    team_id: teamId,
+                    terminated_after: terminatedAfter?.toISOString(),
+                    terminated_before: terminatedBefore?.toISOString(),
+                    work_email: workEmail,
+                    work_location_id: workLocationId,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "hris/v1/employees",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.hris.PaginatedEmployeeList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/hris/v1/employees");
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "hris/v1/employees",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.hris.Employee, Merge.hris.PaginatedEmployeeList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.hris.PaginatedEmployeeList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/hris/v1/employees");
     }
 
     /**
@@ -305,7 +316,6 @@ export class EmployeesClient {
      *
      * @example
      *     await client.hris.employees.retrieve("id", {
-     *         expand: "company",
      *         includeRemoteData: true,
      *         includeSensitiveFields: true,
      *         includeShellData: true,
@@ -329,12 +339,17 @@ export class EmployeesClient {
         const { expand, includeRemoteData, includeSensitiveFields, includeShellData, remoteFields, showEnumOrigins } =
             request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.hris.EmployeesRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.hris.EmployeesRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.hris.EmployeesRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_sensitive_fields: includeSensitiveFields,
             include_shell_data: includeShellData,

@@ -5,7 +5,6 @@ import type * as Merge from "../../../../../../index";
 /**
  * @example
  *     {
- *         expand: "approver",
  *         includeRemoteData: true,
  *         includeShellData: true,
  *         remoteFields: "request_type",
@@ -14,7 +13,7 @@ import type * as Merge from "../../../../../../index";
  */
 export interface TimeOffRetrieveRequest {
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.hris.TimeOffRetrieveRequestExpand;
+    expand?: Merge.hris.TimeOffRetrieveRequestExpandItem | Merge.hris.TimeOffRetrieveRequestExpandItem[];
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
     /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */

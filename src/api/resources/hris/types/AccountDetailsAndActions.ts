@@ -26,5 +26,4 @@ export interface AccountDetailsAndActions {
     integration?: Merge.hris.AccountDetailsAndActionsIntegration;
     accountType: string;
     completedAt: Date;
-    integrationSpecificFields?: Record<string, unknown>;
 }

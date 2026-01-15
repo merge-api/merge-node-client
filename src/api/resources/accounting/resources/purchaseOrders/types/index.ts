@@ -1,2 +1,2 @@
-export * from "./PurchaseOrdersListRequestExpand";
-export * from "./PurchaseOrdersRetrieveRequestExpand";
+export * from "./PurchaseOrdersListRequestExpandItem";
+export * from "./PurchaseOrdersRetrieveRequestExpandItem";

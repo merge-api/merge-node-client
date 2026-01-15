@@ -35,7 +35,6 @@ export class InterviewsClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "application",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -50,105 +49,120 @@ export class InterviewsClient {
      *         showEnumOrigins: "status"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.ats.InterviewsListRequest = {},
         requestOptions?: InterviewsClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.ats.PaginatedScheduledInterviewList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.ats.InterviewsListRequest = {},
-        requestOptions?: InterviewsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.ats.PaginatedScheduledInterviewList>> {
-        const {
-            applicationId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            jobId,
-            jobInterviewStageId,
-            modifiedAfter,
-            modifiedBefore,
-            organizerId,
-            pageSize,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            application_id: applicationId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand:
-                expand != null
-                    ? serializers.ats.InterviewsListRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            job_id: jobId,
-            job_interview_stage_id: jobInterviewStageId,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            organizer_id: organizerId,
-            page_size: pageSize,
-            remote_fields: remoteFields != null ? remoteFields : undefined,
-            remote_id: remoteId,
-            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.ats.ScheduledInterview, Merge.ats.PaginatedScheduledInterviewList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.ats.InterviewsListRequest,
+            ): Promise<core.WithRawResponse<Merge.ats.PaginatedScheduledInterviewList>> => {
+                const {
+                    applicationId,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    jobId,
+                    jobInterviewStageId,
+                    modifiedAfter,
+                    modifiedBefore,
+                    organizerId,
+                    pageSize,
+                    remoteFields,
+                    remoteId,
+                    showEnumOrigins,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    application_id: applicationId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.ats.InterviewsListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.ats.InterviewsListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    job_id: jobId,
+                    job_interview_stage_id: jobInterviewStageId,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    organizer_id: organizerId,
+                    page_size: pageSize,
+                    remote_fields: remoteFields != null ? remoteFields : undefined,
+                    remote_id: remoteId,
+                    show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "ats/v1/interviews",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.ats.PaginatedScheduledInterviewList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/ats/v1/interviews");
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "ats/v1/interviews",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.ats.ScheduledInterview, Merge.ats.PaginatedScheduledInterviewList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.ats.PaginatedScheduledInterviewList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/ats/v1/interviews");
     }
 
     /**
@@ -242,7 +256,6 @@ export class InterviewsClient {
      *
      * @example
      *     await client.ats.interviews.retrieve("id", {
-     *         expand: "application",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "status",
@@ -264,12 +277,17 @@ export class InterviewsClient {
     ): Promise<core.WithRawResponse<Merge.ats.ScheduledInterview>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.ats.InterviewsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ats.InterviewsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ats.InterviewsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields: remoteFields != null ? remoteFields : undefined,

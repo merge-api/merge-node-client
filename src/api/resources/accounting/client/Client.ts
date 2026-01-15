@@ -21,7 +21,6 @@ import { ContactsClient } from "../resources/contacts/client/Client";
 import { CreditNotesClient } from "../resources/creditNotes/client/Client";
 import { DeleteAccountClient } from "../resources/deleteAccount/client/Client";
 import { EmployeesClient } from "../resources/employees/client/Client";
-import { ExpenseReportsClient } from "../resources/expenseReports/client/Client";
 import { ExpensesClient } from "../resources/expenses/client/Client";
 import { FieldMappingClient } from "../resources/fieldMapping/client/Client";
 import { ForceResyncClient } from "../resources/forceResync/client/Client";
@@ -76,7 +75,6 @@ export class AccountingClient {
     protected _scopes: ScopesClient | undefined;
     protected _deleteAccount: DeleteAccountClient | undefined;
     protected _employees: EmployeesClient | undefined;
-    protected _expenseReports: ExpenseReportsClient | undefined;
     protected _expenses: ExpensesClient | undefined;
     protected _fieldMapping: FieldMappingClient | undefined;
     protected _generalLedgerTransactions: GeneralLedgerTransactionsClient | undefined;
@@ -186,10 +184,6 @@ export class AccountingClient {
 
     public get employees(): EmployeesClient {
         return (this._employees ??= new EmployeesClient(this._options));
-    }
-
-    public get expenseReports(): ExpenseReportsClient {
-        return (this._expenseReports ??= new ExpenseReportsClient(this._options));
     }
 
     public get expenses(): ExpensesClient {

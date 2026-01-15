@@ -14,7 +14,6 @@ export const PatchedEditFieldMappingRequest: core.serialization.Schema<
     ),
     remoteMethod: core.serialization.property("remote_method", core.serialization.string().optional()),
     remoteUrlPath: core.serialization.property("remote_url_path", core.serialization.string().optional()),
-    jmesPath: core.serialization.property("jmes_path", core.serialization.string().optional()),
 });
 
 export declare namespace PatchedEditFieldMappingRequest {
@@ -22,6 +21,5 @@ export declare namespace PatchedEditFieldMappingRequest {
         remote_field_traversal_path?: unknown[] | null;
         remote_method?: string | null;
         remote_url_path?: string | null;
-        jmes_path?: string | null;
     }
 }

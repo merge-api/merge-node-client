@@ -15,7 +15,7 @@ import { InvoicePaymentTerm } from "./InvoicePaymentTerm";
 import { InvoicePurchaseOrdersItem } from "./InvoicePurchaseOrdersItem";
 import { InvoiceStatus } from "./InvoiceStatus";
 import { InvoiceTrackingCategoriesItem } from "./InvoiceTrackingCategoriesItem";
-import { InvoiceType } from "./InvoiceType";
+import { InvoiceTypeEnum } from "./InvoiceTypeEnum";
 import { RemoteData } from "./RemoteData";
 import { RemoteField } from "./RemoteField";
 
@@ -25,7 +25,7 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
         remoteId: core.serialization.property("remote_id", core.serialization.string().optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
         modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
-        type: InvoiceType.optional(),
+        type: InvoiceTypeEnum.optional(),
         contact: InvoiceContact.optional(),
         number: core.serialization.string().optional(),
         issueDate: core.serialization.property("issue_date", core.serialization.date().optional()),
@@ -87,7 +87,7 @@ export declare namespace Invoice {
         remote_id?: string | null;
         created_at?: string | null;
         modified_at?: string | null;
-        type?: InvoiceType.Raw | null;
+        type?: InvoiceTypeEnum.Raw | null;
         contact?: InvoiceContact.Raw | null;
         number?: string | null;
         issue_date?: string | null;

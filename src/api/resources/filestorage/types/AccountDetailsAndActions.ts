@@ -12,8 +12,8 @@ import type * as Merge from "../../../index";
  */
 export interface AccountDetailsAndActions {
     id: string;
-    category?: Merge.filestorage.CategoryEnum;
-    status: Merge.filestorage.AccountDetailsAndActionsStatusEnum;
+    category?: Merge.filestorage.AccountDetailsAndActionsCategory;
+    status: Merge.filestorage.AccountDetailsAndActionsStatus;
     statusDetail?: string;
     endUserOriginId?: string;
     endUserOrganizationName: string;
@@ -26,5 +26,4 @@ export interface AccountDetailsAndActions {
     integration?: Merge.filestorage.AccountDetailsAndActionsIntegration;
     accountType: string;
     completedAt: Date;
-    integrationSpecificFields?: Record<string, unknown>;
 }

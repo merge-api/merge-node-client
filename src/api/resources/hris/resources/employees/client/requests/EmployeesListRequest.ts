@@ -10,10 +10,8 @@ import type * as Merge from "../../../../../../index";
  *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
  *         displayFullName: "display_full_name",
- *         employeeNumber: "employee_number",
  *         employmentStatus: "ACTIVE",
  *         employmentType: "employment_type",
- *         expand: "company",
  *         firstName: "first_name",
  *         groups: "groups",
  *         homeLocationId: "home_location_id",
@@ -52,8 +50,6 @@ export interface EmployeesListRequest {
     cursor?: string;
     /** If provided, will only return employees with this display name. */
     displayFullName?: string;
-    /** If provided, will only return employees with this employee number. */
-    employeeNumber?: string;
     /**
      * If provided, will only return employees with this employment status.
      *
@@ -62,10 +58,10 @@ export interface EmployeesListRequest {
      * * `INACTIVE` - INACTIVE
      */
     employmentStatus?: Merge.hris.EmployeesListRequestEmploymentStatus;
-    /** If provided, will only return employees that have an employment of the specified employment type. */
+    /** If provided, will only return employees that have an employment of the specified employment_type. */
     employmentType?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.hris.EmployeesListRequestExpand;
+    expand?: Merge.hris.EmployeesListRequestExpandItem | Merge.hris.EmployeesListRequestExpandItem[];
     /** If provided, will only return employees with this first name. */
     firstName?: string;
     /** If provided, will only return employees matching the group ids; multiple groups can be separated by commas. */
@@ -80,7 +76,7 @@ export interface EmployeesListRequest {
     includeSensitiveFields?: boolean;
     /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */
     includeShellData?: boolean;
-    /** If provided, will only return employees that have an employment of the specified job title. */
+    /** If provided, will only return employees that have an employment of the specified job_title. */
     jobTitle?: string;
     /** If provided, will only return employees with this last name. */
     lastName?: string;

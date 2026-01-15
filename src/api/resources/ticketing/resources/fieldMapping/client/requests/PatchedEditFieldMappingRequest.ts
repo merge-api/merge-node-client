@@ -11,6 +11,4 @@ export interface PatchedEditFieldMappingRequest {
     remoteMethod?: string;
     /** The path of the remote endpoint where the remote field is coming from. */
     remoteUrlPath?: string;
-    /** JMES path to specify json query expression to be used on field mapping. */
-    jmesPath?: string;
 }

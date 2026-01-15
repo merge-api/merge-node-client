@@ -7,5 +7,4 @@ export interface FieldMappingApiInstance {
     isIntegrationWide?: boolean;
     targetField?: Merge.hris.FieldMappingApiInstanceTargetField;
     remoteField?: Merge.hris.FieldMappingApiInstanceRemoteField;
-    jmesPath?: string;
 }

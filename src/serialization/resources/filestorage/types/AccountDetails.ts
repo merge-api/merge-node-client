@@ -3,7 +3,7 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { CategoryEnum } from "./CategoryEnum";
+import { AccountDetailsCategory } from "./AccountDetailsCategory";
 
 export const AccountDetails: core.serialization.ObjectSchema<
     serializers.filestorage.AccountDetails.Raw,
@@ -12,7 +12,7 @@ export const AccountDetails: core.serialization.ObjectSchema<
     id: core.serialization.string().optional(),
     integration: core.serialization.string().optional(),
     integrationSlug: core.serialization.property("integration_slug", core.serialization.string().optional()),
-    category: CategoryEnum.optional(),
+    category: AccountDetailsCategory.optional(),
     endUserOriginId: core.serialization.property("end_user_origin_id", core.serialization.string().optional()),
     endUserOrganizationName: core.serialization.property(
         "end_user_organization_name",
@@ -31,7 +31,7 @@ export declare namespace AccountDetails {
         id?: string | null;
         integration?: string | null;
         integration_slug?: string | null;
-        category?: CategoryEnum.Raw | null;
+        category?: AccountDetailsCategory.Raw | null;
         end_user_origin_id?: string | null;
         end_user_organization_name?: string | null;
         end_user_email_address?: string | null;

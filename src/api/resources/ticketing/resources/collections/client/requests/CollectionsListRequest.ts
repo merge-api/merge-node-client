@@ -9,7 +9,6 @@ import type * as Merge from "../../../../../../index";
  *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
  *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
- *         expand: "parent_collection",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
  *         includeShellData: true,
@@ -33,7 +32,7 @@ export interface CollectionsListRequest {
     /** The pagination cursor value. */
     cursor?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: "parent_collection";
+    expand?: "parent_collection" | "parent_collection"[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
@@ -46,7 +45,7 @@ export interface CollectionsListRequest {
     modifiedBefore?: Date;
     /** If provided, will only return collections with this name. */
     name?: string;
-    /** Number of results to return per page. The maximum limit is 100. */
+    /** Number of results to return per page. */
     pageSize?: number;
     /** If provided, will only return collections whose parent collection matches the given id. */
     parentCollectionId?: string;

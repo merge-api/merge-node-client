@@ -10,6 +10,6 @@
 export interface SyncStatusListRequest {
     /** The pagination cursor value. */
     cursor?: string;
-    /** Number of results to return per page. The maximum limit is 100. */
+    /** Number of results to return per page. */
     pageSize?: number;
 }

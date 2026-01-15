@@ -11,7 +11,6 @@ import type * as Merge from "../../../../../../index";
  *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
  *         employeeId: "employee_id",
- *         expand: "employee",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
  *         includeShellData: true,
@@ -43,7 +42,7 @@ export interface BankInfoListRequest {
     /** If provided, will only return bank accounts for this employee. */
     employeeId?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: "employee";
+    expand?: "employee" | "employee"[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
@@ -56,7 +55,7 @@ export interface BankInfoListRequest {
     modifiedBefore?: Date;
     /** Overrides the default ordering for this endpoint. Possible values include: remote_created_at, -remote_created_at. */
     orderBy?: Merge.hris.BankInfoListRequestOrderBy;
-    /** Number of results to return per page. The maximum limit is 100. */
+    /** Number of results to return per page. */
     pageSize?: number;
     /** Deprecated. Use show_enum_origins. */
     remoteFields?: "account_type";

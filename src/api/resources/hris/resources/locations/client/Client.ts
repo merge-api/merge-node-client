@@ -46,107 +46,117 @@ export class LocationsClient {
      *         showEnumOrigins: "country"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.hris.LocationsListRequest = {},
         requestOptions?: LocationsClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.hris.PaginatedLocationList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.hris.LocationsListRequest = {},
-        requestOptions?: LocationsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.hris.PaginatedLocationList>> {
-        const {
-            createdAfter,
-            createdBefore,
-            cursor,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            locationType,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            location_type:
-                locationType != null
-                    ? serializers.hris.LocationsListRequestLocationType.jsonOrThrow(locationType, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            remote_fields:
-                remoteFields != null
-                    ? serializers.hris.LocationsListRequestRemoteFields.jsonOrThrow(remoteFields, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            remote_id: remoteId,
-            show_enum_origins:
-                showEnumOrigins != null
-                    ? serializers.hris.LocationsListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.hris.Location, Merge.hris.PaginatedLocationList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.hris.LocationsListRequest,
+            ): Promise<core.WithRawResponse<Merge.hris.PaginatedLocationList>> => {
+                const {
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    locationType,
+                    modifiedAfter,
+                    modifiedBefore,
+                    pageSize,
+                    remoteFields,
+                    remoteId,
+                    showEnumOrigins,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    location_type:
+                        locationType != null
+                            ? serializers.hris.LocationsListRequestLocationType.jsonOrThrow(locationType, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    page_size: pageSize,
+                    remote_fields:
+                        remoteFields != null
+                            ? serializers.hris.LocationsListRequestRemoteFields.jsonOrThrow(remoteFields, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    remote_id: remoteId,
+                    show_enum_origins:
+                        showEnumOrigins != null
+                            ? serializers.hris.LocationsListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "hris/v1/locations",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.hris.PaginatedLocationList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/hris/v1/locations");
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "hris/v1/locations",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.hris.Location, Merge.hris.PaginatedLocationList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.hris.PaginatedLocationList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/hris/v1/locations");
     }
 
     /**

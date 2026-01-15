@@ -3,10 +3,10 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { FieldFormatEnum } from "./FieldFormatEnum";
+import { FieldTypeEnum } from "./FieldTypeEnum";
 import { ItemSchema } from "./ItemSchema";
 import { RemoteFieldClassFieldChoicesItem } from "./RemoteFieldClassFieldChoicesItem";
-import { RemoteFieldClassFieldFormat } from "./RemoteFieldClassFieldFormat";
-import { RemoteFieldClassFieldType } from "./RemoteFieldClassFieldType";
 
 export const RemoteFieldClass: core.serialization.ObjectSchema<
     serializers.ticketing.RemoteFieldClass.Raw,
@@ -19,8 +19,8 @@ export const RemoteFieldClass: core.serialization.ObjectSchema<
     isCustom: core.serialization.property("is_custom", core.serialization.boolean().optional()),
     isCommonModelField: core.serialization.property("is_common_model_field", core.serialization.boolean().optional()),
     isRequired: core.serialization.property("is_required", core.serialization.boolean().optional()),
-    fieldType: core.serialization.property("field_type", RemoteFieldClassFieldType.optional()),
-    fieldFormat: core.serialization.property("field_format", RemoteFieldClassFieldFormat.optional()),
+    fieldType: core.serialization.property("field_type", FieldTypeEnum.optional()),
+    fieldFormat: core.serialization.property("field_format", FieldFormatEnum.optional()),
     fieldChoices: core.serialization.property(
         "field_choices",
         core.serialization.list(RemoteFieldClassFieldChoicesItem).optional(),
@@ -37,8 +37,8 @@ export declare namespace RemoteFieldClass {
         is_custom?: boolean | null;
         is_common_model_field?: boolean | null;
         is_required?: boolean | null;
-        field_type?: RemoteFieldClassFieldType.Raw | null;
-        field_format?: RemoteFieldClassFieldFormat.Raw | null;
+        field_type?: FieldTypeEnum.Raw | null;
+        field_format?: FieldFormatEnum.Raw | null;
         field_choices?: RemoteFieldClassFieldChoicesItem.Raw[] | null;
         item_schema?: ItemSchema.Raw | null;
     }

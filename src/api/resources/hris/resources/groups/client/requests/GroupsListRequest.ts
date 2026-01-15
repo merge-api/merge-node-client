@@ -41,7 +41,7 @@ export interface GroupsListRequest {
     modifiedBefore?: Date;
     /** If provided, will only return groups with these names. Multiple values can be separated by commas. */
     names?: string;
-    /** Number of results to return per page. The maximum limit is 100. */
+    /** Number of results to return per page. */
     pageSize?: number;
     /** Deprecated. Use show_enum_origins. */
     remoteFields?: "type";

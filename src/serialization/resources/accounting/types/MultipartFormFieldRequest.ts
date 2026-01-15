@@ -3,7 +3,7 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { MultipartFormFieldRequestEncoding } from "./MultipartFormFieldRequestEncoding";
+import { EncodingEnum } from "./EncodingEnum";
 
 export const MultipartFormFieldRequest: core.serialization.ObjectSchema<
     serializers.accounting.MultipartFormFieldRequest.Raw,
@@ -11,7 +11,7 @@ export const MultipartFormFieldRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string(),
     data: core.serialization.string(),
-    encoding: MultipartFormFieldRequestEncoding.optional(),
+    encoding: EncodingEnum.optional(),
     fileName: core.serialization.property("file_name", core.serialization.string().optional()),
     contentType: core.serialization.property("content_type", core.serialization.string().optional()),
 });
@@ -20,7 +20,7 @@ export declare namespace MultipartFormFieldRequest {
     export interface Raw {
         name: string;
         data: string;
-        encoding?: MultipartFormFieldRequestEncoding.Raw | null;
+        encoding?: EncodingEnum.Raw | null;
         file_name?: string | null;
         content_type?: string | null;
     }

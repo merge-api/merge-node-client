@@ -8,7 +8,6 @@ export interface RemoteFieldClass {
     remoteKeyName?: string;
     description?: string;
     isCustom?: boolean;
-    isCommonModelField?: boolean;
     isRequired?: boolean;
     fieldType?: Merge.accounting.FieldTypeEnum;
     fieldFormat?: Merge.accounting.FieldFormatEnum;

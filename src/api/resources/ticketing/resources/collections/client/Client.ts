@@ -35,7 +35,6 @@ export class CollectionsClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "parent_collection",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -49,103 +48,118 @@ export class CollectionsClient {
      *         showEnumOrigins: "collection_type"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.ticketing.CollectionsListRequest = {},
         requestOptions?: CollectionsClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.ticketing.PaginatedCollectionList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.ticketing.CollectionsListRequest = {},
-        requestOptions?: CollectionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedCollectionList>> {
-        const {
-            collectionType,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            modifiedAfter,
-            modifiedBefore,
-            name,
-            pageSize,
-            parentCollectionId,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            collection_type:
-                collectionType != null
-                    ? serializers.ticketing.CollectionsListRequestCollectionType.jsonOrThrow(collectionType, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand: expand != null ? expand : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            name,
-            page_size: pageSize,
-            parent_collection_id: parentCollectionId,
-            remote_fields: remoteFields != null ? remoteFields : undefined,
-            remote_id: remoteId,
-            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.ticketing.Collection, Merge.ticketing.PaginatedCollectionList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.ticketing.CollectionsListRequest,
+            ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedCollectionList>> => {
+                const {
+                    collectionType,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    modifiedAfter,
+                    modifiedBefore,
+                    name,
+                    pageSize,
+                    parentCollectionId,
+                    remoteFields,
+                    remoteId,
+                    showEnumOrigins,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    collection_type:
+                        collectionType != null
+                            ? serializers.ticketing.CollectionsListRequestCollectionType.jsonOrThrow(collectionType, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    name,
+                    page_size: pageSize,
+                    parent_collection_id: parentCollectionId,
+                    remote_fields: remoteFields != null ? remoteFields : undefined,
+                    remote_id: remoteId,
+                    show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "ticketing/v1/collections",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.ticketing.PaginatedCollectionList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/ticketing/v1/collections",
+                );
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "ticketing/v1/collections",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.ticketing.Collection, Merge.ticketing.PaginatedCollectionList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.ticketing.PaginatedCollectionList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/ticketing/v1/collections");
     }
 
     /**
@@ -158,90 +172,103 @@ export class CollectionsClient {
      * @example
      *     await client.ticketing.collections.viewersList("collection_id", {
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "team",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         pageSize: 1
      *     })
      */
-    public viewersList(
+    public async viewersList(
         collection_id: string,
         request: Merge.ticketing.CollectionsViewersListRequest = {},
         requestOptions?: CollectionsClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.ticketing.PaginatedViewerList> {
-        return core.HttpResponsePromise.fromPromise(this.__viewersList(collection_id, request, requestOptions));
-    }
-
-    private async __viewersList(
-        collection_id: string,
-        request: Merge.ticketing.CollectionsViewersListRequest = {},
-        requestOptions?: CollectionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedViewerList>> {
-        const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
-        const _queryParams: Record<string, unknown> = {
-            cursor,
-            expand:
-                expand != null
-                    ? serializers.ticketing.CollectionsViewersListRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            page_size: pageSize,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.ticketing.Viewer, Merge.ticketing.PaginatedViewerList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.ticketing.CollectionsViewersListRequest,
+            ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedViewerList>> => {
+                const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
+                const _queryParams: Record<string, unknown> = {
+                    cursor,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.ticketing.CollectionsViewersListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.ticketing.CollectionsViewersListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    page_size: pageSize,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        `ticketing/v1/collections/${core.url.encodePathParam(collection_id)}/viewers`,
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.ticketing.PaginatedViewerList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/ticketing/v1/collections/{collection_id}/viewers",
+                );
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                `ticketing/v1/collections/${core.url.encodePathParam(collection_id)}/viewers`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.ticketing.Viewer, Merge.ticketing.PaginatedViewerList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.ticketing.PaginatedViewerList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/ticketing/v1/collections/{collection_id}/viewers",
-        );
     }
 
     /**
@@ -253,7 +280,6 @@ export class CollectionsClient {
      *
      * @example
      *     await client.ticketing.collections.retrieve("id", {
-     *         expand: "parent_collection",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "collection_type",
@@ -275,7 +301,7 @@ export class CollectionsClient {
     ): Promise<core.WithRawResponse<Merge.ticketing.Collection>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields: remoteFields != null ? remoteFields : undefined,

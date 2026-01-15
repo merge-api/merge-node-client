@@ -27,6 +27,4 @@ export interface CreateFieldMappingRequest {
     remoteUrlPath: string;
     /** The name of the Common Model that the remote field corresponds to in a given category. */
     commonModelName: string;
-    /** JMES path to specify json query expression to be used on field mapping. */
-    jmesPath?: string;
 }

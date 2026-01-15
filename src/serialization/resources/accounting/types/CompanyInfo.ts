@@ -5,7 +5,6 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AccountingPhoneNumber } from "./AccountingPhoneNumber";
 import { Address } from "./Address";
-import { CompanyInfoCurrency } from "./CompanyInfoCurrency";
 import { RemoteData } from "./RemoteData";
 
 export const CompanyInfo: core.serialization.ObjectSchema<
@@ -21,7 +20,7 @@ export const CompanyInfo: core.serialization.ObjectSchema<
     taxNumber: core.serialization.property("tax_number", core.serialization.string().optional()),
     fiscalYearEndMonth: core.serialization.property("fiscal_year_end_month", core.serialization.number().optional()),
     fiscalYearEndDay: core.serialization.property("fiscal_year_end_day", core.serialization.number().optional()),
-    currency: CompanyInfoCurrency.optional(),
+    currency: core.serialization.unknown().optional(),
     remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
     urls: core.serialization.list(core.serialization.string().optional()).optional(),
     addresses: core.serialization.list(Address).optional(),
@@ -48,7 +47,7 @@ export declare namespace CompanyInfo {
         tax_number?: string | null;
         fiscal_year_end_month?: number | null;
         fiscal_year_end_day?: number | null;
-        currency?: CompanyInfoCurrency.Raw | null;
+        currency?: unknown | null;
         remote_created_at?: string | null;
         urls?: (string | null | undefined)[] | null;
         addresses?: Address.Raw[] | null;
