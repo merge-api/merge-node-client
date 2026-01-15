@@ -1,2 +1,2 @@
-export * from "./VendorCreditsListRequestExpand";
-export * from "./VendorCreditsRetrieveRequestExpand";
+export * from "./ListVendorCreditsRequestExpand";
+export * from "./RetrieveVendorCreditsRequestExpand";

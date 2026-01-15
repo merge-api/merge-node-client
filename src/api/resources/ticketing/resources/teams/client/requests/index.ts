@@ -1,2 +1,2 @@
-export type { TeamsListRequest } from "./TeamsListRequest";
-export type { TeamsRetrieveRequest } from "./TeamsRetrieveRequest";
+export { type ListTeamsRequest } from "./ListTeamsRequest";
+export { type RetrieveTeamsRequest } from "./RetrieveTeamsRequest";
