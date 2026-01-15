@@ -108,7 +108,7 @@ describe("Merge FileStorage Client Integration", () => {
 
   it("should list files with query params", async () => {
     const { data: body, rawResponse: response } = await client.filestorage.files.list({
-      expand: ["permissions", "folder"],
+      expand: "permissions,folder",
     }).withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
@@ -117,7 +117,7 @@ describe("Merge FileStorage Client Integration", () => {
 
   it("should list folders with query params", async () => {
     const { data: body, rawResponse: response } = await client.filestorage.folders.list({
-      expand: ["permissions", "parent_folder"],
+      expand: "permissions,parent_folder",
     }).withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();

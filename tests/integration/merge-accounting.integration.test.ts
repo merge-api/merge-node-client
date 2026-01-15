@@ -110,7 +110,7 @@ describe("Merge Accounting Client Integration", () => {
 
   it("should list invoices with query params", async () => {
     const { data: body, rawResponse: response } = await client.accounting.invoices.list({
-      expand: ["employee", "accounting_period", "company"],
+      expand: "employee,accounting_period,company",
     }).withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
@@ -183,5 +183,5 @@ describe("Merge Accounting Client Integration", () => {
     const { data: body, rawResponse: response } = await client.accounting.syncStatus.list().withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
-  });
+  }, 60000);
 });
