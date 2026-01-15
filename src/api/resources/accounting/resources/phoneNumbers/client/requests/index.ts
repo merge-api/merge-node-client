@@ -1,1 +1,1 @@
-export type { PhoneNumbersRetrieveRequest } from "./PhoneNumbersRetrieveRequest";
+export { type RetrievePhoneNumbersRequest } from "./RetrievePhoneNumbersRequest";
