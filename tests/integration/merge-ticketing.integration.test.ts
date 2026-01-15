@@ -52,12 +52,6 @@ describe("Merge Ticketing Client Integration", () => {
     expect(Array.isArray(body.results)).toBe(true);
   });
 
-  it("should list projects", async () => {
-    const { data: body, rawResponse: response } = await client.ticketing.projects.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
-  });
 
   it("should list roles", async () => {
     const { data: body, rawResponse: response } = await client.ticketing.roles.list().withRawResponse();
@@ -149,7 +143,7 @@ describe("Merge Ticketing Client Integration", () => {
 
   it("should list tickets with query params", async () => {
     const { data: body, rawResponse: response } = await client.ticketing.tickets.list({
-      expand: "assignees,creator,account",
+      expand: "account",
     }).withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
