@@ -1,2 +1,2 @@
-export * from "./TasksListRequestExpand";
-export * from "./TasksRetrieveRequestExpand";
+export * from "./TasksListRequestExpandItem";
+export * from "./TasksRetrieveRequestExpandItem";

@@ -2,4 +2,4 @@
 
 import type * as Merge from "../../../index";
 
-export type RoleTicketActionsItem = string | Merge.ticketing.TicketActionsEnum;
+export type RoleTicketActionsItem = Merge.ticketing.TicketActionsEnum | string;

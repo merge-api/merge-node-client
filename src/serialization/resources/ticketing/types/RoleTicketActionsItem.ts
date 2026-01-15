@@ -8,8 +8,8 @@ import { TicketActionsEnum } from "./TicketActionsEnum";
 export const RoleTicketActionsItem: core.serialization.Schema<
     serializers.ticketing.RoleTicketActionsItem.Raw,
     Merge.ticketing.RoleTicketActionsItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), TicketActionsEnum]);
+> = core.serialization.undiscriminatedUnion([TicketActionsEnum, core.serialization.string()]);
 
 export declare namespace RoleTicketActionsItem {
-    export type Raw = string | TicketActionsEnum.Raw;
+    export type Raw = TicketActionsEnum.Raw | string;
 }
