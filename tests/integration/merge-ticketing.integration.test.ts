@@ -143,7 +143,7 @@ describe("Merge Ticketing Client Integration", () => {
 
   it("should list tickets with query params", async () => {
     const { data: body, rawResponse: response } = await client.ticketing.tickets.list({
-      expand: "account",
+      expand: ["account"],
     }).withRawResponse();
     expect(response.status).toBe(200);
     expect(body).toBeTruthy();
