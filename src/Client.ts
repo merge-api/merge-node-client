@@ -3,7 +3,7 @@
 import { AccountingClient } from "./api/resources/accounting/client/Client";
 import { AtsClient } from "./api/resources/ats/client/Client";
 import { CrmClient } from "./api/resources/crm/client/Client";
-import { FilestorageClient } from "./api/resources/filestorage/client/Client";
+import { FileStorageClient } from "./api/resources/fileStorage/client/Client";
 import { HrisClient } from "./api/resources/hris/client/Client";
 import { TicketingClient } from "./api/resources/ticketing/client/Client";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient";
@@ -17,31 +17,15 @@ export declare namespace MergeClient {
 
 export class MergeClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<MergeClient.Options>;
-    protected _crm: CrmClient | undefined;
-    protected _filestorage: FilestorageClient | undefined;
-    protected _ticketing: TicketingClient | undefined;
-    protected _hris: HrisClient | undefined;
     protected _ats: AtsClient | undefined;
     protected _accounting: AccountingClient | undefined;
+    protected _crm: CrmClient | undefined;
+    protected _fileStorage: FileStorageClient | undefined;
+    protected _hris: HrisClient | undefined;
+    protected _ticketing: TicketingClient | undefined;
 
     constructor(options: MergeClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
-    }
-
-    public get crm(): CrmClient {
-        return (this._crm ??= new CrmClient(this._options));
-    }
-
-    public get filestorage(): FilestorageClient {
-        return (this._filestorage ??= new FilestorageClient(this._options));
-    }
-
-    public get ticketing(): TicketingClient {
-        return (this._ticketing ??= new TicketingClient(this._options));
-    }
-
-    public get hris(): HrisClient {
-        return (this._hris ??= new HrisClient(this._options));
     }
 
     public get ats(): AtsClient {
@@ -50,5 +34,21 @@ export class MergeClient {
 
     public get accounting(): AccountingClient {
         return (this._accounting ??= new AccountingClient(this._options));
+    }
+
+    public get crm(): CrmClient {
+        return (this._crm ??= new CrmClient(this._options));
+    }
+
+    public get fileStorage(): FileStorageClient {
+        return (this._fileStorage ??= new FileStorageClient(this._options));
+    }
+
+    public get hris(): HrisClient {
+        return (this._hris ??= new HrisClient(this._options));
+    }
+
+    public get ticketing(): TicketingClient {
+        return (this._ticketing ??= new TicketingClient(this._options));
     }
 }

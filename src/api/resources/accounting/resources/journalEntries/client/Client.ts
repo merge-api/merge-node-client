@@ -35,7 +35,6 @@ export class JournalEntriesClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "accounting_period",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
@@ -48,133 +47,150 @@ export class JournalEntriesClient {
      *         transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
      *     })
      */
-    public list(
+    public async list(
         request: Merge.accounting.JournalEntriesListRequest = {},
         requestOptions?: JournalEntriesClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.accounting.PaginatedJournalEntryList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.accounting.JournalEntriesListRequest = {},
-        requestOptions?: JournalEntriesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedJournalEntryList>> {
-        const {
-            companyId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeRemoteFields,
-            includeShellData,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            remoteId,
-            transactionDateAfter,
-            transactionDateBefore,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand:
-                expand != null
-                    ? serializers.accounting.JournalEntriesListRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_remote_fields: includeRemoteFields,
-            include_shell_data: includeShellData,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            remote_id: remoteId,
-            transaction_date_after: transactionDateAfter?.toISOString(),
-            transaction_date_before: transactionDateBefore?.toISOString(),
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.accounting.JournalEntry, Merge.accounting.PaginatedJournalEntryList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.accounting.JournalEntriesListRequest,
+            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedJournalEntryList>> => {
+                const {
+                    companyId,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeRemoteFields,
+                    includeShellData,
+                    modifiedAfter,
+                    modifiedBefore,
+                    pageSize,
+                    remoteId,
+                    transactionDateAfter,
+                    transactionDateBefore,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    company_id: companyId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.accounting.JournalEntriesListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.accounting.JournalEntriesListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_remote_fields: includeRemoteFields,
+                    include_shell_data: includeShellData,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    page_size: pageSize,
+                    remote_id: remoteId,
+                    transaction_date_after: transactionDateAfter?.toISOString(),
+                    transaction_date_before: transactionDateBefore?.toISOString(),
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "accounting/v1/journal-entries",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.accounting.PaginatedJournalEntryList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/accounting/v1/journal-entries",
+                );
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "accounting/v1/journal-entries",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.accounting.JournalEntry, Merge.accounting.PaginatedJournalEntryList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.accounting.PaginatedJournalEntryList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/accounting/v1/journal-entries",
-        );
     }
 
     /**
      * Creates a `JournalEntry` object with the given values.
      *
-     * @param {Merge.accounting.JournalEntryEndpointRequest} request
+     * @param {Merge.accounting.JournalEntriesCreateRequest} request
      * @param {JournalEntriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.accounting.journalEntries.create({
      *         isDebugMode: true,
      *         runAsync: true,
-     *         model: {}
+     *         body: {
+     *             model: {}
+     *         }
      *     })
      */
     public create(
-        request: Merge.accounting.JournalEntryEndpointRequest,
+        request: Merge.accounting.JournalEntriesCreateRequest,
         requestOptions?: JournalEntriesClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.JournalEntryResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Merge.accounting.JournalEntryEndpointRequest,
+        request: Merge.accounting.JournalEntriesCreateRequest,
         requestOptions?: JournalEntriesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.JournalEntryResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
+        const { isDebugMode, runAsync, body: _body } = request;
         const _queryParams: Record<string, unknown> = {
             is_debug_mode: isDebugMode,
             run_async: runAsync,
@@ -245,7 +261,6 @@ export class JournalEntriesClient {
      *
      * @example
      *     await client.accounting.journalEntries.retrieve("id", {
-     *         expand: "accounting_period",
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
      *         includeShellData: true
@@ -266,12 +281,17 @@ export class JournalEntriesClient {
     ): Promise<core.WithRawResponse<Merge.accounting.JournalEntry>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.JournalEntriesRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.JournalEntriesRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.JournalEntriesRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
             include_shell_data: includeShellData,
@@ -329,50 +349,35 @@ export class JournalEntriesClient {
     }
 
     /**
-     * Returns a list of `RemoteFieldClass` objects.
+     * Creates a `JournalEntry` object with the given values.
      *
-     * @param {Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest} request
+     * @param {Merge.accounting.JournalEntriesAsyncBulkCreateRequest} request
      * @param {JournalEntriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.journalEntries.linesRemoteFieldClassesList({
-     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         includeDeletedData: true,
-     *         includeRemoteData: true,
-     *         includeShellData: true,
-     *         isCommonModelField: true,
-     *         isCustom: true,
-     *         pageSize: 1
+     *     await client.accounting.journalEntries.asyncBulkCreate({
+     *         isDebugMode: true,
+     *         runAsync: true,
+     *         body: {
+     *             model: {}
+     *         }
      *     })
      */
-    public linesRemoteFieldClassesList(
-        request: Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest = {},
+    public asyncBulkCreate(
+        request: Merge.accounting.JournalEntriesAsyncBulkCreateRequest,
         requestOptions?: JournalEntriesClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
-        return core.HttpResponsePromise.fromPromise(this.__linesRemoteFieldClassesList(request, requestOptions));
+    ): core.HttpResponsePromise<Merge.accounting.JournalEntryResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
     }
 
-    private async __linesRemoteFieldClassesList(
-        request: Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest = {},
+    private async __asyncBulkCreate(
+        request: Merge.accounting.JournalEntriesAsyncBulkCreateRequest,
         requestOptions?: JournalEntriesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
-        const {
-            cursor,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            isCommonModelField,
-            isCustom,
-            pageSize,
-        } = request;
+    ): Promise<core.WithRawResponse<Merge.accounting.JournalEntryResponse>> {
+        const { isDebugMode, runAsync, body: _body } = request;
         const _queryParams: Record<string, unknown> = {
-            cursor,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            is_common_model_field: isCommonModelField,
-            is_custom: isCustom,
-            page_size: pageSize,
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -386,11 +391,16 @@ export class JournalEntriesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                "accounting/v1/journal-entries/lines/remote-field-classes",
+                "accounting/v1/journal-entries/async/bulk",
             ),
-            method: "GET",
+            method: "POST",
             headers: _headers,
+            contentType: "application/json",
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.JournalEntryEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -399,7 +409,7 @@ export class JournalEntriesClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                data: serializers.accounting.JournalEntryResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -421,9 +431,260 @@ export class JournalEntriesClient {
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
-            "GET",
-            "/accounting/v1/journal-entries/lines/remote-field-classes",
+            "POST",
+            "/accounting/v1/journal-entries/async/bulk",
         );
+    }
+
+    /**
+     * Returns a list of `JournalEntry` objects.
+     *
+     * @param {string} batch_id
+     * @param {Merge.accounting.JournalEntriesBatchObjectsListRequest} request
+     * @param {JournalEntriesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.journalEntries.batchObjectsList("batch_id", {
+     *         companyId: "company_id",
+     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+     *         includeDeletedData: true,
+     *         includeRemoteData: true,
+     *         includeRemoteFields: true,
+     *         includeShellData: true,
+     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         pageSize: 1,
+     *         remoteId: "remote_id",
+     *         transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+     *     })
+     */
+    public async batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.JournalEntriesBatchObjectsListRequest = {},
+        requestOptions?: JournalEntriesClient.RequestOptions,
+    ): Promise<core.Page<Merge.accounting.JournalEntry, Merge.accounting.PaginatedJournalEntryList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.accounting.JournalEntriesBatchObjectsListRequest,
+            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedJournalEntryList>> => {
+                const {
+                    companyId,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeRemoteFields,
+                    includeShellData,
+                    modifiedAfter,
+                    modifiedBefore,
+                    pageSize,
+                    remoteId,
+                    transactionDateAfter,
+                    transactionDateBefore,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    company_id: companyId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.accounting.JournalEntriesBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.accounting.JournalEntriesBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_remote_fields: includeRemoteFields,
+                    include_shell_data: includeShellData,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    page_size: pageSize,
+                    remote_id: remoteId,
+                    transaction_date_after: transactionDateAfter?.toISOString(),
+                    transaction_date_before: transactionDateBefore?.toISOString(),
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        `accounting/v1/journal-entries/batch/${core.url.encodePathParam(batch_id)}/objects`,
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.accounting.PaginatedJournalEntryList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/accounting/v1/journal-entries/batch/{batch_id}/objects",
+                );
+            },
+        );
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.accounting.JournalEntry, Merge.accounting.PaginatedJournalEntryList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
+        });
+    }
+
+    /**
+     * Returns a list of `RemoteFieldClass` objects.
+     *
+     * @param {Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest} request
+     * @param {JournalEntriesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.journalEntries.linesRemoteFieldClassesList({
+     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+     *         includeDeletedData: true,
+     *         includeRemoteData: true,
+     *         includeShellData: true,
+     *         isCommonModelField: true,
+     *         isCustom: true,
+     *         pageSize: 1
+     *     })
+     */
+    public async linesRemoteFieldClassesList(
+        request: Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest = {},
+        requestOptions?: JournalEntriesClient.RequestOptions,
+    ): Promise<core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest,
+            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> => {
+                const {
+                    cursor,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    isCommonModelField,
+                    isCustom,
+                    pageSize,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    cursor,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    is_common_model_field: isCommonModelField,
+                    is_custom: isCustom,
+                    page_size: pageSize,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "accounting/v1/journal-entries/lines/remote-field-classes",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/accounting/v1/journal-entries/lines/remote-field-classes",
+                );
+            },
+        );
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
+        });
     }
 
     /**
@@ -512,84 +773,94 @@ export class JournalEntriesClient {
      *         pageSize: 1
      *     })
      */
-    public remoteFieldClassesList(
+    public async remoteFieldClassesList(
         request: Merge.accounting.JournalEntriesRemoteFieldClassesListRequest = {},
         requestOptions?: JournalEntriesClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
-        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
-    }
-
-    private async __remoteFieldClassesList(
-        request: Merge.accounting.JournalEntriesRemoteFieldClassesListRequest = {},
-        requestOptions?: JournalEntriesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
-        const {
-            cursor,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            isCommonModelField,
-            isCustom,
-            pageSize,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            cursor,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            is_common_model_field: isCommonModelField,
-            is_custom: isCustom,
-            page_size: pageSize,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.accounting.JournalEntriesRemoteFieldClassesListRequest,
+            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> => {
+                const {
+                    cursor,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    isCommonModelField,
+                    isCustom,
+                    pageSize,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    cursor,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    is_common_model_field: isCommonModelField,
+                    is_custom: isCustom,
+                    page_size: pageSize,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "accounting/v1/journal-entries/remote-field-classes",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/accounting/v1/journal-entries/remote-field-classes",
+                );
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "accounting/v1/journal-entries/remote-field-classes",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/accounting/v1/journal-entries/remote-field-classes",
-        );
     }
 }

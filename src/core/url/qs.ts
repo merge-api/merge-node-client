@@ -29,6 +29,36 @@ function stringifyObject(obj: Record<string, unknown>, prefix = "", options: Req
             continue;
         }
 
+        if (key === "expand" && prefix === "") {
+            if (Array.isArray(value)) {
+                const validValues = value
+                    .filter((item) => item != null)
+                    .map((item) => String(item));
+
+                if (validValues.length > 0) {
+                    const encodedKey = options.encode ? encodeURIComponent(fullKey) : fullKey;
+                    const commaSeparatedValue = validValues.join(",");
+                    parts.push(`${encodedKey}=${encodeValue(commaSeparatedValue, options.encode)}`);
+                }
+                continue;
+            } else if (typeof value === "string") {
+                const trimmed = value.trim();
+                if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
+                    const cleanedValue = trimmed
+                        .replace(/^\[/, "")
+                        .replace(/\]$/, "")
+                        .replace(/,\s+/g, ",")
+                        .trim();
+
+                    if (cleanedValue) {
+                        const encodedKey = options.encode ? encodeURIComponent(fullKey) : fullKey;
+                        parts.push(`${encodedKey}=${encodeValue(cleanedValue, options.encode)}`);
+                    }
+                    continue;
+                }
+            }
+        }
+
         if (Array.isArray(value)) {
             if (value.length === 0) {
                 continue;

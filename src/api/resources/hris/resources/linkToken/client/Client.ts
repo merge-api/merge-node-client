@@ -24,7 +24,7 @@ export class LinkTokenClient {
     }
 
     /**
-     * Creates a link token to be used when linking a new end user.
+     * Creates a link token to be used when linking a new end user. The link token expires after single use.
      *
      * @param {Merge.hris.EndUserDetailsRequest} request
      * @param {LinkTokenClient.RequestOptions} requestOptions - Request-specific configuration.

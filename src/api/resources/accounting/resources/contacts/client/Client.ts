@@ -36,7 +36,6 @@ export class ContactsClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         emailAddress: "email_address",
-     *         expand: "addresses",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
@@ -53,143 +52,165 @@ export class ContactsClient {
      *         status: ""
      *     })
      */
-    public list(
+    public async list(
         request: Merge.accounting.ContactsListRequest = {},
         requestOptions?: ContactsClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.accounting.PaginatedContactList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.accounting.ContactsListRequest = {},
-        requestOptions?: ContactsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedContactList>> {
-        const {
-            companyId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            emailAddress,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeRemoteFields,
-            includeShellData,
-            isCustomer,
-            isSupplier,
-            modifiedAfter,
-            modifiedBefore,
-            name,
-            pageSize,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-            status,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            email_address: emailAddress,
-            expand:
-                expand != null
-                    ? serializers.accounting.ContactsListRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_remote_fields: includeRemoteFields,
-            include_shell_data: includeShellData,
-            is_customer: isCustomer,
-            is_supplier: isSupplier,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            name,
-            page_size: pageSize,
-            remote_fields: remoteFields != null ? remoteFields : undefined,
-            remote_id: remoteId,
-            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-            status:
-                status != null
-                    ? serializers.accounting.ContactsListRequestStatus.jsonOrThrow(status, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.accounting.Contact, Merge.accounting.PaginatedContactList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.accounting.ContactsListRequest,
+            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedContactList>> => {
+                const {
+                    companyId,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    emailAddress,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeRemoteFields,
+                    includeShellData,
+                    isCustomer,
+                    isSupplier,
+                    modifiedAfter,
+                    modifiedBefore,
+                    name,
+                    pageSize,
+                    remoteFields,
+                    remoteId,
+                    showEnumOrigins,
+                    status,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    company_id: companyId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    email_address: emailAddress,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.accounting.ContactsListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.accounting.ContactsListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_remote_fields: includeRemoteFields,
+                    include_shell_data: includeShellData,
+                    is_customer: isCustomer,
+                    is_supplier: isSupplier,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    name,
+                    page_size: pageSize,
+                    remote_fields: remoteFields != null ? remoteFields : undefined,
+                    remote_id: remoteId,
+                    show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
+                    status:
+                        status != null
+                            ? serializers.accounting.ContactsListRequestStatus.jsonOrThrow(status, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "accounting/v1/contacts",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.accounting.PaginatedContactList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/accounting/v1/contacts",
+                );
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "accounting/v1/contacts",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.accounting.Contact, Merge.accounting.PaginatedContactList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.accounting.PaginatedContactList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/accounting/v1/contacts");
     }
 
     /**
      * Creates a `Contact` object with the given values.
      *
-     * @param {Merge.accounting.ContactEndpointRequest} request
+     * @param {Merge.accounting.ContactsCreateRequest} request
      * @param {ContactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.accounting.contacts.create({
      *         isDebugMode: true,
      *         runAsync: true,
-     *         model: {}
+     *         body: {
+     *             model: {}
+     *         }
      *     })
      */
     public create(
-        request: Merge.accounting.ContactEndpointRequest,
+        request: Merge.accounting.ContactsCreateRequest,
         requestOptions?: ContactsClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.ContactResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Merge.accounting.ContactEndpointRequest,
+        request: Merge.accounting.ContactsCreateRequest,
         requestOptions?: ContactsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.ContactResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
+        const { isDebugMode, runAsync, body: _body } = request;
         const _queryParams: Record<string, unknown> = {
             is_debug_mode: isDebugMode,
             run_async: runAsync,
@@ -253,7 +274,6 @@ export class ContactsClient {
      *
      * @example
      *     await client.accounting.contacts.retrieve("id", {
-     *         expand: "addresses",
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
      *         includeShellData: true,
@@ -277,12 +297,17 @@ export class ContactsClient {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData, remoteFields, showEnumOrigins } =
             request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.ContactsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ContactsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ContactsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
             include_shell_data: includeShellData,
@@ -423,6 +448,255 @@ export class ContactsClient {
             "PATCH",
             "/accounting/v1/contacts/{id}",
         );
+    }
+
+    /**
+     * Creates a `Contact` object with the given values.
+     *
+     * @param {Merge.accounting.ContactsAsyncBulkCreateRequest} request
+     * @param {ContactsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.contacts.asyncBulkCreate({
+     *         isDebugMode: true,
+     *         runAsync: true,
+     *         body: {
+     *             model: {}
+     *         }
+     *     })
+     */
+    public asyncBulkCreate(
+        request: Merge.accounting.ContactsAsyncBulkCreateRequest,
+        requestOptions?: ContactsClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.ContactResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+    }
+
+    private async __asyncBulkCreate(
+        request: Merge.accounting.ContactsAsyncBulkCreateRequest,
+        requestOptions?: ContactsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.ContactResponse>> {
+        const { isDebugMode, runAsync, body: _body } = request;
+        const _queryParams: Record<string, unknown> = {
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/contacts/async/bulk",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.ContactEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.ContactResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/accounting/v1/contacts/async/bulk",
+        );
+    }
+
+    /**
+     * Returns a list of `Contact` objects.
+     *
+     * @param {string} batch_id
+     * @param {Merge.accounting.ContactsBatchObjectsListRequest} request
+     * @param {ContactsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.contacts.batchObjectsList("batch_id", {
+     *         companyId: "company_id",
+     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+     *         emailAddress: "email_address",
+     *         includeDeletedData: true,
+     *         includeRemoteData: true,
+     *         includeRemoteFields: true,
+     *         includeShellData: true,
+     *         isCustomer: "is_customer",
+     *         isSupplier: "is_supplier",
+     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         name: "name",
+     *         pageSize: 1,
+     *         remoteFields: "status",
+     *         remoteId: "remote_id",
+     *         showEnumOrigins: "status",
+     *         status: ""
+     *     })
+     */
+    public async batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.ContactsBatchObjectsListRequest = {},
+        requestOptions?: ContactsClient.RequestOptions,
+    ): Promise<core.Page<Merge.accounting.Contact, Merge.accounting.PaginatedContactList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.accounting.ContactsBatchObjectsListRequest,
+            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedContactList>> => {
+                const {
+                    companyId,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    emailAddress,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeRemoteFields,
+                    includeShellData,
+                    isCustomer,
+                    isSupplier,
+                    modifiedAfter,
+                    modifiedBefore,
+                    name,
+                    pageSize,
+                    remoteFields,
+                    remoteId,
+                    showEnumOrigins,
+                    status,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    company_id: companyId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    email_address: emailAddress,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.accounting.ContactsBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.accounting.ContactsBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_remote_fields: includeRemoteFields,
+                    include_shell_data: includeShellData,
+                    is_customer: isCustomer,
+                    is_supplier: isSupplier,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    name,
+                    page_size: pageSize,
+                    remote_fields: remoteFields != null ? remoteFields : undefined,
+                    remote_id: remoteId,
+                    show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
+                    status:
+                        status != null
+                            ? serializers.accounting.ContactsBatchObjectsListRequestStatus.jsonOrThrow(status, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        `accounting/v1/contacts/batch/${core.url.encodePathParam(batch_id)}/objects`,
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.accounting.PaginatedContactList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/accounting/v1/contacts/batch/{batch_id}/objects",
+                );
+            },
+        );
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.accounting.Contact, Merge.accounting.PaginatedContactList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
+        });
     }
 
     /**
@@ -583,84 +857,94 @@ export class ContactsClient {
      *         pageSize: 1
      *     })
      */
-    public remoteFieldClassesList(
+    public async remoteFieldClassesList(
         request: Merge.accounting.ContactsRemoteFieldClassesListRequest = {},
         requestOptions?: ContactsClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
-        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
-    }
-
-    private async __remoteFieldClassesList(
-        request: Merge.accounting.ContactsRemoteFieldClassesListRequest = {},
-        requestOptions?: ContactsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
-        const {
-            cursor,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            isCommonModelField,
-            isCustom,
-            pageSize,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            cursor,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            is_common_model_field: isCommonModelField,
-            is_custom: isCustom,
-            page_size: pageSize,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.accounting.ContactsRemoteFieldClassesListRequest,
+            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> => {
+                const {
+                    cursor,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    isCommonModelField,
+                    isCustom,
+                    pageSize,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    cursor,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    is_common_model_field: isCommonModelField,
+                    is_custom: isCustom,
+                    page_size: pageSize,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "accounting/v1/contacts/remote-field-classes",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/accounting/v1/contacts/remote-field-classes",
+                );
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "accounting/v1/contacts/remote-field-classes",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/accounting/v1/contacts/remote-field-classes",
-        );
     }
 }
