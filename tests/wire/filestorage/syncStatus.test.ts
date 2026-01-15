@@ -31,18 +31,14 @@ describe("SyncStatusClient", () => {
             ],
         };
         server
-            .mockEndpoint()
+            .mockEndpoint({ once: false })
             .get("/filestorage/v1/sync-status")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.filestorage.syncStatus.list({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            pageSize: 1,
-        });
-        expect(response).toEqual({
+        const expected = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -58,6 +54,15 @@ describe("SyncStatusClient", () => {
                     selectiveSyncConfigurationsUsage: "IN_NEXT_SYNC",
                 },
             ],
+        };
+        const page = await client.filestorage.syncStatus.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            pageSize: 1,
         });
+
+        expect(expected.results).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.results).toEqual(nextPage.data);
     });
 });

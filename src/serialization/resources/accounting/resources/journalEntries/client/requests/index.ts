@@ -1,1 +1,0 @@
-export { JournalEntryEndpointRequest } from "./JournalEntryEndpointRequest";

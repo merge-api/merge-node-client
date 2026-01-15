@@ -30,30 +30,14 @@ describe("IssuesClient", () => {
             ],
         };
         server
-            .mockEndpoint()
+            .mockEndpoint({ once: false })
             .get("/filestorage/v1/issues")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.filestorage.issues.list({
-            accountToken: "account_token",
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            endDate: "end_date",
-            endUserOrganizationName: "end_user_organization_name",
-            firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
-            firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
-            includeMuted: "include_muted",
-            integrationName: "integration_name",
-            lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
-            lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
-            linkedAccountId: "linked_account_id",
-            pageSize: 1,
-            startDate: "start_date",
-            status: "ONGOING",
-        });
-        expect(response).toEqual({
+        const expected = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -70,7 +54,28 @@ describe("IssuesClient", () => {
                     errorDetails: ["Missing employee permissions.", "Missing time off permissions."],
                 },
             ],
+        };
+        const page = await client.filestorage.issues.list({
+            accountToken: "account_token",
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            endDate: "end_date",
+            endUserOrganizationName: "end_user_organization_name",
+            firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+            firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+            includeMuted: "include_muted",
+            integrationName: "integration_name",
+            lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+            lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+            linkedAccountId: "linked_account_id",
+            pageSize: 1,
+            startDate: "start_date",
+            status: "ONGOING",
         });
+
+        expect(expected.results).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("retrieve", async () => {

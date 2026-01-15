@@ -346,6 +346,10 @@ export interface ExpenseLineRequest {
     exchangeRate?: string;
     /** The tax rate that applies to this line item. */
     taxRate?: string;
+    /** Number of items for the expense line. */
+    quantity?: string;
+    /** Unit price of the item for the expense line. */
+    unitPrice?: string;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.accounting.RemoteFieldRequest[];

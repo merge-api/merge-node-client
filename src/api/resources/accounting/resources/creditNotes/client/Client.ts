@@ -35,7 +35,6 @@ export class CreditNotesClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "accounting_period",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -49,140 +48,163 @@ export class CreditNotesClient {
      *         transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
      *     })
      */
-    public list(
+    public async list(
         request: Merge.accounting.CreditNotesListRequest = {},
         requestOptions?: CreditNotesClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.accounting.PaginatedCreditNoteList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.accounting.CreditNotesListRequest = {},
-        requestOptions?: CreditNotesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedCreditNoteList>> {
-        const {
-            companyId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-            transactionDateAfter,
-            transactionDateBefore,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand:
-                expand != null
-                    ? serializers.accounting.CreditNotesListRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            remote_fields:
-                remoteFields != null
-                    ? serializers.accounting.CreditNotesListRequestRemoteFields.jsonOrThrow(remoteFields, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            remote_id: remoteId,
-            show_enum_origins:
-                showEnumOrigins != null
-                    ? serializers.accounting.CreditNotesListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            transaction_date_after: transactionDateAfter?.toISOString(),
-            transaction_date_before: transactionDateBefore?.toISOString(),
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.accounting.CreditNote, Merge.accounting.PaginatedCreditNoteList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.accounting.CreditNotesListRequest,
+            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedCreditNoteList>> => {
+                const {
+                    companyId,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    modifiedAfter,
+                    modifiedBefore,
+                    pageSize,
+                    remoteFields,
+                    remoteId,
+                    showEnumOrigins,
+                    transactionDateAfter,
+                    transactionDateBefore,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    company_id: companyId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.accounting.CreditNotesListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.accounting.CreditNotesListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    page_size: pageSize,
+                    remote_fields:
+                        remoteFields != null
+                            ? serializers.accounting.CreditNotesListRequestRemoteFields.jsonOrThrow(remoteFields, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    remote_id: remoteId,
+                    show_enum_origins:
+                        showEnumOrigins != null
+                            ? serializers.accounting.CreditNotesListRequestShowEnumOrigins.jsonOrThrow(
+                                  showEnumOrigins,
+                                  { unrecognizedObjectKeys: "strip" },
+                              )
+                            : undefined,
+                    transaction_date_after: transactionDateAfter?.toISOString(),
+                    transaction_date_before: transactionDateBefore?.toISOString(),
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "accounting/v1/credit-notes",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.accounting.PaginatedCreditNoteList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/accounting/v1/credit-notes",
+                );
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "accounting/v1/credit-notes",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.accounting.CreditNote, Merge.accounting.PaginatedCreditNoteList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.accounting.PaginatedCreditNoteList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/accounting/v1/credit-notes");
     }
 
     /**
      * Creates a `CreditNote` object with the given values.
      *
-     * @param {Merge.accounting.CreditNoteEndpointRequest} request
+     * @param {Merge.accounting.CreditNotesCreateRequest} request
      * @param {CreditNotesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.accounting.creditNotes.create({
      *         isDebugMode: true,
      *         runAsync: true,
-     *         model: {}
+     *         body: {
+     *             model: {}
+     *         }
      *     })
      */
     public create(
-        request: Merge.accounting.CreditNoteEndpointRequest,
+        request: Merge.accounting.CreditNotesCreateRequest,
         requestOptions?: CreditNotesClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.CreditNoteResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Merge.accounting.CreditNoteEndpointRequest,
+        request: Merge.accounting.CreditNotesCreateRequest,
         requestOptions?: CreditNotesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.CreditNoteResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
+        const { isDebugMode, runAsync, body: _body } = request;
         const _queryParams: Record<string, unknown> = {
             is_debug_mode: isDebugMode,
             run_async: runAsync,
@@ -248,7 +270,6 @@ export class CreditNotesClient {
      *
      * @example
      *     await client.accounting.creditNotes.retrieve("id", {
-     *         expand: "accounting_period",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "status",
@@ -270,12 +291,17 @@ export class CreditNotesClient {
     ): Promise<core.WithRawResponse<Merge.accounting.CreditNote>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.CreditNotesRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.CreditNotesRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.CreditNotesRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields:
@@ -340,6 +366,501 @@ export class CreditNotesClient {
             _response.rawResponse,
             "GET",
             "/accounting/v1/credit-notes/{id}",
+        );
+    }
+
+    /**
+     * Updates a `CreditNote` object with the given `id`.
+     *
+     * @param {string} id
+     * @param {Merge.accounting.PatchedCreditNoteEndpointRequest} request
+     * @param {CreditNotesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.creditNotes.partialUpdate("id", {
+     *         isDebugMode: true,
+     *         runAsync: true,
+     *         model: {}
+     *     })
+     */
+    public partialUpdate(
+        id: string,
+        request: Merge.accounting.PatchedCreditNoteEndpointRequest,
+        requestOptions?: CreditNotesClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.CreditNoteResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__partialUpdate(id, request, requestOptions));
+    }
+
+    private async __partialUpdate(
+        id: string,
+        request: Merge.accounting.PatchedCreditNoteEndpointRequest,
+        requestOptions?: CreditNotesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.CreditNoteResponse>> {
+        const { isDebugMode, runAsync, ..._body } = request;
+        const _queryParams: Record<string, unknown> = {
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/credit-notes/${core.url.encodePathParam(id)}`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.PatchedCreditNoteEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.CreditNoteResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PATCH",
+            "/accounting/v1/credit-notes/{id}",
+        );
+    }
+
+    /**
+     * Creates a new CreditNoteApplyLine to apply a credit note to an invoice
+     *
+     * @param {string} id
+     * @param {Merge.accounting.ApplyCreditNoteRequest} request
+     * @param {CreditNotesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.creditNotes.applicationCreate("id", {
+     *         isDebugMode: true,
+     *         runAsync: true,
+     *         appliedDate: new Date("2024-01-15T09:30:00.000Z"),
+     *         appliedAmount: "applied_amount"
+     *     })
+     */
+    public applicationCreate(
+        id: string,
+        request: Merge.accounting.ApplyCreditNoteRequest,
+        requestOptions?: CreditNotesClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.CreditNoteResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__applicationCreate(id, request, requestOptions));
+    }
+
+    private async __applicationCreate(
+        id: string,
+        request: Merge.accounting.ApplyCreditNoteRequest,
+        requestOptions?: CreditNotesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.CreditNoteResponse>> {
+        const { isDebugMode, runAsync, ..._body } = request;
+        const _queryParams: Record<string, unknown> = {
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/credit-notes/${core.url.encodePathParam(id)}/application`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.ApplyCreditNoteRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.CreditNoteResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/accounting/v1/credit-notes/{id}/application",
+        );
+    }
+
+    /**
+     * Creates a `CreditNote` object with the given values.
+     *
+     * @param {Merge.accounting.CreditNotesAsyncBulkCreateRequest} request
+     * @param {CreditNotesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.creditNotes.asyncBulkCreate({
+     *         isDebugMode: true,
+     *         runAsync: true,
+     *         body: {
+     *             model: {}
+     *         }
+     *     })
+     */
+    public asyncBulkCreate(
+        request: Merge.accounting.CreditNotesAsyncBulkCreateRequest,
+        requestOptions?: CreditNotesClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.CreditNoteResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+    }
+
+    private async __asyncBulkCreate(
+        request: Merge.accounting.CreditNotesAsyncBulkCreateRequest,
+        requestOptions?: CreditNotesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.CreditNoteResponse>> {
+        const { isDebugMode, runAsync, body: _body } = request;
+        const _queryParams: Record<string, unknown> = {
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/credit-notes/async/bulk",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.CreditNoteEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.CreditNoteResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/accounting/v1/credit-notes/async/bulk",
+        );
+    }
+
+    /**
+     * Returns a list of `CreditNote` objects.
+     *
+     * @param {string} batch_id
+     * @param {Merge.accounting.CreditNotesBatchObjectsListRequest} request
+     * @param {CreditNotesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.creditNotes.batchObjectsList("batch_id", {
+     *         companyId: "company_id",
+     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+     *         includeDeletedData: true,
+     *         includeRemoteData: true,
+     *         includeShellData: true,
+     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         pageSize: 1,
+     *         remoteFields: "status",
+     *         remoteId: "remote_id",
+     *         showEnumOrigins: "status",
+     *         transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+     *     })
+     */
+    public async batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.CreditNotesBatchObjectsListRequest = {},
+        requestOptions?: CreditNotesClient.RequestOptions,
+    ): Promise<core.Page<Merge.accounting.CreditNote, Merge.accounting.PaginatedCreditNoteList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.accounting.CreditNotesBatchObjectsListRequest,
+            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedCreditNoteList>> => {
+                const {
+                    companyId,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    modifiedAfter,
+                    modifiedBefore,
+                    pageSize,
+                    remoteFields,
+                    remoteId,
+                    showEnumOrigins,
+                    transactionDateAfter,
+                    transactionDateBefore,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    company_id: companyId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.accounting.CreditNotesBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.accounting.CreditNotesBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    page_size: pageSize,
+                    remote_fields:
+                        remoteFields != null
+                            ? serializers.accounting.CreditNotesBatchObjectsListRequestRemoteFields.jsonOrThrow(
+                                  remoteFields,
+                                  { unrecognizedObjectKeys: "strip" },
+                              )
+                            : undefined,
+                    remote_id: remoteId,
+                    show_enum_origins:
+                        showEnumOrigins != null
+                            ? serializers.accounting.CreditNotesBatchObjectsListRequestShowEnumOrigins.jsonOrThrow(
+                                  showEnumOrigins,
+                                  { unrecognizedObjectKeys: "strip" },
+                              )
+                            : undefined,
+                    transaction_date_after: transactionDateAfter?.toISOString(),
+                    transaction_date_before: transactionDateBefore?.toISOString(),
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        `accounting/v1/credit-notes/batch/${core.url.encodePathParam(batch_id)}/objects`,
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.accounting.PaginatedCreditNoteList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/accounting/v1/credit-notes/batch/{batch_id}/objects",
+                );
+            },
+        );
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.accounting.CreditNote, Merge.accounting.PaginatedCreditNoteList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
+        });
+    }
+
+    /**
+     * Returns metadata for `CreditNote` PATCHs.
+     *
+     * @param {string} id
+     * @param {CreditNotesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.creditNotes.metaPatchRetrieve("id")
+     */
+    public metaPatchRetrieve(
+        id: string,
+        requestOptions?: CreditNotesClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.MetaResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__metaPatchRetrieve(id, requestOptions));
+    }
+
+    private async __metaPatchRetrieve(
+        id: string,
+        requestOptions?: CreditNotesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.MetaResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/credit-notes/meta/patch/${core.url.encodePathParam(id)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.MetaResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/credit-notes/meta/patch/{id}",
         );
     }
 

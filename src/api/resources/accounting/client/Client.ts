@@ -30,6 +30,7 @@ import { GenerateKeyClient } from "../resources/generateKey/client/Client";
 import { IncomeStatementsClient } from "../resources/incomeStatements/client/Client";
 import { InvoicesClient } from "../resources/invoices/client/Client";
 import { IssuesClient } from "../resources/issues/client/Client";
+import { ItemFulfillmentsClient } from "../resources/itemFulfillments/client/Client";
 import { ItemsClient } from "../resources/items/client/Client";
 import { JournalEntriesClient } from "../resources/journalEntries/client/Client";
 import { LinkedAccountsClient } from "../resources/linkedAccounts/client/Client";
@@ -42,6 +43,7 @@ import { PhoneNumbersClient } from "../resources/phoneNumbers/client/Client";
 import { ProjectsClient } from "../resources/projects/client/Client";
 import { PurchaseOrdersClient } from "../resources/purchaseOrders/client/Client";
 import { RegenerateKeyClient } from "../resources/regenerateKey/client/Client";
+import { SalesOrdersClient } from "../resources/salesOrders/client/Client";
 import { ScopesClient } from "../resources/scopes/client/Client";
 import { SyncStatusClient } from "../resources/syncStatus/client/Client";
 import { TaxRatesClient } from "../resources/taxRates/client/Client";
@@ -84,6 +86,7 @@ export class AccountingClient {
     protected _incomeStatements: IncomeStatementsClient | undefined;
     protected _invoices: InvoicesClient | undefined;
     protected _issues: IssuesClient | undefined;
+    protected _itemFulfillments: ItemFulfillmentsClient | undefined;
     protected _items: ItemsClient | undefined;
     protected _journalEntries: JournalEntriesClient | undefined;
     protected _linkToken: LinkTokenClient | undefined;
@@ -96,6 +99,7 @@ export class AccountingClient {
     protected _projects: ProjectsClient | undefined;
     protected _purchaseOrders: PurchaseOrdersClient | undefined;
     protected _regenerateKey: RegenerateKeyClient | undefined;
+    protected _salesOrders: SalesOrdersClient | undefined;
     protected _syncStatus: SyncStatusClient | undefined;
     protected _forceResync: ForceResyncClient | undefined;
     protected _taxRates: TaxRatesClient | undefined;
@@ -220,6 +224,10 @@ export class AccountingClient {
         return (this._issues ??= new IssuesClient(this._options));
     }
 
+    public get itemFulfillments(): ItemFulfillmentsClient {
+        return (this._itemFulfillments ??= new ItemFulfillmentsClient(this._options));
+    }
+
     public get items(): ItemsClient {
         return (this._items ??= new ItemsClient(this._options));
     }
@@ -266,6 +274,10 @@ export class AccountingClient {
 
     public get regenerateKey(): RegenerateKeyClient {
         return (this._regenerateKey ??= new RegenerateKeyClient(this._options));
+    }
+
+    public get salesOrders(): SalesOrdersClient {
+        return (this._salesOrders ??= new SalesOrdersClient(this._options));
     }
 
     public get syncStatus(): SyncStatusClient {
