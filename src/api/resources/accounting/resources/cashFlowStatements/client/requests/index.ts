@@ -1,2 +1,2 @@
-export type { CashFlowStatementsListRequest } from "./CashFlowStatementsListRequest";
-export type { CashFlowStatementsRetrieveRequest } from "./CashFlowStatementsRetrieveRequest";
+export { type ListCashFlowStatementsRequest } from "./ListCashFlowStatementsRequest";
+export { type RetrieveCashFlowStatementsRequest } from "./RetrieveCashFlowStatementsRequest";

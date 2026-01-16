@@ -1,4 +1,5 @@
-export type { CrmCustomObjectEndpointRequest } from "./CrmCustomObjectEndpointRequest";
-export type { CustomObjectClassesCustomObjectsListRequest } from "./CustomObjectClassesCustomObjectsListRequest";
-export type { CustomObjectClassesCustomObjectsRemoteFieldClassesListRequest } from "./CustomObjectClassesCustomObjectsRemoteFieldClassesListRequest";
-export type { CustomObjectClassesCustomObjectsRetrieveRequest } from "./CustomObjectClassesCustomObjectsRetrieveRequest";
+export { type CustomObjectClassesCustomObjectsListCustomObjectsRequest } from "./CustomObjectClassesCustomObjectsListCustomObjectsRequest";
+export { type CrmCustomObjectEndpointRequest } from "./CrmCustomObjectEndpointRequest";
+export { type CustomObjectClassesCustomObjectsRetrieveCustomObjectsRequest } from "./CustomObjectClassesCustomObjectsRetrieveCustomObjectsRequest";
+export { type CustomObjectClassesCustomObjectsMetaPostRetrieveCustomObjectsRequest } from "./CustomObjectClassesCustomObjectsMetaPostRetrieveCustomObjectsRequest";
+export { type CustomObjectClassesCustomObjectsRemoteFieldClassesListCustomObjectsRequest } from "./CustomObjectClassesCustomObjectsRemoteFieldClassesListCustomObjectsRequest";
