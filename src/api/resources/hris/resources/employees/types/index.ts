@@ -5,4 +5,3 @@ export * from "./EmployeesListRequestShowEnumOrigins";
 export * from "./EmployeesRetrieveRequestExpand";
 export * from "./EmployeesRetrieveRequestRemoteFields";
 export * from "./EmployeesRetrieveRequestShowEnumOrigins";
-export * from "./IgnoreCommonModelRequestReason";
