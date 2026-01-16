@@ -1,2 +1,2 @@
-export { PatchedTicketEndpointRequest } from "./PatchedTicketEndpointRequest";
 export { TicketEndpointRequest } from "./TicketEndpointRequest";
+export { PatchedTicketEndpointRequest } from "./PatchedTicketEndpointRequest";

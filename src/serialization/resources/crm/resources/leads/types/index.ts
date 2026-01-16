@@ -1,2 +1,2 @@
-export * from "./LeadsListRequestExpand";
-export * from "./LeadsRetrieveRequestExpand";
+export * from "./ListLeadsRequestExpand";
+export * from "./RetrieveLeadsRequestExpand";

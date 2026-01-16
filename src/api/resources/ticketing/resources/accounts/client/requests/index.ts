@@ -1,2 +1,2 @@
-export type { AccountsListRequest } from "./AccountsListRequest";
-export type { AccountsRetrieveRequest } from "./AccountsRetrieveRequest";
+export { type ListAccountsRequest } from "./ListAccountsRequest";
+export { type RetrieveAccountsRequest } from "./RetrieveAccountsRequest";

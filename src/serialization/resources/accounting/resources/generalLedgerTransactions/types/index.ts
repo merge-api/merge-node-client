@@ -1,2 +1,2 @@
-export * from "./GeneralLedgerTransactionsListRequestExpand";
-export * from "./GeneralLedgerTransactionsRetrieveRequestExpand";
+export * from "./ListGeneralLedgerTransactionsRequestExpand";
+export * from "./RetrieveGeneralLedgerTransactionsRequestExpand";

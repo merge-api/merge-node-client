@@ -1,2 +1,2 @@
-export * from "./ApplicationsListRequestExpand";
-export * from "./ApplicationsRetrieveRequestExpand";
+export * from "./ListApplicationsRequestExpand";
+export * from "./RetrieveApplicationsRequestExpand";

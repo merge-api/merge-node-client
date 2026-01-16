@@ -1,3 +1,6 @@
-export type { VendorCreditEndpointRequest } from "./VendorCreditEndpointRequest";
-export type { VendorCreditsListRequest } from "./VendorCreditsListRequest";
-export type { VendorCreditsRetrieveRequest } from "./VendorCreditsRetrieveRequest";
+export { type ListVendorCreditsRequest } from "./ListVendorCreditsRequest";
+export { type VendorCreditEndpointRequest } from "./VendorCreditEndpointRequest";
+export { type RetrieveVendorCreditsRequest } from "./RetrieveVendorCreditsRequest";
+export { type PatchedVendorCreditEndpointRequest } from "./PatchedVendorCreditEndpointRequest";
+export { type ApplyVendorCreditRequest } from "./ApplyVendorCreditRequest";
+export { type MetaPatchRetrieveVendorCreditsRequest } from "./MetaPatchRetrieveVendorCreditsRequest";

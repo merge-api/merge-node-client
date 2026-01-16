@@ -1,2 +1,2 @@
-export type { BalanceSheetsListRequest } from "./BalanceSheetsListRequest";
-export type { BalanceSheetsRetrieveRequest } from "./BalanceSheetsRetrieveRequest";
+export { type ListBalanceSheetsRequest } from "./ListBalanceSheetsRequest";
+export { type RetrieveBalanceSheetsRequest } from "./RetrieveBalanceSheetsRequest";

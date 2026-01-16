@@ -1,1 +1,1 @@
-export type { LinkedAccountCommonModelScopeDeserializerRequest } from "./LinkedAccountCommonModelScopeDeserializerRequest";
+export { type LinkedAccountCommonModelScopeDeserializerRequest } from "./LinkedAccountCommonModelScopeDeserializerRequest";

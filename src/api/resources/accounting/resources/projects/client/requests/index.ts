@@ -1,2 +1,2 @@
-export type { ProjectsListRequest } from "./ProjectsListRequest";
-export type { ProjectsRetrieveRequest } from "./ProjectsRetrieveRequest";
+export { type ListProjectsRequest } from "./ListProjectsRequest";
+export { type RetrieveProjectsRequest } from "./RetrieveProjectsRequest";

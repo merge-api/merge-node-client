@@ -1,3 +1,3 @@
-export type { JobsListRequest } from "./JobsListRequest";
-export type { JobsRetrieveRequest } from "./JobsRetrieveRequest";
-export type { JobsScreeningQuestionsListRequest } from "./JobsScreeningQuestionsListRequest";
+export { type ListJobsRequest } from "./ListJobsRequest";
+export { type RetrieveJobsRequest } from "./RetrieveJobsRequest";
+export { type ScreeningQuestionsListJobsRequest } from "./ScreeningQuestionsListJobsRequest";

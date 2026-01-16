@@ -1,4 +1,4 @@
-import { type MaybeValid, type Schema, SchemaType, type ValidationError } from "../../Schema";
+import { MaybeValid, Schema, SchemaType, ValidationError } from "../../Schema";
 import { entries } from "../../utils/entries";
 import { filterObject } from "../../utils/filterObject";
 import { getErrorMessageForIncorrectType } from "../../utils/getErrorMessageForIncorrectType";
@@ -6,17 +6,17 @@ import { isPlainObject } from "../../utils/isPlainObject";
 import { keys } from "../../utils/keys";
 import { maybeSkipValidation } from "../../utils/maybeSkipValidation";
 import { partition } from "../../utils/partition";
-import { getObjectLikeUtils } from "../object-like/index";
-import { getSchemaUtils } from "../schema-utils/index";
+import { getObjectLikeUtils } from "../object-like";
+import { getSchemaUtils } from "../schema-utils";
 import { isProperty } from "./property";
-import type {
+import {
     BaseObjectSchema,
-    inferObjectSchemaFromPropertySchemas,
-    inferParsedObjectFromPropertySchemas,
-    inferRawObjectFromPropertySchemas,
     ObjectSchema,
     ObjectUtils,
     PropertySchemas,
+    inferObjectSchemaFromPropertySchemas,
+    inferParsedObjectFromPropertySchemas,
+    inferRawObjectFromPropertySchemas,
 } from "./types";
 
 interface ObjectPropertyWithRawKey {
@@ -244,19 +244,17 @@ export function getObjectUtils<Raw, Parsed>(schema: BaseObjectSchema<Raw, Parsed
                 parse: (raw, opts) => {
                     return validateAndTransformExtendedObject({
                         extensionKeys: extension._getRawProperties(),
-                        value: raw,
+                        value: raw as object,
                         transformBase: (rawBase) => schema.parse(rawBase, opts),
                         transformExtension: (rawExtension) => extension.parse(rawExtension, opts),
-                        breadcrumbsPrefix: opts?.breadcrumbsPrefix,
                     });
                 },
                 json: (parsed, opts) => {
                     return validateAndTransformExtendedObject({
                         extensionKeys: extension._getParsedProperties(),
-                        value: parsed,
+                        value: parsed as object,
                         transformBase: (parsedBase) => schema.json(parsedBase, opts),
                         transformExtension: (parsedExtension) => extension.json(parsedExtension, opts),
-                        breadcrumbsPrefix: opts?.breadcrumbsPrefix,
                     });
                 },
                 getType: () => SchemaType.OBJECT,
@@ -318,26 +316,12 @@ function validateAndTransformExtendedObject<PreTransformedExtension, Transformed
     value,
     transformBase,
     transformExtension,
-    breadcrumbsPrefix = [],
 }: {
     extensionKeys: (keyof PreTransformedExtension)[];
-    value: unknown;
+    value: object;
     transformBase: (value: object) => MaybeValid<TransformedBase>;
     transformExtension: (value: object) => MaybeValid<TransformedExtension>;
-    breadcrumbsPrefix?: string[];
 }): MaybeValid<TransformedBase & TransformedExtension> {
-    if (!isPlainObject(value)) {
-        return {
-            ok: false,
-            errors: [
-                {
-                    path: breadcrumbsPrefix,
-                    message: getErrorMessageForIncorrectType(value, "object"),
-                },
-            ],
-        };
-    }
-
     const extensionPropertiesSet = new Set(extensionKeys);
     const [extensionProperties, baseProperties] = partition(keys(value), (key) =>
         extensionPropertiesSet.has(key as keyof PreTransformedExtension),

@@ -1,2 +1,2 @@
-export type { DrivesListRequest } from "./DrivesListRequest";
-export type { DrivesRetrieveRequest } from "./DrivesRetrieveRequest";
+export { type ListDrivesRequest } from "./ListDrivesRequest";
+export { type RetrieveDrivesRequest } from "./RetrieveDrivesRequest";

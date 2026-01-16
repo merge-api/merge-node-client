@@ -1,2 +1,2 @@
-export type { CompanyInfoListRequest } from "./CompanyInfoListRequest";
-export type { CompanyInfoRetrieveRequest } from "./CompanyInfoRetrieveRequest";
+export { type ListCompanyInfoRequest } from "./ListCompanyInfoRequest";
+export { type RetrieveCompanyInfoRequest } from "./RetrieveCompanyInfoRequest";

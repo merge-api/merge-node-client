@@ -1,2 +1,2 @@
-export * from "./InterviewsListRequestExpand";
-export * from "./InterviewsRetrieveRequestExpand";
+export * from "./ListInterviewsRequestExpand";
+export * from "./RetrieveInterviewsRequestExpand";
