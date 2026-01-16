@@ -18,10 +18,10 @@ export declare namespace MergeClient {
 export class MergeClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<MergeClient.Options>;
     protected _crm: CrmClient | undefined;
-    protected _filestorage: FilestorageClient | undefined;
-    protected _ticketing: TicketingClient | undefined;
-    protected _hris: HrisClient | undefined;
     protected _ats: AtsClient | undefined;
+    protected _hris: HrisClient | undefined;
+    protected _ticketing: TicketingClient | undefined;
+    protected _filestorage: FilestorageClient | undefined;
     protected _accounting: AccountingClient | undefined;
 
     constructor(options: MergeClient.Options) {
@@ -32,20 +32,20 @@ export class MergeClient {
         return (this._crm ??= new CrmClient(this._options));
     }
 
-    public get filestorage(): FilestorageClient {
-        return (this._filestorage ??= new FilestorageClient(this._options));
-    }
-
-    public get ticketing(): TicketingClient {
-        return (this._ticketing ??= new TicketingClient(this._options));
+    public get ats(): AtsClient {
+        return (this._ats ??= new AtsClient(this._options));
     }
 
     public get hris(): HrisClient {
         return (this._hris ??= new HrisClient(this._options));
     }
 
-    public get ats(): AtsClient {
-        return (this._ats ??= new AtsClient(this._options));
+    public get ticketing(): TicketingClient {
+        return (this._ticketing ??= new TicketingClient(this._options));
+    }
+
+    public get filestorage(): FilestorageClient {
+        return (this._filestorage ??= new FilestorageClient(this._options));
     }
 
     public get accounting(): AccountingClient {

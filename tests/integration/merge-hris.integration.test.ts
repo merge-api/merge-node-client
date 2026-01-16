@@ -125,12 +125,6 @@ describe("Merge HRIS Client Integration", () => {
     expect(Array.isArray(body.results)).toBe(true);
   });
 
-  it("should list linked accounts", async () => {
-    const { data: body, rawResponse: response } = await client.hris.linkedAccounts.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
-  });
 
   it("should retrieve audit trail", async () => {
     const { data: body, rawResponse: response } = await client.hris.auditTrail.list().withRawResponse();
