@@ -10,3 +10,4 @@ tests/integration/merge-filestorage.integration.test.ts
 tests/integration/merge-ticketing.integration.test.ts
 tests/integration/merge-hris.integration.test.ts
 tests/integration/merge-crm.integration.test.ts
+tests/unit/backward-compatibility-simple.test.ts
