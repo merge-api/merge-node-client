@@ -3,6 +3,7 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import * as serializers from "../../../index";
+import { Permission } from "./Permission";
 import { RemoteData } from "./RemoteData";
 import { RemoteField } from "./RemoteField";
 import { TicketAccessLevel } from "./TicketAccessLevel";
@@ -43,14 +44,15 @@ export const Ticket: core.serialization.ObjectSchema<serializers.ticketing.Ticke
             .list(core.serialization.lazy(() => serializers.ticketing.TicketAttachmentsItem).optional())
             .optional(),
         accessLevel: core.serialization.property("access_level", TicketAccessLevel.optional()),
+        permissions: core.serialization.list(Permission).optional(),
         tags: core.serialization.list(core.serialization.string().optional()).optional(),
         roles: core.serialization.list(core.serialization.string().optional()).optional(),
+        ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
+        priority: TicketPriority.optional(),
         remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
         completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
-        ticketUrl: core.serialization.property("ticket_url", core.serialization.string().optional()),
-        priority: TicketPriority.optional(),
         fieldMappings: core.serialization.property(
             "field_mappings",
             core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -79,14 +81,15 @@ export declare namespace Ticket {
         parent_ticket?: serializers.ticketing.TicketParentTicket.Raw | null;
         attachments?: (serializers.ticketing.TicketAttachmentsItem.Raw | null | undefined)[] | null;
         access_level?: TicketAccessLevel.Raw | null;
+        permissions?: Permission.Raw[] | null;
         tags?: (string | null | undefined)[] | null;
         roles?: (string | null | undefined)[] | null;
+        ticket_url?: string | null;
+        priority?: TicketPriority.Raw | null;
         remote_created_at?: string | null;
         remote_updated_at?: string | null;
         completed_at?: string | null;
         remote_was_deleted?: boolean | null;
-        ticket_url?: string | null;
-        priority?: TicketPriority.Raw | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: RemoteData.Raw[] | null;
         remote_fields?: RemoteField.Raw[] | null;

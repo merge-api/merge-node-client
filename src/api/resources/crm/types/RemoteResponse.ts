@@ -16,6 +16,6 @@ export interface RemoteResponse {
     status: number;
     response?: unknown;
     responseHeaders?: Record<string, unknown>;
-    responseType?: Merge.crm.ResponseTypeEnum;
+    responseType?: Merge.crm.RemoteResponseResponseType;
     headers?: Record<string, unknown>;
 }

@@ -39,7 +39,6 @@ export class EmployeesClient {
      *         employeeNumber: "employee_number",
      *         employmentStatus: "ACTIVE",
      *         employmentType: "employment_type",
-     *         expand: "company",
      *         firstName: "first_name",
      *         groups: "groups",
      *         homeLocationId: "home_location_id",
@@ -128,12 +127,17 @@ export class EmployeesClient {
                       })
                     : undefined,
             employment_type: employmentType,
-            expand:
-                expand != null
-                    ? serializers.hris.EmployeesListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.hris.EmployeesListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.hris.EmployeesListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             first_name: firstName,
             groups,
             home_location_id: homeLocationId,
@@ -305,7 +309,6 @@ export class EmployeesClient {
      *
      * @example
      *     await client.hris.employees.retrieve("id", {
-     *         expand: "company",
      *         includeRemoteData: true,
      *         includeSensitiveFields: true,
      *         includeShellData: true,
@@ -329,12 +332,17 @@ export class EmployeesClient {
         const { expand, includeRemoteData, includeSensitiveFields, includeShellData, remoteFields, showEnumOrigins } =
             request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.hris.EmployeesRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.hris.EmployeesRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.hris.EmployeesRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_sensitive_fields: includeSensitiveFields,
             include_shell_data: includeShellData,

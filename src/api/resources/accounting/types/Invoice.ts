@@ -386,6 +386,7 @@ export interface Invoice {
     /** The accounting period that the Invoice was generated in. */
     accountingPeriod?: Merge.accounting.InvoiceAccountingPeriod;
     purchaseOrders?: (Merge.accounting.InvoicePurchaseOrdersItem | undefined)[];
+    salesOrders?: (Merge.accounting.InvoiceSalesOrdersItem | undefined)[];
     /** Array of `Payment` object IDs. */
     payments?: (Merge.accounting.InvoicePaymentsItem | undefined)[];
     /** A list of the Payment Applied to Lines common models related to a given Invoice, Credit Note, or Journal Entry. */

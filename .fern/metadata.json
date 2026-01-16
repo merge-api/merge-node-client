@@ -17,7 +17,8 @@
         "fetchSupport": "node-fetch",
         "generateSubpackageExports": true,
         "packageManager": "yarn",
-        "testFramework": "jest"
+        "testFramework": "jest",
+        "enableForwardCompatibleEnums": true
     },
-    "sdkVersion": "3.0.0"
+    "sdkVersion": "4.0.0"
 }

@@ -20,6 +20,11 @@ export const Permission: core.serialization.ObjectSchema<
     group: PermissionGroup.optional(),
     type: PermissionType.optional(),
     roles: core.serialization.list(PermissionRolesItem.optional()).optional(),
+    remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+    fieldMappings: core.serialization.property(
+        "field_mappings",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    ),
 });
 
 export declare namespace Permission {
@@ -32,5 +37,7 @@ export declare namespace Permission {
         group?: PermissionGroup.Raw | null;
         type?: PermissionType.Raw | null;
         roles?: (PermissionRolesItem.Raw | null | undefined)[] | null;
+        remote_was_deleted?: boolean | null;
+        field_mappings?: Record<string, unknown> | null;
     }
 }

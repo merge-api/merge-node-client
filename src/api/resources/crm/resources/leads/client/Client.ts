@@ -37,7 +37,6 @@ export class LeadsClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         emailAddresses: "email_addresses",
-     *         expand: "converted_account",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
@@ -87,10 +86,13 @@ export class LeadsClient {
             created_before: createdBefore?.toISOString(),
             cursor,
             email_addresses: emailAddresses,
-            expand:
-                expand != null
-                    ? serializers.crm.LeadsListRequestExpand.jsonOrThrow(expand, { unrecognizedObjectKeys: "strip" })
-                    : undefined,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.crm.LeadsListRequestExpandItem.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : expand != null
+                  ? serializers.crm.LeadsListRequestExpandItem.jsonOrThrow(expand, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
@@ -237,7 +239,6 @@ export class LeadsClient {
      *
      * @example
      *     await client.crm.leads.retrieve("id", {
-     *         expand: "converted_account",
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
      *         includeShellData: true
@@ -258,12 +259,17 @@ export class LeadsClient {
     ): Promise<core.WithRawResponse<Merge.crm.Lead>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.crm.LeadsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.crm.LeadsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.crm.LeadsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
             include_shell_data: includeShellData,

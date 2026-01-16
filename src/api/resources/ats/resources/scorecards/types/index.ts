@@ -1,2 +1,2 @@
-export * from "./ScorecardsListRequestExpand";
-export * from "./ScorecardsRetrieveRequestExpand";
+export * from "./ScorecardsListRequestExpandItem";
+export * from "./ScorecardsRetrieveRequestExpandItem";

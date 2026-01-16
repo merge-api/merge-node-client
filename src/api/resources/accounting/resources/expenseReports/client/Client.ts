@@ -35,7 +35,6 @@ export class ExpenseReportsClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "accounting_period",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
@@ -77,12 +76,17 @@ export class ExpenseReportsClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand:
-                expand != null
-                    ? serializers.accounting.ExpenseReportsListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ExpenseReportsListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ExpenseReportsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
@@ -147,30 +151,32 @@ export class ExpenseReportsClient {
     /**
      * Creates an `ExpenseReport` object with the given values.
      *
-     * @param {Merge.accounting.ExpenseReportEndpointRequest} request
+     * @param {Merge.accounting.ExpenseReportsCreateRequest} request
      * @param {ExpenseReportsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.accounting.expenseReports.create({
      *         isDebugMode: true,
      *         runAsync: true,
-     *         model: {
-     *             trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"]
+     *         body: {
+     *             model: {
+     *                 trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"]
+     *             }
      *         }
      *     })
      */
     public create(
-        request: Merge.accounting.ExpenseReportEndpointRequest,
+        request: Merge.accounting.ExpenseReportsCreateRequest,
         requestOptions?: ExpenseReportsClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.ExpenseReportResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Merge.accounting.ExpenseReportEndpointRequest,
+        request: Merge.accounting.ExpenseReportsCreateRequest,
         requestOptions?: ExpenseReportsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.ExpenseReportResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
+        const { isDebugMode, runAsync, body: _body } = request;
         const _queryParams: Record<string, unknown> = {
             is_debug_mode: isDebugMode,
             run_async: runAsync,
@@ -242,7 +248,6 @@ export class ExpenseReportsClient {
      * @example
      *     await client.accounting.expenseReports.linesList("expense_report_id", {
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "account",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
@@ -274,12 +279,17 @@ export class ExpenseReportsClient {
         } = request;
         const _queryParams: Record<string, unknown> = {
             cursor,
-            expand:
-                expand != null
-                    ? serializers.accounting.ExpenseReportsLinesListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ExpenseReportsLinesListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ExpenseReportsLinesListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
@@ -347,7 +357,6 @@ export class ExpenseReportsClient {
      *
      * @example
      *     await client.accounting.expenseReports.retrieve("id", {
-     *         expand: "accounting_period",
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
      *         includeShellData: true
@@ -368,12 +377,17 @@ export class ExpenseReportsClient {
     ): Promise<core.WithRawResponse<Merge.accounting.ExpenseReport>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.ExpenseReportsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ExpenseReportsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ExpenseReportsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
             include_shell_data: includeShellData,
@@ -427,6 +441,224 @@ export class ExpenseReportsClient {
             _response.rawResponse,
             "GET",
             "/accounting/v1/expense-reports/{id}",
+        );
+    }
+
+    /**
+     * Creates an `ExpenseReport` object with the given values.
+     *
+     * @param {Merge.accounting.ExpenseReportsAsyncBulkCreateRequest} request
+     * @param {ExpenseReportsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.expenseReports.asyncBulkCreate({
+     *         isDebugMode: true,
+     *         runAsync: true,
+     *         body: {
+     *             model: {
+     *                 trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"]
+     *             }
+     *         }
+     *     })
+     */
+    public asyncBulkCreate(
+        request: Merge.accounting.ExpenseReportsAsyncBulkCreateRequest,
+        requestOptions?: ExpenseReportsClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.ExpenseReportResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+    }
+
+    private async __asyncBulkCreate(
+        request: Merge.accounting.ExpenseReportsAsyncBulkCreateRequest,
+        requestOptions?: ExpenseReportsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.ExpenseReportResponse>> {
+        const { isDebugMode, runAsync, body: _body } = request;
+        const _queryParams: Record<string, unknown> = {
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/expense-reports/async/bulk",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.ExpenseReportEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.ExpenseReportResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/accounting/v1/expense-reports/async/bulk",
+        );
+    }
+
+    /**
+     * Returns a list of `ExpenseReport` objects.
+     *
+     * @param {string} batch_id
+     * @param {Merge.accounting.ExpenseReportsBatchObjectsListRequest} request
+     * @param {ExpenseReportsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.expenseReports.batchObjectsList("batch_id", {
+     *         companyId: "company_id",
+     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+     *         includeDeletedData: true,
+     *         includeRemoteData: true,
+     *         includeRemoteFields: true,
+     *         includeShellData: true,
+     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         pageSize: 1,
+     *         remoteId: "remote_id"
+     *     })
+     */
+    public batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.ExpenseReportsBatchObjectsListRequest = {},
+        requestOptions?: ExpenseReportsClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedExpenseReportList> {
+        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+    }
+
+    private async __batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.ExpenseReportsBatchObjectsListRequest = {},
+        requestOptions?: ExpenseReportsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedExpenseReportList>> {
+        const {
+            companyId,
+            createdAfter,
+            createdBefore,
+            cursor,
+            expand,
+            includeDeletedData,
+            includeRemoteData,
+            includeRemoteFields,
+            includeShellData,
+            modifiedAfter,
+            modifiedBefore,
+            pageSize,
+            remoteId,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            created_after: createdAfter?.toISOString(),
+            created_before: createdBefore?.toISOString(),
+            cursor,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ExpenseReportsBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ExpenseReportsBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_remote_fields: includeRemoteFields,
+            include_shell_data: includeShellData,
+            modified_after: modifiedAfter?.toISOString(),
+            modified_before: modifiedBefore?.toISOString(),
+            page_size: pageSize,
+            remote_id: remoteId,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/expense-reports/batch/${core.url.encodePathParam(batch_id)}/objects`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedExpenseReportList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/expense-reports/batch/{batch_id}/objects",
         );
     }
 
