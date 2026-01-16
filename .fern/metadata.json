@@ -19,5 +19,5 @@
         "packageManager": "yarn",
         "testFramework": "jest"
     },
-    "sdkVersion": "2.2.0"
+    "sdkVersion": "2.3.0"
 }
