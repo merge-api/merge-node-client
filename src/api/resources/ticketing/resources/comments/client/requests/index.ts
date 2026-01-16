@@ -1,3 +1,3 @@
-export type { CommentEndpointRequest } from "./CommentEndpointRequest";
-export type { CommentsListRequest } from "./CommentsListRequest";
-export type { CommentsRetrieveRequest } from "./CommentsRetrieveRequest";
+export { type ListCommentsRequest } from "./ListCommentsRequest";
+export { type CommentEndpointRequest } from "./CommentEndpointRequest";
+export { type RetrieveCommentsRequest } from "./RetrieveCommentsRequest";

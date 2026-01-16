@@ -1,1 +1,1 @@
-export type { LinkedAccountsListRequest } from "./LinkedAccountsListRequest";
+export { type ListLinkedAccountsRequest } from "./ListLinkedAccountsRequest";

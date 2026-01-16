@@ -1,2 +1,2 @@
-export type { RolesListRequest } from "./RolesListRequest";
-export type { RolesRetrieveRequest } from "./RolesRetrieveRequest";
+export { type ListRolesRequest } from "./ListRolesRequest";
+export { type RetrieveRolesRequest } from "./RetrieveRolesRequest";

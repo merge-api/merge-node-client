@@ -1,2 +1,2 @@
-export type { PaymentMethodsListRequest } from "./PaymentMethodsListRequest";
-export type { PaymentMethodsRetrieveRequest } from "./PaymentMethodsRetrieveRequest";
+export { type ListPaymentMethodsRequest } from "./ListPaymentMethodsRequest";
+export { type RetrievePaymentMethodsRequest } from "./RetrievePaymentMethodsRequest";

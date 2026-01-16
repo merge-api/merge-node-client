@@ -1,2 +1,2 @@
-export type { TrackingCategoriesListRequest } from "./TrackingCategoriesListRequest";
-export type { TrackingCategoriesRetrieveRequest } from "./TrackingCategoriesRetrieveRequest";
+export { type ListTrackingCategoriesRequest } from "./ListTrackingCategoriesRequest";
+export { type RetrieveTrackingCategoriesRequest } from "./RetrieveTrackingCategoriesRequest";

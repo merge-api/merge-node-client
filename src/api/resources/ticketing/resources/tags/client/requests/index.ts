@@ -1,2 +1,2 @@
-export type { TagsListRequest } from "./TagsListRequest";
-export type { TagsRetrieveRequest } from "./TagsRetrieveRequest";
+export { type ListTagsRequest } from "./ListTagsRequest";
+export { type RetrieveTagsRequest } from "./RetrieveTagsRequest";

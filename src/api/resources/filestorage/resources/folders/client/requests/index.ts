@@ -1,3 +1,3 @@
-export type { FileStorageFolderEndpointRequest } from "./FileStorageFolderEndpointRequest";
-export type { FoldersListRequest } from "./FoldersListRequest";
-export type { FoldersRetrieveRequest } from "./FoldersRetrieveRequest";
+export { type ListFoldersRequest } from "./ListFoldersRequest";
+export { type FileStorageFolderEndpointRequest } from "./FileStorageFolderEndpointRequest";
+export { type RetrieveFoldersRequest } from "./RetrieveFoldersRequest";

@@ -1,2 +1,2 @@
-export type { DepartmentsListRequest } from "./DepartmentsListRequest";
-export type { DepartmentsRetrieveRequest } from "./DepartmentsRetrieveRequest";
+export { type ListDepartmentsRequest } from "./ListDepartmentsRequest";
+export { type RetrieveDepartmentsRequest } from "./RetrieveDepartmentsRequest";

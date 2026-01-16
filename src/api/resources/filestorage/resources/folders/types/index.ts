@@ -1,2 +1,2 @@
-export * from "./FoldersListRequestExpand";
-export * from "./FoldersRetrieveRequestExpand";
+export * from "./ListFoldersRequestExpand";
+export * from "./RetrieveFoldersRequestExpand";

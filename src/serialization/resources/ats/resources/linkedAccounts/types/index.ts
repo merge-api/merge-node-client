@@ -1,1 +1,1 @@
-export * from "./LinkedAccountsListRequestCategory";
+export * from "./ListLinkedAccountsRequestCategory";

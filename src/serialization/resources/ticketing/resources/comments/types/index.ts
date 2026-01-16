@@ -1,2 +1,2 @@
-export * from "./CommentsListRequestExpand";
-export * from "./CommentsRetrieveRequestExpand";
+export * from "./ListCommentsRequestExpand";
+export * from "./RetrieveCommentsRequestExpand";

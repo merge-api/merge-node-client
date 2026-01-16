@@ -1,4 +1,5 @@
-export type { CreateFieldMappingRequest } from "./CreateFieldMappingRequest";
-export type { FieldMappingsRetrieveRequest } from "./FieldMappingsRetrieveRequest";
-export type { PatchedEditFieldMappingRequest } from "./PatchedEditFieldMappingRequest";
-export type { RemoteFieldsRetrieveRequest } from "./RemoteFieldsRetrieveRequest";
+export { type FieldMappingsRetrieveFieldMappingRequest } from "./FieldMappingsRetrieveFieldMappingRequest";
+export { type CreateFieldMappingRequest } from "./CreateFieldMappingRequest";
+export { type FieldMappingsDestroyFieldMappingRequest } from "./FieldMappingsDestroyFieldMappingRequest";
+export { type PatchedEditFieldMappingRequest } from "./PatchedEditFieldMappingRequest";
+export { type RemoteFieldsRetrieveFieldMappingRequest } from "./RemoteFieldsRetrieveFieldMappingRequest";
