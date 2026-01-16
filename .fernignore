@@ -3,6 +3,7 @@
 README.md
 LICENSE.md
 package.json
+.github/workflows/ci.yml
 jest.config.mjs
 tests/integration/merge-accounting.integration.test.ts
 tests/integration/merge-filestorage.integration.test.ts
