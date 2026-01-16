@@ -35,7 +35,6 @@ export class FoldersClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         driveId: "drive_id",
-     *         expand: "drive",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -79,12 +78,17 @@ export class FoldersClient {
             created_before: createdBefore?.toISOString(),
             cursor,
             drive_id: driveId,
-            expand:
-                expand != null
-                    ? serializers.filestorage.FoldersListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.filestorage.FoldersListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.filestorage.FoldersListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -232,7 +236,6 @@ export class FoldersClient {
      *
      * @example
      *     await client.filestorage.folders.retrieve("id", {
-     *         expand: "drive",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -252,12 +255,17 @@ export class FoldersClient {
     ): Promise<core.WithRawResponse<Merge.filestorage.Folder>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.filestorage.FoldersRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.filestorage.FoldersRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.filestorage.FoldersRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

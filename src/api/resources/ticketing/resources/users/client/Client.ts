@@ -31,11 +31,11 @@ export class UsersClient {
      *
      * @example
      *     await client.ticketing.users.list({
+     *         collections: "collections",
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         emailAddress: "email_address",
-     *         expand: "roles",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -43,7 +43,9 @@ export class UsersClient {
      *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         pageSize: 1,
      *         remoteId: "remote_id",
-     *         team: "team"
+     *         roles: "roles",
+     *         team: "team",
+     *         teams: "teams"
      *     })
      */
     public list(
@@ -58,6 +60,7 @@ export class UsersClient {
         requestOptions?: UsersClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.ticketing.PaginatedUserList>> {
         const {
+            collections,
             createdAfter,
             createdBefore,
             cursor,
@@ -70,19 +73,27 @@ export class UsersClient {
             modifiedBefore,
             pageSize,
             remoteId,
+            roles,
             team,
+            teams,
         } = request;
         const _queryParams: Record<string, unknown> = {
+            collections,
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
             email_address: emailAddress,
-            expand:
-                expand != null
-                    ? serializers.ticketing.UsersListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ticketing.UsersListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ticketing.UsersListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -90,7 +101,9 @@ export class UsersClient {
             modified_before: modifiedBefore?.toISOString(),
             page_size: pageSize,
             remote_id: remoteId,
+            roles,
             team,
+            teams,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -148,7 +161,6 @@ export class UsersClient {
      *
      * @example
      *     await client.ticketing.users.retrieve("id", {
-     *         expand: "roles",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -168,12 +180,17 @@ export class UsersClient {
     ): Promise<core.WithRawResponse<Merge.ticketing.User>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.ticketing.UsersRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ticketing.UsersRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ticketing.UsersRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

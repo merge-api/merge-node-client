@@ -6,7 +6,7 @@ export interface AccountDetails {
     id?: string;
     integration?: string;
     integrationSlug?: string;
-    category?: Merge.accounting.AccountDetailsCategory;
+    category?: Merge.accounting.CategoryEnum;
     endUserOriginId?: string;
     endUserOrganizationName?: string;
     endUserEmailAddress?: string;

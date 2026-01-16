@@ -35,7 +35,6 @@ export class ScorecardsClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "application",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -83,12 +82,17 @@ export class ScorecardsClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand:
-                expand != null
-                    ? serializers.ats.ScorecardsListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ats.ScorecardsListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ats.ScorecardsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -157,7 +161,6 @@ export class ScorecardsClient {
      *
      * @example
      *     await client.ats.scorecards.retrieve("id", {
-     *         expand: "application",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "overall_recommendation",
@@ -179,12 +182,17 @@ export class ScorecardsClient {
     ): Promise<core.WithRawResponse<Merge.ats.Scorecard>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.ats.ScorecardsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ats.ScorecardsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ats.ScorecardsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields: remoteFields != null ? remoteFields : undefined,

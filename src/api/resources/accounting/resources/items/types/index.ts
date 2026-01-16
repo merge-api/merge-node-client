@@ -1,2 +1,3 @@
-export * from "./ItemsListRequestExpand";
-export * from "./ItemsRetrieveRequestExpand";
+export * from "./ItemsBatchObjectsListRequestExpandItem";
+export * from "./ItemsListRequestExpandItem";
+export * from "./ItemsRetrieveRequestExpandItem";

@@ -20,6 +20,8 @@ export interface PatchedTaskRequest {
     account?: string;
     /** The task's opportunity. */
     opportunity?: string;
+    /** The task's contact. */
+    contact?: string;
     /** When the task is completed. */
     completedDate?: Date;
     /** When the task is due. */

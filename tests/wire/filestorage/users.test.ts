@@ -46,6 +46,7 @@ describe("UsersClient", () => {
             createdAfter: new Date("2024-01-15T09:30:00.000Z"),
             createdBefore: new Date("2024-01-15T09:30:00.000Z"),
             cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            emailAddress: "email_address",
             includeDeletedData: true,
             includeRemoteData: true,
             includeShellData: true,

@@ -221,4 +221,79 @@ export class GroupsClient {
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/hris/v1/groups/{id}");
     }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     *
+     * @param {Merge.hris.GroupsTypesListRequest} request
+     * @param {GroupsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.hris.groups.typesList({
+     *         includeDeletedData: true,
+     *         showEnumOrigins: "show_enum_origins"
+     *     })
+     */
+    public typesList(
+        request: Merge.hris.GroupsTypesListRequest = {},
+        requestOptions?: GroupsClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.hris.GroupsTypesListResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__typesList(request, requestOptions));
+    }
+
+    private async __typesList(
+        request: Merge.hris.GroupsTypesListRequest = {},
+        requestOptions?: GroupsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.hris.GroupsTypesListResponse>> {
+        const { includeDeletedData, showEnumOrigins } = request;
+        const _queryParams: Record<string, unknown> = {
+            include_deleted_data: includeDeletedData,
+            show_enum_origins: showEnumOrigins,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "hris/v1/groups/types",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.hris.GroupsTypesListResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/hris/v1/groups/types");
+    }
 }

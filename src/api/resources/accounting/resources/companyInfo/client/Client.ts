@@ -34,12 +34,12 @@ export class CompanyInfoClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "addresses",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         name: "name",
      *         pageSize: 1,
      *         remoteId: "remote_id"
      *     })
@@ -65,6 +65,7 @@ export class CompanyInfoClient {
             includeShellData,
             modifiedAfter,
             modifiedBefore,
+            name,
             pageSize,
             remoteId,
         } = request;
@@ -72,17 +73,23 @@ export class CompanyInfoClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand:
-                expand != null
-                    ? serializers.accounting.CompanyInfoListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.CompanyInfoListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.CompanyInfoListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             modified_after: modifiedAfter?.toISOString(),
             modified_before: modifiedBefore?.toISOString(),
+            name,
             page_size: pageSize,
             remote_id: remoteId,
         };
@@ -142,7 +149,6 @@ export class CompanyInfoClient {
      *
      * @example
      *     await client.accounting.companyInfo.retrieve("id", {
-     *         expand: "addresses",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -162,12 +168,17 @@ export class CompanyInfoClient {
     ): Promise<core.WithRawResponse<Merge.accounting.CompanyInfo>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.CompanyInfoRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.CompanyInfoRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.CompanyInfoRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

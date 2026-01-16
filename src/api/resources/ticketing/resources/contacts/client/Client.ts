@@ -35,7 +35,6 @@ export class ContactsClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         emailAddress: "email_address",
-     *         expand: "account",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -75,7 +74,7 @@ export class ContactsClient {
             created_before: createdBefore?.toISOString(),
             cursor,
             email_address: emailAddress,
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -221,7 +220,6 @@ export class ContactsClient {
      *
      * @example
      *     await client.ticketing.contacts.retrieve("id", {
-     *         expand: "account",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -241,7 +239,7 @@ export class ContactsClient {
     ): Promise<core.WithRawResponse<Merge.ticketing.Contact>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

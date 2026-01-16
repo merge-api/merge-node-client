@@ -6,7 +6,7 @@ import type * as serializers from "../../../../../../index";
 
 export const PatchedEditFieldMappingRequest: core.serialization.Schema<
     serializers.crm.PatchedEditFieldMappingRequest.Raw,
-    Merge.crm.PatchedEditFieldMappingRequest
+    Omit<Merge.crm.PatchedEditFieldMappingRequest, "remoteDataIterationCount">
 > = core.serialization.object({
     remoteFieldTraversalPath: core.serialization.property(
         "remote_field_traversal_path",
@@ -14,6 +14,7 @@ export const PatchedEditFieldMappingRequest: core.serialization.Schema<
     ),
     remoteMethod: core.serialization.property("remote_method", core.serialization.string().optional()),
     remoteUrlPath: core.serialization.property("remote_url_path", core.serialization.string().optional()),
+    jmesPath: core.serialization.property("jmes_path", core.serialization.string().optional()),
 });
 
 export declare namespace PatchedEditFieldMappingRequest {
@@ -21,5 +22,6 @@ export declare namespace PatchedEditFieldMappingRequest {
         remote_field_traversal_path?: unknown[] | null;
         remote_method?: string | null;
         remote_url_path?: string | null;
+        jmes_path?: string | null;
     }
 }

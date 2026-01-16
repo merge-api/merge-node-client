@@ -8,4 +8,6 @@ export interface MetaResponse {
     status?: Merge.hris.LinkedAccountStatus;
     hasConditionalParams: boolean;
     hasRequiredLinkedAccountParams: boolean;
+    /** Remote field values to populate */
+    remoteFields?: string[];
 }

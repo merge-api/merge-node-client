@@ -5,7 +5,6 @@ import type * as Merge from "../../../../../../index";
 /**
  * @example
  *     {
- *         expand: "account",
  *         includeRemoteData: true,
  *         includeRemoteFields: true,
  *         includeShellData: true
@@ -13,7 +12,7 @@ import type * as Merge from "../../../../../../index";
  */
 export interface PaymentsRetrieveRequest {
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.accounting.PaymentsRetrieveRequestExpand;
+    expand?: Merge.accounting.PaymentsRetrieveRequestExpandItem | Merge.accounting.PaymentsRetrieveRequestExpandItem[];
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
     /** Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format. */

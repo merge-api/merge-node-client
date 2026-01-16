@@ -38,7 +38,6 @@ export class TimeOffClient {
      *         employeeId: "employee_id",
      *         endedAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         endedBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         expand: "approver",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -96,10 +95,17 @@ export class TimeOffClient {
             employee_id: employeeId,
             ended_after: endedAfter?.toISOString(),
             ended_before: endedBefore?.toISOString(),
-            expand:
-                expand != null
-                    ? serializers.hris.TimeOffListRequestExpand.jsonOrThrow(expand, { unrecognizedObjectKeys: "strip" })
-                    : undefined,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.hris.TimeOffListRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.hris.TimeOffListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -267,7 +273,6 @@ export class TimeOffClient {
      *
      * @example
      *     await client.hris.timeOff.retrieve("id", {
-     *         expand: "approver",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "request_type",
@@ -289,12 +294,17 @@ export class TimeOffClient {
     ): Promise<core.WithRawResponse<Merge.hris.TimeOff>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.hris.TimeOffRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.hris.TimeOffRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.hris.TimeOffRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields:

@@ -34,7 +34,6 @@ export class GroupsClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "child_groups",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -72,7 +71,17 @@ export class GroupsClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.filestorage.GroupsListRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.filestorage.GroupsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -137,7 +146,6 @@ export class GroupsClient {
      *
      * @example
      *     await client.filestorage.groups.retrieve("id", {
-     *         expand: "child_groups",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -157,7 +165,17 @@ export class GroupsClient {
     ): Promise<core.WithRawResponse<Merge.filestorage.Group>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.filestorage.GroupsRetrieveRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.filestorage.GroupsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

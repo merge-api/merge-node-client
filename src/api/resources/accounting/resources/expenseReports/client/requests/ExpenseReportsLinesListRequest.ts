@@ -6,7 +6,6 @@ import type * as Merge from "../../../../../../index";
  * @example
  *     {
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
- *         expand: "account",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
  *         includeRemoteFields: true,
@@ -18,7 +17,9 @@ export interface ExpenseReportsLinesListRequest {
     /** The pagination cursor value. */
     cursor?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.accounting.ExpenseReportsLinesListRequestExpand;
+    expand?:
+        | Merge.accounting.ExpenseReportsLinesListRequestExpandItem
+        | Merge.accounting.ExpenseReportsLinesListRequestExpandItem[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
@@ -27,6 +28,6 @@ export interface ExpenseReportsLinesListRequest {
     includeRemoteFields?: boolean;
     /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */
     includeShellData?: boolean;
-    /** Number of results to return per page. */
+    /** Number of results to return per page. The maximum limit is 100. */
     pageSize?: number;
 }

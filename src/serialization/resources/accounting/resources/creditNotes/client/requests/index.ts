@@ -1,1 +1,2 @@
-export { CreditNoteEndpointRequest } from "./CreditNoteEndpointRequest";
+export { ApplyCreditNoteRequest } from "./ApplyCreditNoteRequest";
+export { PatchedCreditNoteEndpointRequest } from "./PatchedCreditNoteEndpointRequest";

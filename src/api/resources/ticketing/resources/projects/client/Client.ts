@@ -213,7 +213,6 @@ export class ProjectsClient {
      * @example
      *     await client.ticketing.projects.usersList("parent_id", {
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "roles",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -236,12 +235,17 @@ export class ProjectsClient {
         const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
         const _queryParams: Record<string, unknown> = {
             cursor,
-            expand:
-                expand != null
-                    ? serializers.ticketing.ProjectsUsersListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ticketing.ProjectsUsersListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ticketing.ProjectsUsersListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,

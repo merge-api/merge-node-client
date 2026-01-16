@@ -35,7 +35,6 @@ export class CandidatesClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         emailAddresses: "email_addresses",
-     *         expand: "applications",
      *         firstName: "first_name",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
@@ -81,12 +80,17 @@ export class CandidatesClient {
             created_before: createdBefore?.toISOString(),
             cursor,
             email_addresses: emailAddresses,
-            expand:
-                expand != null
-                    ? serializers.ats.CandidatesListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ats.CandidatesListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ats.CandidatesListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             first_name: firstName,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
@@ -234,7 +238,6 @@ export class CandidatesClient {
      *
      * @example
      *     await client.ats.candidates.retrieve("id", {
-     *         expand: "applications",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -254,12 +257,17 @@ export class CandidatesClient {
     ): Promise<core.WithRawResponse<Merge.ats.Candidate>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.ats.CandidatesRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ats.CandidatesRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ats.CandidatesRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

@@ -35,7 +35,6 @@ export class ExpensesClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "account",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
@@ -81,12 +80,17 @@ export class ExpensesClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand:
-                expand != null
-                    ? serializers.accounting.ExpensesListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ExpensesListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ExpensesListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
@@ -148,28 +152,30 @@ export class ExpensesClient {
     /**
      * Creates an `Expense` object with the given values.
      *
-     * @param {Merge.accounting.ExpenseEndpointRequest} request
+     * @param {Merge.accounting.ExpensesCreateRequest} request
      * @param {ExpensesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.accounting.expenses.create({
      *         isDebugMode: true,
      *         runAsync: true,
-     *         model: {}
+     *         body: {
+     *             model: {}
+     *         }
      *     })
      */
     public create(
-        request: Merge.accounting.ExpenseEndpointRequest,
+        request: Merge.accounting.ExpensesCreateRequest,
         requestOptions?: ExpensesClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.ExpenseResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Merge.accounting.ExpenseEndpointRequest,
+        request: Merge.accounting.ExpensesCreateRequest,
         requestOptions?: ExpensesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.ExpenseResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
+        const { isDebugMode, runAsync, body: _body } = request;
         const _queryParams: Record<string, unknown> = {
             is_debug_mode: isDebugMode,
             run_async: runAsync,
@@ -233,7 +239,6 @@ export class ExpensesClient {
      *
      * @example
      *     await client.accounting.expenses.retrieve("id", {
-     *         expand: "account",
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
      *         includeShellData: true
@@ -254,12 +259,17 @@ export class ExpensesClient {
     ): Promise<core.WithRawResponse<Merge.accounting.Expense>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.ExpensesRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ExpensesRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ExpensesRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
             include_shell_data: includeShellData,
@@ -309,6 +319,226 @@ export class ExpensesClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/accounting/v1/expenses/{id}");
+    }
+
+    /**
+     * Creates an `Expense` object with the given values.
+     *
+     * @param {Merge.accounting.ExpensesAsyncBulkCreateRequest} request
+     * @param {ExpensesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.expenses.asyncBulkCreate({
+     *         isDebugMode: true,
+     *         runAsync: true,
+     *         body: {
+     *             model: {}
+     *         }
+     *     })
+     */
+    public asyncBulkCreate(
+        request: Merge.accounting.ExpensesAsyncBulkCreateRequest,
+        requestOptions?: ExpensesClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.ExpenseResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+    }
+
+    private async __asyncBulkCreate(
+        request: Merge.accounting.ExpensesAsyncBulkCreateRequest,
+        requestOptions?: ExpensesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.ExpenseResponse>> {
+        const { isDebugMode, runAsync, body: _body } = request;
+        const _queryParams: Record<string, unknown> = {
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/expenses/async/bulk",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.ExpenseEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.ExpenseResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/accounting/v1/expenses/async/bulk",
+        );
+    }
+
+    /**
+     * Returns a list of `Expense` objects.
+     *
+     * @param {string} batch_id
+     * @param {Merge.accounting.ExpensesBatchObjectsListRequest} request
+     * @param {ExpensesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.expenses.batchObjectsList("batch_id", {
+     *         companyId: "company_id",
+     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+     *         includeDeletedData: true,
+     *         includeRemoteData: true,
+     *         includeRemoteFields: true,
+     *         includeShellData: true,
+     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         pageSize: 1,
+     *         remoteId: "remote_id",
+     *         transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+     *     })
+     */
+    public batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.ExpensesBatchObjectsListRequest = {},
+        requestOptions?: ExpensesClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedExpenseList> {
+        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+    }
+
+    private async __batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.ExpensesBatchObjectsListRequest = {},
+        requestOptions?: ExpensesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedExpenseList>> {
+        const {
+            companyId,
+            createdAfter,
+            createdBefore,
+            cursor,
+            expand,
+            includeDeletedData,
+            includeRemoteData,
+            includeRemoteFields,
+            includeShellData,
+            modifiedAfter,
+            modifiedBefore,
+            pageSize,
+            remoteId,
+            transactionDateAfter,
+            transactionDateBefore,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            created_after: createdAfter?.toISOString(),
+            created_before: createdBefore?.toISOString(),
+            cursor,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ExpensesBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ExpensesBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_remote_fields: includeRemoteFields,
+            include_shell_data: includeShellData,
+            modified_after: modifiedAfter?.toISOString(),
+            modified_before: modifiedBefore?.toISOString(),
+            page_size: pageSize,
+            remote_id: remoteId,
+            transaction_date_after: transactionDateAfter?.toISOString(),
+            transaction_date_before: transactionDateBefore?.toISOString(),
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/expenses/batch/${core.url.encodePathParam(batch_id)}/objects`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedExpenseList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/expenses/batch/{batch_id}/objects",
+        );
     }
 
     /**

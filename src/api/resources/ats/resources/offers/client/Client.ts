@@ -36,7 +36,6 @@ export class OffersClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         creatorId: "creator_id",
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "application",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -45,7 +44,8 @@ export class OffersClient {
      *         pageSize: 1,
      *         remoteFields: "status",
      *         remoteId: "remote_id",
-     *         showEnumOrigins: "status"
+     *         showEnumOrigins: "status",
+     *         status: "APPROVAL-SENT"
      *     })
      */
     public list(
@@ -75,6 +75,7 @@ export class OffersClient {
             remoteFields,
             remoteId,
             showEnumOrigins,
+            status,
         } = request;
         const _queryParams: Record<string, unknown> = {
             application_id: applicationId,
@@ -82,10 +83,15 @@ export class OffersClient {
             created_before: createdBefore?.toISOString(),
             creator_id: creatorId,
             cursor,
-            expand:
-                expand != null
-                    ? serializers.ats.OffersListRequestExpand.jsonOrThrow(expand, { unrecognizedObjectKeys: "strip" })
-                    : undefined,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ats.OffersListRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ats.OffersListRequestExpandItem.jsonOrThrow(expand, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -95,6 +101,10 @@ export class OffersClient {
             remote_fields: remoteFields != null ? remoteFields : undefined,
             remote_id: remoteId,
             show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
+            status:
+                status != null
+                    ? serializers.ats.OffersListRequestStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -152,7 +162,6 @@ export class OffersClient {
      *
      * @example
      *     await client.ats.offers.retrieve("id", {
-     *         expand: "application",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "status",
@@ -174,12 +183,17 @@ export class OffersClient {
     ): Promise<core.WithRawResponse<Merge.ats.Offer>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.ats.OffersRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ats.OffersRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ats.OffersRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields: remoteFields != null ? remoteFields : undefined,

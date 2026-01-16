@@ -37,7 +37,6 @@ export class TimesheetEntriesClient {
      *         employeeId: "employee_id",
      *         endedAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         endedBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         expand: "employee",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -87,7 +86,7 @@ export class TimesheetEntriesClient {
             employee_id: employeeId,
             ended_after: endedAfter?.toISOString(),
             ended_before: endedBefore?.toISOString(),
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -241,7 +240,6 @@ export class TimesheetEntriesClient {
      *
      * @example
      *     await client.hris.timesheetEntries.retrieve("id", {
-     *         expand: "employee",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -261,7 +259,7 @@ export class TimesheetEntriesClient {
     ): Promise<core.WithRawResponse<Merge.hris.TimesheetEntry>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };
