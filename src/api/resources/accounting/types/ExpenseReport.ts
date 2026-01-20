@@ -24,7 +24,7 @@ export interface ExpenseReport {
     /** Human-readable expense report identifier. */
     reportIdentifier?: string;
     /** Identifier for the employee who submitted or is associated with the expense report */
-    employee?: string;
+    employee?: Merge.accounting.ExpenseReportEmployee;
     /**
      * Overall status of the expense report. One of DRAFT, SUBMITTED, APPROVED, REJECTED
      *
@@ -36,7 +36,7 @@ export interface ExpenseReport {
     status?: Merge.accounting.ExpenseReportStatus;
     /** Total amount of the expense report */
     totalAmount?: number;
-    lines?: Merge.accounting.ExpenseReportLine[];
+    lines?: Merge.accounting.ExpenseReportLinesItem[];
     /**
      * Currency code for the expense report
      *
@@ -347,11 +347,11 @@ export interface ExpenseReport {
      * * `ZWR` - Zimbabwean Dollar (2008)
      * * `ZWL` - Zimbabwean Dollar (2009)
      */
-    currency?: Merge.accounting.TransactionCurrencyEnum;
+    currency?: Merge.accounting.ExpenseReportCurrency;
     /** A brief description or purpose for the expense report */
     description?: string;
     /** The accounting period the report was posted in */
-    accountingPeriod?: string;
+    accountingPeriod?: Merge.accounting.ExpenseReportAccountingPeriod;
     /** The subsidiary that the expense report is created in */
     company?: Merge.accounting.ExpenseReportCompany;
     /** The related tracking categories associated with the expense report */

@@ -15,7 +15,7 @@ export interface SyncStatus {
     modelId: string;
     lastSyncStart?: Date;
     nextSyncStart?: Date;
-    lastSyncResult?: Merge.accounting.LastSyncResultEnum;
+    lastSyncResult?: Merge.accounting.SyncStatusLastSyncResult;
     lastSyncFinished?: Date;
     status: Merge.accounting.SyncStatusStatus;
     isInitialSync: boolean;

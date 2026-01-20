@@ -53,7 +53,6 @@ describe("FoldersClient", () => {
             createdBefore: new Date("2024-01-15T09:30:00.000Z"),
             cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             driveId: "drive_id",
-            expand: "drive",
             includeDeletedData: true,
             includeRemoteData: true,
             includeShellData: true,
@@ -279,7 +278,6 @@ describe("FoldersClient", () => {
             .build();
 
         const response = await client.filestorage.folders.retrieve("id", {
-            expand: "drive",
             includeRemoteData: true,
             includeShellData: true,
         });

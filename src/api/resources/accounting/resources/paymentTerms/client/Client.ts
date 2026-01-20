@@ -32,7 +32,6 @@ export class PaymentTermsClient {
      * @example
      *     await client.accounting.paymentTerms.list({
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "company",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -53,7 +52,7 @@ export class PaymentTermsClient {
         const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
         const _queryParams: Record<string, unknown> = {
             cursor,
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -115,7 +114,6 @@ export class PaymentTermsClient {
      *
      * @example
      *     await client.accounting.paymentTerms.retrieve("id", {
-     *         expand: "company",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -135,7 +133,7 @@ export class PaymentTermsClient {
     ): Promise<core.WithRawResponse<Merge.accounting.PaymentTerm>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

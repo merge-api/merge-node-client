@@ -1,4 +1,4 @@
-export * from "./JobsListRequestExpand";
+export * from "./JobsListRequestExpandItem";
 export * from "./JobsListRequestStatus";
-export * from "./JobsRetrieveRequestExpand";
-export * from "./JobsScreeningQuestionsListRequestExpand";
+export * from "./JobsRetrieveRequestExpandItem";
+export * from "./JobsScreeningQuestionsListRequestExpandItem";

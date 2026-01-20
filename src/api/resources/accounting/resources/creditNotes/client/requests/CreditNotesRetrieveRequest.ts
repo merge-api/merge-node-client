@@ -5,7 +5,6 @@ import type * as Merge from "../../../../../../index";
 /**
  * @example
  *     {
- *         expand: "accounting_period",
  *         includeRemoteData: true,
  *         includeShellData: true,
  *         remoteFields: "status",
@@ -14,7 +13,9 @@ import type * as Merge from "../../../../../../index";
  */
 export interface CreditNotesRetrieveRequest {
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.accounting.CreditNotesRetrieveRequestExpand;
+    expand?:
+        | Merge.accounting.CreditNotesRetrieveRequestExpandItem
+        | Merge.accounting.CreditNotesRetrieveRequestExpandItem[];
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
     /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */
