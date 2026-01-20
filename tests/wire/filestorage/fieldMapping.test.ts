@@ -32,6 +32,7 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
                 },
             ],
             Folder: [
@@ -52,6 +53,7 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
                 },
             ],
             Drive: [
@@ -72,6 +74,7 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
                 },
             ],
             Group: [
@@ -92,6 +95,7 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
                 },
             ],
             User: [
@@ -112,6 +116,7 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
                 },
             ],
         };
@@ -147,6 +152,7 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
                 },
             ],
             folder: [
@@ -169,6 +175,7 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
                 },
             ],
             drive: [
@@ -191,6 +198,7 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
                 },
             ],
             group: [
@@ -213,6 +221,7 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
                 },
             ],
             user: [
@@ -235,6 +244,7 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
                 },
             ],
         });
@@ -274,6 +284,7 @@ describe("FieldMappingClient", () => {
                         field_traversal_path: ["example_remote_field_key"],
                     },
                 },
+                jmes_path: "[0].example_jmes_path",
             },
             warnings: [
                 {
@@ -314,6 +325,7 @@ describe("FieldMappingClient", () => {
 
         const response = await client.filestorage.fieldMapping.fieldMappingsCreate({
             excludeRemoteFieldMetadata: true,
+            remoteDataIterationCount: 1,
             targetFieldName: "example_target_field_name",
             targetFieldDescription: "this is a example description of the target field",
             remoteFieldTraversalPath: ["example_remote_field"],
@@ -341,6 +353,7 @@ describe("FieldMappingClient", () => {
                         fieldTraversalPath: ["example_remote_field_key"],
                     },
                 },
+                jmesPath: "[0].example_jmes_path",
             },
             warnings: [
                 {
@@ -403,6 +416,7 @@ describe("FieldMappingClient", () => {
                         field_traversal_path: ["example_remote_field_key"],
                     },
                 },
+                jmes_path: "[0].example_jmes_path",
             },
             warnings: [
                 {
@@ -461,6 +475,7 @@ describe("FieldMappingClient", () => {
                         fieldTraversalPath: ["example_remote_field_key"],
                     },
                 },
+                jmesPath: "[0].example_jmes_path",
             },
             warnings: [
                 {
@@ -523,6 +538,7 @@ describe("FieldMappingClient", () => {
                         field_traversal_path: ["example_remote_field_key"],
                     },
                 },
+                jmes_path: "[0].example_jmes_path",
             },
             warnings: [
                 {
@@ -561,7 +577,9 @@ describe("FieldMappingClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.filestorage.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+        const response = await client.filestorage.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
+            remoteDataIterationCount: 1,
+        });
         expect(response).toEqual({
             model: {
                 id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -582,6 +600,7 @@ describe("FieldMappingClient", () => {
                         fieldTraversalPath: ["example_remote_field_key"],
                     },
                 },
+                jmesPath: "[0].example_jmes_path",
             },
             warnings: [
                 {

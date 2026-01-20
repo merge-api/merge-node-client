@@ -6,7 +6,7 @@ import type * as serializers from "../../../../../../index";
 
 export const CreateFieldMappingRequest: core.serialization.Schema<
     serializers.ticketing.CreateFieldMappingRequest.Raw,
-    Omit<Merge.ticketing.CreateFieldMappingRequest, "excludeRemoteFieldMetadata">
+    Omit<Merge.ticketing.CreateFieldMappingRequest, "excludeRemoteFieldMetadata" | "remoteDataIterationCount">
 > = core.serialization.object({
     targetFieldName: core.serialization.property("target_field_name", core.serialization.string()),
     targetFieldDescription: core.serialization.property("target_field_description", core.serialization.string()),

@@ -12,7 +12,6 @@ import type * as Merge from "../../../../../../index";
  *         employeeId: "employee_id",
  *         endedAfter: new Date("2024-01-15T09:30:00.000Z"),
  *         endedBefore: new Date("2024-01-15T09:30:00.000Z"),
- *         expand: "approver",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
  *         includeShellData: true,
@@ -44,7 +43,7 @@ export interface TimeOffListRequest {
     /** If provided, will only return time-offs that ended before this datetime. */
     endedBefore?: Date;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.hris.TimeOffListRequestExpand;
+    expand?: Merge.hris.TimeOffListRequestExpandItem | Merge.hris.TimeOffListRequestExpandItem[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
@@ -55,7 +54,7 @@ export interface TimeOffListRequest {
     modifiedAfter?: Date;
     /** If provided, only objects synced by Merge before this date time will be returned. */
     modifiedBefore?: Date;
-    /** Number of results to return per page. The maximum limit is 100. */
+    /** Number of results to return per page. */
     pageSize?: number;
     /** Deprecated. Use show_enum_origins. */
     remoteFields?: Merge.hris.TimeOffListRequestRemoteFields;
