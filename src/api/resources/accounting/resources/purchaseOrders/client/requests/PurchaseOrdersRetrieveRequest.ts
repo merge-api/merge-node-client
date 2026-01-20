@@ -5,7 +5,6 @@ import type * as Merge from "../../../../../../index";
 /**
  * @example
  *     {
- *         expand: "accounting_period",
  *         includeRemoteData: true,
  *         includeRemoteFields: true,
  *         includeShellData: true,
@@ -15,7 +14,9 @@ import type * as Merge from "../../../../../../index";
  */
 export interface PurchaseOrdersRetrieveRequest {
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.accounting.PurchaseOrdersRetrieveRequestExpand;
+    expand?:
+        | Merge.accounting.PurchaseOrdersRetrieveRequestExpandItem
+        | Merge.accounting.PurchaseOrdersRetrieveRequestExpandItem[];
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
     /** Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format. */

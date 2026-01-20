@@ -34,7 +34,6 @@ export class BankFeedTransactionsClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "bank_feed_account",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -74,7 +73,7 @@ export class BankFeedTransactionsClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -231,7 +230,6 @@ export class BankFeedTransactionsClient {
      *
      * @example
      *     await client.accounting.bankFeedTransactions.retrieve("id", {
-     *         expand: "bank_feed_account",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -251,7 +249,7 @@ export class BankFeedTransactionsClient {
     ): Promise<core.WithRawResponse<Merge.accounting.BankFeedTransaction>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };
@@ -304,6 +302,207 @@ export class BankFeedTransactionsClient {
             _response.rawResponse,
             "GET",
             "/accounting/v1/bank-feed-transactions/{id}",
+        );
+    }
+
+    /**
+     * Creates a `BankFeedTransaction` object with the given values.
+     *
+     * @param {Merge.accounting.BankFeedTransactionBulkEndpointRequest} request
+     * @param {BankFeedTransactionsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.bankFeedTransactions.asyncBulkCreate({
+     *         isDebugMode: true,
+     *         runAsync: true,
+     *         model: {}
+     *     })
+     */
+    public asyncBulkCreate(
+        request: Merge.accounting.BankFeedTransactionBulkEndpointRequest,
+        requestOptions?: BankFeedTransactionsClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.BankFeedTransactionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+    }
+
+    private async __asyncBulkCreate(
+        request: Merge.accounting.BankFeedTransactionBulkEndpointRequest,
+        requestOptions?: BankFeedTransactionsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.BankFeedTransactionResponse>> {
+        const { isDebugMode, runAsync, ..._body } = request;
+        const _queryParams: Record<string, unknown> = {
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/bank-feed-transactions/async/bulk",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.BankFeedTransactionBulkEndpointRequest.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.BankFeedTransactionResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/accounting/v1/bank-feed-transactions/async/bulk",
+        );
+    }
+
+    /**
+     * Returns a list of `BankFeedTransaction` objects.
+     *
+     * @param {string} batch_id
+     * @param {Merge.accounting.BankFeedTransactionsBatchObjectsListRequest} request
+     * @param {BankFeedTransactionsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.bankFeedTransactions.batchObjectsList("batch_id", {
+     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+     *         includeDeletedData: true,
+     *         includeRemoteData: true,
+     *         includeShellData: true,
+     *         isProcessed: true,
+     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         pageSize: 1,
+     *         remoteId: "remote_id"
+     *     })
+     */
+    public batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.BankFeedTransactionsBatchObjectsListRequest = {},
+        requestOptions?: BankFeedTransactionsClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedBankFeedTransactionList> {
+        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+    }
+
+    private async __batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.BankFeedTransactionsBatchObjectsListRequest = {},
+        requestOptions?: BankFeedTransactionsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedBankFeedTransactionList>> {
+        const {
+            createdAfter,
+            createdBefore,
+            cursor,
+            expand,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            isProcessed,
+            modifiedAfter,
+            modifiedBefore,
+            pageSize,
+            remoteId,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            created_after: createdAfter?.toISOString(),
+            created_before: createdBefore?.toISOString(),
+            cursor,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+            is_processed: isProcessed,
+            modified_after: modifiedAfter?.toISOString(),
+            modified_before: modifiedBefore?.toISOString(),
+            page_size: pageSize,
+            remote_id: remoteId,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/bank-feed-transactions/batch/${core.url.encodePathParam(batch_id)}/objects`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedBankFeedTransactionList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/bank-feed-transactions/batch/{batch_id}/objects",
         );
     }
 
