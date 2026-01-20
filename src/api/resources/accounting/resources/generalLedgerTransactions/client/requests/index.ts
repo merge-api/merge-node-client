@@ -1,2 +1,2 @@
-export type { GeneralLedgerTransactionsListRequest } from "./GeneralLedgerTransactionsListRequest";
-export type { GeneralLedgerTransactionsRetrieveRequest } from "./GeneralLedgerTransactionsRetrieveRequest";
+export { type ListGeneralLedgerTransactionsRequest } from "./ListGeneralLedgerTransactionsRequest";
+export { type RetrieveGeneralLedgerTransactionsRequest } from "./RetrieveGeneralLedgerTransactionsRequest";

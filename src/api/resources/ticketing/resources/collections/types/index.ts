@@ -1,2 +1,2 @@
-export * from "./CollectionsListRequestCollectionType";
-export * from "./CollectionsViewersListRequestExpand";
+export * from "./ListCollectionsRequestCollectionType";
+export * from "./ViewersListCollectionsRequestExpand";

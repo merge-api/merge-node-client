@@ -1,2 +1,2 @@
-export type { AccountingPeriodsListRequest } from "./AccountingPeriodsListRequest";
-export type { AccountingPeriodsRetrieveRequest } from "./AccountingPeriodsRetrieveRequest";
+export { type ListAccountingPeriodsRequest } from "./ListAccountingPeriodsRequest";
+export { type RetrieveAccountingPeriodsRequest } from "./RetrieveAccountingPeriodsRequest";

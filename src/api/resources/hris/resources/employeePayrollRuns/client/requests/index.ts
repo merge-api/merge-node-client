@@ -1,2 +1,2 @@
-export type { EmployeePayrollRunsListRequest } from "./EmployeePayrollRunsListRequest";
-export type { EmployeePayrollRunsRetrieveRequest } from "./EmployeePayrollRunsRetrieveRequest";
+export { type EmployeePayrollRunsListRequest } from "./EmployeePayrollRunsListRequest";
+export { type EmployeePayrollRunsRetrieveRequest } from "./EmployeePayrollRunsRetrieveRequest";
