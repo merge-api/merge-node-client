@@ -106,7 +106,7 @@ describe("union", () => {
         [
             {
                 path: ["type"],
-                message: 'Expected enum. Received "bear".',
+                message: "Unexpected discriminant value",
             },
         ],
     );
