@@ -1,2 +1,3 @@
-export * from "./OffersListRequestExpand";
-export * from "./OffersRetrieveRequestExpand";
+export * from "./OffersListRequestExpandItem";
+export * from "./OffersListRequestStatus";
+export * from "./OffersRetrieveRequestExpandItem";

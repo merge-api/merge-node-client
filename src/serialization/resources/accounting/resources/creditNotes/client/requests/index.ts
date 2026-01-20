@@ -1,1 +1,0 @@
-export { CreditNoteEndpointRequest } from "./CreditNoteEndpointRequest";

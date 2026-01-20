@@ -4,6 +4,7 @@ import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ScreeningQuestionJob } from "./ScreeningQuestionJob";
+import { ScreeningQuestionOptionsItem } from "./ScreeningQuestionOptionsItem";
 import { ScreeningQuestionType } from "./ScreeningQuestionType";
 
 export const ScreeningQuestion: core.serialization.ObjectSchema<
@@ -19,7 +20,7 @@ export const ScreeningQuestion: core.serialization.ObjectSchema<
     title: core.serialization.string().optional(),
     type: ScreeningQuestionType.optional(),
     required: core.serialization.boolean().optional(),
-    options: core.serialization.list(core.serialization.unknown()).optional(),
+    options: core.serialization.list(ScreeningQuestionOptionsItem).optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
 
@@ -34,7 +35,7 @@ export declare namespace ScreeningQuestion {
         title?: string | null;
         type?: ScreeningQuestionType.Raw | null;
         required?: boolean | null;
-        options?: unknown[] | null;
+        options?: ScreeningQuestionOptionsItem.Raw[] | null;
         remote_was_deleted?: boolean | null;
     }
 }

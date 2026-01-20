@@ -6,7 +6,7 @@ export interface AccountDetails {
     id?: string;
     integration?: string;
     integrationSlug?: string;
-    category?: Merge.filestorage.CategoryEnum;
+    category?: Merge.filestorage.AccountDetailsCategory;
     endUserOriginId?: string;
     endUserOrganizationName?: string;
     endUserEmailAddress?: string;

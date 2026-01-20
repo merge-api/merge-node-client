@@ -34,7 +34,6 @@ export class CustomObjectClassesClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "fields",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -72,7 +71,7 @@ export class CustomObjectClassesClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -137,7 +136,6 @@ export class CustomObjectClassesClient {
      *
      * @example
      *     await client.crm.customObjectClasses.retrieve("id", {
-     *         expand: "fields",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -157,7 +155,7 @@ export class CustomObjectClassesClient {
     ): Promise<core.WithRawResponse<Merge.crm.CustomObjectClass>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

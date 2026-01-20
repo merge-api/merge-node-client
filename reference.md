@@ -119,6 +119,61 @@ await client.ats.accountToken.retrieve("public_token");
 </dl>
 </details>
 
+<details><summary><code>client.ats.accountToken.<a href="/src/api/resources/ats/resources/accountToken/client/Client.ts">regenerateCreate</a>() -> Merge.RegenerateAccountToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchange Linked Account account tokens.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ats.accountToken.regenerateCreate();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountTokenClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Ats Activities
 <details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedActivityList</code></summary>
 <dl>
@@ -151,7 +206,6 @@ await client.ats.activities.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "user",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -294,7 +348,6 @@ Returns an `Activity` object with the given `id`.
 
 ```typescript
 await client.ats.activities.retrieve("id", {
-    expand: "user",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "activity_type",
@@ -433,7 +486,6 @@ await client.ats.applications.list({
     creditedToId: "credited_to_id",
     currentStageId: "current_stage_id",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "candidate",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -579,7 +631,6 @@ Returns an `Application` object with the given `id`.
 
 ```typescript
 await client.ats.applications.retrieve("id", {
-    expand: "candidate",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -928,7 +979,6 @@ await client.ats.attachments.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "candidate",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -1070,7 +1120,6 @@ Returns an `Attachment` object with the given `id`.
 
 ```typescript
 await client.ats.attachments.retrieve("id", {
-    expand: "candidate",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "attachment_type",
@@ -1334,7 +1383,6 @@ await client.ats.candidates.list({
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddresses: "email_addresses",
-    expand: "applications",
     firstName: "first_name",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -1477,7 +1525,6 @@ Returns a `Candidate` object with the given `id`.
 
 ```typescript
 await client.ats.candidates.retrieve("id", {
-    expand: "applications",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -1653,7 +1700,7 @@ await client.ats.candidates.ignoreCreate("model_id", {
 <dl>
 <dd>
 
-**request:** `Merge.ats.IgnoreCommonModelRequest` 
+**request:** `Merge.IgnoreCommonModelRequest` 
     
 </dd>
 </dl>
@@ -2226,7 +2273,6 @@ await client.ats.eeocs.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "candidate",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -2300,7 +2346,6 @@ Returns an `EEOC` object with the given `id`.
 
 ```typescript
 await client.ats.eeocs.retrieve("id", {
-    expand: "candidate",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "disability_status",
@@ -2576,7 +2621,9 @@ Create or update existing Field Mappings for a Linked Account. Changes will be r
 <dd>
 
 ```typescript
-await client.ats.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+await client.ats.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
+    remoteDataIterationCount: 1
+});
 
 ```
 </dd>
@@ -2840,7 +2887,6 @@ await client.ats.interviews.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "application",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -2985,7 +3031,6 @@ Returns a `ScheduledInterview` object with the given `id`.
 
 ```typescript
 await client.ats.interviews.retrieve("id", {
-    expand: "application",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "status",
@@ -3263,7 +3308,6 @@ await client.ats.jobInterviewStages.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "job",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -3336,7 +3380,6 @@ Returns a `JobInterviewStage` object with the given `id`.
 
 ```typescript
 await client.ats.jobInterviewStages.retrieve("id", {
-    expand: "job",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -3415,7 +3458,6 @@ await client.ats.jobPostings.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "job",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -3488,7 +3530,6 @@ Returns a `JobPosting` object with the given `id`.
 
 ```typescript
 await client.ats.jobPostings.retrieve("id", {
-    expand: "job",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -3568,7 +3609,6 @@ await client.ats.jobs.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "departments",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -3644,7 +3684,6 @@ Returns a `Job` object with the given `id`.
 
 ```typescript
 await client.ats.jobs.retrieve("id", {
-    expand: "departments",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "status",
@@ -3722,7 +3761,6 @@ Returns a list of `ScreeningQuestion` objects.
 ```typescript
 await client.ats.jobs.screeningQuestionsList("job_id", {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "job",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -3784,7 +3822,7 @@ await client.ats.jobs.screeningQuestionsList("job_id", {
 <dl>
 <dd>
 
-Creates a link token to be used when linking a new end user.
+Creates a link token to be used when linking a new end user. The link token expires after single use.
 </dd>
 </dl>
 </dd>
@@ -3952,7 +3990,6 @@ await client.ats.offers.list({
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     creatorId: "creator_id",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "application",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -3961,7 +3998,8 @@ await client.ats.offers.list({
     pageSize: 1,
     remoteFields: "status",
     remoteId: "remote_id",
-    showEnumOrigins: "status"
+    showEnumOrigins: "status",
+    status: "APPROVAL-SENT"
 });
 
 ```
@@ -4026,7 +4064,6 @@ Returns an `Offer` object with the given `id`.
 
 ```typescript
 await client.ats.offers.retrieve("id", {
-    expand: "application",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "status",
@@ -4539,7 +4576,6 @@ await client.ats.scorecards.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "application",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -4615,7 +4651,6 @@ Returns a `Scorecard` object with the given `id`.
 
 ```typescript
 await client.ats.scorecards.retrieve("id", {
-    expand: "application",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "overall_recommendation",
@@ -5258,6 +5293,61 @@ await client.crm.accountToken.retrieve("public_token");
 </dl>
 </details>
 
+<details><summary><code>client.crm.accountToken.<a href="/src/api/resources/crm/resources/accountToken/client/Client.ts">regenerateCreate</a>() -> Merge.RegenerateAccountToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchange Linked Account account tokens.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.crm.accountToken.regenerateCreate();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountTokenClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Crm Accounts
 <details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountList</code></summary>
 <dl>
@@ -5290,7 +5380,6 @@ await client.crm.accounts.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "owner",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -5432,7 +5521,6 @@ Returns an `Account` object with the given `id`.
 
 ```typescript
 await client.crm.accounts.retrieve("id", {
-    expand: "owner",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -6036,7 +6124,6 @@ await client.crm.contacts.list({
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddresses: "email_addresses",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -6177,7 +6264,6 @@ Returns a `Contact` object with the given `id`.
 
 ```typescript
 await client.crm.contacts.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -6595,7 +6681,6 @@ await client.crm.customObjectClasses.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "fields",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -6667,7 +6752,6 @@ Returns a `CustomObjectClass` object with the given `id`.
 
 ```typescript
 await client.crm.customObjectClasses.retrieve("id", {
-    expand: "fields",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -6746,7 +6830,6 @@ await client.crm.associationTypes.customObjectClassesAssociationTypesList("custo
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "target_object_classes",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -6911,7 +6994,6 @@ Returns an `AssociationType` object with the given `id`.
 
 ```typescript
 await client.crm.associationTypes.customObjectClassesAssociationTypesRetrieve("custom_object_class_id", "id", {
-    expand: "target_object_classes",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -7443,7 +7525,6 @@ await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "association_type",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -8117,7 +8198,6 @@ await client.crm.engagements.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -8259,7 +8339,6 @@ Returns an `Engagement` object with the given `id`.
 
 ```typescript
 await client.crm.engagements.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -8667,6 +8746,7 @@ Create new Field Mappings that will be available after the next scheduled sync. 
 ```typescript
 await client.crm.fieldMapping.fieldMappingsCreate({
     excludeRemoteFieldMetadata: true,
+    remoteDataIterationCount: 1,
     targetFieldName: "example_target_field_name",
     targetFieldDescription: "this is a example description of the target field",
     remoteFieldTraversalPath: ["example_remote_field"],
@@ -8799,7 +8879,9 @@ Create or update existing Field Mappings for a Linked Account. Changes will be r
 <dd>
 
 ```typescript
-await client.crm.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+await client.crm.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
+    remoteDataIterationCount: 1
+});
 
 ```
 </dd>
@@ -9207,7 +9289,6 @@ await client.crm.leads.list({
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddresses: "email_addresses",
-    expand: "converted_account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -9349,7 +9430,6 @@ Returns a `Lead` object with the given `id`.
 
 ```typescript
 await client.crm.leads.retrieve("id", {
-    expand: "converted_account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -9537,7 +9617,7 @@ await client.crm.leads.remoteFieldClassesList({
 <dl>
 <dd>
 
-Creates a link token to be used when linking a new end user.
+Creates a link token to be used when linking a new end user. The link token expires after single use.
 </dd>
 </dl>
 </dd>
@@ -9705,7 +9785,6 @@ await client.crm.notes.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -9847,7 +9926,6 @@ Returns a `Note` object with the given `id`.
 
 ```typescript
 await client.crm.notes.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -10055,7 +10133,6 @@ await client.crm.opportunities.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -10201,7 +10278,6 @@ Returns an `Opportunity` object with the given `id`.
 
 ```typescript
 await client.crm.opportunities.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true,
@@ -11027,7 +11103,6 @@ await client.crm.tasks.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -11167,7 +11242,6 @@ Returns a `Task` object with the given `id`.
 
 ```typescript
 await client.crm.tasks.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -11899,2914 +11973,6 @@ await client.crm.webhookReceivers.create({
 </dl>
 </details>
 
-## Filestorage AccountDetails
-<details><summary><code>client.filestorage.accountDetails.<a href="/src/api/resources/filestorage/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get details for a linked account.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.accountDetails.retrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountDetailsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage AccountToken
-<details><summary><code>client.filestorage.accountToken.<a href="/src/api/resources/filestorage/resources/accountToken/client/Client.ts">retrieve</a>(public_token) -> Merge.AccountToken</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the account token for the end user with the provided public token.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.accountToken.retrieve("public_token");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**public_token:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountTokenClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage AsyncPassthrough
-<details><summary><code>client.filestorage.asyncPassthrough.<a href="/src/api/resources/filestorage/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Asynchronously pull data from an endpoint not currently supported by Merge.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.asyncPassthrough.create({
-    method: "GET",
-    path: "/scooters"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.DataPassthroughRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncPassthroughClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.asyncPassthrough.<a href="/src/api/resources/filestorage/resources/asyncPassthrough/client/Client.ts">retrieve</a>(async_passthrough_receipt_id) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves data from earlier async-passthrough POST request
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.asyncPassthrough.retrieve("async_passthrough_receipt_id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**async_passthrough_receipt_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncPassthroughClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage AuditTrail
-<details><summary><code>client.filestorage.auditTrail.<a href="/src/api/resources/filestorage/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets a list of audit trail events.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.auditTrail.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    endDate: "end_date",
-    eventType: "event_type",
-    pageSize: 1,
-    startDate: "start_date",
-    userEmail: "user_email"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.AuditTrailListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AuditTrailClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage AvailableActions
-<details><summary><code>client.filestorage.availableActions.<a href="/src/api/resources/filestorage/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of models and actions available for an account.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.availableActions.retrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AvailableActionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage Scopes
-<details><summary><code>client.filestorage.scopes.<a href="/src/api/resources/filestorage/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.scopes.defaultScopesRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScopesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.scopes.<a href="/src/api/resources/filestorage/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all available permissions for Merge Common Models and fields for a single Linked Account. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.scopes.linkedAccountScopesRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScopesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.scopes.<a href="/src/api/resources/filestorage/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.scopes.linkedAccountScopesCreate({
-    commonModels: [{
-            modelName: "Employee",
-            modelPermissions: {
-                "READ": {
-                    isEnabled: true
-                },
-                "WRITE": {
-                    isEnabled: false
-                }
-            },
-            fieldPermissions: {
-                enabledFields: ["avatar", "home_location"],
-                disabledFields: ["work_location"]
-            }
-        }, {
-            modelName: "Benefit",
-            modelPermissions: {
-                "WRITE": {
-                    isEnabled: false
-                }
-            }
-        }]
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.LinkedAccountCommonModelScopeDeserializerRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScopesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage DeleteAccount
-<details><summary><code>client.filestorage.deleteAccount.<a href="/src/api/resources/filestorage/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete a linked account.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.deleteAccount.delete();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `DeleteAccountClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage Drives
-<details><summary><code>client.filestorage.drives.<a href="/src/api/resources/filestorage/resources/drives/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedDriveList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Drive` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.drives.list({
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.DrivesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `DrivesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.drives.<a href="/src/api/resources/filestorage/resources/drives/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Drive</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Drive` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.drives.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.DrivesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `DrivesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage FieldMapping
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.fieldMapping.fieldMappingsRetrieve({
-    excludeRemoteFieldMetadata: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.FieldMappingsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create new Field Mappings that will be available after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.fieldMapping.fieldMappingsCreate({
-    excludeRemoteFieldMetadata: true,
-    targetFieldName: "example_target_field_name",
-    targetFieldDescription: "this is a example description of the target field",
-    remoteFieldTraversalPath: ["example_remote_field"],
-    remoteMethod: "GET",
-    remoteUrlPath: "/example-url-path",
-    commonModelName: "ExampleCommonModel"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.CreateFieldMappingRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(field_mapping_id) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.fieldMapping.fieldMappingsDestroy("field_mapping_id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**field_mapping_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(field_mapping_id, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create or update existing Field Mappings for a Linked Account. Changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**field_mapping_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.PatchedEditFieldMappingRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all remote fields for a Linked Account. Remote fields are third-party fields that are accessible after initial sync if remote_data is enabled. You can use remote fields to override existing Merge fields or map a new Merge field. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.fieldMapping.remoteFieldsRetrieve({
-    commonModels: "common_models",
-    includeExampleValues: "include_example_values"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.RemoteFieldsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all organization-wide Target Fields, this will not include any Linked Account specific Target Fields. Organization-wide Target Fields are additional fields appended to the Merge Common Model for all Linked Accounts in a category. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/target-fields/).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.fieldMapping.targetFieldsRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage Files
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedFileList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `File` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.files.list({
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    driveId: "drive_id",
-    expand: "drive",
-    folderId: "folder_id",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    mimeType: "mime_type",
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    orderBy: "-created_at",
-    pageSize: 1,
-    remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    remoteCreatedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.FilesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FilesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">create</a>({ ...params }) -> Merge.FileStorageFileResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `File` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.files.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.FileStorageFileEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FilesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.File_</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `File` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.files.retrieve("id", {
-    expand: "drive",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.FilesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FilesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">downloadRequestMetaRetrieve</a>(id, { ...params }) -> Merge.DownloadRequestMeta</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.files.downloadRequestMetaRetrieve("id", {
-    mimeType: "mime_type"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.FilesDownloadRequestMetaRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FilesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">downloadRequestMetaList</a>({ ...params }) -> Merge.PaginatedDownloadRequestMetaList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata to construct authenticated file download requests, allowing you to download files directly from the third-party.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.files.downloadRequestMetaList({
-    createdAfter: "created_after",
-    createdBefore: "created_before",
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    mimeTypes: "mime_types",
-    modifiedAfter: "modified_after",
-    modifiedBefore: "modified_before",
-    orderBy: "-created_at",
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.FilesDownloadRequestMetaListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FilesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `FileStorageFile` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.files.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `FilesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage Folders
-<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedFolderList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Folder` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.folders.list({
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    driveId: "drive_id",
-    expand: "drive",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    pageSize: 1,
-    parentFolderId: "parent_folder_id",
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.FoldersListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FoldersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">create</a>({ ...params }) -> Merge.FileStorageFolderResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Folder` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.folders.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.FileStorageFolderEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FoldersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Folder</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Folder` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.folders.retrieve("id", {
-    expand: "drive",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.FoldersRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FoldersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `FileStorageFolder` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.folders.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `FoldersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage GenerateKey
-<details><summary><code>client.filestorage.generateKey.<a href="/src/api/resources/filestorage/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a remote key.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.generateKey.create({
-    name: "Remote Deployment Key 1"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.GenerateRemoteKeyRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `GenerateKeyClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage Groups
-<details><summary><code>client.filestorage.groups.<a href="/src/api/resources/filestorage/resources/groups/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedGroupList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Group` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.groups.list({
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "child_groups",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.GroupsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `GroupsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.groups.<a href="/src/api/resources/filestorage/resources/groups/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Group</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Group` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.groups.retrieve("id", {
-    expand: "child_groups",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.GroupsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `GroupsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage Issues
-<details><summary><code>client.filestorage.issues.<a href="/src/api/resources/filestorage/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets all issues for Organization.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.issues.list({
-    accountToken: "account_token",
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    endDate: "end_date",
-    endUserOrganizationName: "end_user_organization_name",
-    firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
-    firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
-    includeMuted: "include_muted",
-    integrationName: "integration_name",
-    lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
-    lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
-    linkedAccountId: "linked_account_id",
-    pageSize: 1,
-    startDate: "start_date",
-    status: "ONGOING"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.IssuesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `IssuesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.issues.<a href="/src/api/resources/filestorage/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a specific issue.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.issues.retrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `IssuesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage LinkToken
-<details><summary><code>client.filestorage.linkToken.<a href="/src/api/resources/filestorage/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a link token to be used when linking a new end user.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.linkToken.create({
-    endUserEmailAddress: "example@gmail.com",
-    endUserOrganizationName: "Test Organization",
-    endUserOriginId: "12345",
-    categories: ["hris", "ats"]
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.EndUserDetailsRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LinkTokenClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage LinkedAccounts
-<details><summary><code>client.filestorage.linkedAccounts.<a href="/src/api/resources/filestorage/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List linked accounts for your organization.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.linkedAccounts.list({
-    category: "accounting",
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    endUserEmailAddress: "end_user_email_address",
-    endUserOrganizationName: "end_user_organization_name",
-    endUserOriginId: "end_user_origin_id",
-    endUserOriginIds: "end_user_origin_ids",
-    id: "id",
-    ids: "ids",
-    includeDuplicates: true,
-    integrationName: "integration_name",
-    isTestAccount: "is_test_account",
-    pageSize: 1,
-    status: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.LinkedAccountsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LinkedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage Passthrough
-<details><summary><code>client.filestorage.passthrough.<a href="/src/api/resources/filestorage/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Pull data from an endpoint not currently supported by Merge.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.passthrough.create({
-    method: "GET",
-    path: "/scooters"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.DataPassthroughRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PassthroughClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage RegenerateKey
-<details><summary><code>client.filestorage.regenerateKey.<a href="/src/api/resources/filestorage/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Exchange remote keys.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.regenerateKey.create({
-    name: "Remote Deployment Key 1"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.RemoteKeyForRegenerationRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RegenerateKeyClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage SyncStatus
-<details><summary><code>client.filestorage.syncStatus.<a href="/src/api/resources/filestorage/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get sync status for the current sync and the most recently finished sync. `last_sync_start` represents the most recent time any sync began. `last_sync_finished` represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the `last_sync_finished` timestamp where `last_sync_result` is `DONE`. Possible values for `status` and `last_sync_result` are `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`. Learn more about sync status in our [Help Center](https://help.merge.dev/en/articles/8184193-merge-sync-statuses).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.syncStatus.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.SyncStatusListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `SyncStatusClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage ForceResync
-<details><summary><code>client.filestorage.forceResync.<a href="/src/api/resources/filestorage/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Force re-sync of all models. This endpoint is available for monthly, quarterly, and highest sync frequency customers on the Professional or Enterprise plans. Doing so will consume a sync credit for the relevant linked account. Force re-syncs can also be triggered manually in the Merge Dashboard and is available for all customers.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.forceResync.syncStatusResyncCreate();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ForceResyncClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage Users
-<details><summary><code>client.filestorage.users.<a href="/src/api/resources/filestorage/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedUserList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `User` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.users.list({
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isMe: "is_me",
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.UsersListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `UsersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.users.<a href="/src/api/resources/filestorage/resources/users/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.User</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `User` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.users.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.UsersRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `UsersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Filestorage WebhookReceivers
-<details><summary><code>client.filestorage.webhookReceivers.<a href="/src/api/resources/filestorage/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `WebhookReceiver` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.webhookReceivers.list();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `WebhookReceiversClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.filestorage.webhookReceivers.<a href="/src/api/resources/filestorage/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `WebhookReceiver` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.filestorage.webhookReceivers.create({
-    event: "event",
-    isActive: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.filestorage.WebhookReceiverRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `WebhookReceiversClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Hris AccountDetails
 <details><summary><code>client.hris.accountDetails.<a href="/src/api/resources/hris/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
 <dl>
@@ -14911,6 +12077,61 @@ await client.hris.accountToken.retrieve("public_token");
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountTokenClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hris.accountToken.<a href="/src/api/resources/hris/resources/accountToken/client/Client.ts">regenerateCreate</a>() -> Merge.RegenerateAccountToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchange Linked Account account tokens.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.hris.accountToken.regenerateCreate();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
 
 <dl>
 <dd>
@@ -15219,7 +12440,6 @@ await client.hris.bankInfo.list({
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -15294,7 +12514,6 @@ Returns a `BankInfo` object with the given `id`.
 
 ```typescript
 await client.hris.bankInfo.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "account_type",
@@ -15376,7 +12595,6 @@ await client.hris.benefits.list({
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -15448,7 +12666,6 @@ Returns a `Benefit` object with the given `id`.
 
 ```typescript
 await client.hris.benefits.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -16084,7 +13301,6 @@ await client.hris.employeePayrollRuns.list({
     employeeId: "employee_id",
     endedAfter: new Date("2024-01-15T09:30:00.000Z"),
     endedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -16159,7 +13375,6 @@ Returns an `EmployeePayrollRun` object with the given `id`.
 
 ```typescript
 await client.hris.employeePayrollRuns.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -16243,7 +13458,6 @@ await client.hris.employees.list({
     employeeNumber: "employee_number",
     employmentStatus: "ACTIVE",
     employmentType: "employment_type",
-    expand: "company",
     firstName: "first_name",
     groups: "groups",
     homeLocationId: "home_location_id",
@@ -16400,7 +13614,6 @@ Returns an `Employee` object with the given `id`.
 
 ```typescript
 await client.hris.employees.retrieve("id", {
-    expand: "company",
     includeRemoteData: true,
     includeSensitiveFields: true,
     includeShellData: true,
@@ -16503,7 +13716,7 @@ await client.hris.employees.ignoreCreate("model_id", {
 <dl>
 <dd>
 
-**request:** `Merge.hris.IgnoreCommonModelRequest` 
+**request:** `Merge.IgnoreCommonModelRequest` 
     
 </dd>
 </dl>
@@ -16760,7 +13973,6 @@ await client.hris.employments.list({
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -16835,7 +14047,6 @@ Returns an `Employment` object with the given `id`.
 
 ```typescript
 await client.hris.employments.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "employment_type",
@@ -17111,7 +14322,9 @@ Create or update existing Field Mappings for a Linked Account. Changes will be r
 <dd>
 
 ```typescript
-await client.hris.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+await client.hris.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
+    remoteDataIterationCount: 1
+});
 
 ```
 </dd>
@@ -17498,6 +14711,72 @@ await client.hris.groups.retrieve("id", {
 </dl>
 </details>
 
+<details><summary><code>client.hris.groups.<a href="/src/api/resources/hris/resources/groups/client/Client.ts">typesList</a>({ ...params }) -> Merge.GroupsTypesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of distinct group type values from the Groups common model.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.hris.groups.typesList({
+    includeDeletedData: true,
+    showEnumOrigins: "show_enum_origins"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.hris.GroupsTypesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GroupsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Hris Issues
 <details><summary><code>client.hris.issues.<a href="/src/api/resources/hris/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
 <dl>
@@ -17653,7 +14932,7 @@ await client.hris.issues.retrieve("id");
 <dl>
 <dd>
 
-Creates a link token to be used when linking a new end user.
+Creates a link token to be used when linking a new end user. The link token expires after single use.
 </dd>
 </dl>
 </dd>
@@ -18536,7 +15815,6 @@ await client.hris.teams.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "parent_team",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -18609,7 +15887,6 @@ Returns a `Team` object with the given `id`.
 
 ```typescript
 await client.hris.teams.retrieve("id", {
-    expand: "parent_team",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -18692,7 +15969,6 @@ await client.hris.timeOff.list({
     employeeId: "employee_id",
     endedAfter: new Date("2024-01-15T09:30:00.000Z"),
     endedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    expand: "approver",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -18837,7 +16113,6 @@ Returns a `TimeOff` object with the given `id`.
 
 ```typescript
 await client.hris.timeOff.retrieve("id", {
-    expand: "approver",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "request_type",
@@ -18974,7 +16249,6 @@ await client.hris.timeOffBalances.list({
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -19049,7 +16323,6 @@ Returns a `TimeOffBalance` object with the given `id`.
 
 ```typescript
 await client.hris.timeOffBalances.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "policy_type",
@@ -19133,7 +16406,6 @@ await client.hris.timesheetEntries.list({
     employeeId: "employee_id",
     endedAfter: new Date("2024-01-15T09:30:00.000Z"),
     endedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -19275,7 +16547,6 @@ Returns a `TimesheetEntry` object with the given `id`.
 
 ```typescript
 await client.hris.timesheetEntries.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -19619,6 +16890,61 @@ await client.ticketing.accountToken.retrieve("public_token");
 </dl>
 </details>
 
+<details><summary><code>client.ticketing.accountToken.<a href="/src/api/resources/ticketing/resources/accountToken/client/Client.ts">regenerateCreate</a>() -> Merge.RegenerateAccountToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchange Linked Account account tokens.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ticketing.accountToken.regenerateCreate();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountTokenClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Ticketing Accounts
 <details><summary><code>client.ticketing.accounts.<a href="/src/api/resources/ticketing/resources/accounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountList</code></summary>
 <dl>
@@ -19930,7 +17256,6 @@ await client.ticketing.attachments.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "ticket",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -20071,7 +17396,6 @@ Returns an `Attachment` object with the given `id`.
 
 ```typescript
 await client.ticketing.attachments.retrieve("id", {
-    expand: "ticket",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -20333,7 +17657,6 @@ await client.ticketing.collections.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "parent_collection",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -20410,7 +17733,6 @@ Returns a list of `Viewer` objects that point to a User id or Team id that is ei
 ```typescript
 await client.ticketing.collections.viewersList("collection_id", {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "team",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -20487,7 +17809,6 @@ Returns a `Collection` object with the given `id`.
 
 ```typescript
 await client.ticketing.collections.retrieve("id", {
-    expand: "parent_collection",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "collection_type",
@@ -20568,7 +17889,6 @@ await client.ticketing.comments.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "contact",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -20709,7 +18029,6 @@ Returns a `Comment` object with the given `id`.
 
 ```typescript
 await client.ticketing.comments.retrieve("id", {
-    expand: "contact",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -20844,7 +18163,6 @@ await client.ticketing.contacts.list({
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddress: "email_address",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -20983,7 +18301,6 @@ Returns a `Contact` object with the given `id`.
 
 ```typescript
 await client.ticketing.contacts.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -21433,6 +18750,7 @@ Create new Field Mappings that will be available after the next scheduled sync. 
 ```typescript
 await client.ticketing.fieldMapping.fieldMappingsCreate({
     excludeRemoteFieldMetadata: true,
+    remoteDataIterationCount: 1,
     targetFieldName: "example_target_field_name",
     targetFieldDescription: "this is a example description of the target field",
     remoteFieldTraversalPath: ["example_remote_field"],
@@ -21565,7 +18883,9 @@ Create or update existing Field Mappings for a Linked Account. Changes will be r
 <dd>
 
 ```typescript
-await client.ticketing.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+await client.ticketing.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
+    remoteDataIterationCount: 1
+});
 
 ```
 </dd>
@@ -21951,7 +19271,7 @@ await client.ticketing.issues.retrieve("id");
 <dl>
 <dd>
 
-Creates a link token to be used when linking a new end user.
+Creates a link token to be used when linking a new end user. The link token expires after single use.
 </dd>
 </dl>
 </dd>
@@ -22330,7 +19650,6 @@ Returns a list of `User` objects.
 ```typescript
 await client.ticketing.projects.usersList("parent_id", {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "roles",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -23057,7 +20376,6 @@ await client.ticketing.tickets.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     dueAfter: new Date("2024-01-15T09:30:00.000Z"),
     dueBefore: new Date("2024-01-15T09:30:00.000Z"),
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -23072,6 +20390,7 @@ await client.ticketing.tickets.list({
     remoteCreatedBefore: new Date("2024-01-15T09:30:00.000Z"),
     remoteFields: "priority",
     remoteId: "remote_id",
+    remoteIds: "remote_ids",
     remoteUpdatedAfter: new Date("2024-01-15T09:30:00.000Z"),
     remoteUpdatedBefore: new Date("2024-01-15T09:30:00.000Z"),
     showEnumOrigins: "priority",
@@ -23210,7 +20529,6 @@ Returns a `Ticket` object with the given `id`.
 
 ```typescript
 await client.ticketing.tickets.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true,
@@ -23364,7 +20682,6 @@ Returns a list of `Viewer` objects that point to a User id or Team id that is ei
 ```typescript
 await client.ticketing.tickets.viewersList("ticket_id", {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "team",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -23643,11 +20960,11 @@ Returns a list of `User` objects.
 
 ```typescript
 await client.ticketing.users.list({
+    collections: "collections",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddress: "email_address",
-    expand: "roles",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -23655,7 +20972,9 @@ await client.ticketing.users.list({
     modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
     pageSize: 1,
     remoteId: "remote_id",
-    team: "team"
+    roles: "roles",
+    team: "team",
+    teams: "teams"
 });
 
 ```
@@ -23720,7 +21039,6 @@ Returns a `User` object with the given `id`.
 
 ```typescript
 await client.ticketing.users.retrieve("id", {
-    expand: "roles",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -23889,8 +21207,8 @@ await client.ticketing.webhookReceivers.create({
 </dl>
 </details>
 
-## Accounting AccountDetails
-<details><summary><code>client.accounting.accountDetails.<a href="/src/api/resources/accounting/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
+## Filestorage AccountDetails
+<details><summary><code>client.filestorage.accountDetails.<a href="/src/api/resources/filestorage/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
 <dl>
 <dd>
 
@@ -23917,7 +21235,7 @@ Get details for a linked account.
 <dd>
 
 ```typescript
-await client.accounting.accountDetails.retrieve();
+await client.filestorage.accountDetails.retrieve();
 
 ```
 </dd>
@@ -23945,8 +21263,8 @@ await client.accounting.accountDetails.retrieve();
 </dl>
 </details>
 
-## Accounting AccountToken
-<details><summary><code>client.accounting.accountToken.<a href="/src/api/resources/accounting/resources/accountToken/client/Client.ts">retrieve</a>(public_token) -> Merge.AccountToken</code></summary>
+## Filestorage AccountToken
+<details><summary><code>client.filestorage.accountToken.<a href="/src/api/resources/filestorage/resources/accountToken/client/Client.ts">retrieve</a>(public_token) -> Merge.AccountToken</code></summary>
 <dl>
 <dd>
 
@@ -23973,7 +21291,7 @@ Returns the account token for the end user with the provided public token.
 <dd>
 
 ```typescript
-await client.accounting.accountToken.retrieve("public_token");
+await client.filestorage.accountToken.retrieve("public_token");
 
 ```
 </dd>
@@ -24009,8 +21327,7 @@ await client.accounting.accountToken.retrieve("public_token");
 </dl>
 </details>
 
-## Accounting AccountingPeriods
-<details><summary><code>client.accounting.accountingPeriods.<a href="/src/api/resources/accounting/resources/accountingPeriods/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountingPeriodList</code></summary>
+<details><summary><code>client.filestorage.accountToken.<a href="/src/api/resources/filestorage/resources/accountToken/client/Client.ts">regenerateCreate</a>() -> Merge.RegenerateAccountToken</code></summary>
 <dl>
 <dd>
 
@@ -24022,7 +21339,7 @@ await client.accounting.accountToken.retrieve("public_token");
 <dl>
 <dd>
 
-Returns a list of `AccountingPeriod` objects.
+Exchange Linked Account account tokens.
 </dd>
 </dl>
 </dd>
@@ -24037,13 +21354,7 @@ Returns a list of `AccountingPeriod` objects.
 <dd>
 
 ```typescript
-await client.accounting.accountingPeriods.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    pageSize: 1
-});
+await client.filestorage.accountToken.regenerateCreate();
 
 ```
 </dd>
@@ -24059,15 +21370,7 @@ await client.accounting.accountingPeriods.list({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.AccountingPeriodsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountingPeriodsClient.RequestOptions` 
+**requestOptions:** `AccountTokenClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -24079,441 +21382,8 @@ await client.accounting.accountingPeriods.list({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.accountingPeriods.<a href="/src/api/resources/accounting/resources/accountingPeriods/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingPeriod</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `AccountingPeriod` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accountingPeriods.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountingPeriodsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountingPeriodsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Accounts
-<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Account` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accounts.list({
-    accountType: "account_type",
-    classification: "",
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    pageSize: 1,
-    remoteFields: "classification",
-    remoteId: "remote_id",
-    showEnumOrigins: "classification",
-    status: ""
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">create</a>({ ...params }) -> Merge.AccountResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Account` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accounts.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Account</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Account` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accounts.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "classification",
-    showEnumOrigins: "classification"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Account` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accounts.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Addresses
-<details><summary><code>client.accounting.addresses.<a href="/src/api/resources/accounting/resources/addresses/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Address</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Address` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.addresses.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "type",
-    showEnumOrigins: "type"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AddressesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AddressesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting AsyncPassthrough
-<details><summary><code>client.accounting.asyncPassthrough.<a href="/src/api/resources/accounting/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
+## Filestorage AsyncPassthrough
+<details><summary><code>client.filestorage.asyncPassthrough.<a href="/src/api/resources/filestorage/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
 <dl>
 <dd>
 
@@ -24540,7 +21410,7 @@ Asynchronously pull data from an endpoint not currently supported by Merge.
 <dd>
 
 ```typescript
-await client.accounting.asyncPassthrough.create({
+await client.filestorage.asyncPassthrough.create({
     method: "GET",
     path: "/scooters"
 });
@@ -24579,7 +21449,7 @@ await client.accounting.asyncPassthrough.create({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.asyncPassthrough.<a href="/src/api/resources/accounting/resources/asyncPassthrough/client/Client.ts">retrieve</a>(async_passthrough_receipt_id) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
+<details><summary><code>client.filestorage.asyncPassthrough.<a href="/src/api/resources/filestorage/resources/asyncPassthrough/client/Client.ts">retrieve</a>(async_passthrough_receipt_id) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
 <dl>
 <dd>
 
@@ -24606,7 +21476,7 @@ Retrieves data from earlier async-passthrough POST request
 <dd>
 
 ```typescript
-await client.accounting.asyncPassthrough.retrieve("async_passthrough_receipt_id");
+await client.filestorage.asyncPassthrough.retrieve("async_passthrough_receipt_id");
 
 ```
 </dd>
@@ -24642,344 +21512,8 @@ await client.accounting.asyncPassthrough.retrieve("async_passthrough_receipt_id"
 </dl>
 </details>
 
-## Accounting AsyncTasks
-<details><summary><code>client.accounting.asyncTasks.<a href="/src/api/resources/accounting/resources/asyncTasks/client/Client.ts">retrieve</a>(id) -> Merge.AsyncPostTask</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `AsyncPostTask` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.asyncTasks.retrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncTasksClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Attachments
-<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountingAttachmentList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `AccountingAttachment` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.attachments.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AttachmentsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AttachmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">create</a>({ ...params }) -> Merge.AccountingAttachmentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `AccountingAttachment` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.attachments.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountingAttachmentEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AttachmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingAttachment</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `AccountingAttachment` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.attachments.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AttachmentsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AttachmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `AccountingAttachment` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.attachments.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AttachmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting AuditTrail
-<details><summary><code>client.accounting.auditTrail.<a href="/src/api/resources/accounting/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
+## Filestorage AuditTrail
+<details><summary><code>client.filestorage.auditTrail.<a href="/src/api/resources/filestorage/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
 <dl>
 <dd>
 
@@ -25006,7 +21540,7 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.accounting.auditTrail.list({
+await client.filestorage.auditTrail.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
     eventType: "event_type",
@@ -25029,7 +21563,7 @@ await client.accounting.auditTrail.list({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.AuditTrailListRequest` 
+**request:** `Merge.filestorage.AuditTrailListRequest` 
     
 </dd>
 </dl>
@@ -25049,8 +21583,8 @@ await client.accounting.auditTrail.list({
 </dl>
 </details>
 
-## Accounting AvailableActions
-<details><summary><code>client.accounting.availableActions.<a href="/src/api/resources/accounting/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
+## Filestorage AvailableActions
+<details><summary><code>client.filestorage.availableActions.<a href="/src/api/resources/filestorage/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
 <dl>
 <dd>
 
@@ -25077,7 +21611,7 @@ Returns a list of models and actions available for an account.
 <dd>
 
 ```typescript
-await client.accounting.availableActions.retrieve();
+await client.filestorage.availableActions.retrieve();
 
 ```
 </dd>
@@ -25105,1777 +21639,8 @@ await client.accounting.availableActions.retrieve();
 </dl>
 </details>
 
-## Accounting BalanceSheets
-<details><summary><code>client.accounting.balanceSheets.<a href="/src/api/resources/accounting/resources/balanceSheets/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedBalanceSheetList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `BalanceSheet` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.balanceSheets.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BalanceSheetsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BalanceSheetsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.balanceSheets.<a href="/src/api/resources/accounting/resources/balanceSheets/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.BalanceSheet</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `BalanceSheet` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.balanceSheets.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BalanceSheetsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BalanceSheetsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting BankFeedAccounts
-<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedBankFeedAccountList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `BankFeedAccount` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedAccounts.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedAccountsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">create</a>({ ...params }) -> Merge.BankFeedAccountResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `BankFeedAccount` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedAccounts.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedAccountEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.BankFeedAccount</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `BankFeedAccount` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedAccounts.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedAccountsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `BankFeedAccount` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedAccounts.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting BankFeedTransactions
-<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedBankFeedTransactionList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `BankFeedTransaction` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedTransactions.list({
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "bank_feed_account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isProcessed: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedTransactionsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">create</a>({ ...params }) -> Merge.BankFeedTransactionResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `BankFeedTransaction` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedTransactions.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedTransactionEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.BankFeedTransaction</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `BankFeedTransaction` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedTransactions.retrieve("id", {
-    expand: "bank_feed_account",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedTransactionsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `BankFeedTransaction` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedTransactions.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting CashFlowStatements
-<details><summary><code>client.accounting.cashFlowStatements.<a href="/src/api/resources/accounting/resources/cashFlowStatements/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCashFlowStatementList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `CashFlowStatement` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.cashFlowStatements.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CashFlowStatementsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CashFlowStatementsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.cashFlowStatements.<a href="/src/api/resources/accounting/resources/cashFlowStatements/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CashFlowStatement</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `CashFlowStatement` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.cashFlowStatements.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CashFlowStatementsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CashFlowStatementsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting CompanyInfo
-<details><summary><code>client.accounting.companyInfo.<a href="/src/api/resources/accounting/resources/companyInfo/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCompanyInfoList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `CompanyInfo` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.companyInfo.list({
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "addresses",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CompanyInfoListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CompanyInfoClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.companyInfo.<a href="/src/api/resources/accounting/resources/companyInfo/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CompanyInfo</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `CompanyInfo` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.companyInfo.retrieve("id", {
-    expand: "addresses",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CompanyInfoRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CompanyInfoClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Contacts
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedContactList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Contact` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    emailAddress: "email_address",
-    expand: "addresses",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    isCustomer: "is_customer",
-    isSupplier: "is_supplier",
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status",
-    status: ""
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ContactsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">create</a>({ ...params }) -> Merge.ContactResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Contact` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ContactEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Contact</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Contact` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.retrieve("id", {
-    expand: "addresses",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ContactsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.ContactResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a `Contact` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.partialUpdate("id", {
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PatchedContactEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Contact` PATCHs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.metaPatchRetrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Contact` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ContactsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting CreditNotes
-<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCreditNoteList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `CreditNote` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.creditNotes.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CreditNotesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditNotesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">create</a>({ ...params }) -> Merge.CreditNoteResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `CreditNote` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.creditNotes.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CreditNoteEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditNotesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CreditNote</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `CreditNote` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.creditNotes.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CreditNotesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditNotesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `CreditNote` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.creditNotes.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditNotesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Scopes
-<details><summary><code>client.accounting.scopes.<a href="/src/api/resources/accounting/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+## Filestorage Scopes
+<details><summary><code>client.filestorage.scopes.<a href="/src/api/resources/filestorage/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
 <dl>
 <dd>
 
@@ -26902,7 +21667,7 @@ Get the default permissions for Merge Common Models and fields across all Linked
 <dd>
 
 ```typescript
-await client.accounting.scopes.defaultScopesRetrieve();
+await client.filestorage.scopes.defaultScopesRetrieve();
 
 ```
 </dd>
@@ -26930,7 +21695,7 @@ await client.accounting.scopes.defaultScopesRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.accounting.scopes.<a href="/src/api/resources/accounting/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+<details><summary><code>client.filestorage.scopes.<a href="/src/api/resources/filestorage/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
 <dl>
 <dd>
 
@@ -26957,7 +21722,7 @@ Get all available permissions for Merge Common Models and fields for a single Li
 <dd>
 
 ```typescript
-await client.accounting.scopes.linkedAccountScopesRetrieve();
+await client.filestorage.scopes.linkedAccountScopesRetrieve();
 
 ```
 </dd>
@@ -26985,7 +21750,7 @@ await client.accounting.scopes.linkedAccountScopesRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.accounting.scopes.<a href="/src/api/resources/accounting/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
+<details><summary><code>client.filestorage.scopes.<a href="/src/api/resources/filestorage/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
 <dl>
 <dd>
 
@@ -27012,7 +21777,7 @@ Update permissions for any Common Model or field for a single Linked Account. An
 <dd>
 
 ```typescript
-await client.accounting.scopes.linkedAccountScopesCreate({
+await client.filestorage.scopes.linkedAccountScopesCreate({
     commonModels: [{
             modelName: "Employee",
             modelPermissions: {
@@ -27051,7 +21816,7 @@ await client.accounting.scopes.linkedAccountScopesCreate({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.LinkedAccountCommonModelScopeDeserializerRequest` 
+**request:** `Merge.filestorage.LinkedAccountCommonModelScopeDeserializerRequest` 
     
 </dd>
 </dl>
@@ -27071,8 +21836,8 @@ await client.accounting.scopes.linkedAccountScopesCreate({
 </dl>
 </details>
 
-## Accounting DeleteAccount
-<details><summary><code>client.accounting.deleteAccount.<a href="/src/api/resources/accounting/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
+## Filestorage DeleteAccount
+<details><summary><code>client.filestorage.deleteAccount.<a href="/src/api/resources/filestorage/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
 <dl>
 <dd>
 
@@ -27099,7 +21864,7 @@ Delete a linked account.
 <dd>
 
 ```typescript
-await client.accounting.deleteAccount.delete();
+await client.filestorage.deleteAccount.delete();
 
 ```
 </dd>
@@ -27127,8 +21892,8 @@ await client.accounting.deleteAccount.delete();
 </dl>
 </details>
 
-## Accounting Employees
-<details><summary><code>client.accounting.employees.<a href="/src/api/resources/accounting/resources/employees/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEmployeeList</code></summary>
+## Filestorage Drives
+<details><summary><code>client.filestorage.drives.<a href="/src/api/resources/filestorage/resources/drives/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedDriveList</code></summary>
 <dl>
 <dd>
 
@@ -27140,7 +21905,7 @@ await client.accounting.deleteAccount.delete();
 <dl>
 <dd>
 
-Returns a list of `Employee` objects.
+Returns a list of `Drive` objects.
 </dd>
 </dl>
 </dd>
@@ -27155,17 +21920,16 @@ Returns a list of `Employee` objects.
 <dd>
 
 ```typescript
-await client.accounting.employees.list({
-    companyId: "company_id",
+await client.filestorage.drives.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
     modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
     modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
     pageSize: 1,
     remoteId: "remote_id"
 });
@@ -27184,7 +21948,7 @@ await client.accounting.employees.list({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.EmployeesListRequest` 
+**request:** `Merge.filestorage.DrivesListRequest` 
     
 </dd>
 </dl>
@@ -27192,7 +21956,7 @@ await client.accounting.employees.list({
 <dl>
 <dd>
 
-**requestOptions:** `EmployeesClient.RequestOptions` 
+**requestOptions:** `DrivesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -27204,7 +21968,7 @@ await client.accounting.employees.list({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.employees.<a href="/src/api/resources/accounting/resources/employees/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Employee</code></summary>
+<details><summary><code>client.filestorage.drives.<a href="/src/api/resources/filestorage/resources/drives/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Drive</code></summary>
 <dl>
 <dd>
 
@@ -27216,7 +21980,7 @@ await client.accounting.employees.list({
 <dl>
 <dd>
 
-Returns an `Employee` object with the given `id`.
+Returns a `Drive` object with the given `id`.
 </dd>
 </dl>
 </dd>
@@ -27231,8 +21995,7 @@ Returns an `Employee` object with the given `id`.
 <dd>
 
 ```typescript
-await client.accounting.employees.retrieve("id", {
-    expand: "company",
+await client.filestorage.drives.retrieve("id", {
     includeRemoteData: true,
     includeShellData: true
 });
@@ -27259,7 +22022,7 @@ await client.accounting.employees.retrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.accounting.EmployeesRetrieveRequest` 
+**request:** `Merge.filestorage.DrivesRetrieveRequest` 
     
 </dd>
 </dl>
@@ -27267,85 +22030,7 @@ await client.accounting.employees.retrieve("id", {
 <dl>
 <dd>
 
-**requestOptions:** `EmployeesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting ExpenseReports
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedExpenseReportList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `ExpenseReport` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
+**requestOptions:** `DrivesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -27357,849 +22042,8 @@ await client.accounting.expenseReports.list({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">create</a>({ ...params }) -> Merge.ExpenseReportResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `ExpenseReport` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {
-        trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"]
-    }
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">linesList</a>(expense_report_id, { ...params }) -> Merge.PaginatedExpenseReportLineList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `ExpenseReportLine` objects that point to a `ExpenseReport` with the given id.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.linesList("expense_report_id", {
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**expense_report_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsLinesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.ExpenseReport</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `ExpenseReport` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">linesRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.linesRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsLinesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `ExpenseReport` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Expenses
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedExpenseList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Expense` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpensesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">create</a>({ ...params }) -> Merge.ExpenseResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Expense` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Expense</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Expense` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.retrieve("id", {
-    expand: "account",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpensesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">linesRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.linesRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpensesLinesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Expense` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpensesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting FieldMapping
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
+## Filestorage FieldMapping
+<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
 <dl>
 <dd>
 
@@ -28226,7 +22070,7 @@ Get all Field Mappings for this Linked Account. Field Mappings are mappings betw
 <dd>
 
 ```typescript
-await client.accounting.fieldMapping.fieldMappingsRetrieve({
+await client.filestorage.fieldMapping.fieldMappingsRetrieve({
     excludeRemoteFieldMetadata: true
 });
 
@@ -28244,7 +22088,7 @@ await client.accounting.fieldMapping.fieldMappingsRetrieve({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.FieldMappingsRetrieveRequest` 
+**request:** `Merge.filestorage.FieldMappingsRetrieveRequest` 
     
 </dd>
 </dl>
@@ -28264,7 +22108,7 @@ await client.accounting.fieldMapping.fieldMappingsRetrieve({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
 <dl>
 <dd>
 
@@ -28291,8 +22135,9 @@ Create new Field Mappings that will be available after the next scheduled sync. 
 <dd>
 
 ```typescript
-await client.accounting.fieldMapping.fieldMappingsCreate({
+await client.filestorage.fieldMapping.fieldMappingsCreate({
     excludeRemoteFieldMetadata: true,
+    remoteDataIterationCount: 1,
     targetFieldName: "example_target_field_name",
     targetFieldDescription: "this is a example description of the target field",
     remoteFieldTraversalPath: ["example_remote_field"],
@@ -28315,7 +22160,7 @@ await client.accounting.fieldMapping.fieldMappingsCreate({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.CreateFieldMappingRequest` 
+**request:** `Merge.filestorage.CreateFieldMappingRequest` 
     
 </dd>
 </dl>
@@ -28335,7 +22180,7 @@ await client.accounting.fieldMapping.fieldMappingsCreate({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(field_mapping_id) -> Merge.FieldMappingInstanceResponse</code></summary>
+<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(field_mapping_id) -> Merge.FieldMappingInstanceResponse</code></summary>
 <dl>
 <dd>
 
@@ -28362,7 +22207,7 @@ Deletes Field Mappings for a Linked Account. All data related to this Field Mapp
 <dd>
 
 ```typescript
-await client.accounting.fieldMapping.fieldMappingsDestroy("field_mapping_id");
+await client.filestorage.fieldMapping.fieldMappingsDestroy("field_mapping_id");
 
 ```
 </dd>
@@ -28398,7 +22243,7 @@ await client.accounting.fieldMapping.fieldMappingsDestroy("field_mapping_id");
 </dl>
 </details>
 
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(field_mapping_id, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(field_mapping_id, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
 <dl>
 <dd>
 
@@ -28425,7 +22270,9 @@ Create or update existing Field Mappings for a Linked Account. Changes will be r
 <dd>
 
 ```typescript
-await client.accounting.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+await client.filestorage.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
+    remoteDataIterationCount: 1
+});
 
 ```
 </dd>
@@ -28449,7 +22296,7 @@ await client.accounting.fieldMapping.fieldMappingsPartialUpdate("field_mapping_i
 <dl>
 <dd>
 
-**request:** `Merge.accounting.PatchedEditFieldMappingRequest` 
+**request:** `Merge.filestorage.PatchedEditFieldMappingRequest` 
     
 </dd>
 </dl>
@@ -28469,7 +22316,7 @@ await client.accounting.fieldMapping.fieldMappingsPartialUpdate("field_mapping_i
 </dl>
 </details>
 
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
+<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
 <dl>
 <dd>
 
@@ -28496,7 +22343,7 @@ Get all remote fields for a Linked Account. Remote fields are third-party fields
 <dd>
 
 ```typescript
-await client.accounting.fieldMapping.remoteFieldsRetrieve({
+await client.filestorage.fieldMapping.remoteFieldsRetrieve({
     commonModels: "common_models",
     includeExampleValues: "include_example_values"
 });
@@ -28515,7 +22362,7 @@ await client.accounting.fieldMapping.remoteFieldsRetrieve({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.RemoteFieldsRetrieveRequest` 
+**request:** `Merge.filestorage.RemoteFieldsRetrieveRequest` 
     
 </dd>
 </dl>
@@ -28535,7 +22382,7 @@ await client.accounting.fieldMapping.remoteFieldsRetrieve({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
+<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
 <dl>
 <dd>
 
@@ -28562,7 +22409,7 @@ Get all organization-wide Target Fields, this will not include any Linked Accoun
 <dd>
 
 ```typescript
-await client.accounting.fieldMapping.targetFieldsRetrieve();
+await client.filestorage.fieldMapping.targetFieldsRetrieve();
 
 ```
 </dd>
@@ -28590,8 +22437,8 @@ await client.accounting.fieldMapping.targetFieldsRetrieve();
 </dl>
 </details>
 
-## Accounting GeneralLedgerTransactions
-<details><summary><code>client.accounting.generalLedgerTransactions.<a href="/src/api/resources/accounting/resources/generalLedgerTransactions/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedGeneralLedgerTransactionList</code></summary>
+## Filestorage Files
+<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedFileList</code></summary>
 <dl>
 <dd>
 
@@ -28603,7 +22450,7 @@ await client.accounting.fieldMapping.targetFieldsRetrieve();
 <dl>
 <dd>
 
-Returns a list of `GeneralLedgerTransaction` objects.
+Returns a list of `File` objects.
 </dd>
 </dl>
 </dd>
@@ -28618,20 +22465,23 @@ Returns a list of `GeneralLedgerTransaction` objects.
 <dd>
 
 ```typescript
-await client.accounting.generalLedgerTransactions.list({
-    companyId: "company_id",
+await client.filestorage.files.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
+    driveId: "drive_id",
+    folderId: "folder_id",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
+    mimeType: "mime_type",
     modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
     modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    orderBy: "-created_at",
     pageSize: 1,
-    postedDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    postedDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+    remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    remoteCreatedBefore: new Date("2024-01-15T09:30:00.000Z"),
     remoteId: "remote_id"
 });
 
@@ -28649,7 +22499,7 @@ await client.accounting.generalLedgerTransactions.list({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.GeneralLedgerTransactionsListRequest` 
+**request:** `Merge.filestorage.FilesListRequest` 
     
 </dd>
 </dl>
@@ -28657,7 +22507,7 @@ await client.accounting.generalLedgerTransactions.list({
 <dl>
 <dd>
 
-**requestOptions:** `GeneralLedgerTransactionsClient.RequestOptions` 
+**requestOptions:** `FilesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -28669,7 +22519,7 @@ await client.accounting.generalLedgerTransactions.list({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.generalLedgerTransactions.<a href="/src/api/resources/accounting/resources/generalLedgerTransactions/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.GeneralLedgerTransaction</code></summary>
+<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">create</a>({ ...params }) -> Merge.FileStorageFileResponse</code></summary>
 <dl>
 <dd>
 
@@ -28681,7 +22531,7 @@ await client.accounting.generalLedgerTransactions.list({
 <dl>
 <dd>
 
-Returns a `GeneralLedgerTransaction` object with the given `id`.
+Creates a `File` object with the given values.
 </dd>
 </dl>
 </dd>
@@ -28696,8 +22546,74 @@ Returns a `GeneralLedgerTransaction` object with the given `id`.
 <dd>
 
 ```typescript
-await client.accounting.generalLedgerTransactions.retrieve("id", {
-    expand: "accounting_period",
+await client.filestorage.files.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.filestorage.FileStorageFileEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FilesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.File_</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `File` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.filestorage.files.retrieve("id", {
     includeRemoteData: true,
     includeShellData: true
 });
@@ -28724,7 +22640,7 @@ await client.accounting.generalLedgerTransactions.retrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.accounting.GeneralLedgerTransactionsRetrieveRequest` 
+**request:** `Merge.filestorage.FilesRetrieveRequest` 
     
 </dd>
 </dl>
@@ -28732,7 +22648,7 @@ await client.accounting.generalLedgerTransactions.retrieve("id", {
 <dl>
 <dd>
 
-**requestOptions:** `GeneralLedgerTransactionsClient.RequestOptions` 
+**requestOptions:** `FilesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -28744,8 +22660,483 @@ await client.accounting.generalLedgerTransactions.retrieve("id", {
 </dl>
 </details>
 
-## Accounting GenerateKey
-<details><summary><code>client.accounting.generateKey.<a href="/src/api/resources/accounting/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">downloadRequestMetaRetrieve</a>(id, { ...params }) -> Merge.DownloadRequestMeta</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party. For information on our download process please refer to our <a href='https://help.merge.dev/articles/10644317' target='_blank'>direct file download help center article</a>.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.filestorage.files.downloadRequestMetaRetrieve("id", {
+    mimeType: "mime_type"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.filestorage.FilesDownloadRequestMetaRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FilesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">downloadRequestMetaList</a>({ ...params }) -> Merge.PaginatedDownloadRequestMetaList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata to construct authenticated file download requests, allowing you to download files directly from the third-party.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.filestorage.files.downloadRequestMetaList({
+    createdAfter: "created_after",
+    createdBefore: "created_before",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    mimeTypes: "mime_types",
+    modifiedAfter: "modified_after",
+    modifiedBefore: "modified_before",
+    orderBy: "-created_at",
+    pageSize: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.filestorage.FilesDownloadRequestMetaListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FilesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `FileStorageFile` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.filestorage.files.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `FilesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Filestorage Folders
+<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedFolderList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Folder` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.filestorage.folders.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    driveId: "drive_id",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    parentFolderId: "parent_folder_id",
+    remoteId: "remote_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.filestorage.FoldersListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FoldersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">create</a>({ ...params }) -> Merge.FileStorageFolderResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Folder` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.filestorage.folders.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.filestorage.FileStorageFolderEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FoldersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Folder</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Folder` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.filestorage.folders.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.filestorage.FoldersRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FoldersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `FileStorageFolder` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.filestorage.folders.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `FoldersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Filestorage GenerateKey
+<details><summary><code>client.filestorage.generateKey.<a href="/src/api/resources/filestorage/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
 <dl>
 <dd>
 
@@ -28772,7 +23163,7 @@ Create a remote key.
 <dd>
 
 ```typescript
-await client.accounting.generateKey.create({
+await client.filestorage.generateKey.create({
     name: "Remote Deployment Key 1"
 });
 
@@ -28790,7 +23181,7 @@ await client.accounting.generateKey.create({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.GenerateRemoteKeyRequest` 
+**request:** `Merge.filestorage.GenerateRemoteKeyRequest` 
     
 </dd>
 </dl>
@@ -28810,8 +23201,8 @@ await client.accounting.generateKey.create({
 </dl>
 </details>
 
-## Accounting IncomeStatements
-<details><summary><code>client.accounting.incomeStatements.<a href="/src/api/resources/accounting/resources/incomeStatements/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIncomeStatementList</code></summary>
+## Filestorage Groups
+<details><summary><code>client.filestorage.groups.<a href="/src/api/resources/filestorage/resources/groups/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedGroupList</code></summary>
 <dl>
 <dd>
 
@@ -28823,7 +23214,7 @@ await client.accounting.generateKey.create({
 <dl>
 <dd>
 
-Returns a list of `IncomeStatement` objects.
+Returns a list of `Group` objects.
 </dd>
 </dl>
 </dd>
@@ -28838,12 +23229,10 @@ Returns a list of `IncomeStatement` objects.
 <dd>
 
 ```typescript
-await client.accounting.incomeStatements.list({
-    companyId: "company_id",
+await client.filestorage.groups.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -28867,7 +23256,7 @@ await client.accounting.incomeStatements.list({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.IncomeStatementsListRequest` 
+**request:** `Merge.filestorage.GroupsListRequest` 
     
 </dd>
 </dl>
@@ -28875,7 +23264,7 @@ await client.accounting.incomeStatements.list({
 <dl>
 <dd>
 
-**requestOptions:** `IncomeStatementsClient.RequestOptions` 
+**requestOptions:** `GroupsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -28887,7 +23276,7 @@ await client.accounting.incomeStatements.list({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.incomeStatements.<a href="/src/api/resources/accounting/resources/incomeStatements/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.IncomeStatement</code></summary>
+<details><summary><code>client.filestorage.groups.<a href="/src/api/resources/filestorage/resources/groups/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Group</code></summary>
 <dl>
 <dd>
 
@@ -28899,7 +23288,7 @@ await client.accounting.incomeStatements.list({
 <dl>
 <dd>
 
-Returns an `IncomeStatement` object with the given `id`.
+Returns a `Group` object with the given `id`.
 </dd>
 </dl>
 </dd>
@@ -28914,8 +23303,7 @@ Returns an `IncomeStatement` object with the given `id`.
 <dd>
 
 ```typescript
-await client.accounting.incomeStatements.retrieve("id", {
-    expand: "company",
+await client.filestorage.groups.retrieve("id", {
     includeRemoteData: true,
     includeShellData: true
 });
@@ -28942,7 +23330,7 @@ await client.accounting.incomeStatements.retrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.accounting.IncomeStatementsRetrieveRequest` 
+**request:** `Merge.filestorage.GroupsRetrieveRequest` 
     
 </dd>
 </dl>
@@ -28950,93 +23338,7 @@ await client.accounting.incomeStatements.retrieve("id", {
 <dl>
 <dd>
 
-**requestOptions:** `IncomeStatementsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Invoices
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedInvoiceList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Invoice` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.list({
-    companyId: "company_id",
-    contactId: "contact_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    number: "number",
-    pageSize: 1,
-    remoteFields: "type",
-    remoteId: "remote_id",
-    showEnumOrigins: "type",
-    status: "DRAFT",
-    type: "ACCOUNTS_PAYABLE"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoicesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
+**requestOptions:** `GroupsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -29048,490 +23350,8 @@ await client.accounting.invoices.list({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">create</a>({ ...params }) -> Merge.InvoiceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Invoice` object with the given values.
-            Including a `PurchaseOrder` id in the `purchase_orders` property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
-            
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoiceEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Invoice</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Invoice` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    remoteFields: "type",
-    showEnumOrigins: "type"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoicesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.InvoiceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an `Invoice` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.partialUpdate("id", {
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PatchedInvoiceEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">lineItemsRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.lineItemsRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoicesLineItemsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Invoice` PATCHs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.metaPatchRetrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Invoice` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoicesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Issues
-<details><summary><code>client.accounting.issues.<a href="/src/api/resources/accounting/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
+## Filestorage Issues
+<details><summary><code>client.filestorage.issues.<a href="/src/api/resources/filestorage/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
 <dl>
 <dd>
 
@@ -29558,7 +23378,7 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.accounting.issues.list({
+await client.filestorage.issues.list({
     accountToken: "account_token",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
@@ -29589,7 +23409,7 @@ await client.accounting.issues.list({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.IssuesListRequest` 
+**request:** `Merge.filestorage.IssuesListRequest` 
     
 </dd>
 </dl>
@@ -29609,7 +23429,7 @@ await client.accounting.issues.list({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.issues.<a href="/src/api/resources/accounting/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
+<details><summary><code>client.filestorage.issues.<a href="/src/api/resources/filestorage/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
 <dl>
 <dd>
 
@@ -29636,7 +23456,7 @@ Get a specific issue.
 <dd>
 
 ```typescript
-await client.accounting.issues.retrieve("id");
+await client.filestorage.issues.retrieve("id");
 
 ```
 </dd>
@@ -29672,8 +23492,8 @@ await client.accounting.issues.retrieve("id");
 </dl>
 </details>
 
-## Accounting Items
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedItemList</code></summary>
+## Filestorage LinkToken
+<details><summary><code>client.filestorage.linkToken.<a href="/src/api/resources/filestorage/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
 <dl>
 <dd>
 
@@ -29685,7 +23505,7 @@ await client.accounting.issues.retrieve("id");
 <dl>
 <dd>
 
-Returns a list of `Item` objects.
+Creates a link token to be used when linking a new end user. The link token expires after single use.
 </dd>
 </dl>
 </dd>
@@ -29700,843 +23520,7 @@ Returns a list of `Item` objects.
 <dd>
 
 ```typescript
-await client.accounting.items.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ItemsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">create</a>({ ...params }) -> Merge.ItemResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Item` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ItemEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Item</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Item` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ItemsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.ItemResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an `Item` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.partialUpdate("id", {
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PatchedItemEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Item` PATCHs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.metaPatchRetrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Item` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting JournalEntries
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJournalEntryList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `JournalEntry` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntriesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">create</a>({ ...params }) -> Merge.JournalEntryResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `JournalEntry` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntryEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.JournalEntry</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `JournalEntry` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntriesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">linesRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.linesRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `JournalEntry` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntriesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting LinkToken
-<details><summary><code>client.accounting.linkToken.<a href="/src/api/resources/accounting/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a link token to be used when linking a new end user.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.linkToken.create({
+await client.filestorage.linkToken.create({
     endUserEmailAddress: "example@gmail.com",
     endUserOrganizationName: "Test Organization",
     endUserOriginId: "12345",
@@ -30557,7 +23541,7 @@ await client.accounting.linkToken.create({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.EndUserDetailsRequest` 
+**request:** `Merge.filestorage.EndUserDetailsRequest` 
     
 </dd>
 </dl>
@@ -30577,8 +23561,8 @@ await client.accounting.linkToken.create({
 </dl>
 </details>
 
-## Accounting LinkedAccounts
-<details><summary><code>client.accounting.linkedAccounts.<a href="/src/api/resources/accounting/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
+## Filestorage LinkedAccounts
+<details><summary><code>client.filestorage.linkedAccounts.<a href="/src/api/resources/filestorage/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
 <dl>
 <dd>
 
@@ -30605,7 +23589,7 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.accounting.linkedAccounts.list({
+await client.filestorage.linkedAccounts.list({
     category: "accounting",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endUserEmailAddress: "end_user_email_address",
@@ -30635,7 +23619,7 @@ await client.accounting.linkedAccounts.list({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.LinkedAccountsListRequest` 
+**request:** `Merge.filestorage.LinkedAccountsListRequest` 
     
 </dd>
 </dl>
@@ -30655,8 +23639,8 @@ await client.accounting.linkedAccounts.list({
 </dl>
 </details>
 
-## Accounting Passthrough
-<details><summary><code>client.accounting.passthrough.<a href="/src/api/resources/accounting/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
+## Filestorage Passthrough
+<details><summary><code>client.filestorage.passthrough.<a href="/src/api/resources/filestorage/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
 <dl>
 <dd>
 
@@ -30683,7 +23667,7 @@ Pull data from an endpoint not currently supported by Merge.
 <dd>
 
 ```typescript
-await client.accounting.passthrough.create({
+await client.filestorage.passthrough.create({
     method: "GET",
     path: "/scooters"
 });
@@ -30722,1509 +23706,8 @@ await client.accounting.passthrough.create({
 </dl>
 </details>
 
-## Accounting PaymentMethods
-<details><summary><code>client.accounting.paymentMethods.<a href="/src/api/resources/accounting/resources/paymentMethods/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPaymentMethodList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `PaymentMethod` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.paymentMethods.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentMethodsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentMethodsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.paymentMethods.<a href="/src/api/resources/accounting/resources/paymentMethods/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.PaymentMethod</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `PaymentMethod` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.paymentMethods.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentMethodsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentMethodsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting PaymentTerms
-<details><summary><code>client.accounting.paymentTerms.<a href="/src/api/resources/accounting/resources/paymentTerms/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPaymentTermList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `PaymentTerm` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.paymentTerms.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentTermsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentTermsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.paymentTerms.<a href="/src/api/resources/accounting/resources/paymentTerms/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.PaymentTerm</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `PaymentTerm` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.paymentTerms.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentTermsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentTermsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Payments
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPaymentList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Payment` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.list({
-    accountId: "account_id",
-    companyId: "company_id",
-    contactId: "contact_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">create</a>({ ...params }) -> Merge.PaymentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Payment` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Payment</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Payment` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.retrieve("id", {
-    expand: "account",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.PaymentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a `Payment` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.partialUpdate("id", {
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PatchedPaymentEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">lineItemsRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.lineItemsRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentsLineItemsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Payment` PATCHs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.metaPatchRetrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Payment` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting PhoneNumbers
-<details><summary><code>client.accounting.phoneNumbers.<a href="/src/api/resources/accounting/resources/phoneNumbers/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingPhoneNumber</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `AccountingPhoneNumber` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.phoneNumbers.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PhoneNumbersRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PhoneNumbersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Projects
-<details><summary><code>client.accounting.projects.<a href="/src/api/resources/accounting/resources/projects/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedProjectList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Project` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.projects.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ProjectsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ProjectsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.projects.<a href="/src/api/resources/accounting/resources/projects/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Project</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Project` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.projects.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ProjectsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ProjectsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting PurchaseOrders
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPurchaseOrderList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `PurchaseOrder` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrdersListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">create</a>({ ...params }) -> Merge.PurchaseOrderResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `PurchaseOrder` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrderEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.PurchaseOrder</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `PurchaseOrder` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrdersRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">lineItemsRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrdersLineItemsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `PurchaseOrder` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrdersRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting RegenerateKey
-<details><summary><code>client.accounting.regenerateKey.<a href="/src/api/resources/accounting/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+## Filestorage RegenerateKey
+<details><summary><code>client.filestorage.regenerateKey.<a href="/src/api/resources/filestorage/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
 <dl>
 <dd>
 
@@ -32251,7 +23734,7 @@ Exchange remote keys.
 <dd>
 
 ```typescript
-await client.accounting.regenerateKey.create({
+await client.filestorage.regenerateKey.create({
     name: "Remote Deployment Key 1"
 });
 
@@ -32269,7 +23752,7 @@ await client.accounting.regenerateKey.create({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.RemoteKeyForRegenerationRequest` 
+**request:** `Merge.filestorage.RemoteKeyForRegenerationRequest` 
     
 </dd>
 </dl>
@@ -32289,8 +23772,8 @@ await client.accounting.regenerateKey.create({
 </dl>
 </details>
 
-## Accounting SyncStatus
-<details><summary><code>client.accounting.syncStatus.<a href="/src/api/resources/accounting/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
+## Filestorage SyncStatus
+<details><summary><code>client.filestorage.syncStatus.<a href="/src/api/resources/filestorage/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
 <dl>
 <dd>
 
@@ -32317,7 +23800,7 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.accounting.syncStatus.list({
+await client.filestorage.syncStatus.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 1
 });
@@ -32336,7 +23819,7 @@ await client.accounting.syncStatus.list({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.SyncStatusListRequest` 
+**request:** `Merge.filestorage.SyncStatusListRequest` 
     
 </dd>
 </dl>
@@ -32356,8 +23839,8 @@ await client.accounting.syncStatus.list({
 </dl>
 </details>
 
-## Accounting ForceResync
-<details><summary><code>client.accounting.forceResync.<a href="/src/api/resources/accounting/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
+## Filestorage ForceResync
+<details><summary><code>client.filestorage.forceResync.<a href="/src/api/resources/filestorage/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
 <dl>
 <dd>
 
@@ -32384,7 +23867,7 @@ Force re-sync of all models. This endpoint is available for monthly, quarterly, 
 <dd>
 
 ```typescript
-await client.accounting.forceResync.syncStatusResyncCreate();
+await client.filestorage.forceResync.syncStatusResyncCreate();
 
 ```
 </dd>
@@ -32412,8 +23895,8 @@ await client.accounting.forceResync.syncStatusResyncCreate();
 </dl>
 </details>
 
-## Accounting TaxRates
-<details><summary><code>client.accounting.taxRates.<a href="/src/api/resources/accounting/resources/taxRates/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTaxRateList</code></summary>
+## Filestorage Users
+<details><summary><code>client.filestorage.users.<a href="/src/api/resources/filestorage/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedUserList</code></summary>
 <dl>
 <dd>
 
@@ -32425,7 +23908,7 @@ await client.accounting.forceResync.syncStatusResyncCreate();
 <dl>
 <dd>
 
-Returns a list of `TaxRate` objects.
+Returns a list of `User` objects.
 </dd>
 </dl>
 </dd>
@@ -32440,18 +23923,17 @@ Returns a list of `TaxRate` objects.
 <dd>
 
 ```typescript
-await client.accounting.taxRates.list({
-    companyId: "company_id",
+await client.filestorage.users.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
+    emailAddress: "email_address",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
+    isMe: "is_me",
     modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
     modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
     pageSize: 1,
     remoteId: "remote_id"
 });
@@ -32470,7 +23952,7 @@ await client.accounting.taxRates.list({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.TaxRatesListRequest` 
+**request:** `Merge.filestorage.UsersListRequest` 
     
 </dd>
 </dl>
@@ -32478,7 +23960,7 @@ await client.accounting.taxRates.list({
 <dl>
 <dd>
 
-**requestOptions:** `TaxRatesClient.RequestOptions` 
+**requestOptions:** `UsersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -32490,7 +23972,7 @@ await client.accounting.taxRates.list({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.taxRates.<a href="/src/api/resources/accounting/resources/taxRates/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.TaxRate</code></summary>
+<details><summary><code>client.filestorage.users.<a href="/src/api/resources/filestorage/resources/users/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.User</code></summary>
 <dl>
 <dd>
 
@@ -32502,7 +23984,7 @@ await client.accounting.taxRates.list({
 <dl>
 <dd>
 
-Returns a `TaxRate` object with the given `id`.
+Returns a `User` object with the given `id`.
 </dd>
 </dl>
 </dd>
@@ -32517,8 +23999,7 @@ Returns a `TaxRate` object with the given `id`.
 <dd>
 
 ```typescript
-await client.accounting.taxRates.retrieve("id", {
-    expand: "company",
+await client.filestorage.users.retrieve("id", {
     includeRemoteData: true,
     includeShellData: true
 });
@@ -32545,7 +24026,7 @@ await client.accounting.taxRates.retrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.accounting.TaxRatesRetrieveRequest` 
+**request:** `Merge.filestorage.UsersRetrieveRequest` 
     
 </dd>
 </dl>
@@ -32553,89 +24034,7 @@ await client.accounting.taxRates.retrieve("id", {
 <dl>
 <dd>
 
-**requestOptions:** `TaxRatesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting TrackingCategories
-<details><summary><code>client.accounting.trackingCategories.<a href="/src/api/resources/accounting/resources/trackingCategories/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTrackingCategoryList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `TrackingCategory` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.trackingCategories.list({
-    categoryType: "",
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status",
-    status: ""
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TrackingCategoriesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TrackingCategoriesClient.RequestOptions` 
+**requestOptions:** `UsersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -32647,515 +24046,8 @@ await client.accounting.trackingCategories.list({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.trackingCategories.<a href="/src/api/resources/accounting/resources/trackingCategories/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.TrackingCategory</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `TrackingCategory` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.trackingCategories.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TrackingCategoriesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TrackingCategoriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Transactions
-<details><summary><code>client.accounting.transactions.<a href="/src/api/resources/accounting/resources/transactions/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTransactionList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Transaction` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.transactions.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TransactionsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.transactions.<a href="/src/api/resources/accounting/resources/transactions/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Transaction</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Transaction` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.transactions.retrieve("id", {
-    expand: "account",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TransactionsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting VendorCredits
-<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedVendorCreditList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `VendorCredit` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.vendorCredits.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.VendorCreditsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `VendorCreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">create</a>({ ...params }) -> Merge.VendorCreditResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `VendorCredit` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.vendorCredits.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.VendorCreditEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `VendorCreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.VendorCredit</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `VendorCredit` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.vendorCredits.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.VendorCreditsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `VendorCreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `VendorCredit` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.vendorCredits.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `VendorCreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting WebhookReceivers
-<details><summary><code>client.accounting.webhookReceivers.<a href="/src/api/resources/accounting/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
+## Filestorage WebhookReceivers
+<details><summary><code>client.filestorage.webhookReceivers.<a href="/src/api/resources/filestorage/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
 <dl>
 <dd>
 
@@ -33182,7 +24074,7 @@ Returns a list of `WebhookReceiver` objects.
 <dd>
 
 ```typescript
-await client.accounting.webhookReceivers.list();
+await client.filestorage.webhookReceivers.list();
 
 ```
 </dd>
@@ -33210,7 +24102,7 @@ await client.accounting.webhookReceivers.list();
 </dl>
 </details>
 
-<details><summary><code>client.accounting.webhookReceivers.<a href="/src/api/resources/accounting/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
+<details><summary><code>client.filestorage.webhookReceivers.<a href="/src/api/resources/filestorage/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
 <dl>
 <dd>
 
@@ -33237,7 +24129,7 @@ Creates a `WebhookReceiver` object with the given values.
 <dd>
 
 ```typescript
-await client.accounting.webhookReceivers.create({
+await client.filestorage.webhookReceivers.create({
     event: "event",
     isActive: true
 });
@@ -33256,7 +24148,7 @@ await client.accounting.webhookReceivers.create({
 <dl>
 <dd>
 
-**request:** `Merge.accounting.WebhookReceiverRequest` 
+**request:** `Merge.filestorage.WebhookReceiverRequest` 
     
 </dd>
 </dl>

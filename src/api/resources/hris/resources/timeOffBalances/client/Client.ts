@@ -35,7 +35,6 @@ export class TimeOffBalancesClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         employeeId: "employee_id",
-     *         expand: "employee",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -81,7 +80,7 @@ export class TimeOffBalancesClient {
             created_before: createdBefore?.toISOString(),
             cursor,
             employee_id: employeeId,
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -154,7 +153,6 @@ export class TimeOffBalancesClient {
      *
      * @example
      *     await client.hris.timeOffBalances.retrieve("id", {
-     *         expand: "employee",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "policy_type",
@@ -176,7 +174,7 @@ export class TimeOffBalancesClient {
     ): Promise<core.WithRawResponse<Merge.hris.TimeOffBalance>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields: remoteFields != null ? remoteFields : undefined,
