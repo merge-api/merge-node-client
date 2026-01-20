@@ -7,7 +7,7 @@ export function enum_<U extends string, E extends U[]>(values: E): Schema<E[numb
 
     const schemaCreator = createIdentitySchemaCreator(
         SchemaType.ENUM,
-        (value, { allowUnrecognizedEnumValues, breadcrumbsPrefix = [] } = {}) => {
+        (value, { allowUnrecognizedEnumValues = true, breadcrumbsPrefix = [] } = {}) => {
             if (typeof value !== "string") {
                 return {
                     ok: false,
