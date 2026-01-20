@@ -11,4 +11,7 @@ tests/integration/merge-ticketing.integration.test.ts
 tests/integration/merge-hris.integration.test.ts
 tests/integration/merge-crm.integration.test.ts
 tests/unit/backward-compatibility-simple.test.ts
+tests/unit/backward-compatibility.test.ts
+tests/integration/backward-compatibility.integration.test.ts
 src/index.ts
+src/core/schemas/builders/enum/enum.ts
