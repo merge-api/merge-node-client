@@ -1,1 +1,1 @@
-export * from "./JobPostingsListRequestStatus";
+export * from "./ListJobPostingsRequestStatus";

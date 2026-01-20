@@ -1,2 +1,2 @@
-export * from "./TrackingCategoriesListRequestCategoryType";
-export * from "./TrackingCategoriesListRequestStatus";
+export * from "./ListTrackingCategoriesRequestCategoryType";
+export * from "./ListTrackingCategoriesRequestStatus";
