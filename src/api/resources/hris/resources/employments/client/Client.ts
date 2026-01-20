@@ -35,7 +35,6 @@ export class EmploymentsClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         employeeId: "employee_id",
-     *         expand: "employee",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -81,12 +80,17 @@ export class EmploymentsClient {
             created_before: createdBefore?.toISOString(),
             cursor,
             employee_id: employeeId,
-            expand:
-                expand != null
-                    ? serializers.hris.EmploymentsListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.hris.EmploymentsListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.hris.EmploymentsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -169,7 +173,6 @@ export class EmploymentsClient {
      *
      * @example
      *     await client.hris.employments.retrieve("id", {
-     *         expand: "employee",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "employment_type",
@@ -191,12 +194,17 @@ export class EmploymentsClient {
     ): Promise<core.WithRawResponse<Merge.hris.Employment>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.hris.EmploymentsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.hris.EmploymentsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.hris.EmploymentsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields:

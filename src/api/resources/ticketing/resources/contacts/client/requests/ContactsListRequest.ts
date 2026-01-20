@@ -7,7 +7,6 @@
  *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
  *         emailAddress: "email_address",
- *         expand: "account",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
  *         includeShellData: true,
@@ -27,7 +26,7 @@ export interface ContactsListRequest {
     /** If provided, will only return Contacts that match this email. */
     emailAddress?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: "account";
+    expand?: "account" | "account"[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */

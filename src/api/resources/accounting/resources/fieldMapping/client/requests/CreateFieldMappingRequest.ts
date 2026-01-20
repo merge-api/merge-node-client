@@ -4,6 +4,7 @@
  * @example
  *     {
  *         excludeRemoteFieldMetadata: true,
+ *         remoteDataIterationCount: 1,
  *         targetFieldName: "example_target_field_name",
  *         targetFieldDescription: "this is a example description of the target field",
  *         remoteFieldTraversalPath: ["example_remote_field"],
@@ -15,6 +16,8 @@
 export interface CreateFieldMappingRequest {
     /** If `true`, remote fields metadata is excluded from each field mapping instance (i.e. `remote_fields.remote_key_name` and `remote_fields.schema` will be null). This will increase the speed of the request since these fields require some calculations. */
     excludeRemoteFieldMetadata?: boolean;
+    /** Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided. */
+    remoteDataIterationCount?: number;
     /** The name of the target field you want this remote field to map to. */
     targetFieldName: string;
     /** The description of the target field you want this remote field to map to. */
@@ -27,4 +30,6 @@ export interface CreateFieldMappingRequest {
     remoteUrlPath: string;
     /** The name of the Common Model that the remote field corresponds to in a given category. */
     commonModelName: string;
+    /** JMES path to specify json query expression to be used on field mapping. */
+    jmesPath?: string;
 }

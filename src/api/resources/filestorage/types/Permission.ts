@@ -33,4 +33,7 @@ export interface Permission {
     type?: Merge.filestorage.PermissionType;
     /** The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing & uploading. Possible values include: `READ`, `WRITE`, `OWNER`. In cases where there is no clear mapping, the original value passed through will be returned. */
     roles?: (Merge.filestorage.PermissionRolesItem | undefined)[];
+    /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
+    remoteWasDeleted?: boolean;
+    fieldMappings?: Record<string, unknown>;
 }

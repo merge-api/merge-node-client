@@ -13,6 +13,8 @@ export interface FieldMappingApiInstanceResponse {
     creditNote?: Merge.accounting.FieldMappingApiInstance[];
     item?: Merge.accounting.FieldMappingApiInstance[];
     purchaseOrder?: Merge.accounting.FieldMappingApiInstance[];
+    salesOrder?: Merge.accounting.FieldMappingApiInstance[];
+    itemFulfillment?: Merge.accounting.FieldMappingApiInstance[];
     expenseReport?: Merge.accounting.FieldMappingApiInstance[];
     trackingCategory?: Merge.accounting.FieldMappingApiInstance[];
     journalEntry?: Merge.accounting.FieldMappingApiInstance[];

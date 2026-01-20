@@ -35,12 +35,12 @@ export class ItemsClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "company",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         name: "name",
      *         pageSize: 1,
      *         remoteFields: "status",
      *         remoteId: "remote_id",
@@ -69,6 +69,7 @@ export class ItemsClient {
             includeShellData,
             modifiedAfter,
             modifiedBefore,
+            name,
             pageSize,
             remoteFields,
             remoteId,
@@ -79,17 +80,23 @@ export class ItemsClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand:
-                expand != null
-                    ? serializers.accounting.ItemsListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ItemsListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ItemsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             modified_after: modifiedAfter?.toISOString(),
             modified_before: modifiedBefore?.toISOString(),
+            name,
             page_size: pageSize,
             remote_fields: remoteFields != null ? remoteFields : undefined,
             remote_id: remoteId,
@@ -230,7 +237,6 @@ export class ItemsClient {
      *
      * @example
      *     await client.accounting.items.retrieve("id", {
-     *         expand: "company",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "status",
@@ -252,12 +258,17 @@ export class ItemsClient {
     ): Promise<core.WithRawResponse<Merge.accounting.Item>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.ItemsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ItemsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ItemsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields: remoteFields != null ? remoteFields : undefined,

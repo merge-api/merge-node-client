@@ -21,6 +21,10 @@ export const MetaResponse: core.serialization.ObjectSchema<serializers.hris.Meta
             "has_required_linked_account_params",
             core.serialization.boolean(),
         ),
+        remoteFields: core.serialization.property(
+            "remote_fields",
+            core.serialization.list(core.serialization.string()).optional(),
+        ),
     });
 
 export declare namespace MetaResponse {
@@ -30,5 +34,6 @@ export declare namespace MetaResponse {
         status?: LinkedAccountStatus.Raw | null;
         has_conditional_params: boolean;
         has_required_linked_account_params: boolean;
+        remote_fields?: string[] | null;
     }
 }
