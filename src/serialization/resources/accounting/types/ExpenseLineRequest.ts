@@ -34,8 +34,6 @@ export const ExpenseLineRequest: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
-    quantity: core.serialization.string().optional(),
-    unitPrice: core.serialization.property("unit_price", core.serialization.string().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -63,8 +61,6 @@ export declare namespace ExpenseLineRequest {
         description?: string | null;
         exchange_rate?: string | null;
         tax_rate?: string | null;
-        quantity?: string | null;
-        unit_price?: string | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
         remote_fields?: RemoteFieldRequest.Raw[] | null;

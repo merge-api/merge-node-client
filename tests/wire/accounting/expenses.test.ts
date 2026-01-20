@@ -56,8 +56,6 @@ describe("ExpensesClient", () => {
                             description: "MacBook Pro",
                             exchange_rate: "2.9",
                             tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                            quantity: "quantity",
-                            unit_price: "unit_price",
                             remote_was_deleted: false,
                         },
                         {
@@ -163,8 +161,6 @@ describe("ExpensesClient", () => {
                             description: "MacBook Pro",
                             exchangeRate: "2.9",
                             taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                            quantity: "quantity",
-                            unitPrice: "unit_price",
                             remoteWasDeleted: false,
                         },
                         {
@@ -267,8 +263,6 @@ describe("ExpensesClient", () => {
                         description: "MacBook Pro",
                         exchange_rate: "2.9",
                         tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                        quantity: "quantity",
-                        unit_price: "unit_price",
                         remote_was_deleted: false,
                     },
                     {
@@ -386,8 +380,6 @@ describe("ExpensesClient", () => {
                         description: "MacBook Pro",
                         exchangeRate: "2.9",
                         taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                        quantity: "quantity",
-                        unitPrice: "unit_price",
                         remoteWasDeleted: false,
                     },
                     {
@@ -520,8 +512,6 @@ describe("ExpensesClient", () => {
                     description: "MacBook Pro",
                     exchange_rate: "2.9",
                     tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                    quantity: "quantity",
-                    unit_price: "unit_price",
                     remote_was_deleted: false,
                 },
                 {
@@ -545,8 +535,6 @@ describe("ExpensesClient", () => {
                     description: "Desk Lamp",
                     exchange_rate: "2.9",
                     tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                    quantity: "quantity",
-                    unit_price: "unit_price",
                     remote_was_deleted: true,
                 },
             ],
@@ -618,8 +606,6 @@ describe("ExpensesClient", () => {
                     description: "MacBook Pro",
                     exchangeRate: "2.9",
                     taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                    quantity: "quantity",
-                    unitPrice: "unit_price",
                     remoteWasDeleted: false,
                 },
                 {
@@ -643,8 +629,6 @@ describe("ExpensesClient", () => {
                     description: "Desk Lamp",
                     exchangeRate: "2.9",
                     taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
-                    quantity: "quantity",
-                    unitPrice: "unit_price",
                     remoteWasDeleted: true,
                 },
             ],

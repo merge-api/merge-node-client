@@ -36,8 +36,6 @@ export const ExpenseLine: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
-    quantity: core.serialization.string().optional(),
-    unitPrice: core.serialization.property("unit_price", core.serialization.string().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
 
@@ -60,8 +58,6 @@ export declare namespace ExpenseLine {
         description?: string | null;
         exchange_rate?: string | null;
         tax_rate?: string | null;
-        quantity?: string | null;
-        unit_price?: string | null;
         remote_was_deleted?: boolean | null;
     }
 }
