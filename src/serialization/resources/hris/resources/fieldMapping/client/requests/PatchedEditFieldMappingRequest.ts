@@ -6,7 +6,7 @@ import type * as serializers from "../../../../../../index";
 
 export const PatchedEditFieldMappingRequest: core.serialization.Schema<
     serializers.hris.PatchedEditFieldMappingRequest.Raw,
-    Merge.hris.PatchedEditFieldMappingRequest
+    Omit<Merge.hris.PatchedEditFieldMappingRequest, "remoteDataIterationCount">
 > = core.serialization.object({
     remoteFieldTraversalPath: core.serialization.property(
         "remote_field_traversal_path",

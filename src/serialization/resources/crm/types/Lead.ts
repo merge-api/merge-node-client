@@ -8,6 +8,7 @@ import { EmailAddress } from "./EmailAddress";
 import { LeadConvertedAccount } from "./LeadConvertedAccount";
 import { LeadConvertedContact } from "./LeadConvertedContact";
 import { LeadOwner } from "./LeadOwner";
+import { LeadStatus } from "./LeadStatus";
 import { PhoneNumber } from "./PhoneNumber";
 import { RemoteData } from "./RemoteData";
 import { RemoteField } from "./RemoteField";
@@ -35,6 +36,7 @@ export const Lead: core.serialization.ObjectSchema<serializers.crm.Lead.Raw, Mer
         convertedDate: core.serialization.property("converted_date", core.serialization.date().optional()),
         convertedContact: core.serialization.property("converted_contact", LeadConvertedContact.optional()),
         convertedAccount: core.serialization.property("converted_account", LeadConvertedAccount.optional()),
+        status: LeadStatus.optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -64,6 +66,7 @@ export declare namespace Lead {
         converted_date?: string | null;
         converted_contact?: LeadConvertedContact.Raw | null;
         converted_account?: LeadConvertedAccount.Raw | null;
+        status?: LeadStatus.Raw | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: RemoteData.Raw[] | null;

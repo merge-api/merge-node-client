@@ -59,4 +59,32 @@ describe("AccountTokenClient", () => {
             id: "0496d4c2-42e6-4072-80b3-7b69bfdc76fd",
         });
     });
+
+    test("regenerateCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            linked_account_id: "e59b1821-f85c-4e28-a6b3-1804156f3563",
+            account_token: "hXY57W0g0WkdRHjCaPvwijK63fwfN-o_Wh7f30SLTq_uPCOLo-WFcA",
+        };
+        server
+            .mockEndpoint()
+            .post("/filestorage/v1/account-token/regenerate")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.filestorage.accountToken.regenerateCreate();
+        expect(response).toEqual({
+            linkedAccountId: "e59b1821-f85c-4e28-a6b3-1804156f3563",
+            accountToken: "hXY57W0g0WkdRHjCaPvwijK63fwfN-o_Wh7f30SLTq_uPCOLo-WFcA",
+        });
+    });
 });
