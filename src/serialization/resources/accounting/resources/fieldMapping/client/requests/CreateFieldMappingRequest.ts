@@ -6,7 +6,7 @@ import type * as serializers from "../../../../../../index";
 
 export const CreateFieldMappingRequest: core.serialization.Schema<
     serializers.accounting.CreateFieldMappingRequest.Raw,
-    Omit<Merge.accounting.CreateFieldMappingRequest, "excludeRemoteFieldMetadata">
+    Omit<Merge.accounting.CreateFieldMappingRequest, "excludeRemoteFieldMetadata" | "remoteDataIterationCount">
 > = core.serialization.object({
     targetFieldName: core.serialization.property("target_field_name", core.serialization.string()),
     targetFieldDescription: core.serialization.property("target_field_description", core.serialization.string()),
@@ -17,6 +17,7 @@ export const CreateFieldMappingRequest: core.serialization.Schema<
     remoteMethod: core.serialization.property("remote_method", core.serialization.string()),
     remoteUrlPath: core.serialization.property("remote_url_path", core.serialization.string()),
     commonModelName: core.serialization.property("common_model_name", core.serialization.string()),
+    jmesPath: core.serialization.property("jmes_path", core.serialization.string().optional()),
 });
 
 export declare namespace CreateFieldMappingRequest {
@@ -27,5 +28,6 @@ export declare namespace CreateFieldMappingRequest {
         remote_method: string;
         remote_url_path: string;
         common_model_name: string;
+        jmes_path?: string | null;
     }
 }

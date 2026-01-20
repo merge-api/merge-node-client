@@ -36,7 +36,6 @@ export class NotesClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "account",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
@@ -84,10 +83,13 @@ export class NotesClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand:
-                expand != null
-                    ? serializers.crm.NotesListRequestExpand.jsonOrThrow(expand, { unrecognizedObjectKeys: "strip" })
-                    : undefined,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.crm.NotesListRequestExpandItem.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : expand != null
+                  ? serializers.crm.NotesListRequestExpandItem.jsonOrThrow(expand, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
@@ -234,7 +236,6 @@ export class NotesClient {
      *
      * @example
      *     await client.crm.notes.retrieve("id", {
-     *         expand: "account",
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
      *         includeShellData: true
@@ -255,12 +256,17 @@ export class NotesClient {
     ): Promise<core.WithRawResponse<Merge.crm.Note>> {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.crm.NotesRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.crm.NotesRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.crm.NotesRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
             include_shell_data: includeShellData,

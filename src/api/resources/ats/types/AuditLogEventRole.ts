@@ -11,5 +11,6 @@ import type * as Merge from "../../../index";
  * * `API` - API
  * * `SYSTEM` - SYSTEM
  * * `MERGE_TEAM` - MERGE_TEAM
+ * * `SUPPORT` - SUPPORT
  */
 export type AuditLogEventRole = Merge.ats.RoleEnum | string;

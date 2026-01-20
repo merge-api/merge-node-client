@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AccountRequestAccountType } from "./AccountRequestAccountType";
 import { AccountRequestClassification } from "./AccountRequestClassification";
+import { AccountRequestCompany } from "./AccountRequestCompany";
 import { AccountRequestCurrency } from "./AccountRequestCurrency";
 import { AccountRequestStatus } from "./AccountRequestStatus";
 
@@ -22,7 +23,7 @@ export const AccountRequest: core.serialization.ObjectSchema<
     currency: AccountRequestCurrency.optional(),
     accountNumber: core.serialization.property("account_number", core.serialization.string().optional()),
     parentAccount: core.serialization.property("parent_account", core.serialization.string().optional()),
-    company: core.serialization.string().optional(),
+    company: AccountRequestCompany.optional(),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -45,7 +46,7 @@ export declare namespace AccountRequest {
         currency?: AccountRequestCurrency.Raw | null;
         account_number?: string | null;
         parent_account?: string | null;
-        company?: string | null;
+        company?: AccountRequestCompany.Raw | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
     }
