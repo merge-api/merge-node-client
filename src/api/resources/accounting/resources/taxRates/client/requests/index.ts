@@ -1,2 +1,2 @@
-export type { TaxRatesListRequest } from "./TaxRatesListRequest";
-export type { TaxRatesRetrieveRequest } from "./TaxRatesRetrieveRequest";
+export { type ListTaxRatesRequest } from "./ListTaxRatesRequest";
+export { type RetrieveTaxRatesRequest } from "./RetrieveTaxRatesRequest";

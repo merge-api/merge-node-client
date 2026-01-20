@@ -1,1 +1,1 @@
-export type { AuditTrailListRequest } from "./AuditTrailListRequest";
+export { type ListAuditTrailRequest } from "./ListAuditTrailRequest";

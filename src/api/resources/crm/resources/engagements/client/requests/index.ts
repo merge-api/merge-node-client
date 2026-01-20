@@ -1,5 +1,6 @@
-export type { EngagementEndpointRequest } from "./EngagementEndpointRequest";
-export type { EngagementsListRequest } from "./EngagementsListRequest";
-export type { EngagementsRemoteFieldClassesListRequest } from "./EngagementsRemoteFieldClassesListRequest";
-export type { EngagementsRetrieveRequest } from "./EngagementsRetrieveRequest";
-export type { PatchedEngagementEndpointRequest } from "./PatchedEngagementEndpointRequest";
+export { type ListEngagementsRequest } from "./ListEngagementsRequest";
+export { type EngagementEndpointRequest } from "./EngagementEndpointRequest";
+export { type RetrieveEngagementsRequest } from "./RetrieveEngagementsRequest";
+export { type PatchedEngagementEndpointRequest } from "./PatchedEngagementEndpointRequest";
+export { type MetaPatchRetrieveEngagementsRequest } from "./MetaPatchRetrieveEngagementsRequest";
+export { type RemoteFieldClassesListEngagementsRequest } from "./RemoteFieldClassesListEngagementsRequest";

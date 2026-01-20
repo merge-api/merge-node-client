@@ -1,3 +1,3 @@
-export type { CollectionsListRequest } from "./CollectionsListRequest";
-export type { CollectionsRetrieveRequest } from "./CollectionsRetrieveRequest";
-export type { CollectionsViewersListRequest } from "./CollectionsViewersListRequest";
+export { type ListCollectionsRequest } from "./ListCollectionsRequest";
+export { type ViewersListCollectionsRequest } from "./ViewersListCollectionsRequest";
+export { type RetrieveCollectionsRequest } from "./RetrieveCollectionsRequest";
