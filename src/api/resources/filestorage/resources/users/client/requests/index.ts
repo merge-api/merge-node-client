@@ -1,2 +1,2 @@
-export type { UsersListRequest } from "./UsersListRequest";
-export type { UsersRetrieveRequest } from "./UsersRetrieveRequest";
+export { type ListUsersRequest } from "./ListUsersRequest";
+export { type RetrieveUsersRequest } from "./RetrieveUsersRequest";

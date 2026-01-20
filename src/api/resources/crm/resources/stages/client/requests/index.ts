@@ -1,3 +1,3 @@
-export type { StagesListRequest } from "./StagesListRequest";
-export type { StagesRemoteFieldClassesListRequest } from "./StagesRemoteFieldClassesListRequest";
-export type { StagesRetrieveRequest } from "./StagesRetrieveRequest";
+export { type ListStagesRequest } from "./ListStagesRequest";
+export { type RetrieveStagesRequest } from "./RetrieveStagesRequest";
+export { type RemoteFieldClassesListStagesRequest } from "./RemoteFieldClassesListStagesRequest";
