@@ -37,6 +37,11 @@ export const FieldMappingApiInstanceResponse: core.serialization.ObjectSchema<
         "PurchaseOrder",
         core.serialization.list(FieldMappingApiInstance).optional(),
     ),
+    salesOrder: core.serialization.property("SalesOrder", core.serialization.list(FieldMappingApiInstance).optional()),
+    itemFulfillment: core.serialization.property(
+        "ItemFulfillment",
+        core.serialization.list(FieldMappingApiInstance).optional(),
+    ),
     expenseReport: core.serialization.property(
         "ExpenseReport",
         core.serialization.list(FieldMappingApiInstance).optional(),
@@ -97,6 +102,8 @@ export declare namespace FieldMappingApiInstanceResponse {
         CreditNote?: FieldMappingApiInstance.Raw[] | null;
         Item?: FieldMappingApiInstance.Raw[] | null;
         PurchaseOrder?: FieldMappingApiInstance.Raw[] | null;
+        SalesOrder?: FieldMappingApiInstance.Raw[] | null;
+        ItemFulfillment?: FieldMappingApiInstance.Raw[] | null;
         ExpenseReport?: FieldMappingApiInstance.Raw[] | null;
         TrackingCategory?: FieldMappingApiInstance.Raw[] | null;
         JournalEntry?: FieldMappingApiInstance.Raw[] | null;

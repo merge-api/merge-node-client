@@ -35,7 +35,6 @@ export class CollectionsClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "parent_collection",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -88,7 +87,17 @@ export class CollectionsClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ticketing.CollectionsListRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ticketing.CollectionsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -158,7 +167,6 @@ export class CollectionsClient {
      * @example
      *     await client.ticketing.collections.viewersList("collection_id", {
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "team",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -181,12 +189,17 @@ export class CollectionsClient {
         const { cursor, expand, includeDeletedData, includeRemoteData, includeShellData, pageSize } = request;
         const _queryParams: Record<string, unknown> = {
             cursor,
-            expand:
-                expand != null
-                    ? serializers.ticketing.CollectionsViewersListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ticketing.CollectionsViewersListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ticketing.CollectionsViewersListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -253,7 +266,6 @@ export class CollectionsClient {
      *
      * @example
      *     await client.ticketing.collections.retrieve("id", {
-     *         expand: "parent_collection",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "collection_type",
@@ -275,7 +287,17 @@ export class CollectionsClient {
     ): Promise<core.WithRawResponse<Merge.ticketing.Collection>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ticketing.CollectionsRetrieveRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ticketing.CollectionsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields: remoteFields != null ? remoteFields : undefined,

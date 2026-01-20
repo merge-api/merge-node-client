@@ -5,11 +5,11 @@ import type * as Merge from "../../../../../../index";
 /**
  * @example
  *     {
+ *         collections: "collections",
  *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
  *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
  *         emailAddress: "email_address",
- *         expand: "roles",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
  *         includeShellData: true,
@@ -17,10 +17,14 @@ import type * as Merge from "../../../../../../index";
  *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         pageSize: 1,
  *         remoteId: "remote_id",
- *         team: "team"
+ *         roles: "roles",
+ *         team: "team",
+ *         teams: "teams"
  *     }
  */
 export interface UsersListRequest {
+    /** If provided, will only return users involved with at least one of these collections. */
+    collections?: string;
     /** If provided, will only return objects created after this datetime. */
     createdAfter?: Date;
     /** If provided, will only return objects created before this datetime. */
@@ -30,7 +34,7 @@ export interface UsersListRequest {
     /** If provided, will only return users with emails equal to this value (case insensitive). */
     emailAddress?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.ticketing.UsersListRequestExpand;
+    expand?: Merge.ticketing.UsersListRequestExpandItem | Merge.ticketing.UsersListRequestExpandItem[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
@@ -45,6 +49,10 @@ export interface UsersListRequest {
     pageSize?: number;
     /** The API provider's ID for the given object. */
     remoteId?: string;
+    /** If provided, will only return users with at least one of these roles. */
+    roles?: string;
     /** If provided, will only return users matching in this team. */
     team?: string;
+    /** If provided, will only return users with at least one of these teams. */
+    teams?: string;
 }

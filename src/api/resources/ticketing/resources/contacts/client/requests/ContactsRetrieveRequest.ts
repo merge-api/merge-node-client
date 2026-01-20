@@ -3,14 +3,13 @@
 /**
  * @example
  *     {
- *         expand: "account",
  *         includeRemoteData: true,
  *         includeShellData: true
  *     }
  */
 export interface ContactsRetrieveRequest {
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: "account";
+    expand?: "account" | "account"[];
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
     /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */

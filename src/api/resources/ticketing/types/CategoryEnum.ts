@@ -8,7 +8,6 @@
  * * `crm` - crm
  * * `mktg` - mktg
  * * `filestorage` - filestorage
- * * `knowledgebase` - knowledgebase
  */
 export const CategoryEnum = {
     Hris: "hris",
@@ -18,6 +17,5 @@ export const CategoryEnum = {
     Crm: "crm",
     Mktg: "mktg",
     Filestorage: "filestorage",
-    Knowledgebase: "knowledgebase",
 } as const;
 export type CategoryEnum = (typeof CategoryEnum)[keyof typeof CategoryEnum];

@@ -4,8 +4,8 @@ import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { SelectiveSyncConfigurationsUsageEnum } from "./SelectiveSyncConfigurationsUsageEnum";
-import { StatusFd5Enum } from "./StatusFd5Enum";
 import { SyncStatusLastSyncResult } from "./SyncStatusLastSyncResult";
+import { SyncStatusStatus } from "./SyncStatusStatus";
 
 export const SyncStatus: core.serialization.ObjectSchema<serializers.hris.SyncStatus.Raw, Merge.hris.SyncStatus> =
     core.serialization.object({
@@ -15,7 +15,7 @@ export const SyncStatus: core.serialization.ObjectSchema<serializers.hris.SyncSt
         nextSyncStart: core.serialization.property("next_sync_start", core.serialization.date().optional()),
         lastSyncResult: core.serialization.property("last_sync_result", SyncStatusLastSyncResult.optional()),
         lastSyncFinished: core.serialization.property("last_sync_finished", core.serialization.date().optional()),
-        status: StatusFd5Enum,
+        status: SyncStatusStatus,
         isInitialSync: core.serialization.property("is_initial_sync", core.serialization.boolean()),
         selectiveSyncConfigurationsUsage: core.serialization.property(
             "selective_sync_configurations_usage",
@@ -31,7 +31,7 @@ export declare namespace SyncStatus {
         next_sync_start?: string | null;
         last_sync_result?: SyncStatusLastSyncResult.Raw | null;
         last_sync_finished?: string | null;
-        status: StatusFd5Enum.Raw;
+        status: SyncStatusStatus.Raw;
         is_initial_sync: boolean;
         selective_sync_configurations_usage?: SelectiveSyncConfigurationsUsageEnum.Raw | null;
     }
