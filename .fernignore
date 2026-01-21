@@ -18,3 +18,4 @@ src/index.ts
 tests/unit/schemas/enum/enum.test.ts
 tests/unit/schemas/union/union.test.ts
 src/core/schemas/builders/enum/enum.ts
+changelog.md

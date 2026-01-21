@@ -1,4 +1,4 @@
-export type { AttachmentsDownloadRetrieveRequest } from "./AttachmentsDownloadRetrieveRequest";
-export type { AttachmentsListRequest } from "./AttachmentsListRequest";
-export type { AttachmentsRetrieveRequest } from "./AttachmentsRetrieveRequest";
-export type { TicketingAttachmentEndpointRequest } from "./TicketingAttachmentEndpointRequest";
+export { type ListAttachmentsRequest } from "./ListAttachmentsRequest";
+export { type TicketingAttachmentEndpointRequest } from "./TicketingAttachmentEndpointRequest";
+export { type RetrieveAttachmentsRequest } from "./RetrieveAttachmentsRequest";
+export { type DownloadRetrieveAttachmentsRequest } from "./DownloadRetrieveAttachmentsRequest";
