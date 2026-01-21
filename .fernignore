@@ -15,4 +15,6 @@ tests/unit/backward-compatibility.test.ts
 tests/unit/enum-response-handling.test.ts
 tests/integration/backward-compatibility.integration.test.ts
 src/index.ts
+tests/unit/schemas/enum/enum.test.ts
+tests/unit/schemas/union/union.test.ts
 src/core/schemas/builders/enum/enum.ts
