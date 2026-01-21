@@ -6,6 +6,7 @@ import type * as serializers from "../../../index";
 import { RemoteData } from "./RemoteData";
 import { RemoteField } from "./RemoteField";
 import { TaskAccount } from "./TaskAccount";
+import { TaskContact } from "./TaskContact";
 import { TaskOpportunity } from "./TaskOpportunity";
 import { TaskOwner } from "./TaskOwner";
 import { TaskStatus } from "./TaskStatus";
@@ -21,6 +22,7 @@ export const Task: core.serialization.ObjectSchema<serializers.crm.Task.Raw, Mer
         owner: TaskOwner.optional(),
         account: TaskAccount.optional(),
         opportunity: TaskOpportunity.optional(),
+        contact: TaskContact.optional(),
         completedDate: core.serialization.property("completed_date", core.serialization.date().optional()),
         dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
         status: TaskStatus.optional(),
@@ -44,6 +46,7 @@ export declare namespace Task {
         owner?: TaskOwner.Raw | null;
         account?: TaskAccount.Raw | null;
         opportunity?: TaskOpportunity.Raw | null;
+        contact?: TaskContact.Raw | null;
         completed_date?: string | null;
         due_date?: string | null;
         status?: TaskStatus.Raw | null;

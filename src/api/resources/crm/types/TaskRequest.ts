@@ -20,6 +20,8 @@ export interface TaskRequest {
     account?: Merge.crm.TaskRequestAccount;
     /** The task's opportunity. */
     opportunity?: Merge.crm.TaskRequestOpportunity;
+    /** The task's contact. */
+    contact?: Merge.crm.TaskRequestContact;
     /** When the task is completed. */
     completedDate?: Date;
     /** When the task is due. */
