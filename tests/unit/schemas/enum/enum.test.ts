@@ -9,12 +9,7 @@ describe("enum", () => {
         opts: { allowUnrecognizedEnumValues: true },
     });
 
-    itValidate("invalid enum", enum_(["A", "B", "C"]), "D", [
-        {
-            message: 'Expected enum. Received "D".',
-            path: [],
-        },
-    ]);
+    itSchemaIdentity(enum_(["A", "B", "C"]), "D" as any);
 
     itValidate(
         "non-string",
