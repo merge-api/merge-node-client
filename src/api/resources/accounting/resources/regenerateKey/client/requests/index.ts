@@ -1,1 +1,1 @@
-export type { RemoteKeyForRegenerationRequest } from "./RemoteKeyForRegenerationRequest";
+export { type RemoteKeyForRegenerationRequest } from "./RemoteKeyForRegenerationRequest";
