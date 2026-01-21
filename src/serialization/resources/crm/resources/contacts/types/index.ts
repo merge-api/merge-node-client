@@ -1,2 +1,2 @@
-export * from "./ContactsListRequestExpand";
-export * from "./ContactsRetrieveRequestExpand";
+export * from "./ListContactsRequestExpand";
+export * from "./RetrieveContactsRequestExpand";
