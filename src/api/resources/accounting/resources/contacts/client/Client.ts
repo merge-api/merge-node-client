@@ -36,7 +36,6 @@ export class ContactsClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         emailAddress: "email_address",
-     *         expand: "addresses",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
@@ -92,12 +91,17 @@ export class ContactsClient {
             created_before: createdBefore?.toISOString(),
             cursor,
             email_address: emailAddress,
-            expand:
-                expand != null
-                    ? serializers.accounting.ContactsListRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ContactsListRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ContactsListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
@@ -253,7 +257,6 @@ export class ContactsClient {
      *
      * @example
      *     await client.accounting.contacts.retrieve("id", {
-     *         expand: "addresses",
      *         includeRemoteData: true,
      *         includeRemoteFields: true,
      *         includeShellData: true,
@@ -277,12 +280,17 @@ export class ContactsClient {
         const { expand, includeRemoteData, includeRemoteFields, includeShellData, remoteFields, showEnumOrigins } =
             request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.ContactsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ContactsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ContactsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_remote_fields: includeRemoteFields,
             include_shell_data: includeShellData,

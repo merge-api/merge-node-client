@@ -3,12 +3,14 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { ExpenseReportAccountingPeriod } from "./ExpenseReportAccountingPeriod";
 import { ExpenseReportCompany } from "./ExpenseReportCompany";
-import { ExpenseReportLine } from "./ExpenseReportLine";
+import { ExpenseReportCurrency } from "./ExpenseReportCurrency";
+import { ExpenseReportEmployee } from "./ExpenseReportEmployee";
+import { ExpenseReportLinesItem } from "./ExpenseReportLinesItem";
 import { ExpenseReportStatus } from "./ExpenseReportStatus";
 import { RemoteData } from "./RemoteData";
 import { RemoteField } from "./RemoteField";
-import { TransactionCurrencyEnum } from "./TransactionCurrencyEnum";
 
 export const ExpenseReport: core.serialization.ObjectSchema<
     serializers.accounting.ExpenseReport.Raw,
@@ -20,13 +22,13 @@ export const ExpenseReport: core.serialization.ObjectSchema<
     modifiedAt: core.serialization.property("modified_at", core.serialization.date().optional()),
     reportDate: core.serialization.property("report_date", core.serialization.date().optional()),
     reportIdentifier: core.serialization.property("report_identifier", core.serialization.string().optional()),
-    employee: core.serialization.string().optional(),
+    employee: ExpenseReportEmployee.optional(),
     status: ExpenseReportStatus.optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
-    lines: core.serialization.list(ExpenseReportLine).optional(),
-    currency: TransactionCurrencyEnum.optional(),
+    lines: core.serialization.list(ExpenseReportLinesItem).optional(),
+    currency: ExpenseReportCurrency.optional(),
     description: core.serialization.string().optional(),
-    accountingPeriod: core.serialization.property("accounting_period", core.serialization.string().optional()),
+    accountingPeriod: core.serialization.property("accounting_period", ExpenseReportAccountingPeriod.optional()),
     company: ExpenseReportCompany.optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
@@ -49,13 +51,13 @@ export declare namespace ExpenseReport {
         modified_at?: string | null;
         report_date?: string | null;
         report_identifier?: string | null;
-        employee?: string | null;
+        employee?: ExpenseReportEmployee.Raw | null;
         status?: ExpenseReportStatus.Raw | null;
         total_amount?: number | null;
-        lines?: ExpenseReportLine.Raw[] | null;
-        currency?: TransactionCurrencyEnum.Raw | null;
+        lines?: ExpenseReportLinesItem.Raw[] | null;
+        currency?: ExpenseReportCurrency.Raw | null;
         description?: string | null;
-        accounting_period?: string | null;
+        accounting_period?: ExpenseReportAccountingPeriod.Raw | null;
         company?: ExpenseReportCompany.Raw | null;
         tracking_categories: string[];
         remote_was_deleted?: boolean | null;

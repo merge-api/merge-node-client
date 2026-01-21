@@ -1,3 +1,3 @@
-export * from "./ExpenseReportsLinesListRequestExpand";
-export * from "./ExpenseReportsListRequestExpand";
-export * from "./ExpenseReportsRetrieveRequestExpand";
+export * from "./ExpenseReportsLinesListRequestExpandItem";
+export * from "./ExpenseReportsListRequestExpandItem";
+export * from "./ExpenseReportsRetrieveRequestExpandItem";

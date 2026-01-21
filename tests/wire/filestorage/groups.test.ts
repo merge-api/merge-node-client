@@ -46,7 +46,6 @@ describe("GroupsClient", () => {
             createdAfter: new Date("2024-01-15T09:30:00.000Z"),
             createdBefore: new Date("2024-01-15T09:30:00.000Z"),
             cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            expand: "child_groups",
             includeDeletedData: true,
             includeRemoteData: true,
             includeShellData: true,
@@ -120,7 +119,6 @@ describe("GroupsClient", () => {
             .build();
 
         const response = await client.filestorage.groups.retrieve("id", {
-            expand: "child_groups",
             includeRemoteData: true,
             includeShellData: true,
         });

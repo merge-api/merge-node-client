@@ -37,7 +37,7 @@ export interface UsersListRequest {
     modifiedAfter?: Date;
     /** If provided, only objects synced by Merge before this date time will be returned. */
     modifiedBefore?: Date;
-    /** Number of results to return per page. */
+    /** Number of results to return per page. The maximum limit is 100. */
     pageSize?: number;
     /** Deprecated. Use show_enum_origins. */
     remoteFields?: "access_role";

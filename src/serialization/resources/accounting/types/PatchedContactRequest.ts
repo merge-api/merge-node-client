@@ -4,7 +4,8 @@ import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AccountingPhoneNumberRequest } from "./AccountingPhoneNumberRequest";
-import { PatchedContactRequestAddressesItem } from "./PatchedContactRequestAddressesItem";
+import { AddressRequest } from "./AddressRequest";
+import { PatchedContactRequestStatus } from "./PatchedContactRequestStatus";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
 
 export const PatchedContactRequest: core.serialization.ObjectSchema<
@@ -16,10 +17,10 @@ export const PatchedContactRequest: core.serialization.ObjectSchema<
     isCustomer: core.serialization.property("is_customer", core.serialization.boolean().optional()),
     emailAddress: core.serialization.property("email_address", core.serialization.string().optional()),
     taxNumber: core.serialization.property("tax_number", core.serialization.string().optional()),
-    status: core.serialization.string().optional(),
+    status: PatchedContactRequestStatus.optional(),
     currency: core.serialization.string().optional(),
     company: core.serialization.string().optional(),
-    addresses: core.serialization.list(PatchedContactRequestAddressesItem.optional()).optional(),
+    addresses: core.serialization.list(AddressRequest).optional(),
     phoneNumbers: core.serialization.property(
         "phone_numbers",
         core.serialization.list(AccountingPhoneNumberRequest).optional(),
@@ -42,10 +43,10 @@ export declare namespace PatchedContactRequest {
         is_customer?: boolean | null;
         email_address?: string | null;
         tax_number?: string | null;
-        status?: string | null;
+        status?: PatchedContactRequestStatus.Raw | null;
         currency?: string | null;
         company?: string | null;
-        addresses?: (PatchedContactRequestAddressesItem.Raw | null | undefined)[] | null;
+        addresses?: AddressRequest.Raw[] | null;
         phone_numbers?: AccountingPhoneNumberRequest.Raw[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

@@ -258,7 +258,9 @@ export class FieldMappingClient {
      * @param {FieldMappingClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.hris.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id")
+     *     await client.hris.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
+     *         remoteDataIterationCount: 1
+     *     })
      */
     public fieldMappingsPartialUpdate(
         field_mapping_id: string,
@@ -275,6 +277,10 @@ export class FieldMappingClient {
         request: Merge.hris.PatchedEditFieldMappingRequest = {},
         requestOptions?: FieldMappingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.hris.FieldMappingInstanceResponse>> {
+        const { remoteDataIterationCount, ..._body } = request;
+        const _queryParams: Record<string, unknown> = {
+            remote_data_iteration_count: remoteDataIterationCount,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -292,9 +298,9 @@ export class FieldMappingClient {
             method: "PATCH",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             requestType: "json",
-            body: serializers.hris.PatchedEditFieldMappingRequest.jsonOrThrow(request, {
+            body: serializers.hris.PatchedEditFieldMappingRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,

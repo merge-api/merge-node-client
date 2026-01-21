@@ -1,2 +1,2 @@
-export * from "./NotesListRequestExpand";
-export * from "./NotesRetrieveRequestExpand";
+export * from "./NotesListRequestExpandItem";
+export * from "./NotesRetrieveRequestExpandItem";
