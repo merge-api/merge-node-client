@@ -1,3 +1,3 @@
-export * from "./OpportunitiesListRequestExpand";
-export * from "./OpportunitiesListRequestStatus";
-export * from "./OpportunitiesRetrieveRequestExpand";
+export * from "./ListOpportunitiesRequestExpand";
+export * from "./ListOpportunitiesRequestStatus";
+export * from "./RetrieveOpportunitiesRequestExpand";
