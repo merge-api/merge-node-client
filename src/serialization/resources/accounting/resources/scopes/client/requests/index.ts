@@ -1,1 +1,0 @@
-export { LinkedAccountCommonModelScopeDeserializerRequest } from "./LinkedAccountCommonModelScopeDeserializerRequest";
