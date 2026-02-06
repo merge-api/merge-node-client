@@ -1067,4 +1067,456 @@ describe("VendorCreditsClient", () => {
             hasRequiredLinkedAccountParams: true,
         });
     });
+
+    test("asyncBulkCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { batch_items: [{}] };
+        const rawResponseBody = {
+            model: {
+                id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                remote_id: "088899",
+                created_at: "2021-09-15T00:00:00Z",
+                modified_at: "2021-10-16T00:00:00Z",
+                number: "6",
+                transaction_date: "2020-03-31T00:00:00Z",
+                vendor: "vendor",
+                total_amount: 10000,
+                currency: "XUA",
+                exchange_rate: "2.9",
+                inclusive_of_tax: true,
+                company: "company",
+                lines: [
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remote_id: "121222",
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        net_amount: 25.54,
+                        tracking_categories: [
+                            "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        description: "Gifted Merge Credit",
+                        account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        project: "22e65a5d-2df5-4e6e-884a-e538d0339000",
+                        contact: "908934-49j9-093f-0989-908923908",
+                        tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        exchange_rate: "2.9",
+                        remote_was_deleted: false,
+                    },
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remote_id: "121223",
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        net_amount: 10,
+                        tracking_categories: [
+                            "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        description: "Refund for overpayment",
+                        account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        exchange_rate: "2.9",
+                    },
+                ],
+                tracking_categories: [
+                    "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                    "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                    "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                ],
+                applied_to_lines: [
+                    {
+                        remote_id: "088899",
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                        applied_date: "2020-03-31T00:00:00Z",
+                        applied_amount: "2.9",
+                    },
+                ],
+                remote_was_deleted: true,
+                accounting_period: "accounting_period",
+                field_mappings: {
+                    organization_defined_targets: { custom_key: "custom_value" },
+                    linked_account_defined_targets: { custom_key: "custom_value" },
+                },
+                remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+            },
+            warnings: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problem_type: "UNRECOGNIZED_FIELD",
+                },
+            ],
+            errors: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problem_type: "MISSING_REQUIRED_FIELD",
+                },
+            ],
+            logs: [
+                {
+                    log_id: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboard_view: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    log_summary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        status_code: 200,
+                    },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .post("/accounting/v1/vendor-credits/async/bulk")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.vendorCredits.asyncBulkCreate({
+            isDebugMode: true,
+            runAsync: true,
+            batchItems: [{}],
+        });
+        expect(response).toEqual({
+            model: {
+                id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                remoteId: "088899",
+                createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                number: "6",
+                transactionDate: new Date("2020-03-31T00:00:00.000Z"),
+                vendor: "vendor",
+                totalAmount: 10000,
+                currency: "XUA",
+                exchangeRate: "2.9",
+                inclusiveOfTax: true,
+                company: "company",
+                lines: [
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remoteId: "121222",
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        netAmount: 25.54,
+                        trackingCategories: [
+                            "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        description: "Gifted Merge Credit",
+                        account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        project: "22e65a5d-2df5-4e6e-884a-e538d0339000",
+                        contact: "908934-49j9-093f-0989-908923908",
+                        taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        exchangeRate: "2.9",
+                        remoteWasDeleted: false,
+                    },
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remoteId: "121223",
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        netAmount: 10,
+                        trackingCategories: [
+                            "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        description: "Refund for overpayment",
+                        account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        exchangeRate: "2.9",
+                    },
+                ],
+                trackingCategories: [
+                    "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                    "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                    "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                ],
+                appliedToLines: [
+                    {
+                        remoteId: "088899",
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                        appliedDate: new Date("2020-03-31T00:00:00.000Z"),
+                        appliedAmount: "2.9",
+                    },
+                ],
+                remoteWasDeleted: true,
+                accountingPeriod: "accounting_period",
+                fieldMappings: {
+                    organization_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                    linked_account_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                },
+                remoteData: [
+                    {
+                        path: "/actions",
+                        data: ["Varies by platform"],
+                    },
+                ],
+            },
+            warnings: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problemType: "UNRECOGNIZED_FIELD",
+                },
+            ],
+            errors: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problemType: "MISSING_REQUIRED_FIELD",
+                },
+            ],
+            logs: [
+                {
+                    logId: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboardView: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    logSummary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        statusCode: 200,
+                    },
+                },
+            ],
+        });
+    });
+
+    test("batchObjectsList", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                    remote_id: "088899",
+                    created_at: "2021-09-15T00:00:00Z",
+                    modified_at: "2021-10-16T00:00:00Z",
+                    number: "6",
+                    transaction_date: "2020-03-31T00:00:00Z",
+                    vendor: "vendor",
+                    total_amount: 10000,
+                    currency: "XUA",
+                    exchange_rate: "2.9",
+                    inclusive_of_tax: true,
+                    company: "company",
+                    lines: [
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remote_id: "121222",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            net_amount: 25.54,
+                            tracking_categories: [
+                                "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            description: "Gifted Merge Credit",
+                            account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            project: "22e65a5d-2df5-4e6e-884a-e538d0339000",
+                            contact: "908934-49j9-093f-0989-908923908",
+                            tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            exchange_rate: "2.9",
+                            remote_was_deleted: false,
+                        },
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remote_id: "121223",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            net_amount: 10,
+                            tracking_categories: [
+                                "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            description: "Refund for overpayment",
+                            account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            exchange_rate: "2.9",
+                        },
+                    ],
+                    tracking_categories: [
+                        "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                        "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                        "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                    ],
+                    applied_to_lines: [
+                        {
+                            remote_id: "088899",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                            applied_date: "2020-03-31T00:00:00Z",
+                            applied_amount: "2.9",
+                        },
+                    ],
+                    remote_was_deleted: true,
+                    accounting_period: "accounting_period",
+                    field_mappings: {
+                        organization_defined_targets: { custom_key: "custom_value" },
+                        linked_account_defined_targets: { custom_key: "custom_value" },
+                    },
+                    remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/accounting/v1/vendor-credits/batch/batch_id/objects")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.vendorCredits.batchObjectsList("batch_id", {
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            expand: "accounting_period",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            pageSize: 1,
+            remoteId: "remote_id",
+            transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+            transactionDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                    remoteId: "088899",
+                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                    number: "6",
+                    transactionDate: new Date("2020-03-31T00:00:00.000Z"),
+                    vendor: "vendor",
+                    totalAmount: 10000,
+                    currency: "XUA",
+                    exchangeRate: "2.9",
+                    inclusiveOfTax: true,
+                    company: "company",
+                    lines: [
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remoteId: "121222",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            netAmount: 25.54,
+                            trackingCategories: [
+                                "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            description: "Gifted Merge Credit",
+                            account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            project: "22e65a5d-2df5-4e6e-884a-e538d0339000",
+                            contact: "908934-49j9-093f-0989-908923908",
+                            taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            exchangeRate: "2.9",
+                            remoteWasDeleted: false,
+                        },
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remoteId: "121223",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            netAmount: 10,
+                            trackingCategories: [
+                                "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            description: "Refund for overpayment",
+                            account: "9d892439-5fab-4dbb-8bd8-34f7f96c7912",
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            exchangeRate: "2.9",
+                        },
+                    ],
+                    trackingCategories: [
+                        "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                        "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                        "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                    ],
+                    appliedToLines: [
+                        {
+                            remoteId: "088899",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                            appliedDate: new Date("2020-03-31T00:00:00.000Z"),
+                            appliedAmount: "2.9",
+                        },
+                    ],
+                    remoteWasDeleted: true,
+                    accountingPeriod: "accounting_period",
+                    fieldMappings: {
+                        organization_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                        linked_account_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                    },
+                    remoteData: [
+                        {
+                            path: "/actions",
+                            data: ["Varies by platform"],
+                        },
+                    ],
+                },
+            ],
+        });
+    });
 });

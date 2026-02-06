@@ -10,7 +10,7 @@ import type * as Merge from "../../../../../../index";
  *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
  *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
- *         expand: "accounting_period",
+ *         expand: "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
  *         includeRemoteFields: true,
@@ -39,8 +39,8 @@ export interface InvoicesListRequest {
     createdBefore?: Date;
     /** The pagination cursor value. */
     cursor?: string;
-    /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.accounting.InvoicesListRequestExpand;
+    /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. Possible values: accounting_period, applied_credit_notes, applied_payments, applied_vendor_credits, company, contact, employee, line_items, payment_term, purchase_orders, sales_orders, tracking_categories */
+    expand?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
