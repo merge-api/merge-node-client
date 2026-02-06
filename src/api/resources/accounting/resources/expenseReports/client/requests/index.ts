@@ -1,4 +1,6 @@
-export type { ExpenseReportEndpointRequest } from "./ExpenseReportEndpointRequest";
+export type { ExpenseReportsAsyncBulkCreateRequest } from "./ExpenseReportsAsyncBulkCreateRequest";
+export type { ExpenseReportsBatchObjectsListRequest } from "./ExpenseReportsBatchObjectsListRequest";
+export type { ExpenseReportsCreateRequest } from "./ExpenseReportsCreateRequest";
 export type { ExpenseReportsLinesListRequest } from "./ExpenseReportsLinesListRequest";
 export type { ExpenseReportsLinesRemoteFieldClassesListRequest } from "./ExpenseReportsLinesRemoteFieldClassesListRequest";
 export type { ExpenseReportsListRequest } from "./ExpenseReportsListRequest";
