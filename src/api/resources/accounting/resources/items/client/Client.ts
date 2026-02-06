@@ -145,28 +145,30 @@ export class ItemsClient {
     /**
      * Creates an `Item` object with the given values.
      *
-     * @param {Merge.accounting.ItemEndpointRequest} request
+     * @param {Merge.accounting.ItemsCreateRequest} request
      * @param {ItemsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.accounting.items.create({
      *         isDebugMode: true,
      *         runAsync: true,
-     *         model: {}
+     *         body: {
+     *             model: {}
+     *         }
      *     })
      */
     public create(
-        request: Merge.accounting.ItemEndpointRequest,
+        request: Merge.accounting.ItemsCreateRequest,
         requestOptions?: ItemsClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.ItemResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Merge.accounting.ItemEndpointRequest,
+        request: Merge.accounting.ItemsCreateRequest,
         requestOptions?: ItemsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.ItemResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
+        const { isDebugMode, runAsync, body: _body } = request;
         const _queryParams: Record<string, unknown> = {
             is_debug_mode: isDebugMode,
             run_async: runAsync,
@@ -532,6 +534,222 @@ export class ItemsClient {
             _response.rawResponse,
             "GET",
             "/accounting/v1/items/meta/post",
+        );
+    }
+
+    /**
+     * Creates an `Item` object with the given values.
+     *
+     * @param {Merge.accounting.ItemsAsyncBulkCreateRequest} request
+     * @param {ItemsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.items.asyncBulkCreate({
+     *         isDebugMode: true,
+     *         runAsync: true,
+     *         body: {
+     *             model: {}
+     *         }
+     *     })
+     */
+    public asyncBulkCreate(
+        request: Merge.accounting.ItemsAsyncBulkCreateRequest,
+        requestOptions?: ItemsClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.ItemResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+    }
+
+    private async __asyncBulkCreate(
+        request: Merge.accounting.ItemsAsyncBulkCreateRequest,
+        requestOptions?: ItemsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.ItemResponse>> {
+        const { isDebugMode, runAsync, body: _body } = request;
+        const _queryParams: Record<string, unknown> = {
+            is_debug_mode: isDebugMode,
+            run_async: runAsync,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/items/async/bulk",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: serializers.accounting.ItemEndpointRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.ItemResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/accounting/v1/items/async/bulk",
+        );
+    }
+
+    /**
+     * Returns a list of `Item` objects.
+     *
+     * @param {string} batch_id
+     * @param {Merge.accounting.ItemsBatchObjectsListRequest} request
+     * @param {ItemsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.accounting.items.batchObjectsList("batch_id", {
+     *         companyId: "company_id",
+     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+     *         expand: "company",
+     *         includeDeletedData: true,
+     *         includeRemoteData: true,
+     *         includeShellData: true,
+     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         name: "name",
+     *         pageSize: 1,
+     *         remoteFields: "status",
+     *         remoteId: "remote_id",
+     *         showEnumOrigins: "status"
+     *     })
+     */
+    public batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.ItemsBatchObjectsListRequest = {},
+        requestOptions?: ItemsClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedItemList> {
+        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+    }
+
+    private async __batchObjectsList(
+        batch_id: string,
+        request: Merge.accounting.ItemsBatchObjectsListRequest = {},
+        requestOptions?: ItemsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedItemList>> {
+        const {
+            companyId,
+            createdAfter,
+            createdBefore,
+            cursor,
+            expand,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            modifiedAfter,
+            modifiedBefore,
+            name,
+            pageSize,
+            remoteFields,
+            remoteId,
+            showEnumOrigins,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            created_after: createdAfter?.toISOString(),
+            created_before: createdBefore?.toISOString(),
+            cursor,
+            expand:
+                expand != null
+                    ? serializers.accounting.ItemsBatchObjectsListRequestExpand.jsonOrThrow(expand, {
+                          unrecognizedObjectKeys: "strip",
+                      })
+                    : undefined,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+            modified_after: modifiedAfter?.toISOString(),
+            modified_before: modifiedBefore?.toISOString(),
+            name,
+            page_size: pageSize,
+            remote_fields: remoteFields != null ? remoteFields : undefined,
+            remote_id: remoteId,
+            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                `accounting/v1/items/batch/${core.url.encodePathParam(batch_id)}/objects`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedItemList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/items/batch/{batch_id}/objects",
         );
     }
 }
