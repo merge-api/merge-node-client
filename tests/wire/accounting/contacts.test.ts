@@ -214,7 +214,9 @@ describe("ContactsClient", () => {
         const response = await client.accounting.contacts.create({
             isDebugMode: true,
             runAsync: true,
-            model: {},
+            body: {
+                model: {},
+            },
         });
         expect(response).toEqual({
             model: {
@@ -1463,6 +1465,300 @@ describe("ContactsClient", () => {
                     fieldType: "string",
                     fieldFormat: "string",
                     fieldChoices: ["field_choices"],
+                },
+            ],
+        });
+    });
+
+    test("asyncBulkCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { model: {} };
+        const rawResponseBody = {
+            model: {
+                id: "c640b80b-fac9-409f-aa19-1f9221aec445",
+                remote_id: "11167",
+                created_at: "2021-09-15T00:00:00Z",
+                modified_at: "2021-10-16T00:00:00Z",
+                name: "Gil Feig's pickleball store",
+                is_supplier: true,
+                is_customer: true,
+                email_address: "pickleball@merge.dev",
+                tax_number: "12-3456789",
+                status: "ACTIVE",
+                currency: "USD",
+                remote_updated_at: "2020-03-31T00:00:00Z",
+                company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                addresses: ["2f2702aa-8948-492b-a412-2acdf6d2c499", "d98c7428-8dda-48a8-a1da-c570f65e2375"],
+                phone_numbers: [
+                    {
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        number: "+3198675309",
+                        type: "Mobile",
+                    },
+                ],
+                remote_was_deleted: true,
+                field_mappings: {
+                    organization_defined_targets: { custom_key: "custom_value" },
+                    linked_account_defined_targets: { custom_key: "custom_value" },
+                },
+                remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+            },
+            warnings: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problem_type: "UNRECOGNIZED_FIELD",
+                },
+            ],
+            errors: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problem_type: "MISSING_REQUIRED_FIELD",
+                },
+            ],
+            logs: [
+                {
+                    log_id: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboard_view: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    log_summary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        status_code: 200,
+                    },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .post("/accounting/v1/contacts/async/bulk")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.contacts.asyncBulkCreate({
+            isDebugMode: true,
+            runAsync: true,
+            body: {
+                model: {},
+            },
+        });
+        expect(response).toEqual({
+            model: {
+                id: "c640b80b-fac9-409f-aa19-1f9221aec445",
+                remoteId: "11167",
+                createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                name: "Gil Feig's pickleball store",
+                isSupplier: true,
+                isCustomer: true,
+                emailAddress: "pickleball@merge.dev",
+                taxNumber: "12-3456789",
+                status: "ACTIVE",
+                currency: "USD",
+                remoteUpdatedAt: new Date("2020-03-31T00:00:00.000Z"),
+                company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                addresses: ["2f2702aa-8948-492b-a412-2acdf6d2c499", "d98c7428-8dda-48a8-a1da-c570f65e2375"],
+                phoneNumbers: [
+                    {
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        number: "+3198675309",
+                        type: "Mobile",
+                    },
+                ],
+                remoteWasDeleted: true,
+                fieldMappings: {
+                    organization_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                    linked_account_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                },
+                remoteData: [
+                    {
+                        path: "/actions",
+                        data: ["Varies by platform"],
+                    },
+                ],
+                remoteFields: [
+                    {
+                        remoteFieldClass: "remote_field_class",
+                        value: "string",
+                    },
+                ],
+            },
+            warnings: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problemType: "UNRECOGNIZED_FIELD",
+                },
+            ],
+            errors: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problemType: "MISSING_REQUIRED_FIELD",
+                },
+            ],
+            logs: [
+                {
+                    logId: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboardView: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    logSummary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        statusCode: 200,
+                    },
+                },
+            ],
+        });
+    });
+
+    test("batchObjectsList", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "c640b80b-fac9-409f-aa19-1f9221aec445",
+                    remote_id: "11167",
+                    created_at: "2021-09-15T00:00:00Z",
+                    modified_at: "2021-10-16T00:00:00Z",
+                    name: "Gil Feig's pickleball store",
+                    is_supplier: true,
+                    is_customer: true,
+                    email_address: "pickleball@merge.dev",
+                    tax_number: "12-3456789",
+                    status: "ACTIVE",
+                    currency: "USD",
+                    remote_updated_at: "2020-03-31T00:00:00Z",
+                    company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    addresses: ["2f2702aa-8948-492b-a412-2acdf6d2c499", "d98c7428-8dda-48a8-a1da-c570f65e2375"],
+                    phone_numbers: [
+                        {
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            number: "+3198675309",
+                            type: "Mobile",
+                        },
+                    ],
+                    remote_was_deleted: true,
+                    field_mappings: {
+                        organization_defined_targets: { custom_key: "custom_value" },
+                        linked_account_defined_targets: { custom_key: "custom_value" },
+                    },
+                    remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                    remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/accounting/v1/contacts/batch/batch_id/objects")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.contacts.batchObjectsList("batch_id", {
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            emailAddress: "email_address",
+            expand: "addresses",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeRemoteFields: true,
+            includeShellData: true,
+            isCustomer: "is_customer",
+            isSupplier: "is_supplier",
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            name: "name",
+            pageSize: 1,
+            remoteFields: "status",
+            remoteId: "remote_id",
+            showEnumOrigins: "status",
+            status: "",
+        });
+        expect(response).toEqual({
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "c640b80b-fac9-409f-aa19-1f9221aec445",
+                    remoteId: "11167",
+                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                    name: "Gil Feig's pickleball store",
+                    isSupplier: true,
+                    isCustomer: true,
+                    emailAddress: "pickleball@merge.dev",
+                    taxNumber: "12-3456789",
+                    status: "ACTIVE",
+                    currency: "USD",
+                    remoteUpdatedAt: new Date("2020-03-31T00:00:00.000Z"),
+                    company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    addresses: ["2f2702aa-8948-492b-a412-2acdf6d2c499", "d98c7428-8dda-48a8-a1da-c570f65e2375"],
+                    phoneNumbers: [
+                        {
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            number: "+3198675309",
+                            type: "Mobile",
+                        },
+                    ],
+                    remoteWasDeleted: true,
+                    fieldMappings: {
+                        organization_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                        linked_account_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                    },
+                    remoteData: [
+                        {
+                            path: "/actions",
+                            data: ["Varies by platform"],
+                        },
+                    ],
+                    remoteFields: [
+                        {
+                            remoteFieldClass: "remote_field_class",
+                            value: "string",
+                        },
+                    ],
                 },
             ],
         });
