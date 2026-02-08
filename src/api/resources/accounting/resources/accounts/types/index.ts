@@ -1,3 +1,7 @@
+export * from "./AccountsBatchObjectsListRequestClassification";
+export * from "./AccountsBatchObjectsListRequestRemoteFields";
+export * from "./AccountsBatchObjectsListRequestShowEnumOrigins";
+export * from "./AccountsBatchObjectsListRequestStatus";
 export * from "./AccountsListRequestClassification";
 export * from "./AccountsListRequestRemoteFields";
 export * from "./AccountsListRequestShowEnumOrigins";
