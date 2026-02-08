@@ -24435,6 +24435,163 @@ await client.accounting.accounts.metaPostRetrieve();
 </dl>
 </details>
 
+<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.AccountResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Account` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.accounts.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AccountBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedAccountList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Account` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.accounts.batchObjectsList("batch_id", {
+    accountType: "account_type",
+    classification: "",
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "company",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteFields: "classification",
+    remoteId: "remote_id",
+    showEnumOrigins: "classification",
+    status: ""
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AccountsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Accounting Addresses
 <details><summary><code>client.accounting.addresses.<a href="/src/api/resources/accounting/resources/addresses/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Address</code></summary>
 <dl>
@@ -24962,6 +25119,156 @@ await client.accounting.attachments.metaPostRetrieve();
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AttachmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.AccountingAttachmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `AccountingAttachment` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.attachments.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AccountingAttachmentBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AttachmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedAccountingAttachmentList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `AccountingAttachment` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.attachments.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AttachmentsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -25523,6 +25830,150 @@ await client.accounting.bankFeedAccounts.metaPostRetrieve();
 </dl>
 </details>
 
+<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.BankFeedAccountResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `BankFeedAccount` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedAccounts.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedAccountBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedBankFeedAccountList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `BankFeedAccount` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedAccounts.batchObjectsList("batch_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedAccountsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Accounting BankFeedTransactions
 <details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedBankFeedTransactionList</code></summary>
 <dl>
@@ -25781,6 +26232,157 @@ await client.accounting.bankFeedTransactions.metaPostRetrieve();
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.BankFeedTransactionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `BankFeedTransaction` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedTransactions.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: []
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedTransactionBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedBankFeedTransactionList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `BankFeedTransaction` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedTransactions.batchObjectsList("batch_id", {
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "bank_feed_account",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isProcessed: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedTransactionsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -26594,6 +27196,165 @@ await client.accounting.contacts.remoteFieldClassesList({
 </dl>
 </details>
 
+<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.ContactResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Contact` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.contacts.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ContactBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ContactsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedContactList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Contact` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.contacts.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    emailAddress: "email_address",
+    expand: "addresses",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCustomer: "is_customer",
+    isSupplier: "is_supplier",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    status: ""
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ContactsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ContactsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Accounting CreditNotes
 <details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCreditNoteList</code></summary>
 <dl>
@@ -26858,6 +27619,161 @@ await client.accounting.creditNotes.metaPostRetrieve();
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditNotesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.CreditNoteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `CreditNote` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.creditNotes.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CreditNoteBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditNotesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedCreditNoteList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `CreditNote` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.creditNotes.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "accounting_period",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CreditNotesBatchObjectsListRequest` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -27778,6 +28694,160 @@ await client.accounting.expenseReports.remoteFieldClassesList({
 </dl>
 </details>
 
+<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.ExpenseReportResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `ExpenseReport` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.expenseReports.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{
+            trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"]
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ExpenseReportBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpenseReportsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedExpenseReportList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `ExpenseReport` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.expenseReports.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "accounting_period",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ExpenseReportsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpenseReportsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Accounting Expenses
 <details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedExpenseList</code></summary>
 <dl>
@@ -28179,6 +29249,160 @@ await client.accounting.expenses.remoteFieldClassesList({
 <dd>
 
 **request:** `Merge.accounting.ExpensesRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.ExpenseResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Expense` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.expenses.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ExpenseBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedExpenseList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Expense` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.expenses.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "account",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ExpensesBatchObjectsListRequest` 
     
 </dd>
 </dl>
@@ -28996,7 +30220,7 @@ await client.accounting.invoices.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
+    expand: "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -29145,7 +30369,7 @@ Returns an `Invoice` object with the given `id`.
 
 ```typescript
 await client.accounting.invoices.retrieve("id", {
-    expand: "accounting_period",
+    expand: "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true,
@@ -29511,6 +30735,168 @@ await client.accounting.invoices.remoteFieldClassesList({
 <dd>
 
 **request:** `Merge.accounting.InvoicesRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.InvoiceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates multiple `Invoice` objects with the given values using async batch processing.
+            Including a `PurchaseOrder` id in the `purchase_orders` property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
+            
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.invoices.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.InvoiceBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedInvoiceList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Invoice` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.invoices.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    contactId: "contact_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "payments,applied_payments,line_items,tracking_categories,purchase_orders,sales_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    number: "number",
+    pageSize: 1,
+    remoteFields: "type",
+    remoteId: "remote_id",
+    showEnumOrigins: "type",
+    status: "DRAFT",
+    type: "ACCOUNTS_PAYABLE"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.InvoicesBatchObjectsListRequest` 
     
 </dd>
 </dl>
@@ -30088,6 +31474,519 @@ await client.accounting.items.metaPostRetrieve();
 </dl>
 </details>
 
+<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.ItemResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Item` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.items.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: []
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedItemList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Item` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.items.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "company",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting ItemFulfillments
+<details><summary><code>client.accounting.itemFulfillments.<a href="/src/api/resources/accounting/resources/itemFulfillments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedItemFulfillmentList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `ItemFulfillment` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.itemFulfillments.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cursor",
+    expand: "expand",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemFulfillmentsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemFulfillmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.itemFulfillments.<a href="/src/api/resources/accounting/resources/itemFulfillments/client/Client.ts">create</a>({ ...params }) -> Merge.ItemFulfillmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `ItemFulfillment` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.itemFulfillments.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemFulfillmentEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemFulfillmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.itemFulfillments.<a href="/src/api/resources/accounting/resources/itemFulfillments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.ItemFulfillment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `ItemFulfillment` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.itemFulfillments.retrieve("id", {
+    expand: "expand",
+    includeRemoteData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemFulfillmentsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemFulfillmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.itemFulfillments.<a href="/src/api/resources/accounting/resources/itemFulfillments/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.ItemFulfillmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates multiple `ItemFulfillment` objects with the given values using async batch processing.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.itemFulfillments.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemFulfillmentBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemFulfillmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.itemFulfillments.<a href="/src/api/resources/accounting/resources/itemFulfillments/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedItemFulfillmentList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `ItemFulfillment` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.itemFulfillments.batchObjectsList("batch_id", {
+    cursor: "cursor",
+    expand: "expand",
+    includeRemoteData: true,
+    pageSize: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemFulfillmentsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemFulfillmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Accounting JournalEntries
 <details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJournalEntryList</code></summary>
 <dl>
@@ -30489,6 +32388,160 @@ await client.accounting.journalEntries.remoteFieldClassesList({
 <dd>
 
 **request:** `Merge.accounting.JournalEntriesRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JournalEntriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.JournalEntryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `JournalEntry` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.journalEntries.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.JournalEntryBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JournalEntriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedJournalEntryList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `JournalEntry` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.journalEntries.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "accounting_period",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.JournalEntriesBatchObjectsListRequest` 
     
 </dd>
 </dl>
@@ -31572,6 +33625,162 @@ await client.accounting.payments.remoteFieldClassesList({
 </dl>
 </details>
 
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.PaymentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Payment` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.payments.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedPaymentList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Payment` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.payments.batchObjectsList("batch_id", {
+    accountId: "account_id",
+    companyId: "company_id",
+    contactId: "contact_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "account",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Accounting PhoneNumbers
 <details><summary><code>client.accounting.phoneNumbers.<a href="/src/api/resources/accounting/resources/phoneNumbers/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingPhoneNumber</code></summary>
 <dl>
@@ -32212,6 +34421,521 @@ await client.accounting.purchaseOrders.remoteFieldClassesList({
 <dd>
 
 **requestOptions:** `PurchaseOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.PurchaseOrderResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `PurchaseOrder` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.purchaseOrders.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PurchaseOrderBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedPurchaseOrderList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `PurchaseOrder` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.purchaseOrders.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "accounting_period",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PurchaseOrdersBatchObjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting SalesOrders
+<details><summary><code>client.accounting.salesOrders.<a href="/src/api/resources/accounting/resources/salesOrders/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSalesOrderList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `SalesOrder` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.salesOrders.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cursor",
+    expand: "expand",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.SalesOrdersListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SalesOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.salesOrders.<a href="/src/api/resources/accounting/resources/salesOrders/client/Client.ts">create</a>({ ...params }) -> Merge.SalesOrderResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `SalesOrder` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.salesOrders.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.SalesOrderEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SalesOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.salesOrders.<a href="/src/api/resources/accounting/resources/salesOrders/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.SalesOrder</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `SalesOrder` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.salesOrders.retrieve("id", {
+    expand: "expand",
+    includeRemoteData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.SalesOrdersRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SalesOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.salesOrders.<a href="/src/api/resources/accounting/resources/salesOrders/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.SalesOrderResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates multiple `SalesOrder` objects with the given values using async batch processing.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.salesOrders.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.SalesOrderBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SalesOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.salesOrders.<a href="/src/api/resources/accounting/resources/salesOrders/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedSalesOrderList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `SalesOrder` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.salesOrders.batchObjectsList("batch_id", {
+    cursor: "cursor",
+    expand: "expand",
+    includeRemoteData: true,
+    pageSize: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.SalesOrdersBatchObjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SalesOrdersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -33138,6 +35862,159 @@ await client.accounting.vendorCredits.metaPostRetrieve();
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `VendorCreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.VendorCreditResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `VendorCredit` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.vendorCredits.asyncBulkCreate({
+    isDebugMode: true,
+    runAsync: true,
+    batchItems: [{}]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.VendorCreditBulkEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VendorCreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.PaginatedVendorCreditList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `VendorCredit` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.vendorCredits.batchObjectsList("batch_id", {
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    expand: "accounting_period",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.VendorCreditsBatchObjectsListRequest` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
