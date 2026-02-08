@@ -682,4 +682,204 @@ describe("BankFeedTransactionsClient", () => {
             hasRequiredLinkedAccountParams: true,
         });
     });
+
+    test("asyncBulkCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { batch_items: [] };
+        const rawResponseBody = {
+            model: {
+                id: "b26fd49a-cbae-470a-a8f8-bcbc119e0390",
+                remote_id: "987300",
+                created_at: "2021-09-15T00:00:00Z",
+                modified_at: "2021-10-16T00:00:00Z",
+                bank_feed_account: "bank_feed_account",
+                transaction_date: "2024-02-02T00:00:00Z",
+                posted_date: "2024-02-03T00:00:00Z",
+                amount: 100.1,
+                description: "Lunch expense",
+                transaction_type: "payment",
+                payee: "Elmo's diner",
+                credit_or_debit: "CREDIT",
+                source_transaction_id: "124569",
+                remote_was_deleted: true,
+                is_processed: true,
+            },
+            warnings: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problem_type: "UNRECOGNIZED_FIELD",
+                },
+            ],
+            errors: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problem_type: "MISSING_REQUIRED_FIELD",
+                },
+            ],
+            logs: [
+                {
+                    log_id: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboard_view: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    log_summary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        status_code: 200,
+                    },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .post("/accounting/v1/bank-feed-transactions/async/bulk")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.bankFeedTransactions.asyncBulkCreate({
+            isDebugMode: true,
+            runAsync: true,
+            batchItems: [],
+        });
+        expect(response).toEqual({
+            model: {
+                id: "b26fd49a-cbae-470a-a8f8-bcbc119e0390",
+                remoteId: "987300",
+                createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                bankFeedAccount: "bank_feed_account",
+                transactionDate: new Date("2024-02-02T00:00:00.000Z"),
+                postedDate: new Date("2024-02-03T00:00:00.000Z"),
+                amount: 100.1,
+                description: "Lunch expense",
+                transactionType: "payment",
+                payee: "Elmo's diner",
+                creditOrDebit: "CREDIT",
+                sourceTransactionId: "124569",
+                remoteWasDeleted: true,
+                isProcessed: true,
+            },
+            warnings: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problemType: "UNRECOGNIZED_FIELD",
+                },
+            ],
+            errors: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problemType: "MISSING_REQUIRED_FIELD",
+                },
+            ],
+            logs: [
+                {
+                    logId: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboardView: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    logSummary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        statusCode: 200,
+                    },
+                },
+            ],
+        });
+    });
+
+    test("batchObjectsList", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "b26fd49a-cbae-470a-a8f8-bcbc119e0390",
+                    remote_id: "987300",
+                    created_at: "2021-09-15T00:00:00Z",
+                    modified_at: "2021-10-16T00:00:00Z",
+                    bank_feed_account: "bank_feed_account",
+                    transaction_date: "2024-02-02T00:00:00Z",
+                    posted_date: "2024-02-03T00:00:00Z",
+                    amount: 100.1,
+                    description: "Lunch expense",
+                    transaction_type: "payment",
+                    payee: "Elmo's diner",
+                    credit_or_debit: "CREDIT",
+                    source_transaction_id: "124569",
+                    remote_was_deleted: true,
+                    is_processed: true,
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/accounting/v1/bank-feed-transactions/batch/batch_id/objects")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.bankFeedTransactions.batchObjectsList("batch_id", {
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            expand: "bank_feed_account",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            isProcessed: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            pageSize: 1,
+            remoteId: "remote_id",
+        });
+        expect(response).toEqual({
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "b26fd49a-cbae-470a-a8f8-bcbc119e0390",
+                    remoteId: "987300",
+                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                    bankFeedAccount: "bank_feed_account",
+                    transactionDate: new Date("2024-02-02T00:00:00.000Z"),
+                    postedDate: new Date("2024-02-03T00:00:00.000Z"),
+                    amount: 100.1,
+                    description: "Lunch expense",
+                    transactionType: "payment",
+                    payee: "Elmo's diner",
+                    creditOrDebit: "CREDIT",
+                    sourceTransactionId: "124569",
+                    remoteWasDeleted: true,
+                    isProcessed: true,
+                },
+            ],
+        });
+    });
 });
