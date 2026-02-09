@@ -34,10 +34,7 @@ describe("BalanceSheetsClient", () => {
                             modified_at: "2021-10-16T00:00:00Z",
                             name: "Assets",
                             value: 1000,
-                            sub_items: [
-                                { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                                { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                            ],
+                            sub_items: { key: "value" },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -48,10 +45,7 @@ describe("BalanceSheetsClient", () => {
                             modified_at: "2021-10-16T00:00:00Z",
                             name: "Liabilities",
                             value: 500,
-                            sub_items: [
-                                { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                                { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                            ],
+                            sub_items: { key: "value" },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -62,10 +56,7 @@ describe("BalanceSheetsClient", () => {
                             modified_at: "2021-10-16T00:00:00Z",
                             name: "Equity",
                             value: 500,
-                            sub_items: [
-                                { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                                { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                            ],
+                            sub_items: { key: "value" },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -122,18 +113,9 @@ describe("BalanceSheetsClient", () => {
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             name: "Assets",
                             value: 1000,
-                            subItems: [
-                                {
-                                    remote_id: "10300",
-                                    name: "Revenue - San Francisco",
-                                    value: 500,
-                                },
-                                {
-                                    remote_id: "10301",
-                                    name: "Revenue - New York",
-                                    value: 500,
-                                },
-                            ],
+                            subItems: {
+                                key: "value",
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -144,18 +126,9 @@ describe("BalanceSheetsClient", () => {
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             name: "Liabilities",
                             value: 500,
-                            subItems: [
-                                {
-                                    remote_id: "10300",
-                                    name: "Revenue - San Francisco",
-                                    value: 500,
-                                },
-                                {
-                                    remote_id: "10301",
-                                    name: "Revenue - New York",
-                                    value: 500,
-                                },
-                            ],
+                            subItems: {
+                                key: "value",
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -166,18 +139,9 @@ describe("BalanceSheetsClient", () => {
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             name: "Equity",
                             value: 500,
-                            subItems: [
-                                {
-                                    remote_id: "10300",
-                                    name: "Revenue - San Francisco",
-                                    value: 500,
-                                },
-                                {
-                                    remote_id: "10301",
-                                    name: "Revenue - New York",
-                                    value: 500,
-                                },
-                            ],
+                            subItems: {
+                                key: "value",
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -228,10 +192,7 @@ describe("BalanceSheetsClient", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "Assets",
                     value: 1000,
-                    sub_items: [
-                        { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                        { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                    ],
+                    sub_items: { key: "value" },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -243,10 +204,7 @@ describe("BalanceSheetsClient", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "Liabilities",
                     value: 500,
-                    sub_items: [
-                        { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                        { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                    ],
+                    sub_items: { key: "value" },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -258,10 +216,7 @@ describe("BalanceSheetsClient", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "Equity",
                     value: 500,
-                    sub_items: [
-                        { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                        { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                    ],
+                    sub_items: { key: "value" },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -304,18 +259,9 @@ describe("BalanceSheetsClient", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "Assets",
                     value: 1000,
-                    subItems: [
-                        {
-                            remote_id: "10300",
-                            name: "Revenue - San Francisco",
-                            value: 500,
-                        },
-                        {
-                            remote_id: "10301",
-                            name: "Revenue - New York",
-                            value: 500,
-                        },
-                    ],
+                    subItems: {
+                        key: "value",
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },
@@ -327,18 +273,9 @@ describe("BalanceSheetsClient", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "Liabilities",
                     value: 500,
-                    subItems: [
-                        {
-                            remote_id: "10300",
-                            name: "Revenue - San Francisco",
-                            value: 500,
-                        },
-                        {
-                            remote_id: "10301",
-                            name: "Revenue - New York",
-                            value: 500,
-                        },
-                    ],
+                    subItems: {
+                        key: "value",
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },
@@ -350,18 +287,9 @@ describe("BalanceSheetsClient", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "Equity",
                     value: 500,
-                    subItems: [
-                        {
-                            remote_id: "10300",
-                            name: "Revenue - San Francisco",
-                            value: 500,
-                        },
-                        {
-                            remote_id: "10301",
-                            name: "Revenue - New York",
-                            value: 500,
-                        },
-                    ],
+                    subItems: {
+                        key: "value",
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },

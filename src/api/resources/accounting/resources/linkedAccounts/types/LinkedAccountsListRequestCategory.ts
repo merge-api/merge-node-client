@@ -3,9 +3,13 @@
 export const LinkedAccountsListRequestCategory = {
     Accounting: "accounting",
     Ats: "ats",
+    Chat: "chat",
+    Communication: "communication",
     Crm: "crm",
+    Datawarehouse: "datawarehouse",
     Filestorage: "filestorage",
     Hris: "hris",
+    Knowledgebase: "knowledgebase",
     Mktg: "mktg",
     Ticketing: "ticketing",
 } as const;

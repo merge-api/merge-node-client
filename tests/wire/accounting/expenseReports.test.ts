@@ -24,7 +24,7 @@ describe("ExpenseReportsClient", () => {
                     modified_at: "2024-01-31T14:30:00Z",
                     report_date: "2024-01-31T00:00:00Z",
                     report_identifier: "EXP-2024-001",
-                    employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
+                    employee: "employee",
                     status: "DRAFT",
                     total_amount: 150,
                     lines: [
@@ -56,7 +56,7 @@ describe("ExpenseReportsClient", () => {
                     ],
                     currency: "XUA",
                     description: "January 2024 Travel Expenses",
-                    accounting_period: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
+                    accounting_period: "accounting_period",
                     company: "company",
                     tracking_categories: [
                         "a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d",
@@ -68,7 +68,7 @@ describe("ExpenseReportsClient", () => {
                         linked_account_defined_targets: { custom_key: "custom_value" },
                     },
                     remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-                    remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
                 },
             ],
         };
@@ -106,7 +106,7 @@ describe("ExpenseReportsClient", () => {
                     modifiedAt: new Date("2024-01-31T14:30:00.000Z"),
                     reportDate: new Date("2024-01-31T00:00:00.000Z"),
                     reportIdentifier: "EXP-2024-001",
-                    employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
+                    employee: "employee",
                     status: "DRAFT",
                     totalAmount: 150,
                     lines: [
@@ -138,7 +138,7 @@ describe("ExpenseReportsClient", () => {
                     ],
                     currency: "XUA",
                     description: "January 2024 Travel Expenses",
-                    accountingPeriod: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
+                    accountingPeriod: "accounting_period",
                     company: "company",
                     trackingCategories: [
                         "a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d",
@@ -161,8 +161,10 @@ describe("ExpenseReportsClient", () => {
                     ],
                     remoteFields: [
                         {
-                            remoteFieldClass: "remote_field_class",
-                            value: "string",
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
                         },
                     ],
                 },
@@ -191,7 +193,7 @@ describe("ExpenseReportsClient", () => {
                 modified_at: "2024-01-31T14:30:00Z",
                 report_date: "2024-01-31T00:00:00Z",
                 report_identifier: "EXP-2024-001",
-                employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
+                employee: "employee",
                 status: "DRAFT",
                 total_amount: 150,
                 lines: [
@@ -223,7 +225,7 @@ describe("ExpenseReportsClient", () => {
                 ],
                 currency: "XUA",
                 description: "January 2024 Travel Expenses",
-                accounting_period: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
+                accounting_period: "accounting_period",
                 company: "company",
                 tracking_categories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"],
                 remote_was_deleted: true,
@@ -232,7 +234,7 @@ describe("ExpenseReportsClient", () => {
                     linked_account_defined_targets: { custom_key: "custom_value" },
                 },
                 remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-                remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
             },
             warnings: [
                 {
@@ -240,6 +242,7 @@ describe("ExpenseReportsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -248,6 +251,7 @@ describe("ExpenseReportsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -274,8 +278,13 @@ describe("ExpenseReportsClient", () => {
         const response = await client.accounting.expenseReports.create({
             isDebugMode: true,
             runAsync: true,
-            model: {
-                trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"],
+            body: {
+                model: {
+                    trackingCategories: [
+                        "a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d",
+                        "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p",
+                    ],
+                },
             },
         });
         expect(response).toEqual({
@@ -286,7 +295,7 @@ describe("ExpenseReportsClient", () => {
                 modifiedAt: new Date("2024-01-31T14:30:00.000Z"),
                 reportDate: new Date("2024-01-31T00:00:00.000Z"),
                 reportIdentifier: "EXP-2024-001",
-                employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
+                employee: "employee",
                 status: "DRAFT",
                 totalAmount: 150,
                 lines: [
@@ -318,7 +327,7 @@ describe("ExpenseReportsClient", () => {
                 ],
                 currency: "XUA",
                 description: "January 2024 Travel Expenses",
-                accountingPeriod: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
+                accountingPeriod: "accounting_period",
                 company: "company",
                 trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"],
                 remoteWasDeleted: true,
@@ -338,8 +347,10 @@ describe("ExpenseReportsClient", () => {
                 ],
                 remoteFields: [
                     {
-                        remoteFieldClass: "remote_field_class",
-                        value: "string",
+                        remoteFieldClass: {},
+                        value: {
+                            key: "value",
+                        },
                     },
                 ],
             },
@@ -351,6 +362,7 @@ describe("ExpenseReportsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -361,6 +373,7 @@ describe("ExpenseReportsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -414,7 +427,7 @@ describe("ExpenseReportsClient", () => {
                     inclusive_of_tax: true,
                     tax_rate: "tax_rate",
                     remote_was_deleted: true,
-                    remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
                 },
             ],
         };
@@ -428,7 +441,7 @@ describe("ExpenseReportsClient", () => {
 
         const response = await client.accounting.expenseReports.linesList("expense_report_id", {
             cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            expand: "account",
+            expand: "account,employee,project,company,contact,tax_rate",
             includeDeletedData: true,
             includeRemoteData: true,
             includeRemoteFields: true,
@@ -465,8 +478,10 @@ describe("ExpenseReportsClient", () => {
                     remoteWasDeleted: true,
                     remoteFields: [
                         {
-                            remoteFieldClass: "remote_field_class",
-                            value: "string",
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
                         },
                     ],
                 },
@@ -490,7 +505,7 @@ describe("ExpenseReportsClient", () => {
             modified_at: "2024-01-31T14:30:00Z",
             report_date: "2024-01-31T00:00:00Z",
             report_identifier: "EXP-2024-001",
-            employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
+            employee: "employee",
             status: "DRAFT",
             total_amount: 150,
             lines: [
@@ -518,12 +533,12 @@ describe("ExpenseReportsClient", () => {
                     inclusive_of_tax: false,
                     tax_rate: "tax-1234",
                     remote_was_deleted: false,
-                    remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
                 },
             ],
             currency: "XUA",
             description: "January 2024 Travel Expenses",
-            accounting_period: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
+            accounting_period: "accounting_period",
             company: "company",
             tracking_categories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"],
             remote_was_deleted: true,
@@ -532,7 +547,7 @@ describe("ExpenseReportsClient", () => {
                 linked_account_defined_targets: { custom_key: "custom_value" },
             },
             remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-            remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+            remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
         };
         server
             .mockEndpoint()
@@ -555,7 +570,7 @@ describe("ExpenseReportsClient", () => {
             modifiedAt: new Date("2024-01-31T14:30:00.000Z"),
             reportDate: new Date("2024-01-31T00:00:00.000Z"),
             reportIdentifier: "EXP-2024-001",
-            employee: "b9a9b824-6172-4d63-9d90-1c8a86c4f3b1",
+            employee: "employee",
             status: "DRAFT",
             totalAmount: 150,
             lines: [
@@ -585,15 +600,17 @@ describe("ExpenseReportsClient", () => {
                     remoteWasDeleted: false,
                     remoteFields: [
                         {
-                            remoteFieldClass: "remote_field_class",
-                            value: "string",
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
                         },
                     ],
                 },
             ],
             currency: "XUA",
             description: "January 2024 Travel Expenses",
-            accountingPeriod: "7d793c67-9f72-4a6b-9256-3936f237b0d9",
+            accountingPeriod: "accounting_period",
             company: "company",
             trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"],
             remoteWasDeleted: true,
@@ -613,8 +630,411 @@ describe("ExpenseReportsClient", () => {
             ],
             remoteFields: [
                 {
-                    remoteFieldClass: "remote_field_class",
-                    value: "string",
+                    remoteFieldClass: {},
+                    value: {
+                        key: "value",
+                    },
+                },
+            ],
+        });
+    });
+
+    test("asyncBulkCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            batch_items: [
+                {
+                    item_id: "item_id",
+                    payload: {
+                        model: {
+                            tracking_categories: [
+                                "a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d",
+                                "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p",
+                            ],
+                        },
+                    },
+                },
+            ],
+        };
+        const rawResponseBody = {
+            model: {
+                id: "123e4567-e89b-12d3-a456-426614174000",
+                remote_id: "exp_123e4567-e89b-12d3-a456-426614174000",
+                created_at: "2024-01-31T12:00:00Z",
+                modified_at: "2024-01-31T14:30:00Z",
+                report_date: "2024-01-31T00:00:00Z",
+                report_identifier: "EXP-2024-001",
+                employee: "employee",
+                status: "DRAFT",
+                total_amount: 150,
+                lines: [
+                    {
+                        id: "1234",
+                        remote_id: "abcd-1234",
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        account: "acc-1234",
+                        description: "Client lunch meeting",
+                        expense_date: "2024-01-15T00:00:00Z",
+                        amount: 50,
+                        currency: "USD",
+                        exchange_rate: "exchange_rate",
+                        is_billable: true,
+                        tracking_categories: ["cat-1", "cat-2"],
+                        employee: "emp-1234",
+                        project: "proj-5678",
+                        company: "comp-1234",
+                        contact: "cont-5678",
+                        quantity: 1,
+                        unit_price: 50,
+                        non_reimbursable: false,
+                        tax_amount: 5,
+                        inclusive_of_tax: false,
+                        tax_rate: "tax-1234",
+                        remote_was_deleted: false,
+                    },
+                ],
+                currency: "XUA",
+                description: "January 2024 Travel Expenses",
+                accounting_period: "accounting_period",
+                company: "company",
+                tracking_categories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"],
+                remote_was_deleted: true,
+                field_mappings: {
+                    organization_defined_targets: { custom_key: "custom_value" },
+                    linked_account_defined_targets: { custom_key: "custom_value" },
+                },
+                remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
+            },
+            warnings: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            errors: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            logs: [
+                {
+                    log_id: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboard_view: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    log_summary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        status_code: 200,
+                    },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .post("/accounting/v1/expense-reports/async/bulk")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.expenseReports.asyncBulkCreate({
+            isDebugMode: true,
+            runAsync: true,
+            batchItems: [
+                {
+                    itemId: "item_id",
+                    payload: {
+                        model: {
+                            trackingCategories: [
+                                "a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d",
+                                "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p",
+                            ],
+                        },
+                    },
+                },
+            ],
+        });
+        expect(response).toEqual({
+            model: {
+                id: "123e4567-e89b-12d3-a456-426614174000",
+                remoteId: "exp_123e4567-e89b-12d3-a456-426614174000",
+                createdAt: new Date("2024-01-31T12:00:00.000Z"),
+                modifiedAt: new Date("2024-01-31T14:30:00.000Z"),
+                reportDate: new Date("2024-01-31T00:00:00.000Z"),
+                reportIdentifier: "EXP-2024-001",
+                employee: "employee",
+                status: "DRAFT",
+                totalAmount: 150,
+                lines: [
+                    {
+                        id: "1234",
+                        remoteId: "abcd-1234",
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        account: "acc-1234",
+                        description: "Client lunch meeting",
+                        expenseDate: new Date("2024-01-15T00:00:00.000Z"),
+                        amount: 50,
+                        currency: "USD",
+                        exchangeRate: "exchange_rate",
+                        isBillable: true,
+                        trackingCategories: ["cat-1", "cat-2"],
+                        employee: "emp-1234",
+                        project: "proj-5678",
+                        company: "comp-1234",
+                        contact: "cont-5678",
+                        quantity: 1,
+                        unitPrice: 50,
+                        nonReimbursable: false,
+                        taxAmount: 5,
+                        inclusiveOfTax: false,
+                        taxRate: "tax-1234",
+                        remoteWasDeleted: false,
+                    },
+                ],
+                currency: "XUA",
+                description: "January 2024 Travel Expenses",
+                accountingPeriod: "accounting_period",
+                company: "company",
+                trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"],
+                remoteWasDeleted: true,
+                fieldMappings: {
+                    organization_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                    linked_account_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                },
+                remoteData: [
+                    {
+                        path: "/actions",
+                        data: ["Varies by platform"],
+                    },
+                ],
+                remoteFields: [
+                    {
+                        remoteFieldClass: {},
+                        value: {
+                            key: "value",
+                        },
+                    },
+                ],
+            },
+            warnings: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            errors: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            logs: [
+                {
+                    logId: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboardView: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    logSummary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        statusCode: 200,
+                    },
+                },
+            ],
+        });
+    });
+
+    test("batchObjectsList", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "123e4567-e89b-12d3-a456-426614174000",
+                    remote_id: "exp_123e4567-e89b-12d3-a456-426614174000",
+                    created_at: "2024-01-31T12:00:00Z",
+                    modified_at: "2024-01-31T14:30:00Z",
+                    report_date: "2024-01-31T00:00:00Z",
+                    report_identifier: "EXP-2024-001",
+                    employee: "employee",
+                    status: "DRAFT",
+                    total_amount: 150,
+                    lines: [
+                        {
+                            id: "1234",
+                            remote_id: "abcd-1234",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            account: "acc-1234",
+                            description: "Client lunch meeting",
+                            expense_date: "2024-01-15T00:00:00Z",
+                            amount: 50,
+                            currency: "USD",
+                            exchange_rate: "exchange_rate",
+                            is_billable: true,
+                            tracking_categories: ["cat-1", "cat-2"],
+                            employee: "emp-1234",
+                            project: "proj-5678",
+                            company: "comp-1234",
+                            contact: "cont-5678",
+                            quantity: 1,
+                            unit_price: 50,
+                            non_reimbursable: false,
+                            tax_amount: 5,
+                            inclusive_of_tax: false,
+                            tax_rate: "tax-1234",
+                            remote_was_deleted: false,
+                        },
+                    ],
+                    currency: "XUA",
+                    description: "January 2024 Travel Expenses",
+                    accounting_period: "accounting_period",
+                    company: "company",
+                    tracking_categories: [
+                        "a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d",
+                        "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p",
+                    ],
+                    remote_was_deleted: true,
+                    field_mappings: {
+                        organization_defined_targets: { custom_key: "custom_value" },
+                        linked_account_defined_targets: { custom_key: "custom_value" },
+                    },
+                    remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/accounting/v1/expense-reports/batch/batch_id/objects")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.expenseReports.batchObjectsList("batch_id", {
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            expand: "accounting_period",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeRemoteFields: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            pageSize: 1,
+            remoteId: "remote_id",
+        });
+        expect(response).toEqual({
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "123e4567-e89b-12d3-a456-426614174000",
+                    remoteId: "exp_123e4567-e89b-12d3-a456-426614174000",
+                    createdAt: new Date("2024-01-31T12:00:00.000Z"),
+                    modifiedAt: new Date("2024-01-31T14:30:00.000Z"),
+                    reportDate: new Date("2024-01-31T00:00:00.000Z"),
+                    reportIdentifier: "EXP-2024-001",
+                    employee: "employee",
+                    status: "DRAFT",
+                    totalAmount: 150,
+                    lines: [
+                        {
+                            id: "1234",
+                            remoteId: "abcd-1234",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            account: "acc-1234",
+                            description: "Client lunch meeting",
+                            expenseDate: new Date("2024-01-15T00:00:00.000Z"),
+                            amount: 50,
+                            currency: "USD",
+                            exchangeRate: "exchange_rate",
+                            isBillable: true,
+                            trackingCategories: ["cat-1", "cat-2"],
+                            employee: "emp-1234",
+                            project: "proj-5678",
+                            company: "comp-1234",
+                            contact: "cont-5678",
+                            quantity: 1,
+                            unitPrice: 50,
+                            nonReimbursable: false,
+                            taxAmount: 5,
+                            inclusiveOfTax: false,
+                            taxRate: "tax-1234",
+                            remoteWasDeleted: false,
+                        },
+                    ],
+                    currency: "XUA",
+                    description: "January 2024 Travel Expenses",
+                    accountingPeriod: "accounting_period",
+                    company: "company",
+                    trackingCategories: [
+                        "a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d",
+                        "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p",
+                    ],
+                    remoteWasDeleted: true,
+                    fieldMappings: {
+                        organization_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                        linked_account_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                    },
+                    remoteData: [
+                        {
+                            path: "/actions",
+                            data: ["Varies by platform"],
+                        },
+                    ],
+                    remoteFields: [
+                        {
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
+                        },
+                    ],
                 },
             ],
         });
@@ -855,10 +1275,10 @@ describe("ExpenseReportsClient", () => {
                     },
                 },
             },
-            remote_field_classes: { key: "value" },
             status: { linked_account_status: "linked_account_status", can_make_request: true },
             has_conditional_params: true,
             has_required_linked_account_params: true,
+            remote_fields: ["remote_fields"],
         };
         server
             .mockEndpoint()
@@ -1093,15 +1513,13 @@ describe("ExpenseReportsClient", () => {
                     },
                 },
             },
-            remoteFieldClasses: {
-                key: "value",
-            },
             status: {
                 linkedAccountStatus: "linked_account_status",
                 canMakeRequest: true,
             },
             hasConditionalParams: true,
             hasRequiredLinkedAccountParams: true,
+            remoteFields: ["remote_fields"],
         });
     });
 

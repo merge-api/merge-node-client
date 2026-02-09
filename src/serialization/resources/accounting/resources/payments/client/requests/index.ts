@@ -1,2 +1,2 @@
 export { PatchedPaymentEndpointRequest } from "./PatchedPaymentEndpointRequest";
-export { PaymentEndpointRequest } from "./PaymentEndpointRequest";
+export { PaymentBulkRequest } from "./PaymentBulkRequest";

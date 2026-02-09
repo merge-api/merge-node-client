@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AccountAccountType } from "./AccountAccountType";
 import { AccountClassification } from "./AccountClassification";
+import { AccountCompany } from "./AccountCompany";
 import { AccountCurrency } from "./AccountCurrency";
 import { AccountStatus } from "./AccountStatus";
 import { RemoteData } from "./RemoteData";
@@ -25,7 +26,7 @@ export const Account: core.serialization.ObjectSchema<serializers.accounting.Acc
         currency: AccountCurrency.optional(),
         accountNumber: core.serialization.property("account_number", core.serialization.string().optional()),
         parentAccount: core.serialization.property("parent_account", core.serialization.string().optional()),
-        company: core.serialization.string().optional(),
+        company: AccountCompany.optional(),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -50,7 +51,7 @@ export declare namespace Account {
         currency?: AccountCurrency.Raw | null;
         account_number?: string | null;
         parent_account?: string | null;
-        company?: string | null;
+        company?: AccountCompany.Raw | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: RemoteData.Raw[] | null;

@@ -13,6 +13,8 @@ export interface ExternalTargetFieldApiResponse {
     creditNote?: Merge.accounting.ExternalTargetFieldApi[];
     item?: Merge.accounting.ExternalTargetFieldApi[];
     purchaseOrder?: Merge.accounting.ExternalTargetFieldApi[];
+    salesOrder?: Merge.accounting.ExternalTargetFieldApi[];
+    itemFulfillment?: Merge.accounting.ExternalTargetFieldApi[];
     expenseReport?: Merge.accounting.ExternalTargetFieldApi[];
     trackingCategory?: Merge.accounting.ExternalTargetFieldApi[];
     journalEntry?: Merge.accounting.ExternalTargetFieldApi[];

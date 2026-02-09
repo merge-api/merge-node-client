@@ -4,8 +4,8 @@ import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { DataPassthroughRequestMethod } from "./DataPassthroughRequestMethod";
+import { DataPassthroughRequestRequestFormat } from "./DataPassthroughRequestRequestFormat";
 import { MultipartFormFieldRequest } from "./MultipartFormFieldRequest";
-import { RequestFormatEnum } from "./RequestFormatEnum";
 
 export const DataPassthroughRequest: core.serialization.ObjectSchema<
     serializers.accounting.DataPassthroughRequest.Raw,
@@ -20,7 +20,7 @@ export const DataPassthroughRequest: core.serialization.ObjectSchema<
         core.serialization.list(MultipartFormFieldRequest).optional(),
     ),
     headers: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    requestFormat: core.serialization.property("request_format", RequestFormatEnum.optional()),
+    requestFormat: core.serialization.property("request_format", DataPassthroughRequestRequestFormat.optional()),
     normalizeResponse: core.serialization.property("normalize_response", core.serialization.boolean().optional()),
 });
 
@@ -32,7 +32,7 @@ export declare namespace DataPassthroughRequest {
         data?: string | null;
         multipart_form_data?: MultipartFormFieldRequest.Raw[] | null;
         headers?: Record<string, unknown> | null;
-        request_format?: RequestFormatEnum.Raw | null;
+        request_format?: DataPassthroughRequestRequestFormat.Raw | null;
         normalize_response?: boolean | null;
     }
 }

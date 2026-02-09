@@ -22,7 +22,7 @@ export interface InvoiceLineItemRequest {
     /** The line item's total amount. */
     totalAmount?: number;
     /** The employee this overall transaction relates to. */
-    employee?: Merge.accounting.InvoiceLineItemRequestEmployee;
+    employee?: string;
     project?: Merge.accounting.InvoiceLineItemRequestProject;
     /** The invoice's contact. */
     contact?: Merge.accounting.InvoiceLineItemRequestContact;

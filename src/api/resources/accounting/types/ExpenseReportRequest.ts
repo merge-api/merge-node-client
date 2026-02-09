@@ -26,7 +26,7 @@ export interface ExpenseReportRequest {
      * * `APPROVED` - APPROVED
      * * `REJECTED` - REJECTED
      */
-    status?: Merge.accounting.ExpenseReportStatusEnum;
+    status?: Merge.accounting.ExpenseReportRequestStatus;
     /** Total amount of the expense report */
     totalAmount?: number;
     /**
@@ -339,7 +339,7 @@ export interface ExpenseReportRequest {
      * * `ZWR` - Zimbabwean Dollar (2008)
      * * `ZWL` - Zimbabwean Dollar (2009)
      */
-    currency?: Merge.accounting.TransactionCurrencyEnum;
+    currency?: Merge.accounting.ExpenseReportRequestCurrency;
     /** A brief description or purpose for the expense report */
     description?: string;
     /** The accounting period the report was posted in */

@@ -378,7 +378,7 @@ export interface AccountRequest {
     /** ID of the parent account. */
     parentAccount?: string;
     /** The company the account belongs to. */
-    company?: string;
+    company?: Merge.accounting.AccountRequestCompany;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
 }

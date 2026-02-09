@@ -35,7 +35,7 @@ export class TransactionsClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "account",
+     *         expand: "line_items,tracking_categories,contact,account,company,accounting_period",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -79,12 +79,7 @@ export class TransactionsClient {
             created_after: createdAfter?.toISOString(),
             created_before: createdBefore?.toISOString(),
             cursor,
-            expand:
-                expand != null
-                    ? serializers.accounting.TransactionsListRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+            expand,
             include_deleted_data: includeDeletedData,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
@@ -151,7 +146,7 @@ export class TransactionsClient {
      *
      * @example
      *     await client.accounting.transactions.retrieve("id", {
-     *         expand: "account",
+     *         expand: "line_items,tracking_categories,contact,account,company,accounting_period",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -171,12 +166,7 @@ export class TransactionsClient {
     ): Promise<core.WithRawResponse<Merge.accounting.Transaction>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.accounting.TransactionsRetrieveRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+            expand,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

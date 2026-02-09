@@ -41,7 +41,7 @@ export interface TaxRatesListRequest {
     modifiedBefore?: Date;
     /** If provided, will only return TaxRates with this name. */
     name?: string;
-    /** Number of results to return per page. */
+    /** Number of results to return per page. The maximum limit is 100. */
     pageSize?: number;
     /** The API provider's ID for the given object. */
     remoteId?: string;
