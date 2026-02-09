@@ -52,6 +52,11 @@ describe("InvoicesClient", () => {
                         "dd70ca2f-b120-46fa-889a-9604037f45fd",
                         "889b281d-739c-4759-95b8-0aedb3947131",
                     ],
+                    sales_orders: [
+                        "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                        "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                        "889b281d-739c-4759-95b8-0aedb3947131",
+                    ],
                     payments: ["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
                     applied_payments: ["9017594e-dc33-4113-a5d2-b0f928e34fdd"],
                     line_items: [
@@ -111,7 +116,7 @@ describe("InvoicesClient", () => {
                         linked_account_defined_targets: { custom_key: "custom_value" },
                     },
                     remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-                    remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
                 },
             ],
         };
@@ -181,6 +186,11 @@ describe("InvoicesClient", () => {
                     ],
                     accountingPeriod: "accounting_period",
                     purchaseOrders: [
+                        "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                        "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                        "889b281d-739c-4759-95b8-0aedb3947131",
+                    ],
+                    salesOrders: [
                         "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
                         "dd70ca2f-b120-46fa-889a-9604037f45fd",
                         "889b281d-739c-4759-95b8-0aedb3947131",
@@ -259,8 +269,10 @@ describe("InvoicesClient", () => {
                     ],
                     remoteFields: [
                         {
-                            remoteFieldClass: "remote_field_class",
-                            value: "string",
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
                         },
                     ],
                 },
@@ -309,6 +321,11 @@ describe("InvoicesClient", () => {
                 ],
                 accounting_period: "accounting_period",
                 purchase_orders: [
+                    "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                    "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                    "889b281d-739c-4759-95b8-0aedb3947131",
+                ],
+                sales_orders: [
                     "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
                     "dd70ca2f-b120-46fa-889a-9604037f45fd",
                     "889b281d-739c-4759-95b8-0aedb3947131",
@@ -372,7 +389,7 @@ describe("InvoicesClient", () => {
                     linked_account_defined_targets: { custom_key: "custom_value" },
                 },
                 remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-                remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
             },
             warnings: [
                 {
@@ -380,6 +397,7 @@ describe("InvoicesClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -388,6 +406,7 @@ describe("InvoicesClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -414,7 +433,9 @@ describe("InvoicesClient", () => {
         const response = await client.accounting.invoices.create({
             isDebugMode: true,
             runAsync: true,
-            model: {},
+            body: {
+                model: {},
+            },
         });
         expect(response).toEqual({
             model: {
@@ -448,6 +469,11 @@ describe("InvoicesClient", () => {
                 ],
                 accountingPeriod: "accounting_period",
                 purchaseOrders: [
+                    "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                    "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                    "889b281d-739c-4759-95b8-0aedb3947131",
+                ],
+                salesOrders: [
                     "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
                     "dd70ca2f-b120-46fa-889a-9604037f45fd",
                     "889b281d-739c-4759-95b8-0aedb3947131",
@@ -526,8 +552,10 @@ describe("InvoicesClient", () => {
                 ],
                 remoteFields: [
                     {
-                        remoteFieldClass: "remote_field_class",
-                        value: "string",
+                        remoteFieldClass: {},
+                        value: {
+                            key: "value",
+                        },
                     },
                 ],
             },
@@ -539,6 +567,7 @@ describe("InvoicesClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -549,6 +578,7 @@ describe("InvoicesClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -609,6 +639,11 @@ describe("InvoicesClient", () => {
                 "dd70ca2f-b120-46fa-889a-9604037f45fd",
                 "889b281d-739c-4759-95b8-0aedb3947131",
             ],
+            sales_orders: [
+                "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                "889b281d-739c-4759-95b8-0aedb3947131",
+            ],
             payments: ["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
             applied_payments: ["9017594e-dc33-4113-a5d2-b0f928e34fdd"],
             line_items: [
@@ -640,7 +675,7 @@ describe("InvoicesClient", () => {
                         organization_defined_targets: { custom_key: "custom_value" },
                         linked_account_defined_targets: { custom_key: "custom_value" },
                     },
-                    remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
                 },
             ],
             applied_credit_notes: [
@@ -672,7 +707,7 @@ describe("InvoicesClient", () => {
                 linked_account_defined_targets: { custom_key: "custom_value" },
             },
             remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-            remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+            remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
         };
         server
             .mockEndpoint()
@@ -725,6 +760,11 @@ describe("InvoicesClient", () => {
                 "dd70ca2f-b120-46fa-889a-9604037f45fd",
                 "889b281d-739c-4759-95b8-0aedb3947131",
             ],
+            salesOrders: [
+                "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                "889b281d-739c-4759-95b8-0aedb3947131",
+            ],
             payments: ["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
             appliedPayments: ["9017594e-dc33-4113-a5d2-b0f928e34fdd"],
             lineItems: [
@@ -762,8 +802,10 @@ describe("InvoicesClient", () => {
                     },
                     remoteFields: [
                         {
-                            remoteFieldClass: "remote_field_class",
-                            value: "string",
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
                         },
                     ],
                 },
@@ -808,8 +850,10 @@ describe("InvoicesClient", () => {
             ],
             remoteFields: [
                 {
-                    remoteFieldClass: "remote_field_class",
-                    value: "string",
+                    remoteFieldClass: {},
+                    value: {
+                        key: "value",
+                    },
                 },
             ],
         });
@@ -856,6 +900,11 @@ describe("InvoicesClient", () => {
                 ],
                 accounting_period: "accounting_period",
                 purchase_orders: [
+                    "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                    "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                    "889b281d-739c-4759-95b8-0aedb3947131",
+                ],
+                sales_orders: [
                     "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
                     "dd70ca2f-b120-46fa-889a-9604037f45fd",
                     "889b281d-739c-4759-95b8-0aedb3947131",
@@ -919,7 +968,7 @@ describe("InvoicesClient", () => {
                     linked_account_defined_targets: { custom_key: "custom_value" },
                 },
                 remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-                remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
             },
             warnings: [
                 {
@@ -927,6 +976,7 @@ describe("InvoicesClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -935,6 +985,7 @@ describe("InvoicesClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -999,6 +1050,11 @@ describe("InvoicesClient", () => {
                     "dd70ca2f-b120-46fa-889a-9604037f45fd",
                     "889b281d-739c-4759-95b8-0aedb3947131",
                 ],
+                salesOrders: [
+                    "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                    "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                    "889b281d-739c-4759-95b8-0aedb3947131",
+                ],
                 payments: ["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
                 appliedPayments: ["9017594e-dc33-4113-a5d2-b0f928e34fdd"],
                 lineItems: [
@@ -1073,8 +1129,10 @@ describe("InvoicesClient", () => {
                 ],
                 remoteFields: [
                     {
-                        remoteFieldClass: "remote_field_class",
-                        value: "string",
+                        remoteFieldClass: {},
+                        value: {
+                            key: "value",
+                        },
                     },
                 ],
             },
@@ -1086,6 +1144,7 @@ describe("InvoicesClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -1096,6 +1155,7 @@ describe("InvoicesClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -1107,6 +1167,602 @@ describe("InvoicesClient", () => {
                         method: "POST",
                         statusCode: 200,
                     },
+                },
+            ],
+        });
+    });
+
+    test("asyncBulkCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { batch_items: [{ item_id: "item_id", payload: { model: {} } }] };
+        const rawResponseBody = {
+            model: {
+                id: "9871b4a9-f5d2-4f3b-a66b-dfedbed42c46",
+                remote_id: "990110",
+                created_at: "2021-09-15T00:00:00Z",
+                modified_at: "2021-10-16T00:00:00Z",
+                type: "ACCOUNTS_RECEIVABLE",
+                contact: "contact",
+                number: "AIQ12546",
+                issue_date: "2020-03-31T00:00:00Z",
+                due_date: "2020-04-15T00:00:00Z",
+                paid_on_date: "2020-04-01T00:00:00Z",
+                memo: "Weekly Payment",
+                company: "company",
+                employee: "employee",
+                currency: "XUA",
+                exchange_rate: "2.9",
+                payment_term: "payment_term",
+                total_discount: 1.1,
+                sub_total: 100,
+                status: "PAID",
+                total_tax_amount: 5,
+                total_amount: 105,
+                balance: 105,
+                remote_updated_at: "2020-04-01T00:00:00Z",
+                tracking_categories: [
+                    "7dc5ca17-d311-44cd-9ce0-333080367a18",
+                    "6aa0700c-48e1-4c4a-8162-02e6a582df05",
+                    "8c933d61-8f5b-4360-ac0c-c9dc87bee763",
+                ],
+                accounting_period: "accounting_period",
+                purchase_orders: [
+                    "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                    "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                    "889b281d-739c-4759-95b8-0aedb3947131",
+                ],
+                sales_orders: [
+                    "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                    "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                    "889b281d-739c-4759-95b8-0aedb3947131",
+                ],
+                payments: ["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
+                applied_payments: ["9017594e-dc33-4113-a5d2-b0f928e34fdd"],
+                line_items: [
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remote_id: "8765432",
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        description: "Pickleball lessons",
+                        unit_price: 50,
+                        quantity: 1,
+                        total_amount: 50,
+                        employee: "7442f0d5-722d-45bd-b807-6e38489d37fe",
+                        project: "22e65a5d-2df5-4e6e-884a-e538d0339000",
+                        contact: "908934-49j9-093f-0989-908923908",
+                        currency: "USD",
+                        exchange_rate: "2.9",
+                        item: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                        account: "cd0f32d4-a493-11ec-b909-0242ac120002",
+                        tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        tracking_categories: [
+                            "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        field_mappings: {
+                            organization_defined_targets: { custom_key: "custom_value" },
+                            linked_account_defined_targets: { custom_key: "custom_value" },
+                        },
+                    },
+                ],
+                applied_credit_notes: [
+                    {
+                        remote_id: "088899",
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        credit_note: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                        applied_date: "2020-03-31T00:00:00Z",
+                        applied_amount: "2.9",
+                    },
+                ],
+                applied_vendor_credits: [
+                    {
+                        remote_id: "088899",
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        vendor_credit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                        applied_date: "2020-03-31T00:00:00Z",
+                        applied_amount: "2.9",
+                    },
+                ],
+                inclusive_of_tax: true,
+                remote_was_deleted: true,
+                field_mappings: {
+                    organization_defined_targets: { custom_key: "custom_value" },
+                    linked_account_defined_targets: { custom_key: "custom_value" },
+                },
+                remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
+            },
+            warnings: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            errors: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            logs: [
+                {
+                    log_id: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboard_view: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    log_summary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        status_code: 200,
+                    },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .post("/accounting/v1/invoices/async/bulk")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.invoices.asyncBulkCreate({
+            isDebugMode: true,
+            runAsync: true,
+            batchItems: [
+                {
+                    itemId: "item_id",
+                    payload: {
+                        model: {},
+                    },
+                },
+            ],
+        });
+        expect(response).toEqual({
+            model: {
+                id: "9871b4a9-f5d2-4f3b-a66b-dfedbed42c46",
+                remoteId: "990110",
+                createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                type: "ACCOUNTS_RECEIVABLE",
+                contact: "contact",
+                number: "AIQ12546",
+                issueDate: new Date("2020-03-31T00:00:00.000Z"),
+                dueDate: new Date("2020-04-15T00:00:00.000Z"),
+                paidOnDate: new Date("2020-04-01T00:00:00.000Z"),
+                memo: "Weekly Payment",
+                company: "company",
+                employee: "employee",
+                currency: "XUA",
+                exchangeRate: "2.9",
+                paymentTerm: "payment_term",
+                totalDiscount: 1.1,
+                subTotal: 100,
+                status: "PAID",
+                totalTaxAmount: 5,
+                totalAmount: 105,
+                balance: 105,
+                remoteUpdatedAt: new Date("2020-04-01T00:00:00.000Z"),
+                trackingCategories: [
+                    "7dc5ca17-d311-44cd-9ce0-333080367a18",
+                    "6aa0700c-48e1-4c4a-8162-02e6a582df05",
+                    "8c933d61-8f5b-4360-ac0c-c9dc87bee763",
+                ],
+                accountingPeriod: "accounting_period",
+                purchaseOrders: [
+                    "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                    "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                    "889b281d-739c-4759-95b8-0aedb3947131",
+                ],
+                salesOrders: [
+                    "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                    "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                    "889b281d-739c-4759-95b8-0aedb3947131",
+                ],
+                payments: ["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
+                appliedPayments: ["9017594e-dc33-4113-a5d2-b0f928e34fdd"],
+                lineItems: [
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remoteId: "8765432",
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        description: "Pickleball lessons",
+                        unitPrice: 50,
+                        quantity: 1,
+                        totalAmount: 50,
+                        employee: "7442f0d5-722d-45bd-b807-6e38489d37fe",
+                        project: "22e65a5d-2df5-4e6e-884a-e538d0339000",
+                        contact: "908934-49j9-093f-0989-908923908",
+                        currency: "USD",
+                        exchangeRate: "2.9",
+                        item: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                        account: "cd0f32d4-a493-11ec-b909-0242ac120002",
+                        taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        trackingCategories: [
+                            "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        fieldMappings: {
+                            organization_defined_targets: {
+                                custom_key: "custom_value",
+                            },
+                            linked_account_defined_targets: {
+                                custom_key: "custom_value",
+                            },
+                        },
+                    },
+                ],
+                appliedCreditNotes: [
+                    {
+                        remoteId: "088899",
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        creditNote: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                        appliedDate: new Date("2020-03-31T00:00:00.000Z"),
+                        appliedAmount: "2.9",
+                    },
+                ],
+                appliedVendorCredits: [
+                    {
+                        remoteId: "088899",
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        vendorCredit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                        appliedDate: new Date("2020-03-31T00:00:00.000Z"),
+                        appliedAmount: "2.9",
+                    },
+                ],
+                inclusiveOfTax: true,
+                remoteWasDeleted: true,
+                fieldMappings: {
+                    organization_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                    linked_account_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                },
+                remoteData: [
+                    {
+                        path: "/actions",
+                        data: ["Varies by platform"],
+                    },
+                ],
+                remoteFields: [
+                    {
+                        remoteFieldClass: {},
+                        value: {
+                            key: "value",
+                        },
+                    },
+                ],
+            },
+            warnings: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            errors: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            logs: [
+                {
+                    logId: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboardView: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    logSummary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        statusCode: 200,
+                    },
+                },
+            ],
+        });
+    });
+
+    test("batchObjectsList", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "9871b4a9-f5d2-4f3b-a66b-dfedbed42c46",
+                    remote_id: "990110",
+                    created_at: "2021-09-15T00:00:00Z",
+                    modified_at: "2021-10-16T00:00:00Z",
+                    type: "ACCOUNTS_RECEIVABLE",
+                    contact: "contact",
+                    number: "AIQ12546",
+                    issue_date: "2020-03-31T00:00:00Z",
+                    due_date: "2020-04-15T00:00:00Z",
+                    paid_on_date: "2020-04-01T00:00:00Z",
+                    memo: "Weekly Payment",
+                    company: "company",
+                    employee: "employee",
+                    currency: "XUA",
+                    exchange_rate: "2.9",
+                    payment_term: "payment_term",
+                    total_discount: 1.1,
+                    sub_total: 100,
+                    status: "PAID",
+                    total_tax_amount: 5,
+                    total_amount: 105,
+                    balance: 105,
+                    remote_updated_at: "2020-04-01T00:00:00Z",
+                    tracking_categories: [
+                        "7dc5ca17-d311-44cd-9ce0-333080367a18",
+                        "6aa0700c-48e1-4c4a-8162-02e6a582df05",
+                        "8c933d61-8f5b-4360-ac0c-c9dc87bee763",
+                    ],
+                    accounting_period: "accounting_period",
+                    purchase_orders: [
+                        "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                        "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                        "889b281d-739c-4759-95b8-0aedb3947131",
+                    ],
+                    sales_orders: [
+                        "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                        "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                        "889b281d-739c-4759-95b8-0aedb3947131",
+                    ],
+                    payments: ["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
+                    applied_payments: ["9017594e-dc33-4113-a5d2-b0f928e34fdd"],
+                    line_items: [
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remote_id: "8765432",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            description: "Pickleball lessons",
+                            unit_price: 50,
+                            quantity: 1,
+                            total_amount: 50,
+                            employee: "7442f0d5-722d-45bd-b807-6e38489d37fe",
+                            project: "22e65a5d-2df5-4e6e-884a-e538d0339000",
+                            contact: "908934-49j9-093f-0989-908923908",
+                            currency: "USD",
+                            exchange_rate: "2.9",
+                            item: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                            account: "cd0f32d4-a493-11ec-b909-0242ac120002",
+                            tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            tracking_categories: [
+                                "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            field_mappings: {
+                                organization_defined_targets: { custom_key: "custom_value" },
+                                linked_account_defined_targets: { custom_key: "custom_value" },
+                            },
+                        },
+                    ],
+                    applied_credit_notes: [
+                        {
+                            remote_id: "088899",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            credit_note: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                            applied_date: "2020-03-31T00:00:00Z",
+                            applied_amount: "2.9",
+                        },
+                    ],
+                    applied_vendor_credits: [
+                        {
+                            remote_id: "088899",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            vendor_credit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                            applied_date: "2020-03-31T00:00:00Z",
+                            applied_amount: "2.9",
+                        },
+                    ],
+                    inclusive_of_tax: true,
+                    remote_was_deleted: true,
+                    field_mappings: {
+                        organization_defined_targets: { custom_key: "custom_value" },
+                        linked_account_defined_targets: { custom_key: "custom_value" },
+                    },
+                    remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/accounting/v1/invoices/batch/batch_id/objects")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.invoices.batchObjectsList("batch_id", {
+            companyId: "company_id",
+            contactId: "contact_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            expand: "payments,applied_payments,line_items,tracking_categories,purchase_orders,sales_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeRemoteFields: true,
+            includeShellData: true,
+            issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+            issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            number: "number",
+            pageSize: 1,
+            remoteFields: "type",
+            remoteId: "remote_id",
+            showEnumOrigins: "type",
+            status: "DRAFT",
+            type: "ACCOUNTS_PAYABLE",
+        });
+        expect(response).toEqual({
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "9871b4a9-f5d2-4f3b-a66b-dfedbed42c46",
+                    remoteId: "990110",
+                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                    type: "ACCOUNTS_RECEIVABLE",
+                    contact: "contact",
+                    number: "AIQ12546",
+                    issueDate: new Date("2020-03-31T00:00:00.000Z"),
+                    dueDate: new Date("2020-04-15T00:00:00.000Z"),
+                    paidOnDate: new Date("2020-04-01T00:00:00.000Z"),
+                    memo: "Weekly Payment",
+                    company: "company",
+                    employee: "employee",
+                    currency: "XUA",
+                    exchangeRate: "2.9",
+                    paymentTerm: "payment_term",
+                    totalDiscount: 1.1,
+                    subTotal: 100,
+                    status: "PAID",
+                    totalTaxAmount: 5,
+                    totalAmount: 105,
+                    balance: 105,
+                    remoteUpdatedAt: new Date("2020-04-01T00:00:00.000Z"),
+                    trackingCategories: [
+                        "7dc5ca17-d311-44cd-9ce0-333080367a18",
+                        "6aa0700c-48e1-4c4a-8162-02e6a582df05",
+                        "8c933d61-8f5b-4360-ac0c-c9dc87bee763",
+                    ],
+                    accountingPeriod: "accounting_period",
+                    purchaseOrders: [
+                        "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                        "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                        "889b281d-739c-4759-95b8-0aedb3947131",
+                    ],
+                    salesOrders: [
+                        "e7378d8f-3992-4c2a-8417-ebdc4f2bfeb7",
+                        "dd70ca2f-b120-46fa-889a-9604037f45fd",
+                        "889b281d-739c-4759-95b8-0aedb3947131",
+                    ],
+                    payments: ["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
+                    appliedPayments: ["9017594e-dc33-4113-a5d2-b0f928e34fdd"],
+                    lineItems: [
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remoteId: "8765432",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            description: "Pickleball lessons",
+                            unitPrice: 50,
+                            quantity: 1,
+                            totalAmount: 50,
+                            employee: "7442f0d5-722d-45bd-b807-6e38489d37fe",
+                            project: "22e65a5d-2df5-4e6e-884a-e538d0339000",
+                            contact: "908934-49j9-093f-0989-908923908",
+                            currency: "USD",
+                            exchangeRate: "2.9",
+                            item: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                            account: "cd0f32d4-a493-11ec-b909-0242ac120002",
+                            taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            trackingCategories: [
+                                "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            fieldMappings: {
+                                organization_defined_targets: {
+                                    custom_key: "custom_value",
+                                },
+                                linked_account_defined_targets: {
+                                    custom_key: "custom_value",
+                                },
+                            },
+                        },
+                    ],
+                    appliedCreditNotes: [
+                        {
+                            remoteId: "088899",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            creditNote: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                            appliedDate: new Date("2020-03-31T00:00:00.000Z"),
+                            appliedAmount: "2.9",
+                        },
+                    ],
+                    appliedVendorCredits: [
+                        {
+                            remoteId: "088899",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            vendorCredit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                            appliedDate: new Date("2020-03-31T00:00:00.000Z"),
+                            appliedAmount: "2.9",
+                        },
+                    ],
+                    inclusiveOfTax: true,
+                    remoteWasDeleted: true,
+                    fieldMappings: {
+                        organization_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                        linked_account_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                    },
+                    remoteData: [
+                        {
+                            path: "/actions",
+                            data: ["Varies by platform"],
+                        },
+                    ],
+                    remoteFields: [
+                        {
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
+                        },
+                    ],
                 },
             ],
         });
@@ -1347,10 +2003,10 @@ describe("InvoicesClient", () => {
                     },
                 },
             },
-            remote_field_classes: { key: "value" },
             status: { linked_account_status: "linked_account_status", can_make_request: true },
             has_conditional_params: true,
             has_required_linked_account_params: true,
+            remote_fields: ["remote_fields"],
         };
         server
             .mockEndpoint()
@@ -1585,15 +2241,13 @@ describe("InvoicesClient", () => {
                     },
                 },
             },
-            remoteFieldClasses: {
-                key: "value",
-            },
             status: {
                 linkedAccountStatus: "linked_account_status",
                 canMakeRequest: true,
             },
             hasConditionalParams: true,
             hasRequiredLinkedAccountParams: true,
+            remoteFields: ["remote_fields"],
         });
     });
 
@@ -1768,10 +2422,10 @@ describe("InvoicesClient", () => {
                     },
                 },
             },
-            remote_field_classes: { key: "value" },
             status: { linked_account_status: "linked_account_status", can_make_request: true },
             has_conditional_params: true,
             has_required_linked_account_params: true,
+            remote_fields: ["remote_fields"],
         };
         server
             .mockEndpoint()
@@ -2006,15 +2660,13 @@ describe("InvoicesClient", () => {
                     },
                 },
             },
-            remoteFieldClasses: {
-                key: "value",
-            },
             status: {
                 linkedAccountStatus: "linked_account_status",
                 canMakeRequest: true,
             },
             hasConditionalParams: true,
             hasRequiredLinkedAccountParams: true,
+            remoteFields: ["remote_fields"],
         });
     });
 

@@ -1,1 +1,1 @@
-export { AccountingAttachmentEndpointRequest } from "./AccountingAttachmentEndpointRequest";
+export { AccountingAttachmentBulkRequest } from "./AccountingAttachmentBulkRequest";

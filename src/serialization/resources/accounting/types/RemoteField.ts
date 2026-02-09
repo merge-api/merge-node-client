@@ -3,19 +3,19 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { RemoteFieldRemoteFieldClass } from "./RemoteFieldRemoteFieldClass";
+import { RemoteFieldClass } from "./RemoteFieldClass";
 
 export const RemoteField: core.serialization.ObjectSchema<
     serializers.accounting.RemoteField.Raw,
     Merge.accounting.RemoteField
 > = core.serialization.object({
-    remoteFieldClass: core.serialization.property("remote_field_class", RemoteFieldRemoteFieldClass),
-    value: core.serialization.unknown().optional(),
+    remoteFieldClass: core.serialization.property("remote_field_class", RemoteFieldClass),
+    value: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace RemoteField {
     export interface Raw {
-        remote_field_class: RemoteFieldRemoteFieldClass.Raw;
-        value?: unknown | null;
+        remote_field_class: RemoteFieldClass.Raw;
+        value?: Record<string, unknown> | null;
     }
 }

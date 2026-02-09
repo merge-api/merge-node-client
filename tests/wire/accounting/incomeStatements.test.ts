@@ -34,10 +34,10 @@ describe("IncomeStatementsClient", () => {
                             modified_at: "2021-10-16T00:00:00Z",
                             name: "Total Income",
                             value: 325,
-                            sub_items: [
-                                { remote_id: "10200", name: "Landscaping Services", value: 425 },
-                                { remote_id: "10201", name: "Pest Control Services", value: -100 },
-                            ],
+                            sub_items: {
+                                "0": { remote_id: "10200", name: "Landscaping Services", value: 425 },
+                                "1": { remote_id: "10201", name: "Pest Control Services", value: -100 },
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -48,7 +48,7 @@ describe("IncomeStatementsClient", () => {
                             modified_at: "2021-10-16T00:00:00Z",
                             name: "Total COGS",
                             value: 25,
-                            sub_items: [{ remote_id: "10200", name: "Supplies", value: 10 }],
+                            sub_items: { "0": { remote_id: "10200", name: "Supplies", value: 10 } },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -60,10 +60,7 @@ describe("IncomeStatementsClient", () => {
                             modified_at: "2021-10-16T00:00:00Z",
                             name: "Total Operating Expenses",
                             value: 100,
-                            sub_items: [
-                                { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                                { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                            ],
+                            sub_items: { key: "value" },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -75,10 +72,7 @@ describe("IncomeStatementsClient", () => {
                             modified_at: "2021-10-16T00:00:00Z",
                             name: "Total Non-Operating Expenses",
                             value: 100,
-                            sub_items: [
-                                { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                                { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                            ],
+                            sub_items: { key: "value" },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -135,18 +129,18 @@ describe("IncomeStatementsClient", () => {
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             name: "Total Income",
                             value: 325,
-                            subItems: [
-                                {
+                            subItems: {
+                                "0": {
                                     remote_id: "10200",
                                     name: "Landscaping Services",
                                     value: 425,
                                 },
-                                {
+                                "1": {
                                     remote_id: "10201",
                                     name: "Pest Control Services",
                                     value: -100,
                                 },
-                            ],
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -157,13 +151,13 @@ describe("IncomeStatementsClient", () => {
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             name: "Total COGS",
                             value: 25,
-                            subItems: [
-                                {
+                            subItems: {
+                                "0": {
                                     remote_id: "10200",
                                     name: "Supplies",
                                     value: 10,
                                 },
-                            ],
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -175,18 +169,9 @@ describe("IncomeStatementsClient", () => {
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             name: "Total Operating Expenses",
                             value: 100,
-                            subItems: [
-                                {
-                                    remote_id: "10300",
-                                    name: "Revenue - San Francisco",
-                                    value: 500,
-                                },
-                                {
-                                    remote_id: "10301",
-                                    name: "Revenue - New York",
-                                    value: 500,
-                                },
-                            ],
+                            subItems: {
+                                key: "value",
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -198,18 +183,9 @@ describe("IncomeStatementsClient", () => {
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             name: "Total Non-Operating Expenses",
                             value: 100,
-                            subItems: [
-                                {
-                                    remote_id: "10300",
-                                    name: "Revenue - San Francisco",
-                                    value: 500,
-                                },
-                                {
-                                    remote_id: "10301",
-                                    name: "Revenue - New York",
-                                    value: 500,
-                                },
-                            ],
+                            subItems: {
+                                key: "value",
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -260,10 +236,10 @@ describe("IncomeStatementsClient", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "Total Income",
                     value: 325,
-                    sub_items: [
-                        { remote_id: "10200", name: "Landscaping Services", value: 425 },
-                        { remote_id: "10201", name: "Pest Control Services", value: -100 },
-                    ],
+                    sub_items: {
+                        "0": { remote_id: "10200", name: "Landscaping Services", value: 425 },
+                        "1": { remote_id: "10201", name: "Pest Control Services", value: -100 },
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -275,7 +251,7 @@ describe("IncomeStatementsClient", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "Total COGS",
                     value: 25,
-                    sub_items: [{ remote_id: "10200", name: "Supplies", value: 10 }],
+                    sub_items: { "0": { remote_id: "10200", name: "Supplies", value: 10 } },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -288,10 +264,7 @@ describe("IncomeStatementsClient", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "Total Operating Expenses",
                     value: 100,
-                    sub_items: [
-                        { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                        { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                    ],
+                    sub_items: { key: "value" },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -304,10 +277,7 @@ describe("IncomeStatementsClient", () => {
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "Total Non-Operating Expenses",
                     value: 100,
-                    sub_items: [
-                        { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                        { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                    ],
+                    sub_items: { key: "value" },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -350,18 +320,18 @@ describe("IncomeStatementsClient", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "Total Income",
                     value: 325,
-                    subItems: [
-                        {
+                    subItems: {
+                        "0": {
                             remote_id: "10200",
                             name: "Landscaping Services",
                             value: 425,
                         },
-                        {
+                        "1": {
                             remote_id: "10201",
                             name: "Pest Control Services",
                             value: -100,
                         },
-                    ],
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },
@@ -373,13 +343,13 @@ describe("IncomeStatementsClient", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "Total COGS",
                     value: 25,
-                    subItems: [
-                        {
+                    subItems: {
+                        "0": {
                             remote_id: "10200",
                             name: "Supplies",
                             value: 10,
                         },
-                    ],
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },
@@ -392,18 +362,9 @@ describe("IncomeStatementsClient", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "Total Operating Expenses",
                     value: 100,
-                    subItems: [
-                        {
-                            remote_id: "10300",
-                            name: "Revenue - San Francisco",
-                            value: 500,
-                        },
-                        {
-                            remote_id: "10301",
-                            name: "Revenue - New York",
-                            value: 500,
-                        },
-                    ],
+                    subItems: {
+                        key: "value",
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },
@@ -416,18 +377,9 @@ describe("IncomeStatementsClient", () => {
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "Total Non-Operating Expenses",
                     value: 100,
-                    subItems: [
-                        {
-                            remote_id: "10300",
-                            name: "Revenue - San Francisco",
-                            value: 500,
-                        },
-                        {
-                            remote_id: "10301",
-                            name: "Revenue - New York",
-                            value: 500,
-                        },
-                    ],
+                    subItems: {
+                        key: "value",
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },

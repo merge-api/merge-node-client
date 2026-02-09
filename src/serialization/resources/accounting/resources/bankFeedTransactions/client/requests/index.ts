@@ -1,1 +1,1 @@
-export { BankFeedTransactionEndpointRequest } from "./BankFeedTransactionEndpointRequest";
+export { BankFeedTransactionBulkRequest } from "./BankFeedTransactionBulkRequest";

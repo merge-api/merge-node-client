@@ -343,7 +343,7 @@ export interface VendorCredit {
     inclusiveOfTax?: boolean;
     /** The company the vendor credit belongs to. */
     company?: Merge.accounting.VendorCreditCompany;
-    lines?: Merge.accounting.VendorCreditLine[];
+    lines?: Merge.accounting.VendorCreditLinesItem[];
     trackingCategories?: (Merge.accounting.VendorCreditTrackingCategoriesItem | undefined)[];
     /** A list of VendorCredit Applied to Lines objects. */
     appliedToLines?: Merge.accounting.VendorCreditApplyLineForVendorCredit[];

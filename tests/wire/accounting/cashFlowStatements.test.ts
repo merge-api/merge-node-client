@@ -36,15 +36,15 @@ describe("CashFlowStatementsClient", () => {
                             modified_at: "2021-09-18T00:00:00Z",
                             name: "Operating Activities",
                             value: 1000,
-                            sub_items: [
-                                {
+                            sub_items: {
+                                "0": {
                                     remote_id: "23042938",
                                     created_at: "2021-09-15T00:00:00Z",
                                     modified_at: "2021-09-18T00:00:00Z",
                                     name: "Net Income",
                                     value: 1097.13,
                                 },
-                            ],
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -55,14 +55,14 @@ describe("CashFlowStatementsClient", () => {
                             modified_at: "2021-11-18T00:00:00Z",
                             name: "Equipment",
                             value: 1000,
-                            sub_items: [
-                                {
+                            sub_items: {
+                                "0": {
                                     created_at: "2021-11-15T00:00:00Z",
                                     modified_at: "2021-09-18T00:00:00Z",
                                     name: "Equipment",
                                     value: 1000,
                                 },
-                            ],
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -73,10 +73,7 @@ describe("CashFlowStatementsClient", () => {
                             modified_at: "2021-11-15T00:00:00Z",
                             name: "Revenue",
                             value: 1000,
-                            sub_items: [
-                                { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                                { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                            ],
+                            sub_items: { key: "value" },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -135,15 +132,15 @@ describe("CashFlowStatementsClient", () => {
                             modifiedAt: new Date("2021-09-18T00:00:00.000Z"),
                             name: "Operating Activities",
                             value: 1000,
-                            subItems: [
-                                {
+                            subItems: {
+                                "0": {
                                     remote_id: "23042938",
                                     created_at: "2021-09-15T00:00:00Z",
                                     modified_at: "2021-09-18T00:00:00Z",
                                     name: "Net Income",
                                     value: 1097.13,
                                 },
-                            ],
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -154,14 +151,14 @@ describe("CashFlowStatementsClient", () => {
                             modifiedAt: new Date("2021-11-18T00:00:00.000Z"),
                             name: "Equipment",
                             value: 1000,
-                            subItems: [
-                                {
+                            subItems: {
+                                "0": {
                                     created_at: "2021-11-15T00:00:00Z",
                                     modified_at: "2021-09-18T00:00:00Z",
                                     name: "Equipment",
                                     value: 1000,
                                 },
-                            ],
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -172,18 +169,9 @@ describe("CashFlowStatementsClient", () => {
                             modifiedAt: new Date("2021-11-15T00:00:00.000Z"),
                             name: "Revenue",
                             value: 1000,
-                            subItems: [
-                                {
-                                    remote_id: "10300",
-                                    name: "Revenue - San Francisco",
-                                    value: 500,
-                                },
-                                {
-                                    remote_id: "10301",
-                                    name: "Revenue - New York",
-                                    value: 500,
-                                },
-                            ],
+                            subItems: {
+                                key: "value",
+                            },
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                         },
                     ],
@@ -236,15 +224,15 @@ describe("CashFlowStatementsClient", () => {
                     modified_at: "2021-09-18T00:00:00Z",
                     name: "Operating Activities",
                     value: 1000,
-                    sub_items: [
-                        {
+                    sub_items: {
+                        "0": {
                             remote_id: "23042938",
                             created_at: "2021-09-15T00:00:00Z",
                             modified_at: "2021-09-18T00:00:00Z",
                             name: "Net Income",
                             value: 1097.13,
                         },
-                    ],
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -256,14 +244,14 @@ describe("CashFlowStatementsClient", () => {
                     modified_at: "2021-11-18T00:00:00Z",
                     name: "Equipment",
                     value: 1000,
-                    sub_items: [
-                        {
+                    sub_items: {
+                        "0": {
                             created_at: "2021-11-15T00:00:00Z",
                             modified_at: "2021-09-18T00:00:00Z",
                             name: "Equipment",
                             value: 1000,
                         },
-                    ],
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -275,10 +263,7 @@ describe("CashFlowStatementsClient", () => {
                     modified_at: "2021-11-15T00:00:00Z",
                     name: "Revenue",
                     value: 1000,
-                    sub_items: [
-                        { remote_id: "10300", name: "Revenue - San Francisco", value: 500 },
-                        { remote_id: "10301", name: "Revenue - New York", value: 500 },
-                    ],
+                    sub_items: { key: "value" },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
                 },
@@ -323,15 +308,15 @@ describe("CashFlowStatementsClient", () => {
                     modifiedAt: new Date("2021-09-18T00:00:00.000Z"),
                     name: "Operating Activities",
                     value: 1000,
-                    subItems: [
-                        {
+                    subItems: {
+                        "0": {
                             remote_id: "23042938",
                             created_at: "2021-09-15T00:00:00Z",
                             modified_at: "2021-09-18T00:00:00Z",
                             name: "Net Income",
                             value: 1097.13,
                         },
-                    ],
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },
@@ -343,14 +328,14 @@ describe("CashFlowStatementsClient", () => {
                     modifiedAt: new Date("2021-11-18T00:00:00.000Z"),
                     name: "Equipment",
                     value: 1000,
-                    subItems: [
-                        {
+                    subItems: {
+                        "0": {
                             created_at: "2021-11-15T00:00:00Z",
                             modified_at: "2021-09-18T00:00:00Z",
                             name: "Equipment",
                             value: 1000,
                         },
-                    ],
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },
@@ -362,18 +347,9 @@ describe("CashFlowStatementsClient", () => {
                     modifiedAt: new Date("2021-11-15T00:00:00.000Z"),
                     name: "Revenue",
                     value: 1000,
-                    subItems: [
-                        {
-                            remote_id: "10300",
-                            name: "Revenue - San Francisco",
-                            value: 500,
-                        },
-                        {
-                            remote_id: "10301",
-                            name: "Revenue - New York",
-                            value: 500,
-                        },
-                    ],
+                    subItems: {
+                        key: "value",
+                    },
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
                 },

@@ -6,7 +6,6 @@ import type * as serializers from "../../../index";
 import { InvoiceLineItemAccount } from "./InvoiceLineItemAccount";
 import { InvoiceLineItemContact } from "./InvoiceLineItemContact";
 import { InvoiceLineItemCurrency } from "./InvoiceLineItemCurrency";
-import { InvoiceLineItemEmployee } from "./InvoiceLineItemEmployee";
 import { InvoiceLineItemItem } from "./InvoiceLineItemItem";
 import { InvoiceLineItemProject } from "./InvoiceLineItemProject";
 import { InvoiceLineItemTrackingCategoriesItem } from "./InvoiceLineItemTrackingCategoriesItem";
@@ -25,7 +24,7 @@ export const InvoiceLineItem: core.serialization.ObjectSchema<
     unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
     quantity: core.serialization.number().optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
-    employee: InvoiceLineItemEmployee.optional(),
+    employee: core.serialization.string().optional(),
     project: InvoiceLineItemProject.optional(),
     contact: InvoiceLineItemContact.optional(),
     currency: InvoiceLineItemCurrency.optional(),
@@ -57,7 +56,7 @@ export declare namespace InvoiceLineItem {
         unit_price?: number | null;
         quantity?: number | null;
         total_amount?: number | null;
-        employee?: InvoiceLineItemEmployee.Raw | null;
+        employee?: string | null;
         project?: InvoiceLineItemProject.Raw | null;
         contact?: InvoiceLineItemContact.Raw | null;
         currency?: InvoiceLineItemCurrency.Raw | null;

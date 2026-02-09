@@ -37,7 +37,7 @@ describe("BankFeedAccountsClient", () => {
                         organization_defined_targets: { custom_key: "custom_value" },
                         linked_account_defined_targets: { custom_key: "custom_value" },
                     },
-                    remote_data: [],
+                    remote_data: [{ path: "/platform-endpoint", data: ["Varies by platform"] }],
                 },
             ],
         };
@@ -84,7 +84,12 @@ describe("BankFeedAccountsClient", () => {
                             custom_key: "custom_value",
                         },
                     },
-                    remoteData: [],
+                    remoteData: [
+                        {
+                            path: "/platform-endpoint",
+                            data: ["Varies by platform"],
+                        },
+                    ],
                 },
             ],
         });
@@ -120,7 +125,7 @@ describe("BankFeedAccountsClient", () => {
                     organization_defined_targets: { custom_key: "custom_value" },
                     linked_account_defined_targets: { custom_key: "custom_value" },
                 },
-                remote_data: [{ key: "value" }],
+                remote_data: [{ path: "/platform-endpoint", data: ["Varies by platform"] }],
             },
             warnings: [
                 {
@@ -128,6 +133,7 @@ describe("BankFeedAccountsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -136,6 +142,7 @@ describe("BankFeedAccountsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -162,7 +169,9 @@ describe("BankFeedAccountsClient", () => {
         const response = await client.accounting.bankFeedAccounts.create({
             isDebugMode: true,
             runAsync: true,
-            model: {},
+            body: {
+                model: {},
+            },
         });
         expect(response).toEqual({
             model: {
@@ -191,7 +200,8 @@ describe("BankFeedAccountsClient", () => {
                 },
                 remoteData: [
                     {
-                        key: "value",
+                        path: "/platform-endpoint",
+                        data: ["Varies by platform"],
                     },
                 ],
             },
@@ -203,6 +213,7 @@ describe("BankFeedAccountsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -213,6 +224,7 @@ describe("BankFeedAccountsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -258,7 +270,7 @@ describe("BankFeedAccountsClient", () => {
                 organization_defined_targets: { custom_key: "custom_value" },
                 linked_account_defined_targets: { custom_key: "custom_value" },
             },
-            remote_data: [{ key: "value" }],
+            remote_data: [{ path: "/platform-endpoint", data: ["Varies by platform"] }],
         };
         server
             .mockEndpoint()
@@ -298,7 +310,250 @@ describe("BankFeedAccountsClient", () => {
             },
             remoteData: [
                 {
-                    key: "value",
+                    path: "/platform-endpoint",
+                    data: ["Varies by platform"],
+                },
+            ],
+        });
+    });
+
+    test("asyncBulkCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { batch_items: [{ item_id: "item_id", payload: { model: {} } }] };
+        const rawResponseBody = {
+            model: {
+                id: "b26fd49a-cbae-470a-a8f8-bcbc119e0390",
+                remote_id: "987300",
+                created_at: "2021-09-15T00:00:00Z",
+                modified_at: "2021-10-16T00:00:00Z",
+                source_account_id: "123566909",
+                target_account_id: "49cd5a42-b311-4750-9361-52e2ed1d4653",
+                source_account_name: "Travel Bank Account",
+                source_account_number: "12567",
+                target_account_name: "Netsuite Travel Bank Account",
+                currency: "XUA",
+                feed_status: "ACTIVE",
+                feed_start_date: "2024-02-02T00:00:00Z",
+                source_account_balance: 123.94,
+                account_type: "BANK",
+                remote_was_deleted: true,
+                field_mappings: {
+                    organization_defined_targets: { custom_key: "custom_value" },
+                    linked_account_defined_targets: { custom_key: "custom_value" },
+                },
+                remote_data: [{ path: "/platform-endpoint", data: ["Varies by platform"] }],
+            },
+            warnings: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            errors: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            logs: [
+                {
+                    log_id: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboard_view: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    log_summary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        status_code: 200,
+                    },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .post("/accounting/v1/bank-feed-accounts/async/bulk")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.bankFeedAccounts.asyncBulkCreate({
+            isDebugMode: true,
+            runAsync: true,
+            batchItems: [
+                {
+                    itemId: "item_id",
+                    payload: {
+                        model: {},
+                    },
+                },
+            ],
+        });
+        expect(response).toEqual({
+            model: {
+                id: "b26fd49a-cbae-470a-a8f8-bcbc119e0390",
+                remoteId: "987300",
+                createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                sourceAccountId: "123566909",
+                targetAccountId: "49cd5a42-b311-4750-9361-52e2ed1d4653",
+                sourceAccountName: "Travel Bank Account",
+                sourceAccountNumber: "12567",
+                targetAccountName: "Netsuite Travel Bank Account",
+                currency: "XUA",
+                feedStatus: "ACTIVE",
+                feedStartDate: new Date("2024-02-02T00:00:00.000Z"),
+                sourceAccountBalance: 123.94,
+                accountType: "BANK",
+                remoteWasDeleted: true,
+                fieldMappings: {
+                    organization_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                    linked_account_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                },
+                remoteData: [
+                    {
+                        path: "/platform-endpoint",
+                        data: ["Varies by platform"],
+                    },
+                ],
+            },
+            warnings: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            errors: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            logs: [
+                {
+                    logId: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboardView: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    logSummary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        statusCode: 200,
+                    },
+                },
+            ],
+        });
+    });
+
+    test("batchObjectsList", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "b26fd49a-cbae-470a-a8f8-bcbc119e0390",
+                    remote_id: "987300",
+                    created_at: "2021-09-15T00:00:00Z",
+                    modified_at: "2021-10-16T00:00:00Z",
+                    source_account_id: "123566909",
+                    target_account_id: "49cd5a42-b311-4750-9361-52e2ed1d4653",
+                    source_account_name: "Travel Bank Account",
+                    source_account_number: "12567",
+                    target_account_name: "Netsuite Travel Bank Account",
+                    currency: "XUA",
+                    feed_status: "ACTIVE",
+                    feed_start_date: "2024-02-02T00:00:00Z",
+                    source_account_balance: 123.94,
+                    account_type: "BANK",
+                    remote_was_deleted: true,
+                    field_mappings: {
+                        organization_defined_targets: { custom_key: "custom_value" },
+                        linked_account_defined_targets: { custom_key: "custom_value" },
+                    },
+                    remote_data: [{ path: "/platform-endpoint", data: ["Varies by platform"] }],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/accounting/v1/bank-feed-accounts/batch/batch_id/objects")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.bankFeedAccounts.batchObjectsList("batch_id", {
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "b26fd49a-cbae-470a-a8f8-bcbc119e0390",
+                    remoteId: "987300",
+                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                    sourceAccountId: "123566909",
+                    targetAccountId: "49cd5a42-b311-4750-9361-52e2ed1d4653",
+                    sourceAccountName: "Travel Bank Account",
+                    sourceAccountNumber: "12567",
+                    targetAccountName: "Netsuite Travel Bank Account",
+                    currency: "XUA",
+                    feedStatus: "ACTIVE",
+                    feedStartDate: new Date("2024-02-02T00:00:00.000Z"),
+                    sourceAccountBalance: 123.94,
+                    accountType: "BANK",
+                    remoteWasDeleted: true,
+                    fieldMappings: {
+                        organization_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                        linked_account_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                    },
+                    remoteData: [
+                        {
+                            path: "/platform-endpoint",
+                            data: ["Varies by platform"],
+                        },
+                    ],
                 },
             ],
         });
@@ -475,10 +730,10 @@ describe("BankFeedAccountsClient", () => {
                     },
                 },
             },
-            remote_field_classes: { key: "value" },
             status: { linked_account_status: "linked_account_status", can_make_request: true },
             has_conditional_params: true,
             has_required_linked_account_params: true,
+            remote_fields: ["remote_fields"],
         };
         server
             .mockEndpoint()
@@ -713,15 +968,13 @@ describe("BankFeedAccountsClient", () => {
                     },
                 },
             },
-            remoteFieldClasses: {
-                key: "value",
-            },
             status: {
                 linkedAccountStatus: "linked_account_status",
                 canMakeRequest: true,
             },
             hasConditionalParams: true,
             hasRequiredLinkedAccountParams: true,
+            remoteFields: ["remote_fields"],
         });
     });
 });

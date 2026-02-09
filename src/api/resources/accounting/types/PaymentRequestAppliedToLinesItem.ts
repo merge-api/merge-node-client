@@ -2,4 +2,4 @@
 
 import type * as Merge from "../../../index";
 
-export type PaymentRequestAppliedToLinesItem = string | Merge.accounting.PaymentLineItemRequest;
+export type PaymentRequestAppliedToLinesItem = string | Merge.accounting.PaymentLineItem;

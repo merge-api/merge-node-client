@@ -32,7 +32,7 @@ describe("AccountsClient", () => {
                     currency: "XUA",
                     account_number: "X12Y9AB",
                     parent_account: "22d92d6c-22f9-11ed-861d-0242ac120002",
-                    company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    company: "company",
                     remote_was_deleted: true,
                     field_mappings: {
                         organization_defined_targets: { custom_key: "custom_value" },
@@ -89,7 +89,7 @@ describe("AccountsClient", () => {
                     currency: "XUA",
                     accountNumber: "X12Y9AB",
                     parentAccount: "22d92d6c-22f9-11ed-861d-0242ac120002",
-                    company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    company: "company",
                     remoteWasDeleted: true,
                     fieldMappings: {
                         organization_defined_targets: {
@@ -135,7 +135,7 @@ describe("AccountsClient", () => {
                 currency: "XUA",
                 account_number: "X12Y9AB",
                 parent_account: "22d92d6c-22f9-11ed-861d-0242ac120002",
-                company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                company: "company",
                 remote_was_deleted: true,
                 field_mappings: {
                     organization_defined_targets: { custom_key: "custom_value" },
@@ -149,6 +149,7 @@ describe("AccountsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -157,6 +158,7 @@ describe("AccountsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -183,7 +185,9 @@ describe("AccountsClient", () => {
         const response = await client.accounting.accounts.create({
             isDebugMode: true,
             runAsync: true,
-            model: {},
+            body: {
+                model: {},
+            },
         });
         expect(response).toEqual({
             model: {
@@ -201,7 +205,7 @@ describe("AccountsClient", () => {
                 currency: "XUA",
                 accountNumber: "X12Y9AB",
                 parentAccount: "22d92d6c-22f9-11ed-861d-0242ac120002",
-                company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                company: "company",
                 remoteWasDeleted: true,
                 fieldMappings: {
                     organization_defined_targets: {
@@ -226,6 +230,7 @@ describe("AccountsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -236,6 +241,7 @@ describe("AccountsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -276,7 +282,7 @@ describe("AccountsClient", () => {
             currency: "XUA",
             account_number: "X12Y9AB",
             parent_account: "22d92d6c-22f9-11ed-861d-0242ac120002",
-            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+            company: "company",
             remote_was_deleted: true,
             field_mappings: {
                 organization_defined_targets: { custom_key: "custom_value" },
@@ -314,7 +320,7 @@ describe("AccountsClient", () => {
             currency: "XUA",
             accountNumber: "X12Y9AB",
             parentAccount: "22d92d6c-22f9-11ed-861d-0242ac120002",
-            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+            company: "company",
             remoteWasDeleted: true,
             fieldMappings: {
                 organization_defined_targets: {
@@ -328,6 +334,265 @@ describe("AccountsClient", () => {
                 {
                     path: "/actions",
                     data: ["Varies by platform"],
+                },
+            ],
+        });
+    });
+
+    test("asyncBulkCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { batch_items: [{ item_id: "item_id", payload: { model: {} } }] };
+        const rawResponseBody = {
+            model: {
+                id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                remote_id: "21",
+                created_at: "2021-09-15T00:00:00Z",
+                modified_at: "2021-10-16T00:00:00Z",
+                name: "Cash",
+                description: "Cash",
+                classification: "ASSET",
+                type: "Asset",
+                account_type: "BANK",
+                status: "ACTIVE",
+                current_balance: 1.1,
+                currency: "XUA",
+                account_number: "X12Y9AB",
+                parent_account: "22d92d6c-22f9-11ed-861d-0242ac120002",
+                company: "company",
+                remote_was_deleted: true,
+                field_mappings: {
+                    organization_defined_targets: { custom_key: "custom_value" },
+                    linked_account_defined_targets: { custom_key: "custom_value" },
+                },
+                remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+            },
+            warnings: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            errors: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            logs: [
+                {
+                    log_id: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboard_view: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    log_summary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        status_code: 200,
+                    },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .post("/accounting/v1/accounts/async/bulk")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.accounts.asyncBulkCreate({
+            isDebugMode: true,
+            runAsync: true,
+            batchItems: [
+                {
+                    itemId: "item_id",
+                    payload: {
+                        model: {},
+                    },
+                },
+            ],
+        });
+        expect(response).toEqual({
+            model: {
+                id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                remoteId: "21",
+                createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                name: "Cash",
+                description: "Cash",
+                classification: "ASSET",
+                type: "Asset",
+                accountType: "BANK",
+                status: "ACTIVE",
+                currentBalance: 1.1,
+                currency: "XUA",
+                accountNumber: "X12Y9AB",
+                parentAccount: "22d92d6c-22f9-11ed-861d-0242ac120002",
+                company: "company",
+                remoteWasDeleted: true,
+                fieldMappings: {
+                    organization_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                    linked_account_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                },
+                remoteData: [
+                    {
+                        path: "/actions",
+                        data: ["Varies by platform"],
+                    },
+                ],
+            },
+            warnings: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            errors: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            logs: [
+                {
+                    logId: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboardView: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    logSummary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        statusCode: 200,
+                    },
+                },
+            ],
+        });
+    });
+
+    test("batchObjectsList", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                    remote_id: "21",
+                    created_at: "2021-09-15T00:00:00Z",
+                    modified_at: "2021-10-16T00:00:00Z",
+                    name: "Cash",
+                    description: "Cash",
+                    classification: "ASSET",
+                    type: "Asset",
+                    account_type: "BANK",
+                    status: "ACTIVE",
+                    current_balance: 1.1,
+                    currency: "XUA",
+                    account_number: "X12Y9AB",
+                    parent_account: "22d92d6c-22f9-11ed-861d-0242ac120002",
+                    company: "company",
+                    remote_was_deleted: true,
+                    field_mappings: {
+                        organization_defined_targets: { custom_key: "custom_value" },
+                        linked_account_defined_targets: { custom_key: "custom_value" },
+                    },
+                    remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/accounting/v1/accounts/batch/batch_id/objects")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.accounts.batchObjectsList("batch_id", {
+            accountType: "account_type",
+            classification: "",
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            expand: "company",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            name: "name",
+            pageSize: 1,
+            remoteFields: "classification",
+            remoteId: "remote_id",
+            showEnumOrigins: "classification",
+            status: "",
+        });
+        expect(response).toEqual({
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                    remoteId: "21",
+                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                    name: "Cash",
+                    description: "Cash",
+                    classification: "ASSET",
+                    type: "Asset",
+                    accountType: "BANK",
+                    status: "ACTIVE",
+                    currentBalance: 1.1,
+                    currency: "XUA",
+                    accountNumber: "X12Y9AB",
+                    parentAccount: "22d92d6c-22f9-11ed-861d-0242ac120002",
+                    company: "company",
+                    remoteWasDeleted: true,
+                    fieldMappings: {
+                        organization_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                        linked_account_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                    },
+                    remoteData: [
+                        {
+                            path: "/actions",
+                            data: ["Varies by platform"],
+                        },
+                    ],
                 },
             ],
         });
@@ -504,10 +769,10 @@ describe("AccountsClient", () => {
                     },
                 },
             },
-            remote_field_classes: { key: "value" },
             status: { linked_account_status: "linked_account_status", can_make_request: true },
             has_conditional_params: true,
             has_required_linked_account_params: true,
+            remote_fields: ["remote_fields"],
         };
         server
             .mockEndpoint()
@@ -742,15 +1007,13 @@ describe("AccountsClient", () => {
                     },
                 },
             },
-            remoteFieldClasses: {
-                key: "value",
-            },
             status: {
                 linkedAccountStatus: "linked_account_status",
                 canMakeRequest: true,
             },
             hasConditionalParams: true,
             hasRequiredLinkedAccountParams: true,
+            remoteFields: ["remote_fields"],
         });
     });
 });
