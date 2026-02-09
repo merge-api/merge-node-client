@@ -1,3 +1,6 @@
+export * from "./CreditNotesBatchObjectsListRequestExpand";
+export * from "./CreditNotesBatchObjectsListRequestRemoteFields";
+export * from "./CreditNotesBatchObjectsListRequestShowEnumOrigins";
 export * from "./CreditNotesListRequestExpand";
 export * from "./CreditNotesListRequestRemoteFields";
 export * from "./CreditNotesListRequestShowEnumOrigins";

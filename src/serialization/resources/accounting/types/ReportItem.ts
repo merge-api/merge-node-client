@@ -15,9 +15,7 @@ export const ReportItem: core.serialization.ObjectSchema<
     value: core.serialization.number().optional(),
     subItems: core.serialization.property(
         "sub_items",
-        core.serialization
-            .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()))
-            .optional(),
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
     company: core.serialization.string().optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
@@ -30,7 +28,7 @@ export declare namespace ReportItem {
         modified_at?: string | null;
         name?: string | null;
         value?: number | null;
-        sub_items?: Record<string, unknown>[] | null;
+        sub_items?: Record<string, unknown> | null;
         company?: string | null;
         remote_was_deleted?: boolean | null;
     }

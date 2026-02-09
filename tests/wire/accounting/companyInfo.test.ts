@@ -43,14 +43,7 @@ describe("CompanyInfoClient", () => {
                             zip_code: "10027",
                         },
                     ],
-                    phone_numbers: [
-                        {
-                            created_at: "2021-09-15T00:00:00Z",
-                            modified_at: "2021-10-16T00:00:00Z",
-                            number: "+3198675309",
-                            type: "Mobile",
-                        },
-                    ],
+                    phone_numbers: ["phone_numbers"],
                     remote_was_deleted: true,
                     field_mappings: {
                         organization_defined_targets: { custom_key: "custom_value" },
@@ -78,6 +71,7 @@ describe("CompanyInfoClient", () => {
             includeShellData: true,
             modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
             modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            name: "name",
             pageSize: 1,
             remoteId: "remote_id",
         });
@@ -111,14 +105,7 @@ describe("CompanyInfoClient", () => {
                             zipCode: "10027",
                         },
                     ],
-                    phoneNumbers: [
-                        {
-                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
-                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
-                            number: "+3198675309",
-                            type: "Mobile",
-                        },
-                    ],
+                    phoneNumbers: ["phone_numbers"],
                     remoteWasDeleted: true,
                     fieldMappings: {
                         organization_defined_targets: {
@@ -175,14 +162,7 @@ describe("CompanyInfoClient", () => {
                     zip_code: "10027",
                 },
             ],
-            phone_numbers: [
-                {
-                    created_at: "2021-09-15T00:00:00Z",
-                    modified_at: "2021-10-16T00:00:00Z",
-                    number: "+3198675309",
-                    type: "Mobile",
-                },
-            ],
+            phone_numbers: ["phone_numbers"],
             remote_was_deleted: true,
             field_mappings: {
                 organization_defined_targets: { custom_key: "custom_value" },
@@ -230,14 +210,7 @@ describe("CompanyInfoClient", () => {
                     zipCode: "10027",
                 },
             ],
-            phoneNumbers: [
-                {
-                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
-                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
-                    number: "+3198675309",
-                    type: "Mobile",
-                },
-            ],
+            phoneNumbers: ["phone_numbers"],
             remoteWasDeleted: true,
             fieldMappings: {
                 organization_defined_targets: {

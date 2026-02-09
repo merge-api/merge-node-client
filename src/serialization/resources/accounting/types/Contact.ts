@@ -3,8 +3,9 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { AccountingPhoneNumber } from "./AccountingPhoneNumber";
 import { ContactAddressesItem } from "./ContactAddressesItem";
+import { ContactCompany } from "./ContactCompany";
+import { ContactPhoneNumbersItem } from "./ContactPhoneNumbersItem";
 import { ContactStatus } from "./ContactStatus";
 import { RemoteData } from "./RemoteData";
 import { RemoteField } from "./RemoteField";
@@ -23,11 +24,11 @@ export const Contact: core.serialization.ObjectSchema<serializers.accounting.Con
         status: ContactStatus.optional(),
         currency: core.serialization.string().optional(),
         remoteUpdatedAt: core.serialization.property("remote_updated_at", core.serialization.date().optional()),
-        company: core.serialization.string().optional(),
-        addresses: core.serialization.list(ContactAddressesItem.optional()).optional(),
+        company: ContactCompany.optional(),
+        addresses: core.serialization.list(ContactAddressesItem).optional(),
         phoneNumbers: core.serialization.property(
             "phone_numbers",
-            core.serialization.list(AccountingPhoneNumber).optional(),
+            core.serialization.list(ContactPhoneNumbersItem).optional(),
         ),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
@@ -52,9 +53,9 @@ export declare namespace Contact {
         status?: ContactStatus.Raw | null;
         currency?: string | null;
         remote_updated_at?: string | null;
-        company?: string | null;
-        addresses?: (ContactAddressesItem.Raw | null | undefined)[] | null;
-        phone_numbers?: AccountingPhoneNumber.Raw[] | null;
+        company?: ContactCompany.Raw | null;
+        addresses?: ContactAddressesItem.Raw[] | null;
+        phone_numbers?: ContactPhoneNumbersItem.Raw[] | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: RemoteData.Raw[] | null;

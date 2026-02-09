@@ -41,7 +41,7 @@ export interface IssuesListRequest {
     lastIncidentTimeBefore?: Date;
     /** If provided, will only include issues pertaining to the linked account passed in. */
     linkedAccountId?: string;
-    /** Number of results to return per page. */
+    /** Number of results to return per page. The maximum limit is 100. */
     pageSize?: number;
     /** If included, will only include issues whose most recent action occurred after this time */
     startDate?: string;

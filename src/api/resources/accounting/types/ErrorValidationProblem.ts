@@ -7,4 +7,5 @@ export interface ErrorValidationProblem {
     title: string;
     detail: string;
     problemType: string;
+    blockMergeLink?: boolean;
 }
