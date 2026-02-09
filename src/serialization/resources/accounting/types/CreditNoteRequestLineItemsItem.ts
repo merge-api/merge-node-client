@@ -3,13 +3,13 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { CreditNoteLineItemRequest } from "./CreditNoteLineItemRequest";
+import { CreditNoteLineItem } from "./CreditNoteLineItem";
 
 export const CreditNoteRequestLineItemsItem: core.serialization.Schema<
     serializers.accounting.CreditNoteRequestLineItemsItem.Raw,
     Merge.accounting.CreditNoteRequestLineItemsItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), CreditNoteLineItemRequest]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), CreditNoteLineItem]);
 
 export declare namespace CreditNoteRequestLineItemsItem {
-    export type Raw = string | CreditNoteLineItemRequest.Raw;
+    export type Raw = string | CreditNoteLineItem.Raw;
 }

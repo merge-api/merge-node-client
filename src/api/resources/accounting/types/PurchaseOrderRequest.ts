@@ -355,7 +355,7 @@ export interface PurchaseOrderRequest {
     /** The purchase order's exchange rate. */
     exchangeRate?: string;
     trackingCategories?: (Merge.accounting.PurchaseOrderRequestTrackingCategoriesItem | undefined)[];
-    lineItems?: Merge.accounting.PurchaseOrderLineItemRequest[];
+    lineItems?: Merge.accounting.PurchaseOrderRequestLineItemsItem[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.accounting.RemoteFieldRequest[];

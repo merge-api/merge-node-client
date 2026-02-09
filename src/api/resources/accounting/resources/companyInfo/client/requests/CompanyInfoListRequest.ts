@@ -14,6 +14,7 @@ import type * as Merge from "../../../../../../index";
  *         includeShellData: true,
  *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
  *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+ *         name: "name",
  *         pageSize: 1,
  *         remoteId: "remote_id"
  *     }
@@ -37,7 +38,9 @@ export interface CompanyInfoListRequest {
     modifiedAfter?: Date;
     /** If provided, only objects synced by Merge before this date time will be returned. */
     modifiedBefore?: Date;
-    /** Number of results to return per page. */
+    /** If provided, will only return CompanyInfo objects with this name. */
+    name?: string;
+    /** Number of results to return per page. The maximum limit is 100. */
     pageSize?: number;
     /** The API provider's ID for the given object. */
     remoteId?: string;

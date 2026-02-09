@@ -3,15 +3,9 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { PatchedPaymentRequestAccount } from "./PatchedPaymentRequestAccount";
-import { PatchedPaymentRequestAccountingPeriod } from "./PatchedPaymentRequestAccountingPeriod";
-import { PatchedPaymentRequestAppliedToLinesItem } from "./PatchedPaymentRequestAppliedToLinesItem";
-import { PatchedPaymentRequestCompany } from "./PatchedPaymentRequestCompany";
-import { PatchedPaymentRequestContact } from "./PatchedPaymentRequestContact";
 import { PatchedPaymentRequestCurrency } from "./PatchedPaymentRequestCurrency";
-import { PatchedPaymentRequestPaymentMethod } from "./PatchedPaymentRequestPaymentMethod";
-import { PatchedPaymentRequestTrackingCategoriesItem } from "./PatchedPaymentRequestTrackingCategoriesItem";
 import { PatchedPaymentRequestType } from "./PatchedPaymentRequestType";
+import { PaymentLineItemRequest } from "./PaymentLineItemRequest";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
 
 export const PatchedPaymentRequest: core.serialization.ObjectSchema<
@@ -19,25 +13,22 @@ export const PatchedPaymentRequest: core.serialization.ObjectSchema<
     Merge.accounting.PatchedPaymentRequest
 > = core.serialization.object({
     transactionDate: core.serialization.property("transaction_date", core.serialization.date().optional()),
-    contact: PatchedPaymentRequestContact.optional(),
-    account: PatchedPaymentRequestAccount.optional(),
-    paymentMethod: core.serialization.property("payment_method", PatchedPaymentRequestPaymentMethod.optional()),
+    contact: core.serialization.string().optional(),
+    account: core.serialization.string().optional(),
+    paymentMethod: core.serialization.property("payment_method", core.serialization.string().optional()),
     currency: PatchedPaymentRequestCurrency.optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-    company: PatchedPaymentRequestCompany.optional(),
+    company: core.serialization.string().optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     type: PatchedPaymentRequestType.optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
-        core.serialization.list(PatchedPaymentRequestTrackingCategoriesItem.optional()).optional(),
+        core.serialization.list(core.serialization.string().optional()).optional(),
     ),
-    accountingPeriod: core.serialization.property(
-        "accounting_period",
-        PatchedPaymentRequestAccountingPeriod.optional(),
-    ),
+    accountingPeriod: core.serialization.property("accounting_period", core.serialization.string().optional()),
     appliedToLines: core.serialization.property(
         "applied_to_lines",
-        core.serialization.list(PatchedPaymentRequestAppliedToLinesItem).optional(),
+        core.serialization.list(PaymentLineItemRequest).optional(),
     ),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -53,17 +44,17 @@ export const PatchedPaymentRequest: core.serialization.ObjectSchema<
 export declare namespace PatchedPaymentRequest {
     export interface Raw {
         transaction_date?: string | null;
-        contact?: PatchedPaymentRequestContact.Raw | null;
-        account?: PatchedPaymentRequestAccount.Raw | null;
-        payment_method?: PatchedPaymentRequestPaymentMethod.Raw | null;
+        contact?: string | null;
+        account?: string | null;
+        payment_method?: string | null;
         currency?: PatchedPaymentRequestCurrency.Raw | null;
         exchange_rate?: string | null;
-        company?: PatchedPaymentRequestCompany.Raw | null;
+        company?: string | null;
         total_amount?: number | null;
         type?: PatchedPaymentRequestType.Raw | null;
-        tracking_categories?: (PatchedPaymentRequestTrackingCategoriesItem.Raw | null | undefined)[] | null;
-        accounting_period?: PatchedPaymentRequestAccountingPeriod.Raw | null;
-        applied_to_lines?: PatchedPaymentRequestAppliedToLinesItem.Raw[] | null;
+        tracking_categories?: (string | null | undefined)[] | null;
+        accounting_period?: string | null;
+        applied_to_lines?: PaymentLineItemRequest.Raw[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
         remote_fields?: RemoteFieldRequest.Raw[] | null;

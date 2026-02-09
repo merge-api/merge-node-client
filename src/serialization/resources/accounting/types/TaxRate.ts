@@ -4,9 +4,9 @@ import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { RemoteData } from "./RemoteData";
+import { TaxComponent } from "./TaxComponent";
 import { TaxRateCompany } from "./TaxRateCompany";
 import { TaxRateStatus } from "./TaxRateStatus";
-import { TaxRateTaxComponentsItem } from "./TaxRateTaxComponentsItem";
 
 export const TaxRate: core.serialization.ObjectSchema<serializers.accounting.TaxRate.Raw, Merge.accounting.TaxRate> =
     core.serialization.object({
@@ -22,10 +22,7 @@ export const TaxRate: core.serialization.ObjectSchema<serializers.accounting.Tax
         country: core.serialization.string().optional(),
         totalTaxRate: core.serialization.property("total_tax_rate", core.serialization.number().optional()),
         effectiveTaxRate: core.serialization.property("effective_tax_rate", core.serialization.number().optional()),
-        taxComponents: core.serialization.property(
-            "tax_components",
-            core.serialization.list(TaxRateTaxComponentsItem).optional(),
-        ),
+        taxComponents: core.serialization.property("tax_components", core.serialization.list(TaxComponent).optional()),
         remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
         fieldMappings: core.serialization.property(
             "field_mappings",
@@ -48,7 +45,7 @@ export declare namespace TaxRate {
         country?: string | null;
         total_tax_rate?: number | null;
         effective_tax_rate?: number | null;
-        tax_components?: TaxRateTaxComponentsItem.Raw[] | null;
+        tax_components?: TaxComponent.Raw[] | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: RemoteData.Raw[] | null;
