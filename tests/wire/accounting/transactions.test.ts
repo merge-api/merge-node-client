@@ -31,7 +31,7 @@ describe("TransactionsClient", () => {
                     total_amount: "total_amount",
                     currency: "XUA",
                     exchange_rate: "2.9",
-                    company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    company: "company",
                     tracking_categories: [
                         "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -104,7 +104,7 @@ describe("TransactionsClient", () => {
             createdAfter: new Date("2024-01-15T09:30:00.000Z"),
             createdBefore: new Date("2024-01-15T09:30:00.000Z"),
             cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            expand: "account",
+            expand: "line_items,tracking_categories,contact,account,company,accounting_period",
             includeDeletedData: true,
             includeRemoteData: true,
             includeShellData: true,
@@ -133,7 +133,7 @@ describe("TransactionsClient", () => {
                     totalAmount: "total_amount",
                     currency: "XUA",
                     exchangeRate: "2.9",
-                    company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    company: "company",
                     trackingCategories: [
                         "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                         "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -227,7 +227,7 @@ describe("TransactionsClient", () => {
             total_amount: "total_amount",
             currency: "XUA",
             exchange_rate: "2.9",
-            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+            company: "company",
             tracking_categories: [
                 "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                 "9b840d2-686a-465a-8a8e-7b028498f8e4",
@@ -296,7 +296,7 @@ describe("TransactionsClient", () => {
             .build();
 
         const response = await client.accounting.transactions.retrieve("id", {
-            expand: "account",
+            expand: "line_items,tracking_categories,contact,account,company,accounting_period",
             includeRemoteData: true,
             includeShellData: true,
         });
@@ -314,7 +314,7 @@ describe("TransactionsClient", () => {
             totalAmount: "total_amount",
             currency: "XUA",
             exchangeRate: "2.9",
-            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+            company: "company",
             trackingCategories: [
                 "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
                 "9b840d2-686a-465a-8a8e-7b028498f8e4",

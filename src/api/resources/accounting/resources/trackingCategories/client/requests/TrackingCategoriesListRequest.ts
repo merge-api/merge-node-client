@@ -49,7 +49,7 @@ export interface TrackingCategoriesListRequest {
     modifiedBefore?: Date;
     /** If provided, will only return tracking categories with this name. */
     name?: string;
-    /** Number of results to return per page. */
+    /** Number of results to return per page. The maximum limit is 100. */
     pageSize?: number;
     /** Deprecated. Use show_enum_origins. */
     remoteFields?: "status";

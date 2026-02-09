@@ -61,6 +61,7 @@ describe("ItemsClient", () => {
             includeShellData: true,
             modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
             modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            name: "name",
             pageSize: 1,
             remoteFields: "status",
             remoteId: "remote_id",
@@ -145,6 +146,7 @@ describe("ItemsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -153,6 +155,7 @@ describe("ItemsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -179,7 +182,9 @@ describe("ItemsClient", () => {
         const response = await client.accounting.items.create({
             isDebugMode: true,
             runAsync: true,
-            model: {},
+            body: {
+                model: {},
+            },
         });
         expect(response).toEqual({
             model: {
@@ -222,6 +227,7 @@ describe("ItemsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -232,6 +238,7 @@ describe("ItemsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -368,6 +375,7 @@ describe("ItemsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -376,6 +384,7 @@ describe("ItemsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -445,6 +454,7 @@ describe("ItemsClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -455,6 +465,7 @@ describe("ItemsClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -466,6 +477,262 @@ describe("ItemsClient", () => {
                         method: "POST",
                         statusCode: 200,
                     },
+                },
+            ],
+        });
+    });
+
+    test("asyncBulkCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { batch_items: [{ item_id: "item_id", payload: { model: {} } }] };
+        const rawResponseBody = {
+            model: {
+                id: "d2f972d0-2526-434b-9409-4c3b468e08f0",
+                remote_id: "12374",
+                created_at: "2021-09-15T00:00:00Z",
+                modified_at: "2021-10-16T00:00:00Z",
+                name: "Pickleball Paddle",
+                status: "ACTIVE",
+                type: "INVENTORY",
+                unit_price: 10,
+                purchase_price: 25,
+                purchase_account: "purchase_account",
+                sales_account: "sales_account",
+                company: "company",
+                purchase_tax_rate: "purchase_tax_rate",
+                sales_tax_rate: "sales_tax_rate",
+                remote_updated_at: "2020-03-31T00:00:00Z",
+                remote_was_deleted: true,
+                field_mappings: {
+                    organization_defined_targets: { custom_key: "custom_value" },
+                    linked_account_defined_targets: { custom_key: "custom_value" },
+                },
+                remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+            },
+            warnings: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            errors: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            logs: [
+                {
+                    log_id: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboard_view: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    log_summary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        status_code: 200,
+                    },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .post("/accounting/v1/items/async/bulk")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.items.asyncBulkCreate({
+            isDebugMode: true,
+            runAsync: true,
+            batchItems: [
+                {
+                    itemId: "item_id",
+                    payload: {
+                        model: {},
+                    },
+                },
+            ],
+        });
+        expect(response).toEqual({
+            model: {
+                id: "d2f972d0-2526-434b-9409-4c3b468e08f0",
+                remoteId: "12374",
+                createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                name: "Pickleball Paddle",
+                status: "ACTIVE",
+                type: "INVENTORY",
+                unitPrice: 10,
+                purchasePrice: 25,
+                purchaseAccount: "purchase_account",
+                salesAccount: "sales_account",
+                company: "company",
+                purchaseTaxRate: "purchase_tax_rate",
+                salesTaxRate: "sales_tax_rate",
+                remoteUpdatedAt: new Date("2020-03-31T00:00:00.000Z"),
+                remoteWasDeleted: true,
+                fieldMappings: {
+                    organization_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                    linked_account_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                },
+                remoteData: [
+                    {
+                        path: "/actions",
+                        data: ["Varies by platform"],
+                    },
+                ],
+            },
+            warnings: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            errors: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            logs: [
+                {
+                    logId: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboardView: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    logSummary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        statusCode: 200,
+                    },
+                },
+            ],
+        });
+    });
+
+    test("batchObjectsList", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "d2f972d0-2526-434b-9409-4c3b468e08f0",
+                    remote_id: "12374",
+                    created_at: "2021-09-15T00:00:00Z",
+                    modified_at: "2021-10-16T00:00:00Z",
+                    name: "Pickleball Paddle",
+                    status: "ACTIVE",
+                    type: "INVENTORY",
+                    unit_price: 10,
+                    purchase_price: 25,
+                    purchase_account: "purchase_account",
+                    sales_account: "sales_account",
+                    company: "company",
+                    purchase_tax_rate: "purchase_tax_rate",
+                    sales_tax_rate: "sales_tax_rate",
+                    remote_updated_at: "2020-03-31T00:00:00Z",
+                    remote_was_deleted: true,
+                    field_mappings: {
+                        organization_defined_targets: { custom_key: "custom_value" },
+                        linked_account_defined_targets: { custom_key: "custom_value" },
+                    },
+                    remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/accounting/v1/items/batch/batch_id/objects")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.items.batchObjectsList("batch_id", {
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            expand: "company",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            name: "name",
+            pageSize: 1,
+            remoteFields: "status",
+            remoteId: "remote_id",
+            showEnumOrigins: "status",
+        });
+        expect(response).toEqual({
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "d2f972d0-2526-434b-9409-4c3b468e08f0",
+                    remoteId: "12374",
+                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                    name: "Pickleball Paddle",
+                    status: "ACTIVE",
+                    type: "INVENTORY",
+                    unitPrice: 10,
+                    purchasePrice: 25,
+                    purchaseAccount: "purchase_account",
+                    salesAccount: "sales_account",
+                    company: "company",
+                    purchaseTaxRate: "purchase_tax_rate",
+                    salesTaxRate: "sales_tax_rate",
+                    remoteUpdatedAt: new Date("2020-03-31T00:00:00.000Z"),
+                    remoteWasDeleted: true,
+                    fieldMappings: {
+                        organization_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                        linked_account_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                    },
+                    remoteData: [
+                        {
+                            path: "/actions",
+                            data: ["Varies by platform"],
+                        },
+                    ],
                 },
             ],
         });
@@ -642,10 +909,10 @@ describe("ItemsClient", () => {
                     },
                 },
             },
-            remote_field_classes: { key: "value" },
             status: { linked_account_status: "linked_account_status", can_make_request: true },
             has_conditional_params: true,
             has_required_linked_account_params: true,
+            remote_fields: ["remote_fields"],
         };
         server
             .mockEndpoint()
@@ -880,15 +1147,13 @@ describe("ItemsClient", () => {
                     },
                 },
             },
-            remoteFieldClasses: {
-                key: "value",
-            },
             status: {
                 linkedAccountStatus: "linked_account_status",
                 canMakeRequest: true,
             },
             hasConditionalParams: true,
             hasRequiredLinkedAccountParams: true,
+            remoteFields: ["remote_fields"],
         });
     });
 
@@ -1063,10 +1328,10 @@ describe("ItemsClient", () => {
                     },
                 },
             },
-            remote_field_classes: { key: "value" },
             status: { linked_account_status: "linked_account_status", can_make_request: true },
             has_conditional_params: true,
             has_required_linked_account_params: true,
+            remote_fields: ["remote_fields"],
         };
         server
             .mockEndpoint()
@@ -1301,15 +1566,13 @@ describe("ItemsClient", () => {
                     },
                 },
             },
-            remoteFieldClasses: {
-                key: "value",
-            },
             status: {
                 linkedAccountStatus: "linked_account_status",
                 canMakeRequest: true,
             },
             hasConditionalParams: true,
             hasRequiredLinkedAccountParams: true,
+            remoteFields: ["remote_fields"],
         });
     });
 });

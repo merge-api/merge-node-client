@@ -3,8 +3,9 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { AccountingPhoneNumberRequest } from "./AccountingPhoneNumberRequest";
 import { ContactRequestAddressesItem } from "./ContactRequestAddressesItem";
+import { ContactRequestCompany } from "./ContactRequestCompany";
+import { ContactRequestPhoneNumbersItem } from "./ContactRequestPhoneNumbersItem";
 import { ContactRequestStatus } from "./ContactRequestStatus";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
 
@@ -19,11 +20,11 @@ export const ContactRequest: core.serialization.ObjectSchema<
     taxNumber: core.serialization.property("tax_number", core.serialization.string().optional()),
     status: ContactRequestStatus.optional(),
     currency: core.serialization.string().optional(),
-    company: core.serialization.string().optional(),
-    addresses: core.serialization.list(ContactRequestAddressesItem.optional()).optional(),
+    company: ContactRequestCompany.optional(),
+    addresses: core.serialization.list(ContactRequestAddressesItem).optional(),
     phoneNumbers: core.serialization.property(
         "phone_numbers",
-        core.serialization.list(AccountingPhoneNumberRequest).optional(),
+        core.serialization.list(ContactRequestPhoneNumbersItem).optional(),
     ),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -45,9 +46,9 @@ export declare namespace ContactRequest {
         tax_number?: string | null;
         status?: ContactRequestStatus.Raw | null;
         currency?: string | null;
-        company?: string | null;
-        addresses?: (ContactRequestAddressesItem.Raw | null | undefined)[] | null;
-        phone_numbers?: AccountingPhoneNumberRequest.Raw[] | null;
+        company?: ContactRequestCompany.Raw | null;
+        addresses?: ContactRequestAddressesItem.Raw[] | null;
+        phone_numbers?: ContactRequestPhoneNumbersItem.Raw[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
         remote_fields?: RemoteFieldRequest.Raw[] | null;

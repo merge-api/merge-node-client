@@ -48,9 +48,42 @@ describe("GeneralLedgerTransactionsClient", () => {
                             exchange_rate: "exchange_rate",
                             description: "Invoice created",
                             tracking_categories: [
-                                "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
-                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
-                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                                {
+                                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                                    remote_id: "948201",
+                                    created_at: "2021-09-15T00:00:00Z",
+                                    modified_at: "2021-10-16T00:00:00Z",
+                                    name: "Marketing Department",
+                                    parent_category: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                                    field_mappings: {
+                                        organization_defined_targets: { custom_key: "custom_value" },
+                                        linked_account_defined_targets: { custom_key: "custom_value" },
+                                    },
+                                },
+                                {
+                                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                                    remote_id: "948201",
+                                    created_at: "2021-09-15T00:00:00Z",
+                                    modified_at: "2021-10-16T00:00:00Z",
+                                    name: "Marketing Department",
+                                    parent_category: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                                    field_mappings: {
+                                        organization_defined_targets: { custom_key: "custom_value" },
+                                        linked_account_defined_targets: { custom_key: "custom_value" },
+                                    },
+                                },
+                                {
+                                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                                    remote_id: "948201",
+                                    created_at: "2021-09-15T00:00:00Z",
+                                    modified_at: "2021-10-16T00:00:00Z",
+                                    name: "Marketing Department",
+                                    parent_category: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                                    field_mappings: {
+                                        organization_defined_targets: { custom_key: "custom_value" },
+                                        linked_account_defined_targets: { custom_key: "custom_value" },
+                                    },
+                                },
                             ],
                             debit_amount: "debit_amount",
                             credit_amount: "credit_amount",
@@ -132,9 +165,54 @@ describe("GeneralLedgerTransactionsClient", () => {
                             exchangeRate: "exchange_rate",
                             description: "Invoice created",
                             trackingCategories: [
-                                "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
-                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
-                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                                {
+                                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                                    remoteId: "948201",
+                                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                                    name: "Marketing Department",
+                                    parentCategory: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                                    fieldMappings: {
+                                        organization_defined_targets: {
+                                            custom_key: "custom_value",
+                                        },
+                                        linked_account_defined_targets: {
+                                            custom_key: "custom_value",
+                                        },
+                                    },
+                                },
+                                {
+                                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                                    remoteId: "948201",
+                                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                                    name: "Marketing Department",
+                                    parentCategory: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                                    fieldMappings: {
+                                        organization_defined_targets: {
+                                            custom_key: "custom_value",
+                                        },
+                                        linked_account_defined_targets: {
+                                            custom_key: "custom_value",
+                                        },
+                                    },
+                                },
+                                {
+                                    id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                                    remoteId: "948201",
+                                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                                    name: "Marketing Department",
+                                    parentCategory: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                                    fieldMappings: {
+                                        organization_defined_targets: {
+                                            custom_key: "custom_value",
+                                        },
+                                        linked_account_defined_targets: {
+                                            custom_key: "custom_value",
+                                        },
+                                    },
+                                },
                             ],
                             debitAmount: "debit_amount",
                             creditAmount: "credit_amount",
@@ -214,9 +292,42 @@ describe("GeneralLedgerTransactionsClient", () => {
                     exchange_rate: "exchange_rate",
                     description: "Invoice created",
                     tracking_categories: [
-                        "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
-                        "9b840d2-686a-465a-8a8e-7b028498f8e4",
-                        "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remote_id: "948201",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            name: "Marketing Department",
+                            parent_category: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                            field_mappings: {
+                                organization_defined_targets: { custom_key: "custom_value" },
+                                linked_account_defined_targets: { custom_key: "custom_value" },
+                            },
+                        },
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remote_id: "948201",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            name: "Marketing Department",
+                            parent_category: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                            field_mappings: {
+                                organization_defined_targets: { custom_key: "custom_value" },
+                                linked_account_defined_targets: { custom_key: "custom_value" },
+                            },
+                        },
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remote_id: "948201",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            name: "Marketing Department",
+                            parent_category: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                            field_mappings: {
+                                organization_defined_targets: { custom_key: "custom_value" },
+                                linked_account_defined_targets: { custom_key: "custom_value" },
+                            },
+                        },
                     ],
                     debit_amount: "debit_amount",
                     credit_amount: "credit_amount",
@@ -283,9 +394,54 @@ describe("GeneralLedgerTransactionsClient", () => {
                     exchangeRate: "exchange_rate",
                     description: "Invoice created",
                     trackingCategories: [
-                        "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
-                        "9b840d2-686a-465a-8a8e-7b028498f8e4",
-                        "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remoteId: "948201",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            name: "Marketing Department",
+                            parentCategory: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                            fieldMappings: {
+                                organization_defined_targets: {
+                                    custom_key: "custom_value",
+                                },
+                                linked_account_defined_targets: {
+                                    custom_key: "custom_value",
+                                },
+                            },
+                        },
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remoteId: "948201",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            name: "Marketing Department",
+                            parentCategory: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                            fieldMappings: {
+                                organization_defined_targets: {
+                                    custom_key: "custom_value",
+                                },
+                                linked_account_defined_targets: {
+                                    custom_key: "custom_value",
+                                },
+                            },
+                        },
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remoteId: "948201",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            name: "Marketing Department",
+                            parentCategory: "d25d609b-945f-4762-b55a-1c8fb220c43c",
+                            fieldMappings: {
+                                organization_defined_targets: {
+                                    custom_key: "custom_value",
+                                },
+                                linked_account_defined_targets: {
+                                    custom_key: "custom_value",
+                                },
+                            },
+                        },
                     ],
                     debitAmount: "debit_amount",
                     creditAmount: "credit_amount",

@@ -14,6 +14,11 @@ export const FieldMappingApiInstance: core.serialization.ObjectSchema<
     isIntegrationWide: core.serialization.property("is_integration_wide", core.serialization.boolean().optional()),
     targetField: core.serialization.property("target_field", FieldMappingApiInstanceTargetField.optional()),
     remoteField: core.serialization.property("remote_field", FieldMappingApiInstanceRemoteField.optional()),
+    jmesPath: core.serialization.property("jmes_path", core.serialization.string().optional()),
+    advancedMappingExpression: core.serialization.property(
+        "advanced_mapping_expression",
+        core.serialization.string().optional(),
+    ),
 });
 
 export declare namespace FieldMappingApiInstance {
@@ -22,5 +27,7 @@ export declare namespace FieldMappingApiInstance {
         is_integration_wide?: boolean | null;
         target_field?: FieldMappingApiInstanceTargetField.Raw | null;
         remote_field?: FieldMappingApiInstanceRemoteField.Raw | null;
+        jmes_path?: string | null;
+        advanced_mapping_expression?: string | null;
     }
 }

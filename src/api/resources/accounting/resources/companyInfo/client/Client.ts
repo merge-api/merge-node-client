@@ -40,6 +40,7 @@ export class CompanyInfoClient {
      *         includeShellData: true,
      *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+     *         name: "name",
      *         pageSize: 1,
      *         remoteId: "remote_id"
      *     })
@@ -65,6 +66,7 @@ export class CompanyInfoClient {
             includeShellData,
             modifiedAfter,
             modifiedBefore,
+            name,
             pageSize,
             remoteId,
         } = request;
@@ -83,6 +85,7 @@ export class CompanyInfoClient {
             include_shell_data: includeShellData,
             modified_after: modifiedAfter?.toISOString(),
             modified_before: modifiedBefore?.toISOString(),
+            name,
             page_size: pageSize,
             remote_id: remoteId,
         };

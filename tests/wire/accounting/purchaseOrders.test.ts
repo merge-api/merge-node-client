@@ -94,7 +94,7 @@ describe("PurchaseOrdersClient", () => {
                         linked_account_defined_targets: { custom_key: "custom_value" },
                     },
                     remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-                    remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
                 },
             ],
         };
@@ -111,7 +111,7 @@ describe("PurchaseOrdersClient", () => {
             createdAfter: new Date("2024-01-15T09:30:00.000Z"),
             createdBefore: new Date("2024-01-15T09:30:00.000Z"),
             cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            expand: "accounting_period",
+            expand: "line_items,tracking_categories,delivery_address,vendor,company,accounting_period,payment_term",
             includeDeletedData: true,
             includeRemoteData: true,
             includeRemoteFields: true,
@@ -217,8 +217,10 @@ describe("PurchaseOrdersClient", () => {
                     ],
                     remoteFields: [
                         {
-                            remoteFieldClass: "remote_field_class",
-                            value: "string",
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
                         },
                     ],
                 },
@@ -313,7 +315,7 @@ describe("PurchaseOrdersClient", () => {
                     linked_account_defined_targets: { custom_key: "custom_value" },
                 },
                 remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-                remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
             },
             warnings: [
                 {
@@ -321,6 +323,7 @@ describe("PurchaseOrdersClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -329,6 +332,7 @@ describe("PurchaseOrdersClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -355,7 +359,9 @@ describe("PurchaseOrdersClient", () => {
         const response = await client.accounting.purchaseOrders.create({
             isDebugMode: true,
             runAsync: true,
-            model: {},
+            body: {
+                model: {},
+            },
         });
         expect(response).toEqual({
             model: {
@@ -446,8 +452,10 @@ describe("PurchaseOrdersClient", () => {
                 ],
                 remoteFields: [
                     {
-                        remoteFieldClass: "remote_field_class",
-                        value: "string",
+                        remoteFieldClass: {},
+                        value: {
+                            key: "value",
+                        },
                     },
                 ],
             },
@@ -459,6 +467,7 @@ describe("PurchaseOrdersClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -469,6 +478,7 @@ describe("PurchaseOrdersClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -535,7 +545,7 @@ describe("PurchaseOrdersClient", () => {
                     exchange_rate: "2.9",
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: false,
-                    remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
                 },
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
@@ -559,7 +569,7 @@ describe("PurchaseOrdersClient", () => {
                     exchange_rate: "2.9",
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
-                    remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
                 },
             ],
             inclusive_of_tax: true,
@@ -577,7 +587,7 @@ describe("PurchaseOrdersClient", () => {
                 linked_account_defined_targets: { custom_key: "custom_value" },
             },
             remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
-            remote_fields: [{ remote_field_class: "remote_field_class", value: "string" }],
+            remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
         };
         server
             .mockEndpoint()
@@ -588,7 +598,7 @@ describe("PurchaseOrdersClient", () => {
             .build();
 
         const response = await client.accounting.purchaseOrders.retrieve("id", {
-            expand: "accounting_period",
+            expand: "line_items,tracking_categories,delivery_address,vendor,company,accounting_period,payment_term",
             includeRemoteData: true,
             includeRemoteFields: true,
             includeShellData: true,
@@ -638,8 +648,10 @@ describe("PurchaseOrdersClient", () => {
                     remoteWasDeleted: false,
                     remoteFields: [
                         {
-                            remoteFieldClass: "remote_field_class",
-                            value: "string",
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
                         },
                     ],
                 },
@@ -667,8 +679,10 @@ describe("PurchaseOrdersClient", () => {
                     remoteWasDeleted: true,
                     remoteFields: [
                         {
-                            remoteFieldClass: "remote_field_class",
-                            value: "string",
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
                         },
                     ],
                 },
@@ -699,8 +713,506 @@ describe("PurchaseOrdersClient", () => {
             ],
             remoteFields: [
                 {
-                    remoteFieldClass: "remote_field_class",
-                    value: "string",
+                    remoteFieldClass: {},
+                    value: {
+                        key: "value",
+                    },
+                },
+            ],
+        });
+    });
+
+    test("asyncBulkCreate", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { batch_items: [{ item_id: "item_id", payload: { model: {} } }] };
+        const rawResponseBody = {
+            model: {
+                id: "0048ea5b-911e-4dff-9364-92070dea62ff",
+                remote_id: "239741",
+                created_at: "2021-09-15T00:00:00Z",
+                modified_at: "2021-10-16T00:00:00Z",
+                status: "DRAFT",
+                issue_date: "2020-03-31T00:00:00Z",
+                purchase_order_number: "PO1234",
+                delivery_date: "2020-04-15T00:00:00Z",
+                delivery_address: "delivery_address",
+                customer: "3e442c5d-8f51-4103-b5c9-dcee39c30a08",
+                vendor: "vendor",
+                memo: "private note",
+                company: "company",
+                total_amount: 260,
+                currency: "XUA",
+                exchange_rate: "2.9",
+                payment_term: "payment_term",
+                line_items: [
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remote_id: "121222",
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        description: "Pickleball paddles",
+                        unit_price: 25,
+                        quantity: 10,
+                        item: "0958cbc6-6040-430a-848e-aafacbadf4ae",
+                        tracking_categories: [
+                            "f1214c24-2702-4617-b74b-3ddecfc0d384",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        tax_amount: "tax_amount",
+                        total_line_amount: "total_line_amount",
+                        currency: "USD",
+                        tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        exchange_rate: "2.9",
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        remote_was_deleted: false,
+                    },
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remote_id: "121222",
+                        created_at: "2021-09-15T00:00:00Z",
+                        modified_at: "2021-10-16T00:00:00Z",
+                        description: "Pickleball Balls",
+                        unit_price: 1,
+                        quantity: 10,
+                        item: "249c9faa-3045-4a31-953b-8f22d3613301",
+                        tracking_categories: [
+                            "f1214c24-2702-4617-b74b-3ddecfc0d384",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        tax_amount: "tax_amount",
+                        total_line_amount: "total_line_amount",
+                        tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        exchange_rate: "2.9",
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    },
+                ],
+                inclusive_of_tax: true,
+                tracking_categories: [
+                    "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                    "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                    "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                ],
+                accounting_period: "accounting_period",
+                remote_created_at: "2020-03-31T00:00:00Z",
+                remote_updated_at: "2020-03-31T00:00:00Z",
+                remote_was_deleted: true,
+                field_mappings: {
+                    organization_defined_targets: { custom_key: "custom_value" },
+                    linked_account_defined_targets: { custom_key: "custom_value" },
+                },
+                remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
+            },
+            warnings: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            errors: [
+                {
+                    source: { pointer: "pointer" },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
+                },
+            ],
+            logs: [
+                {
+                    log_id: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboard_view: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    log_summary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        status_code: 200,
+                    },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .post("/accounting/v1/purchase-orders/async/bulk")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.purchaseOrders.asyncBulkCreate({
+            isDebugMode: true,
+            runAsync: true,
+            batchItems: [
+                {
+                    itemId: "item_id",
+                    payload: {
+                        model: {},
+                    },
+                },
+            ],
+        });
+        expect(response).toEqual({
+            model: {
+                id: "0048ea5b-911e-4dff-9364-92070dea62ff",
+                remoteId: "239741",
+                createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                status: "DRAFT",
+                issueDate: new Date("2020-03-31T00:00:00.000Z"),
+                purchaseOrderNumber: "PO1234",
+                deliveryDate: new Date("2020-04-15T00:00:00.000Z"),
+                deliveryAddress: "delivery_address",
+                customer: "3e442c5d-8f51-4103-b5c9-dcee39c30a08",
+                vendor: "vendor",
+                memo: "private note",
+                company: "company",
+                totalAmount: 260,
+                currency: "XUA",
+                exchangeRate: "2.9",
+                paymentTerm: "payment_term",
+                lineItems: [
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remoteId: "121222",
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        description: "Pickleball paddles",
+                        unitPrice: 25,
+                        quantity: 10,
+                        item: "0958cbc6-6040-430a-848e-aafacbadf4ae",
+                        trackingCategories: [
+                            "f1214c24-2702-4617-b74b-3ddecfc0d384",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        taxAmount: "tax_amount",
+                        totalLineAmount: "total_line_amount",
+                        currency: "USD",
+                        taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        exchangeRate: "2.9",
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        remoteWasDeleted: false,
+                    },
+                    {
+                        id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                        remoteId: "121222",
+                        createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                        modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                        description: "Pickleball Balls",
+                        unitPrice: 1,
+                        quantity: 10,
+                        item: "249c9faa-3045-4a31-953b-8f22d3613301",
+                        trackingCategories: [
+                            "f1214c24-2702-4617-b74b-3ddecfc0d384",
+                            "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                            "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                        ],
+                        taxAmount: "tax_amount",
+                        totalLineAmount: "total_line_amount",
+                        taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                        exchangeRate: "2.9",
+                        company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    },
+                ],
+                inclusiveOfTax: true,
+                trackingCategories: [
+                    "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                    "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                    "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                ],
+                accountingPeriod: "accounting_period",
+                remoteCreatedAt: new Date("2020-03-31T00:00:00.000Z"),
+                remoteUpdatedAt: new Date("2020-03-31T00:00:00.000Z"),
+                remoteWasDeleted: true,
+                fieldMappings: {
+                    organization_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                    linked_account_defined_targets: {
+                        custom_key: "custom_value",
+                    },
+                },
+                remoteData: [
+                    {
+                        path: "/actions",
+                        data: ["Varies by platform"],
+                    },
+                ],
+                remoteFields: [
+                    {
+                        remoteFieldClass: {},
+                        value: {
+                            key: "value",
+                        },
+                    },
+                ],
+            },
+            warnings: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Unrecognized Field",
+                    detail: "An unrecognized field, age, was passed in with request data.",
+                    problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            errors: [
+                {
+                    source: {
+                        pointer: "pointer",
+                    },
+                    title: "Missing Required Field",
+                    detail: "custom_fields is a required field on model.",
+                    problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
+                },
+            ],
+            logs: [
+                {
+                    logId: "99433219-8017-4acd-bb3c-ceb23d663832",
+                    dashboardView: "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832",
+                    logSummary: {
+                        url: "www.exampleintegration.com/api/v1/exampleapi",
+                        method: "POST",
+                        statusCode: 200,
+                    },
+                },
+            ],
+        });
+    });
+
+    test("batchObjectsList", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MergeClient({
+            maxRetries: 0,
+            apiKey: "test",
+            accountToken: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "0048ea5b-911e-4dff-9364-92070dea62ff",
+                    remote_id: "239741",
+                    created_at: "2021-09-15T00:00:00Z",
+                    modified_at: "2021-10-16T00:00:00Z",
+                    status: "DRAFT",
+                    issue_date: "2020-03-31T00:00:00Z",
+                    purchase_order_number: "PO1234",
+                    delivery_date: "2020-04-15T00:00:00Z",
+                    delivery_address: "delivery_address",
+                    customer: "3e442c5d-8f51-4103-b5c9-dcee39c30a08",
+                    vendor: "vendor",
+                    memo: "private note",
+                    company: "company",
+                    total_amount: 260,
+                    currency: "XUA",
+                    exchange_rate: "2.9",
+                    payment_term: "payment_term",
+                    line_items: [
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remote_id: "121222",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            description: "Pickleball paddles",
+                            unit_price: 25,
+                            quantity: 10,
+                            item: "0958cbc6-6040-430a-848e-aafacbadf4ae",
+                            tracking_categories: [
+                                "f1214c24-2702-4617-b74b-3ddecfc0d384",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            tax_amount: "tax_amount",
+                            total_line_amount: "total_line_amount",
+                            currency: "USD",
+                            tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            exchange_rate: "2.9",
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            remote_was_deleted: false,
+                        },
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remote_id: "121222",
+                            created_at: "2021-09-15T00:00:00Z",
+                            modified_at: "2021-10-16T00:00:00Z",
+                            description: "Pickleball Balls",
+                            unit_price: 1,
+                            quantity: 10,
+                            item: "249c9faa-3045-4a31-953b-8f22d3613301",
+                            tracking_categories: [
+                                "f1214c24-2702-4617-b74b-3ddecfc0d384",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            tax_amount: "tax_amount",
+                            total_line_amount: "total_line_amount",
+                            tax_rate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            exchange_rate: "2.9",
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        },
+                    ],
+                    inclusive_of_tax: true,
+                    tracking_categories: [
+                        "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                        "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                        "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                    ],
+                    accounting_period: "accounting_period",
+                    remote_created_at: "2020-03-31T00:00:00Z",
+                    remote_updated_at: "2020-03-31T00:00:00Z",
+                    remote_was_deleted: true,
+                    field_mappings: {
+                        organization_defined_targets: { custom_key: "custom_value" },
+                        linked_account_defined_targets: { custom_key: "custom_value" },
+                    },
+                    remote_data: [{ path: "/actions", data: ["Varies by platform"] }],
+                    remote_fields: [{ remote_field_class: {}, value: { key: "value" } }],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/accounting/v1/purchase-orders/batch/batch_id/objects")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounting.purchaseOrders.batchObjectsList("batch_id", {
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            expand: "line_items,tracking_categories,delivery_address,vendor,company,accounting_period,payment_term",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeRemoteFields: true,
+            includeShellData: true,
+            issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+            issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            pageSize: 1,
+            remoteFields: "status",
+            remoteId: "remote_id",
+            showEnumOrigins: "status",
+        });
+        expect(response).toEqual({
+            next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
+            results: [
+                {
+                    id: "0048ea5b-911e-4dff-9364-92070dea62ff",
+                    remoteId: "239741",
+                    createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                    modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                    status: "DRAFT",
+                    issueDate: new Date("2020-03-31T00:00:00.000Z"),
+                    purchaseOrderNumber: "PO1234",
+                    deliveryDate: new Date("2020-04-15T00:00:00.000Z"),
+                    deliveryAddress: "delivery_address",
+                    customer: "3e442c5d-8f51-4103-b5c9-dcee39c30a08",
+                    vendor: "vendor",
+                    memo: "private note",
+                    company: "company",
+                    totalAmount: 260,
+                    currency: "XUA",
+                    exchangeRate: "2.9",
+                    paymentTerm: "payment_term",
+                    lineItems: [
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remoteId: "121222",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            description: "Pickleball paddles",
+                            unitPrice: 25,
+                            quantity: 10,
+                            item: "0958cbc6-6040-430a-848e-aafacbadf4ae",
+                            trackingCategories: [
+                                "f1214c24-2702-4617-b74b-3ddecfc0d384",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            taxAmount: "tax_amount",
+                            totalLineAmount: "total_line_amount",
+                            currency: "USD",
+                            taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            exchangeRate: "2.9",
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            remoteWasDeleted: false,
+                        },
+                        {
+                            id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
+                            remoteId: "121222",
+                            createdAt: new Date("2021-09-15T00:00:00.000Z"),
+                            modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
+                            description: "Pickleball Balls",
+                            unitPrice: 1,
+                            quantity: 10,
+                            item: "249c9faa-3045-4a31-953b-8f22d3613301",
+                            trackingCategories: [
+                                "f1214c24-2702-4617-b74b-3ddecfc0d384",
+                                "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                                "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                            ],
+                            taxAmount: "tax_amount",
+                            totalLineAmount: "total_line_amount",
+                            taxRate: "a12e7c20-1922-9df7-s75n-edfeewnn7384",
+                            exchangeRate: "2.9",
+                            company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        },
+                    ],
+                    inclusiveOfTax: true,
+                    trackingCategories: [
+                        "b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                        "9b840d2-686a-465a-8a8e-7b028498f8e4",
+                        "a47e11b6-c73b-4a0c-be31-130fc48177fa",
+                    ],
+                    accountingPeriod: "accounting_period",
+                    remoteCreatedAt: new Date("2020-03-31T00:00:00.000Z"),
+                    remoteUpdatedAt: new Date("2020-03-31T00:00:00.000Z"),
+                    remoteWasDeleted: true,
+                    fieldMappings: {
+                        organization_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                        linked_account_defined_targets: {
+                            custom_key: "custom_value",
+                        },
+                    },
+                    remoteData: [
+                        {
+                            path: "/actions",
+                            data: ["Varies by platform"],
+                        },
+                    ],
+                    remoteFields: [
+                        {
+                            remoteFieldClass: {},
+                            value: {
+                                key: "value",
+                            },
+                        },
+                    ],
                 },
             ],
         });
@@ -941,10 +1453,10 @@ describe("PurchaseOrdersClient", () => {
                     },
                 },
             },
-            remote_field_classes: { key: "value" },
             status: { linked_account_status: "linked_account_status", can_make_request: true },
             has_conditional_params: true,
             has_required_linked_account_params: true,
+            remote_fields: ["remote_fields"],
         };
         server
             .mockEndpoint()
@@ -1179,15 +1691,13 @@ describe("PurchaseOrdersClient", () => {
                     },
                 },
             },
-            remoteFieldClasses: {
-                key: "value",
-            },
             status: {
                 linkedAccountStatus: "linked_account_status",
                 canMakeRequest: true,
             },
             hasConditionalParams: true,
             hasRequiredLinkedAccountParams: true,
+            remoteFields: ["remote_fields"],
         });
     });
 

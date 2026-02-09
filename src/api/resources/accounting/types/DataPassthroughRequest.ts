@@ -22,7 +22,7 @@ export interface DataPassthroughRequest {
     multipartFormData?: Merge.accounting.MultipartFormFieldRequest[];
     /** The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server. */
     headers?: Record<string, unknown>;
-    requestFormat?: Merge.accounting.RequestFormatEnum;
+    requestFormat?: Merge.accounting.DataPassthroughRequestRequestFormat;
     /** Optional. If true, the response will always be an object of the form `{"type": T, "value": ...}` where `T` will be one of `string, boolean, number, null, array, object`. */
     normalizeResponse?: boolean;
 }

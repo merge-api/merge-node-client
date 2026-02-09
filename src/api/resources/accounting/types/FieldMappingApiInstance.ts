@@ -7,4 +7,6 @@ export interface FieldMappingApiInstance {
     isIntegrationWide?: boolean;
     targetField?: Merge.accounting.FieldMappingApiInstanceTargetField;
     remoteField?: Merge.accounting.FieldMappingApiInstanceRemoteField;
+    jmesPath?: string;
+    advancedMappingExpression?: string;
 }
