@@ -1,1 +1,1 @@
-export { AccountEndpointRequest } from "./AccountEndpointRequest";
+export { AccountBulkRequest } from "./AccountBulkRequest";

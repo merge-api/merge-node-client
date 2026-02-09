@@ -6,9 +6,10 @@ import type * as serializers from "../../../index";
 import { RemoteData } from "./RemoteData";
 import { TransactionAccount } from "./TransactionAccount";
 import { TransactionAccountingPeriod } from "./TransactionAccountingPeriod";
+import { TransactionCompany } from "./TransactionCompany";
 import { TransactionContact } from "./TransactionContact";
 import { TransactionCurrency } from "./TransactionCurrency";
-import { TransactionLineItem } from "./TransactionLineItem";
+import { TransactionLineItemsItem } from "./TransactionLineItemsItem";
 import { TransactionTrackingCategoriesItem } from "./TransactionTrackingCategoriesItem";
 
 export const Transaction: core.serialization.ObjectSchema<
@@ -28,12 +29,12 @@ export const Transaction: core.serialization.ObjectSchema<
     totalAmount: core.serialization.property("total_amount", core.serialization.string().optional()),
     currency: TransactionCurrency.optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-    company: core.serialization.string().optional(),
+    company: TransactionCompany.optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
         core.serialization.list(TransactionTrackingCategoriesItem.optional()).optional(),
     ),
-    lineItems: core.serialization.property("line_items", core.serialization.list(TransactionLineItem).optional()),
+    lineItems: core.serialization.property("line_items", core.serialization.list(TransactionLineItemsItem).optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     accountingPeriod: core.serialization.property("accounting_period", TransactionAccountingPeriod.optional()),
     fieldMappings: core.serialization.property(
@@ -58,9 +59,9 @@ export declare namespace Transaction {
         total_amount?: string | null;
         currency?: TransactionCurrency.Raw | null;
         exchange_rate?: string | null;
-        company?: string | null;
+        company?: TransactionCompany.Raw | null;
         tracking_categories?: (TransactionTrackingCategoriesItem.Raw | null | undefined)[] | null;
-        line_items?: TransactionLineItem.Raw[] | null;
+        line_items?: TransactionLineItemsItem.Raw[] | null;
         remote_was_deleted?: boolean | null;
         accounting_period?: TransactionAccountingPeriod.Raw | null;
         field_mappings?: Record<string, unknown> | null;

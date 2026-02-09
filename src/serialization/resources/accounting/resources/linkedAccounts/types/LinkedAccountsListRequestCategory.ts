@@ -7,8 +7,31 @@ import type * as serializers from "../../../../../index";
 export const LinkedAccountsListRequestCategory: core.serialization.Schema<
     serializers.accounting.LinkedAccountsListRequestCategory.Raw,
     Merge.accounting.LinkedAccountsListRequestCategory
-> = core.serialization.enum_(["accounting", "ats", "crm", "filestorage", "hris", "mktg", "ticketing"]);
+> = core.serialization.enum_([
+    "accounting",
+    "ats",
+    "chat",
+    "communication",
+    "crm",
+    "datawarehouse",
+    "filestorage",
+    "hris",
+    "knowledgebase",
+    "mktg",
+    "ticketing",
+]);
 
 export declare namespace LinkedAccountsListRequestCategory {
-    export type Raw = "accounting" | "ats" | "crm" | "filestorage" | "hris" | "mktg" | "ticketing";
+    export type Raw =
+        | "accounting"
+        | "ats"
+        | "chat"
+        | "communication"
+        | "crm"
+        | "datawarehouse"
+        | "filestorage"
+        | "hris"
+        | "knowledgebase"
+        | "mktg"
+        | "ticketing";
 }

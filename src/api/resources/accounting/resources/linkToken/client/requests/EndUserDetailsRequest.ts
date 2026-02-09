@@ -46,4 +46,14 @@ export interface EndUserDetailsRequest {
     areSyncsDisabled?: boolean;
     /** A JSON object containing integration-specific configuration options. */
     integrationSpecificConfig?: Record<string, unknown>;
+    /**
+     * When creating a Link token, you can specifiy the initial screen of Linking Flow for a completed Linked Account.
+     *
+     * * `SELECTIVE_SYNC` - SELECTIVE_SYNC
+     */
+    completedAccountInitialScreen?: Merge.accounting.EndUserDetailsRequestCompletedAccountInitialScreen;
+    /** The UUID of the linked destination that you want this Linked Account to be tied to. */
+    linkedDestinationId?: string;
+    /** The id of the credential that you want this Linked Account to be tied to. */
+    credentialId?: string;
 }

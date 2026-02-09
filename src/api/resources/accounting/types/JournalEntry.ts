@@ -347,7 +347,7 @@ export interface JournalEntry {
     company?: Merge.accounting.JournalEntryCompany;
     /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
     inclusiveOfTax?: boolean;
-    lines?: Merge.accounting.JournalLine[];
+    lines?: Merge.accounting.JournalEntryLinesItem[];
     /** Reference number for identifying journal entries. */
     journalNumber?: string;
     trackingCategories?: (Merge.accounting.JournalEntryTrackingCategoriesItem | undefined)[];

@@ -9,10 +9,11 @@ import { InvoiceCompany } from "./InvoiceCompany";
 import { InvoiceContact } from "./InvoiceContact";
 import { InvoiceCurrency } from "./InvoiceCurrency";
 import { InvoiceEmployee } from "./InvoiceEmployee";
-import { InvoiceLineItem } from "./InvoiceLineItem";
+import { InvoiceLineItemsItem } from "./InvoiceLineItemsItem";
 import { InvoicePaymentsItem } from "./InvoicePaymentsItem";
 import { InvoicePaymentTerm } from "./InvoicePaymentTerm";
 import { InvoicePurchaseOrdersItem } from "./InvoicePurchaseOrdersItem";
+import { InvoiceSalesOrdersItem } from "./InvoiceSalesOrdersItem";
 import { InvoiceStatus } from "./InvoiceStatus";
 import { InvoiceTrackingCategoriesItem } from "./InvoiceTrackingCategoriesItem";
 import { InvoiceType } from "./InvoiceType";
@@ -53,12 +54,16 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
             "purchase_orders",
             core.serialization.list(InvoicePurchaseOrdersItem.optional()).optional(),
         ),
+        salesOrders: core.serialization.property(
+            "sales_orders",
+            core.serialization.list(InvoiceSalesOrdersItem.optional()).optional(),
+        ),
         payments: core.serialization.list(InvoicePaymentsItem.optional()).optional(),
         appliedPayments: core.serialization.property(
             "applied_payments",
             core.serialization.list(InvoiceAppliedPaymentsItem.optional()).optional(),
         ),
-        lineItems: core.serialization.property("line_items", core.serialization.list(InvoiceLineItem).optional()),
+        lineItems: core.serialization.property("line_items", core.serialization.list(InvoiceLineItemsItem).optional()),
         appliedCreditNotes: core.serialization.property(
             "applied_credit_notes",
             core.serialization
@@ -109,9 +114,10 @@ export declare namespace Invoice {
         tracking_categories?: (InvoiceTrackingCategoriesItem.Raw | null | undefined)[] | null;
         accounting_period?: InvoiceAccountingPeriod.Raw | null;
         purchase_orders?: (InvoicePurchaseOrdersItem.Raw | null | undefined)[] | null;
+        sales_orders?: (InvoiceSalesOrdersItem.Raw | null | undefined)[] | null;
         payments?: (InvoicePaymentsItem.Raw | null | undefined)[] | null;
         applied_payments?: (InvoiceAppliedPaymentsItem.Raw | null | undefined)[] | null;
-        line_items?: InvoiceLineItem.Raw[] | null;
+        line_items?: InvoiceLineItemsItem.Raw[] | null;
         applied_credit_notes?: serializers.accounting.InvoiceAppliedCreditNotesItem.Raw[] | null;
         applied_vendor_credits?: serializers.accounting.InvoiceAppliedVendorCreditsItem.Raw[] | null;
         inclusive_of_tax?: boolean | null;

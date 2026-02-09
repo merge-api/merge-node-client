@@ -32,6 +32,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             AccountingAttachment: [
@@ -52,6 +54,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             BalanceSheet: [
@@ -72,6 +76,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             CashFlowStatement: [
@@ -92,6 +98,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             CompanyInfo: [
@@ -112,6 +120,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             Contact: [
@@ -132,6 +142,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             IncomeStatement: [
@@ -152,6 +164,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             CreditNote: [
@@ -172,6 +186,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             Item: [
@@ -192,6 +208,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             PurchaseOrder: [
@@ -212,6 +230,52 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
+                },
+            ],
+            SalesOrder: [
+                {
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    is_integration_wide: true,
+                    target_field: {
+                        name: "example_target_field_name",
+                        description: "this is a example description of a target field",
+                        is_organization_wide: true,
+                    },
+                    remote_field: {
+                        remote_key_name: "example_remote_field_key",
+                        schema: { type: "string" },
+                        remote_endpoint_info: {
+                            method: "GET",
+                            url_path: "/example-url-path",
+                            field_traversal_path: ["example_remote_field_key"],
+                        },
+                    },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
+                },
+            ],
+            ItemFulfillment: [
+                {
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    is_integration_wide: true,
+                    target_field: {
+                        name: "example_target_field_name",
+                        description: "this is a example description of a target field",
+                        is_organization_wide: true,
+                    },
+                    remote_field: {
+                        remote_key_name: "example_remote_field_key",
+                        schema: { type: "string" },
+                        remote_endpoint_info: {
+                            method: "GET",
+                            url_path: "/example-url-path",
+                            field_traversal_path: ["example_remote_field_key"],
+                        },
+                    },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             ExpenseReport: [
@@ -232,6 +296,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             TrackingCategory: [
@@ -252,6 +318,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             JournalEntry: [
@@ -272,6 +340,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             TaxRate: [
@@ -292,6 +362,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             Invoice: [
@@ -312,6 +384,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             Payment: [
@@ -332,6 +406,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             Expense: [
@@ -352,6 +428,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             VendorCredit: [
@@ -372,6 +450,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             Transaction: [
@@ -392,6 +472,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             AccountingPeriod: [
@@ -412,6 +494,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             GeneralLedgerTransaction: [
@@ -432,6 +516,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             BankFeedAccount: [
@@ -452,6 +538,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             Employee: [
@@ -472,6 +560,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             PaymentMethod: [
@@ -492,6 +582,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             Project: [
@@ -512,6 +604,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
             PaymentTerm: [
@@ -532,6 +626,8 @@ describe("FieldMappingClient", () => {
                             field_traversal_path: ["example_remote_field_key"],
                         },
                     },
+                    jmes_path: "[0].example_jmes_path",
+                    advanced_mapping_expression: "$[0].example_jsonata",
                 },
             ],
         };
@@ -567,6 +663,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             accountingAttachment: [
@@ -589,6 +687,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             balanceSheet: [
@@ -611,6 +711,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             cashFlowStatement: [
@@ -633,6 +735,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             companyInfo: [
@@ -655,6 +759,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             contact: [
@@ -677,6 +783,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             incomeStatement: [
@@ -699,6 +807,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             creditNote: [
@@ -721,6 +831,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             item: [
@@ -743,6 +855,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             purchaseOrder: [
@@ -765,6 +879,56 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
+                },
+            ],
+            salesOrder: [
+                {
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    isIntegrationWide: true,
+                    targetField: {
+                        name: "example_target_field_name",
+                        description: "this is a example description of a target field",
+                        isOrganizationWide: true,
+                    },
+                    remoteField: {
+                        remoteKeyName: "example_remote_field_key",
+                        schema: {
+                            type: "string",
+                        },
+                        remoteEndpointInfo: {
+                            method: "GET",
+                            urlPath: "/example-url-path",
+                            fieldTraversalPath: ["example_remote_field_key"],
+                        },
+                    },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
+                },
+            ],
+            itemFulfillment: [
+                {
+                    id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    isIntegrationWide: true,
+                    targetField: {
+                        name: "example_target_field_name",
+                        description: "this is a example description of a target field",
+                        isOrganizationWide: true,
+                    },
+                    remoteField: {
+                        remoteKeyName: "example_remote_field_key",
+                        schema: {
+                            type: "string",
+                        },
+                        remoteEndpointInfo: {
+                            method: "GET",
+                            urlPath: "/example-url-path",
+                            fieldTraversalPath: ["example_remote_field_key"],
+                        },
+                    },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             expenseReport: [
@@ -787,6 +951,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             trackingCategory: [
@@ -809,6 +975,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             journalEntry: [
@@ -831,6 +999,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             taxRate: [
@@ -853,6 +1023,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             invoice: [
@@ -875,6 +1047,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             payment: [
@@ -897,6 +1071,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             expense: [
@@ -919,6 +1095,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             vendorCredit: [
@@ -941,6 +1119,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             transaction: [
@@ -963,6 +1143,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             accountingPeriod: [
@@ -985,6 +1167,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             generalLedgerTransaction: [
@@ -1007,6 +1191,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             bankFeedAccount: [
@@ -1029,6 +1215,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             employee: [
@@ -1051,6 +1239,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             paymentMethod: [
@@ -1073,6 +1263,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             project: [
@@ -1095,6 +1287,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
             paymentTerm: [
@@ -1117,6 +1311,8 @@ describe("FieldMappingClient", () => {
                             fieldTraversalPath: ["example_remote_field_key"],
                         },
                     },
+                    jmesPath: "[0].example_jmes_path",
+                    advancedMappingExpression: "$[0].example_jsonata",
                 },
             ],
         });
@@ -1156,6 +1352,8 @@ describe("FieldMappingClient", () => {
                         field_traversal_path: ["example_remote_field_key"],
                     },
                 },
+                jmes_path: "[0].example_jmes_path",
+                advanced_mapping_expression: "$[0].example_jsonata",
             },
             warnings: [
                 {
@@ -1163,6 +1361,7 @@ describe("FieldMappingClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -1171,6 +1370,7 @@ describe("FieldMappingClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -1196,6 +1396,7 @@ describe("FieldMappingClient", () => {
 
         const response = await client.accounting.fieldMapping.fieldMappingsCreate({
             excludeRemoteFieldMetadata: true,
+            remoteDataIterationCount: 1,
             targetFieldName: "example_target_field_name",
             targetFieldDescription: "this is a example description of the target field",
             remoteFieldTraversalPath: ["example_remote_field"],
@@ -1223,6 +1424,8 @@ describe("FieldMappingClient", () => {
                         fieldTraversalPath: ["example_remote_field_key"],
                     },
                 },
+                jmesPath: "[0].example_jmes_path",
+                advancedMappingExpression: "$[0].example_jsonata",
             },
             warnings: [
                 {
@@ -1232,6 +1435,7 @@ describe("FieldMappingClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -1242,6 +1446,7 @@ describe("FieldMappingClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -1285,6 +1490,8 @@ describe("FieldMappingClient", () => {
                         field_traversal_path: ["example_remote_field_key"],
                     },
                 },
+                jmes_path: "[0].example_jmes_path",
+                advanced_mapping_expression: "$[0].example_jsonata",
             },
             warnings: [
                 {
@@ -1292,6 +1499,7 @@ describe("FieldMappingClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -1300,6 +1508,7 @@ describe("FieldMappingClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -1343,6 +1552,8 @@ describe("FieldMappingClient", () => {
                         fieldTraversalPath: ["example_remote_field_key"],
                     },
                 },
+                jmesPath: "[0].example_jmes_path",
+                advancedMappingExpression: "$[0].example_jsonata",
             },
             warnings: [
                 {
@@ -1352,6 +1563,7 @@ describe("FieldMappingClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -1362,6 +1574,7 @@ describe("FieldMappingClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -1405,6 +1618,8 @@ describe("FieldMappingClient", () => {
                         field_traversal_path: ["example_remote_field_key"],
                     },
                 },
+                jmes_path: "[0].example_jmes_path",
+                advanced_mapping_expression: "$[0].example_jsonata",
             },
             warnings: [
                 {
@@ -1412,6 +1627,7 @@ describe("FieldMappingClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             errors: [
@@ -1420,6 +1636,7 @@ describe("FieldMappingClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
+                    block_merge_link: true,
                 },
             ],
             logs: [
@@ -1443,7 +1660,9 @@ describe("FieldMappingClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+        const response = await client.accounting.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
+            remoteDataIterationCount: 1,
+        });
         expect(response).toEqual({
             model: {
                 id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -1464,6 +1683,8 @@ describe("FieldMappingClient", () => {
                         fieldTraversalPath: ["example_remote_field_key"],
                     },
                 },
+                jmesPath: "[0].example_jmes_path",
+                advancedMappingExpression: "$[0].example_jsonata",
             },
             warnings: [
                 {
@@ -1473,6 +1694,7 @@ describe("FieldMappingClient", () => {
                     title: "Unrecognized Field",
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             errors: [
@@ -1483,6 +1705,7 @@ describe("FieldMappingClient", () => {
                     title: "Missing Required Field",
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
+                    blockMergeLink: true,
                 },
             ],
             logs: [
@@ -1636,6 +1859,48 @@ describe("FieldMappingClient", () => {
                 },
             ],
             PurchaseOrder: [
+                {
+                    schema: { type: "string" },
+                    remote_key_name: "example_remote_key_name",
+                    remote_endpoint_info: {
+                        method: "GET",
+                        url_path: "/example-url-path",
+                        field_traversal_path: ["example_key_name"],
+                    },
+                    example_values: ["example"],
+                    advanced_metadata: { id: "id" },
+                    coverage: 1,
+                },
+            ],
+            SalesOrder: [
+                {
+                    schema: { type: "string" },
+                    remote_key_name: "example_remote_key_name",
+                    remote_endpoint_info: {
+                        method: "GET",
+                        url_path: "/example-url-path",
+                        field_traversal_path: ["example_key_name"],
+                    },
+                    example_values: ["example"],
+                    advanced_metadata: { id: "id" },
+                    coverage: 1,
+                },
+            ],
+            ItemFulfillment: [
+                {
+                    schema: { type: "string" },
+                    remote_key_name: "example_remote_key_name",
+                    remote_endpoint_info: {
+                        method: "GET",
+                        url_path: "/example-url-path",
+                        field_traversal_path: ["example_key_name"],
+                    },
+                    example_values: ["example"],
+                    advanced_metadata: { id: "id" },
+                    coverage: 1,
+                },
+            ],
+            ExpenseReport: [
                 {
                     schema: { type: "string" },
                     remote_key_name: "example_remote_key_name",
@@ -2053,6 +2318,60 @@ describe("FieldMappingClient", () => {
                     coverage: 1,
                 },
             ],
+            salesOrder: [
+                {
+                    schema: {
+                        type: "string",
+                    },
+                    remoteKeyName: "example_remote_key_name",
+                    remoteEndpointInfo: {
+                        method: "GET",
+                        urlPath: "/example-url-path",
+                        fieldTraversalPath: ["example_key_name"],
+                    },
+                    exampleValues: ["example"],
+                    advancedMetadata: {
+                        id: "id",
+                    },
+                    coverage: 1,
+                },
+            ],
+            itemFulfillment: [
+                {
+                    schema: {
+                        type: "string",
+                    },
+                    remoteKeyName: "example_remote_key_name",
+                    remoteEndpointInfo: {
+                        method: "GET",
+                        urlPath: "/example-url-path",
+                        fieldTraversalPath: ["example_key_name"],
+                    },
+                    exampleValues: ["example"],
+                    advancedMetadata: {
+                        id: "id",
+                    },
+                    coverage: 1,
+                },
+            ],
+            expenseReport: [
+                {
+                    schema: {
+                        type: "string",
+                    },
+                    remoteKeyName: "example_remote_key_name",
+                    remoteEndpointInfo: {
+                        method: "GET",
+                        urlPath: "/example-url-path",
+                        fieldTraversalPath: ["example_key_name"],
+                    },
+                    exampleValues: ["example"],
+                    advancedMetadata: {
+                        id: "id",
+                    },
+                    coverage: 1,
+                },
+            ],
             trackingCategory: [
                 {
                     schema: {
@@ -2406,6 +2725,20 @@ describe("FieldMappingClient", () => {
                     is_mapped: "is_mapped",
                 },
             ],
+            SalesOrder: [
+                {
+                    name: "example_target_field_name",
+                    description: "this is a example description of a target field",
+                    is_mapped: "is_mapped",
+                },
+            ],
+            ItemFulfillment: [
+                {
+                    name: "example_target_field_name",
+                    description: "this is a example description of a target field",
+                    is_mapped: "is_mapped",
+                },
+            ],
             ExpenseReport: [
                 {
                     name: "example_target_field_name",
@@ -2593,6 +2926,20 @@ describe("FieldMappingClient", () => {
                 },
             ],
             purchaseOrder: [
+                {
+                    name: "example_target_field_name",
+                    description: "this is a example description of a target field",
+                    isMapped: "is_mapped",
+                },
+            ],
+            salesOrder: [
+                {
+                    name: "example_target_field_name",
+                    description: "this is a example description of a target field",
+                    isMapped: "is_mapped",
+                },
+            ],
+            itemFulfillment: [
                 {
                     name: "example_target_field_name",
                     description: "this is a example description of a target field",

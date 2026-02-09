@@ -2,13 +2,21 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         remoteDataIterationCount: 1
+ *     }
  */
 export interface PatchedEditFieldMappingRequest {
+    /** Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided. */
+    remoteDataIterationCount?: number;
     /** The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint. */
     remoteFieldTraversalPath?: unknown[];
     /** The method of the remote endpoint where the remote field is coming from. */
     remoteMethod?: string;
     /** The path of the remote endpoint where the remote field is coming from. */
     remoteUrlPath?: string;
+    /** DEPRECATED: Use 'advanced_mapping_expression' instead. */
+    jmesPath?: string;
+    /** A JSONata expression used to transform the remote field data. */
+    advancedMappingExpression?: string;
 }

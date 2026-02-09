@@ -22,7 +22,7 @@ import type * as Merge from "../../../../../../index";
  */
 export interface LinkedAccountsListRequest {
     /**
-     * Options: `accounting`, `ats`, `crm`, `filestorage`, `hris`, `mktg`, `ticketing`
+     * Options: `accounting`, `ats`, `crm`, `filestorage`, `hris`, `knowledgebase`, `mktg`, `ticketing`
      *
      * * `hris` - hris
      * * `ats` - ats
@@ -31,6 +31,10 @@ export interface LinkedAccountsListRequest {
      * * `crm` - crm
      * * `mktg` - mktg
      * * `filestorage` - filestorage
+     * * `datawarehouse` - datawarehouse
+     * * `knowledgebase` - knowledgebase
+     * * `communication` - communication
+     * * `chat` - chat
      */
     category?: Merge.accounting.LinkedAccountsListRequestCategory;
     /** The pagination cursor value. */
@@ -52,7 +56,7 @@ export interface LinkedAccountsListRequest {
     integrationName?: string;
     /** If included, will only include test linked accounts. If not included, will only include non-test linked accounts. */
     isTestAccount?: string;
-    /** Number of results to return per page. */
+    /** Number of results to return per page. The maximum limit is 100. */
     pageSize?: number;
     /** Filter by status. Options: `COMPLETE`, `IDLE`, `INCOMPLETE`, `RELINK_NEEDED` */
     status?: string;

@@ -1,1 +1,1 @@
-export { PurchaseOrderEndpointRequest } from "./PurchaseOrderEndpointRequest";
+export { PurchaseOrderBulkRequest } from "./PurchaseOrderBulkRequest";
