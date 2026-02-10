@@ -13,6 +13,7 @@ import { InvoiceLineItem } from "./InvoiceLineItem";
 import { InvoicePaymentsItem } from "./InvoicePaymentsItem";
 import { InvoicePaymentTerm } from "./InvoicePaymentTerm";
 import { InvoicePurchaseOrdersItem } from "./InvoicePurchaseOrdersItem";
+import { InvoiceSalesOrdersItem } from "./InvoiceSalesOrdersItem";
 import { InvoiceStatus } from "./InvoiceStatus";
 import { InvoiceTrackingCategoriesItem } from "./InvoiceTrackingCategoriesItem";
 import { InvoiceType } from "./InvoiceType";
@@ -52,6 +53,10 @@ export const Invoice: core.serialization.ObjectSchema<serializers.accounting.Inv
         purchaseOrders: core.serialization.property(
             "purchase_orders",
             core.serialization.list(InvoicePurchaseOrdersItem.optional()).optional(),
+        ),
+        salesOrders: core.serialization.property(
+            "sales_orders",
+            core.serialization.list(InvoiceSalesOrdersItem.optional()).optional(),
         ),
         payments: core.serialization.list(InvoicePaymentsItem.optional()).optional(),
         appliedPayments: core.serialization.property(
@@ -109,6 +114,7 @@ export declare namespace Invoice {
         tracking_categories?: (InvoiceTrackingCategoriesItem.Raw | null | undefined)[] | null;
         accounting_period?: InvoiceAccountingPeriod.Raw | null;
         purchase_orders?: (InvoicePurchaseOrdersItem.Raw | null | undefined)[] | null;
+        sales_orders?: (InvoiceSalesOrdersItem.Raw | null | undefined)[] | null;
         payments?: (InvoicePaymentsItem.Raw | null | undefined)[] | null;
         applied_payments?: (InvoiceAppliedPaymentsItem.Raw | null | undefined)[] | null;
         line_items?: InvoiceLineItem.Raw[] | null;

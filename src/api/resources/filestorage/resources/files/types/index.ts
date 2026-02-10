@@ -1,4 +1,4 @@
 export * from "./FilesDownloadRequestMetaListRequestOrderBy";
-export * from "./FilesListRequestExpand";
+export * from "./FilesListRequestExpandItem";
 export * from "./FilesListRequestOrderBy";
-export * from "./FilesRetrieveRequestExpand";
+export * from "./FilesRetrieveRequestExpandItem";

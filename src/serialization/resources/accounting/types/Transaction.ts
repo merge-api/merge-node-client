@@ -6,6 +6,7 @@ import type * as serializers from "../../../index";
 import { RemoteData } from "./RemoteData";
 import { TransactionAccount } from "./TransactionAccount";
 import { TransactionAccountingPeriod } from "./TransactionAccountingPeriod";
+import { TransactionCompany } from "./TransactionCompany";
 import { TransactionContact } from "./TransactionContact";
 import { TransactionCurrency } from "./TransactionCurrency";
 import { TransactionLineItem } from "./TransactionLineItem";
@@ -28,7 +29,7 @@ export const Transaction: core.serialization.ObjectSchema<
     totalAmount: core.serialization.property("total_amount", core.serialization.string().optional()),
     currency: TransactionCurrency.optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
-    company: core.serialization.string().optional(),
+    company: TransactionCompany.optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
         core.serialization.list(TransactionTrackingCategoriesItem.optional()).optional(),
@@ -58,7 +59,7 @@ export declare namespace Transaction {
         total_amount?: string | null;
         currency?: TransactionCurrency.Raw | null;
         exchange_rate?: string | null;
-        company?: string | null;
+        company?: TransactionCompany.Raw | null;
         tracking_categories?: (TransactionTrackingCategoriesItem.Raw | null | undefined)[] | null;
         line_items?: TransactionLineItem.Raw[] | null;
         remote_was_deleted?: boolean | null;

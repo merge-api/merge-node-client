@@ -1,3 +1,5 @@
-export * from "./ContactsListRequestExpand";
+export * from "./ContactsBatchObjectsListRequestExpandItem";
+export * from "./ContactsBatchObjectsListRequestStatus";
+export * from "./ContactsListRequestExpandItem";
 export * from "./ContactsListRequestStatus";
-export * from "./ContactsRetrieveRequestExpand";
+export * from "./ContactsRetrieveRequestExpandItem";

@@ -7,6 +7,7 @@
  * * `API` - API
  * * `SYSTEM` - SYSTEM
  * * `MERGE_TEAM` - MERGE_TEAM
+ * * `SUPPORT` - SUPPORT
  */
 export const RoleEnum = {
     Admin: "ADMIN",
@@ -15,5 +16,6 @@ export const RoleEnum = {
     Api: "API",
     System: "SYSTEM",
     MergeTeam: "MERGE_TEAM",
+    Support: "SUPPORT",
 } as const;
 export type RoleEnum = (typeof RoleEnum)[keyof typeof RoleEnum];

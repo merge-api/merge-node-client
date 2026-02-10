@@ -38,7 +38,6 @@ export class TimeOffClient {
      *         employeeId: "employee_id",
      *         endedAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         endedBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         expand: "approver",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -54,129 +53,148 @@ export class TimeOffClient {
      *         status: "APPROVED"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.hris.TimeOffListRequest = {},
         requestOptions?: TimeOffClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.hris.PaginatedTimeOffList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.hris.TimeOffListRequest = {},
-        requestOptions?: TimeOffClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.hris.PaginatedTimeOffList>> {
-        const {
-            approverId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            employeeId,
-            endedAfter,
-            endedBefore,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            remoteFields,
-            remoteId,
-            requestType,
-            showEnumOrigins,
-            startedAfter,
-            startedBefore,
-            status,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            approver_id: approverId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            employee_id: employeeId,
-            ended_after: endedAfter?.toISOString(),
-            ended_before: endedBefore?.toISOString(),
-            expand:
-                expand != null
-                    ? serializers.hris.TimeOffListRequestExpand.jsonOrThrow(expand, { unrecognizedObjectKeys: "strip" })
-                    : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            remote_fields:
-                remoteFields != null
-                    ? serializers.hris.TimeOffListRequestRemoteFields.jsonOrThrow(remoteFields, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            remote_id: remoteId,
-            request_type:
-                requestType != null
-                    ? serializers.hris.TimeOffListRequestRequestType.jsonOrThrow(requestType, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            show_enum_origins:
-                showEnumOrigins != null
-                    ? serializers.hris.TimeOffListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            started_after: startedAfter?.toISOString(),
-            started_before: startedBefore?.toISOString(),
-            status:
-                status != null
-                    ? serializers.hris.TimeOffListRequestStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
-                    : undefined,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.hris.TimeOff, Merge.hris.PaginatedTimeOffList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.hris.TimeOffListRequest,
+            ): Promise<core.WithRawResponse<Merge.hris.PaginatedTimeOffList>> => {
+                const {
+                    approverId,
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    employeeId,
+                    endedAfter,
+                    endedBefore,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    modifiedAfter,
+                    modifiedBefore,
+                    pageSize,
+                    remoteFields,
+                    remoteId,
+                    requestType,
+                    showEnumOrigins,
+                    startedAfter,
+                    startedBefore,
+                    status,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    approver_id: approverId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    employee_id: employeeId,
+                    ended_after: endedAfter?.toISOString(),
+                    ended_before: endedBefore?.toISOString(),
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.hris.TimeOffListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.hris.TimeOffListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    page_size: pageSize,
+                    remote_fields:
+                        remoteFields != null
+                            ? serializers.hris.TimeOffListRequestRemoteFields.jsonOrThrow(remoteFields, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    remote_id: remoteId,
+                    request_type:
+                        requestType != null
+                            ? serializers.hris.TimeOffListRequestRequestType.jsonOrThrow(requestType, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    show_enum_origins:
+                        showEnumOrigins != null
+                            ? serializers.hris.TimeOffListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    started_after: startedAfter?.toISOString(),
+                    started_before: startedBefore?.toISOString(),
+                    status:
+                        status != null
+                            ? serializers.hris.TimeOffListRequestStatus.jsonOrThrow(status, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "hris/v1/time-off",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.hris.PaginatedTimeOffList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/hris/v1/time-off");
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "hris/v1/time-off",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.hris.TimeOff, Merge.hris.PaginatedTimeOffList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.hris.PaginatedTimeOffList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/hris/v1/time-off");
     }
 
     /**
@@ -267,7 +285,6 @@ export class TimeOffClient {
      *
      * @example
      *     await client.hris.timeOff.retrieve("id", {
-     *         expand: "approver",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "request_type",
@@ -289,12 +306,17 @@ export class TimeOffClient {
     ): Promise<core.WithRawResponse<Merge.hris.TimeOff>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.hris.TimeOffRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.hris.TimeOffRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.hris.TimeOffRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields:

@@ -1,2 +1,2 @@
-export { ItemEndpointRequest } from "./ItemEndpointRequest";
+export { ItemBulkRequest } from "./ItemBulkRequest";
 export { PatchedItemEndpointRequest } from "./PatchedItemEndpointRequest";
