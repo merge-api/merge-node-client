@@ -334,7 +334,7 @@ export interface GeneralLedgerTransactionLine {
      * * `ZWR` - Zimbabwean Dollar (2008)
      * * `ZWL` - Zimbabwean Dollar (2009)
      */
-    baseCurrency?: Merge.accounting.GeneralLedgerTransactionLineBaseCurrency;
+    baseCurrency?: Merge.accounting.TransactionCurrencyEnum;
     /**
      * The transaction currency that the transaction is made in.
      *

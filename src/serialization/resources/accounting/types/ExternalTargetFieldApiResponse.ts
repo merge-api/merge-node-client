@@ -34,10 +34,6 @@ export const ExternalTargetFieldApiResponse: core.serialization.ObjectSchema<
         "PurchaseOrder",
         core.serialization.list(ExternalTargetFieldApi).optional(),
     ),
-    expenseReport: core.serialization.property(
-        "ExpenseReport",
-        core.serialization.list(ExternalTargetFieldApi).optional(),
-    ),
     trackingCategory: core.serialization.property(
         "TrackingCategory",
         core.serialization.list(ExternalTargetFieldApi).optional(),
@@ -88,7 +84,6 @@ export declare namespace ExternalTargetFieldApiResponse {
         CreditNote?: ExternalTargetFieldApi.Raw[] | null;
         Item?: ExternalTargetFieldApi.Raw[] | null;
         PurchaseOrder?: ExternalTargetFieldApi.Raw[] | null;
-        ExpenseReport?: ExternalTargetFieldApi.Raw[] | null;
         TrackingCategory?: ExternalTargetFieldApi.Raw[] | null;
         JournalEntry?: ExternalTargetFieldApi.Raw[] | null;
         TaxRate?: ExternalTargetFieldApi.Raw[] | null;

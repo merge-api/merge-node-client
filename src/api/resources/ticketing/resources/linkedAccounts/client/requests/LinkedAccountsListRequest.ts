@@ -52,7 +52,7 @@ export interface LinkedAccountsListRequest {
     integrationName?: string;
     /** If included, will only include test linked accounts. If not included, will only include non-test linked accounts. */
     isTestAccount?: string;
-    /** Number of results to return per page. The maximum limit is 100. */
+    /** Number of results to return per page. */
     pageSize?: number;
     /** Filter by status. Options: `COMPLETE`, `IDLE`, `INCOMPLETE`, `RELINK_NEEDED` */
     status?: string;

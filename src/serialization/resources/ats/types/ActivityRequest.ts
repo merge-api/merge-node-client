@@ -3,16 +3,16 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { ActivityRequestActivityType } from "./ActivityRequestActivityType";
 import { ActivityRequestUser } from "./ActivityRequestUser";
 import { ActivityRequestVisibility } from "./ActivityRequestVisibility";
+import { ActivityTypeEnum } from "./ActivityTypeEnum";
 
 export const ActivityRequest: core.serialization.ObjectSchema<
     serializers.ats.ActivityRequest.Raw,
     Merge.ats.ActivityRequest
 > = core.serialization.object({
     user: ActivityRequestUser.optional(),
-    activityType: core.serialization.property("activity_type", ActivityRequestActivityType.optional()),
+    activityType: core.serialization.property("activity_type", ActivityTypeEnum.optional()),
     subject: core.serialization.string().optional(),
     body: core.serialization.string().optional(),
     visibility: ActivityRequestVisibility.optional(),
@@ -30,7 +30,7 @@ export const ActivityRequest: core.serialization.ObjectSchema<
 export declare namespace ActivityRequest {
     export interface Raw {
         user?: ActivityRequestUser.Raw | null;
-        activity_type?: ActivityRequestActivityType.Raw | null;
+        activity_type?: ActivityTypeEnum.Raw | null;
         subject?: string | null;
         body?: string | null;
         visibility?: ActivityRequestVisibility.Raw | null;

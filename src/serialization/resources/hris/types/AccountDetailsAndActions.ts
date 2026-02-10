@@ -24,10 +24,6 @@ export const AccountDetailsAndActions: core.serialization.ObjectSchema<
     integration: AccountDetailsAndActionsIntegration.optional(),
     accountType: core.serialization.property("account_type", core.serialization.string()),
     completedAt: core.serialization.property("completed_at", core.serialization.date()),
-    integrationSpecificFields: core.serialization.property(
-        "integration_specific_fields",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    ),
 });
 
 export declare namespace AccountDetailsAndActions {
@@ -45,6 +41,5 @@ export declare namespace AccountDetailsAndActions {
         integration?: AccountDetailsAndActionsIntegration.Raw | null;
         account_type: string;
         completed_at: string;
-        integration_specific_fields?: Record<string, unknown> | null;
     }
 }

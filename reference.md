@@ -120,7 +120,7 @@ await client.ats.accountToken.retrieve("public_token");
 </details>
 
 ## Ats Activities
-<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedActivityList</code></summary>
+<details><summary><code>client.ats.activities.<a href="/src/api/resources/ats/resources/activities/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Activity, Merge.PaginatedActivityList></code></summary>
 <dl>
 <dd>
 
@@ -147,11 +147,10 @@ Returns a list of `Activity` objects.
 <dd>
 
 ```typescript
-await client.ats.activities.list({
+const pageableResponse = await client.ats.activities.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "user",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -163,6 +162,32 @@ await client.ats.activities.list({
     showEnumOrigins: "activity_type",
     userId: "user_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.activities.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "activity_type",
+    remoteId: "remote_id",
+    showEnumOrigins: "activity_type",
+    userId: "user_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -294,7 +319,6 @@ Returns an `Activity` object with the given `id`.
 
 ```typescript
 await client.ats.activities.retrieve("id", {
-    expand: "user",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "activity_type",
@@ -399,7 +423,7 @@ await client.ats.activities.metaPostRetrieve();
 </details>
 
 ## Ats Applications
-<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedApplicationList</code></summary>
+<details><summary><code>client.ats.applications.<a href="/src/api/resources/ats/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Application, Merge.PaginatedApplicationList></code></summary>
 <dl>
 <dd>
 
@@ -426,14 +450,13 @@ Returns a list of `Application` objects.
 <dd>
 
 ```typescript
-await client.ats.applications.list({
+const pageableResponse = await client.ats.applications.list({
     candidateId: "candidate_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     creditedToId: "credited_to_id",
     currentStageId: "current_stage_id",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "candidate",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -445,6 +468,35 @@ await client.ats.applications.list({
     remoteId: "remote_id",
     source: "source"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.applications.list({
+    candidateId: "candidate_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    creditedToId: "credited_to_id",
+    currentStageId: "current_stage_id",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    jobId: "job_id",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    rejectReasonId: "reject_reason_id",
+    remoteId: "remote_id",
+    source: "source"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -579,7 +631,6 @@ Returns an `Application` object with the given `id`.
 
 ```typescript
 await client.ats.applications.retrieve("id", {
-    expand: "candidate",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -896,7 +947,7 @@ await client.ats.asyncPassthrough.retrieve("async_passthrough_receipt_id");
 </details>
 
 ## Ats Attachments
-<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAttachmentList</code></summary>
+<details><summary><code>client.ats.attachments.<a href="/src/api/resources/ats/resources/attachments/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Attachment, Merge.PaginatedAttachmentList></code></summary>
 <dl>
 <dd>
 
@@ -923,12 +974,11 @@ Returns a list of `Attachment` objects.
 <dd>
 
 ```typescript
-await client.ats.attachments.list({
+const pageableResponse = await client.ats.attachments.list({
     candidateId: "candidate_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "candidate",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -939,6 +989,32 @@ await client.ats.attachments.list({
     remoteId: "remote_id",
     showEnumOrigins: "attachment_type"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.attachments.list({
+    candidateId: "candidate_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "attachment_type",
+    remoteId: "remote_id",
+    showEnumOrigins: "attachment_type"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1070,7 +1146,6 @@ Returns an `Attachment` object with the given `id`.
 
 ```typescript
 await client.ats.attachments.retrieve("id", {
-    expand: "candidate",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "attachment_type",
@@ -1175,7 +1250,7 @@ await client.ats.attachments.metaPostRetrieve();
 </details>
 
 ## Ats AuditTrail
-<details><summary><code>client.ats.auditTrail.<a href="/src/api/resources/ats/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
+<details><summary><code>client.ats.auditTrail.<a href="/src/api/resources/ats/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AuditLogEvent, Merge.PaginatedAuditLogEventList></code></summary>
 <dl>
 <dd>
 
@@ -1202,7 +1277,7 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.ats.auditTrail.list({
+const pageableResponse = await client.ats.auditTrail.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
     eventType: "event_type",
@@ -1210,6 +1285,25 @@ await client.ats.auditTrail.list({
     startDate: "start_date",
     userEmail: "user_email"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    eventType: "event_type",
+    pageSize: 1,
+    startDate: "start_date",
+    userEmail: "user_email"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1302,7 +1396,7 @@ await client.ats.availableActions.retrieve();
 </details>
 
 ## Ats Candidates
-<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCandidateList</code></summary>
+<details><summary><code>client.ats.candidates.<a href="/src/api/resources/ats/resources/candidates/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Candidate, Merge.PaginatedCandidateList></code></summary>
 <dl>
 <dd>
 
@@ -1329,12 +1423,11 @@ Returns a list of `Candidate` objects.
 <dd>
 
 ```typescript
-await client.ats.candidates.list({
+const pageableResponse = await client.ats.candidates.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddresses: "email_addresses",
-    expand: "applications",
     firstName: "first_name",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -1346,6 +1439,33 @@ await client.ats.candidates.list({
     remoteId: "remote_id",
     tags: "tags"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.candidates.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    emailAddresses: "email_addresses",
+    firstName: "first_name",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    lastName: "last_name",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    tags: "tags"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1477,7 +1597,6 @@ Returns a `Candidate` object with the given `id`.
 
 ```typescript
 await client.ats.candidates.retrieve("id", {
-    expand: "applications",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -1653,7 +1772,7 @@ await client.ats.candidates.ignoreCreate("model_id", {
 <dl>
 <dd>
 
-**request:** `Merge.ats.IgnoreCommonModelRequest` 
+**request:** `Merge.IgnoreCommonModelRequest` 
     
 </dd>
 </dl>
@@ -2045,7 +2164,7 @@ await client.ats.deleteAccount.delete();
 </details>
 
 ## Ats Departments
-<details><summary><code>client.ats.departments.<a href="/src/api/resources/ats/resources/departments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedDepartmentList</code></summary>
+<details><summary><code>client.ats.departments.<a href="/src/api/resources/ats/resources/departments/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Department, Merge.PaginatedDepartmentList></code></summary>
 <dl>
 <dd>
 
@@ -2072,7 +2191,7 @@ Returns a list of `Department` objects.
 <dd>
 
 ```typescript
-await client.ats.departments.list({
+const pageableResponse = await client.ats.departments.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -2084,6 +2203,29 @@ await client.ats.departments.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.departments.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -2194,7 +2336,7 @@ await client.ats.departments.retrieve("id", {
 </details>
 
 ## Ats Eeocs
-<details><summary><code>client.ats.eeocs.<a href="/src/api/resources/ats/resources/eeocs/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEeocList</code></summary>
+<details><summary><code>client.ats.eeocs.<a href="/src/api/resources/ats/resources/eeocs/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Eeoc, Merge.PaginatedEeocList></code></summary>
 <dl>
 <dd>
 
@@ -2221,12 +2363,11 @@ Returns a list of `EEOC` objects.
 <dd>
 
 ```typescript
-await client.ats.eeocs.list({
+const pageableResponse = await client.ats.eeocs.list({
     candidateId: "candidate_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "candidate",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -2237,6 +2378,32 @@ await client.ats.eeocs.list({
     remoteId: "remote_id",
     showEnumOrigins: "disability_status"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.eeocs.list({
+    candidateId: "candidate_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "disability_status",
+    remoteId: "remote_id",
+    showEnumOrigins: "disability_status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -2300,7 +2467,6 @@ Returns an `EEOC` object with the given `id`.
 
 ```typescript
 await client.ats.eeocs.retrieve("id", {
-    expand: "candidate",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "disability_status",
@@ -2808,7 +2974,7 @@ await client.ats.generateKey.create({
 </details>
 
 ## Ats Interviews
-<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedScheduledInterviewList</code></summary>
+<details><summary><code>client.ats.interviews.<a href="/src/api/resources/ats/resources/interviews/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.ScheduledInterview, Merge.PaginatedScheduledInterviewList></code></summary>
 <dl>
 <dd>
 
@@ -2835,12 +3001,11 @@ Returns a list of `ScheduledInterview` objects.
 <dd>
 
 ```typescript
-await client.ats.interviews.list({
+const pageableResponse = await client.ats.interviews.list({
     applicationId: "application_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "application",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -2854,6 +3019,35 @@ await client.ats.interviews.list({
     remoteId: "remote_id",
     showEnumOrigins: "status"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.interviews.list({
+    applicationId: "application_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    jobId: "job_id",
+    jobInterviewStageId: "job_interview_stage_id",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    organizerId: "organizer_id",
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -2985,7 +3179,6 @@ Returns a `ScheduledInterview` object with the given `id`.
 
 ```typescript
 await client.ats.interviews.retrieve("id", {
-    expand: "application",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "status",
@@ -3090,7 +3283,7 @@ await client.ats.interviews.metaPostRetrieve();
 </details>
 
 ## Ats Issues
-<details><summary><code>client.ats.issues.<a href="/src/api/resources/ats/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
+<details><summary><code>client.ats.issues.<a href="/src/api/resources/ats/resources/issues/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Issue, Merge.PaginatedIssueList></code></summary>
 <dl>
 <dd>
 
@@ -3117,7 +3310,7 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.ats.issues.list({
+const pageableResponse = await client.ats.issues.list({
     accountToken: "account_token",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
@@ -3133,6 +3326,33 @@ await client.ats.issues.list({
     startDate: "start_date",
     status: "ONGOING"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.issues.list({
+    accountToken: "account_token",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    endUserOrganizationName: "end_user_organization_name",
+    firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeMuted: "include_muted",
+    integrationName: "integration_name",
+    lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    linkedAccountId: "linked_account_id",
+    pageSize: 1,
+    startDate: "start_date",
+    status: "ONGOING"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -3232,7 +3452,7 @@ await client.ats.issues.retrieve("id");
 </details>
 
 ## Ats JobInterviewStages
-<details><summary><code>client.ats.jobInterviewStages.<a href="/src/api/resources/ats/resources/jobInterviewStages/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJobInterviewStageList</code></summary>
+<details><summary><code>client.ats.jobInterviewStages.<a href="/src/api/resources/ats/resources/jobInterviewStages/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.JobInterviewStage, Merge.PaginatedJobInterviewStageList></code></summary>
 <dl>
 <dd>
 
@@ -3259,11 +3479,10 @@ Returns a list of `JobInterviewStage` objects.
 <dd>
 
 ```typescript
-await client.ats.jobInterviewStages.list({
+const pageableResponse = await client.ats.jobInterviewStages.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "job",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -3273,6 +3492,30 @@ await client.ats.jobInterviewStages.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.jobInterviewStages.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    jobId: "job_id",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -3336,7 +3579,6 @@ Returns a `JobInterviewStage` object with the given `id`.
 
 ```typescript
 await client.ats.jobInterviewStages.retrieve("id", {
-    expand: "job",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -3384,7 +3626,7 @@ await client.ats.jobInterviewStages.retrieve("id", {
 </details>
 
 ## Ats JobPostings
-<details><summary><code>client.ats.jobPostings.<a href="/src/api/resources/ats/resources/jobPostings/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJobPostingList</code></summary>
+<details><summary><code>client.ats.jobPostings.<a href="/src/api/resources/ats/resources/jobPostings/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.JobPosting, Merge.PaginatedJobPostingList></code></summary>
 <dl>
 <dd>
 
@@ -3411,11 +3653,10 @@ Returns a list of `JobPosting` objects.
 <dd>
 
 ```typescript
-await client.ats.jobPostings.list({
+const pageableResponse = await client.ats.jobPostings.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "job",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -3425,6 +3666,30 @@ await client.ats.jobPostings.list({
     remoteId: "remote_id",
     status: "CLOSED"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.jobPostings.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    status: "CLOSED"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -3488,7 +3753,6 @@ Returns a `JobPosting` object with the given `id`.
 
 ```typescript
 await client.ats.jobPostings.retrieve("id", {
-    expand: "job",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -3536,7 +3800,7 @@ await client.ats.jobPostings.retrieve("id", {
 </details>
 
 ## Ats Jobs
-<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJobList</code></summary>
+<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Job, Merge.PaginatedJobList></code></summary>
 <dl>
 <dd>
 
@@ -3563,12 +3827,11 @@ Returns a list of `Job` objects.
 <dd>
 
 ```typescript
-await client.ats.jobs.list({
+const pageableResponse = await client.ats.jobs.list({
     code: "code",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "departments",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -3581,6 +3844,34 @@ await client.ats.jobs.list({
     showEnumOrigins: "status",
     status: "ARCHIVED"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.jobs.list({
+    code: "code",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    offices: "offices",
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    status: "ARCHIVED"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -3644,7 +3935,6 @@ Returns a `Job` object with the given `id`.
 
 ```typescript
 await client.ats.jobs.retrieve("id", {
-    expand: "departments",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "status",
@@ -3693,7 +3983,7 @@ await client.ats.jobs.retrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">screeningQuestionsList</a>(job_id, { ...params }) -> Merge.PaginatedScreeningQuestionList</code></summary>
+<details><summary><code>client.ats.jobs.<a href="/src/api/resources/ats/resources/jobs/client/Client.ts">screeningQuestionsList</a>(job_id, { ...params }) -> core.Page<Merge.ScreeningQuestion, Merge.PaginatedScreeningQuestionList></code></summary>
 <dl>
 <dd>
 
@@ -3720,14 +4010,31 @@ Returns a list of `ScreeningQuestion` objects.
 <dd>
 
 ```typescript
-await client.ats.jobs.screeningQuestionsList("job_id", {
+const pageableResponse = await client.ats.jobs.screeningQuestionsList("job_id", {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "job",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.jobs.screeningQuestionsList("job_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -3841,7 +4148,7 @@ await client.ats.linkToken.create({
 </details>
 
 ## Ats LinkedAccounts
-<details><summary><code>client.ats.linkedAccounts.<a href="/src/api/resources/ats/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
+<details><summary><code>client.ats.linkedAccounts.<a href="/src/api/resources/ats/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AccountDetailsAndActions, Merge.PaginatedAccountDetailsAndActionsList></code></summary>
 <dl>
 <dd>
 
@@ -3868,7 +4175,7 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.ats.linkedAccounts.list({
+const pageableResponse = await client.ats.linkedAccounts.list({
     category: "accounting",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endUserEmailAddress: "end_user_email_address",
@@ -3883,6 +4190,32 @@ await client.ats.linkedAccounts.list({
     pageSize: 1,
     status: "status"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.linkedAccounts.list({
+    category: "accounting",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endUserEmailAddress: "end_user_email_address",
+    endUserOrganizationName: "end_user_organization_name",
+    endUserOriginId: "end_user_origin_id",
+    endUserOriginIds: "end_user_origin_ids",
+    id: "id",
+    ids: "ids",
+    includeDuplicates: true,
+    integrationName: "integration_name",
+    isTestAccount: "is_test_account",
+    pageSize: 1,
+    status: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -3919,7 +4252,7 @@ await client.ats.linkedAccounts.list({
 </details>
 
 ## Ats Offers
-<details><summary><code>client.ats.offers.<a href="/src/api/resources/ats/resources/offers/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedOfferList</code></summary>
+<details><summary><code>client.ats.offers.<a href="/src/api/resources/ats/resources/offers/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Offer, Merge.PaginatedOfferList></code></summary>
 <dl>
 <dd>
 
@@ -3946,13 +4279,12 @@ Returns a list of `Offer` objects.
 <dd>
 
 ```typescript
-await client.ats.offers.list({
+const pageableResponse = await client.ats.offers.list({
     applicationId: "application_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     creatorId: "creator_id",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "application",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -3963,6 +4295,33 @@ await client.ats.offers.list({
     remoteId: "remote_id",
     showEnumOrigins: "status"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.offers.list({
+    applicationId: "application_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    creatorId: "creator_id",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -4026,7 +4385,6 @@ Returns an `Offer` object with the given `id`.
 
 ```typescript
 await client.ats.offers.retrieve("id", {
-    expand: "application",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "status",
@@ -4076,7 +4434,7 @@ await client.ats.offers.retrieve("id", {
 </details>
 
 ## Ats Offices
-<details><summary><code>client.ats.offices.<a href="/src/api/resources/ats/resources/offices/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedOfficeList</code></summary>
+<details><summary><code>client.ats.offices.<a href="/src/api/resources/ats/resources/offices/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Office, Merge.PaginatedOfficeList></code></summary>
 <dl>
 <dd>
 
@@ -4103,7 +4461,7 @@ Returns a list of `Office` objects.
 <dd>
 
 ```typescript
-await client.ats.offices.list({
+const pageableResponse = await client.ats.offices.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -4115,6 +4473,29 @@ await client.ats.offices.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.offices.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -4358,7 +4739,7 @@ await client.ats.regenerateKey.create({
 </details>
 
 ## Ats RejectReasons
-<details><summary><code>client.ats.rejectReasons.<a href="/src/api/resources/ats/resources/rejectReasons/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedRejectReasonList</code></summary>
+<details><summary><code>client.ats.rejectReasons.<a href="/src/api/resources/ats/resources/rejectReasons/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.RejectReason, Merge.PaginatedRejectReasonList></code></summary>
 <dl>
 <dd>
 
@@ -4385,7 +4766,7 @@ Returns a list of `RejectReason` objects.
 <dd>
 
 ```typescript
-await client.ats.rejectReasons.list({
+const pageableResponse = await client.ats.rejectReasons.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -4397,6 +4778,29 @@ await client.ats.rejectReasons.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.rejectReasons.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -4507,7 +4911,7 @@ await client.ats.rejectReasons.retrieve("id", {
 </details>
 
 ## Ats Scorecards
-<details><summary><code>client.ats.scorecards.<a href="/src/api/resources/ats/resources/scorecards/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedScorecardList</code></summary>
+<details><summary><code>client.ats.scorecards.<a href="/src/api/resources/ats/resources/scorecards/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Scorecard, Merge.PaginatedScorecardList></code></summary>
 <dl>
 <dd>
 
@@ -4534,12 +4938,11 @@ Returns a list of `Scorecard` objects.
 <dd>
 
 ```typescript
-await client.ats.scorecards.list({
+const pageableResponse = await client.ats.scorecards.list({
     applicationId: "application_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "application",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -4552,6 +4955,34 @@ await client.ats.scorecards.list({
     remoteId: "remote_id",
     showEnumOrigins: "overall_recommendation"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.scorecards.list({
+    applicationId: "application_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    interviewId: "interview_id",
+    interviewerId: "interviewer_id",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "overall_recommendation",
+    remoteId: "remote_id",
+    showEnumOrigins: "overall_recommendation"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -4615,7 +5046,6 @@ Returns a `Scorecard` object with the given `id`.
 
 ```typescript
 await client.ats.scorecards.retrieve("id", {
-    expand: "application",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "overall_recommendation",
@@ -4665,7 +5095,7 @@ await client.ats.scorecards.retrieve("id", {
 </details>
 
 ## Ats SyncStatus
-<details><summary><code>client.ats.syncStatus.<a href="/src/api/resources/ats/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
+<details><summary><code>client.ats.syncStatus.<a href="/src/api/resources/ats/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.SyncStatus, Merge.PaginatedSyncStatusList></code></summary>
 <dl>
 <dd>
 
@@ -4692,10 +5122,25 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.ats.syncStatus.list({
+const pageableResponse = await client.ats.syncStatus.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -4788,7 +5233,7 @@ await client.ats.forceResync.syncStatusResyncCreate();
 </details>
 
 ## Ats Tags
-<details><summary><code>client.ats.tags.<a href="/src/api/resources/ats/resources/tags/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTagList</code></summary>
+<details><summary><code>client.ats.tags.<a href="/src/api/resources/ats/resources/tags/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Tag, Merge.PaginatedTagList></code></summary>
 <dl>
 <dd>
 
@@ -4815,7 +5260,7 @@ Returns a list of `Tag` objects.
 <dd>
 
 ```typescript
-await client.ats.tags.list({
+const pageableResponse = await client.ats.tags.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -4827,6 +5272,29 @@ await client.ats.tags.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.tags.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -4863,7 +5331,7 @@ await client.ats.tags.list({
 </details>
 
 ## Ats Users
-<details><summary><code>client.ats.users.<a href="/src/api/resources/ats/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedRemoteUserList</code></summary>
+<details><summary><code>client.ats.users.<a href="/src/api/resources/ats/resources/users/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.RemoteUser, Merge.PaginatedRemoteUserList></code></summary>
 <dl>
 <dd>
 
@@ -4890,7 +5358,7 @@ Returns a list of `RemoteUser` objects.
 <dd>
 
 ```typescript
-await client.ats.users.list({
+const pageableResponse = await client.ats.users.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -4905,6 +5373,32 @@ await client.ats.users.list({
     remoteId: "remote_id",
     showEnumOrigins: "access_role"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ats.users.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    email: "email",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "access_role",
+    remoteId: "remote_id",
+    showEnumOrigins: "access_role"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -5138,6 +5632,9633 @@ await client.ats.webhookReceivers.create({
 </dl>
 </details>
 
+## Accounting AccountDetails
+<details><summary><code>client.accounting.accountDetails.<a href="/src/api/resources/accounting/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get details for a linked account.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.accountDetails.retrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountDetailsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting AccountToken
+<details><summary><code>client.accounting.accountToken.<a href="/src/api/resources/accounting/resources/accountToken/client/Client.ts">retrieve</a>(public_token) -> Merge.AccountToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the account token for the end user with the provided public token.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.accountToken.retrieve("public_token");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**public_token:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountTokenClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting AccountingPeriods
+<details><summary><code>client.accounting.accountingPeriods.<a href="/src/api/resources/accounting/resources/accountingPeriods/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AccountingPeriod, Merge.PaginatedAccountingPeriodList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `AccountingPeriod` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.accountingPeriods.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.accountingPeriods.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AccountingPeriodsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountingPeriodsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.accountingPeriods.<a href="/src/api/resources/accounting/resources/accountingPeriods/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingPeriod</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `AccountingPeriod` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.accountingPeriods.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AccountingPeriodsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountingPeriodsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Accounts
+<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Account, Merge.PaginatedAccountList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Account` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.accounts.list({
+    accountType: "account_type",
+    classification: "",
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteFields: "classification",
+    remoteId: "remote_id",
+    showEnumOrigins: "classification",
+    status: ""
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.accounts.list({
+    accountType: "account_type",
+    classification: "",
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteFields: "classification",
+    remoteId: "remote_id",
+    showEnumOrigins: "classification",
+    status: ""
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AccountsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">create</a>({ ...params }) -> Merge.AccountResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Account` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.accounts.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AccountEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Account</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Account` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.accounts.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true,
+    remoteFields: "classification",
+    showEnumOrigins: "classification"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AccountsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Account` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.accounts.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Addresses
+<details><summary><code>client.accounting.addresses.<a href="/src/api/resources/accounting/resources/addresses/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Address</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Address` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.addresses.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true,
+    remoteFields: "type",
+    showEnumOrigins: "type"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AddressesRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AddressesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting AsyncPassthrough
+<details><summary><code>client.accounting.asyncPassthrough.<a href="/src/api/resources/accounting/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Asynchronously pull data from an endpoint not currently supported by Merge.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.asyncPassthrough.create({
+    method: "GET",
+    path: "/scooters"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.DataPassthroughRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AsyncPassthroughClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.asyncPassthrough.<a href="/src/api/resources/accounting/resources/asyncPassthrough/client/Client.ts">retrieve</a>(async_passthrough_receipt_id) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves data from earlier async-passthrough POST request
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.asyncPassthrough.retrieve("async_passthrough_receipt_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**async_passthrough_receipt_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AsyncPassthroughClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting AsyncTasks
+<details><summary><code>client.accounting.asyncTasks.<a href="/src/api/resources/accounting/resources/asyncTasks/client/Client.ts">retrieve</a>(id) -> Merge.AsyncPostTask</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `AsyncPostTask` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.asyncTasks.retrieve("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AsyncTasksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Attachments
+<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AccountingAttachment, Merge.PaginatedAccountingAttachmentList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `AccountingAttachment` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.attachments.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.attachments.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AttachmentsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AttachmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">create</a>({ ...params }) -> Merge.AccountingAttachmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `AccountingAttachment` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.attachments.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AccountingAttachmentEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AttachmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingAttachment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `AccountingAttachment` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.attachments.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AttachmentsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AttachmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `AccountingAttachment` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.attachments.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AttachmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting AuditTrail
+<details><summary><code>client.accounting.auditTrail.<a href="/src/api/resources/accounting/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AuditLogEvent, Merge.PaginatedAuditLogEventList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a list of audit trail events.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    eventType: "event_type",
+    pageSize: 1,
+    startDate: "start_date",
+    userEmail: "user_email"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    eventType: "event_type",
+    pageSize: 1,
+    startDate: "start_date",
+    userEmail: "user_email"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.AuditTrailListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuditTrailClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting AvailableActions
+<details><summary><code>client.accounting.availableActions.<a href="/src/api/resources/accounting/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of models and actions available for an account.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.availableActions.retrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AvailableActionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting BalanceSheets
+<details><summary><code>client.accounting.balanceSheets.<a href="/src/api/resources/accounting/resources/balanceSheets/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.BalanceSheet, Merge.PaginatedBalanceSheetList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `BalanceSheet` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.balanceSheets.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.balanceSheets.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BalanceSheetsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BalanceSheetsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.balanceSheets.<a href="/src/api/resources/accounting/resources/balanceSheets/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.BalanceSheet</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `BalanceSheet` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.balanceSheets.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BalanceSheetsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BalanceSheetsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting BankFeedAccounts
+<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.BankFeedAccount, Merge.PaginatedBankFeedAccountList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `BankFeedAccount` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.bankFeedAccounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.bankFeedAccounts.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedAccountsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">create</a>({ ...params }) -> Merge.BankFeedAccountResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `BankFeedAccount` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedAccounts.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedAccountEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.BankFeedAccount</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `BankFeedAccount` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedAccounts.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedAccountsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `BankFeedAccount` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedAccounts.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting BankFeedTransactions
+<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.BankFeedTransaction, Merge.PaginatedBankFeedTransactionList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `BankFeedTransaction` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.bankFeedTransactions.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isProcessed: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.bankFeedTransactions.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isProcessed: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedTransactionsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">create</a>({ ...params }) -> Merge.BankFeedTransactionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `BankFeedTransaction` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedTransactions.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedTransactionEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.BankFeedTransaction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `BankFeedTransaction` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedTransactions.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.BankFeedTransactionsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `BankFeedTransaction` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.bankFeedTransactions.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting CashFlowStatements
+<details><summary><code>client.accounting.cashFlowStatements.<a href="/src/api/resources/accounting/resources/cashFlowStatements/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.CashFlowStatement, Merge.PaginatedCashFlowStatementList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `CashFlowStatement` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.cashFlowStatements.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.cashFlowStatements.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CashFlowStatementsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CashFlowStatementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.cashFlowStatements.<a href="/src/api/resources/accounting/resources/cashFlowStatements/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CashFlowStatement</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `CashFlowStatement` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.cashFlowStatements.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CashFlowStatementsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CashFlowStatementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting CompanyInfo
+<details><summary><code>client.accounting.companyInfo.<a href="/src/api/resources/accounting/resources/companyInfo/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.CompanyInfo, Merge.PaginatedCompanyInfoList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `CompanyInfo` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.companyInfo.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.companyInfo.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CompanyInfoListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CompanyInfoClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.companyInfo.<a href="/src/api/resources/accounting/resources/companyInfo/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CompanyInfo</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `CompanyInfo` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.companyInfo.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CompanyInfoRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CompanyInfoClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Contacts
+<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Contact, Merge.PaginatedContactList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Contact` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.contacts.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    emailAddress: "email_address",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCustomer: "is_customer",
+    isSupplier: "is_supplier",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    status: ""
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.contacts.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    emailAddress: "email_address",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCustomer: "is_customer",
+    isSupplier: "is_supplier",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    status: ""
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ContactsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ContactsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">create</a>({ ...params }) -> Merge.ContactResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Contact` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.contacts.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ContactEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ContactsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Contact</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Contact` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.contacts.retrieve("id", {
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    remoteFields: "status",
+    showEnumOrigins: "status"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ContactsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ContactsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Contact` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.contacts.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ContactsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.contacts.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.contacts.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ContactsRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ContactsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting CreditNotes
+<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.CreditNote, Merge.PaginatedCreditNoteList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `CreditNote` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.creditNotes.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.creditNotes.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CreditNotesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditNotesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">create</a>({ ...params }) -> Merge.CreditNoteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `CreditNote` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.creditNotes.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CreditNoteEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditNotesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CreditNote</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `CreditNote` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.creditNotes.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true,
+    remoteFields: "status",
+    showEnumOrigins: "status"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CreditNotesRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditNotesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `CreditNote` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.creditNotes.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditNotesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Scopes
+<details><summary><code>client.accounting.scopes.<a href="/src/api/resources/accounting/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.scopes.defaultScopesRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScopesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.scopes.<a href="/src/api/resources/accounting/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all available permissions for Merge Common Models and fields for a single Linked Account. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.scopes.linkedAccountScopesRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScopesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.scopes.<a href="/src/api/resources/accounting/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.scopes.linkedAccountScopesCreate({
+    commonModels: [{
+            modelName: "Employee",
+            modelPermissions: {
+                "READ": {
+                    isEnabled: true
+                },
+                "WRITE": {
+                    isEnabled: false
+                }
+            },
+            fieldPermissions: {
+                enabledFields: ["avatar", "home_location"],
+                disabledFields: ["work_location"]
+            }
+        }, {
+            modelName: "Benefit",
+            modelPermissions: {
+                "WRITE": {
+                    isEnabled: false
+                }
+            }
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.LinkedAccountCommonModelScopeDeserializerRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScopesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting DeleteAccount
+<details><summary><code>client.accounting.deleteAccount.<a href="/src/api/resources/accounting/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a linked account.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.deleteAccount.delete();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `DeleteAccountClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Employees
+<details><summary><code>client.accounting.employees.<a href="/src/api/resources/accounting/resources/employees/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Employee, Merge.PaginatedEmployeeList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Employee` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.employees.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.employees.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.EmployeesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EmployeesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.employees.<a href="/src/api/resources/accounting/resources/employees/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Employee</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Employee` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.employees.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.EmployeesRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EmployeesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Expenses
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Expense, Merge.PaginatedExpenseList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Expense` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.expenses.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.expenses.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ExpensesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">create</a>({ ...params }) -> Merge.ExpenseResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Expense` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.expenses.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ExpenseEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Expense</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Expense` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.expenses.retrieve("id", {
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ExpensesRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">linesRemoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.expenses.linesRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.expenses.linesRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ExpensesLinesRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Expense` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.expenses.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.expenses.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.expenses.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ExpensesRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ExpensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting FieldMapping
+<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.fieldMapping.fieldMappingsRetrieve({
+    excludeRemoteFieldMetadata: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.FieldMappingsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMappingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create new Field Mappings that will be available after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.fieldMapping.fieldMappingsCreate({
+    excludeRemoteFieldMetadata: true,
+    targetFieldName: "example_target_field_name",
+    targetFieldDescription: "this is a example description of the target field",
+    remoteFieldTraversalPath: ["example_remote_field"],
+    remoteMethod: "GET",
+    remoteUrlPath: "/example-url-path",
+    commonModelName: "ExampleCommonModel"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.CreateFieldMappingRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMappingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(field_mapping_id) -> Merge.FieldMappingInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.fieldMapping.fieldMappingsDestroy("field_mapping_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**field_mapping_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMappingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(field_mapping_id, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or update existing Field Mappings for a Linked Account. Changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**field_mapping_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PatchedEditFieldMappingRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMappingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all remote fields for a Linked Account. Remote fields are third-party fields that are accessible after initial sync if remote_data is enabled. You can use remote fields to override existing Merge fields or map a new Merge field. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.fieldMapping.remoteFieldsRetrieve({
+    commonModels: "common_models",
+    includeExampleValues: "include_example_values"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.RemoteFieldsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMappingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all organization-wide Target Fields, this will not include any Linked Account specific Target Fields. Organization-wide Target Fields are additional fields appended to the Merge Common Model for all Linked Accounts in a category. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/target-fields/).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.fieldMapping.targetFieldsRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `FieldMappingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting GeneralLedgerTransactions
+<details><summary><code>client.accounting.generalLedgerTransactions.<a href="/src/api/resources/accounting/resources/generalLedgerTransactions/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.GeneralLedgerTransaction, Merge.PaginatedGeneralLedgerTransactionList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `GeneralLedgerTransaction` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.generalLedgerTransactions.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    postedDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    postedDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+    remoteId: "remote_id"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.generalLedgerTransactions.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    postedDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    postedDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.GeneralLedgerTransactionsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GeneralLedgerTransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.generalLedgerTransactions.<a href="/src/api/resources/accounting/resources/generalLedgerTransactions/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.GeneralLedgerTransaction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `GeneralLedgerTransaction` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.generalLedgerTransactions.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.GeneralLedgerTransactionsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GeneralLedgerTransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting GenerateKey
+<details><summary><code>client.accounting.generateKey.<a href="/src/api/resources/accounting/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a remote key.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.generateKey.create({
+    name: "Remote Deployment Key 1"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.GenerateRemoteKeyRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GenerateKeyClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting IncomeStatements
+<details><summary><code>client.accounting.incomeStatements.<a href="/src/api/resources/accounting/resources/incomeStatements/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.IncomeStatement, Merge.PaginatedIncomeStatementList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `IncomeStatement` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.incomeStatements.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.incomeStatements.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.IncomeStatementsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IncomeStatementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.incomeStatements.<a href="/src/api/resources/accounting/resources/incomeStatements/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.IncomeStatement</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `IncomeStatement` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.incomeStatements.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.IncomeStatementsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IncomeStatementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Invoices
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Invoice, Merge.PaginatedInvoiceList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Invoice` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.invoices.list({
+    companyId: "company_id",
+    contactId: "contact_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    number: "number",
+    pageSize: 1,
+    remoteFields: "type",
+    remoteId: "remote_id",
+    showEnumOrigins: "type",
+    status: "DRAFT",
+    type: "ACCOUNTS_PAYABLE"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.invoices.list({
+    companyId: "company_id",
+    contactId: "contact_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    number: "number",
+    pageSize: 1,
+    remoteFields: "type",
+    remoteId: "remote_id",
+    showEnumOrigins: "type",
+    status: "DRAFT",
+    type: "ACCOUNTS_PAYABLE"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.InvoicesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">create</a>({ ...params }) -> Merge.InvoiceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Invoice` object with the given values.
+            Including a `PurchaseOrder` id in the `purchase_orders` property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
+            
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.invoices.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.InvoiceEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Invoice</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Invoice` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.invoices.retrieve("id", {
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    remoteFields: "type",
+    showEnumOrigins: "type"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.InvoicesRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.InvoiceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an `Invoice` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.invoices.partialUpdate("id", {
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PatchedInvoiceEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">lineItemsRemoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.invoices.lineItemsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.invoices.lineItemsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.InvoicesLineItemsRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Invoice` PATCHs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.invoices.metaPatchRetrieve("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Invoice` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.invoices.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.invoices.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.invoices.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.InvoicesRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InvoicesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Issues
+<details><summary><code>client.accounting.issues.<a href="/src/api/resources/accounting/resources/issues/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Issue, Merge.PaginatedIssueList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets all issues for Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.issues.list({
+    accountToken: "account_token",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    endUserOrganizationName: "end_user_organization_name",
+    firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeMuted: "include_muted",
+    integrationName: "integration_name",
+    lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    linkedAccountId: "linked_account_id",
+    pageSize: 1,
+    startDate: "start_date",
+    status: "ONGOING"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.issues.list({
+    accountToken: "account_token",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    endUserOrganizationName: "end_user_organization_name",
+    firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeMuted: "include_muted",
+    integrationName: "integration_name",
+    lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    linkedAccountId: "linked_account_id",
+    pageSize: 1,
+    startDate: "start_date",
+    status: "ONGOING"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.IssuesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IssuesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.issues.<a href="/src/api/resources/accounting/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a specific issue.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.issues.retrieve("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IssuesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Items
+<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Item, Merge.PaginatedItemList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Item` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.items.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.items.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">create</a>({ ...params }) -> Merge.ItemResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an `Item` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.items.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Item</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `Item` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.items.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true,
+    remoteFields: "status",
+    showEnumOrigins: "status"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ItemsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.ItemResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an `Item` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.items.partialUpdate("id", {
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PatchedItemEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Item` PATCHs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.items.metaPatchRetrieve("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Item` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.items.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ItemsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting JournalEntries
+<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.JournalEntry, Merge.PaginatedJournalEntryList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `JournalEntry` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.journalEntries.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.journalEntries.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.JournalEntriesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JournalEntriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">create</a>({ ...params }) -> Merge.JournalEntryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `JournalEntry` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.journalEntries.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.JournalEntryEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JournalEntriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.JournalEntry</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `JournalEntry` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.journalEntries.retrieve("id", {
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.JournalEntriesRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JournalEntriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">linesRemoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.journalEntries.linesRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.journalEntries.linesRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JournalEntriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `JournalEntry` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.journalEntries.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `JournalEntriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.journalEntries.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.journalEntries.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.JournalEntriesRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `JournalEntriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting LinkToken
+<details><summary><code>client.accounting.linkToken.<a href="/src/api/resources/accounting/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a link token to be used when linking a new end user.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.linkToken.create({
+    endUserEmailAddress: "example@gmail.com",
+    endUserOrganizationName: "Test Organization",
+    endUserOriginId: "12345",
+    categories: ["hris", "ats"]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.EndUserDetailsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LinkTokenClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting LinkedAccounts
+<details><summary><code>client.accounting.linkedAccounts.<a href="/src/api/resources/accounting/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AccountDetailsAndActions, Merge.PaginatedAccountDetailsAndActionsList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List linked accounts for your organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.linkedAccounts.list({
+    category: "accounting",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endUserEmailAddress: "end_user_email_address",
+    endUserOrganizationName: "end_user_organization_name",
+    endUserOriginId: "end_user_origin_id",
+    endUserOriginIds: "end_user_origin_ids",
+    id: "id",
+    ids: "ids",
+    includeDuplicates: true,
+    integrationName: "integration_name",
+    isTestAccount: "is_test_account",
+    pageSize: 1,
+    status: "status"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.linkedAccounts.list({
+    category: "accounting",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endUserEmailAddress: "end_user_email_address",
+    endUserOrganizationName: "end_user_organization_name",
+    endUserOriginId: "end_user_origin_id",
+    endUserOriginIds: "end_user_origin_ids",
+    id: "id",
+    ids: "ids",
+    includeDuplicates: true,
+    integrationName: "integration_name",
+    isTestAccount: "is_test_account",
+    pageSize: 1,
+    status: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.LinkedAccountsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LinkedAccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Passthrough
+<details><summary><code>client.accounting.passthrough.<a href="/src/api/resources/accounting/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Pull data from an endpoint not currently supported by Merge.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.passthrough.create({
+    method: "GET",
+    path: "/scooters"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.DataPassthroughRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PassthroughClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting PaymentMethods
+<details><summary><code>client.accounting.paymentMethods.<a href="/src/api/resources/accounting/resources/paymentMethods/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.PaymentMethod, Merge.PaginatedPaymentMethodList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `PaymentMethod` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.paymentMethods.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.paymentMethods.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentMethodsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentMethodsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.paymentMethods.<a href="/src/api/resources/accounting/resources/paymentMethods/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.PaymentMethod</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `PaymentMethod` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.paymentMethods.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentMethodsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentMethodsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting PaymentTerms
+<details><summary><code>client.accounting.paymentTerms.<a href="/src/api/resources/accounting/resources/paymentTerms/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.PaymentTerm, Merge.PaginatedPaymentTermList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `PaymentTerm` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.paymentTerms.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.paymentTerms.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentTermsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentTermsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.paymentTerms.<a href="/src/api/resources/accounting/resources/paymentTerms/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.PaymentTerm</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `PaymentTerm` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.paymentTerms.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentTermsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentTermsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Payments
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Payment, Merge.PaginatedPaymentList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Payment` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.payments.list({
+    accountId: "account_id",
+    companyId: "company_id",
+    contactId: "contact_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.payments.list({
+    accountId: "account_id",
+    companyId: "company_id",
+    contactId: "contact_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">create</a>({ ...params }) -> Merge.PaymentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `Payment` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.payments.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Payment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Payment` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.payments.retrieve("id", {
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.PaymentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a `Payment` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.payments.partialUpdate("id", {
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PatchedPaymentEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">lineItemsRemoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.payments.lineItemsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.payments.lineItemsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentsLineItemsRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Payment` PATCHs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.payments.metaPatchRetrieve("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `Payment` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.payments.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.payments.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.payments.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PaymentsRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting PhoneNumbers
+<details><summary><code>client.accounting.phoneNumbers.<a href="/src/api/resources/accounting/resources/phoneNumbers/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingPhoneNumber</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an `AccountingPhoneNumber` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.phoneNumbers.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PhoneNumbersRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PhoneNumbersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Projects
+<details><summary><code>client.accounting.projects.<a href="/src/api/resources/accounting/resources/projects/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedProjectList</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Project` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.projects.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ProjectsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ProjectsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.projects.<a href="/src/api/resources/accounting/resources/projects/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Project</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Project` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.projects.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.ProjectsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ProjectsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting PurchaseOrders
+<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.PurchaseOrder, Merge.PaginatedPurchaseOrderList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `PurchaseOrder` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.purchaseOrders.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.purchaseOrders.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PurchaseOrdersListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">create</a>({ ...params }) -> Merge.PurchaseOrderResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `PurchaseOrder` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.purchaseOrders.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PurchaseOrderEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.PurchaseOrder</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `PurchaseOrder` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.purchaseOrders.retrieve("id", {
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    remoteFields: "status",
+    showEnumOrigins: "status"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PurchaseOrdersRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">lineItemsRemoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PurchaseOrdersLineItemsRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `PurchaseOrder` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.purchaseOrders.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `RemoteFieldClass` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.purchaseOrders.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.purchaseOrders.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.PurchaseOrdersRemoteFieldClassesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting RegenerateKey
+<details><summary><code>client.accounting.regenerateKey.<a href="/src/api/resources/accounting/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchange remote keys.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.regenerateKey.create({
+    name: "Remote Deployment Key 1"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.RemoteKeyForRegenerationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RegenerateKeyClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting SyncStatus
+<details><summary><code>client.accounting.syncStatus.<a href="/src/api/resources/accounting/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.SyncStatus, Merge.PaginatedSyncStatusList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get sync status for the current sync and the most recently finished sync. `last_sync_start` represents the most recent time any sync began. `last_sync_finished` represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the `last_sync_finished` timestamp where `last_sync_result` is `DONE`. Possible values for `status` and `last_sync_result` are `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`. Learn more about sync status in our [Help Center](https://help.merge.dev/en/articles/8184193-merge-sync-statuses).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.SyncStatusListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SyncStatusClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting ForceResync
+<details><summary><code>client.accounting.forceResync.<a href="/src/api/resources/accounting/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Force re-sync of all models. This endpoint is available for monthly, quarterly, and highest sync frequency customers on the Professional or Enterprise plans. Doing so will consume a sync credit for the relevant linked account. Force re-syncs can also be triggered manually in the Merge Dashboard and is available for all customers.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.forceResync.syncStatusResyncCreate();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ForceResyncClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting TaxRates
+<details><summary><code>client.accounting.taxRates.<a href="/src/api/resources/accounting/resources/taxRates/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.TaxRate, Merge.PaginatedTaxRateList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `TaxRate` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.taxRates.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.taxRates.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.TaxRatesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TaxRatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.taxRates.<a href="/src/api/resources/accounting/resources/taxRates/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.TaxRate</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `TaxRate` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.taxRates.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.TaxRatesRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TaxRatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting TrackingCategories
+<details><summary><code>client.accounting.trackingCategories.<a href="/src/api/resources/accounting/resources/trackingCategories/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.TrackingCategory, Merge.PaginatedTrackingCategoryList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `TrackingCategory` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.trackingCategories.list({
+    categoryType: "",
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    status: ""
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.trackingCategories.list({
+    categoryType: "",
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    status: ""
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.TrackingCategoriesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TrackingCategoriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.trackingCategories.<a href="/src/api/resources/accounting/resources/trackingCategories/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.TrackingCategory</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `TrackingCategory` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.trackingCategories.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true,
+    remoteFields: "status",
+    showEnumOrigins: "status"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.TrackingCategoriesRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TrackingCategoriesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting Transactions
+<details><summary><code>client.accounting.transactions.<a href="/src/api/resources/accounting/resources/transactions/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Transaction, Merge.PaginatedTransactionList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `Transaction` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.transactions.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.transactions.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.TransactionsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.transactions.<a href="/src/api/resources/accounting/resources/transactions/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Transaction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `Transaction` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.transactions.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.TransactionsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TransactionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting VendorCredits
+<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.VendorCredit, Merge.PaginatedVendorCreditList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `VendorCredit` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.accounting.vendorCredits.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.accounting.vendorCredits.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.VendorCreditsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VendorCreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">create</a>({ ...params }) -> Merge.VendorCreditResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `VendorCredit` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.vendorCredits.create({
+    isDebugMode: true,
+    runAsync: true,
+    model: {}
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.VendorCreditEndpointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VendorCreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.VendorCredit</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a `VendorCredit` object with the given `id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.vendorCredits.retrieve("id", {
+    includeRemoteData: true,
+    includeShellData: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.VendorCreditsRetrieveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VendorCreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for `VendorCredit` POSTs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.vendorCredits.metaPostRetrieve();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `VendorCreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Accounting WebhookReceivers
+<details><summary><code>client.accounting.webhookReceivers.<a href="/src/api/resources/accounting/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of `WebhookReceiver` objects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.webhookReceivers.list();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `WebhookReceiversClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounting.webhookReceivers.<a href="/src/api/resources/accounting/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a `WebhookReceiver` object with the given values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounting.webhookReceivers.create({
+    event: "event",
+    isActive: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Merge.accounting.WebhookReceiverRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WebhookReceiversClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Crm AccountDetails
 <details><summary><code>client.crm.accountDetails.<a href="/src/api/resources/crm/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
 <dl>
@@ -5259,7 +15380,7 @@ await client.crm.accountToken.retrieve("public_token");
 </details>
 
 ## Crm Accounts
-<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountList</code></summary>
+<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Account, Merge.PaginatedAccountList></code></summary>
 <dl>
 <dd>
 
@@ -5286,11 +15407,10 @@ Returns a list of `Account` objects.
 <dd>
 
 ```typescript
-await client.crm.accounts.list({
+const pageableResponse = await client.crm.accounts.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "owner",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -5302,6 +15422,32 @@ await client.crm.accounts.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.accounts.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    ownerId: "owner_id",
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -5432,7 +15578,6 @@ Returns an `Account` object with the given `id`.
 
 ```typescript
 await client.crm.accounts.retrieve("id", {
-    expand: "owner",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -5673,7 +15818,7 @@ await client.crm.accounts.metaPostRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.accounts.<a href="/src/api/resources/crm/resources/accounts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -5700,7 +15845,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.accounts.remoteFieldClassesList({
+const pageableResponse = await client.crm.accounts.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -5710,6 +15855,27 @@ await client.crm.accounts.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.accounts.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -5876,7 +16042,7 @@ await client.crm.asyncPassthrough.retrieve("async_passthrough_receipt_id");
 </details>
 
 ## Crm AuditTrail
-<details><summary><code>client.crm.auditTrail.<a href="/src/api/resources/crm/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
+<details><summary><code>client.crm.auditTrail.<a href="/src/api/resources/crm/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AuditLogEvent, Merge.PaginatedAuditLogEventList></code></summary>
 <dl>
 <dd>
 
@@ -5903,7 +16069,7 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.crm.auditTrail.list({
+const pageableResponse = await client.crm.auditTrail.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
     eventType: "event_type",
@@ -5911,6 +16077,25 @@ await client.crm.auditTrail.list({
     startDate: "start_date",
     userEmail: "user_email"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    eventType: "event_type",
+    pageSize: 1,
+    startDate: "start_date",
+    userEmail: "user_email"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -6003,7 +16188,7 @@ await client.crm.availableActions.retrieve();
 </details>
 
 ## Crm Contacts
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedContactList</code></summary>
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Contact, Merge.PaginatedContactList></code></summary>
 <dl>
 <dd>
 
@@ -6030,13 +16215,12 @@ Returns a list of `Contact` objects.
 <dd>
 
 ```typescript
-await client.crm.contacts.list({
+const pageableResponse = await client.crm.contacts.list({
     accountId: "account_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddresses: "email_addresses",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -6047,6 +16231,33 @@ await client.crm.contacts.list({
     phoneNumbers: "phone_numbers",
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.contacts.list({
+    accountId: "account_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    emailAddresses: "email_addresses",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    phoneNumbers: "phone_numbers",
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -6177,7 +16388,6 @@ Returns a `Contact` object with the given `id`.
 
 ```typescript
 await client.crm.contacts.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -6491,7 +16701,7 @@ await client.crm.contacts.metaPostRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.contacts.<a href="/src/api/resources/crm/resources/contacts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -6518,7 +16728,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.contacts.remoteFieldClassesList({
+const pageableResponse = await client.crm.contacts.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -6528,6 +16738,27 @@ await client.crm.contacts.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.contacts.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -6564,7 +16795,7 @@ await client.crm.contacts.remoteFieldClassesList({
 </details>
 
 ## Crm CustomObjectClasses
-<details><summary><code>client.crm.customObjectClasses.<a href="/src/api/resources/crm/resources/customObjectClasses/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCustomObjectClassList</code></summary>
+<details><summary><code>client.crm.customObjectClasses.<a href="/src/api/resources/crm/resources/customObjectClasses/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.CustomObjectClass, Merge.PaginatedCustomObjectClassList></code></summary>
 <dl>
 <dd>
 
@@ -6591,11 +16822,10 @@ Returns a list of `CustomObjectClass` objects.
 <dd>
 
 ```typescript
-await client.crm.customObjectClasses.list({
+const pageableResponse = await client.crm.customObjectClasses.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "fields",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -6604,6 +16834,29 @@ await client.crm.customObjectClasses.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.customObjectClasses.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -6667,7 +16920,6 @@ Returns a `CustomObjectClass` object with the given `id`.
 
 ```typescript
 await client.crm.customObjectClasses.retrieve("id", {
-    expand: "fields",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -6715,7 +16967,7 @@ await client.crm.customObjectClasses.retrieve("id", {
 </details>
 
 ## Crm AssociationTypes
-<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesList</a>(custom_object_class_id, { ...params }) -> Merge.PaginatedAssociationTypeList</code></summary>
+<details><summary><code>client.crm.associationTypes.<a href="/src/api/resources/crm/resources/associationTypes/client/Client.ts">customObjectClassesAssociationTypesList</a>(custom_object_class_id, { ...params }) -> core.Page<Merge.AssociationType, Merge.PaginatedAssociationTypeList></code></summary>
 <dl>
 <dd>
 
@@ -6742,11 +16994,10 @@ Returns a list of `AssociationType` objects.
 <dd>
 
 ```typescript
-await client.crm.associationTypes.customObjectClassesAssociationTypesList("custom_object_class_id", {
+const pageableResponse = await client.crm.associationTypes.customObjectClassesAssociationTypesList("custom_object_class_id", {
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "target_object_classes",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -6755,6 +17006,29 @@ await client.crm.associationTypes.customObjectClassesAssociationTypesList("custo
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.associationTypes.customObjectClassesAssociationTypesList("custom_object_class_id", {
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -6911,7 +17185,6 @@ Returns an `AssociationType` object with the given `id`.
 
 ```typescript
 await client.crm.associationTypes.customObjectClassesAssociationTypesRetrieve("custom_object_class_id", "id", {
-    expand: "target_object_classes",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -7030,7 +17303,7 @@ await client.crm.associationTypes.customObjectClassesAssociationTypesMetaPostRet
 </details>
 
 ## Crm CustomObjects
-<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsList</a>(custom_object_class_id, { ...params }) -> Merge.PaginatedCustomObjectList</code></summary>
+<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsList</a>(custom_object_class_id, { ...params }) -> core.Page<Merge.CustomObject, Merge.PaginatedCustomObjectList></code></summary>
 <dl>
 <dd>
 
@@ -7057,7 +17330,7 @@ Returns a list of `CustomObject` objects.
 <dd>
 
 ```typescript
-await client.crm.customObjects.customObjectClassesCustomObjectsList("custom_object_class_id", {
+const pageableResponse = await client.crm.customObjects.customObjectClassesCustomObjectsList("custom_object_class_id", {
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -7070,6 +17343,30 @@ await client.crm.customObjects.customObjectClassesCustomObjectsList("custom_obje
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.customObjects.customObjectClassesCustomObjectsList("custom_object_class_id", {
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -7338,7 +17635,7 @@ await client.crm.customObjects.customObjectClassesCustomObjectsMetaPostRetrieve(
 </dl>
 </details>
 
-<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.customObjects.<a href="/src/api/resources/crm/resources/customObjects/client/Client.ts">customObjectClassesCustomObjectsRemoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -7365,7 +17662,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClassesList({
+const pageableResponse = await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -7375,6 +17672,27 @@ await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClasse
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -7411,7 +17729,7 @@ await client.crm.customObjects.customObjectClassesCustomObjectsRemoteFieldClasse
 </details>
 
 ## Crm Associations
-<details><summary><code>client.crm.associations.<a href="/src/api/resources/crm/resources/associations/client/Client.ts">customObjectClassesCustomObjectsAssociationsList</a>(custom_object_class_id, object_id, { ...params }) -> Merge.PaginatedAssociationList</code></summary>
+<details><summary><code>client.crm.associations.<a href="/src/api/resources/crm/resources/associations/client/Client.ts">customObjectClassesCustomObjectsAssociationsList</a>(custom_object_class_id, object_id, { ...params }) -> core.Page<Merge.Association, Merge.PaginatedAssociationList></code></summary>
 <dl>
 <dd>
 
@@ -7438,12 +17756,11 @@ Returns a list of `Association` objects.
 <dd>
 
 ```typescript
-await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id", {
+const pageableResponse = await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id", {
     associationTypeId: "association_type_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "association_type",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -7452,6 +17769,30 @@ await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.associations.customObjectClassesCustomObjectsAssociationsList("custom_object_class_id", "object_id", {
+    associationTypeId: "association_type_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -7863,7 +18204,7 @@ await client.crm.deleteAccount.delete();
 </details>
 
 ## Crm EngagementTypes
-<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEngagementTypeList</code></summary>
+<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.EngagementType, Merge.PaginatedEngagementTypeList></code></summary>
 <dl>
 <dd>
 
@@ -7890,7 +18231,7 @@ Returns a list of `EngagementType` objects.
 <dd>
 
 ```typescript
-await client.crm.engagementTypes.list({
+const pageableResponse = await client.crm.engagementTypes.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -7903,6 +18244,30 @@ await client.crm.engagementTypes.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.engagementTypes.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -8013,7 +18378,7 @@ await client.crm.engagementTypes.retrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.engagementTypes.<a href="/src/api/resources/crm/resources/engagementTypes/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -8040,7 +18405,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.engagementTypes.remoteFieldClassesList({
+const pageableResponse = await client.crm.engagementTypes.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -8050,6 +18415,27 @@ await client.crm.engagementTypes.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.engagementTypes.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -8086,7 +18472,7 @@ await client.crm.engagementTypes.remoteFieldClassesList({
 </details>
 
 ## Crm Engagements
-<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEngagementList</code></summary>
+<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Engagement, Merge.PaginatedEngagementList></code></summary>
 <dl>
 <dd>
 
@@ -8113,11 +18499,10 @@ Returns a list of `Engagement` objects.
 <dd>
 
 ```typescript
-await client.crm.engagements.list({
+const pageableResponse = await client.crm.engagements.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -8129,6 +18514,32 @@ await client.crm.engagements.list({
     startedAfter: new Date("2024-01-15T09:30:00.000Z"),
     startedBefore: new Date("2024-01-15T09:30:00.000Z")
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.engagements.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    startedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    startedBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -8259,7 +18670,6 @@ Returns an `Engagement` object with the given `id`.
 
 ```typescript
 await client.crm.engagements.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -8500,7 +18910,7 @@ await client.crm.engagements.metaPostRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.engagements.<a href="/src/api/resources/crm/resources/engagements/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -8527,7 +18937,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.engagements.remoteFieldClassesList({
+const pageableResponse = await client.crm.engagements.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -8537,6 +18947,27 @@ await client.crm.engagements.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.engagements.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -9031,7 +19462,7 @@ await client.crm.generateKey.create({
 </details>
 
 ## Crm Issues
-<details><summary><code>client.crm.issues.<a href="/src/api/resources/crm/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
+<details><summary><code>client.crm.issues.<a href="/src/api/resources/crm/resources/issues/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Issue, Merge.PaginatedIssueList></code></summary>
 <dl>
 <dd>
 
@@ -9058,7 +19489,7 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.crm.issues.list({
+const pageableResponse = await client.crm.issues.list({
     accountToken: "account_token",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
@@ -9074,6 +19505,33 @@ await client.crm.issues.list({
     startDate: "start_date",
     status: "ONGOING"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.issues.list({
+    accountToken: "account_token",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    endUserOrganizationName: "end_user_organization_name",
+    firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeMuted: "include_muted",
+    integrationName: "integration_name",
+    lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    linkedAccountId: "linked_account_id",
+    pageSize: 1,
+    startDate: "start_date",
+    status: "ONGOING"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -9173,7 +19631,7 @@ await client.crm.issues.retrieve("id");
 </details>
 
 ## Crm Leads
-<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedLeadList</code></summary>
+<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Lead, Merge.PaginatedLeadList></code></summary>
 <dl>
 <dd>
 
@@ -9200,14 +19658,13 @@ Returns a list of `Lead` objects.
 <dd>
 
 ```typescript
-await client.crm.leads.list({
+const pageableResponse = await client.crm.leads.list({
     convertedAccountId: "converted_account_id",
     convertedContactId: "converted_contact_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddresses: "email_addresses",
-    expand: "converted_account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -9219,6 +19676,35 @@ await client.crm.leads.list({
     phoneNumbers: "phone_numbers",
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.leads.list({
+    convertedAccountId: "converted_account_id",
+    convertedContactId: "converted_contact_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    emailAddresses: "email_addresses",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    ownerId: "owner_id",
+    pageSize: 1,
+    phoneNumbers: "phone_numbers",
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -9349,7 +19835,6 @@ Returns a `Lead` object with the given `id`.
 
 ```typescript
 await client.crm.leads.retrieve("id", {
-    expand: "converted_account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -9452,7 +19937,7 @@ await client.crm.leads.metaPostRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.leads.<a href="/src/api/resources/crm/resources/leads/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -9479,7 +19964,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.leads.remoteFieldClassesList({
+const pageableResponse = await client.crm.leads.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -9489,6 +19974,27 @@ await client.crm.leads.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.leads.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -9594,7 +20100,7 @@ await client.crm.linkToken.create({
 </details>
 
 ## Crm LinkedAccounts
-<details><summary><code>client.crm.linkedAccounts.<a href="/src/api/resources/crm/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
+<details><summary><code>client.crm.linkedAccounts.<a href="/src/api/resources/crm/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AccountDetailsAndActions, Merge.PaginatedAccountDetailsAndActionsList></code></summary>
 <dl>
 <dd>
 
@@ -9621,7 +20127,7 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.crm.linkedAccounts.list({
+const pageableResponse = await client.crm.linkedAccounts.list({
     category: "accounting",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endUserEmailAddress: "end_user_email_address",
@@ -9636,6 +20142,32 @@ await client.crm.linkedAccounts.list({
     pageSize: 1,
     status: "status"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.linkedAccounts.list({
+    category: "accounting",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endUserEmailAddress: "end_user_email_address",
+    endUserOrganizationName: "end_user_organization_name",
+    endUserOriginId: "end_user_origin_id",
+    endUserOriginIds: "end_user_origin_ids",
+    id: "id",
+    ids: "ids",
+    includeDuplicates: true,
+    integrationName: "integration_name",
+    isTestAccount: "is_test_account",
+    pageSize: 1,
+    status: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -9672,7 +20204,7 @@ await client.crm.linkedAccounts.list({
 </details>
 
 ## Crm Notes
-<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedNoteList</code></summary>
+<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Note, Merge.PaginatedNoteList></code></summary>
 <dl>
 <dd>
 
@@ -9699,13 +20231,12 @@ Returns a list of `Note` objects.
 <dd>
 
 ```typescript
-await client.crm.notes.list({
+const pageableResponse = await client.crm.notes.list({
     accountId: "account_id",
     contactId: "contact_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -9717,6 +20248,34 @@ await client.crm.notes.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.notes.list({
+    accountId: "account_id",
+    contactId: "contact_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    opportunityId: "opportunity_id",
+    ownerId: "owner_id",
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -9847,7 +20406,6 @@ Returns a `Note` object with the given `id`.
 
 ```typescript
 await client.crm.notes.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -9950,7 +20508,7 @@ await client.crm.notes.metaPostRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.notes.<a href="/src/api/resources/crm/resources/notes/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -9977,7 +20535,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.notes.remoteFieldClassesList({
+const pageableResponse = await client.crm.notes.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -9987,6 +20545,27 @@ await client.crm.notes.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.notes.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -10023,7 +20602,7 @@ await client.crm.notes.remoteFieldClassesList({
 </details>
 
 ## Crm Opportunities
-<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedOpportunityList</code></summary>
+<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Opportunity, Merge.PaginatedOpportunityList></code></summary>
 <dl>
 <dd>
 
@@ -10050,12 +20629,11 @@ Returns a list of `Opportunity` objects.
 <dd>
 
 ```typescript
-await client.crm.opportunities.list({
+const pageableResponse = await client.crm.opportunities.list({
     accountId: "account_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -10071,6 +20649,37 @@ await client.crm.opportunities.list({
     stageId: "stage_id",
     status: "LOST"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.opportunities.list({
+    accountId: "account_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    ownerId: "owner_id",
+    pageSize: 1,
+    remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    remoteFields: "status",
+    remoteId: "remote_id",
+    showEnumOrigins: "status",
+    stageId: "stage_id",
+    status: "LOST"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -10201,7 +20810,6 @@ Returns an `Opportunity` object with the given `id`.
 
 ```typescript
 await client.crm.opportunities.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true,
@@ -10444,7 +21052,7 @@ await client.crm.opportunities.metaPostRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.opportunities.<a href="/src/api/resources/crm/resources/opportunities/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -10471,7 +21079,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.opportunities.remoteFieldClassesList({
+const pageableResponse = await client.crm.opportunities.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -10481,6 +21089,27 @@ await client.crm.opportunities.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.opportunities.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -10650,7 +21279,7 @@ await client.crm.regenerateKey.create({
 </details>
 
 ## Crm Stages
-<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedStageList</code></summary>
+<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Stage, Merge.PaginatedStageList></code></summary>
 <dl>
 <dd>
 
@@ -10677,7 +21306,7 @@ Returns a list of `Stage` objects.
 <dd>
 
 ```typescript
-await client.crm.stages.list({
+const pageableResponse = await client.crm.stages.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -10690,6 +21319,30 @@ await client.crm.stages.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.stages.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -10800,7 +21453,7 @@ await client.crm.stages.retrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.stages.<a href="/src/api/resources/crm/resources/stages/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -10827,7 +21480,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.stages.remoteFieldClassesList({
+const pageableResponse = await client.crm.stages.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -10837,6 +21490,27 @@ await client.crm.stages.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.stages.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -10996,7 +21670,7 @@ await client.crm.forceResync.syncStatusResyncCreate();
 </details>
 
 ## Crm Tasks
-<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTaskList</code></summary>
+<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Task, Merge.PaginatedTaskList></code></summary>
 <dl>
 <dd>
 
@@ -11023,11 +21697,10 @@ Returns a list of `Task` objects.
 <dd>
 
 ```typescript
-await client.crm.tasks.list({
+const pageableResponse = await client.crm.tasks.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -11037,6 +21710,30 @@ await client.crm.tasks.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.tasks.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -11167,7 +21864,6 @@ Returns a `Task` object with the given `id`.
 
 ```typescript
 await client.crm.tasks.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true
@@ -11408,7 +22104,7 @@ await client.crm.tasks.metaPostRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.tasks.<a href="/src/api/resources/crm/resources/tasks/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -11435,7 +22131,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.tasks.remoteFieldClassesList({
+const pageableResponse = await client.crm.tasks.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -11445,6 +22141,27 @@ await client.crm.tasks.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.tasks.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -11481,7 +22198,7 @@ await client.crm.tasks.remoteFieldClassesList({
 </details>
 
 ## Crm Users
-<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedUserList</code></summary>
+<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.User, Merge.PaginatedUserList></code></summary>
 <dl>
 <dd>
 
@@ -11508,7 +22225,7 @@ Returns a list of `User` objects.
 <dd>
 
 ```typescript
-await client.crm.users.list({
+const pageableResponse = await client.crm.users.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -11522,6 +22239,31 @@ await client.crm.users.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.users.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    email: "email",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -11705,7 +22447,7 @@ await client.crm.users.ignoreCreate("model_id", {
 </dl>
 </details>
 
-<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.crm.users.<a href="/src/api/resources/crm/resources/users/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -11732,7 +22474,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.crm.users.remoteFieldClassesList({
+const pageableResponse = await client.crm.users.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -11742,6 +22484,27 @@ await client.crm.users.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.crm.users.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -11899,8 +22662,8 @@ await client.crm.webhookReceivers.create({
 </dl>
 </details>
 
-## Filestorage AccountDetails
-<details><summary><code>client.filestorage.accountDetails.<a href="/src/api/resources/filestorage/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
+## FileStorage AccountDetails
+<details><summary><code>client.fileStorage.accountDetails.<a href="/src/api/resources/fileStorage/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
 <dl>
 <dd>
 
@@ -11927,7 +22690,7 @@ Get details for a linked account.
 <dd>
 
 ```typescript
-await client.filestorage.accountDetails.retrieve();
+await client.fileStorage.accountDetails.retrieve();
 
 ```
 </dd>
@@ -11955,8 +22718,8 @@ await client.filestorage.accountDetails.retrieve();
 </dl>
 </details>
 
-## Filestorage AccountToken
-<details><summary><code>client.filestorage.accountToken.<a href="/src/api/resources/filestorage/resources/accountToken/client/Client.ts">retrieve</a>(public_token) -> Merge.AccountToken</code></summary>
+## FileStorage AccountToken
+<details><summary><code>client.fileStorage.accountToken.<a href="/src/api/resources/fileStorage/resources/accountToken/client/Client.ts">retrieve</a>(public_token) -> Merge.AccountToken</code></summary>
 <dl>
 <dd>
 
@@ -11983,7 +22746,7 @@ Returns the account token for the end user with the provided public token.
 <dd>
 
 ```typescript
-await client.filestorage.accountToken.retrieve("public_token");
+await client.fileStorage.accountToken.retrieve("public_token");
 
 ```
 </dd>
@@ -12019,8 +22782,8 @@ await client.filestorage.accountToken.retrieve("public_token");
 </dl>
 </details>
 
-## Filestorage AsyncPassthrough
-<details><summary><code>client.filestorage.asyncPassthrough.<a href="/src/api/resources/filestorage/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
+## FileStorage AsyncPassthrough
+<details><summary><code>client.fileStorage.asyncPassthrough.<a href="/src/api/resources/fileStorage/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
 <dl>
 <dd>
 
@@ -12047,7 +22810,7 @@ Asynchronously pull data from an endpoint not currently supported by Merge.
 <dd>
 
 ```typescript
-await client.filestorage.asyncPassthrough.create({
+await client.fileStorage.asyncPassthrough.create({
     method: "GET",
     path: "/scooters"
 });
@@ -12086,7 +22849,7 @@ await client.filestorage.asyncPassthrough.create({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.asyncPassthrough.<a href="/src/api/resources/filestorage/resources/asyncPassthrough/client/Client.ts">retrieve</a>(async_passthrough_receipt_id) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
+<details><summary><code>client.fileStorage.asyncPassthrough.<a href="/src/api/resources/fileStorage/resources/asyncPassthrough/client/Client.ts">retrieve</a>(async_passthrough_receipt_id) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
 <dl>
 <dd>
 
@@ -12113,7 +22876,7 @@ Retrieves data from earlier async-passthrough POST request
 <dd>
 
 ```typescript
-await client.filestorage.asyncPassthrough.retrieve("async_passthrough_receipt_id");
+await client.fileStorage.asyncPassthrough.retrieve("async_passthrough_receipt_id");
 
 ```
 </dd>
@@ -12149,8 +22912,8 @@ await client.filestorage.asyncPassthrough.retrieve("async_passthrough_receipt_id
 </dl>
 </details>
 
-## Filestorage AuditTrail
-<details><summary><code>client.filestorage.auditTrail.<a href="/src/api/resources/filestorage/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
+## FileStorage AuditTrail
+<details><summary><code>client.fileStorage.auditTrail.<a href="/src/api/resources/fileStorage/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AuditLogEvent, Merge.PaginatedAuditLogEventList></code></summary>
 <dl>
 <dd>
 
@@ -12177,7 +22940,7 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.filestorage.auditTrail.list({
+const pageableResponse = await client.fileStorage.auditTrail.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
     eventType: "event_type",
@@ -12185,6 +22948,25 @@ await client.filestorage.auditTrail.list({
     startDate: "start_date",
     userEmail: "user_email"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    eventType: "event_type",
+    pageSize: 1,
+    startDate: "start_date",
+    userEmail: "user_email"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -12200,7 +22982,7 @@ await client.filestorage.auditTrail.list({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.AuditTrailListRequest` 
+**request:** `Merge.fileStorage.AuditTrailListRequest` 
     
 </dd>
 </dl>
@@ -12220,8 +23002,8 @@ await client.filestorage.auditTrail.list({
 </dl>
 </details>
 
-## Filestorage AvailableActions
-<details><summary><code>client.filestorage.availableActions.<a href="/src/api/resources/filestorage/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
+## FileStorage AvailableActions
+<details><summary><code>client.fileStorage.availableActions.<a href="/src/api/resources/fileStorage/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
 <dl>
 <dd>
 
@@ -12248,7 +23030,7 @@ Returns a list of models and actions available for an account.
 <dd>
 
 ```typescript
-await client.filestorage.availableActions.retrieve();
+await client.fileStorage.availableActions.retrieve();
 
 ```
 </dd>
@@ -12276,8 +23058,8 @@ await client.filestorage.availableActions.retrieve();
 </dl>
 </details>
 
-## Filestorage Scopes
-<details><summary><code>client.filestorage.scopes.<a href="/src/api/resources/filestorage/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+## FileStorage Scopes
+<details><summary><code>client.fileStorage.scopes.<a href="/src/api/resources/fileStorage/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
 <dl>
 <dd>
 
@@ -12304,7 +23086,7 @@ Get the default permissions for Merge Common Models and fields across all Linked
 <dd>
 
 ```typescript
-await client.filestorage.scopes.defaultScopesRetrieve();
+await client.fileStorage.scopes.defaultScopesRetrieve();
 
 ```
 </dd>
@@ -12332,7 +23114,7 @@ await client.filestorage.scopes.defaultScopesRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.scopes.<a href="/src/api/resources/filestorage/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
+<details><summary><code>client.fileStorage.scopes.<a href="/src/api/resources/fileStorage/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
 <dl>
 <dd>
 
@@ -12359,7 +23141,7 @@ Get all available permissions for Merge Common Models and fields for a single Li
 <dd>
 
 ```typescript
-await client.filestorage.scopes.linkedAccountScopesRetrieve();
+await client.fileStorage.scopes.linkedAccountScopesRetrieve();
 
 ```
 </dd>
@@ -12387,7 +23169,7 @@ await client.filestorage.scopes.linkedAccountScopesRetrieve();
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.scopes.<a href="/src/api/resources/filestorage/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
+<details><summary><code>client.fileStorage.scopes.<a href="/src/api/resources/fileStorage/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
 <dl>
 <dd>
 
@@ -12414,7 +23196,7 @@ Update permissions for any Common Model or field for a single Linked Account. An
 <dd>
 
 ```typescript
-await client.filestorage.scopes.linkedAccountScopesCreate({
+await client.fileStorage.scopes.linkedAccountScopesCreate({
     commonModels: [{
             modelName: "Employee",
             modelPermissions: {
@@ -12453,7 +23235,7 @@ await client.filestorage.scopes.linkedAccountScopesCreate({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.LinkedAccountCommonModelScopeDeserializerRequest` 
+**request:** `Merge.fileStorage.LinkedAccountCommonModelScopeDeserializerRequest` 
     
 </dd>
 </dl>
@@ -12473,8 +23255,8 @@ await client.filestorage.scopes.linkedAccountScopesCreate({
 </dl>
 </details>
 
-## Filestorage DeleteAccount
-<details><summary><code>client.filestorage.deleteAccount.<a href="/src/api/resources/filestorage/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
+## FileStorage DeleteAccount
+<details><summary><code>client.fileStorage.deleteAccount.<a href="/src/api/resources/fileStorage/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
 <dl>
 <dd>
 
@@ -12501,7 +23283,7 @@ Delete a linked account.
 <dd>
 
 ```typescript
-await client.filestorage.deleteAccount.delete();
+await client.fileStorage.deleteAccount.delete();
 
 ```
 </dd>
@@ -12529,8 +23311,8 @@ await client.filestorage.deleteAccount.delete();
 </dl>
 </details>
 
-## Filestorage Drives
-<details><summary><code>client.filestorage.drives.<a href="/src/api/resources/filestorage/resources/drives/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedDriveList</code></summary>
+## FileStorage Drives
+<details><summary><code>client.fileStorage.drives.<a href="/src/api/resources/fileStorage/resources/drives/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Drive, Merge.PaginatedDriveList></code></summary>
 <dl>
 <dd>
 
@@ -12557,7 +23339,7 @@ Returns a list of `Drive` objects.
 <dd>
 
 ```typescript
-await client.filestorage.drives.list({
+const pageableResponse = await client.fileStorage.drives.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -12570,6 +23352,30 @@ await client.filestorage.drives.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.drives.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -12585,7 +23391,7 @@ await client.filestorage.drives.list({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.DrivesListRequest` 
+**request:** `Merge.fileStorage.DrivesListRequest` 
     
 </dd>
 </dl>
@@ -12605,7 +23411,7 @@ await client.filestorage.drives.list({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.drives.<a href="/src/api/resources/filestorage/resources/drives/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Drive</code></summary>
+<details><summary><code>client.fileStorage.drives.<a href="/src/api/resources/fileStorage/resources/drives/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Drive</code></summary>
 <dl>
 <dd>
 
@@ -12632,7 +23438,7 @@ Returns a `Drive` object with the given `id`.
 <dd>
 
 ```typescript
-await client.filestorage.drives.retrieve("id", {
+await client.fileStorage.drives.retrieve("id", {
     includeRemoteData: true,
     includeShellData: true
 });
@@ -12659,7 +23465,7 @@ await client.filestorage.drives.retrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.DrivesRetrieveRequest` 
+**request:** `Merge.fileStorage.DrivesRetrieveRequest` 
     
 </dd>
 </dl>
@@ -12679,8 +23485,8 @@ await client.filestorage.drives.retrieve("id", {
 </dl>
 </details>
 
-## Filestorage FieldMapping
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
+## FileStorage FieldMapping
+<details><summary><code>client.fileStorage.fieldMapping.<a href="/src/api/resources/fileStorage/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
 <dl>
 <dd>
 
@@ -12707,7 +23513,7 @@ Get all Field Mappings for this Linked Account. Field Mappings are mappings betw
 <dd>
 
 ```typescript
-await client.filestorage.fieldMapping.fieldMappingsRetrieve({
+await client.fileStorage.fieldMapping.fieldMappingsRetrieve({
     excludeRemoteFieldMetadata: true
 });
 
@@ -12725,7 +23531,7 @@ await client.filestorage.fieldMapping.fieldMappingsRetrieve({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.FieldMappingsRetrieveRequest` 
+**request:** `Merge.fileStorage.FieldMappingsRetrieveRequest` 
     
 </dd>
 </dl>
@@ -12745,7 +23551,7 @@ await client.filestorage.fieldMapping.fieldMappingsRetrieve({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<details><summary><code>client.fileStorage.fieldMapping.<a href="/src/api/resources/fileStorage/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
 <dl>
 <dd>
 
@@ -12772,7 +23578,7 @@ Create new Field Mappings that will be available after the next scheduled sync. 
 <dd>
 
 ```typescript
-await client.filestorage.fieldMapping.fieldMappingsCreate({
+await client.fileStorage.fieldMapping.fieldMappingsCreate({
     excludeRemoteFieldMetadata: true,
     targetFieldName: "example_target_field_name",
     targetFieldDescription: "this is a example description of the target field",
@@ -12796,7 +23602,7 @@ await client.filestorage.fieldMapping.fieldMappingsCreate({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.CreateFieldMappingRequest` 
+**request:** `Merge.fileStorage.CreateFieldMappingRequest` 
     
 </dd>
 </dl>
@@ -12816,7 +23622,7 @@ await client.filestorage.fieldMapping.fieldMappingsCreate({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(field_mapping_id) -> Merge.FieldMappingInstanceResponse</code></summary>
+<details><summary><code>client.fileStorage.fieldMapping.<a href="/src/api/resources/fileStorage/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(field_mapping_id) -> Merge.FieldMappingInstanceResponse</code></summary>
 <dl>
 <dd>
 
@@ -12843,7 +23649,7 @@ Deletes Field Mappings for a Linked Account. All data related to this Field Mapp
 <dd>
 
 ```typescript
-await client.filestorage.fieldMapping.fieldMappingsDestroy("field_mapping_id");
+await client.fileStorage.fieldMapping.fieldMappingsDestroy("field_mapping_id");
 
 ```
 </dd>
@@ -12879,7 +23685,7 @@ await client.filestorage.fieldMapping.fieldMappingsDestroy("field_mapping_id");
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(field_mapping_id, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
+<details><summary><code>client.fileStorage.fieldMapping.<a href="/src/api/resources/fileStorage/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(field_mapping_id, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
 <dl>
 <dd>
 
@@ -12906,7 +23712,7 @@ Create or update existing Field Mappings for a Linked Account. Changes will be r
 <dd>
 
 ```typescript
-await client.filestorage.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
+await client.fileStorage.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
 
 ```
 </dd>
@@ -12930,7 +23736,7 @@ await client.filestorage.fieldMapping.fieldMappingsPartialUpdate("field_mapping_
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.PatchedEditFieldMappingRequest` 
+**request:** `Merge.fileStorage.PatchedEditFieldMappingRequest` 
     
 </dd>
 </dl>
@@ -12950,7 +23756,7 @@ await client.filestorage.fieldMapping.fieldMappingsPartialUpdate("field_mapping_
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
+<details><summary><code>client.fileStorage.fieldMapping.<a href="/src/api/resources/fileStorage/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
 <dl>
 <dd>
 
@@ -12977,7 +23783,7 @@ Get all remote fields for a Linked Account. Remote fields are third-party fields
 <dd>
 
 ```typescript
-await client.filestorage.fieldMapping.remoteFieldsRetrieve({
+await client.fileStorage.fieldMapping.remoteFieldsRetrieve({
     commonModels: "common_models",
     includeExampleValues: "include_example_values"
 });
@@ -12996,7 +23802,7 @@ await client.filestorage.fieldMapping.remoteFieldsRetrieve({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.RemoteFieldsRetrieveRequest` 
+**request:** `Merge.fileStorage.RemoteFieldsRetrieveRequest` 
     
 </dd>
 </dl>
@@ -13016,7 +23822,7 @@ await client.filestorage.fieldMapping.remoteFieldsRetrieve({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.fieldMapping.<a href="/src/api/resources/filestorage/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
+<details><summary><code>client.fileStorage.fieldMapping.<a href="/src/api/resources/fileStorage/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
 <dl>
 <dd>
 
@@ -13043,7 +23849,7 @@ Get all organization-wide Target Fields, this will not include any Linked Accoun
 <dd>
 
 ```typescript
-await client.filestorage.fieldMapping.targetFieldsRetrieve();
+await client.fileStorage.fieldMapping.targetFieldsRetrieve();
 
 ```
 </dd>
@@ -13071,8 +23877,8 @@ await client.filestorage.fieldMapping.targetFieldsRetrieve();
 </dl>
 </details>
 
-## Filestorage Files
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedFileList</code></summary>
+## FileStorage Files
+<details><summary><code>client.fileStorage.files.<a href="/src/api/resources/fileStorage/resources/files/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.File_, Merge.PaginatedFileList></code></summary>
 <dl>
 <dd>
 
@@ -13099,12 +23905,11 @@ Returns a list of `File` objects.
 <dd>
 
 ```typescript
-await client.filestorage.files.list({
+const pageableResponse = await client.fileStorage.files.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     driveId: "drive_id",
-    expand: "drive",
     folderId: "folder_id",
     includeDeletedData: true,
     includeRemoteData: true,
@@ -13115,10 +23920,36 @@ await client.filestorage.files.list({
     name: "name",
     orderBy: "-created_at",
     pageSize: 1,
-    remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    remoteCreatedBefore: new Date("2024-01-15T09:30:00.000Z"),
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.files.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    driveId: "drive_id",
+    folderId: "folder_id",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    mimeType: "mime_type",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    orderBy: "-created_at",
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -13134,7 +23965,7 @@ await client.filestorage.files.list({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.FilesListRequest` 
+**request:** `Merge.fileStorage.FilesListRequest` 
     
 </dd>
 </dl>
@@ -13154,7 +23985,7 @@ await client.filestorage.files.list({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">create</a>({ ...params }) -> Merge.FileStorageFileResponse</code></summary>
+<details><summary><code>client.fileStorage.files.<a href="/src/api/resources/fileStorage/resources/files/client/Client.ts">create</a>({ ...params }) -> Merge.FileStorageFileResponse</code></summary>
 <dl>
 <dd>
 
@@ -13181,7 +24012,7 @@ Creates a `File` object with the given values.
 <dd>
 
 ```typescript
-await client.filestorage.files.create({
+await client.fileStorage.files.create({
     isDebugMode: true,
     runAsync: true,
     model: {}
@@ -13201,7 +24032,7 @@ await client.filestorage.files.create({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.FileStorageFileEndpointRequest` 
+**request:** `Merge.fileStorage.FileStorageFileEndpointRequest` 
     
 </dd>
 </dl>
@@ -13221,7 +24052,7 @@ await client.filestorage.files.create({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.File_</code></summary>
+<details><summary><code>client.fileStorage.files.<a href="/src/api/resources/fileStorage/resources/files/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.File_</code></summary>
 <dl>
 <dd>
 
@@ -13248,8 +24079,7 @@ Returns a `File` object with the given `id`.
 <dd>
 
 ```typescript
-await client.filestorage.files.retrieve("id", {
-    expand: "drive",
+await client.fileStorage.files.retrieve("id", {
     includeRemoteData: true,
     includeShellData: true
 });
@@ -13276,7 +24106,7 @@ await client.filestorage.files.retrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.FilesRetrieveRequest` 
+**request:** `Merge.fileStorage.FilesRetrieveRequest` 
     
 </dd>
 </dl>
@@ -13296,7 +24126,7 @@ await client.filestorage.files.retrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">downloadRequestMetaRetrieve</a>(id, { ...params }) -> Merge.DownloadRequestMeta</code></summary>
+<details><summary><code>client.fileStorage.files.<a href="/src/api/resources/fileStorage/resources/files/client/Client.ts">downloadRequestMetaRetrieve</a>(id, { ...params }) -> Merge.DownloadRequestMeta</code></summary>
 <dl>
 <dd>
 
@@ -13323,7 +24153,7 @@ Returns metadata to construct an authenticated file download request for a singu
 <dd>
 
 ```typescript
-await client.filestorage.files.downloadRequestMetaRetrieve("id", {
+await client.fileStorage.files.downloadRequestMetaRetrieve("id", {
     mimeType: "mime_type"
 });
 
@@ -13349,7 +24179,7 @@ await client.filestorage.files.downloadRequestMetaRetrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.FilesDownloadRequestMetaRetrieveRequest` 
+**request:** `Merge.fileStorage.FilesDownloadRequestMetaRetrieveRequest` 
     
 </dd>
 </dl>
@@ -13369,7 +24199,7 @@ await client.filestorage.files.downloadRequestMetaRetrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">downloadRequestMetaList</a>({ ...params }) -> Merge.PaginatedDownloadRequestMetaList</code></summary>
+<details><summary><code>client.fileStorage.files.<a href="/src/api/resources/fileStorage/resources/files/client/Client.ts">downloadRequestMetaList</a>({ ...params }) -> core.Page<Merge.DownloadRequestMeta, Merge.PaginatedDownloadRequestMetaList></code></summary>
 <dl>
 <dd>
 
@@ -13396,7 +24226,7 @@ Returns metadata to construct authenticated file download requests, allowing you
 <dd>
 
 ```typescript
-await client.filestorage.files.downloadRequestMetaList({
+const pageableResponse = await client.fileStorage.files.downloadRequestMetaList({
     createdAfter: "created_after",
     createdBefore: "created_before",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -13407,6 +24237,28 @@ await client.filestorage.files.downloadRequestMetaList({
     orderBy: "-created_at",
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.files.downloadRequestMetaList({
+    createdAfter: "created_after",
+    createdBefore: "created_before",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    mimeTypes: "mime_types",
+    modifiedAfter: "modified_after",
+    modifiedBefore: "modified_before",
+    orderBy: "-created_at",
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -13422,7 +24274,7 @@ await client.filestorage.files.downloadRequestMetaList({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.FilesDownloadRequestMetaListRequest` 
+**request:** `Merge.fileStorage.FilesDownloadRequestMetaListRequest` 
     
 </dd>
 </dl>
@@ -13442,7 +24294,7 @@ await client.filestorage.files.downloadRequestMetaList({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.files.<a href="/src/api/resources/filestorage/resources/files/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<details><summary><code>client.fileStorage.files.<a href="/src/api/resources/fileStorage/resources/files/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
 <dl>
 <dd>
 
@@ -13469,7 +24321,7 @@ Returns metadata for `FileStorageFile` POSTs.
 <dd>
 
 ```typescript
-await client.filestorage.files.metaPostRetrieve();
+await client.fileStorage.files.metaPostRetrieve();
 
 ```
 </dd>
@@ -13497,8 +24349,8 @@ await client.filestorage.files.metaPostRetrieve();
 </dl>
 </details>
 
-## Filestorage Folders
-<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedFolderList</code></summary>
+## FileStorage Folders
+<details><summary><code>client.fileStorage.folders.<a href="/src/api/resources/fileStorage/resources/folders/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Folder, Merge.PaginatedFolderList></code></summary>
 <dl>
 <dd>
 
@@ -13525,12 +24377,11 @@ Returns a list of `Folder` objects.
 <dd>
 
 ```typescript
-await client.filestorage.folders.list({
+const pageableResponse = await client.fileStorage.folders.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     driveId: "drive_id",
-    expand: "drive",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -13541,6 +24392,32 @@ await client.filestorage.folders.list({
     parentFolderId: "parent_folder_id",
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.folders.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    driveId: "drive_id",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    parentFolderId: "parent_folder_id",
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -13556,7 +24433,7 @@ await client.filestorage.folders.list({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.FoldersListRequest` 
+**request:** `Merge.fileStorage.FoldersListRequest` 
     
 </dd>
 </dl>
@@ -13576,7 +24453,7 @@ await client.filestorage.folders.list({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">create</a>({ ...params }) -> Merge.FileStorageFolderResponse</code></summary>
+<details><summary><code>client.fileStorage.folders.<a href="/src/api/resources/fileStorage/resources/folders/client/Client.ts">create</a>({ ...params }) -> Merge.FileStorageFolderResponse</code></summary>
 <dl>
 <dd>
 
@@ -13603,7 +24480,7 @@ Creates a `Folder` object with the given values.
 <dd>
 
 ```typescript
-await client.filestorage.folders.create({
+await client.fileStorage.folders.create({
     isDebugMode: true,
     runAsync: true,
     model: {}
@@ -13623,7 +24500,7 @@ await client.filestorage.folders.create({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.FileStorageFolderEndpointRequest` 
+**request:** `Merge.fileStorage.FileStorageFolderEndpointRequest` 
     
 </dd>
 </dl>
@@ -13643,7 +24520,7 @@ await client.filestorage.folders.create({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Folder</code></summary>
+<details><summary><code>client.fileStorage.folders.<a href="/src/api/resources/fileStorage/resources/folders/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Folder</code></summary>
 <dl>
 <dd>
 
@@ -13670,8 +24547,7 @@ Returns a `Folder` object with the given `id`.
 <dd>
 
 ```typescript
-await client.filestorage.folders.retrieve("id", {
-    expand: "drive",
+await client.fileStorage.folders.retrieve("id", {
     includeRemoteData: true,
     includeShellData: true
 });
@@ -13698,7 +24574,7 @@ await client.filestorage.folders.retrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.FoldersRetrieveRequest` 
+**request:** `Merge.fileStorage.FoldersRetrieveRequest` 
     
 </dd>
 </dl>
@@ -13718,7 +24594,7 @@ await client.filestorage.folders.retrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.folders.<a href="/src/api/resources/filestorage/resources/folders/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
+<details><summary><code>client.fileStorage.folders.<a href="/src/api/resources/fileStorage/resources/folders/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
 <dl>
 <dd>
 
@@ -13745,7 +24621,7 @@ Returns metadata for `FileStorageFolder` POSTs.
 <dd>
 
 ```typescript
-await client.filestorage.folders.metaPostRetrieve();
+await client.fileStorage.folders.metaPostRetrieve();
 
 ```
 </dd>
@@ -13773,8 +24649,8 @@ await client.filestorage.folders.metaPostRetrieve();
 </dl>
 </details>
 
-## Filestorage GenerateKey
-<details><summary><code>client.filestorage.generateKey.<a href="/src/api/resources/filestorage/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+## FileStorage GenerateKey
+<details><summary><code>client.fileStorage.generateKey.<a href="/src/api/resources/fileStorage/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
 <dl>
 <dd>
 
@@ -13801,7 +24677,7 @@ Create a remote key.
 <dd>
 
 ```typescript
-await client.filestorage.generateKey.create({
+await client.fileStorage.generateKey.create({
     name: "Remote Deployment Key 1"
 });
 
@@ -13819,7 +24695,7 @@ await client.filestorage.generateKey.create({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.GenerateRemoteKeyRequest` 
+**request:** `Merge.fileStorage.GenerateRemoteKeyRequest` 
     
 </dd>
 </dl>
@@ -13839,8 +24715,8 @@ await client.filestorage.generateKey.create({
 </dl>
 </details>
 
-## Filestorage Groups
-<details><summary><code>client.filestorage.groups.<a href="/src/api/resources/filestorage/resources/groups/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedGroupList</code></summary>
+## FileStorage Groups
+<details><summary><code>client.fileStorage.groups.<a href="/src/api/resources/fileStorage/resources/groups/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Group, Merge.PaginatedGroupList></code></summary>
 <dl>
 <dd>
 
@@ -13867,11 +24743,10 @@ Returns a list of `Group` objects.
 <dd>
 
 ```typescript
-await client.filestorage.groups.list({
+const pageableResponse = await client.fileStorage.groups.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "child_groups",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -13880,6 +24755,29 @@ await client.filestorage.groups.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.groups.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -13895,7 +24793,7 @@ await client.filestorage.groups.list({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.GroupsListRequest` 
+**request:** `Merge.fileStorage.GroupsListRequest` 
     
 </dd>
 </dl>
@@ -13915,7 +24813,7 @@ await client.filestorage.groups.list({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.groups.<a href="/src/api/resources/filestorage/resources/groups/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Group</code></summary>
+<details><summary><code>client.fileStorage.groups.<a href="/src/api/resources/fileStorage/resources/groups/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Group</code></summary>
 <dl>
 <dd>
 
@@ -13942,8 +24840,7 @@ Returns a `Group` object with the given `id`.
 <dd>
 
 ```typescript
-await client.filestorage.groups.retrieve("id", {
-    expand: "child_groups",
+await client.fileStorage.groups.retrieve("id", {
     includeRemoteData: true,
     includeShellData: true
 });
@@ -13970,7 +24867,7 @@ await client.filestorage.groups.retrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.GroupsRetrieveRequest` 
+**request:** `Merge.fileStorage.GroupsRetrieveRequest` 
     
 </dd>
 </dl>
@@ -13990,8 +24887,8 @@ await client.filestorage.groups.retrieve("id", {
 </dl>
 </details>
 
-## Filestorage Issues
-<details><summary><code>client.filestorage.issues.<a href="/src/api/resources/filestorage/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
+## FileStorage Issues
+<details><summary><code>client.fileStorage.issues.<a href="/src/api/resources/fileStorage/resources/issues/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Issue, Merge.PaginatedIssueList></code></summary>
 <dl>
 <dd>
 
@@ -14018,7 +24915,7 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.filestorage.issues.list({
+const pageableResponse = await client.fileStorage.issues.list({
     accountToken: "account_token",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
@@ -14034,6 +24931,33 @@ await client.filestorage.issues.list({
     startDate: "start_date",
     status: "ONGOING"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.issues.list({
+    accountToken: "account_token",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    endUserOrganizationName: "end_user_organization_name",
+    firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeMuted: "include_muted",
+    integrationName: "integration_name",
+    lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    linkedAccountId: "linked_account_id",
+    pageSize: 1,
+    startDate: "start_date",
+    status: "ONGOING"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -14049,7 +24973,7 @@ await client.filestorage.issues.list({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.IssuesListRequest` 
+**request:** `Merge.fileStorage.IssuesListRequest` 
     
 </dd>
 </dl>
@@ -14069,7 +24993,7 @@ await client.filestorage.issues.list({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.issues.<a href="/src/api/resources/filestorage/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
+<details><summary><code>client.fileStorage.issues.<a href="/src/api/resources/fileStorage/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
 <dl>
 <dd>
 
@@ -14096,7 +25020,7 @@ Get a specific issue.
 <dd>
 
 ```typescript
-await client.filestorage.issues.retrieve("id");
+await client.fileStorage.issues.retrieve("id");
 
 ```
 </dd>
@@ -14132,8 +25056,8 @@ await client.filestorage.issues.retrieve("id");
 </dl>
 </details>
 
-## Filestorage LinkToken
-<details><summary><code>client.filestorage.linkToken.<a href="/src/api/resources/filestorage/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
+## FileStorage LinkToken
+<details><summary><code>client.fileStorage.linkToken.<a href="/src/api/resources/fileStorage/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
 <dl>
 <dd>
 
@@ -14160,7 +25084,7 @@ Creates a link token to be used when linking a new end user.
 <dd>
 
 ```typescript
-await client.filestorage.linkToken.create({
+await client.fileStorage.linkToken.create({
     endUserEmailAddress: "example@gmail.com",
     endUserOrganizationName: "Test Organization",
     endUserOriginId: "12345",
@@ -14181,7 +25105,7 @@ await client.filestorage.linkToken.create({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.EndUserDetailsRequest` 
+**request:** `Merge.fileStorage.EndUserDetailsRequest` 
     
 </dd>
 </dl>
@@ -14201,8 +25125,8 @@ await client.filestorage.linkToken.create({
 </dl>
 </details>
 
-## Filestorage LinkedAccounts
-<details><summary><code>client.filestorage.linkedAccounts.<a href="/src/api/resources/filestorage/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
+## FileStorage LinkedAccounts
+<details><summary><code>client.fileStorage.linkedAccounts.<a href="/src/api/resources/fileStorage/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AccountDetailsAndActions, Merge.PaginatedAccountDetailsAndActionsList></code></summary>
 <dl>
 <dd>
 
@@ -14229,7 +25153,7 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.filestorage.linkedAccounts.list({
+const pageableResponse = await client.fileStorage.linkedAccounts.list({
     category: "accounting",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endUserEmailAddress: "end_user_email_address",
@@ -14244,6 +25168,32 @@ await client.filestorage.linkedAccounts.list({
     pageSize: 1,
     status: "status"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.linkedAccounts.list({
+    category: "accounting",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endUserEmailAddress: "end_user_email_address",
+    endUserOrganizationName: "end_user_organization_name",
+    endUserOriginId: "end_user_origin_id",
+    endUserOriginIds: "end_user_origin_ids",
+    id: "id",
+    ids: "ids",
+    includeDuplicates: true,
+    integrationName: "integration_name",
+    isTestAccount: "is_test_account",
+    pageSize: 1,
+    status: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -14259,7 +25209,7 @@ await client.filestorage.linkedAccounts.list({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.LinkedAccountsListRequest` 
+**request:** `Merge.fileStorage.LinkedAccountsListRequest` 
     
 </dd>
 </dl>
@@ -14279,8 +25229,8 @@ await client.filestorage.linkedAccounts.list({
 </dl>
 </details>
 
-## Filestorage Passthrough
-<details><summary><code>client.filestorage.passthrough.<a href="/src/api/resources/filestorage/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
+## FileStorage Passthrough
+<details><summary><code>client.fileStorage.passthrough.<a href="/src/api/resources/fileStorage/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
 <dl>
 <dd>
 
@@ -14307,7 +25257,7 @@ Pull data from an endpoint not currently supported by Merge.
 <dd>
 
 ```typescript
-await client.filestorage.passthrough.create({
+await client.fileStorage.passthrough.create({
     method: "GET",
     path: "/scooters"
 });
@@ -14346,8 +25296,8 @@ await client.filestorage.passthrough.create({
 </dl>
 </details>
 
-## Filestorage RegenerateKey
-<details><summary><code>client.filestorage.regenerateKey.<a href="/src/api/resources/filestorage/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
+## FileStorage RegenerateKey
+<details><summary><code>client.fileStorage.regenerateKey.<a href="/src/api/resources/fileStorage/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
 <dl>
 <dd>
 
@@ -14374,7 +25324,7 @@ Exchange remote keys.
 <dd>
 
 ```typescript
-await client.filestorage.regenerateKey.create({
+await client.fileStorage.regenerateKey.create({
     name: "Remote Deployment Key 1"
 });
 
@@ -14392,7 +25342,7 @@ await client.filestorage.regenerateKey.create({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.RemoteKeyForRegenerationRequest` 
+**request:** `Merge.fileStorage.RemoteKeyForRegenerationRequest` 
     
 </dd>
 </dl>
@@ -14412,8 +25362,8 @@ await client.filestorage.regenerateKey.create({
 </dl>
 </details>
 
-## Filestorage SyncStatus
-<details><summary><code>client.filestorage.syncStatus.<a href="/src/api/resources/filestorage/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
+## FileStorage SyncStatus
+<details><summary><code>client.fileStorage.syncStatus.<a href="/src/api/resources/fileStorage/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.SyncStatus, Merge.PaginatedSyncStatusList></code></summary>
 <dl>
 <dd>
 
@@ -14440,10 +25390,25 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.filestorage.syncStatus.list({
+const pageableResponse = await client.fileStorage.syncStatus.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -14459,7 +25424,7 @@ await client.filestorage.syncStatus.list({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.SyncStatusListRequest` 
+**request:** `Merge.fileStorage.SyncStatusListRequest` 
     
 </dd>
 </dl>
@@ -14479,8 +25444,8 @@ await client.filestorage.syncStatus.list({
 </dl>
 </details>
 
-## Filestorage ForceResync
-<details><summary><code>client.filestorage.forceResync.<a href="/src/api/resources/filestorage/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
+## FileStorage ForceResync
+<details><summary><code>client.fileStorage.forceResync.<a href="/src/api/resources/fileStorage/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
 <dl>
 <dd>
 
@@ -14507,7 +25472,7 @@ Force re-sync of all models. This endpoint is available for monthly, quarterly, 
 <dd>
 
 ```typescript
-await client.filestorage.forceResync.syncStatusResyncCreate();
+await client.fileStorage.forceResync.syncStatusResyncCreate();
 
 ```
 </dd>
@@ -14535,8 +25500,8 @@ await client.filestorage.forceResync.syncStatusResyncCreate();
 </dl>
 </details>
 
-## Filestorage Users
-<details><summary><code>client.filestorage.users.<a href="/src/api/resources/filestorage/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedUserList</code></summary>
+## FileStorage Users
+<details><summary><code>client.fileStorage.users.<a href="/src/api/resources/fileStorage/resources/users/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.User, Merge.PaginatedUserList></code></summary>
 <dl>
 <dd>
 
@@ -14563,7 +25528,7 @@ Returns a list of `User` objects.
 <dd>
 
 ```typescript
-await client.filestorage.users.list({
+const pageableResponse = await client.fileStorage.users.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -14576,6 +25541,30 @@ await client.filestorage.users.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.fileStorage.users.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isMe: "is_me",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -14591,7 +25580,7 @@ await client.filestorage.users.list({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.UsersListRequest` 
+**request:** `Merge.fileStorage.UsersListRequest` 
     
 </dd>
 </dl>
@@ -14611,7 +25600,7 @@ await client.filestorage.users.list({
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.users.<a href="/src/api/resources/filestorage/resources/users/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.User</code></summary>
+<details><summary><code>client.fileStorage.users.<a href="/src/api/resources/fileStorage/resources/users/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.User</code></summary>
 <dl>
 <dd>
 
@@ -14638,7 +25627,7 @@ Returns a `User` object with the given `id`.
 <dd>
 
 ```typescript
-await client.filestorage.users.retrieve("id", {
+await client.fileStorage.users.retrieve("id", {
     includeRemoteData: true,
     includeShellData: true
 });
@@ -14665,7 +25654,7 @@ await client.filestorage.users.retrieve("id", {
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.UsersRetrieveRequest` 
+**request:** `Merge.fileStorage.UsersRetrieveRequest` 
     
 </dd>
 </dl>
@@ -14685,8 +25674,8 @@ await client.filestorage.users.retrieve("id", {
 </dl>
 </details>
 
-## Filestorage WebhookReceivers
-<details><summary><code>client.filestorage.webhookReceivers.<a href="/src/api/resources/filestorage/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
+## FileStorage WebhookReceivers
+<details><summary><code>client.fileStorage.webhookReceivers.<a href="/src/api/resources/fileStorage/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
 <dl>
 <dd>
 
@@ -14713,7 +25702,7 @@ Returns a list of `WebhookReceiver` objects.
 <dd>
 
 ```typescript
-await client.filestorage.webhookReceivers.list();
+await client.fileStorage.webhookReceivers.list();
 
 ```
 </dd>
@@ -14741,7 +25730,7 @@ await client.filestorage.webhookReceivers.list();
 </dl>
 </details>
 
-<details><summary><code>client.filestorage.webhookReceivers.<a href="/src/api/resources/filestorage/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
+<details><summary><code>client.fileStorage.webhookReceivers.<a href="/src/api/resources/fileStorage/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
 <dl>
 <dd>
 
@@ -14768,7 +25757,7 @@ Creates a `WebhookReceiver` object with the given values.
 <dd>
 
 ```typescript
-await client.filestorage.webhookReceivers.create({
+await client.fileStorage.webhookReceivers.create({
     event: "event",
     isActive: true
 });
@@ -14787,7 +25776,7 @@ await client.filestorage.webhookReceivers.create({
 <dl>
 <dd>
 
-**request:** `Merge.filestorage.WebhookReceiverRequest` 
+**request:** `Merge.fileStorage.WebhookReceiverRequest` 
     
 </dd>
 </dl>
@@ -15058,7 +26047,7 @@ await client.hris.asyncPassthrough.retrieve("async_passthrough_receipt_id");
 </details>
 
 ## Hris AuditTrail
-<details><summary><code>client.hris.auditTrail.<a href="/src/api/resources/hris/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
+<details><summary><code>client.hris.auditTrail.<a href="/src/api/resources/hris/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AuditLogEvent, Merge.PaginatedAuditLogEventList></code></summary>
 <dl>
 <dd>
 
@@ -15085,7 +26074,7 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.hris.auditTrail.list({
+const pageableResponse = await client.hris.auditTrail.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
     eventType: "event_type",
@@ -15093,6 +26082,25 @@ await client.hris.auditTrail.list({
     startDate: "start_date",
     userEmail: "user_email"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    eventType: "event_type",
+    pageSize: 1,
+    startDate: "start_date",
+    userEmail: "user_email"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -15185,7 +26193,7 @@ await client.hris.availableActions.retrieve();
 </details>
 
 ## Hris BankInfo
-<details><summary><code>client.hris.bankInfo.<a href="/src/api/resources/hris/resources/bankInfo/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedBankInfoList</code></summary>
+<details><summary><code>client.hris.bankInfo.<a href="/src/api/resources/hris/resources/bankInfo/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.BankInfo, Merge.PaginatedBankInfoList></code></summary>
 <dl>
 <dd>
 
@@ -15212,14 +26220,13 @@ Returns a list of `BankInfo` objects.
 <dd>
 
 ```typescript
-await client.hris.bankInfo.list({
+const pageableResponse = await client.hris.bankInfo.list({
     accountType: "CHECKING",
     bankName: "bank_name",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -15231,6 +26238,35 @@ await client.hris.bankInfo.list({
     remoteId: "remote_id",
     showEnumOrigins: "account_type"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.bankInfo.list({
+    accountType: "CHECKING",
+    bankName: "bank_name",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    employeeId: "employee_id",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    orderBy: "-remote_created_at",
+    pageSize: 1,
+    remoteFields: "account_type",
+    remoteId: "remote_id",
+    showEnumOrigins: "account_type"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -15294,7 +26330,6 @@ Returns a `BankInfo` object with the given `id`.
 
 ```typescript
 await client.hris.bankInfo.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "account_type",
@@ -15344,7 +26379,7 @@ await client.hris.bankInfo.retrieve("id", {
 </details>
 
 ## Hris Benefits
-<details><summary><code>client.hris.benefits.<a href="/src/api/resources/hris/resources/benefits/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedBenefitList</code></summary>
+<details><summary><code>client.hris.benefits.<a href="/src/api/resources/hris/resources/benefits/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Benefit, Merge.PaginatedBenefitList></code></summary>
 <dl>
 <dd>
 
@@ -15371,12 +26406,11 @@ Returns a list of `Benefit` objects.
 <dd>
 
 ```typescript
-await client.hris.benefits.list({
+const pageableResponse = await client.hris.benefits.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -15385,6 +26419,30 @@ await client.hris.benefits.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.benefits.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    employeeId: "employee_id",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -15448,7 +26506,6 @@ Returns a `Benefit` object with the given `id`.
 
 ```typescript
 await client.hris.benefits.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -15496,7 +26553,7 @@ await client.hris.benefits.retrieve("id", {
 </details>
 
 ## Hris Companies
-<details><summary><code>client.hris.companies.<a href="/src/api/resources/hris/resources/companies/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCompanyList</code></summary>
+<details><summary><code>client.hris.companies.<a href="/src/api/resources/hris/resources/companies/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Company, Merge.PaginatedCompanyList></code></summary>
 <dl>
 <dd>
 
@@ -15523,7 +26580,7 @@ Returns a list of `Company` objects.
 <dd>
 
 ```typescript
-await client.hris.companies.list({
+const pageableResponse = await client.hris.companies.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -15535,6 +26592,29 @@ await client.hris.companies.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.companies.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -15898,7 +26978,7 @@ await client.hris.deleteAccount.delete();
 </details>
 
 ## Hris Dependents
-<details><summary><code>client.hris.dependents.<a href="/src/api/resources/hris/resources/dependents/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedDependentList</code></summary>
+<details><summary><code>client.hris.dependents.<a href="/src/api/resources/hris/resources/dependents/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Dependent, Merge.PaginatedDependentList></code></summary>
 <dl>
 <dd>
 
@@ -15925,11 +27005,10 @@ Returns a list of `Dependent` objects.
 <dd>
 
 ```typescript
-await client.hris.dependents.list({
+const pageableResponse = await client.hris.dependents.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    employeeId: "employee_id",
     includeDeletedData: true,
     includeRemoteData: true,
     includeSensitiveFields: true,
@@ -15939,6 +27018,30 @@ await client.hris.dependents.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.dependents.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeSensitiveFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -16050,7 +27153,7 @@ await client.hris.dependents.retrieve("id", {
 </details>
 
 ## Hris EmployeePayrollRuns
-<details><summary><code>client.hris.employeePayrollRuns.<a href="/src/api/resources/hris/resources/employeePayrollRuns/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEmployeePayrollRunList</code></summary>
+<details><summary><code>client.hris.employeePayrollRuns.<a href="/src/api/resources/hris/resources/employeePayrollRuns/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.EmployeePayrollRun, Merge.PaginatedEmployeePayrollRunList></code></summary>
 <dl>
 <dd>
 
@@ -16077,14 +27180,13 @@ Returns a list of `EmployeePayrollRun` objects.
 <dd>
 
 ```typescript
-await client.hris.employeePayrollRuns.list({
+const pageableResponse = await client.hris.employeePayrollRuns.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
     endedAfter: new Date("2024-01-15T09:30:00.000Z"),
     endedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -16096,6 +27198,35 @@ await client.hris.employeePayrollRuns.list({
     startedAfter: new Date("2024-01-15T09:30:00.000Z"),
     startedBefore: new Date("2024-01-15T09:30:00.000Z")
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.employeePayrollRuns.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    employeeId: "employee_id",
+    endedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    endedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    payrollRunId: "payroll_run_id",
+    remoteId: "remote_id",
+    startedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    startedBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -16159,7 +27290,6 @@ Returns an `EmployeePayrollRun` object with the given `id`.
 
 ```typescript
 await client.hris.employeePayrollRuns.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -16207,7 +27337,7 @@ await client.hris.employeePayrollRuns.retrieve("id", {
 </details>
 
 ## Hris Employees
-<details><summary><code>client.hris.employees.<a href="/src/api/resources/hris/resources/employees/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEmployeeList</code></summary>
+<details><summary><code>client.hris.employees.<a href="/src/api/resources/hris/resources/employees/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Employee, Merge.PaginatedEmployeeList></code></summary>
 <dl>
 <dd>
 
@@ -16234,16 +27364,14 @@ Returns a list of `Employee` objects.
 <dd>
 
 ```typescript
-await client.hris.employees.list({
+const pageableResponse = await client.hris.employees.list({
     companyId: "company_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     displayFullName: "display_full_name",
-    employeeNumber: "employee_number",
     employmentStatus: "ACTIVE",
     employmentType: "employment_type",
-    expand: "company",
     firstName: "first_name",
     groups: "groups",
     homeLocationId: "home_location_id",
@@ -16270,6 +27398,51 @@ await client.hris.employees.list({
     workEmail: "work_email",
     workLocationId: "work_location_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.employees.list({
+    companyId: "company_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    displayFullName: "display_full_name",
+    employmentStatus: "ACTIVE",
+    employmentType: "employment_type",
+    firstName: "first_name",
+    groups: "groups",
+    homeLocationId: "home_location_id",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeSensitiveFields: true,
+    includeShellData: true,
+    jobTitle: "job_title",
+    lastName: "last_name",
+    managerId: "manager_id",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    payGroupId: "pay_group_id",
+    personalEmail: "personal_email",
+    remoteFields: "employment_status",
+    remoteId: "remote_id",
+    showEnumOrigins: "employment_status",
+    startedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    startedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    teamId: "team_id",
+    terminatedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    terminatedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    workEmail: "work_email",
+    workLocationId: "work_location_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -16400,7 +27573,6 @@ Returns an `Employee` object with the given `id`.
 
 ```typescript
 await client.hris.employees.retrieve("id", {
-    expand: "company",
     includeRemoteData: true,
     includeSensitiveFields: true,
     includeShellData: true,
@@ -16503,7 +27675,7 @@ await client.hris.employees.ignoreCreate("model_id", {
 <dl>
 <dd>
 
-**request:** `Merge.hris.IgnoreCommonModelRequest` 
+**request:** `Merge.IgnoreCommonModelRequest` 
     
 </dd>
 </dl>
@@ -16579,7 +27751,7 @@ await client.hris.employees.metaPostRetrieve();
 </details>
 
 ## Hris EmployerBenefits
-<details><summary><code>client.hris.employerBenefits.<a href="/src/api/resources/hris/resources/employerBenefits/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEmployerBenefitList</code></summary>
+<details><summary><code>client.hris.employerBenefits.<a href="/src/api/resources/hris/resources/employerBenefits/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.EmployerBenefit, Merge.PaginatedEmployerBenefitList></code></summary>
 <dl>
 <dd>
 
@@ -16606,7 +27778,7 @@ Returns a list of `EmployerBenefit` objects.
 <dd>
 
 ```typescript
-await client.hris.employerBenefits.list({
+const pageableResponse = await client.hris.employerBenefits.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -16618,6 +27790,29 @@ await client.hris.employerBenefits.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.employerBenefits.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -16728,7 +27923,7 @@ await client.hris.employerBenefits.retrieve("id", {
 </details>
 
 ## Hris Employments
-<details><summary><code>client.hris.employments.<a href="/src/api/resources/hris/resources/employments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEmploymentList</code></summary>
+<details><summary><code>client.hris.employments.<a href="/src/api/resources/hris/resources/employments/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Employment, Merge.PaginatedEmploymentList></code></summary>
 <dl>
 <dd>
 
@@ -16755,12 +27950,11 @@ Returns a list of `Employment` objects.
 <dd>
 
 ```typescript
-await client.hris.employments.list({
+const pageableResponse = await client.hris.employments.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -16772,6 +27966,33 @@ await client.hris.employments.list({
     remoteId: "remote_id",
     showEnumOrigins: "employment_type"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.employments.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    employeeId: "employee_id",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    orderBy: "-effective_date",
+    pageSize: 1,
+    remoteFields: "employment_type",
+    remoteId: "remote_id",
+    showEnumOrigins: "employment_type"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -16835,7 +28056,6 @@ Returns an `Employment` object with the given `id`.
 
 ```typescript
 await client.hris.employments.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "employment_type",
@@ -17343,7 +28563,7 @@ await client.hris.generateKey.create({
 </details>
 
 ## Hris Groups
-<details><summary><code>client.hris.groups.<a href="/src/api/resources/hris/resources/groups/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedGroupList</code></summary>
+<details><summary><code>client.hris.groups.<a href="/src/api/resources/hris/resources/groups/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Group, Merge.PaginatedGroupList></code></summary>
 <dl>
 <dd>
 
@@ -17370,7 +28590,7 @@ Returns a list of `Group` objects.
 <dd>
 
 ```typescript
-await client.hris.groups.list({
+const pageableResponse = await client.hris.groups.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -17387,6 +28607,34 @@ await client.hris.groups.list({
     showEnumOrigins: "type",
     types: "types"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.groups.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonlyUsedAsTeam: "is_commonly_used_as_team",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    names: "names",
+    pageSize: 1,
+    remoteFields: "type",
+    remoteId: "remote_id",
+    showEnumOrigins: "type",
+    types: "types"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -17499,7 +28747,7 @@ await client.hris.groups.retrieve("id", {
 </details>
 
 ## Hris Issues
-<details><summary><code>client.hris.issues.<a href="/src/api/resources/hris/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
+<details><summary><code>client.hris.issues.<a href="/src/api/resources/hris/resources/issues/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Issue, Merge.PaginatedIssueList></code></summary>
 <dl>
 <dd>
 
@@ -17526,7 +28774,7 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.hris.issues.list({
+const pageableResponse = await client.hris.issues.list({
     accountToken: "account_token",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
@@ -17542,6 +28790,33 @@ await client.hris.issues.list({
     startDate: "start_date",
     status: "ONGOING"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.issues.list({
+    accountToken: "account_token",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    endUserOrganizationName: "end_user_organization_name",
+    firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeMuted: "include_muted",
+    integrationName: "integration_name",
+    lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    linkedAccountId: "linked_account_id",
+    pageSize: 1,
+    startDate: "start_date",
+    status: "ONGOING"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -17710,7 +28985,7 @@ await client.hris.linkToken.create({
 </details>
 
 ## Hris LinkedAccounts
-<details><summary><code>client.hris.linkedAccounts.<a href="/src/api/resources/hris/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
+<details><summary><code>client.hris.linkedAccounts.<a href="/src/api/resources/hris/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AccountDetailsAndActions, Merge.PaginatedAccountDetailsAndActionsList></code></summary>
 <dl>
 <dd>
 
@@ -17737,7 +29012,7 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.hris.linkedAccounts.list({
+const pageableResponse = await client.hris.linkedAccounts.list({
     category: "accounting",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endUserEmailAddress: "end_user_email_address",
@@ -17752,6 +29027,32 @@ await client.hris.linkedAccounts.list({
     pageSize: 1,
     status: "status"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.linkedAccounts.list({
+    category: "accounting",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endUserEmailAddress: "end_user_email_address",
+    endUserOrganizationName: "end_user_organization_name",
+    endUserOriginId: "end_user_origin_id",
+    endUserOriginIds: "end_user_origin_ids",
+    id: "id",
+    ids: "ids",
+    includeDuplicates: true,
+    integrationName: "integration_name",
+    isTestAccount: "is_test_account",
+    pageSize: 1,
+    status: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -17788,7 +29089,7 @@ await client.hris.linkedAccounts.list({
 </details>
 
 ## Hris Locations
-<details><summary><code>client.hris.locations.<a href="/src/api/resources/hris/resources/locations/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedLocationList</code></summary>
+<details><summary><code>client.hris.locations.<a href="/src/api/resources/hris/resources/locations/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Location, Merge.PaginatedLocationList></code></summary>
 <dl>
 <dd>
 
@@ -17815,7 +29116,7 @@ Returns a list of `Location` objects.
 <dd>
 
 ```typescript
-await client.hris.locations.list({
+const pageableResponse = await client.hris.locations.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -17830,6 +29131,32 @@ await client.hris.locations.list({
     remoteId: "remote_id",
     showEnumOrigins: "country"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.locations.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    locationType: "HOME",
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "country",
+    remoteId: "remote_id",
+    showEnumOrigins: "country"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -18009,7 +29336,7 @@ await client.hris.passthrough.create({
 </details>
 
 ## Hris PayGroups
-<details><summary><code>client.hris.payGroups.<a href="/src/api/resources/hris/resources/payGroups/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPayGroupList</code></summary>
+<details><summary><code>client.hris.payGroups.<a href="/src/api/resources/hris/resources/payGroups/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.PayGroup, Merge.PaginatedPayGroupList></code></summary>
 <dl>
 <dd>
 
@@ -18036,7 +29363,7 @@ Returns a list of `PayGroup` objects.
 <dd>
 
 ```typescript
-await client.hris.payGroups.list({
+const pageableResponse = await client.hris.payGroups.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -18048,6 +29375,29 @@ await client.hris.payGroups.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.payGroups.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -18158,7 +29508,7 @@ await client.hris.payGroups.retrieve("id", {
 </details>
 
 ## Hris PayrollRuns
-<details><summary><code>client.hris.payrollRuns.<a href="/src/api/resources/hris/resources/payrollRuns/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPayrollRunList</code></summary>
+<details><summary><code>client.hris.payrollRuns.<a href="/src/api/resources/hris/resources/payrollRuns/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.PayrollRun, Merge.PaginatedPayrollRunList></code></summary>
 <dl>
 <dd>
 
@@ -18185,7 +29535,7 @@ Returns a list of `PayrollRun` objects.
 <dd>
 
 ```typescript
-await client.hris.payrollRuns.list({
+const pageableResponse = await client.hris.payrollRuns.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -18204,6 +29554,36 @@ await client.hris.payrollRuns.list({
     startedAfter: new Date("2024-01-15T09:30:00.000Z"),
     startedBefore: new Date("2024-01-15T09:30:00.000Z")
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.payrollRuns.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    endedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "run_state",
+    remoteId: "remote_id",
+    runType: "CORRECTION",
+    showEnumOrigins: "run_state",
+    startedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    startedBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -18382,7 +29762,7 @@ await client.hris.regenerateKey.create({
 </details>
 
 ## Hris SyncStatus
-<details><summary><code>client.hris.syncStatus.<a href="/src/api/resources/hris/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
+<details><summary><code>client.hris.syncStatus.<a href="/src/api/resources/hris/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.SyncStatus, Merge.PaginatedSyncStatusList></code></summary>
 <dl>
 <dd>
 
@@ -18409,10 +29789,25 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.hris.syncStatus.list({
+const pageableResponse = await client.hris.syncStatus.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -18505,7 +29900,7 @@ await client.hris.forceResync.syncStatusResyncCreate();
 </details>
 
 ## Hris Teams
-<details><summary><code>client.hris.teams.<a href="/src/api/resources/hris/resources/teams/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTeamList</code></summary>
+<details><summary><code>client.hris.teams.<a href="/src/api/resources/hris/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Team, Merge.PaginatedTeamList></code></summary>
 <dl>
 <dd>
 
@@ -18532,11 +29927,10 @@ Returns a list of `Team` objects.
 <dd>
 
 ```typescript
-await client.hris.teams.list({
+const pageableResponse = await client.hris.teams.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "parent_team",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -18546,6 +29940,30 @@ await client.hris.teams.list({
     parentTeamId: "parent_team_id",
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.teams.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    parentTeamId: "parent_team_id",
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -18609,7 +30027,6 @@ Returns a `Team` object with the given `id`.
 
 ```typescript
 await client.hris.teams.retrieve("id", {
-    expand: "parent_team",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -18657,7 +30074,7 @@ await client.hris.teams.retrieve("id", {
 </details>
 
 ## Hris TimeOff
-<details><summary><code>client.hris.timeOff.<a href="/src/api/resources/hris/resources/timeOff/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTimeOffList</code></summary>
+<details><summary><code>client.hris.timeOff.<a href="/src/api/resources/hris/resources/timeOff/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.TimeOff, Merge.PaginatedTimeOffList></code></summary>
 <dl>
 <dd>
 
@@ -18684,7 +30101,7 @@ Returns a list of `TimeOff` objects.
 <dd>
 
 ```typescript
-await client.hris.timeOff.list({
+const pageableResponse = await client.hris.timeOff.list({
     approverId: "approver_id",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
@@ -18692,7 +30109,6 @@ await client.hris.timeOff.list({
     employeeId: "employee_id",
     endedAfter: new Date("2024-01-15T09:30:00.000Z"),
     endedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    expand: "approver",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -18707,6 +30123,39 @@ await client.hris.timeOff.list({
     startedBefore: new Date("2024-01-15T09:30:00.000Z"),
     status: "APPROVED"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.timeOff.list({
+    approverId: "approver_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    employeeId: "employee_id",
+    endedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    endedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteFields: "request_type",
+    remoteId: "remote_id",
+    requestType: "BEREAVEMENT",
+    showEnumOrigins: "request_type",
+    startedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    startedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    status: "APPROVED"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -18837,7 +30286,6 @@ Returns a `TimeOff` object with the given `id`.
 
 ```typescript
 await client.hris.timeOff.retrieve("id", {
-    expand: "approver",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "request_type",
@@ -18942,7 +30390,7 @@ await client.hris.timeOff.metaPostRetrieve();
 </details>
 
 ## Hris TimeOffBalances
-<details><summary><code>client.hris.timeOffBalances.<a href="/src/api/resources/hris/resources/timeOffBalances/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTimeOffBalanceList</code></summary>
+<details><summary><code>client.hris.timeOffBalances.<a href="/src/api/resources/hris/resources/timeOffBalances/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.TimeOffBalance, Merge.PaginatedTimeOffBalanceList></code></summary>
 <dl>
 <dd>
 
@@ -18969,12 +30417,11 @@ Returns a list of `TimeOffBalance` objects.
 <dd>
 
 ```typescript
-await client.hris.timeOffBalances.list({
+const pageableResponse = await client.hris.timeOffBalances.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -18986,6 +30433,33 @@ await client.hris.timeOffBalances.list({
     remoteId: "remote_id",
     showEnumOrigins: "policy_type"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.timeOffBalances.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    employeeId: "employee_id",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    policyType: "BEREAVEMENT",
+    remoteFields: "policy_type",
+    remoteId: "remote_id",
+    showEnumOrigins: "policy_type"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -19049,7 +30523,6 @@ Returns a `TimeOffBalance` object with the given `id`.
 
 ```typescript
 await client.hris.timeOffBalances.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "policy_type",
@@ -19099,7 +30572,7 @@ await client.hris.timeOffBalances.retrieve("id", {
 </details>
 
 ## Hris TimesheetEntries
-<details><summary><code>client.hris.timesheetEntries.<a href="/src/api/resources/hris/resources/timesheetEntries/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTimesheetEntryList</code></summary>
+<details><summary><code>client.hris.timesheetEntries.<a href="/src/api/resources/hris/resources/timesheetEntries/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.TimesheetEntry, Merge.PaginatedTimesheetEntryList></code></summary>
 <dl>
 <dd>
 
@@ -19126,14 +30599,13 @@ Returns a list of `TimesheetEntry` objects.
 <dd>
 
 ```typescript
-await client.hris.timesheetEntries.list({
+const pageableResponse = await client.hris.timesheetEntries.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     employeeId: "employee_id",
     endedAfter: new Date("2024-01-15T09:30:00.000Z"),
     endedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    expand: "employee",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -19145,6 +30617,35 @@ await client.hris.timesheetEntries.list({
     startedAfter: new Date("2024-01-15T09:30:00.000Z"),
     startedBefore: new Date("2024-01-15T09:30:00.000Z")
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.hris.timesheetEntries.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    employeeId: "employee_id",
+    endedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    endedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    orderBy: "-start_time",
+    pageSize: 1,
+    remoteId: "remote_id",
+    startedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    startedBefore: new Date("2024-01-15T09:30:00.000Z")
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -19275,7 +30776,6 @@ Returns a `TimesheetEntry` object with the given `id`.
 
 ```typescript
 await client.hris.timesheetEntries.retrieve("id", {
-    expand: "employee",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -19620,7 +31120,7 @@ await client.ticketing.accountToken.retrieve("public_token");
 </details>
 
 ## Ticketing Accounts
-<details><summary><code>client.ticketing.accounts.<a href="/src/api/resources/ticketing/resources/accounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountList</code></summary>
+<details><summary><code>client.ticketing.accounts.<a href="/src/api/resources/ticketing/resources/accounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Account, Merge.PaginatedAccountList></code></summary>
 <dl>
 <dd>
 
@@ -19647,7 +31147,7 @@ Returns a list of `Account` objects.
 <dd>
 
 ```typescript
-await client.ticketing.accounts.list({
+const pageableResponse = await client.ticketing.accounts.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -19659,6 +31159,29 @@ await client.ticketing.accounts.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.accounts.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -19899,7 +31422,7 @@ await client.ticketing.asyncPassthrough.retrieve("async_passthrough_receipt_id")
 </details>
 
 ## Ticketing Attachments
-<details><summary><code>client.ticketing.attachments.<a href="/src/api/resources/ticketing/resources/attachments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAttachmentList</code></summary>
+<details><summary><code>client.ticketing.attachments.<a href="/src/api/resources/ticketing/resources/attachments/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Attachment, Merge.PaginatedAttachmentList></code></summary>
 <dl>
 <dd>
 
@@ -19926,11 +31449,10 @@ Returns a list of `Attachment` objects.
 <dd>
 
 ```typescript
-await client.ticketing.attachments.list({
+const pageableResponse = await client.ticketing.attachments.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "ticket",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -19941,6 +31463,31 @@ await client.ticketing.attachments.list({
     remoteId: "remote_id",
     ticketId: "ticket_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.attachments.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    remoteId: "remote_id",
+    ticketId: "ticket_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -20071,7 +31618,6 @@ Returns an `Attachment` object with the given `id`.
 
 ```typescript
 await client.ticketing.attachments.retrieve("id", {
-    expand: "ticket",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -20174,7 +31720,7 @@ await client.ticketing.attachments.metaPostRetrieve();
 </details>
 
 ## Ticketing AuditTrail
-<details><summary><code>client.ticketing.auditTrail.<a href="/src/api/resources/ticketing/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
+<details><summary><code>client.ticketing.auditTrail.<a href="/src/api/resources/ticketing/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AuditLogEvent, Merge.PaginatedAuditLogEventList></code></summary>
 <dl>
 <dd>
 
@@ -20201,7 +31747,7 @@ Gets a list of audit trail events.
 <dd>
 
 ```typescript
-await client.ticketing.auditTrail.list({
+const pageableResponse = await client.ticketing.auditTrail.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
     eventType: "event_type",
@@ -20209,6 +31755,25 @@ await client.ticketing.auditTrail.list({
     startDate: "start_date",
     userEmail: "user_email"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.auditTrail.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    eventType: "event_type",
+    pageSize: 1,
+    startDate: "start_date",
+    userEmail: "user_email"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -20301,7 +31866,7 @@ await client.ticketing.availableActions.retrieve();
 </details>
 
 ## Ticketing Collections
-<details><summary><code>client.ticketing.collections.<a href="/src/api/resources/ticketing/resources/collections/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCollectionList</code></summary>
+<details><summary><code>client.ticketing.collections.<a href="/src/api/resources/ticketing/resources/collections/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Collection, Merge.PaginatedCollectionList></code></summary>
 <dl>
 <dd>
 
@@ -20328,12 +31893,11 @@ Returns a list of `Collection` objects.
 <dd>
 
 ```typescript
-await client.ticketing.collections.list({
+const pageableResponse = await client.ticketing.collections.list({
     collectionType: "",
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "parent_collection",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -20346,6 +31910,34 @@ await client.ticketing.collections.list({
     remoteId: "remote_id",
     showEnumOrigins: "collection_type"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.collections.list({
+    collectionType: "",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    parentCollectionId: "parent_collection_id",
+    remoteFields: "collection_type",
+    remoteId: "remote_id",
+    showEnumOrigins: "collection_type"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -20381,7 +31973,7 @@ await client.ticketing.collections.list({
 </dl>
 </details>
 
-<details><summary><code>client.ticketing.collections.<a href="/src/api/resources/ticketing/resources/collections/client/Client.ts">viewersList</a>(collection_id, { ...params }) -> Merge.PaginatedViewerList</code></summary>
+<details><summary><code>client.ticketing.collections.<a href="/src/api/resources/ticketing/resources/collections/client/Client.ts">viewersList</a>(collection_id, { ...params }) -> core.Page<Merge.Viewer, Merge.PaginatedViewerList></code></summary>
 <dl>
 <dd>
 
@@ -20408,14 +32000,31 @@ Returns a list of `Viewer` objects that point to a User id or Team id that is ei
 <dd>
 
 ```typescript
-await client.ticketing.collections.viewersList("collection_id", {
+const pageableResponse = await client.ticketing.collections.viewersList("collection_id", {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "team",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.collections.viewersList("collection_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -20487,7 +32096,6 @@ Returns a `Collection` object with the given `id`.
 
 ```typescript
 await client.ticketing.collections.retrieve("id", {
-    expand: "parent_collection",
     includeRemoteData: true,
     includeShellData: true,
     remoteFields: "collection_type",
@@ -20537,7 +32145,7 @@ await client.ticketing.collections.retrieve("id", {
 </details>
 
 ## Ticketing Comments
-<details><summary><code>client.ticketing.comments.<a href="/src/api/resources/ticketing/resources/comments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCommentList</code></summary>
+<details><summary><code>client.ticketing.comments.<a href="/src/api/resources/ticketing/resources/comments/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Comment, Merge.PaginatedCommentList></code></summary>
 <dl>
 <dd>
 
@@ -20564,11 +32172,10 @@ Returns a list of `Comment` objects.
 <dd>
 
 ```typescript
-await client.ticketing.comments.list({
+const pageableResponse = await client.ticketing.comments.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "contact",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -20579,6 +32186,31 @@ await client.ticketing.comments.list({
     remoteId: "remote_id",
     ticketId: "ticket_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.comments.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    remoteId: "remote_id",
+    ticketId: "ticket_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -20709,7 +32341,6 @@ Returns a `Comment` object with the given `id`.
 
 ```typescript
 await client.ticketing.comments.retrieve("id", {
-    expand: "contact",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -20812,7 +32443,7 @@ await client.ticketing.comments.metaPostRetrieve();
 </details>
 
 ## Ticketing Contacts
-<details><summary><code>client.ticketing.contacts.<a href="/src/api/resources/ticketing/resources/contacts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedContactList</code></summary>
+<details><summary><code>client.ticketing.contacts.<a href="/src/api/resources/ticketing/resources/contacts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Contact, Merge.PaginatedContactList></code></summary>
 <dl>
 <dd>
 
@@ -20839,12 +32470,11 @@ Returns a list of `Contact` objects.
 <dd>
 
 ```typescript
-await client.ticketing.contacts.list({
+const pageableResponse = await client.ticketing.contacts.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddress: "email_address",
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -20853,6 +32483,30 @@ await client.ticketing.contacts.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.contacts.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    emailAddress: "email_address",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -20983,7 +32637,6 @@ Returns a `Contact` object with the given `id`.
 
 ```typescript
 await client.ticketing.contacts.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -21797,7 +33450,7 @@ await client.ticketing.generateKey.create({
 </details>
 
 ## Ticketing Issues
-<details><summary><code>client.ticketing.issues.<a href="/src/api/resources/ticketing/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
+<details><summary><code>client.ticketing.issues.<a href="/src/api/resources/ticketing/resources/issues/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Issue, Merge.PaginatedIssueList></code></summary>
 <dl>
 <dd>
 
@@ -21824,7 +33477,7 @@ Gets all issues for Organization.
 <dd>
 
 ```typescript
-await client.ticketing.issues.list({
+const pageableResponse = await client.ticketing.issues.list({
     accountToken: "account_token",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endDate: "end_date",
@@ -21840,6 +33493,33 @@ await client.ticketing.issues.list({
     startDate: "start_date",
     status: "ONGOING"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.issues.list({
+    accountToken: "account_token",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endDate: "end_date",
+    endUserOrganizationName: "end_user_organization_name",
+    firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeMuted: "include_muted",
+    integrationName: "integration_name",
+    lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
+    linkedAccountId: "linked_account_id",
+    pageSize: 1,
+    startDate: "start_date",
+    status: "ONGOING"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -22008,7 +33688,7 @@ await client.ticketing.linkToken.create({
 </details>
 
 ## Ticketing LinkedAccounts
-<details><summary><code>client.ticketing.linkedAccounts.<a href="/src/api/resources/ticketing/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
+<details><summary><code>client.ticketing.linkedAccounts.<a href="/src/api/resources/ticketing/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.AccountDetailsAndActions, Merge.PaginatedAccountDetailsAndActionsList></code></summary>
 <dl>
 <dd>
 
@@ -22035,7 +33715,7 @@ List linked accounts for your organization.
 <dd>
 
 ```typescript
-await client.ticketing.linkedAccounts.list({
+const pageableResponse = await client.ticketing.linkedAccounts.list({
     category: "accounting",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     endUserEmailAddress: "end_user_email_address",
@@ -22050,6 +33730,32 @@ await client.ticketing.linkedAccounts.list({
     pageSize: 1,
     status: "status"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.linkedAccounts.list({
+    category: "accounting",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    endUserEmailAddress: "end_user_email_address",
+    endUserOrganizationName: "end_user_organization_name",
+    endUserOriginId: "end_user_origin_id",
+    endUserOriginIds: "end_user_origin_ids",
+    id: "id",
+    ids: "ids",
+    includeDuplicates: true,
+    integrationName: "integration_name",
+    isTestAccount: "is_test_account",
+    pageSize: 1,
+    status: "status"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -22153,7 +33859,7 @@ await client.ticketing.passthrough.create({
 </details>
 
 ## Ticketing Projects
-<details><summary><code>client.ticketing.projects.<a href="/src/api/resources/ticketing/resources/projects/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedProjectList</code></summary>
+<details><summary><code>client.ticketing.projects.<a href="/src/api/resources/ticketing/resources/projects/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Project, Merge.PaginatedProjectList></code></summary>
 <dl>
 <dd>
 
@@ -22180,7 +33886,7 @@ Returns a list of `Project` objects.
 <dd>
 
 ```typescript
-await client.ticketing.projects.list({
+const pageableResponse = await client.ticketing.projects.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -22192,6 +33898,29 @@ await client.ticketing.projects.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.projects.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -22301,7 +34030,7 @@ await client.ticketing.projects.retrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.ticketing.projects.<a href="/src/api/resources/ticketing/resources/projects/client/Client.ts">usersList</a>(parent_id, { ...params }) -> Merge.PaginatedUserList</code></summary>
+<details><summary><code>client.ticketing.projects.<a href="/src/api/resources/ticketing/resources/projects/client/Client.ts">usersList</a>(parent_id, { ...params }) -> core.Page<Merge.User, Merge.PaginatedUserList></code></summary>
 <dl>
 <dd>
 
@@ -22328,14 +34057,31 @@ Returns a list of `User` objects.
 <dd>
 
 ```typescript
-await client.ticketing.projects.usersList("parent_id", {
+const pageableResponse = await client.ticketing.projects.usersList("parent_id", {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "roles",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.projects.usersList("parent_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -22446,7 +34192,7 @@ await client.ticketing.regenerateKey.create({
 </details>
 
 ## Ticketing Roles
-<details><summary><code>client.ticketing.roles.<a href="/src/api/resources/ticketing/resources/roles/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedRoleList</code></summary>
+<details><summary><code>client.ticketing.roles.<a href="/src/api/resources/ticketing/resources/roles/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Role, Merge.PaginatedRoleList></code></summary>
 <dl>
 <dd>
 
@@ -22473,7 +34219,7 @@ Returns a list of `Role` objects.
 <dd>
 
 ```typescript
-await client.ticketing.roles.list({
+const pageableResponse = await client.ticketing.roles.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -22485,6 +34231,29 @@ await client.ticketing.roles.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.roles.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -22595,7 +34364,7 @@ await client.ticketing.roles.retrieve("id", {
 </details>
 
 ## Ticketing SyncStatus
-<details><summary><code>client.ticketing.syncStatus.<a href="/src/api/resources/ticketing/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
+<details><summary><code>client.ticketing.syncStatus.<a href="/src/api/resources/ticketing/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.SyncStatus, Merge.PaginatedSyncStatusList></code></summary>
 <dl>
 <dd>
 
@@ -22622,10 +34391,25 @@ Get sync status for the current sync and the most recently finished sync. `last_
 <dd>
 
 ```typescript
-await client.ticketing.syncStatus.list({
+const pageableResponse = await client.ticketing.syncStatus.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.syncStatus.list({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -22718,7 +34502,7 @@ await client.ticketing.forceResync.syncStatusResyncCreate();
 </details>
 
 ## Ticketing Tags
-<details><summary><code>client.ticketing.tags.<a href="/src/api/resources/ticketing/resources/tags/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTagList</code></summary>
+<details><summary><code>client.ticketing.tags.<a href="/src/api/resources/ticketing/resources/tags/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Tag, Merge.PaginatedTagList></code></summary>
 <dl>
 <dd>
 
@@ -22745,7 +34529,7 @@ Returns a list of `Tag` objects.
 <dd>
 
 ```typescript
-await client.ticketing.tags.list({
+const pageableResponse = await client.ticketing.tags.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -22757,6 +34541,29 @@ await client.ticketing.tags.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.tags.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -22867,7 +34674,7 @@ await client.ticketing.tags.retrieve("id", {
 </details>
 
 ## Ticketing Teams
-<details><summary><code>client.ticketing.teams.<a href="/src/api/resources/ticketing/resources/teams/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTeamList</code></summary>
+<details><summary><code>client.ticketing.teams.<a href="/src/api/resources/ticketing/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Team, Merge.PaginatedTeamList></code></summary>
 <dl>
 <dd>
 
@@ -22894,7 +34701,7 @@ Returns a list of `Team` objects.
 <dd>
 
 ```typescript
-await client.ticketing.teams.list({
+const pageableResponse = await client.ticketing.teams.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -22906,6 +34713,29 @@ await client.ticketing.teams.list({
     pageSize: 1,
     remoteId: "remote_id"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.teams.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -23016,7 +34846,7 @@ await client.ticketing.teams.retrieve("id", {
 </details>
 
 ## Ticketing Tickets
-<details><summary><code>client.ticketing.tickets.<a href="/src/api/resources/ticketing/resources/tickets/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTicketList</code></summary>
+<details><summary><code>client.ticketing.tickets.<a href="/src/api/resources/ticketing/resources/tickets/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.Ticket, Merge.PaginatedTicketList></code></summary>
 <dl>
 <dd>
 
@@ -23043,7 +34873,7 @@ Returns a list of `Ticket` objects.
 <dd>
 
 ```typescript
-await client.ticketing.tickets.list({
+const pageableResponse = await client.ticketing.tickets.list({
     accountId: "account_id",
     assigneeIds: "assignee_ids",
     collectionIds: "collection_ids",
@@ -23057,7 +34887,6 @@ await client.ticketing.tickets.list({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     dueAfter: new Date("2024-01-15T09:30:00.000Z"),
     dueBefore: new Date("2024-01-15T09:30:00.000Z"),
-    expand: "account",
     includeDeletedData: true,
     includeRemoteData: true,
     includeRemoteFields: true,
@@ -23080,6 +34909,53 @@ await client.ticketing.tickets.list({
     ticketType: "ticket_type",
     ticketUrl: "ticket_url"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.tickets.list({
+    accountId: "account_id",
+    assigneeIds: "assignee_ids",
+    collectionIds: "collection_ids",
+    completedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    completedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    contactId: "contact_id",
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    creatorId: "creator_id",
+    creatorIds: "creator_ids",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    dueAfter: new Date("2024-01-15T09:30:00.000Z"),
+    dueBefore: new Date("2024-01-15T09:30:00.000Z"),
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeRemoteFields: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    name: "name",
+    pageSize: 1,
+    parentTicketId: "parent_ticket_id",
+    priority: "HIGH",
+    remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    remoteCreatedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    remoteFields: "priority",
+    remoteId: "remote_id",
+    remoteUpdatedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    remoteUpdatedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    showEnumOrigins: "priority",
+    status: "",
+    tags: "tags",
+    ticketType: "ticket_type",
+    ticketUrl: "ticket_url"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -23210,7 +35086,6 @@ Returns a `Ticket` object with the given `id`.
 
 ```typescript
 await client.ticketing.tickets.retrieve("id", {
-    expand: "account",
     includeRemoteData: true,
     includeRemoteFields: true,
     includeShellData: true,
@@ -23335,7 +35210,7 @@ await client.ticketing.tickets.partialUpdate("id", {
 </dl>
 </details>
 
-<details><summary><code>client.ticketing.tickets.<a href="/src/api/resources/ticketing/resources/tickets/client/Client.ts">viewersList</a>(ticket_id, { ...params }) -> Merge.PaginatedViewerList</code></summary>
+<details><summary><code>client.ticketing.tickets.<a href="/src/api/resources/ticketing/resources/tickets/client/Client.ts">viewersList</a>(ticket_id, { ...params }) -> core.Page<Merge.Viewer, Merge.PaginatedViewerList></code></summary>
 <dl>
 <dd>
 
@@ -23362,14 +35237,31 @@ Returns a list of `Viewer` objects that point to a User id or Team id that is ei
 <dd>
 
 ```typescript
-await client.ticketing.tickets.viewersList("ticket_id", {
+const pageableResponse = await client.ticketing.tickets.viewersList("ticket_id", {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "team",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.tickets.viewersList("ticket_id", {
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -23542,7 +35434,7 @@ await client.ticketing.tickets.metaPostRetrieve({
 </dl>
 </details>
 
-<details><summary><code>client.ticketing.tickets.<a href="/src/api/resources/ticketing/resources/tickets/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
+<details><summary><code>client.ticketing.tickets.<a href="/src/api/resources/ticketing/resources/tickets/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> core.Page<Merge.RemoteFieldClass, Merge.PaginatedRemoteFieldClassList></code></summary>
 <dl>
 <dd>
 
@@ -23569,7 +35461,7 @@ Returns a list of `RemoteFieldClass` objects.
 <dd>
 
 ```typescript
-await client.ticketing.tickets.remoteFieldClassesList({
+const pageableResponse = await client.ticketing.tickets.remoteFieldClassesList({
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     ids: "ids",
     includeDeletedData: true,
@@ -23579,6 +35471,27 @@ await client.ticketing.tickets.remoteFieldClassesList({
     isCustom: true,
     pageSize: 1
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.tickets.remoteFieldClassesList({
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    ids: "ids",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    isCommonModelField: true,
+    isCustom: true,
+    pageSize: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -23615,7 +35528,7 @@ await client.ticketing.tickets.remoteFieldClassesList({
 </details>
 
 ## Ticketing Users
-<details><summary><code>client.ticketing.users.<a href="/src/api/resources/ticketing/resources/users/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedUserList</code></summary>
+<details><summary><code>client.ticketing.users.<a href="/src/api/resources/ticketing/resources/users/client/Client.ts">list</a>({ ...params }) -> core.Page<Merge.User, Merge.PaginatedUserList></code></summary>
 <dl>
 <dd>
 
@@ -23642,12 +35555,11 @@ Returns a list of `User` objects.
 <dd>
 
 ```typescript
-await client.ticketing.users.list({
+const pageableResponse = await client.ticketing.users.list({
     createdAfter: new Date("2024-01-15T09:30:00.000Z"),
     createdBefore: new Date("2024-01-15T09:30:00.000Z"),
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     emailAddress: "email_address",
-    expand: "roles",
     includeDeletedData: true,
     includeRemoteData: true,
     includeShellData: true,
@@ -23657,6 +35569,31 @@ await client.ticketing.users.list({
     remoteId: "remote_id",
     team: "team"
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.ticketing.users.list({
+    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    emailAddress: "email_address",
+    includeDeletedData: true,
+    includeRemoteData: true,
+    includeShellData: true,
+    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+    pageSize: 1,
+    remoteId: "remote_id",
+    team: "team"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -23720,7 +35657,6 @@ Returns a `User` object with the given `id`.
 
 ```typescript
 await client.ticketing.users.retrieve("id", {
-    expand: "roles",
     includeRemoteData: true,
     includeShellData: true
 });
@@ -23870,9393 +35806,6 @@ await client.ticketing.webhookReceivers.create({
 <dd>
 
 **request:** `Merge.ticketing.WebhookReceiverRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `WebhookReceiversClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting AccountDetails
-<details><summary><code>client.accounting.accountDetails.<a href="/src/api/resources/accounting/resources/accountDetails/client/Client.ts">retrieve</a>() -> Merge.AccountDetails</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get details for a linked account.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accountDetails.retrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountDetailsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting AccountToken
-<details><summary><code>client.accounting.accountToken.<a href="/src/api/resources/accounting/resources/accountToken/client/Client.ts">retrieve</a>(public_token) -> Merge.AccountToken</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the account token for the end user with the provided public token.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accountToken.retrieve("public_token");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**public_token:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountTokenClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting AccountingPeriods
-<details><summary><code>client.accounting.accountingPeriods.<a href="/src/api/resources/accounting/resources/accountingPeriods/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountingPeriodList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `AccountingPeriod` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accountingPeriods.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountingPeriodsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountingPeriodsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.accountingPeriods.<a href="/src/api/resources/accounting/resources/accountingPeriods/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingPeriod</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `AccountingPeriod` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accountingPeriods.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountingPeriodsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountingPeriodsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Accounts
-<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Account` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accounts.list({
-    accountType: "account_type",
-    classification: "",
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    pageSize: 1,
-    remoteFields: "classification",
-    remoteId: "remote_id",
-    showEnumOrigins: "classification",
-    status: ""
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">create</a>({ ...params }) -> Merge.AccountResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Account` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accounts.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Account</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Account` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accounts.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "classification",
-    showEnumOrigins: "classification"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.accounts.<a href="/src/api/resources/accounting/resources/accounts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Account` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.accounts.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Addresses
-<details><summary><code>client.accounting.addresses.<a href="/src/api/resources/accounting/resources/addresses/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Address</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Address` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.addresses.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "type",
-    showEnumOrigins: "type"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AddressesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AddressesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting AsyncPassthrough
-<details><summary><code>client.accounting.asyncPassthrough.<a href="/src/api/resources/accounting/resources/asyncPassthrough/client/Client.ts">create</a>({ ...params }) -> Merge.AsyncPassthroughReciept</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Asynchronously pull data from an endpoint not currently supported by Merge.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.asyncPassthrough.create({
-    method: "GET",
-    path: "/scooters"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.DataPassthroughRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncPassthroughClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.asyncPassthrough.<a href="/src/api/resources/accounting/resources/asyncPassthrough/client/Client.ts">retrieve</a>(async_passthrough_receipt_id) -> Merge.AsyncPassthroughRetrieveResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves data from earlier async-passthrough POST request
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.asyncPassthrough.retrieve("async_passthrough_receipt_id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**async_passthrough_receipt_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncPassthroughClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting AsyncTasks
-<details><summary><code>client.accounting.asyncTasks.<a href="/src/api/resources/accounting/resources/asyncTasks/client/Client.ts">retrieve</a>(id) -> Merge.AsyncPostTask</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `AsyncPostTask` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.asyncTasks.retrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AsyncTasksClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Attachments
-<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountingAttachmentList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `AccountingAttachment` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.attachments.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AttachmentsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AttachmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">create</a>({ ...params }) -> Merge.AccountingAttachmentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `AccountingAttachment` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.attachments.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AccountingAttachmentEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AttachmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingAttachment</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `AccountingAttachment` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.attachments.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AttachmentsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AttachmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.attachments.<a href="/src/api/resources/accounting/resources/attachments/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `AccountingAttachment` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.attachments.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AttachmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting AuditTrail
-<details><summary><code>client.accounting.auditTrail.<a href="/src/api/resources/accounting/resources/auditTrail/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAuditLogEventList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets a list of audit trail events.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.auditTrail.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    endDate: "end_date",
-    eventType: "event_type",
-    pageSize: 1,
-    startDate: "start_date",
-    userEmail: "user_email"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.AuditTrailListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AuditTrailClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting AvailableActions
-<details><summary><code>client.accounting.availableActions.<a href="/src/api/resources/accounting/resources/availableActions/client/Client.ts">retrieve</a>() -> Merge.AvailableActions</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of models and actions available for an account.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.availableActions.retrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `AvailableActionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting BalanceSheets
-<details><summary><code>client.accounting.balanceSheets.<a href="/src/api/resources/accounting/resources/balanceSheets/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedBalanceSheetList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `BalanceSheet` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.balanceSheets.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BalanceSheetsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BalanceSheetsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.balanceSheets.<a href="/src/api/resources/accounting/resources/balanceSheets/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.BalanceSheet</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `BalanceSheet` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.balanceSheets.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BalanceSheetsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BalanceSheetsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting BankFeedAccounts
-<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedBankFeedAccountList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `BankFeedAccount` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedAccounts.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedAccountsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">create</a>({ ...params }) -> Merge.BankFeedAccountResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `BankFeedAccount` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedAccounts.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedAccountEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.BankFeedAccount</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `BankFeedAccount` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedAccounts.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedAccountsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedAccounts.<a href="/src/api/resources/accounting/resources/bankFeedAccounts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `BankFeedAccount` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedAccounts.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting BankFeedTransactions
-<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedBankFeedTransactionList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `BankFeedTransaction` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedTransactions.list({
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "bank_feed_account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isProcessed: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedTransactionsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">create</a>({ ...params }) -> Merge.BankFeedTransactionResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `BankFeedTransaction` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedTransactions.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedTransactionEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.BankFeedTransaction</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `BankFeedTransaction` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedTransactions.retrieve("id", {
-    expand: "bank_feed_account",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.BankFeedTransactionsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.bankFeedTransactions.<a href="/src/api/resources/accounting/resources/bankFeedTransactions/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `BankFeedTransaction` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.bankFeedTransactions.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `BankFeedTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting CashFlowStatements
-<details><summary><code>client.accounting.cashFlowStatements.<a href="/src/api/resources/accounting/resources/cashFlowStatements/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCashFlowStatementList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `CashFlowStatement` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.cashFlowStatements.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CashFlowStatementsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CashFlowStatementsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.cashFlowStatements.<a href="/src/api/resources/accounting/resources/cashFlowStatements/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CashFlowStatement</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `CashFlowStatement` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.cashFlowStatements.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CashFlowStatementsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CashFlowStatementsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting CompanyInfo
-<details><summary><code>client.accounting.companyInfo.<a href="/src/api/resources/accounting/resources/companyInfo/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCompanyInfoList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `CompanyInfo` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.companyInfo.list({
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "addresses",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CompanyInfoListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CompanyInfoClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.companyInfo.<a href="/src/api/resources/accounting/resources/companyInfo/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CompanyInfo</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `CompanyInfo` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.companyInfo.retrieve("id", {
-    expand: "addresses",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CompanyInfoRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CompanyInfoClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Contacts
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedContactList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Contact` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    emailAddress: "email_address",
-    expand: "addresses",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    isCustomer: "is_customer",
-    isSupplier: "is_supplier",
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status",
-    status: ""
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ContactsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">create</a>({ ...params }) -> Merge.ContactResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Contact` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ContactEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Contact</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Contact` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.retrieve("id", {
-    expand: "addresses",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ContactsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.ContactResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a `Contact` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.partialUpdate("id", {
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PatchedContactEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Contact` PATCHs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.metaPatchRetrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Contact` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.contacts.<a href="/src/api/resources/accounting/resources/contacts/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.contacts.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ContactsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ContactsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting CreditNotes
-<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedCreditNoteList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `CreditNote` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.creditNotes.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CreditNotesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditNotesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">create</a>({ ...params }) -> Merge.CreditNoteResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `CreditNote` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.creditNotes.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CreditNoteEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditNotesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.CreditNote</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `CreditNote` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.creditNotes.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CreditNotesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditNotesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.creditNotes.<a href="/src/api/resources/accounting/resources/creditNotes/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `CreditNote` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.creditNotes.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditNotesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Scopes
-<details><summary><code>client.accounting.scopes.<a href="/src/api/resources/accounting/resources/scopes/client/Client.ts">defaultScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.scopes.defaultScopesRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScopesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.scopes.<a href="/src/api/resources/accounting/resources/scopes/client/Client.ts">linkedAccountScopesRetrieve</a>() -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all available permissions for Merge Common Models and fields for a single Linked Account. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.scopes.linkedAccountScopesRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScopesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.scopes.<a href="/src/api/resources/accounting/resources/scopes/client/Client.ts">linkedAccountScopesCreate</a>({ ...params }) -> Merge.CommonModelScopeApi</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. [Learn more](https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.scopes.linkedAccountScopesCreate({
-    commonModels: [{
-            modelName: "Employee",
-            modelPermissions: {
-                "READ": {
-                    isEnabled: true
-                },
-                "WRITE": {
-                    isEnabled: false
-                }
-            },
-            fieldPermissions: {
-                enabledFields: ["avatar", "home_location"],
-                disabledFields: ["work_location"]
-            }
-        }, {
-            modelName: "Benefit",
-            modelPermissions: {
-                "WRITE": {
-                    isEnabled: false
-                }
-            }
-        }]
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.LinkedAccountCommonModelScopeDeserializerRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScopesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting DeleteAccount
-<details><summary><code>client.accounting.deleteAccount.<a href="/src/api/resources/accounting/resources/deleteAccount/client/Client.ts">delete</a>() -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete a linked account.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.deleteAccount.delete();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `DeleteAccountClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Employees
-<details><summary><code>client.accounting.employees.<a href="/src/api/resources/accounting/resources/employees/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedEmployeeList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Employee` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.employees.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.EmployeesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EmployeesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.employees.<a href="/src/api/resources/accounting/resources/employees/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Employee</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Employee` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.employees.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.EmployeesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EmployeesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting ExpenseReports
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedExpenseReportList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `ExpenseReport` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">create</a>({ ...params }) -> Merge.ExpenseReportResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `ExpenseReport` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {
-        trackingCategories: ["a1b2c3d4-e5f6-4a5b-9c3d-2e1f0a9b8c7d", "d4c3b2a1-9e8f-7g6h-5i4j-3k2l1m0n9o8p"]
-    }
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">linesList</a>(expense_report_id, { ...params }) -> Merge.PaginatedExpenseReportLineList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `ExpenseReportLine` objects that point to a `ExpenseReport` with the given id.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.linesList("expense_report_id", {
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**expense_report_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsLinesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.ExpenseReport</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `ExpenseReport` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">linesRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.linesRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsLinesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `ExpenseReport` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenseReports.<a href="/src/api/resources/accounting/resources/expenseReports/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenseReports.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseReportsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpenseReportsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Expenses
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedExpenseList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Expense` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpensesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">create</a>({ ...params }) -> Merge.ExpenseResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Expense` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpenseEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Expense</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Expense` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.retrieve("id", {
-    expand: "account",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpensesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">linesRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.linesRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpensesLinesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Expense` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.expenses.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpensesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExpensesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting FieldMapping
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsRetrieve</a>({ ...params }) -> Merge.FieldMappingApiInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.fieldMapping.fieldMappingsRetrieve({
-    excludeRemoteFieldMetadata: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.FieldMappingsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsCreate</a>({ ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create new Field Mappings that will be available after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.fieldMapping.fieldMappingsCreate({
-    excludeRemoteFieldMetadata: true,
-    targetFieldName: "example_target_field_name",
-    targetFieldDescription: "this is a example description of the target field",
-    remoteFieldTraversalPath: ["example_remote_field"],
-    remoteMethod: "GET",
-    remoteUrlPath: "/example-url-path",
-    commonModelName: "ExampleCommonModel"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.CreateFieldMappingRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsDestroy</a>(field_mapping_id) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.fieldMapping.fieldMappingsDestroy("field_mapping_id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**field_mapping_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">fieldMappingsPartialUpdate</a>(field_mapping_id, { ...params }) -> Merge.FieldMappingInstanceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create or update existing Field Mappings for a Linked Account. Changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync **ALL** data from start.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**field_mapping_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PatchedEditFieldMappingRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">remoteFieldsRetrieve</a>({ ...params }) -> Merge.RemoteFieldApiResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all remote fields for a Linked Account. Remote fields are third-party fields that are accessible after initial sync if remote_data is enabled. You can use remote fields to override existing Merge fields or map a new Merge field. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/overview/).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.fieldMapping.remoteFieldsRetrieve({
-    commonModels: "common_models",
-    includeExampleValues: "include_example_values"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.RemoteFieldsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.fieldMapping.<a href="/src/api/resources/accounting/resources/fieldMapping/client/Client.ts">targetFieldsRetrieve</a>() -> Merge.ExternalTargetFieldApiResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all organization-wide Target Fields, this will not include any Linked Account specific Target Fields. Organization-wide Target Fields are additional fields appended to the Merge Common Model for all Linked Accounts in a category. [Learn more](https://docs.merge.dev/supplemental-data/field-mappings/target-fields/).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.fieldMapping.targetFieldsRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `FieldMappingClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting GeneralLedgerTransactions
-<details><summary><code>client.accounting.generalLedgerTransactions.<a href="/src/api/resources/accounting/resources/generalLedgerTransactions/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedGeneralLedgerTransactionList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `GeneralLedgerTransaction` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.generalLedgerTransactions.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    postedDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    postedDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.GeneralLedgerTransactionsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `GeneralLedgerTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.generalLedgerTransactions.<a href="/src/api/resources/accounting/resources/generalLedgerTransactions/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.GeneralLedgerTransaction</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `GeneralLedgerTransaction` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.generalLedgerTransactions.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.GeneralLedgerTransactionsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `GeneralLedgerTransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting GenerateKey
-<details><summary><code>client.accounting.generateKey.<a href="/src/api/resources/accounting/resources/generateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a remote key.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.generateKey.create({
-    name: "Remote Deployment Key 1"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.GenerateRemoteKeyRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `GenerateKeyClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting IncomeStatements
-<details><summary><code>client.accounting.incomeStatements.<a href="/src/api/resources/accounting/resources/incomeStatements/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIncomeStatementList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `IncomeStatement` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.incomeStatements.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.IncomeStatementsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `IncomeStatementsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.incomeStatements.<a href="/src/api/resources/accounting/resources/incomeStatements/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.IncomeStatement</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `IncomeStatement` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.incomeStatements.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.IncomeStatementsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `IncomeStatementsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Invoices
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedInvoiceList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Invoice` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.list({
-    companyId: "company_id",
-    contactId: "contact_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    number: "number",
-    pageSize: 1,
-    remoteFields: "type",
-    remoteId: "remote_id",
-    showEnumOrigins: "type",
-    status: "DRAFT",
-    type: "ACCOUNTS_PAYABLE"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoicesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">create</a>({ ...params }) -> Merge.InvoiceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Invoice` object with the given values.
-            Including a `PurchaseOrder` id in the `purchase_orders` property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
-            
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoiceEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Invoice</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Invoice` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    remoteFields: "type",
-    showEnumOrigins: "type"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoicesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.InvoiceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an `Invoice` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.partialUpdate("id", {
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PatchedInvoiceEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">lineItemsRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.lineItemsRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoicesLineItemsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Invoice` PATCHs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.metaPatchRetrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Invoice` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.invoices.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoicesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `InvoicesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Issues
-<details><summary><code>client.accounting.issues.<a href="/src/api/resources/accounting/resources/issues/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedIssueList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets all issues for Organization.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.issues.list({
-    accountToken: "account_token",
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    endDate: "end_date",
-    endUserOrganizationName: "end_user_organization_name",
-    firstIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
-    firstIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
-    includeMuted: "include_muted",
-    integrationName: "integration_name",
-    lastIncidentTimeAfter: new Date("2024-01-15T09:30:00.000Z"),
-    lastIncidentTimeBefore: new Date("2024-01-15T09:30:00.000Z"),
-    linkedAccountId: "linked_account_id",
-    pageSize: 1,
-    startDate: "start_date",
-    status: "ONGOING"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.IssuesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `IssuesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.issues.<a href="/src/api/resources/accounting/resources/issues/client/Client.ts">retrieve</a>(id) -> Merge.Issue</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a specific issue.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.issues.retrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `IssuesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Items
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedItemList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Item` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ItemsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">create</a>({ ...params }) -> Merge.ItemResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an `Item` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ItemEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Item</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `Item` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ItemsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.ItemResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an `Item` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.partialUpdate("id", {
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PatchedItemEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Item` PATCHs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.metaPatchRetrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.items.<a href="/src/api/resources/accounting/resources/items/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Item` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.items.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ItemsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting JournalEntries
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedJournalEntryList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `JournalEntry` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntriesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">create</a>({ ...params }) -> Merge.JournalEntryResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `JournalEntry` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntryEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.JournalEntry</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `JournalEntry` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntriesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">linesRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.linesRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntriesLinesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `JournalEntry` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.journalEntries.<a href="/src/api/resources/accounting/resources/journalEntries/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.journalEntries.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.JournalEntriesRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `JournalEntriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting LinkToken
-<details><summary><code>client.accounting.linkToken.<a href="/src/api/resources/accounting/resources/linkToken/client/Client.ts">create</a>({ ...params }) -> Merge.LinkToken</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a link token to be used when linking a new end user.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.linkToken.create({
-    endUserEmailAddress: "example@gmail.com",
-    endUserOrganizationName: "Test Organization",
-    endUserOriginId: "12345",
-    categories: ["hris", "ats"]
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.EndUserDetailsRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LinkTokenClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting LinkedAccounts
-<details><summary><code>client.accounting.linkedAccounts.<a href="/src/api/resources/accounting/resources/linkedAccounts/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedAccountDetailsAndActionsList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List linked accounts for your organization.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.linkedAccounts.list({
-    category: "accounting",
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    endUserEmailAddress: "end_user_email_address",
-    endUserOrganizationName: "end_user_organization_name",
-    endUserOriginId: "end_user_origin_id",
-    endUserOriginIds: "end_user_origin_ids",
-    id: "id",
-    ids: "ids",
-    includeDuplicates: true,
-    integrationName: "integration_name",
-    isTestAccount: "is_test_account",
-    pageSize: 1,
-    status: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.LinkedAccountsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LinkedAccountsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Passthrough
-<details><summary><code>client.accounting.passthrough.<a href="/src/api/resources/accounting/resources/passthrough/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Pull data from an endpoint not currently supported by Merge.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.passthrough.create({
-    method: "GET",
-    path: "/scooters"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.DataPassthroughRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PassthroughClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting PaymentMethods
-<details><summary><code>client.accounting.paymentMethods.<a href="/src/api/resources/accounting/resources/paymentMethods/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPaymentMethodList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `PaymentMethod` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.paymentMethods.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentMethodsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentMethodsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.paymentMethods.<a href="/src/api/resources/accounting/resources/paymentMethods/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.PaymentMethod</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `PaymentMethod` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.paymentMethods.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentMethodsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentMethodsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting PaymentTerms
-<details><summary><code>client.accounting.paymentTerms.<a href="/src/api/resources/accounting/resources/paymentTerms/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPaymentTermList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `PaymentTerm` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.paymentTerms.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentTermsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentTermsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.paymentTerms.<a href="/src/api/resources/accounting/resources/paymentTerms/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.PaymentTerm</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `PaymentTerm` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.paymentTerms.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentTermsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentTermsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Payments
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPaymentList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Payment` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.list({
-    accountId: "account_id",
-    companyId: "company_id",
-    contactId: "contact_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">create</a>({ ...params }) -> Merge.PaymentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `Payment` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Payment</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Payment` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.retrieve("id", {
-    expand: "account",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">partialUpdate</a>(id, { ...params }) -> Merge.PaymentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a `Payment` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.partialUpdate("id", {
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PatchedPaymentEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">lineItemsRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.lineItemsRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentsLineItemsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">metaPatchRetrieve</a>(id) -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Payment` PATCHs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.metaPatchRetrieve("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `Payment` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.payments.<a href="/src/api/resources/accounting/resources/payments/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.payments.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PaymentsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PaymentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting PhoneNumbers
-<details><summary><code>client.accounting.phoneNumbers.<a href="/src/api/resources/accounting/resources/phoneNumbers/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.AccountingPhoneNumber</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns an `AccountingPhoneNumber` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.phoneNumbers.retrieve("id", {
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PhoneNumbersRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PhoneNumbersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Projects
-<details><summary><code>client.accounting.projects.<a href="/src/api/resources/accounting/resources/projects/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedProjectList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Project` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.projects.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ProjectsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ProjectsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.projects.<a href="/src/api/resources/accounting/resources/projects/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Project</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Project` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.projects.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ProjectsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ProjectsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting PurchaseOrders
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedPurchaseOrderList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `PurchaseOrder` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrdersListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">create</a>({ ...params }) -> Merge.PurchaseOrderResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `PurchaseOrder` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrderEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.PurchaseOrder</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `PurchaseOrder` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrdersRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">lineItemsRemoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrdersLineItemsRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `PurchaseOrder` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.purchaseOrders.<a href="/src/api/resources/accounting/resources/purchaseOrders/client/Client.ts">remoteFieldClassesList</a>({ ...params }) -> Merge.PaginatedRemoteFieldClassList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `RemoteFieldClass` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.purchaseOrders.remoteFieldClassesList({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    isCommonModelField: true,
-    isCustom: true,
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.PurchaseOrdersRemoteFieldClassesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PurchaseOrdersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting RegenerateKey
-<details><summary><code>client.accounting.regenerateKey.<a href="/src/api/resources/accounting/resources/regenerateKey/client/Client.ts">create</a>({ ...params }) -> Merge.RemoteKey</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Exchange remote keys.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.regenerateKey.create({
-    name: "Remote Deployment Key 1"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.RemoteKeyForRegenerationRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RegenerateKeyClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting SyncStatus
-<details><summary><code>client.accounting.syncStatus.<a href="/src/api/resources/accounting/resources/syncStatus/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedSyncStatusList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get sync status for the current sync and the most recently finished sync. `last_sync_start` represents the most recent time any sync began. `last_sync_finished` represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the `last_sync_finished` timestamp where `last_sync_result` is `DONE`. Possible values for `status` and `last_sync_result` are `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`. Learn more about sync status in our [Help Center](https://help.merge.dev/en/articles/8184193-merge-sync-statuses).
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.syncStatus.list({
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    pageSize: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.SyncStatusListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `SyncStatusClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting ForceResync
-<details><summary><code>client.accounting.forceResync.<a href="/src/api/resources/accounting/resources/forceResync/client/Client.ts">syncStatusResyncCreate</a>() -> Merge.SyncStatus[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Force re-sync of all models. This endpoint is available for monthly, quarterly, and highest sync frequency customers on the Professional or Enterprise plans. Doing so will consume a sync credit for the relevant linked account. Force re-syncs can also be triggered manually in the Merge Dashboard and is available for all customers.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.forceResync.syncStatusResyncCreate();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `ForceResyncClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting TaxRates
-<details><summary><code>client.accounting.taxRates.<a href="/src/api/resources/accounting/resources/taxRates/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTaxRateList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `TaxRate` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.taxRates.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    pageSize: 1,
-    remoteId: "remote_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TaxRatesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TaxRatesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.taxRates.<a href="/src/api/resources/accounting/resources/taxRates/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.TaxRate</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `TaxRate` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.taxRates.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TaxRatesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TaxRatesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting TrackingCategories
-<details><summary><code>client.accounting.trackingCategories.<a href="/src/api/resources/accounting/resources/trackingCategories/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTrackingCategoryList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `TrackingCategory` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.trackingCategories.list({
-    categoryType: "",
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "company",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    name: "name",
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status",
-    status: ""
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TrackingCategoriesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TrackingCategoriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.trackingCategories.<a href="/src/api/resources/accounting/resources/trackingCategories/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.TrackingCategory</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `TrackingCategory` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.trackingCategories.retrieve("id", {
-    expand: "company",
-    includeRemoteData: true,
-    includeShellData: true,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TrackingCategoriesRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TrackingCategoriesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting Transactions
-<details><summary><code>client.accounting.transactions.<a href="/src/api/resources/accounting/resources/transactions/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedTransactionList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `Transaction` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.transactions.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "account",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TransactionsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.transactions.<a href="/src/api/resources/accounting/resources/transactions/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.Transaction</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `Transaction` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.transactions.retrieve("id", {
-    expand: "account",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.TransactionsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `TransactionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting VendorCredits
-<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">list</a>({ ...params }) -> Merge.PaginatedVendorCreditList</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `VendorCredit` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.vendorCredits.list({
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    expand: "accounting_period",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.VendorCreditsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `VendorCreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">create</a>({ ...params }) -> Merge.VendorCreditResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `VendorCredit` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.vendorCredits.create({
-    isDebugMode: true,
-    runAsync: true,
-    model: {}
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.VendorCreditEndpointRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `VendorCreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">retrieve</a>(id, { ...params }) -> Merge.VendorCredit</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a `VendorCredit` object with the given `id`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.vendorCredits.retrieve("id", {
-    expand: "accounting_period",
-    includeRemoteData: true,
-    includeShellData: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.VendorCreditsRetrieveRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `VendorCreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.vendorCredits.<a href="/src/api/resources/accounting/resources/vendorCredits/client/Client.ts">metaPostRetrieve</a>() -> Merge.MetaResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns metadata for `VendorCredit` POSTs.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.vendorCredits.metaPostRetrieve();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `VendorCreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Accounting WebhookReceivers
-<details><summary><code>client.accounting.webhookReceivers.<a href="/src/api/resources/accounting/resources/webhookReceivers/client/Client.ts">list</a>() -> Merge.WebhookReceiver[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of `WebhookReceiver` objects.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.webhookReceivers.list();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `WebhookReceiversClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.accounting.webhookReceivers.<a href="/src/api/resources/accounting/resources/webhookReceivers/client/Client.ts">create</a>({ ...params }) -> Merge.WebhookReceiver</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a `WebhookReceiver` object with the given values.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.accounting.webhookReceivers.create({
-    event: "event",
-    isActive: true
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.WebhookReceiverRequest` 
     
 </dd>
 </dl>

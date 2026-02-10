@@ -4,7 +4,7 @@ import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import * as serializers from "../../../index";
 import { CollectionAccessLevel } from "./CollectionAccessLevel";
-import { CollectionCollectionType } from "./CollectionCollectionType";
+import { CollectionTypeEnum } from "./CollectionTypeEnum";
 import { RemoteData } from "./RemoteData";
 
 export const Collection: core.serialization.ObjectSchema<
@@ -18,7 +18,7 @@ export const Collection: core.serialization.ObjectSchema<
     name: core.serialization.string().optional(),
     description: core.serialization.string().optional(),
     accessLevel: core.serialization.property("access_level", CollectionAccessLevel.optional()),
-    collectionType: core.serialization.property("collection_type", CollectionCollectionType.optional()),
+    collectionType: core.serialization.property("collection_type", CollectionTypeEnum.optional()),
     parentCollection: core.serialization.property(
         "parent_collection",
         core.serialization.lazy(() => serializers.ticketing.CollectionParentCollection).optional(),
@@ -43,7 +43,7 @@ export declare namespace Collection {
         name?: string | null;
         description?: string | null;
         access_level?: CollectionAccessLevel.Raw | null;
-        collection_type?: CollectionCollectionType.Raw | null;
+        collection_type?: CollectionTypeEnum.Raw | null;
         parent_collection?: serializers.ticketing.CollectionParentCollection.Raw | null;
         collection_url?: string | null;
         remote_created_at?: string | null;

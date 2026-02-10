@@ -4,7 +4,6 @@ import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { GeneralLedgerTransactionLineAccount } from "./GeneralLedgerTransactionLineAccount";
-import { GeneralLedgerTransactionLineBaseCurrency } from "./GeneralLedgerTransactionLineBaseCurrency";
 import { GeneralLedgerTransactionLineCompany } from "./GeneralLedgerTransactionLineCompany";
 import { GeneralLedgerTransactionLineContact } from "./GeneralLedgerTransactionLineContact";
 import { GeneralLedgerTransactionLineEmployee } from "./GeneralLedgerTransactionLineEmployee";
@@ -12,6 +11,7 @@ import { GeneralLedgerTransactionLineItem } from "./GeneralLedgerTransactionLine
 import { GeneralLedgerTransactionLineProject } from "./GeneralLedgerTransactionLineProject";
 import { GeneralLedgerTransactionLineTrackingCategoriesItem } from "./GeneralLedgerTransactionLineTrackingCategoriesItem";
 import { GeneralLedgerTransactionLineTransactionCurrency } from "./GeneralLedgerTransactionLineTransactionCurrency";
+import { TransactionCurrencyEnum } from "./TransactionCurrencyEnum";
 
 export const GeneralLedgerTransactionLine: core.serialization.ObjectSchema<
     serializers.accounting.GeneralLedgerTransactionLine.Raw,
@@ -26,7 +26,7 @@ export const GeneralLedgerTransactionLine: core.serialization.ObjectSchema<
     employee: GeneralLedgerTransactionLineEmployee.optional(),
     contact: GeneralLedgerTransactionLineContact.optional(),
     project: GeneralLedgerTransactionLineProject.optional(),
-    baseCurrency: core.serialization.property("base_currency", GeneralLedgerTransactionLineBaseCurrency.optional()),
+    baseCurrency: core.serialization.property("base_currency", TransactionCurrencyEnum.optional()),
     transactionCurrency: core.serialization.property(
         "transaction_currency",
         GeneralLedgerTransactionLineTransactionCurrency.optional(),
@@ -60,7 +60,7 @@ export declare namespace GeneralLedgerTransactionLine {
         employee?: GeneralLedgerTransactionLineEmployee.Raw | null;
         contact?: GeneralLedgerTransactionLineContact.Raw | null;
         project?: GeneralLedgerTransactionLineProject.Raw | null;
-        base_currency?: GeneralLedgerTransactionLineBaseCurrency.Raw | null;
+        base_currency?: TransactionCurrencyEnum.Raw | null;
         transaction_currency?: GeneralLedgerTransactionLineTransactionCurrency.Raw | null;
         exchange_rate?: string | null;
         description?: string | null;

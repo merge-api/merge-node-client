@@ -5,12 +5,12 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ExpenseLineAccount } from "./ExpenseLineAccount";
 import { ExpenseLineContact } from "./ExpenseLineContact";
-import { ExpenseLineCurrency } from "./ExpenseLineCurrency";
 import { ExpenseLineEmployee } from "./ExpenseLineEmployee";
 import { ExpenseLineItem } from "./ExpenseLineItem";
 import { ExpenseLineProject } from "./ExpenseLineProject";
 import { ExpenseLineTrackingCategoriesItem } from "./ExpenseLineTrackingCategoriesItem";
 import { ExpenseLineTrackingCategory } from "./ExpenseLineTrackingCategory";
+import { TransactionCurrencyEnum } from "./TransactionCurrencyEnum";
 
 export const ExpenseLine: core.serialization.ObjectSchema<
     serializers.accounting.ExpenseLine.Raw,
@@ -29,15 +29,13 @@ export const ExpenseLine: core.serialization.ObjectSchema<
     ),
     company: core.serialization.string().optional(),
     employee: ExpenseLineEmployee.optional(),
-    currency: ExpenseLineCurrency.optional(),
+    currency: TransactionCurrencyEnum.optional(),
     account: ExpenseLineAccount.optional(),
     contact: ExpenseLineContact.optional(),
     project: ExpenseLineProject.optional(),
     description: core.serialization.string().optional(),
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     taxRate: core.serialization.property("tax_rate", core.serialization.string().optional()),
-    quantity: core.serialization.string().optional(),
-    unitPrice: core.serialization.property("unit_price", core.serialization.string().optional()),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
 });
 
@@ -53,15 +51,13 @@ export declare namespace ExpenseLine {
         tracking_categories?: (ExpenseLineTrackingCategoriesItem.Raw | null | undefined)[] | null;
         company?: string | null;
         employee?: ExpenseLineEmployee.Raw | null;
-        currency?: ExpenseLineCurrency.Raw | null;
+        currency?: TransactionCurrencyEnum.Raw | null;
         account?: ExpenseLineAccount.Raw | null;
         contact?: ExpenseLineContact.Raw | null;
         project?: ExpenseLineProject.Raw | null;
         description?: string | null;
         exchange_rate?: string | null;
         tax_rate?: string | null;
-        quantity?: string | null;
-        unit_price?: string | null;
         remote_was_deleted?: boolean | null;
     }
 }
