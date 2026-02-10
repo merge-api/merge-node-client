@@ -3,7 +3,6 @@
 /**
  * @example
  *     {
- *         expand: "parent_collection",
  *         includeRemoteData: true,
  *         includeShellData: true,
  *         remoteFields: "collection_type",
@@ -12,7 +11,7 @@
  */
 export interface CollectionsRetrieveRequest {
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: "parent_collection";
+    expand?: "parent_collection" | "parent_collection"[];
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
     /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */

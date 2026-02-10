@@ -1,4 +1,4 @@
-export * from "./InvoicesListRequestExpand";
+export * from "./InvoicesListRequestExpandItem";
 export * from "./InvoicesListRequestStatus";
 export * from "./InvoicesListRequestType";
-export * from "./InvoicesRetrieveRequestExpand";
+export * from "./InvoicesRetrieveRequestExpandItem";

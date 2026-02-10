@@ -1,2 +1,2 @@
-export * from "./CompanyInfoListRequestExpand";
-export * from "./CompanyInfoRetrieveRequestExpand";
+export * from "./CompanyInfoListRequestExpandItem";
+export * from "./CompanyInfoRetrieveRequestExpandItem";

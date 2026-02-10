@@ -335,7 +335,7 @@ export interface ExpenseRequest {
      * * `ZWR` - Zimbabwean Dollar (2008)
      * * `ZWL` - Zimbabwean Dollar (2009)
      */
-    currency?: Merge.accounting.ExpenseRequestCurrency;
+    currency?: Merge.accounting.TransactionCurrencyEnum;
     /** The expense's exchange rate. */
     exchangeRate?: string;
     /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */

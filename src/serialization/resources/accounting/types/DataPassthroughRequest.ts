@@ -3,7 +3,7 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { DataPassthroughRequestMethod } from "./DataPassthroughRequestMethod";
+import { MethodEnum } from "./MethodEnum";
 import { MultipartFormFieldRequest } from "./MultipartFormFieldRequest";
 import { RequestFormatEnum } from "./RequestFormatEnum";
 
@@ -11,7 +11,7 @@ export const DataPassthroughRequest: core.serialization.ObjectSchema<
     serializers.accounting.DataPassthroughRequest.Raw,
     Merge.accounting.DataPassthroughRequest
 > = core.serialization.object({
-    method: DataPassthroughRequestMethod,
+    method: MethodEnum,
     path: core.serialization.string(),
     baseUrlOverride: core.serialization.property("base_url_override", core.serialization.string().optional()),
     data: core.serialization.string().optional(),
@@ -26,7 +26,7 @@ export const DataPassthroughRequest: core.serialization.ObjectSchema<
 
 export declare namespace DataPassthroughRequest {
     export interface Raw {
-        method: DataPassthroughRequestMethod.Raw;
+        method: MethodEnum.Raw;
         path: string;
         base_url_override?: string | null;
         data?: string | null;

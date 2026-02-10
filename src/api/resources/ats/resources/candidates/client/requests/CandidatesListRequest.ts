@@ -9,7 +9,6 @@ import type * as Merge from "../../../../../../index";
  *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
  *         emailAddresses: "email_addresses",
- *         expand: "applications",
  *         firstName: "first_name",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
@@ -32,7 +31,7 @@ export interface CandidatesListRequest {
     /** If provided, will only return candidates with these email addresses; multiple addresses can be separated by commas. */
     emailAddresses?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.ats.CandidatesListRequestExpand;
+    expand?: Merge.ats.CandidatesListRequestExpandItem | Merge.ats.CandidatesListRequestExpandItem[];
     /** If provided, will only return candidates with this first name. */
     firstName?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
