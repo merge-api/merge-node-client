@@ -1,2 +1,2 @@
-export { InvoiceEndpointRequest } from "./InvoiceEndpointRequest";
+export { InvoiceBulkRequest } from "./InvoiceBulkRequest";
 export { PatchedInvoiceEndpointRequest } from "./PatchedInvoiceEndpointRequest";

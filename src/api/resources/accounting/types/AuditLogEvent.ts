@@ -17,6 +17,7 @@ export interface AuditLogEvent {
      * * `API` - API
      * * `SYSTEM` - SYSTEM
      * * `MERGE_TEAM` - MERGE_TEAM
+     * * `SUPPORT` - SUPPORT
      */
     role: Merge.accounting.AuditLogEventRole;
     ipAddress: string;

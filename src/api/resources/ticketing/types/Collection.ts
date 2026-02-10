@@ -37,9 +37,10 @@ export interface Collection {
      * * `LIST` - LIST
      * * `PROJECT` - PROJECT
      */
-    collectionType?: Merge.ticketing.CollectionCollectionType;
+    collectionType?: Merge.ticketing.CollectionTypeEnum;
     /** The parent collection for this collection. */
     parentCollection?: Merge.ticketing.CollectionParentCollection;
+    permissions?: Merge.ticketing.CollectionPermissionsItem[];
     /** The 3rd party url of the Collection. */
     collectionUrl?: string;
     /** When the third party's collection was created. */

@@ -10,7 +10,6 @@ import type * as Merge from "../../../../../../index";
  *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         creatorId: "creator_id",
  *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
- *         expand: "application",
  *         includeDeletedData: true,
  *         includeRemoteData: true,
  *         includeShellData: true,
@@ -19,7 +18,8 @@ import type * as Merge from "../../../../../../index";
  *         pageSize: 1,
  *         remoteFields: "status",
  *         remoteId: "remote_id",
- *         showEnumOrigins: "status"
+ *         showEnumOrigins: "status",
+ *         status: "APPROVAL-SENT"
  *     }
  */
 export interface OffersListRequest {
@@ -34,7 +34,7 @@ export interface OffersListRequest {
     /** The pagination cursor value. */
     cursor?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.ats.OffersListRequestExpand;
+    expand?: Merge.ats.OffersListRequestExpandItem | Merge.ats.OffersListRequestExpandItem[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     includeDeletedData?: boolean;
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
@@ -53,4 +53,18 @@ export interface OffersListRequest {
     remoteId?: string;
     /** A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. [Learn more](https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter) */
     showEnumOrigins?: "status";
+    /**
+     * If provided, will only return offers with this status. Options: ('DRAFT', 'APPROVAL-SENT', 'APPROVED', 'SENT', 'SENT-MANUALLY', 'OPENED', 'DENIED', 'SIGNED', 'DEPRECATED')
+     *
+     * * `DRAFT` - DRAFT
+     * * `APPROVAL-SENT` - APPROVAL-SENT
+     * * `APPROVED` - APPROVED
+     * * `SENT` - SENT
+     * * `SENT-MANUALLY` - SENT-MANUALLY
+     * * `OPENED` - OPENED
+     * * `DENIED` - DENIED
+     * * `SIGNED` - SIGNED
+     * * `DEPRECATED` - DEPRECATED
+     */
+    status?: Merge.ats.OffersListRequestStatus;
 }

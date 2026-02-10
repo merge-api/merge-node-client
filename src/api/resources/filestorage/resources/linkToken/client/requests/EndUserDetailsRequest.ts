@@ -41,7 +41,7 @@ export interface EndUserDetailsRequest {
      * * `en` - en
      * * `de` - de
      */
-    language?: Merge.filestorage.LanguageEnum;
+    language?: Merge.filestorage.EndUserDetailsRequestLanguage;
     /** The boolean that indicates whether initial, periodic, and force syncs will be disabled. */
     areSyncsDisabled?: boolean;
     /** A JSON object containing integration-specific configuration options. */

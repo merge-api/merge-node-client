@@ -41,30 +41,14 @@ describe("FoldersClient", () => {
             ],
         };
         server
-            .mockEndpoint()
+            .mockEndpoint({ once: false })
             .get("/filestorage/v1/folders")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.filestorage.folders.list({
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            driveId: "drive_id",
-            expand: "drive",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            name: "name",
-            pageSize: 1,
-            parentFolderId: "parent_folder_id",
-            remoteId: "remote_id",
-        });
-        expect(response).toEqual({
+        const expected = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -99,7 +83,27 @@ describe("FoldersClient", () => {
                     ],
                 },
             ],
+        };
+        const page = await client.filestorage.folders.list({
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            driveId: "drive_id",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            name: "name",
+            pageSize: 1,
+            parentFolderId: "parent_folder_id",
+            remoteId: "remote_id",
         });
+
+        expect(expected.results).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("create", async () => {
@@ -279,7 +283,6 @@ describe("FoldersClient", () => {
             .build();
 
         const response = await client.filestorage.folders.retrieve("id", {
-            expand: "drive",
             includeRemoteData: true,
             includeShellData: true,
         });

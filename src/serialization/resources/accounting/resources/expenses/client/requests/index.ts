@@ -1,1 +1,1 @@
-export { ExpenseEndpointRequest } from "./ExpenseEndpointRequest";
+export { ExpenseBulkRequest } from "./ExpenseBulkRequest";

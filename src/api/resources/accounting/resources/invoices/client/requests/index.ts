@@ -1,4 +1,6 @@
-export type { InvoiceEndpointRequest } from "./InvoiceEndpointRequest";
+export type { InvoiceBulkRequest } from "./InvoiceBulkRequest";
+export type { InvoicesBatchObjectsListRequest } from "./InvoicesBatchObjectsListRequest";
+export type { InvoicesCreateRequest } from "./InvoicesCreateRequest";
 export type { InvoicesLineItemsRemoteFieldClassesListRequest } from "./InvoicesLineItemsRemoteFieldClassesListRequest";
 export type { InvoicesListRequest } from "./InvoicesListRequest";
 export type { InvoicesRemoteFieldClassesListRequest } from "./InvoicesRemoteFieldClassesListRequest";

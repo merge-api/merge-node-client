@@ -5,14 +5,13 @@ import type * as Merge from "../../../../../../index";
 /**
  * @example
  *     {
- *         expand: "candidate",
  *         includeRemoteData: true,
  *         includeShellData: true
  *     }
  */
 export interface ApplicationsRetrieveRequest {
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.ats.ApplicationsRetrieveRequestExpand;
+    expand?: Merge.ats.ApplicationsRetrieveRequestExpandItem | Merge.ats.ApplicationsRetrieveRequestExpandItem[];
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
     /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */
