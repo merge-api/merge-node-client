@@ -1,1 +1,0 @@
-export { ScheduledInterviewEndpointRequest } from "./ScheduledInterviewEndpointRequest";

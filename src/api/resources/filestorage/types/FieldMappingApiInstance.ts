@@ -7,4 +7,5 @@ export interface FieldMappingApiInstance {
     isIntegrationWide?: boolean;
     targetField?: Merge.filestorage.FieldMappingApiInstanceTargetField;
     remoteField?: Merge.filestorage.FieldMappingApiInstanceRemoteField;
+    jmesPath?: string;
 }
