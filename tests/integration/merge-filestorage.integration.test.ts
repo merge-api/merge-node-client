@@ -18,38 +18,38 @@ describe("Merge FileStorage Client Integration", () => {
   });
 
   it("should list drives", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.drives.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    const page = await client.filestorage.drives.list();
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 
   it("should list files", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.files.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    const page = await client.filestorage.files.list();
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 
   it("should list folders", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.folders.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    const page = await client.filestorage.folders.list();
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 
   it("should list groups", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.groups.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    const page = await client.filestorage.groups.list();
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 
   it("should list users", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.users.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    const page = await client.filestorage.users.list();
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 
 
@@ -66,9 +66,9 @@ describe("Merge FileStorage Client Integration", () => {
   });
 
   it("should list sync status", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.syncStatus.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
+    const page = await client.filestorage.syncStatus.list();
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
   });
 
   it("should list available actions", async () => {
@@ -78,24 +78,24 @@ describe("Merge FileStorage Client Integration", () => {
   });
 
   it("should list issues", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.issues.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    const page = await client.filestorage.issues.list();
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 
   it("should list linked accounts", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.linkedAccounts.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    const page = await client.filestorage.linkedAccounts.list();
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 
   it("should retrieve audit trail", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.auditTrail.list().withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    const page = await client.filestorage.auditTrail.list();
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 
   it("should retrieve account details fields exist", async () => {
@@ -107,20 +107,20 @@ describe("Merge FileStorage Client Integration", () => {
   });
 
   it("should list files with query params", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.files.list({
+    const page = await client.filestorage.files.list({
       expand: "permissions,folder",
-    }).withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    });
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 
   it("should list folders with query params", async () => {
-    const { data: body, rawResponse: response } = await client.filestorage.folders.list({
+    const page = await client.filestorage.folders.list({
       expand: "permissions,parent_folder",
-    }).withRawResponse();
-    expect(response.status).toBe(200);
-    expect(body).toBeTruthy();
-    expect(Array.isArray(body.results)).toBe(true);
+    });
+    expect(page.rawResponse.status).toBe(200);
+    expect(page.response).toBeTruthy();
+    expect(Array.isArray(page.response.results)).toBe(true);
   });
 });
