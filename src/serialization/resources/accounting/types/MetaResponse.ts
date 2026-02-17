@@ -13,24 +13,24 @@ export const MetaResponse: core.serialization.ObjectSchema<
         "request_schema",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()),
     ),
-    remoteFieldClasses: core.serialization.property(
-        "remote_field_classes",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    ),
     status: LinkedAccountStatus.optional(),
     hasConditionalParams: core.serialization.property("has_conditional_params", core.serialization.boolean()),
     hasRequiredLinkedAccountParams: core.serialization.property(
         "has_required_linked_account_params",
         core.serialization.boolean(),
     ),
+    remoteFields: core.serialization.property(
+        "remote_fields",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
 });
 
 export declare namespace MetaResponse {
     export interface Raw {
         request_schema: Record<string, unknown>;
-        remote_field_classes?: Record<string, unknown> | null;
         status?: LinkedAccountStatus.Raw | null;
         has_conditional_params: boolean;
         has_required_linked_account_params: boolean;
+        remote_fields?: string[] | null;
     }
 }

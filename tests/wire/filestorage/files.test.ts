@@ -47,34 +47,14 @@ describe("FilesClient", () => {
             ],
         };
         server
-            .mockEndpoint()
+            .mockEndpoint({ once: false })
             .get("/filestorage/v1/files")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.filestorage.files.list({
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            driveId: "drive_id",
-            expand: "drive",
-            folderId: "folder_id",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            mimeType: "mime_type",
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            name: "name",
-            orderBy: "-created_at",
-            pageSize: 1,
-            remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            remoteCreatedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            remoteId: "remote_id",
-        });
-        expect(response).toEqual({
+        const expected = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -115,7 +95,31 @@ describe("FilesClient", () => {
                     ],
                 },
             ],
+        };
+        const page = await client.filestorage.files.list({
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            driveId: "drive_id",
+            folderId: "folder_id",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            mimeType: "mime_type",
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            name: "name",
+            orderBy: "-created_at",
+            pageSize: 1,
+            remoteCreatedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            remoteCreatedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            remoteId: "remote_id",
         });
+
+        expect(expected.results).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("create", async () => {
@@ -313,7 +317,6 @@ describe("FilesClient", () => {
             .build();
 
         const response = await client.filestorage.files.retrieve("id", {
-            expand: "drive",
             includeRemoteData: true,
             includeShellData: true,
         });
@@ -413,25 +416,14 @@ describe("FilesClient", () => {
             ],
         };
         server
-            .mockEndpoint()
+            .mockEndpoint({ once: false })
             .get("/filestorage/v1/files/download/request-meta")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.filestorage.files.downloadRequestMetaList({
-            createdAfter: "created_after",
-            createdBefore: "created_before",
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            mimeTypes: "mime_types",
-            modifiedAfter: "modified_after",
-            modifiedBefore: "modified_before",
-            orderBy: "-created_at",
-            pageSize: 1,
-        });
-        expect(response).toEqual({
+        const expected = {
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -444,7 +436,23 @@ describe("FilesClient", () => {
                     },
                 },
             ],
+        };
+        const page = await client.filestorage.files.downloadRequestMetaList({
+            createdAfter: "created_after",
+            createdBefore: "created_before",
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            mimeTypes: "mime_types",
+            modifiedAfter: "modified_after",
+            modifiedBefore: "modified_before",
+            orderBy: "-created_at",
+            pageSize: 1,
         });
+
+        expect(expected.results).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("metaPostRetrieve", async () => {

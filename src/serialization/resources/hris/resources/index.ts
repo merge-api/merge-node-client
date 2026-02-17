@@ -14,6 +14,8 @@ export * from "./fieldMapping/client/requests";
 export * as forceResync from "./forceResync";
 export * as generateKey from "./generateKey";
 export * from "./generateKey/client/requests";
+export * as groups from "./groups";
+export * from "./groups/types";
 export * as issues from "./issues";
 export * from "./issues/types";
 export * as linkedAccounts from "./linkedAccounts";

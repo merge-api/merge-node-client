@@ -4,8 +4,9 @@ import type * as Merge from "../../../index";
 
 export interface MetaResponse {
     requestSchema: Record<string, unknown>;
-    remoteFieldClasses?: Record<string, unknown>;
     status?: Merge.accounting.LinkedAccountStatus;
     hasConditionalParams: boolean;
     hasRequiredLinkedAccountParams: boolean;
+    /** Remote field values to populate */
+    remoteFields?: string[];
 }

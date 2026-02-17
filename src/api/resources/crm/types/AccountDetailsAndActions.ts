@@ -26,4 +26,5 @@ export interface AccountDetailsAndActions {
     integration?: Merge.crm.AccountDetailsAndActionsIntegration;
     accountType: string;
     completedAt: Date;
+    integrationSpecificFields?: Record<string, unknown>;
 }

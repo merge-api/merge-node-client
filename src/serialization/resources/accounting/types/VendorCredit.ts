@@ -7,7 +7,7 @@ import { RemoteData } from "./RemoteData";
 import { VendorCreditAccountingPeriod } from "./VendorCreditAccountingPeriod";
 import { VendorCreditCompany } from "./VendorCreditCompany";
 import { VendorCreditCurrency } from "./VendorCreditCurrency";
-import { VendorCreditLine } from "./VendorCreditLine";
+import { VendorCreditLinesItem } from "./VendorCreditLinesItem";
 import { VendorCreditTrackingCategoriesItem } from "./VendorCreditTrackingCategoriesItem";
 import { VendorCreditVendor } from "./VendorCreditVendor";
 
@@ -27,7 +27,7 @@ export const VendorCredit: core.serialization.ObjectSchema<
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
     company: VendorCreditCompany.optional(),
-    lines: core.serialization.list(VendorCreditLine).optional(),
+    lines: core.serialization.list(VendorCreditLinesItem).optional(),
     trackingCategories: core.serialization.property(
         "tracking_categories",
         core.serialization.list(VendorCreditTrackingCategoriesItem.optional()).optional(),
@@ -61,7 +61,7 @@ export declare namespace VendorCredit {
         exchange_rate?: string | null;
         inclusive_of_tax?: boolean | null;
         company?: VendorCreditCompany.Raw | null;
-        lines?: VendorCreditLine.Raw[] | null;
+        lines?: VendorCreditLinesItem.Raw[] | null;
         tracking_categories?: (VendorCreditTrackingCategoriesItem.Raw | null | undefined)[] | null;
         applied_to_lines?: serializers.accounting.VendorCreditApplyLineForVendorCredit.Raw[] | null;
         remote_was_deleted?: boolean | null;

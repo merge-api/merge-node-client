@@ -5,7 +5,6 @@ import type * as Merge from "../../../../../../index";
 /**
  * @example
  *     {
- *         expand: "company",
  *         includeRemoteData: true,
  *         includeSensitiveFields: true,
  *         includeShellData: true,
@@ -15,7 +14,7 @@ import type * as Merge from "../../../../../../index";
  */
 export interface EmployeesRetrieveRequest {
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.hris.EmployeesRetrieveRequestExpand;
+    expand?: Merge.hris.EmployeesRetrieveRequestExpandItem | Merge.hris.EmployeesRetrieveRequestExpandItem[];
     /** Whether to include the original data Merge fetched from the third-party to produce these models. */
     includeRemoteData?: boolean;
     /** Whether to include sensitive fields (such as social security numbers) in the response. */

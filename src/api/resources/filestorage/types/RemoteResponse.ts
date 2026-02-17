@@ -16,6 +16,6 @@ export interface RemoteResponse {
     status: number;
     response?: unknown;
     responseHeaders?: Record<string, unknown>;
-    responseType?: Merge.filestorage.ResponseTypeEnum;
+    responseType?: Merge.filestorage.RemoteResponseResponseType;
     headers?: Record<string, unknown>;
 }

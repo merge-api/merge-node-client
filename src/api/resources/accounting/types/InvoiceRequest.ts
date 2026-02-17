@@ -378,7 +378,9 @@ export interface InvoiceRequest {
     /** Array of `Payment` object IDs. */
     payments?: (Merge.accounting.InvoiceRequestPaymentsItem | undefined)[];
     trackingCategories?: (Merge.accounting.InvoiceRequestTrackingCategoriesItem | undefined)[];
-    lineItems?: Merge.accounting.InvoiceLineItemRequest[];
+    /** The accounting period that the Invoice was generated in. */
+    accountingPeriod?: Merge.accounting.InvoiceRequestAccountingPeriod;
+    lineItems?: Merge.accounting.InvoiceRequestLineItemsItem[];
     purchaseOrders?: (Merge.accounting.InvoiceRequestPurchaseOrdersItem | undefined)[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
