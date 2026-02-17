@@ -3,7 +3,7 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { ResponseTypeEnum } from "./ResponseTypeEnum";
+import { RemoteResponseResponseType } from "./RemoteResponseResponseType";
 
 export const RemoteResponse: core.serialization.ObjectSchema<
     serializers.filestorage.RemoteResponse.Raw,
@@ -17,7 +17,7 @@ export const RemoteResponse: core.serialization.ObjectSchema<
         "response_headers",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
-    responseType: core.serialization.property("response_type", ResponseTypeEnum.optional()),
+    responseType: core.serialization.property("response_type", RemoteResponseResponseType.optional()),
     headers: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
@@ -28,7 +28,7 @@ export declare namespace RemoteResponse {
         status: number;
         response?: unknown;
         response_headers?: Record<string, unknown> | null;
-        response_type?: ResponseTypeEnum.Raw | null;
+        response_type?: RemoteResponseResponseType.Raw | null;
         headers?: Record<string, unknown> | null;
     }
 }

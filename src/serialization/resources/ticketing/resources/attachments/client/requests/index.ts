@@ -1,1 +1,0 @@
-export { TicketingAttachmentEndpointRequest } from "./TicketingAttachmentEndpointRequest";

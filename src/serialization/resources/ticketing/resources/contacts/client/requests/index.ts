@@ -1,1 +1,0 @@
-export { TicketingContactEndpointRequest } from "./TicketingContactEndpointRequest";
