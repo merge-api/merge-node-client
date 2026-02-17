@@ -37,7 +37,6 @@ export class ApplicationsClient {
      *         creditedToId: "credited_to_id",
      *         currentStageId: "current_stage_id",
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "candidate",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -50,105 +49,120 @@ export class ApplicationsClient {
      *         source: "source"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.ats.ApplicationsListRequest = {},
         requestOptions?: ApplicationsClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.ats.PaginatedApplicationList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.ats.ApplicationsListRequest = {},
-        requestOptions?: ApplicationsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.ats.PaginatedApplicationList>> {
-        const {
-            candidateId,
-            createdAfter,
-            createdBefore,
-            creditedToId,
-            currentStageId,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            jobId,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            rejectReasonId,
-            remoteId,
-            source,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            candidate_id: candidateId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            credited_to_id: creditedToId,
-            current_stage_id: currentStageId,
-            cursor,
-            expand:
-                expand != null
-                    ? serializers.ats.ApplicationsListRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            job_id: jobId,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            reject_reason_id: rejectReasonId,
-            remote_id: remoteId,
-            source,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.ats.Application, Merge.ats.PaginatedApplicationList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.ats.ApplicationsListRequest,
+            ): Promise<core.WithRawResponse<Merge.ats.PaginatedApplicationList>> => {
+                const {
+                    candidateId,
+                    createdAfter,
+                    createdBefore,
+                    creditedToId,
+                    currentStageId,
+                    cursor,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    jobId,
+                    modifiedAfter,
+                    modifiedBefore,
+                    pageSize,
+                    rejectReasonId,
+                    remoteId,
+                    source,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    candidate_id: candidateId,
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    credited_to_id: creditedToId,
+                    current_stage_id: currentStageId,
+                    cursor,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.ats.ApplicationsListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.ats.ApplicationsListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    job_id: jobId,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    page_size: pageSize,
+                    reject_reason_id: rejectReasonId,
+                    remote_id: remoteId,
+                    source,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "ats/v1/applications",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.ats.PaginatedApplicationList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/ats/v1/applications");
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "ats/v1/applications",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.ats.Application, Merge.ats.PaginatedApplicationList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.ats.PaginatedApplicationList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/ats/v1/applications");
     }
 
     /**
@@ -243,7 +257,6 @@ export class ApplicationsClient {
      *
      * @example
      *     await client.ats.applications.retrieve("id", {
-     *         expand: "candidate",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -263,12 +276,17 @@ export class ApplicationsClient {
     ): Promise<core.WithRawResponse<Merge.ats.Application>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.ats.ApplicationsRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.ats.ApplicationsRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.ats.ApplicationsRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };

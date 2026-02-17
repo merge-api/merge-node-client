@@ -19,7 +19,7 @@ export interface ActivityRequest {
      * * `EMAIL` - EMAIL
      * * `OTHER` - OTHER
      */
-    activityType?: Merge.ats.ActivityRequestActivityType;
+    activityType?: Merge.ats.ActivityTypeEnum;
     /** The activity's subject. */
     subject?: string;
     /** The activity's body. */

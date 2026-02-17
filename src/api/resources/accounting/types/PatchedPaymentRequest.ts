@@ -14,11 +14,11 @@ export interface PatchedPaymentRequest {
     /** The payment's transaction date. */
     transactionDate?: Date;
     /** The supplier, or customer involved in the payment. */
-    contact?: Merge.accounting.PatchedPaymentRequestContact;
+    contact?: string;
     /** The supplier’s or customer’s account in which the payment is made. */
-    account?: Merge.accounting.PatchedPaymentRequestAccount;
+    account?: string;
     /** The method which this payment was made by. */
-    paymentMethod?: Merge.accounting.PatchedPaymentRequestPaymentMethod;
+    paymentMethod?: string;
     /**
      * The payment's currency.
      *
@@ -333,7 +333,7 @@ export interface PatchedPaymentRequest {
     /** The payment's exchange rate. */
     exchangeRate?: string;
     /** The company the payment belongs to. */
-    company?: Merge.accounting.PatchedPaymentRequestCompany;
+    company?: string;
     /** The total amount of money being paid to the supplier, or customer, after taxes. */
     totalAmount?: number;
     /**
@@ -343,11 +343,11 @@ export interface PatchedPaymentRequest {
      * * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE
      */
     type?: Merge.accounting.PatchedPaymentRequestType;
-    trackingCategories?: (Merge.accounting.PatchedPaymentRequestTrackingCategoriesItem | undefined)[];
+    trackingCategories?: (string | undefined)[];
     /** The accounting period that the Payment was generated in. */
-    accountingPeriod?: Merge.accounting.PatchedPaymentRequestAccountingPeriod;
+    accountingPeriod?: string;
     /** A list of “Payment Applied to Lines” objects. */
-    appliedToLines?: Merge.accounting.PatchedPaymentRequestAppliedToLinesItem[];
+    appliedToLines?: Merge.accounting.PaymentLineItemRequest[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.accounting.RemoteFieldRequest[];

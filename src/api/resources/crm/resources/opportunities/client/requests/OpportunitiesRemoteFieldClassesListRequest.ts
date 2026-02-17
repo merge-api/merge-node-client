@@ -28,6 +28,6 @@ export interface OpportunitiesRemoteFieldClassesListRequest {
     isCommonModelField?: boolean;
     /** If provided, will only return remote fields classes with this is_custom value */
     isCustom?: boolean;
-    /** Number of results to return per page. */
+    /** Number of results to return per page. The maximum limit is 100. */
     pageSize?: number;
 }

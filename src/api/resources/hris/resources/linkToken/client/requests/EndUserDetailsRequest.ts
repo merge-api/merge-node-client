@@ -43,10 +43,4 @@ export interface EndUserDetailsRequest {
     areSyncsDisabled?: boolean;
     /** A JSON object containing integration-specific configuration options. */
     integrationSpecificConfig?: Record<string, unknown>;
-    /**
-     * When creating a Link token, you can specifiy the initial screen of Linking Flow for a completed Linked Account.
-     *
-     * * `SELECTIVE_SYNC` - SELECTIVE_SYNC
-     */
-    completedAccountInitialScreen?: Merge.hris.EndUserDetailsRequestCompletedAccountInitialScreen;
 }

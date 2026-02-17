@@ -33,11 +33,11 @@ export interface ContactRequest {
     /** The currency the contact's transactions are in. */
     currency?: string;
     /** The company the contact belongs to. */
-    company?: string;
+    company?: Merge.accounting.ContactRequestCompany;
     /** `Address` object IDs for the given `Contacts` object. */
-    addresses?: (Merge.accounting.ContactRequestAddressesItem | undefined)[];
+    addresses?: Merge.accounting.ContactRequestAddressesItem[];
     /** `AccountingPhoneNumber` object for the given `Contacts` object. */
-    phoneNumbers?: Merge.accounting.AccountingPhoneNumberRequest[];
+    phoneNumbers?: Merge.accounting.ContactRequestPhoneNumbersItem[];
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.accounting.RemoteFieldRequest[];

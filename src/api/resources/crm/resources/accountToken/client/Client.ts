@@ -94,4 +94,73 @@ export class AccountTokenClient {
             "/crm/v1/account-token/{public_token}",
         );
     }
+
+    /**
+     * Exchange Linked Account account tokens.
+     *
+     * @param {AccountTokenClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.crm.accountToken.regenerateCreate()
+     */
+    public regenerateCreate(
+        requestOptions?: AccountTokenClient.RequestOptions,
+    ): core.HttpResponsePromise<Merge.crm.RegenerateAccountToken> {
+        return core.HttpResponsePromise.fromPromise(this.__regenerateCreate(requestOptions));
+    }
+
+    private async __regenerateCreate(
+        requestOptions?: AccountTokenClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.crm.RegenerateAccountToken>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "crm/v1/account-token/regenerate",
+            ),
+            method: "POST",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.crm.RegenerateAccountToken.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/crm/v1/account-token/regenerate",
+        );
+    }
 }

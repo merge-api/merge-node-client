@@ -8,7 +8,7 @@ import { CreditNoteAppliedPaymentsItem } from "./CreditNoteAppliedPaymentsItem";
 import { CreditNoteCompany } from "./CreditNoteCompany";
 import { CreditNoteContact } from "./CreditNoteContact";
 import { CreditNoteCurrency } from "./CreditNoteCurrency";
-import { CreditNoteLineItem } from "./CreditNoteLineItem";
+import { CreditNoteLineItemsItem } from "./CreditNoteLineItemsItem";
 import { CreditNotePaymentsItem } from "./CreditNotePaymentsItem";
 import { CreditNoteStatus } from "./CreditNoteStatus";
 import { CreditNoteTrackingCategoriesItem } from "./CreditNoteTrackingCategoriesItem";
@@ -31,7 +31,7 @@ export const CreditNote: core.serialization.ObjectSchema<
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
     remainingCredit: core.serialization.property("remaining_credit", core.serialization.number().optional()),
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
-    lineItems: core.serialization.property("line_items", core.serialization.list(CreditNoteLineItem).optional()),
+    lineItems: core.serialization.property("line_items", core.serialization.list(CreditNoteLineItemsItem).optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
         core.serialization.list(CreditNoteTrackingCategoriesItem.optional()).optional(),
@@ -74,7 +74,7 @@ export declare namespace CreditNote {
         total_amount?: number | null;
         remaining_credit?: number | null;
         inclusive_of_tax?: boolean | null;
-        line_items?: CreditNoteLineItem.Raw[] | null;
+        line_items?: CreditNoteLineItemsItem.Raw[] | null;
         tracking_categories?: (CreditNoteTrackingCategoriesItem.Raw | null | undefined)[] | null;
         currency?: CreditNoteCurrency.Raw | null;
         remote_created_at?: string | null;

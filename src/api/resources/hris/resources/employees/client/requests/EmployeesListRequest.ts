@@ -13,7 +13,6 @@ import type * as Merge from "../../../../../../index";
  *         employeeNumber: "employee_number",
  *         employmentStatus: "ACTIVE",
  *         employmentType: "employment_type",
- *         expand: "company",
  *         firstName: "first_name",
  *         groups: "groups",
  *         homeLocationId: "home_location_id",
@@ -65,7 +64,7 @@ export interface EmployeesListRequest {
     /** If provided, will only return employees that have an employment of the specified employment type. */
     employmentType?: string;
     /** Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. */
-    expand?: Merge.hris.EmployeesListRequestExpand;
+    expand?: Merge.hris.EmployeesListRequestExpandItem | Merge.hris.EmployeesListRequestExpandItem[];
     /** If provided, will only return employees with this first name. */
     firstName?: string;
     /** If provided, will only return employees matching the group ids; multiple groups can be separated by commas. */
@@ -90,7 +89,7 @@ export interface EmployeesListRequest {
     modifiedAfter?: Date;
     /** If provided, only objects synced by Merge before this date time will be returned. */
     modifiedBefore?: Date;
-    /** Number of results to return per page. */
+    /** Number of results to return per page. The maximum limit is 100. */
     pageSize?: number;
     /** If provided, will only return employees for this pay group */
     payGroupId?: string;
