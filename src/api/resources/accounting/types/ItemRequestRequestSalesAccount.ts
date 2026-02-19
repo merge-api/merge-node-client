@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * References the default account used to record a sale.
  */
-export type ItemRequestRequestSalesAccount = string | Merge.accounting.Account;
+export type ItemRequestRequestSalesAccount = string | Merge.accounting.AccountRequest;

@@ -7,10 +7,10 @@ import { JournalEntryAccountingPeriod } from "./JournalEntryAccountingPeriod";
 import { JournalEntryAppliedPaymentsItem } from "./JournalEntryAppliedPaymentsItem";
 import { JournalEntryCompany } from "./JournalEntryCompany";
 import { JournalEntryCurrency } from "./JournalEntryCurrency";
+import { JournalEntryLinesItem } from "./JournalEntryLinesItem";
 import { JournalEntryPaymentsItem } from "./JournalEntryPaymentsItem";
 import { JournalEntryPostingStatus } from "./JournalEntryPostingStatus";
 import { JournalEntryTrackingCategoriesItem } from "./JournalEntryTrackingCategoriesItem";
-import { JournalLine } from "./JournalLine";
 import { RemoteData } from "./RemoteData";
 import { RemoteField } from "./RemoteField";
 
@@ -33,7 +33,7 @@ export const JournalEntry: core.serialization.ObjectSchema<
     exchangeRate: core.serialization.property("exchange_rate", core.serialization.string().optional()),
     company: JournalEntryCompany.optional(),
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
-    lines: core.serialization.list(JournalLine).optional(),
+    lines: core.serialization.list(JournalEntryLinesItem).optional(),
     journalNumber: core.serialization.property("journal_number", core.serialization.string().optional()),
     trackingCategories: core.serialization.property(
         "tracking_categories",
@@ -66,7 +66,7 @@ export declare namespace JournalEntry {
         exchange_rate?: string | null;
         company?: JournalEntryCompany.Raw | null;
         inclusive_of_tax?: boolean | null;
-        lines?: JournalLine.Raw[] | null;
+        lines?: JournalEntryLinesItem.Raw[] | null;
         journal_number?: string | null;
         tracking_categories?: (JournalEntryTrackingCategoriesItem.Raw | null | undefined)[] | null;
         remote_was_deleted?: boolean | null;

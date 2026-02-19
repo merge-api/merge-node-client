@@ -46,96 +46,111 @@ export class LinkedAccountsClient {
      *         status: "status"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.ats.LinkedAccountsListRequest = {},
         requestOptions?: LinkedAccountsClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.ats.PaginatedAccountDetailsAndActionsList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.ats.LinkedAccountsListRequest = {},
-        requestOptions?: LinkedAccountsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.ats.PaginatedAccountDetailsAndActionsList>> {
-        const {
-            category,
-            cursor,
-            endUserEmailAddress,
-            endUserOrganizationName,
-            endUserOriginId,
-            endUserOriginIds,
-            id,
-            ids,
-            includeDuplicates,
-            integrationName,
-            isTestAccount,
-            pageSize,
-            status,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            category:
-                category != null
-                    ? serializers.ats.LinkedAccountsListRequestCategory.jsonOrThrow(category, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            cursor,
-            end_user_email_address: endUserEmailAddress,
-            end_user_organization_name: endUserOrganizationName,
-            end_user_origin_id: endUserOriginId,
-            end_user_origin_ids: endUserOriginIds,
-            id,
-            ids,
-            include_duplicates: includeDuplicates,
-            integration_name: integrationName,
-            is_test_account: isTestAccount,
-            page_size: pageSize,
-            status,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.ats.AccountDetailsAndActions, Merge.ats.PaginatedAccountDetailsAndActionsList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.ats.LinkedAccountsListRequest,
+            ): Promise<core.WithRawResponse<Merge.ats.PaginatedAccountDetailsAndActionsList>> => {
+                const {
+                    category,
+                    cursor,
+                    endUserEmailAddress,
+                    endUserOrganizationName,
+                    endUserOriginId,
+                    endUserOriginIds,
+                    id,
+                    ids,
+                    includeDuplicates,
+                    integrationName,
+                    isTestAccount,
+                    pageSize,
+                    status,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    category:
+                        category != null
+                            ? serializers.ats.LinkedAccountsListRequestCategory.jsonOrThrow(category, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    cursor,
+                    end_user_email_address: endUserEmailAddress,
+                    end_user_organization_name: endUserOrganizationName,
+                    end_user_origin_id: endUserOriginId,
+                    end_user_origin_ids: endUserOriginIds,
+                    id,
+                    ids,
+                    include_duplicates: includeDuplicates,
+                    integration_name: integrationName,
+                    is_test_account: isTestAccount,
+                    page_size: pageSize,
+                    status,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "ats/v1/linked-accounts",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.ats.PaginatedAccountDetailsAndActionsList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/ats/v1/linked-accounts",
+                );
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "ats/v1/linked-accounts",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.ats.AccountDetailsAndActions, Merge.ats.PaginatedAccountDetailsAndActionsList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.ats.PaginatedAccountDetailsAndActionsList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/ats/v1/linked-accounts");
     }
 }

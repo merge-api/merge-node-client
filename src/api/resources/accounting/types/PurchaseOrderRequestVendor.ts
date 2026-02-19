@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The party fulfilling the purchase order.
  */
-export type PurchaseOrderRequestVendor = string | Merge.accounting.Contact;
+export type PurchaseOrderRequestVendor = string | Merge.accounting.ContactRequest;

@@ -3,9 +3,9 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { AccountingPhoneNumber } from "./AccountingPhoneNumber";
-import { Address } from "./Address";
+import { CompanyInfoAddressesItem } from "./CompanyInfoAddressesItem";
 import { CompanyInfoCurrency } from "./CompanyInfoCurrency";
+import { CompanyInfoPhoneNumbersItem } from "./CompanyInfoPhoneNumbersItem";
 import { RemoteData } from "./RemoteData";
 
 export const CompanyInfo: core.serialization.ObjectSchema<
@@ -24,10 +24,10 @@ export const CompanyInfo: core.serialization.ObjectSchema<
     currency: CompanyInfoCurrency.optional(),
     remoteCreatedAt: core.serialization.property("remote_created_at", core.serialization.date().optional()),
     urls: core.serialization.list(core.serialization.string().optional()).optional(),
-    addresses: core.serialization.list(Address).optional(),
+    addresses: core.serialization.list(CompanyInfoAddressesItem).optional(),
     phoneNumbers: core.serialization.property(
         "phone_numbers",
-        core.serialization.list(AccountingPhoneNumber).optional(),
+        core.serialization.list(CompanyInfoPhoneNumbersItem).optional(),
     ),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
@@ -51,8 +51,8 @@ export declare namespace CompanyInfo {
         currency?: CompanyInfoCurrency.Raw | null;
         remote_created_at?: string | null;
         urls?: (string | null | undefined)[] | null;
-        addresses?: Address.Raw[] | null;
-        phone_numbers?: AccountingPhoneNumber.Raw[] | null;
+        addresses?: CompanyInfoAddressesItem.Raw[] | null;
+        phone_numbers?: CompanyInfoPhoneNumbersItem.Raw[] | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_data?: RemoteData.Raw[] | null;

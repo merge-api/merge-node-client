@@ -363,7 +363,7 @@ export interface PurchaseOrder {
     exchangeRate?: string;
     /** The payment term that applies to this transaction. */
     paymentTerm?: Merge.accounting.PurchaseOrderPaymentTerm;
-    lineItems?: Merge.accounting.PurchaseOrderLineItem[];
+    lineItems?: Merge.accounting.PurchaseOrderLineItemsItem[];
     /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
     inclusiveOfTax?: boolean;
     trackingCategories?: (Merge.accounting.PurchaseOrderTrackingCategoriesItem | undefined)[];

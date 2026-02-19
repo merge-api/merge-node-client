@@ -36,22 +36,22 @@ describe("Enum Response Handling", () => {
         });
 
         // Make the request - should not throw
-        const response = await accounting.trackingCategories.list();
+        const page = await accounting.trackingCategories.list();
 
         // Verify the response contains the unknown enum values preserved
-        expect(response.results).toHaveLength(2);
+        expect(page.data).toHaveLength(2);
 
         // First tracking category with unknown enums
-        expect(response.results[0].id).toBe("tc_123");
-        expect(response.results[0].name).toBe("Location Category");
-        expect(response.results[0].categoryType).toBe("LOCATION");
-        expect(response.results[0].status).toBe("ARCHIVED");
+        expect(page.data[0].id).toBe("tc_123");
+        expect(page.data[0].name).toBe("Location Category");
+        expect(page.data[0].categoryType).toBe("LOCATION");
+        expect(page.data[0].status).toBe("ARCHIVED");
 
         // Second tracking category with unknown enums
-        expect(response.results[1].id).toBe("tc_456");
-        expect(response.results[1].name).toBe("Project Category");
-        expect(response.results[1].categoryType).toBe("PROJECT_CODE");
-        expect(response.results[1].status).toBe("PENDING_APPROVAL");
+        expect(page.data[1].id).toBe("tc_456");
+        expect(page.data[1].name).toBe("Project Category");
+        expect(page.data[1].categoryType).toBe("PROJECT_CODE");
+        expect(page.data[1].status).toBe("PENDING_APPROVAL");
 
         // Verify the mock was called correctly
         expect(mockFetcher).toHaveBeenCalledWith(
@@ -87,13 +87,13 @@ describe("Enum Response Handling", () => {
         });
 
         // Test request with unknown enum (should not throw)
-        const response = await accounting.trackingCategories.list({
+        const page = await accounting.trackingCategories.list({
             categoryType: "LOCATION"  // Unknown enum in request
         });
 
         // Verify response deserialization works with unknown enums
-        expect(response.results[0].categoryType).toBe("LOCATION");
-        expect(response.results[0].status).toBe("ACTIVE");
+        expect(page.data[0].categoryType).toBe("LOCATION");
+        expect(page.data[0].status).toBe("ACTIVE");
 
         // Verify the request was made with the unknown enum value
         expect(mockFetcher).toHaveBeenCalledWith(
@@ -126,10 +126,10 @@ describe("Enum Response Handling", () => {
             fetcher: mockFetcher
         });
 
-        const response = await accounting.accounts.list();
+        const page = await accounting.accounts.list();
 
-        expect(response.results[0].classification).toBe("FIXED_ASSET");
-        expect(response.results[0].status).toBe("SUSPENDED");
+        expect(page.data[0].classification).toBe("FIXED_ASSET");
+        expect(page.data[0].status).toBe("SUSPENDED");
     });
 
     it("should handle unknown enums in nested objects", async () => {
@@ -154,14 +154,14 @@ describe("Enum Response Handling", () => {
             fetcher: mockFetcher
         });
 
-        const response = await accounting.accounts.list();
+        const page = await accounting.accounts.list();
 
         // Test top-level unknown enum
-        expect(response.results[0].classification).toBe("CURRENT_ASSET");
+        expect(page.data[0].classification).toBe("CURRENT_ASSET");
 
         // Test nested unknown enum (if the field exists)
-        if (response.results[0].parentAccount?.classification) {
-            expect(response.results[0].parentAccount.classification).toBe("FIXED_ASSET");
+        if (page.data[0].parentAccount?.classification) {
+            expect(page.data[0].parentAccount.classification).toBe("FIXED_ASSET");
         }
     });
 
@@ -187,10 +187,10 @@ describe("Enum Response Handling", () => {
             fetcher: mockFetcher
         });
 
-        const response = await accounting.contacts.list();
+        const page = await accounting.contacts.list();
 
-        expect(response.results[0].phoneNumbers[1].type).toBe("WORK_DIRECT");
-        expect(response.results[0].phoneNumbers[2].type).toBe("HOME_FAX");
+        expect(page.data[0].phoneNumbers[1].type).toBe("WORK_DIRECT");
+        expect(page.data[0].phoneNumbers[2].type).toBe("HOME_FAX");
     });
 
     it("should handle unknown enums in line items", async () => {
@@ -232,17 +232,17 @@ describe("Enum Response Handling", () => {
             fetcher: mockFetcher
         });
 
-        const response = await accounting.invoices.list();
+        const page = await accounting.invoices.list();
 
         // Test invoice-level unknown enum
-        expect(response.results[0].status).toBe("PENDING_REVIEW");
+        expect(page.data[0].status).toBe("PENDING_REVIEW");
 
         // Test line item structure exists
-        expect(response.results[0].lineItems).toBeDefined();
-        expect(response.results[0].lineItems.length).toBe(2);
+        expect(page.data[0].lineItems).toBeDefined();
+        expect(page.data[0].lineItems.length).toBe(2);
 
         // Test unknown enums in first line item (check if properties exist first)
-        const firstLineItem = response.results[0].lineItems[0];
+        const firstLineItem = page.data[0].lineItems[0];
         if (firstLineItem.item?.classification) {
             expect(firstLineItem.item.classification).toBe("INVENTORY_ASSET");
         }
@@ -257,7 +257,7 @@ describe("Enum Response Handling", () => {
         }
 
         // Test unknown enum in second line item
-        const secondLineItem = response.results[0].lineItems[1];
+        const secondLineItem = page.data[0].lineItems[1];
         if (secondLineItem.item?.classification) {
             expect(secondLineItem.item.classification).toBe("SERVICE_ITEM");
         }
@@ -282,10 +282,10 @@ describe("Enum Response Handling", () => {
             fetcher: mockFetcher
         });
 
-        const response = await accounting.accounts.list();
+        const page = await accounting.accounts.list();
 
-        expect(response.results[0].status).toBe("");
-        expect(response.results[0].classification).toBe("SPECIAL-CHARS_123");
+        expect(page.data[0].status).toBe("");
+        expect(page.data[0].classification).toBe("SPECIAL-CHARS_123");
     });
 
     it("should handle unknown enums across different API categories", async () => {
@@ -340,17 +340,17 @@ describe("Enum Response Handling", () => {
             fetcher: mockFetcher
         });
 
-        const response = await crm.opportunities.list();
+        const page = await crm.opportunities.list();
 
         // Test unknown enums across different levels
-        expect(response.results[0].status).toBe("PROPOSAL_SENT");
+        expect(page.data[0].status).toBe("PROPOSAL_SENT");
 
-        if (response.results[0].stage?.stageType) {
-            expect(response.results[0].stage.stageType).toBe("QUALIFICATION_EXTENDED");
+        if (page.data[0].stage?.stageType) {
+            expect(page.data[0].stage.stageType).toBe("QUALIFICATION_EXTENDED");
         }
 
-        if (response.results[0].owner?.role) {
-            expect(response.results[0].owner.role).toBe("SENIOR_SALES_REP");
+        if (page.data[0].owner?.role) {
+            expect(page.data[0].owner.role).toBe("SENIOR_SALES_REP");
         }
     });
 });
