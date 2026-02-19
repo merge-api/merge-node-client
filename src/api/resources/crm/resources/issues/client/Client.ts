@@ -47,97 +47,109 @@ export class IssuesClient {
      *         status: "ONGOING"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.crm.IssuesListRequest = {},
         requestOptions?: IssuesClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.crm.PaginatedIssueList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.crm.IssuesListRequest = {},
-        requestOptions?: IssuesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.crm.PaginatedIssueList>> {
-        const {
-            accountToken,
-            cursor,
-            endDate,
-            endUserOrganizationName,
-            firstIncidentTimeAfter,
-            firstIncidentTimeBefore,
-            includeMuted,
-            integrationName,
-            lastIncidentTimeAfter,
-            lastIncidentTimeBefore,
-            linkedAccountId,
-            pageSize,
-            startDate,
-            status,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            account_token: accountToken,
-            cursor,
-            end_date: endDate,
-            end_user_organization_name: endUserOrganizationName,
-            first_incident_time_after: firstIncidentTimeAfter?.toISOString(),
-            first_incident_time_before: firstIncidentTimeBefore?.toISOString(),
-            include_muted: includeMuted,
-            integration_name: integrationName,
-            last_incident_time_after: lastIncidentTimeAfter?.toISOString(),
-            last_incident_time_before: lastIncidentTimeBefore?.toISOString(),
-            linked_account_id: linkedAccountId,
-            page_size: pageSize,
-            start_date: startDate,
-            status:
-                status != null
-                    ? serializers.crm.IssuesListRequestStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
-                    : undefined,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.crm.Issue, Merge.crm.PaginatedIssueList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.crm.IssuesListRequest,
+            ): Promise<core.WithRawResponse<Merge.crm.PaginatedIssueList>> => {
+                const {
+                    accountToken,
+                    cursor,
+                    endDate,
+                    endUserOrganizationName,
+                    firstIncidentTimeAfter,
+                    firstIncidentTimeBefore,
+                    includeMuted,
+                    integrationName,
+                    lastIncidentTimeAfter,
+                    lastIncidentTimeBefore,
+                    linkedAccountId,
+                    pageSize,
+                    startDate,
+                    status,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    account_token: accountToken,
+                    cursor,
+                    end_date: endDate,
+                    end_user_organization_name: endUserOrganizationName,
+                    first_incident_time_after: firstIncidentTimeAfter?.toISOString(),
+                    first_incident_time_before: firstIncidentTimeBefore?.toISOString(),
+                    include_muted: includeMuted,
+                    integration_name: integrationName,
+                    last_incident_time_after: lastIncidentTimeAfter?.toISOString(),
+                    last_incident_time_before: lastIncidentTimeBefore?.toISOString(),
+                    linked_account_id: linkedAccountId,
+                    page_size: pageSize,
+                    start_date: startDate,
+                    status:
+                        status != null
+                            ? serializers.crm.IssuesListRequestStatus.jsonOrThrow(status, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "crm/v1/issues",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.crm.PaginatedIssueList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/crm/v1/issues");
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "crm/v1/issues",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.crm.Issue, Merge.crm.PaginatedIssueList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.crm.PaginatedIssueList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/crm/v1/issues");
     }
 
     /**

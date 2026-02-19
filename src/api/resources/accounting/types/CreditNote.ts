@@ -42,7 +42,7 @@ export interface CreditNote {
     remainingCredit?: number;
     /** If the transaction is inclusive or exclusive of tax. `True` if inclusive, `False` if exclusive. */
     inclusiveOfTax?: boolean;
-    lineItems?: Merge.accounting.CreditNoteLineItem[];
+    lineItems?: Merge.accounting.CreditNoteLineItemsItem[];
     trackingCategories?: (Merge.accounting.CreditNoteTrackingCategoriesItem | undefined)[];
     /**
      * The credit note's currency.

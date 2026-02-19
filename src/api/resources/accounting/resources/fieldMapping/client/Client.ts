@@ -105,6 +105,7 @@ export class FieldMappingClient {
      * @example
      *     await client.accounting.fieldMapping.fieldMappingsCreate({
      *         excludeRemoteFieldMetadata: true,
+     *         remoteDataIterationCount: 1,
      *         targetFieldName: "example_target_field_name",
      *         targetFieldDescription: "this is a example description of the target field",
      *         remoteFieldTraversalPath: ["example_remote_field"],
@@ -124,9 +125,10 @@ export class FieldMappingClient {
         request: Merge.accounting.CreateFieldMappingRequest,
         requestOptions?: FieldMappingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.FieldMappingInstanceResponse>> {
-        const { excludeRemoteFieldMetadata, ..._body } = request;
+        const { excludeRemoteFieldMetadata, remoteDataIterationCount, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             exclude_remote_field_metadata: excludeRemoteFieldMetadata,
+            remote_data_iteration_count: remoteDataIterationCount,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -265,7 +267,9 @@ export class FieldMappingClient {
      * @param {FieldMappingClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id")
+     *     await client.accounting.fieldMapping.fieldMappingsPartialUpdate("field_mapping_id", {
+     *         remoteDataIterationCount: 1
+     *     })
      */
     public fieldMappingsPartialUpdate(
         field_mapping_id: string,
@@ -282,6 +286,10 @@ export class FieldMappingClient {
         request: Merge.accounting.PatchedEditFieldMappingRequest = {},
         requestOptions?: FieldMappingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.FieldMappingInstanceResponse>> {
+        const { remoteDataIterationCount, ..._body } = request;
+        const _queryParams: Record<string, unknown> = {
+            remote_data_iteration_count: remoteDataIterationCount,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -299,9 +307,9 @@ export class FieldMappingClient {
             method: "PATCH",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             requestType: "json",
-            body: serializers.accounting.PatchedEditFieldMappingRequest.jsonOrThrow(request, {
+            body: serializers.accounting.PatchedEditFieldMappingRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,

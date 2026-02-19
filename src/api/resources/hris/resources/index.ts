@@ -33,6 +33,7 @@ export * as generateKey from "./generateKey";
 export * from "./generateKey/client/requests";
 export * as groups from "./groups";
 export * from "./groups/client/requests";
+export * from "./groups/types";
 export * as issues from "./issues";
 export * from "./issues/client/requests";
 export * from "./issues/types";

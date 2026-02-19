@@ -7,8 +7,8 @@ import type * as serializers from "../../../index";
 export const CategoriesEnum: core.serialization.Schema<
     serializers.ticketing.CategoriesEnum.Raw,
     Merge.ticketing.CategoriesEnum
-> = core.serialization.enum_(["hris", "ats", "accounting", "ticketing", "crm", "mktg", "filestorage", "knowledgebase"]);
+> = core.serialization.enum_(["hris", "ats", "accounting", "ticketing", "crm", "mktg", "filestorage"]);
 
 export declare namespace CategoriesEnum {
-    export type Raw = "hris" | "ats" | "accounting" | "ticketing" | "crm" | "mktg" | "filestorage" | "knowledgebase";
+    export type Raw = "hris" | "ats" | "accounting" | "ticketing" | "crm" | "mktg" | "filestorage";
 }

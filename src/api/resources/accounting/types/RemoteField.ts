@@ -3,6 +3,6 @@
 import type * as Merge from "../../../index";
 
 export interface RemoteField {
-    remoteFieldClass: Merge.accounting.RemoteFieldRemoteFieldClass;
-    value?: unknown;
+    remoteFieldClass: Merge.accounting.RemoteFieldClass;
+    value?: Record<string, unknown>;
 }

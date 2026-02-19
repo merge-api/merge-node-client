@@ -2,4 +2,4 @@
 
 import type * as Merge from "../../../index";
 
-export type InvoiceLineItemRequestAccount = string | Merge.accounting.Account;
+export type InvoiceLineItemRequestAccount = string | Merge.accounting.AccountRequest;

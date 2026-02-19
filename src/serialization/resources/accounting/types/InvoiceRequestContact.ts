@@ -3,13 +3,13 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { Contact } from "./Contact";
+import { ContactRequest } from "./ContactRequest";
 
 export const InvoiceRequestContact: core.serialization.Schema<
     serializers.accounting.InvoiceRequestContact.Raw,
     Merge.accounting.InvoiceRequestContact
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), Contact]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), ContactRequest]);
 
 export declare namespace InvoiceRequestContact {
-    export type Raw = string | Contact.Raw;
+    export type Raw = string | ContactRequest.Raw;
 }

@@ -343,8 +343,8 @@ export interface CompanyInfo {
     remoteCreatedAt?: Date;
     /** The company's urls. */
     urls?: (string | undefined)[];
-    addresses?: Merge.accounting.Address[];
-    phoneNumbers?: Merge.accounting.AccountingPhoneNumber[];
+    addresses?: Merge.accounting.CompanyInfoAddressesItem[];
+    phoneNumbers?: Merge.accounting.CompanyInfoPhoneNumbersItem[];
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
     fieldMappings?: Record<string, unknown>;

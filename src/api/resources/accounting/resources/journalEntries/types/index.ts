@@ -1,2 +1,2 @@
-export * from "./JournalEntriesListRequestExpand";
-export * from "./JournalEntriesRetrieveRequestExpand";
+export * from "./JournalEntriesListRequestExpandItem";
+export * from "./JournalEntriesRetrieveRequestExpandItem";

@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The credit note's contact.
  */
-export type CreditNoteLineItemRequestContact = string | Merge.accounting.Contact;
+export type CreditNoteLineItemRequestContact = string | Merge.accounting.ContactRequest;

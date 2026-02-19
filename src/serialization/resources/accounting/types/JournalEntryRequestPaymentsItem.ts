@@ -3,13 +3,13 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { Payment } from "./Payment";
+import { PaymentRequest } from "./PaymentRequest";
 
 export const JournalEntryRequestPaymentsItem: core.serialization.Schema<
     serializers.accounting.JournalEntryRequestPaymentsItem.Raw,
     Merge.accounting.JournalEntryRequestPaymentsItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), Payment]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), PaymentRequest]);
 
 export declare namespace JournalEntryRequestPaymentsItem {
-    export type Raw = string | Payment.Raw;
+    export type Raw = string | PaymentRequest.Raw;
 }

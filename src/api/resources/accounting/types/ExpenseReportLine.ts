@@ -336,7 +336,7 @@ export interface ExpenseReportLine {
      * * `ZWR` - Zimbabwean Dollar (2008)
      * * `ZWL` - Zimbabwean Dollar (2009)
      */
-    currency?: Merge.accounting.TransactionCurrencyEnum;
+    currency?: Merge.accounting.ExpenseReportLineCurrency;
     /** Exchange rate used if the line item is in a foreign currency. */
     exchangeRate?: string;
     /** Whether the expense line is billable to a client or project. */
