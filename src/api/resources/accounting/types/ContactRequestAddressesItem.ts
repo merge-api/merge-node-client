@@ -2,4 +2,4 @@
 
 import type * as Merge from "../../../index";
 
-export type ContactRequestAddressesItem = string | Merge.accounting.Address;
+export type ContactRequestAddressesItem = string | Merge.accounting.AddressRequest;

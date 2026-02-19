@@ -36,7 +36,6 @@ export class FilesClient {
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
      *         driveId: "drive_id",
-     *         expand: "drive",
      *         folderId: "folder_id",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
@@ -52,112 +51,127 @@ export class FilesClient {
      *         remoteId: "remote_id"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.filestorage.FilesListRequest = {},
         requestOptions?: FilesClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.filestorage.PaginatedFileList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.filestorage.FilesListRequest = {},
-        requestOptions?: FilesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.filestorage.PaginatedFileList>> {
-        const {
-            createdAfter,
-            createdBefore,
-            cursor,
-            driveId,
-            expand,
-            folderId,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            mimeType,
-            modifiedAfter,
-            modifiedBefore,
-            name,
-            orderBy,
-            pageSize,
-            remoteCreatedAfter,
-            remoteCreatedBefore,
-            remoteId,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            drive_id: driveId,
-            expand:
-                expand != null
-                    ? serializers.filestorage.FilesListRequestExpand.jsonOrThrow(expand, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            folder_id: folderId,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            mime_type: mimeType,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            name,
-            order_by:
-                orderBy != null
-                    ? serializers.filestorage.FilesListRequestOrderBy.jsonOrThrow(orderBy, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            page_size: pageSize,
-            remote_created_after: remoteCreatedAfter?.toISOString(),
-            remote_created_before: remoteCreatedBefore?.toISOString(),
-            remote_id: remoteId,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.filestorage.File_, Merge.filestorage.PaginatedFileList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.filestorage.FilesListRequest,
+            ): Promise<core.WithRawResponse<Merge.filestorage.PaginatedFileList>> => {
+                const {
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    driveId,
+                    expand,
+                    folderId,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    mimeType,
+                    modifiedAfter,
+                    modifiedBefore,
+                    name,
+                    orderBy,
+                    pageSize,
+                    remoteCreatedAfter,
+                    remoteCreatedBefore,
+                    remoteId,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    drive_id: driveId,
+                    expand: Array.isArray(expand)
+                        ? expand.map((item) =>
+                              serializers.filestorage.FilesListRequestExpandItem.jsonOrThrow(item, {
+                                  unrecognizedObjectKeys: "strip",
+                              }),
+                          )
+                        : expand != null
+                          ? serializers.filestorage.FilesListRequestExpandItem.jsonOrThrow(expand, {
+                                unrecognizedObjectKeys: "strip",
+                            })
+                          : undefined,
+                    folder_id: folderId,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    mime_type: mimeType,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    name,
+                    order_by:
+                        orderBy != null
+                            ? serializers.filestorage.FilesListRequestOrderBy.jsonOrThrow(orderBy, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    page_size: pageSize,
+                    remote_created_after: remoteCreatedAfter?.toISOString(),
+                    remote_created_before: remoteCreatedBefore?.toISOString(),
+                    remote_id: remoteId,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "filestorage/v1/files",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.filestorage.PaginatedFileList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/filestorage/v1/files");
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "filestorage/v1/files",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.filestorage.File_, Merge.filestorage.PaginatedFileList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.filestorage.PaginatedFileList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/filestorage/v1/files");
     }
 
     /**
@@ -250,7 +264,6 @@ export class FilesClient {
      *
      * @example
      *     await client.filestorage.files.retrieve("id", {
-     *         expand: "drive",
      *         includeRemoteData: true,
      *         includeShellData: true
      *     })
@@ -270,12 +283,17 @@ export class FilesClient {
     ): Promise<core.WithRawResponse<Merge.filestorage.File_>> {
         const { expand, includeRemoteData, includeShellData } = request;
         const _queryParams: Record<string, unknown> = {
-            expand:
-                expand != null
-                    ? serializers.filestorage.FilesRetrieveRequestExpand.jsonOrThrow(expand, {
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.filestorage.FilesRetrieveRequestExpandItem.jsonOrThrow(item, {
                           unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
+                      }),
+                  )
+                : expand != null
+                  ? serializers.filestorage.FilesRetrieveRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
         };
@@ -392,7 +410,7 @@ export class FilesClient {
     }
 
     /**
-     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party. For information on our download process please refer to our <a href='https://help.merge.dev/articles/10644317' target='_blank'>direct file download help center article</a>.
      *
      * @param {string} id
      * @param {Merge.filestorage.FilesDownloadRequestMetaRetrieveRequest} request
@@ -491,95 +509,107 @@ export class FilesClient {
      *         pageSize: 1
      *     })
      */
-    public downloadRequestMetaList(
+    public async downloadRequestMetaList(
         request: Merge.filestorage.FilesDownloadRequestMetaListRequest = {},
         requestOptions?: FilesClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.filestorage.PaginatedDownloadRequestMetaList> {
-        return core.HttpResponsePromise.fromPromise(this.__downloadRequestMetaList(request, requestOptions));
-    }
-
-    private async __downloadRequestMetaList(
-        request: Merge.filestorage.FilesDownloadRequestMetaListRequest = {},
-        requestOptions?: FilesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.filestorage.PaginatedDownloadRequestMetaList>> {
-        const {
-            createdAfter,
-            createdBefore,
-            cursor,
-            ids,
-            includeDeletedData,
-            mimeTypes,
-            modifiedAfter,
-            modifiedBefore,
-            orderBy,
-            pageSize,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            created_after: createdAfter,
-            created_before: createdBefore,
-            cursor,
-            ids,
-            include_deleted_data: includeDeletedData,
-            mime_types: mimeTypes,
-            modified_after: modifiedAfter,
-            modified_before: modifiedBefore,
-            order_by:
-                orderBy != null
-                    ? serializers.filestorage.FilesDownloadRequestMetaListRequestOrderBy.jsonOrThrow(orderBy, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            page_size: pageSize,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.filestorage.DownloadRequestMeta, Merge.filestorage.PaginatedDownloadRequestMetaList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.filestorage.FilesDownloadRequestMetaListRequest,
+            ): Promise<core.WithRawResponse<Merge.filestorage.PaginatedDownloadRequestMetaList>> => {
+                const {
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    ids,
+                    includeDeletedData,
+                    mimeTypes,
+                    modifiedAfter,
+                    modifiedBefore,
+                    orderBy,
+                    pageSize,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    created_after: createdAfter,
+                    created_before: createdBefore,
+                    cursor,
+                    ids,
+                    include_deleted_data: includeDeletedData,
+                    mime_types: mimeTypes,
+                    modified_after: modifiedAfter,
+                    modified_before: modifiedBefore,
+                    order_by:
+                        orderBy != null
+                            ? serializers.filestorage.FilesDownloadRequestMetaListRequestOrderBy.jsonOrThrow(orderBy, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    page_size: pageSize,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "filestorage/v1/files/download/request-meta",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.filestorage.PaginatedDownloadRequestMetaList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/filestorage/v1/files/download/request-meta",
+                );
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "filestorage/v1/files/download/request-meta",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: serializers.filestorage.PaginatedDownloadRequestMetaList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/filestorage/v1/files/download/request-meta",
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.filestorage.DownloadRequestMeta, Merge.filestorage.PaginatedDownloadRequestMetaList>(
+            {
+                response: dataWithRawResponse.data,
+                rawResponse: dataWithRawResponse.rawResponse,
+                hasNextPage: (response) =>
+                    response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+                getItems: (response) => response?.results ?? [],
+                loadPage: (response) => {
+                    return list(core.setObjectProperty(request, "cursor", response?.next));
+                },
+            },
         );
     }
 

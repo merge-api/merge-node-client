@@ -1,3 +1,3 @@
-export * from "./ContactsListRequestExpand";
+export * from "./ContactsListRequestExpandItem";
 export * from "./ContactsListRequestStatus";
-export * from "./ContactsRetrieveRequestExpand";
+export * from "./ContactsRetrieveRequestExpandItem";

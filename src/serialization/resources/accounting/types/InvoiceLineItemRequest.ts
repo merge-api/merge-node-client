@@ -6,7 +6,6 @@ import type * as serializers from "../../../index";
 import { InvoiceLineItemRequestAccount } from "./InvoiceLineItemRequestAccount";
 import { InvoiceLineItemRequestContact } from "./InvoiceLineItemRequestContact";
 import { InvoiceLineItemRequestCurrency } from "./InvoiceLineItemRequestCurrency";
-import { InvoiceLineItemRequestEmployee } from "./InvoiceLineItemRequestEmployee";
 import { InvoiceLineItemRequestItem } from "./InvoiceLineItemRequestItem";
 import { InvoiceLineItemRequestProject } from "./InvoiceLineItemRequestProject";
 import { InvoiceLineItemRequestTrackingCategoriesItem } from "./InvoiceLineItemRequestTrackingCategoriesItem";
@@ -22,7 +21,7 @@ export const InvoiceLineItemRequest: core.serialization.ObjectSchema<
     unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
     quantity: core.serialization.number().optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
-    employee: InvoiceLineItemRequestEmployee.optional(),
+    employee: core.serialization.string().optional(),
     project: InvoiceLineItemRequestProject.optional(),
     contact: InvoiceLineItemRequestContact.optional(),
     currency: InvoiceLineItemRequestCurrency.optional(),
@@ -57,7 +56,7 @@ export declare namespace InvoiceLineItemRequest {
         unit_price?: number | null;
         quantity?: number | null;
         total_amount?: number | null;
-        employee?: InvoiceLineItemRequestEmployee.Raw | null;
+        employee?: string | null;
         project?: InvoiceLineItemRequestProject.Raw | null;
         contact?: InvoiceLineItemRequestContact.Raw | null;
         currency?: InvoiceLineItemRequestCurrency.Raw | null;

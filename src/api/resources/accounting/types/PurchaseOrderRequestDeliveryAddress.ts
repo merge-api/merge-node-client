@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The purchase order's delivery address.
  */
-export type PurchaseOrderRequestDeliveryAddress = string | Merge.accounting.Address;
+export type PurchaseOrderRequestDeliveryAddress = string | Merge.accounting.AddressRequest;

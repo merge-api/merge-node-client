@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The line's account.
  */
-export type VendorCreditLineRequestAccount = string | Merge.accounting.Account;
+export type VendorCreditLineRequestAccount = string | Merge.accounting.AccountRequest;

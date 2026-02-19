@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The supplier, or customer involved in the payment.
  */
-export type PaymentRequestContact = string | Merge.accounting.Contact;
+export type PaymentRequestContact = string | Merge.accounting.ContactRequest;

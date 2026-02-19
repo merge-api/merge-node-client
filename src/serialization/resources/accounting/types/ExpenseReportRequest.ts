@@ -5,10 +5,10 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ExpenseReportRequestAccountingPeriod } from "./ExpenseReportRequestAccountingPeriod";
 import { ExpenseReportRequestCompany } from "./ExpenseReportRequestCompany";
+import { ExpenseReportRequestCurrency } from "./ExpenseReportRequestCurrency";
 import { ExpenseReportRequestEmployee } from "./ExpenseReportRequestEmployee";
-import { ExpenseReportStatusEnum } from "./ExpenseReportStatusEnum";
+import { ExpenseReportRequestStatus } from "./ExpenseReportRequestStatus";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
-import { TransactionCurrencyEnum } from "./TransactionCurrencyEnum";
 
 export const ExpenseReportRequest: core.serialization.ObjectSchema<
     serializers.accounting.ExpenseReportRequest.Raw,
@@ -17,9 +17,9 @@ export const ExpenseReportRequest: core.serialization.ObjectSchema<
     reportDate: core.serialization.property("report_date", core.serialization.date().optional()),
     reportIdentifier: core.serialization.property("report_identifier", core.serialization.string().optional()),
     employee: ExpenseReportRequestEmployee.optional(),
-    status: ExpenseReportStatusEnum.optional(),
+    status: ExpenseReportRequestStatus.optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),
-    currency: TransactionCurrencyEnum.optional(),
+    currency: ExpenseReportRequestCurrency.optional(),
     description: core.serialization.string().optional(),
     accountingPeriod: core.serialization.property("accounting_period", ExpenseReportRequestAccountingPeriod.optional()),
     company: ExpenseReportRequestCompany.optional(),
@@ -43,9 +43,9 @@ export declare namespace ExpenseReportRequest {
         report_date?: string | null;
         report_identifier?: string | null;
         employee?: ExpenseReportRequestEmployee.Raw | null;
-        status?: ExpenseReportStatusEnum.Raw | null;
+        status?: ExpenseReportRequestStatus.Raw | null;
         total_amount?: number | null;
-        currency?: TransactionCurrencyEnum.Raw | null;
+        currency?: ExpenseReportRequestCurrency.Raw | null;
         description?: string | null;
         accounting_period?: ExpenseReportRequestAccountingPeriod.Raw | null;
         company?: ExpenseReportRequestCompany.Raw | null;

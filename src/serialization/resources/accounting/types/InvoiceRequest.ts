@@ -3,11 +3,12 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { InvoiceLineItemRequest } from "./InvoiceLineItemRequest";
+import { InvoiceRequestAccountingPeriod } from "./InvoiceRequestAccountingPeriod";
 import { InvoiceRequestCompany } from "./InvoiceRequestCompany";
 import { InvoiceRequestContact } from "./InvoiceRequestContact";
 import { InvoiceRequestCurrency } from "./InvoiceRequestCurrency";
 import { InvoiceRequestEmployee } from "./InvoiceRequestEmployee";
+import { InvoiceRequestLineItemsItem } from "./InvoiceRequestLineItemsItem";
 import { InvoiceRequestPaymentsItem } from "./InvoiceRequestPaymentsItem";
 import { InvoiceRequestPaymentTerm } from "./InvoiceRequestPaymentTerm";
 import { InvoiceRequestPurchaseOrdersItem } from "./InvoiceRequestPurchaseOrdersItem";
@@ -44,7 +45,11 @@ export const InvoiceRequest: core.serialization.ObjectSchema<
         "tracking_categories",
         core.serialization.list(InvoiceRequestTrackingCategoriesItem.optional()).optional(),
     ),
-    lineItems: core.serialization.property("line_items", core.serialization.list(InvoiceLineItemRequest).optional()),
+    accountingPeriod: core.serialization.property("accounting_period", InvoiceRequestAccountingPeriod.optional()),
+    lineItems: core.serialization.property(
+        "line_items",
+        core.serialization.list(InvoiceRequestLineItemsItem).optional(),
+    ),
     purchaseOrders: core.serialization.property(
         "purchase_orders",
         core.serialization.list(InvoiceRequestPurchaseOrdersItem.optional()).optional(),
@@ -83,7 +88,8 @@ export declare namespace InvoiceRequest {
         balance?: number | null;
         payments?: (InvoiceRequestPaymentsItem.Raw | null | undefined)[] | null;
         tracking_categories?: (InvoiceRequestTrackingCategoriesItem.Raw | null | undefined)[] | null;
-        line_items?: InvoiceLineItemRequest.Raw[] | null;
+        accounting_period?: InvoiceRequestAccountingPeriod.Raw | null;
+        line_items?: InvoiceRequestLineItemsItem.Raw[] | null;
         purchase_orders?: (InvoiceRequestPurchaseOrdersItem.Raw | null | undefined)[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;

@@ -5,10 +5,10 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { JournalEntryRequestCompany } from "./JournalEntryRequestCompany";
 import { JournalEntryRequestCurrency } from "./JournalEntryRequestCurrency";
+import { JournalEntryRequestLinesItem } from "./JournalEntryRequestLinesItem";
 import { JournalEntryRequestPaymentsItem } from "./JournalEntryRequestPaymentsItem";
 import { JournalEntryRequestPostingStatus } from "./JournalEntryRequestPostingStatus";
 import { JournalEntryRequestTrackingCategoriesItem } from "./JournalEntryRequestTrackingCategoriesItem";
-import { JournalLineRequest } from "./JournalLineRequest";
 import { RemoteFieldRequest } from "./RemoteFieldRequest";
 
 export const JournalEntryRequest: core.serialization.ObjectSchema<
@@ -26,7 +26,7 @@ export const JournalEntryRequest: core.serialization.ObjectSchema<
         core.serialization.list(JournalEntryRequestTrackingCategoriesItem.optional()).optional(),
     ),
     inclusiveOfTax: core.serialization.property("inclusive_of_tax", core.serialization.boolean().optional()),
-    lines: core.serialization.list(JournalLineRequest).optional(),
+    lines: core.serialization.list(JournalEntryRequestLinesItem).optional(),
     journalNumber: core.serialization.property("journal_number", core.serialization.string().optional()),
     postingStatus: core.serialization.property("posting_status", JournalEntryRequestPostingStatus.optional()),
     integrationParams: core.serialization.property(
@@ -50,7 +50,7 @@ export declare namespace JournalEntryRequest {
         company?: JournalEntryRequestCompany.Raw | null;
         tracking_categories?: (JournalEntryRequestTrackingCategoriesItem.Raw | null | undefined)[] | null;
         inclusive_of_tax?: boolean | null;
-        lines?: JournalLineRequest.Raw[] | null;
+        lines?: JournalEntryRequestLinesItem.Raw[] | null;
         journal_number?: string | null;
         posting_status?: JournalEntryRequestPostingStatus.Raw | null;
         integration_params?: Record<string, unknown> | null;

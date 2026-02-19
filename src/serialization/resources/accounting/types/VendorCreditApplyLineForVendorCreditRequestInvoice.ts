@@ -2,16 +2,14 @@
 
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
-import * as serializers from "../../../index";
+import type * as serializers from "../../../index";
+import { InvoiceRequest } from "./InvoiceRequest";
 
 export const VendorCreditApplyLineForVendorCreditRequestInvoice: core.serialization.Schema<
     serializers.accounting.VendorCreditApplyLineForVendorCreditRequestInvoice.Raw,
     Merge.accounting.VendorCreditApplyLineForVendorCreditRequestInvoice
-> = core.serialization.undiscriminatedUnion([
-    core.serialization.string(),
-    core.serialization.lazyObject(() => serializers.accounting.Invoice),
-]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), InvoiceRequest]);
 
 export declare namespace VendorCreditApplyLineForVendorCreditRequestInvoice {
-    export type Raw = string | serializers.accounting.Invoice.Raw;
+    export type Raw = string | InvoiceRequest.Raw;
 }

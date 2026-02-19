@@ -3,10 +3,10 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { PurchaseOrderLineItemRequest } from "./PurchaseOrderLineItemRequest";
 import { PurchaseOrderRequestCompany } from "./PurchaseOrderRequestCompany";
 import { PurchaseOrderRequestCurrency } from "./PurchaseOrderRequestCurrency";
 import { PurchaseOrderRequestDeliveryAddress } from "./PurchaseOrderRequestDeliveryAddress";
+import { PurchaseOrderRequestLineItemsItem } from "./PurchaseOrderRequestLineItemsItem";
 import { PurchaseOrderRequestPaymentTerm } from "./PurchaseOrderRequestPaymentTerm";
 import { PurchaseOrderRequestStatus } from "./PurchaseOrderRequestStatus";
 import { PurchaseOrderRequestTrackingCategoriesItem } from "./PurchaseOrderRequestTrackingCategoriesItem";
@@ -36,7 +36,7 @@ export const PurchaseOrderRequest: core.serialization.ObjectSchema<
     ),
     lineItems: core.serialization.property(
         "line_items",
-        core.serialization.list(PurchaseOrderLineItemRequest).optional(),
+        core.serialization.list(PurchaseOrderRequestLineItemsItem).optional(),
     ),
     integrationParams: core.serialization.property(
         "integration_params",
@@ -65,7 +65,7 @@ export declare namespace PurchaseOrderRequest {
         inclusive_of_tax?: boolean | null;
         exchange_rate?: string | null;
         tracking_categories?: (PurchaseOrderRequestTrackingCategoriesItem.Raw | null | undefined)[] | null;
-        line_items?: PurchaseOrderLineItemRequest.Raw[] | null;
+        line_items?: PurchaseOrderRequestLineItemsItem.Raw[] | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
         remote_fields?: RemoteFieldRequest.Raw[] | null;

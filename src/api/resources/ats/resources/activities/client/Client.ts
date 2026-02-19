@@ -34,7 +34,6 @@ export class ActivitiesClient {
      *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
      *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
      *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         expand: "user",
      *         includeDeletedData: true,
      *         includeRemoteData: true,
      *         includeShellData: true,
@@ -47,104 +46,114 @@ export class ActivitiesClient {
      *         userId: "user_id"
      *     })
      */
-    public list(
+    public async list(
         request: Merge.ats.ActivitiesListRequest = {},
         requestOptions?: ActivitiesClient.RequestOptions,
-    ): core.HttpResponsePromise<Merge.ats.PaginatedActivityList> {
-        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
-    }
-
-    private async __list(
-        request: Merge.ats.ActivitiesListRequest = {},
-        requestOptions?: ActivitiesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Merge.ats.PaginatedActivityList>> {
-        const {
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeShellData,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-            userId,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand: expand != null ? expand : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_shell_data: includeShellData,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            remote_fields:
-                remoteFields != null
-                    ? serializers.ats.ActivitiesListRequestRemoteFields.jsonOrThrow(remoteFields, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            remote_id: remoteId,
-            show_enum_origins:
-                showEnumOrigins != null
-                    ? serializers.ats.ActivitiesListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            user_id: userId,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
-            requestOptions?.headers,
+    ): Promise<core.Page<Merge.ats.Activity, Merge.ats.PaginatedActivityList>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Merge.ats.ActivitiesListRequest,
+            ): Promise<core.WithRawResponse<Merge.ats.PaginatedActivityList>> => {
+                const {
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    expand,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    modifiedAfter,
+                    modifiedBefore,
+                    pageSize,
+                    remoteFields,
+                    remoteId,
+                    showEnumOrigins,
+                    userId,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    created_after: createdAfter?.toISOString(),
+                    created_before: createdBefore?.toISOString(),
+                    cursor,
+                    expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
+                    include_deleted_data: includeDeletedData,
+                    include_remote_data: includeRemoteData,
+                    include_shell_data: includeShellData,
+                    modified_after: modifiedAfter?.toISOString(),
+                    modified_before: modifiedBefore?.toISOString(),
+                    page_size: pageSize,
+                    remote_fields:
+                        remoteFields != null
+                            ? serializers.ats.ActivitiesListRequestRemoteFields.jsonOrThrow(remoteFields, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    remote_id: remoteId,
+                    show_enum_origins:
+                        showEnumOrigins != null
+                            ? serializers.ats.ActivitiesListRequestShowEnumOrigins.jsonOrThrow(showEnumOrigins, {
+                                  unrecognizedObjectKeys: "strip",
+                              })
+                            : undefined,
+                    user_id: userId,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({
+                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
+                    }),
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.MergeEnvironment.Production,
+                        "ats/v1/activities",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: serializers.ats.PaginatedActivityList.parseOrThrow(_response.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.MergeError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/ats/v1/activities");
+            },
         );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.MergeEnvironment.Production,
-                "ats/v1/activities",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Merge.ats.Activity, Merge.ats.PaginatedActivityList>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
+            getItems: (response) => response?.results ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.next));
+            },
         });
-        if (_response.ok) {
-            return {
-                data: serializers.ats.PaginatedActivityList.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.MergeError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/ats/v1/activities");
     }
 
     /**
@@ -236,7 +245,6 @@ export class ActivitiesClient {
      *
      * @example
      *     await client.ats.activities.retrieve("id", {
-     *         expand: "user",
      *         includeRemoteData: true,
      *         includeShellData: true,
      *         remoteFields: "activity_type",
@@ -258,7 +266,7 @@ export class ActivitiesClient {
     ): Promise<core.WithRawResponse<Merge.ats.Activity>> {
         const { expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins } = request;
         const _queryParams: Record<string, unknown> = {
-            expand: expand != null ? expand : undefined,
+            expand: Array.isArray(expand) ? expand.map((item) => item) : expand != null ? expand : undefined,
             include_remote_data: includeRemoteData,
             include_shell_data: includeShellData,
             remote_fields:

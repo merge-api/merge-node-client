@@ -1,2 +1,2 @@
-export * from "./PaymentsListRequestExpand";
-export * from "./PaymentsRetrieveRequestExpand";
+export * from "./PaymentsListRequestExpandItem";
+export * from "./PaymentsRetrieveRequestExpandItem";
