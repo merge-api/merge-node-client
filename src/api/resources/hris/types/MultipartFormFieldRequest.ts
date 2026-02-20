@@ -22,7 +22,7 @@ export interface MultipartFormFieldRequest {
      * * `BASE64` - BASE64
      * * `GZIP_BASE64` - GZIP_BASE64
      */
-    encoding?: Merge.hris.MultipartFormFieldRequestEncoding;
+    encoding?: Merge.hris.EncodingEnum;
     /** The file name of the form field, if the field is for a file. */
     fileName?: string;
     /** The MIME type of the file, if the field is for a file. */

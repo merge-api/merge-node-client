@@ -13,6 +13,7 @@ export const WarningValidationProblem: core.serialization.ObjectSchema<
     title: core.serialization.string(),
     detail: core.serialization.string(),
     problemType: core.serialization.property("problem_type", core.serialization.string()),
+    blockMergeLink: core.serialization.property("block_merge_link", core.serialization.boolean().optional()),
 });
 
 export declare namespace WarningValidationProblem {
@@ -21,5 +22,6 @@ export declare namespace WarningValidationProblem {
         title: string;
         detail: string;
         problem_type: string;
+        block_merge_link?: boolean | null;
     }
 }

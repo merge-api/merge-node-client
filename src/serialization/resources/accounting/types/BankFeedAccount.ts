@@ -6,6 +6,7 @@ import type * as serializers from "../../../index";
 import { BankFeedAccountAccountType } from "./BankFeedAccountAccountType";
 import { BankFeedAccountCurrency } from "./BankFeedAccountCurrency";
 import { BankFeedAccountFeedStatus } from "./BankFeedAccountFeedStatus";
+import { RemoteData } from "./RemoteData";
 
 export const BankFeedAccount: core.serialization.ObjectSchema<
     serializers.accounting.BankFeedAccount.Raw,
@@ -30,12 +31,7 @@ export const BankFeedAccount: core.serialization.ObjectSchema<
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
-    remoteData: core.serialization.property(
-        "remote_data",
-        core.serialization
-            .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional())
-            .optional(),
-    ),
+    remoteData: core.serialization.property("remote_data", core.serialization.list(RemoteData).optional()),
 });
 
 export declare namespace BankFeedAccount {
@@ -56,6 +52,6 @@ export declare namespace BankFeedAccount {
         account_type?: BankFeedAccountAccountType.Raw | null;
         remote_was_deleted?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
-        remote_data?: (Record<string, unknown> | null | undefined)[] | null;
+        remote_data?: RemoteData.Raw[] | null;
     }
 }

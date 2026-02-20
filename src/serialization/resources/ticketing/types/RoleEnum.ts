@@ -5,8 +5,8 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const RoleEnum: core.serialization.Schema<serializers.ticketing.RoleEnum.Raw, Merge.ticketing.RoleEnum> =
-    core.serialization.enum_(["ADMIN", "DEVELOPER", "MEMBER", "API", "SYSTEM", "MERGE_TEAM"]);
+    core.serialization.enum_(["ADMIN", "DEVELOPER", "MEMBER", "API", "SYSTEM", "MERGE_TEAM", "SUPPORT"]);
 
 export declare namespace RoleEnum {
-    export type Raw = "ADMIN" | "DEVELOPER" | "MEMBER" | "API" | "SYSTEM" | "MERGE_TEAM";
+    export type Raw = "ADMIN" | "DEVELOPER" | "MEMBER" | "API" | "SYSTEM" | "MERGE_TEAM" | "SUPPORT";
 }

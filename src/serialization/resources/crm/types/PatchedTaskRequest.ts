@@ -15,6 +15,7 @@ export const PatchedTaskRequest: core.serialization.ObjectSchema<
     owner: core.serialization.string().optional(),
     account: core.serialization.string().optional(),
     opportunity: core.serialization.string().optional(),
+    contact: core.serialization.string().optional(),
     completedDate: core.serialization.property("completed_date", core.serialization.date().optional()),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     status: PatchedTaskRequestStatus.optional(),
@@ -36,6 +37,7 @@ export declare namespace PatchedTaskRequest {
         owner?: string | null;
         account?: string | null;
         opportunity?: string | null;
+        contact?: string | null;
         completed_date?: string | null;
         due_date?: string | null;
         status?: PatchedTaskRequestStatus.Raw | null;

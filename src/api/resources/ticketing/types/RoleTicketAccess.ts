@@ -9,4 +9,4 @@ import type * as Merge from "../../../index";
  * * `ASSIGNED_ONLY` - ASSIGNED_ONLY
  * * `TEAM_ONLY` - TEAM_ONLY
  */
-export type RoleTicketAccess = string | Merge.ticketing.TicketAccessEnum;
+export type RoleTicketAccess = Merge.ticketing.TicketAccessEnum | string;

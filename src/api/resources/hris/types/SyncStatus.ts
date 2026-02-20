@@ -17,7 +17,7 @@ export interface SyncStatus {
     nextSyncStart?: Date;
     lastSyncResult?: Merge.hris.SyncStatusLastSyncResult;
     lastSyncFinished?: Date;
-    status: Merge.hris.StatusFd5Enum;
+    status: Merge.hris.SyncStatusStatus;
     isInitialSync: boolean;
     selectiveSyncConfigurationsUsage?: Merge.hris.SelectiveSyncConfigurationsUsageEnum;
 }
