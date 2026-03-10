@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The customer associated with the sales order.
  */
-export type SalesOrderRequestRequestCustomer = string | Merge.accounting.ContactRequest;
+export type SalesOrderRequestRequestCustomer = string | Merge.accounting.Contact;

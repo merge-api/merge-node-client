@@ -353,37 +353,30 @@ export class SalesOrdersClient {
     }
 
     /**
-     * Creates a `SalesOrder` object with the given values.
+     * Creates multiple `SalesOrder` objects with the given values.
      *
      * @param {Merge.accounting.SalesOrderBulkRequest} request
      * @param {SalesOrdersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.salesOrders.asyncBulkCreate({
-     *         isDebugMode: true,
-     *         runAsync: true,
+     *     await client.accounting.salesOrders.bulkCreate({
      *         batchItems: [{
      *                 itemId: "item_id",
      *                 payload: {}
      *             }]
      *     })
      */
-    public asyncBulkCreate(
+    public bulkCreate(
         request: Merge.accounting.SalesOrderBulkRequest,
         requestOptions?: SalesOrdersClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.AsyncBulkCreateResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkCreate(request, requestOptions));
     }
 
-    private async __asyncBulkCreate(
+    private async __bulkCreate(
         request: Merge.accounting.SalesOrderBulkRequest,
         requestOptions?: SalesOrdersClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.AsyncBulkCreateResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, unknown> = {
-            is_debug_mode: isDebugMode,
-            run_async: runAsync,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -396,14 +389,16 @@ export class SalesOrdersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                "accounting/v1/sales-orders/async/bulk",
+                "accounting/v1/sales-orders/bulk",
             ),
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.accounting.SalesOrderBulkRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.accounting.SalesOrderBulkRequest.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -435,98 +430,30 @@ export class SalesOrdersClient {
             _response.error,
             _response.rawResponse,
             "POST",
-            "/accounting/v1/sales-orders/async/bulk",
+            "/accounting/v1/sales-orders/bulk",
         );
     }
 
     /**
-     * Returns a list of `SalesOrder` objects.
+     * Returns the status and results of a `SalesOrder` bulk create batch.
      *
      * @param {string} batch_id
-     * @param {Merge.accounting.SalesOrdersBatchObjectsListRequest} request
      * @param {SalesOrdersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.salesOrders.batchObjectsList("batch_id", {
-     *         companyId: "company_id",
-     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         includeDeletedData: true,
-     *         includeRemoteData: true,
-     *         includeRemoteFields: true,
-     *         includeShellData: true,
-     *         issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         pageSize: 1,
-     *         remoteFields: "status",
-     *         remoteId: "remote_id",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await client.accounting.salesOrders.bulkRetrieve("batch_id")
      */
-    public batchObjectsList(
+    public bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.SalesOrdersBatchObjectsListRequest = {},
         requestOptions?: SalesOrdersClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.BatchObjectsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkRetrieve(batch_id, requestOptions));
     }
 
-    private async __batchObjectsList(
+    private async __bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.SalesOrdersBatchObjectsListRequest = {},
         requestOptions?: SalesOrdersClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.BatchObjectsResponse>> {
-        const {
-            companyId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeRemoteFields,
-            includeShellData,
-            issueDateAfter,
-            issueDateBefore,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand: Array.isArray(expand)
-                ? expand.map((item) =>
-                      serializers.accounting.SalesOrdersBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
-                          unrecognizedObjectKeys: "strip",
-                      }),
-                  )
-                : expand != null
-                  ? serializers.accounting.SalesOrdersBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
-                        unrecognizedObjectKeys: "strip",
-                    })
-                  : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_remote_fields: includeRemoteFields,
-            include_shell_data: includeShellData,
-            issue_date_after: issueDateAfter?.toISOString(),
-            issue_date_before: issueDateBefore?.toISOString(),
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            remote_fields: remoteFields != null ? remoteFields : undefined,
-            remote_id: remoteId,
-            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -539,11 +466,11 @@ export class SalesOrdersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                `accounting/v1/sales-orders/batch/${core.url.encodePathParam(batch_id)}/objects`,
+                `accounting/v1/sales-orders/bulk/${core.url.encodePathParam(batch_id)}`,
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -575,7 +502,7 @@ export class SalesOrdersClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/accounting/v1/sales-orders/batch/{batch_id}/objects",
+            "/accounting/v1/sales-orders/bulk/{batch_id}",
         );
     }
 

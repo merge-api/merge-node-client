@@ -7,7 +7,7 @@ import { SalesOrderBatchItemRequest } from "../../../../types/SalesOrderBatchIte
 
 export const SalesOrderBulkRequest: core.serialization.Schema<
     serializers.accounting.SalesOrderBulkRequest.Raw,
-    Omit<Merge.accounting.SalesOrderBulkRequest, "isDebugMode" | "runAsync">
+    Merge.accounting.SalesOrderBulkRequest
 > = core.serialization.object({
     batchItems: core.serialization.property("batch_items", core.serialization.list(SalesOrderBatchItemRequest)),
 });
