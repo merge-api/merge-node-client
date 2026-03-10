@@ -3,13 +3,13 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { BankFeedAccountRequest } from "./BankFeedAccountRequest";
+import { BankFeedAccount } from "./BankFeedAccount";
 
 export const BankFeedTransactionRequestRequestBankFeedAccount: core.serialization.Schema<
     serializers.accounting.BankFeedTransactionRequestRequestBankFeedAccount.Raw,
     Merge.accounting.BankFeedTransactionRequestRequestBankFeedAccount
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), BankFeedAccountRequest]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), BankFeedAccount]);
 
 export declare namespace BankFeedTransactionRequestRequestBankFeedAccount {
-    export type Raw = string | BankFeedAccountRequest.Raw;
+    export type Raw = string | BankFeedAccount.Raw;
 }

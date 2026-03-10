@@ -19,7 +19,7 @@ describe("PaymentMethodsClient", () => {
             results: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remote_id: "remote_id",
+                    remote_id: "088899",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     method_type: "CREDIT_CARD",
@@ -48,7 +48,7 @@ describe("PaymentMethodsClient", () => {
             results: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remoteId: "remote_id",
+                    remoteId: "088899",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     methodType: "CREDIT_CARD",
@@ -97,7 +97,7 @@ describe("PaymentMethodsClient", () => {
 
         const rawResponseBody = {
             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-            remote_id: "remote_id",
+            remote_id: "088899",
             created_at: "2021-09-15T00:00:00Z",
             modified_at: "2021-10-16T00:00:00Z",
             method_type: "CREDIT_CARD",
@@ -124,7 +124,7 @@ describe("PaymentMethodsClient", () => {
         });
         expect(response).toEqual({
             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-            remoteId: "remote_id",
+            remoteId: "088899",
             createdAt: new Date("2021-09-15T00:00:00.000Z"),
             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
             methodType: "CREDIT_CARD",

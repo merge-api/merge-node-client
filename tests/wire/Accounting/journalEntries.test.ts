@@ -19,7 +19,7 @@ describe("JournalEntriesClient", () => {
             results: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remote_id: "remote_id",
+                    remote_id: "088899",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     transaction_date: "2020-03-31T00:00:00Z",
@@ -88,7 +88,7 @@ describe("JournalEntriesClient", () => {
             results: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remoteId: "remote_id",
+                    remoteId: "088899",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     transactionDate: new Date("2020-03-31T00:00:00.000Z"),
@@ -194,7 +194,7 @@ describe("JournalEntriesClient", () => {
         const rawResponseBody = {
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remote_id: "remote_id",
+                remote_id: "088899",
                 created_at: "2021-09-15T00:00:00Z",
                 modified_at: "2021-10-16T00:00:00Z",
                 transaction_date: "2020-03-31T00:00:00Z",
@@ -254,6 +254,8 @@ describe("JournalEntriesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -263,6 +265,8 @@ describe("JournalEntriesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -294,7 +298,7 @@ describe("JournalEntriesClient", () => {
         expect(response).toEqual({
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remoteId: "remote_id",
+                remoteId: "088899",
                 createdAt: new Date("2021-09-15T00:00:00.000Z"),
                 modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                 transactionDate: new Date("2020-03-31T00:00:00.000Z"),
@@ -372,6 +376,8 @@ describe("JournalEntriesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -383,6 +389,8 @@ describe("JournalEntriesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [
@@ -410,7 +418,7 @@ describe("JournalEntriesClient", () => {
 
         const rawResponseBody = {
             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-            remote_id: "remote_id",
+            remote_id: "088899",
             created_at: "2021-09-15T00:00:00Z",
             modified_at: "2021-10-16T00:00:00Z",
             transaction_date: "2020-03-31T00:00:00Z",
@@ -480,7 +488,7 @@ describe("JournalEntriesClient", () => {
         });
         expect(response).toEqual({
             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-            remoteId: "remote_id",
+            remoteId: "088899",
             createdAt: new Date("2021-09-15T00:00:00.000Z"),
             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
             transactionDate: new Date("2020-03-31T00:00:00.000Z"),

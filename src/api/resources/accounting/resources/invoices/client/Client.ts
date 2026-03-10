@@ -459,39 +459,30 @@ export class InvoicesClient {
     }
 
     /**
-     * Creates an `Invoice` object with the given values.
-     *             Including a `PurchaseOrder` id in the `purchase_orders` property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
-     *
+     * Creates multiple `Invoice` objects with the given values.
      *
      * @param {Merge.accounting.InvoiceBulkRequest} request
      * @param {InvoicesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.invoices.asyncBulkCreate({
-     *         isDebugMode: true,
-     *         runAsync: true,
+     *     await client.accounting.invoices.bulkCreate({
      *         batchItems: [{
      *                 itemId: "item_id",
      *                 payload: {}
      *             }]
      *     })
      */
-    public asyncBulkCreate(
+    public bulkCreate(
         request: Merge.accounting.InvoiceBulkRequest,
         requestOptions?: InvoicesClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.AsyncBulkCreateResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkCreate(request, requestOptions));
     }
 
-    private async __asyncBulkCreate(
+    private async __bulkCreate(
         request: Merge.accounting.InvoiceBulkRequest,
         requestOptions?: InvoicesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.AsyncBulkCreateResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, unknown> = {
-            is_debug_mode: isDebugMode,
-            run_async: runAsync,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -504,14 +495,14 @@ export class InvoicesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                "accounting/v1/invoices/async/bulk",
+                "accounting/v1/invoices/bulk",
             ),
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.accounting.InvoiceBulkRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.accounting.InvoiceBulkRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -539,124 +530,29 @@ export class InvoicesClient {
             });
         }
 
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "POST",
-            "/accounting/v1/invoices/async/bulk",
-        );
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/accounting/v1/invoices/bulk");
     }
 
     /**
-     * Returns a list of `Invoice` objects.
+     * Returns the status and results of an `Invoice` bulk create batch.
      *
      * @param {string} batch_id
-     * @param {Merge.accounting.InvoicesBatchObjectsListRequest} request
      * @param {InvoicesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.invoices.batchObjectsList("batch_id", {
-     *         companyId: "company_id",
-     *         contactId: "contact_id",
-     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         includeDeletedData: true,
-     *         includeRemoteData: true,
-     *         includeRemoteFields: true,
-     *         includeShellData: true,
-     *         issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         number: "number",
-     *         pageSize: 1,
-     *         remoteFields: "type",
-     *         remoteId: "remote_id",
-     *         showEnumOrigins: "type",
-     *         status: "DRAFT",
-     *         type: "ACCOUNTS_PAYABLE"
-     *     })
+     *     await client.accounting.invoices.bulkRetrieve("batch_id")
      */
-    public batchObjectsList(
+    public bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.InvoicesBatchObjectsListRequest = {},
         requestOptions?: InvoicesClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.BatchObjectsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkRetrieve(batch_id, requestOptions));
     }
 
-    private async __batchObjectsList(
+    private async __bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.InvoicesBatchObjectsListRequest = {},
         requestOptions?: InvoicesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.BatchObjectsResponse>> {
-        const {
-            companyId,
-            contactId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeRemoteFields,
-            includeShellData,
-            issueDateAfter,
-            issueDateBefore,
-            modifiedAfter,
-            modifiedBefore,
-            number: number_,
-            pageSize,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-            status,
-            type: type_,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            contact_id: contactId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand: Array.isArray(expand)
-                ? expand.map((item) =>
-                      serializers.accounting.InvoicesBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
-                          unrecognizedObjectKeys: "strip",
-                      }),
-                  )
-                : expand != null
-                  ? serializers.accounting.InvoicesBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
-                        unrecognizedObjectKeys: "strip",
-                    })
-                  : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_remote_fields: includeRemoteFields,
-            include_shell_data: includeShellData,
-            issue_date_after: issueDateAfter?.toISOString(),
-            issue_date_before: issueDateBefore?.toISOString(),
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            number: number_,
-            page_size: pageSize,
-            remote_fields: remoteFields != null ? remoteFields : undefined,
-            remote_id: remoteId,
-            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-            status:
-                status != null
-                    ? serializers.accounting.InvoicesBatchObjectsListRequestStatus.jsonOrThrow(status, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            type:
-                type_ != null
-                    ? serializers.accounting.InvoicesBatchObjectsListRequestType.jsonOrThrow(type_, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -669,11 +565,11 @@ export class InvoicesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                `accounting/v1/invoices/batch/${core.url.encodePathParam(batch_id)}/objects`,
+                `accounting/v1/invoices/bulk/${core.url.encodePathParam(batch_id)}`,
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -705,7 +601,7 @@ export class InvoicesClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/accounting/v1/invoices/batch/{batch_id}/objects",
+            "/accounting/v1/invoices/bulk/{batch_id}",
         );
     }
 

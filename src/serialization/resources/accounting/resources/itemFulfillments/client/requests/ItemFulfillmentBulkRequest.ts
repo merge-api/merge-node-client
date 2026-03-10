@@ -7,7 +7,7 @@ import { ItemFulfillmentBatchItemRequest } from "../../../../types/ItemFulfillme
 
 export const ItemFulfillmentBulkRequest: core.serialization.Schema<
     serializers.accounting.ItemFulfillmentBulkRequest.Raw,
-    Omit<Merge.accounting.ItemFulfillmentBulkRequest, "isDebugMode" | "runAsync">
+    Merge.accounting.ItemFulfillmentBulkRequest
 > = core.serialization.object({
     batchItems: core.serialization.property("batch_items", core.serialization.list(ItemFulfillmentBatchItemRequest)),
 });

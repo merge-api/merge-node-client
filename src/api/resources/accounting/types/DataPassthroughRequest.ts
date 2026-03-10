@@ -11,7 +11,7 @@ import type * as Merge from "../../../index";
  * Create a `DataPassthrough` to get team hierarchies from your Rippling integration.
  */
 export interface DataPassthroughRequest {
-    method: Merge.accounting.DataPassthroughRequestMethod;
+    method: Merge.accounting.MethodEnum;
     /** The path of the request in the third party's platform. */
     path: string;
     /** An optional override of the third party's base url for the request. */
@@ -22,7 +22,7 @@ export interface DataPassthroughRequest {
     multipartFormData?: Merge.accounting.MultipartFormFieldRequest[];
     /** The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server. */
     headers?: Record<string, unknown>;
-    requestFormat?: Merge.accounting.DataPassthroughRequestRequestFormat;
+    requestFormat?: Merge.accounting.RequestFormatEnum;
     /** Optional. If true, the response will always be an object of the form `{"type": T, "value": ...}` where `T` will be one of `string, boolean, number, null, array, object`. */
     normalizeResponse?: boolean;
 }

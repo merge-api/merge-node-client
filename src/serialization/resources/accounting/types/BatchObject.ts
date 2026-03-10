@@ -4,20 +4,21 @@ import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { BatchObjectItemResponse } from "./BatchObjectItemResponse";
+import { BatchObjectStatus } from "./BatchObjectStatus";
 
 export const BatchObject: core.serialization.ObjectSchema<
     serializers.accounting.BatchObject.Raw,
     Merge.accounting.BatchObject
 > = core.serialization.object({
     itemId: core.serialization.property("item_id", core.serialization.string()),
-    status: core.serialization.string(),
+    status: BatchObjectStatus,
     response: BatchObjectItemResponse.optional(),
 });
 
 export declare namespace BatchObject {
     export interface Raw {
         item_id: string;
-        status: string;
+        status: BatchObjectStatus.Raw;
         response?: BatchObjectItemResponse.Raw | null;
     }
 }

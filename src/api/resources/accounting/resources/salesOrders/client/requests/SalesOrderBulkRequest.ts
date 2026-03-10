@@ -5,8 +5,6 @@ import type * as Merge from "../../../../../../index";
 /**
  * @example
  *     {
- *         isDebugMode: true,
- *         runAsync: true,
  *         batchItems: [{
  *                 itemId: "item_id",
  *                 payload: {}
@@ -14,9 +12,5 @@ import type * as Merge from "../../../../../../index";
  *     }
  */
 export interface SalesOrderBulkRequest {
-    /** Whether to include debug fields (such as log file links) in the response. */
-    isDebugMode?: boolean;
-    /** Whether or not third-party updates should be run asynchronously. */
-    runAsync?: boolean;
     batchItems: Merge.accounting.SalesOrderBatchItemRequest[];
 }

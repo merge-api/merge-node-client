@@ -7,7 +7,7 @@ import { InvoiceBatchItemRequest } from "../../../../types/InvoiceBatchItemReque
 
 export const InvoiceBulkRequest: core.serialization.Schema<
     serializers.accounting.InvoiceBulkRequest.Raw,
-    Omit<Merge.accounting.InvoiceBulkRequest, "isDebugMode" | "runAsync">
+    Merge.accounting.InvoiceBulkRequest
 > = core.serialization.object({
     batchItems: core.serialization.property("batch_items", core.serialization.list(InvoiceBatchItemRequest)),
 });

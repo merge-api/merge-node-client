@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The expense's payment account.
  */
-export type ExpenseRequestAccount = string | Merge.accounting.AccountRequest;
+export type ExpenseRequestAccount = string | Merge.accounting.Account;

@@ -7,7 +7,7 @@ import { ExpenseBatchItemRequest } from "../../../../types/ExpenseBatchItemReque
 
 export const ExpenseBulkRequest: core.serialization.Schema<
     serializers.accounting.ExpenseBulkRequest.Raw,
-    Omit<Merge.accounting.ExpenseBulkRequest, "isDebugMode" | "runAsync">
+    Merge.accounting.ExpenseBulkRequest
 > = core.serialization.object({
     batchItems: core.serialization.property("batch_items", core.serialization.list(ExpenseBatchItemRequest)),
 });
