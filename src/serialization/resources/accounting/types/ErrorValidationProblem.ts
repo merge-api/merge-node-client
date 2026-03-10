@@ -14,6 +14,8 @@ export const ErrorValidationProblem: core.serialization.ObjectSchema<
     detail: core.serialization.string(),
     problemType: core.serialization.property("problem_type", core.serialization.string()),
     blockMergeLink: core.serialization.property("block_merge_link", core.serialization.boolean().optional()),
+    rawError: core.serialization.property("raw_error", core.serialization.string().optional()),
+    errorCode: core.serialization.property("error_code", core.serialization.number().optional()),
 });
 
 export declare namespace ErrorValidationProblem {
@@ -23,5 +25,7 @@ export declare namespace ErrorValidationProblem {
         detail: string;
         problem_type: string;
         block_merge_link?: boolean | null;
+        raw_error?: string | null;
+        error_code?: number | null;
     }
 }

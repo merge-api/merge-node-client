@@ -35,14 +35,27 @@ describe("AttachmentsClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/attachments")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.attachments.list({
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            pageSize: 1,
+            remoteId: "remote_id",
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -71,25 +84,7 @@ describe("AttachmentsClient", () => {
                     ],
                 },
             ],
-        };
-        const page = await client.accounting.attachments.list({
-            companyId: "company_id",
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            pageSize: 1,
-            remoteId: "remote_id",
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("create", async () => {
@@ -124,6 +119,8 @@ describe("AttachmentsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -133,6 +130,8 @@ describe("AttachmentsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -195,6 +194,8 @@ describe("AttachmentsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -206,6 +207,8 @@ describe("AttachmentsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [

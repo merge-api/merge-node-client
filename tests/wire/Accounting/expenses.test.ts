@@ -19,7 +19,7 @@ describe("ExpensesClient", () => {
             results: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remote_id: "remote_id",
+                    remote_id: "088899",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     transaction_date: "2024-01-15T09:30:00Z",
@@ -96,20 +96,36 @@ describe("ExpensesClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/expenses")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.expenses.list({
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeRemoteFields: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            pageSize: 1,
+            remoteId: "remote_id",
+            transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+            transactionDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remoteId: "remote_id",
+                    remoteId: "088899",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     transactionDate: new Date("2024-01-15T09:30:00.000Z"),
@@ -200,28 +216,7 @@ describe("ExpensesClient", () => {
                     ],
                 },
             ],
-        };
-        const page = await client.accounting.expenses.list({
-            companyId: "company_id",
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeRemoteFields: true,
-            includeShellData: true,
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            pageSize: 1,
-            remoteId: "remote_id",
-            transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-            transactionDateBefore: new Date("2024-01-15T09:30:00.000Z"),
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("create", async () => {
@@ -236,7 +231,7 @@ describe("ExpensesClient", () => {
         const rawResponseBody = {
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remote_id: "remote_id",
+                remote_id: "088899",
                 created_at: "2021-09-15T00:00:00Z",
                 modified_at: "2021-10-16T00:00:00Z",
                 transaction_date: "2024-01-15T09:30:00Z",
@@ -317,6 +312,8 @@ describe("ExpensesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -326,6 +323,8 @@ describe("ExpensesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -357,7 +356,7 @@ describe("ExpensesClient", () => {
         expect(response).toEqual({
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remoteId: "remote_id",
+                remoteId: "088899",
                 createdAt: new Date("2021-09-15T00:00:00.000Z"),
                 modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                 transactionDate: new Date("2024-01-15T09:30:00.000Z"),
@@ -456,6 +455,8 @@ describe("ExpensesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -467,6 +468,8 @@ describe("ExpensesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [
@@ -494,7 +497,7 @@ describe("ExpensesClient", () => {
 
         const rawResponseBody = {
             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-            remote_id: "remote_id",
+            remote_id: "088899",
             created_at: "2021-09-15T00:00:00Z",
             modified_at: "2021-10-16T00:00:00Z",
             transaction_date: "2024-01-15T09:30:00Z",
@@ -591,7 +594,7 @@ describe("ExpensesClient", () => {
         });
         expect(response).toEqual({
             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-            remoteId: "remote_id",
+            remoteId: "088899",
             createdAt: new Date("2021-09-15T00:00:00.000Z"),
             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
             transactionDate: new Date("2024-01-15T09:30:00.000Z"),
@@ -691,7 +694,7 @@ describe("ExpensesClient", () => {
         });
     });
 
-    test("asyncBulkCreate", async () => {
+    test("bulkCreate", async () => {
         const server = mockServerPool.createServer();
         const client = new MergeClient({
             maxRetries: 0,
@@ -700,19 +703,17 @@ describe("ExpensesClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { batch_items: [{ item_id: "item_id", payload: {} }] };
-        const rawResponseBody = { batch_id: "batch_id" };
+        const rawResponseBody = { batch_id: "d0a3ca3e-2d7a-44cd-a94b-bda805f23b5" };
         server
             .mockEndpoint()
-            .post("/accounting/v1/expenses/async/bulk")
+            .post("/accounting/v1/expenses/bulk")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.expenses.asyncBulkCreate({
-            isDebugMode: true,
-            runAsync: true,
+        const response = await client.accounting.expenses.bulkCreate({
             batchItems: [
                 {
                     itemId: "item_id",
@@ -721,11 +722,11 @@ describe("ExpensesClient", () => {
             ],
         });
         expect(response).toEqual({
-            batchId: "batch_id",
+            batchId: "d0a3ca3e-2d7a-44cd-a94b-bda805f23b5",
         });
     });
 
-    test("batchObjectsList", async () => {
+    test("bulkRetrieve", async () => {
         const server = mockServerPool.createServer();
         const client = new MergeClient({
             maxRetries: 0,
@@ -735,43 +736,28 @@ describe("ExpensesClient", () => {
         });
 
         const rawResponseBody = {
-            batch_id: "batch_id",
-            status: "status",
+            batch_id: "d0a3ca3e-2d7a-44cd-a94b-bda805f23b5",
+            status: "ENQUEUED",
             total_count: 1,
-            objects: [{ item_id: "item_id", status: "status" }],
+            objects: [{ item_id: "item_id", status: "PENDING" }],
         };
         server
             .mockEndpoint()
-            .get("/accounting/v1/expenses/batch/batch_id/objects")
+            .get("/accounting/v1/expenses/bulk/batch_id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.expenses.batchObjectsList("batch_id", {
-            companyId: "company_id",
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeRemoteFields: true,
-            includeShellData: true,
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            pageSize: 1,
-            remoteId: "remote_id",
-            transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-            transactionDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-        });
+        const response = await client.accounting.expenses.bulkRetrieve("batch_id");
         expect(response).toEqual({
-            batchId: "batch_id",
-            status: "status",
+            batchId: "d0a3ca3e-2d7a-44cd-a94b-bda805f23b5",
+            status: "ENQUEUED",
             totalCount: 1,
             objects: [
                 {
                     itemId: "item_id",
-                    status: "status",
+                    status: "PENDING",
                 },
             ],
         });
@@ -805,14 +791,23 @@ describe("ExpensesClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/expenses/lines/remote-field-classes")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.expenses.linesRemoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            isCommonModelField: true,
+            isCustom: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -829,21 +824,7 @@ describe("ExpensesClient", () => {
                     fieldChoices: ["field_choices"],
                 },
             ],
-        };
-        const page = await client.accounting.expenses.linesRemoteFieldClassesList({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            isCommonModelField: true,
-            isCustom: true,
-            pageSize: 1,
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("metaPostRetrieve", async () => {
@@ -1293,14 +1274,23 @@ describe("ExpensesClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/expenses/remote-field-classes")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.expenses.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            isCommonModelField: true,
+            isCustom: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -1317,20 +1307,6 @@ describe("ExpensesClient", () => {
                     fieldChoices: ["field_choices"],
                 },
             ],
-        };
-        const page = await client.accounting.expenses.remoteFieldClassesList({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            isCommonModelField: true,
-            isCustom: true,
-            pageSize: 1,
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 });

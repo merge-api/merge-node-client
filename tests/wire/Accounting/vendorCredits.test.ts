@@ -19,7 +19,7 @@ describe("VendorCreditsClient", () => {
             results: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remote_id: "remote_id",
+                    remote_id: "088899",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     number: "6",
@@ -76,6 +76,7 @@ describe("VendorCreditsClient", () => {
                     ],
                     applied_to_lines: [
                         {
+                            remote_id: "088899",
                             created_at: "2021-09-15T00:00:00Z",
                             modified_at: "2021-10-16T00:00:00Z",
                             invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -94,20 +95,35 @@ describe("VendorCreditsClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/vendor-credits")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.vendorCredits.list({
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            pageSize: 1,
+            remoteId: "remote_id",
+            transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+            transactionDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remoteId: "remote_id",
+                    remoteId: "088899",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     number: "6",
@@ -164,6 +180,7 @@ describe("VendorCreditsClient", () => {
                     ],
                     appliedToLines: [
                         {
+                            remoteId: "088899",
                             createdAt: new Date("2021-09-15T00:00:00.000Z"),
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -189,27 +206,7 @@ describe("VendorCreditsClient", () => {
                     ],
                 },
             ],
-        };
-        const page = await client.accounting.vendorCredits.list({
-            companyId: "company_id",
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            pageSize: 1,
-            remoteId: "remote_id",
-            transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-            transactionDateBefore: new Date("2024-01-15T09:30:00.000Z"),
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("create", async () => {
@@ -224,7 +221,7 @@ describe("VendorCreditsClient", () => {
         const rawResponseBody = {
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remote_id: "remote_id",
+                remote_id: "088899",
                 created_at: "2021-09-15T00:00:00Z",
                 modified_at: "2021-10-16T00:00:00Z",
                 number: "6",
@@ -281,6 +278,7 @@ describe("VendorCreditsClient", () => {
                 ],
                 applied_to_lines: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -303,6 +301,8 @@ describe("VendorCreditsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -312,6 +312,8 @@ describe("VendorCreditsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -343,7 +345,7 @@ describe("VendorCreditsClient", () => {
         expect(response).toEqual({
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remoteId: "remote_id",
+                remoteId: "088899",
                 createdAt: new Date("2021-09-15T00:00:00.000Z"),
                 modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                 number: "6",
@@ -400,6 +402,7 @@ describe("VendorCreditsClient", () => {
                 ],
                 appliedToLines: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -433,6 +436,8 @@ describe("VendorCreditsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -444,6 +449,8 @@ describe("VendorCreditsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [
@@ -471,7 +478,7 @@ describe("VendorCreditsClient", () => {
 
         const rawResponseBody = {
             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-            remote_id: "remote_id",
+            remote_id: "088899",
             created_at: "2021-09-15T00:00:00Z",
             modified_at: "2021-10-16T00:00:00Z",
             number: "6",
@@ -531,7 +538,7 @@ describe("VendorCreditsClient", () => {
             ],
             applied_to_lines: [
                 {
-                    remote_id: "remote_id",
+                    remote_id: "088899",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -562,7 +569,7 @@ describe("VendorCreditsClient", () => {
         });
         expect(response).toEqual({
             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-            remoteId: "remote_id",
+            remoteId: "088899",
             createdAt: new Date("2021-09-15T00:00:00.000Z"),
             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
             number: "6",
@@ -622,7 +629,7 @@ describe("VendorCreditsClient", () => {
             ],
             appliedToLines: [
                 {
-                    remoteId: "remote_id",
+                    remoteId: "088899",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -662,7 +669,7 @@ describe("VendorCreditsClient", () => {
         const rawResponseBody = {
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remote_id: "remote_id",
+                remote_id: "088899",
                 created_at: "2021-09-15T00:00:00Z",
                 modified_at: "2021-10-16T00:00:00Z",
                 number: "6",
@@ -719,6 +726,7 @@ describe("VendorCreditsClient", () => {
                 ],
                 applied_to_lines: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -741,6 +749,8 @@ describe("VendorCreditsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -750,6 +760,8 @@ describe("VendorCreditsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -781,7 +793,7 @@ describe("VendorCreditsClient", () => {
         expect(response).toEqual({
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remoteId: "remote_id",
+                remoteId: "088899",
                 createdAt: new Date("2021-09-15T00:00:00.000Z"),
                 modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                 number: "6",
@@ -838,6 +850,7 @@ describe("VendorCreditsClient", () => {
                 ],
                 appliedToLines: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -871,6 +884,8 @@ describe("VendorCreditsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -882,6 +897,8 @@ describe("VendorCreditsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [
@@ -910,7 +927,7 @@ describe("VendorCreditsClient", () => {
         const rawResponseBody = {
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remote_id: "remote_id",
+                remote_id: "088899",
                 created_at: "2021-09-15T00:00:00Z",
                 modified_at: "2021-10-16T00:00:00Z",
                 number: "6",
@@ -967,6 +984,7 @@ describe("VendorCreditsClient", () => {
                 ],
                 applied_to_lines: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -989,6 +1007,8 @@ describe("VendorCreditsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -998,6 +1018,8 @@ describe("VendorCreditsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -1030,7 +1052,7 @@ describe("VendorCreditsClient", () => {
         expect(response).toEqual({
             model: {
                 id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                remoteId: "remote_id",
+                remoteId: "088899",
                 createdAt: new Date("2021-09-15T00:00:00.000Z"),
                 modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                 number: "6",
@@ -1087,6 +1109,7 @@ describe("VendorCreditsClient", () => {
                 ],
                 appliedToLines: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -1120,6 +1143,8 @@ describe("VendorCreditsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -1131,6 +1156,8 @@ describe("VendorCreditsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [

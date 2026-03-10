@@ -2,4 +2,4 @@
 
 import type * as Merge from "../../../index";
 
-export type SalesOrderRequestRequestLinesItem = string | Merge.accounting.SalesOrderLineRequest;
+export type SalesOrderRequestRequestLinesItem = string | Merge.accounting.SalesOrderLine;

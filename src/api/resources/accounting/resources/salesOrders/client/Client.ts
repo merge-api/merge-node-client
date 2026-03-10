@@ -49,125 +49,110 @@ export class SalesOrdersClient {
      *         showEnumOrigins: "status"
      *     })
      */
-    public async list(
+    public list(
         request: Merge.accounting.SalesOrdersListRequest = {},
         requestOptions?: SalesOrdersClient.RequestOptions,
-    ): Promise<core.Page<Merge.accounting.SalesOrder, Merge.accounting.PaginatedSalesOrderList>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: Merge.accounting.SalesOrdersListRequest,
-            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedSalesOrderList>> => {
-                const {
-                    companyId,
-                    createdAfter,
-                    createdBefore,
-                    cursor,
-                    expand,
-                    includeDeletedData,
-                    includeRemoteData,
-                    includeRemoteFields,
-                    includeShellData,
-                    issueDateAfter,
-                    issueDateBefore,
-                    modifiedAfter,
-                    modifiedBefore,
-                    pageSize,
-                    remoteFields,
-                    remoteId,
-                    showEnumOrigins,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    company_id: companyId,
-                    created_after: createdAfter?.toISOString(),
-                    created_before: createdBefore?.toISOString(),
-                    cursor,
-                    expand: Array.isArray(expand)
-                        ? expand.map((item) =>
-                              serializers.accounting.SalesOrdersListRequestExpandItem.jsonOrThrow(item, {
-                                  unrecognizedObjectKeys: "strip",
-                              }),
-                          )
-                        : expand != null
-                          ? serializers.accounting.SalesOrdersListRequestExpandItem.jsonOrThrow(expand, {
-                                unrecognizedObjectKeys: "strip",
-                            })
-                          : undefined,
-                    include_deleted_data: includeDeletedData,
-                    include_remote_data: includeRemoteData,
-                    include_remote_fields: includeRemoteFields,
-                    include_shell_data: includeShellData,
-                    issue_date_after: issueDateAfter?.toISOString(),
-                    issue_date_before: issueDateBefore?.toISOString(),
-                    modified_after: modifiedAfter?.toISOString(),
-                    modified_before: modifiedBefore?.toISOString(),
-                    page_size: pageSize,
-                    remote_fields: remoteFields != null ? remoteFields : undefined,
-                    remote_id: remoteId,
-                    show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    mergeOnlyDefinedHeaders({
-                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-                    }),
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)) ??
-                            environments.MergeEnvironment.Production,
-                        "accounting/v1/sales-orders",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: serializers.accounting.PaginatedSalesOrderList.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    throw new errors.MergeError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/accounting/v1/sales-orders",
-                );
-            },
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedSalesOrderList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.SalesOrdersListRequest = {},
+        requestOptions?: SalesOrdersClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedSalesOrderList>> {
+        const {
+            companyId,
+            createdAfter,
+            createdBefore,
+            cursor,
+            expand,
+            includeDeletedData,
+            includeRemoteData,
+            includeRemoteFields,
+            includeShellData,
+            issueDateAfter,
+            issueDateBefore,
+            modifiedAfter,
+            modifiedBefore,
+            pageSize,
+            remoteFields,
+            remoteId,
+            showEnumOrigins,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            created_after: createdAfter?.toISOString(),
+            created_before: createdBefore?.toISOString(),
+            cursor,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.SalesOrdersListRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.SalesOrdersListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_remote_fields: includeRemoteFields,
+            include_shell_data: includeShellData,
+            issue_date_after: issueDateAfter?.toISOString(),
+            issue_date_before: issueDateBefore?.toISOString(),
+            modified_after: modifiedAfter?.toISOString(),
+            modified_before: modifiedBefore?.toISOString(),
+            page_size: pageSize,
+            remote_fields: remoteFields != null ? remoteFields : undefined,
+            remote_id: remoteId,
+            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
         );
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<Merge.accounting.SalesOrder, Merge.accounting.PaginatedSalesOrderList>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) =>
-                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
-            getItems: (response) => response?.results ?? [],
-            loadPage: (response) => {
-                return list(core.setObjectProperty(request, "cursor", response?.next));
-            },
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/sales-orders",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedSalesOrderList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/accounting/v1/sales-orders");
     }
 
     /**
@@ -353,37 +338,30 @@ export class SalesOrdersClient {
     }
 
     /**
-     * Creates a `SalesOrder` object with the given values.
+     * Creates multiple `SalesOrder` objects with the given values.
      *
      * @param {Merge.accounting.SalesOrderBulkRequest} request
      * @param {SalesOrdersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.salesOrders.asyncBulkCreate({
-     *         isDebugMode: true,
-     *         runAsync: true,
+     *     await client.accounting.salesOrders.bulkCreate({
      *         batchItems: [{
      *                 itemId: "item_id",
      *                 payload: {}
      *             }]
      *     })
      */
-    public asyncBulkCreate(
+    public bulkCreate(
         request: Merge.accounting.SalesOrderBulkRequest,
         requestOptions?: SalesOrdersClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.AsyncBulkCreateResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkCreate(request, requestOptions));
     }
 
-    private async __asyncBulkCreate(
+    private async __bulkCreate(
         request: Merge.accounting.SalesOrderBulkRequest,
         requestOptions?: SalesOrdersClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.AsyncBulkCreateResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, unknown> = {
-            is_debug_mode: isDebugMode,
-            run_async: runAsync,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -396,14 +374,16 @@ export class SalesOrdersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                "accounting/v1/sales-orders/async/bulk",
+                "accounting/v1/sales-orders/bulk",
             ),
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.accounting.SalesOrderBulkRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.accounting.SalesOrderBulkRequest.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -435,98 +415,30 @@ export class SalesOrdersClient {
             _response.error,
             _response.rawResponse,
             "POST",
-            "/accounting/v1/sales-orders/async/bulk",
+            "/accounting/v1/sales-orders/bulk",
         );
     }
 
     /**
-     * Returns a list of `SalesOrder` objects.
+     * Returns the status and results of a `SalesOrder` bulk create batch.
      *
      * @param {string} batch_id
-     * @param {Merge.accounting.SalesOrdersBatchObjectsListRequest} request
      * @param {SalesOrdersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.salesOrders.batchObjectsList("batch_id", {
-     *         companyId: "company_id",
-     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         includeDeletedData: true,
-     *         includeRemoteData: true,
-     *         includeRemoteFields: true,
-     *         includeShellData: true,
-     *         issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         pageSize: 1,
-     *         remoteFields: "status",
-     *         remoteId: "remote_id",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await client.accounting.salesOrders.bulkRetrieve("batch_id")
      */
-    public batchObjectsList(
+    public bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.SalesOrdersBatchObjectsListRequest = {},
         requestOptions?: SalesOrdersClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.BatchObjectsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkRetrieve(batch_id, requestOptions));
     }
 
-    private async __batchObjectsList(
+    private async __bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.SalesOrdersBatchObjectsListRequest = {},
         requestOptions?: SalesOrdersClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.BatchObjectsResponse>> {
-        const {
-            companyId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeRemoteFields,
-            includeShellData,
-            issueDateAfter,
-            issueDateBefore,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand: Array.isArray(expand)
-                ? expand.map((item) =>
-                      serializers.accounting.SalesOrdersBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
-                          unrecognizedObjectKeys: "strip",
-                      }),
-                  )
-                : expand != null
-                  ? serializers.accounting.SalesOrdersBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
-                        unrecognizedObjectKeys: "strip",
-                    })
-                  : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_remote_fields: includeRemoteFields,
-            include_shell_data: includeShellData,
-            issue_date_after: issueDateAfter?.toISOString(),
-            issue_date_before: issueDateBefore?.toISOString(),
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            remote_fields: remoteFields != null ? remoteFields : undefined,
-            remote_id: remoteId,
-            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -539,11 +451,11 @@ export class SalesOrdersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                `accounting/v1/sales-orders/batch/${core.url.encodePathParam(batch_id)}/objects`,
+                `accounting/v1/sales-orders/bulk/${core.url.encodePathParam(batch_id)}`,
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -575,7 +487,7 @@ export class SalesOrdersClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/accounting/v1/sales-orders/batch/{batch_id}/objects",
+            "/accounting/v1/sales-orders/bulk/{batch_id}",
         );
     }
 
@@ -596,95 +508,85 @@ export class SalesOrdersClient {
      *         pageSize: 1
      *     })
      */
-    public async linesRemoteFieldClassesList(
+    public linesRemoteFieldClassesList(
         request: Merge.accounting.SalesOrdersLinesRemoteFieldClassesListRequest = {},
         requestOptions?: SalesOrdersClient.RequestOptions,
-    ): Promise<core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: Merge.accounting.SalesOrdersLinesRemoteFieldClassesListRequest,
-            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> => {
-                const {
-                    cursor,
-                    includeDeletedData,
-                    includeRemoteData,
-                    includeShellData,
-                    isCommonModelField,
-                    isCustom,
-                    pageSize,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    cursor,
-                    include_deleted_data: includeDeletedData,
-                    include_remote_data: includeRemoteData,
-                    include_shell_data: includeShellData,
-                    is_common_model_field: isCommonModelField,
-                    is_custom: isCustom,
-                    page_size: pageSize,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    mergeOnlyDefinedHeaders({
-                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-                    }),
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)) ??
-                            environments.MergeEnvironment.Production,
-                        "accounting/v1/sales-orders/lines/remote-field-classes",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    throw new errors.MergeError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/accounting/v1/sales-orders/lines/remote-field-classes",
-                );
-            },
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__linesRemoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __linesRemoteFieldClassesList(
+        request: Merge.accounting.SalesOrdersLinesRemoteFieldClassesListRequest = {},
+        requestOptions?: SalesOrdersClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
+        const {
+            cursor,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            isCommonModelField,
+            isCustom,
+            pageSize,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            cursor,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+            is_common_model_field: isCommonModelField,
+            is_custom: isCustom,
+            page_size: pageSize,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
         );
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) =>
-                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
-            getItems: (response) => response?.results ?? [],
-            loadPage: (response) => {
-                return list(core.setObjectProperty(request, "cursor", response?.next));
-            },
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/sales-orders/lines/remote-field-classes",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/sales-orders/lines/remote-field-classes",
+        );
     }
 
     /**
@@ -773,94 +675,84 @@ export class SalesOrdersClient {
      *         pageSize: 1
      *     })
      */
-    public async remoteFieldClassesList(
+    public remoteFieldClassesList(
         request: Merge.accounting.SalesOrdersRemoteFieldClassesListRequest = {},
         requestOptions?: SalesOrdersClient.RequestOptions,
-    ): Promise<core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: Merge.accounting.SalesOrdersRemoteFieldClassesListRequest,
-            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> => {
-                const {
-                    cursor,
-                    includeDeletedData,
-                    includeRemoteData,
-                    includeShellData,
-                    isCommonModelField,
-                    isCustom,
-                    pageSize,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    cursor,
-                    include_deleted_data: includeDeletedData,
-                    include_remote_data: includeRemoteData,
-                    include_shell_data: includeShellData,
-                    is_common_model_field: isCommonModelField,
-                    is_custom: isCustom,
-                    page_size: pageSize,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    mergeOnlyDefinedHeaders({
-                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-                    }),
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)) ??
-                            environments.MergeEnvironment.Production,
-                        "accounting/v1/sales-orders/remote-field-classes",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    throw new errors.MergeError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/accounting/v1/sales-orders/remote-field-classes",
-                );
-            },
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __remoteFieldClassesList(
+        request: Merge.accounting.SalesOrdersRemoteFieldClassesListRequest = {},
+        requestOptions?: SalesOrdersClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
+        const {
+            cursor,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            isCommonModelField,
+            isCustom,
+            pageSize,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            cursor,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+            is_common_model_field: isCommonModelField,
+            is_custom: isCustom,
+            page_size: pageSize,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
         );
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) =>
-                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
-            getItems: (response) => response?.results ?? [],
-            loadPage: (response) => {
-                return list(core.setObjectProperty(request, "cursor", response?.next));
-            },
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/sales-orders/remote-field-classes",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/sales-orders/remote-field-classes",
+        );
     }
 }

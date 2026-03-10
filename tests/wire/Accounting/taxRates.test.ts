@@ -19,7 +19,7 @@ describe("TaxRatesClient", () => {
             results: [
                 {
                     id: "b82302de-852e-4e60-b050-edf9da3b7c02",
-                    remote_id: "remote_id",
+                    remote_id: "039111",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     company: "company",
@@ -33,7 +33,7 @@ describe("TaxRatesClient", () => {
                     tax_components: [
                         {
                             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                            remote_id: "remote_id",
+                            remote_id: "039111",
                             created_at: "2021-09-15T00:00:00Z",
                             modified_at: "2021-10-16T00:00:00Z",
                             name: "Drink Tax Component",
@@ -52,20 +52,34 @@ describe("TaxRatesClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/tax-rates")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.taxRates.list({
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            name: "name",
+            pageSize: 1,
+            remoteId: "remote_id",
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
                 {
                     id: "b82302de-852e-4e60-b050-edf9da3b7c02",
-                    remoteId: "remote_id",
+                    remoteId: "039111",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     company: "company",
@@ -79,7 +93,7 @@ describe("TaxRatesClient", () => {
                     taxComponents: [
                         {
                             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                            remoteId: "remote_id",
+                            remoteId: "039111",
                             createdAt: new Date("2021-09-15T00:00:00.000Z"),
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             name: "Drink Tax Component",
@@ -105,26 +119,7 @@ describe("TaxRatesClient", () => {
                     ],
                 },
             ],
-        };
-        const page = await client.accounting.taxRates.list({
-            companyId: "company_id",
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            name: "name",
-            pageSize: 1,
-            remoteId: "remote_id",
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("retrieve", async () => {
@@ -138,7 +133,7 @@ describe("TaxRatesClient", () => {
 
         const rawResponseBody = {
             id: "b82302de-852e-4e60-b050-edf9da3b7c02",
-            remote_id: "remote_id",
+            remote_id: "039111",
             created_at: "2021-09-15T00:00:00Z",
             modified_at: "2021-10-16T00:00:00Z",
             company: "company",
@@ -152,7 +147,7 @@ describe("TaxRatesClient", () => {
             tax_components: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remote_id: "remote_id",
+                    remote_id: "039111",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "Drink Tax Component",
@@ -183,7 +178,7 @@ describe("TaxRatesClient", () => {
         });
         expect(response).toEqual({
             id: "b82302de-852e-4e60-b050-edf9da3b7c02",
-            remoteId: "remote_id",
+            remoteId: "039111",
             createdAt: new Date("2021-09-15T00:00:00.000Z"),
             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
             company: "company",
@@ -197,7 +192,7 @@ describe("TaxRatesClient", () => {
             taxComponents: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remoteId: "remote_id",
+                    remoteId: "039111",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "Drink Tax Component",

@@ -47,121 +47,106 @@ export class ExpensesClient {
      *         transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
      *     })
      */
-    public async list(
+    public list(
         request: Merge.accounting.ExpensesListRequest = {},
         requestOptions?: ExpensesClient.RequestOptions,
-    ): Promise<core.Page<Merge.accounting.Expense, Merge.accounting.PaginatedExpenseList>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: Merge.accounting.ExpensesListRequest,
-            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedExpenseList>> => {
-                const {
-                    companyId,
-                    createdAfter,
-                    createdBefore,
-                    cursor,
-                    expand,
-                    includeDeletedData,
-                    includeRemoteData,
-                    includeRemoteFields,
-                    includeShellData,
-                    modifiedAfter,
-                    modifiedBefore,
-                    pageSize,
-                    remoteId,
-                    transactionDateAfter,
-                    transactionDateBefore,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    company_id: companyId,
-                    created_after: createdAfter?.toISOString(),
-                    created_before: createdBefore?.toISOString(),
-                    cursor,
-                    expand: Array.isArray(expand)
-                        ? expand.map((item) =>
-                              serializers.accounting.ExpensesListRequestExpandItem.jsonOrThrow(item, {
-                                  unrecognizedObjectKeys: "strip",
-                              }),
-                          )
-                        : expand != null
-                          ? serializers.accounting.ExpensesListRequestExpandItem.jsonOrThrow(expand, {
-                                unrecognizedObjectKeys: "strip",
-                            })
-                          : undefined,
-                    include_deleted_data: includeDeletedData,
-                    include_remote_data: includeRemoteData,
-                    include_remote_fields: includeRemoteFields,
-                    include_shell_data: includeShellData,
-                    modified_after: modifiedAfter?.toISOString(),
-                    modified_before: modifiedBefore?.toISOString(),
-                    page_size: pageSize,
-                    remote_id: remoteId,
-                    transaction_date_after: transactionDateAfter?.toISOString(),
-                    transaction_date_before: transactionDateBefore?.toISOString(),
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    mergeOnlyDefinedHeaders({
-                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-                    }),
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)) ??
-                            environments.MergeEnvironment.Production,
-                        "accounting/v1/expenses",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: serializers.accounting.PaginatedExpenseList.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    throw new errors.MergeError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/accounting/v1/expenses",
-                );
-            },
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedExpenseList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.ExpensesListRequest = {},
+        requestOptions?: ExpensesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedExpenseList>> {
+        const {
+            companyId,
+            createdAfter,
+            createdBefore,
+            cursor,
+            expand,
+            includeDeletedData,
+            includeRemoteData,
+            includeRemoteFields,
+            includeShellData,
+            modifiedAfter,
+            modifiedBefore,
+            pageSize,
+            remoteId,
+            transactionDateAfter,
+            transactionDateBefore,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            created_after: createdAfter?.toISOString(),
+            created_before: createdBefore?.toISOString(),
+            cursor,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.ExpensesListRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.ExpensesListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_remote_fields: includeRemoteFields,
+            include_shell_data: includeShellData,
+            modified_after: modifiedAfter?.toISOString(),
+            modified_before: modifiedBefore?.toISOString(),
+            page_size: pageSize,
+            remote_id: remoteId,
+            transaction_date_after: transactionDateAfter?.toISOString(),
+            transaction_date_before: transactionDateBefore?.toISOString(),
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
         );
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<Merge.accounting.Expense, Merge.accounting.PaginatedExpenseList>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) =>
-                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
-            getItems: (response) => response?.results ?? [],
-            loadPage: (response) => {
-                return list(core.setObjectProperty(request, "cursor", response?.next));
-            },
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/expenses",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedExpenseList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/accounting/v1/expenses");
     }
 
     /**
@@ -335,37 +320,30 @@ export class ExpensesClient {
     }
 
     /**
-     * Creates an `Expense` object with the given values.
+     * Creates multiple `Expense` objects with the given values.
      *
      * @param {Merge.accounting.ExpenseBulkRequest} request
      * @param {ExpensesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.expenses.asyncBulkCreate({
-     *         isDebugMode: true,
-     *         runAsync: true,
+     *     await client.accounting.expenses.bulkCreate({
      *         batchItems: [{
      *                 itemId: "item_id",
      *                 payload: {}
      *             }]
      *     })
      */
-    public asyncBulkCreate(
+    public bulkCreate(
         request: Merge.accounting.ExpenseBulkRequest,
         requestOptions?: ExpensesClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.AsyncBulkCreateResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkCreate(request, requestOptions));
     }
 
-    private async __asyncBulkCreate(
+    private async __bulkCreate(
         request: Merge.accounting.ExpenseBulkRequest,
         requestOptions?: ExpensesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.AsyncBulkCreateResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, unknown> = {
-            is_debug_mode: isDebugMode,
-            run_async: runAsync,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -378,14 +356,14 @@ export class ExpensesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                "accounting/v1/expenses/async/bulk",
+                "accounting/v1/expenses/bulk",
             ),
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.accounting.ExpenseBulkRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.accounting.ExpenseBulkRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -413,96 +391,29 @@ export class ExpensesClient {
             });
         }
 
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "POST",
-            "/accounting/v1/expenses/async/bulk",
-        );
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/accounting/v1/expenses/bulk");
     }
 
     /**
-     * Returns a list of `Expense` objects.
+     * Returns the status and results of an `Expense` bulk create batch.
      *
      * @param {string} batch_id
-     * @param {Merge.accounting.ExpensesBatchObjectsListRequest} request
      * @param {ExpensesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.expenses.batchObjectsList("batch_id", {
-     *         companyId: "company_id",
-     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         includeDeletedData: true,
-     *         includeRemoteData: true,
-     *         includeRemoteFields: true,
-     *         includeShellData: true,
-     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         pageSize: 1,
-     *         remoteId: "remote_id",
-     *         transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-     *     })
+     *     await client.accounting.expenses.bulkRetrieve("batch_id")
      */
-    public batchObjectsList(
+    public bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.ExpensesBatchObjectsListRequest = {},
         requestOptions?: ExpensesClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.BatchObjectsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkRetrieve(batch_id, requestOptions));
     }
 
-    private async __batchObjectsList(
+    private async __bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.ExpensesBatchObjectsListRequest = {},
         requestOptions?: ExpensesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.BatchObjectsResponse>> {
-        const {
-            companyId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeRemoteFields,
-            includeShellData,
-            modifiedAfter,
-            modifiedBefore,
-            pageSize,
-            remoteId,
-            transactionDateAfter,
-            transactionDateBefore,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand: Array.isArray(expand)
-                ? expand.map((item) =>
-                      serializers.accounting.ExpensesBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
-                          unrecognizedObjectKeys: "strip",
-                      }),
-                  )
-                : expand != null
-                  ? serializers.accounting.ExpensesBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
-                        unrecognizedObjectKeys: "strip",
-                    })
-                  : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_remote_fields: includeRemoteFields,
-            include_shell_data: includeShellData,
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            page_size: pageSize,
-            remote_id: remoteId,
-            transaction_date_after: transactionDateAfter?.toISOString(),
-            transaction_date_before: transactionDateBefore?.toISOString(),
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -515,11 +426,11 @@ export class ExpensesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                `accounting/v1/expenses/batch/${core.url.encodePathParam(batch_id)}/objects`,
+                `accounting/v1/expenses/bulk/${core.url.encodePathParam(batch_id)}`,
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -551,7 +462,7 @@ export class ExpensesClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/accounting/v1/expenses/batch/{batch_id}/objects",
+            "/accounting/v1/expenses/bulk/{batch_id}",
         );
     }
 
@@ -572,95 +483,85 @@ export class ExpensesClient {
      *         pageSize: 1
      *     })
      */
-    public async linesRemoteFieldClassesList(
+    public linesRemoteFieldClassesList(
         request: Merge.accounting.ExpensesLinesRemoteFieldClassesListRequest = {},
         requestOptions?: ExpensesClient.RequestOptions,
-    ): Promise<core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: Merge.accounting.ExpensesLinesRemoteFieldClassesListRequest,
-            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> => {
-                const {
-                    cursor,
-                    includeDeletedData,
-                    includeRemoteData,
-                    includeShellData,
-                    isCommonModelField,
-                    isCustom,
-                    pageSize,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    cursor,
-                    include_deleted_data: includeDeletedData,
-                    include_remote_data: includeRemoteData,
-                    include_shell_data: includeShellData,
-                    is_common_model_field: isCommonModelField,
-                    is_custom: isCustom,
-                    page_size: pageSize,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    mergeOnlyDefinedHeaders({
-                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-                    }),
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)) ??
-                            environments.MergeEnvironment.Production,
-                        "accounting/v1/expenses/lines/remote-field-classes",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    throw new errors.MergeError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/accounting/v1/expenses/lines/remote-field-classes",
-                );
-            },
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__linesRemoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __linesRemoteFieldClassesList(
+        request: Merge.accounting.ExpensesLinesRemoteFieldClassesListRequest = {},
+        requestOptions?: ExpensesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
+        const {
+            cursor,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            isCommonModelField,
+            isCustom,
+            pageSize,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            cursor,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+            is_common_model_field: isCommonModelField,
+            is_custom: isCustom,
+            page_size: pageSize,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
         );
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) =>
-                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
-            getItems: (response) => response?.results ?? [],
-            loadPage: (response) => {
-                return list(core.setObjectProperty(request, "cursor", response?.next));
-            },
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/expenses/lines/remote-field-classes",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/expenses/lines/remote-field-classes",
+        );
     }
 
     /**
@@ -749,94 +650,84 @@ export class ExpensesClient {
      *         pageSize: 1
      *     })
      */
-    public async remoteFieldClassesList(
+    public remoteFieldClassesList(
         request: Merge.accounting.ExpensesRemoteFieldClassesListRequest = {},
         requestOptions?: ExpensesClient.RequestOptions,
-    ): Promise<core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: Merge.accounting.ExpensesRemoteFieldClassesListRequest,
-            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> => {
-                const {
-                    cursor,
-                    includeDeletedData,
-                    includeRemoteData,
-                    includeShellData,
-                    isCommonModelField,
-                    isCustom,
-                    pageSize,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    cursor,
-                    include_deleted_data: includeDeletedData,
-                    include_remote_data: includeRemoteData,
-                    include_shell_data: includeShellData,
-                    is_common_model_field: isCommonModelField,
-                    is_custom: isCustom,
-                    page_size: pageSize,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    mergeOnlyDefinedHeaders({
-                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-                    }),
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)) ??
-                            environments.MergeEnvironment.Production,
-                        "accounting/v1/expenses/remote-field-classes",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    throw new errors.MergeError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/accounting/v1/expenses/remote-field-classes",
-                );
-            },
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __remoteFieldClassesList(
+        request: Merge.accounting.ExpensesRemoteFieldClassesListRequest = {},
+        requestOptions?: ExpensesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
+        const {
+            cursor,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            isCommonModelField,
+            isCustom,
+            pageSize,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            cursor,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+            is_common_model_field: isCommonModelField,
+            is_custom: isCustom,
+            page_size: pageSize,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
         );
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) =>
-                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
-            getItems: (response) => response?.results ?? [],
-            loadPage: (response) => {
-                return list(core.setObjectProperty(request, "cursor", response?.next));
-            },
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/expenses/remote-field-classes",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/expenses/remote-field-classes",
+        );
     }
 }

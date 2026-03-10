@@ -2,9 +2,31 @@
 
 import type * as Merge from "../../../index";
 
+/**
+ * Response serializer for GET bulk/{batch_id} - returns batch status and objects
+ */
 export interface BatchObjectsResponse {
+    /** The ID of the batch. */
     batchId: string;
-    status: string;
+    /**
+     * Possible overall statuses:
+     *
+     * * `ENQUEUED` - The request has been received and a task has been enqueued for processing
+     * * `IN_PROGRESS` - The enqueued task is being processed
+     * * `PARTIAL_SUCCESS` - The task has been processed, but not all objects were written successfully
+     * * `SUCCESS` - The task has been processed, and all objects were written successfully
+     * * `FAILED` - The task has been processed, but ran into an error while processing
+     * * `RATE_LIMITED` - The request was received but ran into rate limits while processing. The rate limited objects are being retried.
+     *
+     * * `ENQUEUED` - ENQUEUED
+     * * `IN_PROGRESS` - IN_PROGRESS
+     * * `PARTIAL_SUCCESS` - PARTIAL_SUCCESS
+     * * `SUCCESS` - SUCCESS
+     * * `FAILED` - FAILED
+     * * `RATE_LIMITED` - RATE_LIMITED
+     */
+    status: Merge.accounting.BatchObjectsResponseStatus;
+    /** The total number of objects in the batch. */
     totalCount: number;
     objects: Merge.accounting.BatchObject[];
 }

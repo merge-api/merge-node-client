@@ -53,143 +53,128 @@ export class InvoicesClient {
      *         type: "ACCOUNTS_PAYABLE"
      *     })
      */
-    public async list(
+    public list(
         request: Merge.accounting.InvoicesListRequest = {},
         requestOptions?: InvoicesClient.RequestOptions,
-    ): Promise<core.Page<Merge.accounting.Invoice, Merge.accounting.PaginatedInvoiceList>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: Merge.accounting.InvoicesListRequest,
-            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedInvoiceList>> => {
-                const {
-                    companyId,
-                    contactId,
-                    createdAfter,
-                    createdBefore,
-                    cursor,
-                    expand,
-                    includeDeletedData,
-                    includeRemoteData,
-                    includeRemoteFields,
-                    includeShellData,
-                    issueDateAfter,
-                    issueDateBefore,
-                    modifiedAfter,
-                    modifiedBefore,
-                    number: number_,
-                    pageSize,
-                    remoteFields,
-                    remoteId,
-                    showEnumOrigins,
-                    status,
-                    type: type_,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    company_id: companyId,
-                    contact_id: contactId,
-                    created_after: createdAfter?.toISOString(),
-                    created_before: createdBefore?.toISOString(),
-                    cursor,
-                    expand: Array.isArray(expand)
-                        ? expand.map((item) =>
-                              serializers.accounting.InvoicesListRequestExpandItem.jsonOrThrow(item, {
-                                  unrecognizedObjectKeys: "strip",
-                              }),
-                          )
-                        : expand != null
-                          ? serializers.accounting.InvoicesListRequestExpandItem.jsonOrThrow(expand, {
-                                unrecognizedObjectKeys: "strip",
-                            })
-                          : undefined,
-                    include_deleted_data: includeDeletedData,
-                    include_remote_data: includeRemoteData,
-                    include_remote_fields: includeRemoteFields,
-                    include_shell_data: includeShellData,
-                    issue_date_after: issueDateAfter?.toISOString(),
-                    issue_date_before: issueDateBefore?.toISOString(),
-                    modified_after: modifiedAfter?.toISOString(),
-                    modified_before: modifiedBefore?.toISOString(),
-                    number: number_,
-                    page_size: pageSize,
-                    remote_fields: remoteFields != null ? remoteFields : undefined,
-                    remote_id: remoteId,
-                    show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-                    status:
-                        status != null
-                            ? serializers.accounting.InvoicesListRequestStatus.jsonOrThrow(status, {
-                                  unrecognizedObjectKeys: "strip",
-                              })
-                            : undefined,
-                    type:
-                        type_ != null
-                            ? serializers.accounting.InvoicesListRequestType.jsonOrThrow(type_, {
-                                  unrecognizedObjectKeys: "strip",
-                              })
-                            : undefined,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    mergeOnlyDefinedHeaders({
-                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-                    }),
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)) ??
-                            environments.MergeEnvironment.Production,
-                        "accounting/v1/invoices",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: serializers.accounting.PaginatedInvoiceList.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    throw new errors.MergeError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/accounting/v1/invoices",
-                );
-            },
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedInvoiceList> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Merge.accounting.InvoicesListRequest = {},
+        requestOptions?: InvoicesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedInvoiceList>> {
+        const {
+            companyId,
+            contactId,
+            createdAfter,
+            createdBefore,
+            cursor,
+            expand,
+            includeDeletedData,
+            includeRemoteData,
+            includeRemoteFields,
+            includeShellData,
+            issueDateAfter,
+            issueDateBefore,
+            modifiedAfter,
+            modifiedBefore,
+            number: number_,
+            pageSize,
+            remoteFields,
+            remoteId,
+            showEnumOrigins,
+            status,
+            type: type_,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            contact_id: contactId,
+            created_after: createdAfter?.toISOString(),
+            created_before: createdBefore?.toISOString(),
+            cursor,
+            expand: Array.isArray(expand)
+                ? expand.map((item) =>
+                      serializers.accounting.InvoicesListRequestExpandItem.jsonOrThrow(item, {
+                          unrecognizedObjectKeys: "strip",
+                      }),
+                  )
+                : expand != null
+                  ? serializers.accounting.InvoicesListRequestExpandItem.jsonOrThrow(expand, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_remote_fields: includeRemoteFields,
+            include_shell_data: includeShellData,
+            issue_date_after: issueDateAfter?.toISOString(),
+            issue_date_before: issueDateBefore?.toISOString(),
+            modified_after: modifiedAfter?.toISOString(),
+            modified_before: modifiedBefore?.toISOString(),
+            number: number_,
+            page_size: pageSize,
+            remote_fields: remoteFields != null ? remoteFields : undefined,
+            remote_id: remoteId,
+            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
+            status:
+                status != null
+                    ? serializers.accounting.InvoicesListRequestStatus.jsonOrThrow(status, {
+                          unrecognizedObjectKeys: "strip",
+                      })
+                    : undefined,
+            type:
+                type_ != null
+                    ? serializers.accounting.InvoicesListRequestType.jsonOrThrow(type_, {
+                          unrecognizedObjectKeys: "strip",
+                      })
+                    : undefined,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
         );
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<Merge.accounting.Invoice, Merge.accounting.PaginatedInvoiceList>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) =>
-                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
-            getItems: (response) => response?.results ?? [],
-            loadPage: (response) => {
-                return list(core.setObjectProperty(request, "cursor", response?.next));
-            },
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/invoices",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedInvoiceList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/accounting/v1/invoices");
     }
 
     /**
@@ -459,39 +444,30 @@ export class InvoicesClient {
     }
 
     /**
-     * Creates an `Invoice` object with the given values.
-     *             Including a `PurchaseOrder` id in the `purchase_orders` property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
-     *
+     * Creates multiple `Invoice` objects with the given values.
      *
      * @param {Merge.accounting.InvoiceBulkRequest} request
      * @param {InvoicesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.invoices.asyncBulkCreate({
-     *         isDebugMode: true,
-     *         runAsync: true,
+     *     await client.accounting.invoices.bulkCreate({
      *         batchItems: [{
      *                 itemId: "item_id",
      *                 payload: {}
      *             }]
      *     })
      */
-    public asyncBulkCreate(
+    public bulkCreate(
         request: Merge.accounting.InvoiceBulkRequest,
         requestOptions?: InvoicesClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.AsyncBulkCreateResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkCreate(request, requestOptions));
     }
 
-    private async __asyncBulkCreate(
+    private async __bulkCreate(
         request: Merge.accounting.InvoiceBulkRequest,
         requestOptions?: InvoicesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.AsyncBulkCreateResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, unknown> = {
-            is_debug_mode: isDebugMode,
-            run_async: runAsync,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -504,14 +480,14 @@ export class InvoicesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                "accounting/v1/invoices/async/bulk",
+                "accounting/v1/invoices/bulk",
             ),
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.accounting.InvoiceBulkRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.accounting.InvoiceBulkRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -539,124 +515,29 @@ export class InvoicesClient {
             });
         }
 
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "POST",
-            "/accounting/v1/invoices/async/bulk",
-        );
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/accounting/v1/invoices/bulk");
     }
 
     /**
-     * Returns a list of `Invoice` objects.
+     * Returns the status and results of an `Invoice` bulk create batch.
      *
      * @param {string} batch_id
-     * @param {Merge.accounting.InvoicesBatchObjectsListRequest} request
      * @param {InvoicesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.invoices.batchObjectsList("batch_id", {
-     *         companyId: "company_id",
-     *         contactId: "contact_id",
-     *         createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         includeDeletedData: true,
-     *         includeRemoteData: true,
-     *         includeRemoteFields: true,
-     *         includeShellData: true,
-     *         issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-     *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-     *         number: "number",
-     *         pageSize: 1,
-     *         remoteFields: "type",
-     *         remoteId: "remote_id",
-     *         showEnumOrigins: "type",
-     *         status: "DRAFT",
-     *         type: "ACCOUNTS_PAYABLE"
-     *     })
+     *     await client.accounting.invoices.bulkRetrieve("batch_id")
      */
-    public batchObjectsList(
+    public bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.InvoicesBatchObjectsListRequest = {},
         requestOptions?: InvoicesClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.BatchObjectsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkRetrieve(batch_id, requestOptions));
     }
 
-    private async __batchObjectsList(
+    private async __bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.InvoicesBatchObjectsListRequest = {},
         requestOptions?: InvoicesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.BatchObjectsResponse>> {
-        const {
-            companyId,
-            contactId,
-            createdAfter,
-            createdBefore,
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeRemoteFields,
-            includeShellData,
-            issueDateAfter,
-            issueDateBefore,
-            modifiedAfter,
-            modifiedBefore,
-            number: number_,
-            pageSize,
-            remoteFields,
-            remoteId,
-            showEnumOrigins,
-            status,
-            type: type_,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            company_id: companyId,
-            contact_id: contactId,
-            created_after: createdAfter?.toISOString(),
-            created_before: createdBefore?.toISOString(),
-            cursor,
-            expand: Array.isArray(expand)
-                ? expand.map((item) =>
-                      serializers.accounting.InvoicesBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
-                          unrecognizedObjectKeys: "strip",
-                      }),
-                  )
-                : expand != null
-                  ? serializers.accounting.InvoicesBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
-                        unrecognizedObjectKeys: "strip",
-                    })
-                  : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_remote_fields: includeRemoteFields,
-            include_shell_data: includeShellData,
-            issue_date_after: issueDateAfter?.toISOString(),
-            issue_date_before: issueDateBefore?.toISOString(),
-            modified_after: modifiedAfter?.toISOString(),
-            modified_before: modifiedBefore?.toISOString(),
-            number: number_,
-            page_size: pageSize,
-            remote_fields: remoteFields != null ? remoteFields : undefined,
-            remote_id: remoteId,
-            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-            status:
-                status != null
-                    ? serializers.accounting.InvoicesBatchObjectsListRequestStatus.jsonOrThrow(status, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-            type:
-                type_ != null
-                    ? serializers.accounting.InvoicesBatchObjectsListRequestType.jsonOrThrow(type_, {
-                          unrecognizedObjectKeys: "strip",
-                      })
-                    : undefined,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -669,11 +550,11 @@ export class InvoicesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                `accounting/v1/invoices/batch/${core.url.encodePathParam(batch_id)}/objects`,
+                `accounting/v1/invoices/bulk/${core.url.encodePathParam(batch_id)}`,
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -705,7 +586,7 @@ export class InvoicesClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/accounting/v1/invoices/batch/{batch_id}/objects",
+            "/accounting/v1/invoices/bulk/{batch_id}",
         );
     }
 
@@ -726,95 +607,85 @@ export class InvoicesClient {
      *         pageSize: 1
      *     })
      */
-    public async lineItemsRemoteFieldClassesList(
+    public lineItemsRemoteFieldClassesList(
         request: Merge.accounting.InvoicesLineItemsRemoteFieldClassesListRequest = {},
         requestOptions?: InvoicesClient.RequestOptions,
-    ): Promise<core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: Merge.accounting.InvoicesLineItemsRemoteFieldClassesListRequest,
-            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> => {
-                const {
-                    cursor,
-                    includeDeletedData,
-                    includeRemoteData,
-                    includeShellData,
-                    isCommonModelField,
-                    isCustom,
-                    pageSize,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    cursor,
-                    include_deleted_data: includeDeletedData,
-                    include_remote_data: includeRemoteData,
-                    include_shell_data: includeShellData,
-                    is_common_model_field: isCommonModelField,
-                    is_custom: isCustom,
-                    page_size: pageSize,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    mergeOnlyDefinedHeaders({
-                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-                    }),
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)) ??
-                            environments.MergeEnvironment.Production,
-                        "accounting/v1/invoices/line-items/remote-field-classes",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    throw new errors.MergeError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/accounting/v1/invoices/line-items/remote-field-classes",
-                );
-            },
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__lineItemsRemoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __lineItemsRemoteFieldClassesList(
+        request: Merge.accounting.InvoicesLineItemsRemoteFieldClassesListRequest = {},
+        requestOptions?: InvoicesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
+        const {
+            cursor,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            isCommonModelField,
+            isCustom,
+            pageSize,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            cursor,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+            is_common_model_field: isCommonModelField,
+            is_custom: isCustom,
+            page_size: pageSize,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
         );
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) =>
-                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
-            getItems: (response) => response?.results ?? [],
-            loadPage: (response) => {
-                return list(core.setObjectProperty(request, "cursor", response?.next));
-            },
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/invoices/line-items/remote-field-classes",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/invoices/line-items/remote-field-classes",
+        );
     }
 
     /**
@@ -975,94 +846,84 @@ export class InvoicesClient {
      *         pageSize: 1
      *     })
      */
-    public async remoteFieldClassesList(
+    public remoteFieldClassesList(
         request: Merge.accounting.InvoicesRemoteFieldClassesListRequest = {},
         requestOptions?: InvoicesClient.RequestOptions,
-    ): Promise<core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: Merge.accounting.InvoicesRemoteFieldClassesListRequest,
-            ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> => {
-                const {
-                    cursor,
-                    includeDeletedData,
-                    includeRemoteData,
-                    includeShellData,
-                    isCommonModelField,
-                    isCustom,
-                    pageSize,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    cursor,
-                    include_deleted_data: includeDeletedData,
-                    include_remote_data: includeRemoteData,
-                    include_shell_data: includeShellData,
-                    is_common_model_field: isCommonModelField,
-                    is_custom: isCustom,
-                    page_size: pageSize,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    mergeOnlyDefinedHeaders({
-                        "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken,
-                    }),
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)) ??
-                            environments.MergeEnvironment.Production,
-                        "accounting/v1/invoices/remote-field-classes",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    throw new errors.MergeError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/accounting/v1/invoices/remote-field-classes",
-                );
-            },
+    ): core.HttpResponsePromise<Merge.accounting.PaginatedRemoteFieldClassList> {
+        return core.HttpResponsePromise.fromPromise(this.__remoteFieldClassesList(request, requestOptions));
+    }
+
+    private async __remoteFieldClassesList(
+        request: Merge.accounting.InvoicesRemoteFieldClassesListRequest = {},
+        requestOptions?: InvoicesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Merge.accounting.PaginatedRemoteFieldClassList>> {
+        const {
+            cursor,
+            includeDeletedData,
+            includeRemoteData,
+            includeShellData,
+            isCommonModelField,
+            isCustom,
+            pageSize,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            cursor,
+            include_deleted_data: includeDeletedData,
+            include_remote_data: includeRemoteData,
+            include_shell_data: includeShellData,
+            is_common_model_field: isCommonModelField,
+            is_custom: isCustom,
+            page_size: pageSize,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Account-Token": requestOptions?.accountToken ?? this._options?.accountToken }),
+            requestOptions?.headers,
         );
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<Merge.accounting.RemoteFieldClass, Merge.accounting.PaginatedRemoteFieldClassList>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) =>
-                response?.next != null && !(typeof response?.next === "string" && response?.next === ""),
-            getItems: (response) => response?.results ?? [],
-            loadPage: (response) => {
-                return list(core.setObjectProperty(request, "cursor", response?.next));
-            },
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MergeEnvironment.Production,
+                "accounting/v1/invoices/remote-field-classes",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
         });
+        if (_response.ok) {
+            return {
+                data: serializers.accounting.PaginatedRemoteFieldClassList.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.MergeError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/accounting/v1/invoices/remote-field-classes",
+        );
     }
 }

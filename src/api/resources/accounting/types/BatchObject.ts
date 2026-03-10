@@ -2,8 +2,22 @@
 
 import type * as Merge from "../../../index";
 
+/**
+ * Individual batch object with status
+ */
 export interface BatchObject {
     itemId: string;
-    status: string;
+    /**
+     * Possible per-object statuses:
+     *
+     * * `PENDING` - This object has not been processed yet
+     * * `SUCCESS` - This object was successfully POSTed
+     * * `FAILURE` - This object was not successfully POSTed
+     *
+     * * `PENDING` - PENDING
+     * * `SUCCESS` - SUCCESS
+     * * `FAILURE` - FAILURE
+     */
+    status: Merge.accounting.BatchObjectStatus;
     response?: Merge.accounting.BatchObjectItemResponse;
 }
