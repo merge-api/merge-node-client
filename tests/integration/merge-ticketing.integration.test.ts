@@ -18,74 +18,74 @@ describe("Merge Ticketing Client Integration", () => {
   });
 
   it("should list accounts", async () => {
-    const page = await client.ticketing.accounts.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.accounts.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list attachments", async () => {
-    const page = await client.ticketing.attachments.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.attachments.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list collections", async () => {
-    const page = await client.ticketing.collections.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.collections.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list comments", async () => {
-    const page = await client.ticketing.comments.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.comments.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list contacts", async () => {
-    const page = await client.ticketing.contacts.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.contacts.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
 
   it("should list roles", async () => {
-    const page = await client.ticketing.roles.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.roles.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list tags", async () => {
-    const page = await client.ticketing.tags.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.tags.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list teams", async () => {
-    const page = await client.ticketing.teams.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.teams.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list tickets", async () => {
-    const page = await client.ticketing.tickets.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.tickets.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list users", async () => {
-    const page = await client.ticketing.users.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.users.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should retrieve linked account scopes", async () => {
@@ -101,9 +101,9 @@ describe("Merge Ticketing Client Integration", () => {
   });
 
   it("should list sync status", async () => {
-    const page = await client.ticketing.syncStatus.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
+    const { data: body, rawResponse: response } = await client.ticketing.syncStatus.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
   }, 65000);
 
   it("should list available actions", async () => {
@@ -113,24 +113,24 @@ describe("Merge Ticketing Client Integration", () => {
   });
 
   it("should list issues", async () => {
-    const page = await client.ticketing.issues.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.issues.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list linked accounts", async () => {
-    const page = await client.ticketing.linkedAccounts.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.linkedAccounts.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should retrieve audit trail", async () => {
-    const page = await client.ticketing.auditTrail.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.ticketing.auditTrail.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should retrieve account details fields exist", async () => {
@@ -142,11 +142,11 @@ describe("Merge Ticketing Client Integration", () => {
   });
 
   it("should list tickets with query params", async () => {
-    const page = await client.ticketing.tickets.list({
+    const { data: body, rawResponse: response } = await client.ticketing.tickets.list({
       expand: "account",
-    });
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    }).withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 });
