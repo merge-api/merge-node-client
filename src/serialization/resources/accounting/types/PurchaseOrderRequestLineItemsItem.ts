@@ -3,13 +3,13 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { PurchaseOrderLineItemRequest } from "./PurchaseOrderLineItemRequest";
+import { PurchaseOrderLineItem } from "./PurchaseOrderLineItem";
 
 export const PurchaseOrderRequestLineItemsItem: core.serialization.Schema<
     serializers.accounting.PurchaseOrderRequestLineItemsItem.Raw,
     Merge.accounting.PurchaseOrderRequestLineItemsItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), PurchaseOrderLineItemRequest]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), PurchaseOrderLineItem]);
 
 export declare namespace PurchaseOrderRequestLineItemsItem {
-    export type Raw = string | PurchaseOrderLineItemRequest.Raw;
+    export type Raw = string | PurchaseOrderLineItem.Raw;
 }

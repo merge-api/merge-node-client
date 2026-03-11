@@ -10472,7 +10472,7 @@ await client.accounting.expenses.retrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.AsyncBulkCreateResponse</code></summary>
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">bulkCreate</a>({ ...params }) -> Merge.AsyncBulkCreateResponse</code></summary>
 <dl>
 <dd>
 
@@ -10484,7 +10484,7 @@ await client.accounting.expenses.retrieve("id", {
 <dl>
 <dd>
 
-Creates an `Expense` object with the given values.
+Creates multiple `Expense` objects with the given values.
 </dd>
 </dl>
 </dd>
@@ -10499,9 +10499,7 @@ Creates an `Expense` object with the given values.
 <dd>
 
 ```typescript
-await client.accounting.expenses.asyncBulkCreate({
-    isDebugMode: true,
-    runAsync: true,
+await client.accounting.expenses.bulkCreate({
     batchItems: [{
             itemId: "item_id",
             payload: {}
@@ -10542,7 +10540,7 @@ await client.accounting.expenses.asyncBulkCreate({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.BatchObjectsResponse</code></summary>
+<details><summary><code>client.accounting.expenses.<a href="/src/api/resources/accounting/resources/expenses/client/Client.ts">bulkRetrieve</a>(batch_id) -> Merge.BatchObjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -10554,7 +10552,7 @@ await client.accounting.expenses.asyncBulkCreate({
 <dl>
 <dd>
 
-Returns a list of `Expense` objects.
+Returns the status and results of an `Expense` bulk create batch.
 </dd>
 </dl>
 </dd>
@@ -10569,22 +10567,7 @@ Returns a list of `Expense` objects.
 <dd>
 
 ```typescript
-await client.accounting.expenses.batchObjectsList("batch_id", {
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteId: "remote_id",
-    transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    transactionDateBefore: new Date("2024-01-15T09:30:00.000Z")
-});
+await client.accounting.expenses.bulkRetrieve("batch_id");
 
 ```
 </dd>
@@ -10601,14 +10584,6 @@ await client.accounting.expenses.batchObjectsList("batch_id", {
 <dd>
 
 **batch_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ExpensesBatchObjectsListRequest` 
     
 </dd>
 </dl>
@@ -12017,7 +11992,7 @@ await client.accounting.invoices.partialUpdate("id", {
 </dl>
 </details>
 
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.AsyncBulkCreateResponse</code></summary>
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">bulkCreate</a>({ ...params }) -> Merge.AsyncBulkCreateResponse</code></summary>
 <dl>
 <dd>
 
@@ -12029,9 +12004,7 @@ await client.accounting.invoices.partialUpdate("id", {
 <dl>
 <dd>
 
-Creates an `Invoice` object with the given values.
-            Including a `PurchaseOrder` id in the `purchase_orders` property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
-            
+Creates multiple `Invoice` objects with the given values.
 </dd>
 </dl>
 </dd>
@@ -12046,9 +12019,7 @@ Creates an `Invoice` object with the given values.
 <dd>
 
 ```typescript
-await client.accounting.invoices.asyncBulkCreate({
-    isDebugMode: true,
-    runAsync: true,
+await client.accounting.invoices.bulkCreate({
     batchItems: [{
             itemId: "item_id",
             payload: {}
@@ -12089,7 +12060,7 @@ await client.accounting.invoices.asyncBulkCreate({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.BatchObjectsResponse</code></summary>
+<details><summary><code>client.accounting.invoices.<a href="/src/api/resources/accounting/resources/invoices/client/Client.ts">bulkRetrieve</a>(batch_id) -> Merge.BatchObjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -12101,7 +12072,7 @@ await client.accounting.invoices.asyncBulkCreate({
 <dl>
 <dd>
 
-Returns a list of `Invoice` objects.
+Returns the status and results of an `Invoice` bulk create batch.
 </dd>
 </dl>
 </dd>
@@ -12116,28 +12087,7 @@ Returns a list of `Invoice` objects.
 <dd>
 
 ```typescript
-await client.accounting.invoices.batchObjectsList("batch_id", {
-    companyId: "company_id",
-    contactId: "contact_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    number: "number",
-    pageSize: 1,
-    remoteFields: "type",
-    remoteId: "remote_id",
-    showEnumOrigins: "type",
-    status: "DRAFT",
-    type: "ACCOUNTS_PAYABLE"
-});
+await client.accounting.invoices.bulkRetrieve("batch_id");
 
 ```
 </dd>
@@ -12154,14 +12104,6 @@ await client.accounting.invoices.batchObjectsList("batch_id", {
 <dd>
 
 **batch_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.InvoicesBatchObjectsListRequest` 
     
 </dd>
 </dl>
@@ -12888,7 +12830,7 @@ await client.accounting.itemFulfillments.retrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.accounting.itemFulfillments.<a href="/src/api/resources/accounting/resources/itemFulfillments/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.AsyncBulkCreateResponse</code></summary>
+<details><summary><code>client.accounting.itemFulfillments.<a href="/src/api/resources/accounting/resources/itemFulfillments/client/Client.ts">bulkCreate</a>({ ...params }) -> Merge.AsyncBulkCreateResponse</code></summary>
 <dl>
 <dd>
 
@@ -12900,7 +12842,7 @@ await client.accounting.itemFulfillments.retrieve("id", {
 <dl>
 <dd>
 
-Creates an `ItemFulfillment` object with the given values.
+Creates multiple `ItemFulfillment` objects with the given values.
 </dd>
 </dl>
 </dd>
@@ -12915,9 +12857,7 @@ Creates an `ItemFulfillment` object with the given values.
 <dd>
 
 ```typescript
-await client.accounting.itemFulfillments.asyncBulkCreate({
-    isDebugMode: true,
-    runAsync: true,
+await client.accounting.itemFulfillments.bulkCreate({
     batchItems: [{
             itemId: "item_id",
             payload: {}
@@ -12958,7 +12898,7 @@ await client.accounting.itemFulfillments.asyncBulkCreate({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.itemFulfillments.<a href="/src/api/resources/accounting/resources/itemFulfillments/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.BatchObjectsResponse</code></summary>
+<details><summary><code>client.accounting.itemFulfillments.<a href="/src/api/resources/accounting/resources/itemFulfillments/client/Client.ts">bulkRetrieve</a>(batch_id) -> Merge.BatchObjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -12970,7 +12910,7 @@ await client.accounting.itemFulfillments.asyncBulkCreate({
 <dl>
 <dd>
 
-Returns a list of `ItemFulfillment` objects.
+Returns the status and results of an `ItemFulfillment` bulk create batch.
 </dd>
 </dl>
 </dd>
@@ -12985,16 +12925,7 @@ Returns a list of `ItemFulfillment` objects.
 <dd>
 
 ```typescript
-await client.accounting.itemFulfillments.batchObjectsList("batch_id", {
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    pageSize: 1,
-    remoteFields: "status",
-    showEnumOrigins: "status"
-});
+await client.accounting.itemFulfillments.bulkRetrieve("batch_id");
 
 ```
 </dd>
@@ -13011,14 +12942,6 @@ await client.accounting.itemFulfillments.batchObjectsList("batch_id", {
 <dd>
 
 **batch_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.ItemFulfillmentsBatchObjectsListRequest` 
     
 </dd>
 </dl>
@@ -16453,7 +16376,7 @@ await client.accounting.salesOrders.retrieve("id", {
 </dl>
 </details>
 
-<details><summary><code>client.accounting.salesOrders.<a href="/src/api/resources/accounting/resources/salesOrders/client/Client.ts">asyncBulkCreate</a>({ ...params }) -> Merge.AsyncBulkCreateResponse</code></summary>
+<details><summary><code>client.accounting.salesOrders.<a href="/src/api/resources/accounting/resources/salesOrders/client/Client.ts">bulkCreate</a>({ ...params }) -> Merge.AsyncBulkCreateResponse</code></summary>
 <dl>
 <dd>
 
@@ -16465,7 +16388,7 @@ await client.accounting.salesOrders.retrieve("id", {
 <dl>
 <dd>
 
-Creates a `SalesOrder` object with the given values.
+Creates multiple `SalesOrder` objects with the given values.
 </dd>
 </dl>
 </dd>
@@ -16480,9 +16403,7 @@ Creates a `SalesOrder` object with the given values.
 <dd>
 
 ```typescript
-await client.accounting.salesOrders.asyncBulkCreate({
-    isDebugMode: true,
-    runAsync: true,
+await client.accounting.salesOrders.bulkCreate({
     batchItems: [{
             itemId: "item_id",
             payload: {}
@@ -16523,7 +16444,7 @@ await client.accounting.salesOrders.asyncBulkCreate({
 </dl>
 </details>
 
-<details><summary><code>client.accounting.salesOrders.<a href="/src/api/resources/accounting/resources/salesOrders/client/Client.ts">batchObjectsList</a>(batch_id, { ...params }) -> Merge.BatchObjectsResponse</code></summary>
+<details><summary><code>client.accounting.salesOrders.<a href="/src/api/resources/accounting/resources/salesOrders/client/Client.ts">bulkRetrieve</a>(batch_id) -> Merge.BatchObjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16535,7 +16456,7 @@ await client.accounting.salesOrders.asyncBulkCreate({
 <dl>
 <dd>
 
-Returns a list of `SalesOrder` objects.
+Returns the status and results of a `SalesOrder` bulk create batch.
 </dd>
 </dl>
 </dd>
@@ -16550,24 +16471,7 @@ Returns a list of `SalesOrder` objects.
 <dd>
 
 ```typescript
-await client.accounting.salesOrders.batchObjectsList("batch_id", {
-    companyId: "company_id",
-    createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-    createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-    includeDeletedData: true,
-    includeRemoteData: true,
-    includeRemoteFields: true,
-    includeShellData: true,
-    issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-    issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-    modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-    pageSize: 1,
-    remoteFields: "status",
-    remoteId: "remote_id",
-    showEnumOrigins: "status"
-});
+await client.accounting.salesOrders.bulkRetrieve("batch_id");
 
 ```
 </dd>
@@ -16584,14 +16488,6 @@ await client.accounting.salesOrders.batchObjectsList("batch_id", {
 <dd>
 
 **batch_id:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Merge.accounting.SalesOrdersBatchObjectsListRequest` 
     
 </dd>
 </dl>

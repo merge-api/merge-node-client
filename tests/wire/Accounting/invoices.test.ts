@@ -91,6 +91,7 @@ describe("InvoicesClient", () => {
                     ],
                     applied_credit_notes: [
                         {
+                            remote_id: "088899",
                             created_at: "2021-09-15T00:00:00Z",
                             modified_at: "2021-10-16T00:00:00Z",
                             credit_note: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -100,6 +101,7 @@ describe("InvoicesClient", () => {
                     ],
                     applied_vendor_credits: [
                         {
+                            remote_id: "088899",
                             created_at: "2021-09-15T00:00:00Z",
                             modified_at: "2021-10-16T00:00:00Z",
                             vendor_credit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -208,6 +210,7 @@ describe("InvoicesClient", () => {
                     ],
                     appliedCreditNotes: [
                         {
+                            remoteId: "088899",
                             createdAt: new Date("2021-09-15T00:00:00.000Z"),
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             creditNote: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -217,6 +220,7 @@ describe("InvoicesClient", () => {
                     ],
                     appliedVendorCredits: [
                         {
+                            remoteId: "088899",
                             createdAt: new Date("2021-09-15T00:00:00.000Z"),
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             vendorCredit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -364,6 +368,7 @@ describe("InvoicesClient", () => {
                 ],
                 applied_credit_notes: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         credit_note: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -373,6 +378,7 @@ describe("InvoicesClient", () => {
                 ],
                 applied_vendor_credits: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         vendor_credit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -396,6 +402,8 @@ describe("InvoicesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -405,6 +413,8 @@ describe("InvoicesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -512,6 +522,7 @@ describe("InvoicesClient", () => {
                 ],
                 appliedCreditNotes: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         creditNote: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -521,6 +532,7 @@ describe("InvoicesClient", () => {
                 ],
                 appliedVendorCredits: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         vendorCredit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -562,6 +574,8 @@ describe("InvoicesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -573,6 +587,8 @@ describe("InvoicesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [
@@ -674,7 +690,7 @@ describe("InvoicesClient", () => {
             ],
             applied_credit_notes: [
                 {
-                    remote_id: "remote_id",
+                    remote_id: "088899",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     credit_note: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -685,7 +701,7 @@ describe("InvoicesClient", () => {
             ],
             applied_vendor_credits: [
                 {
-                    remote_id: "remote_id",
+                    remote_id: "088899",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     vendor_credit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -805,7 +821,7 @@ describe("InvoicesClient", () => {
             ],
             appliedCreditNotes: [
                 {
-                    remoteId: "remote_id",
+                    remoteId: "088899",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     creditNote: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -816,7 +832,7 @@ describe("InvoicesClient", () => {
             ],
             appliedVendorCredits: [
                 {
-                    remoteId: "remote_id",
+                    remoteId: "088899",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     vendorCredit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -936,6 +952,7 @@ describe("InvoicesClient", () => {
                 ],
                 applied_credit_notes: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         credit_note: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -945,6 +962,7 @@ describe("InvoicesClient", () => {
                 ],
                 applied_vendor_credits: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         vendor_credit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -968,6 +986,8 @@ describe("InvoicesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -977,6 +997,8 @@ describe("InvoicesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -1084,6 +1106,7 @@ describe("InvoicesClient", () => {
                 ],
                 appliedCreditNotes: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         creditNote: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -1093,6 +1116,7 @@ describe("InvoicesClient", () => {
                 ],
                 appliedVendorCredits: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         vendorCredit: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -1134,6 +1158,8 @@ describe("InvoicesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -1145,6 +1171,8 @@ describe("InvoicesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [
@@ -1161,7 +1189,7 @@ describe("InvoicesClient", () => {
         });
     });
 
-    test("asyncBulkCreate", async () => {
+    test("bulkCreate", async () => {
         const server = mockServerPool.createServer();
         const client = new MergeClient({
             maxRetries: 0,
@@ -1170,19 +1198,17 @@ describe("InvoicesClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { batch_items: [{ item_id: "item_id", payload: {} }] };
-        const rawResponseBody = { batch_id: "batch_id" };
+        const rawResponseBody = { batch_id: "d0a3ca3e-2d7a-44cd-a94b-bda805f23b5" };
         server
             .mockEndpoint()
-            .post("/accounting/v1/invoices/async/bulk")
+            .post("/accounting/v1/invoices/bulk")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.invoices.asyncBulkCreate({
-            isDebugMode: true,
-            runAsync: true,
+        const response = await client.accounting.invoices.bulkCreate({
             batchItems: [
                 {
                     itemId: "item_id",
@@ -1191,11 +1217,11 @@ describe("InvoicesClient", () => {
             ],
         });
         expect(response).toEqual({
-            batchId: "batch_id",
+            batchId: "d0a3ca3e-2d7a-44cd-a94b-bda805f23b5",
         });
     });
 
-    test("batchObjectsList", async () => {
+    test("bulkRetrieve", async () => {
         const server = mockServerPool.createServer();
         const client = new MergeClient({
             maxRetries: 0,
@@ -1205,49 +1231,28 @@ describe("InvoicesClient", () => {
         });
 
         const rawResponseBody = {
-            batch_id: "batch_id",
-            status: "status",
+            batch_id: "d0a3ca3e-2d7a-44cd-a94b-bda805f23b5",
+            status: "ENQUEUED",
             total_count: 1,
-            objects: [{ item_id: "item_id", status: "status" }],
+            objects: [{ item_id: "item_id", status: "PENDING" }],
         };
         server
             .mockEndpoint()
-            .get("/accounting/v1/invoices/batch/batch_id/objects")
+            .get("/accounting/v1/invoices/bulk/batch_id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounting.invoices.batchObjectsList("batch_id", {
-            companyId: "company_id",
-            contactId: "contact_id",
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeRemoteFields: true,
-            includeShellData: true,
-            issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-            issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            number: "number",
-            pageSize: 1,
-            remoteFields: "type",
-            remoteId: "remote_id",
-            showEnumOrigins: "type",
-            status: "DRAFT",
-            type: "ACCOUNTS_PAYABLE",
-        });
+        const response = await client.accounting.invoices.bulkRetrieve("batch_id");
         expect(response).toEqual({
-            batchId: "batch_id",
-            status: "status",
+            batchId: "d0a3ca3e-2d7a-44cd-a94b-bda805f23b5",
+            status: "ENQUEUED",
             totalCount: 1,
             objects: [
                 {
                     itemId: "item_id",
-                    status: "status",
+                    status: "PENDING",
                 },
             ],
         });

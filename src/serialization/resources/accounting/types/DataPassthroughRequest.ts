@@ -3,15 +3,15 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { DataPassthroughRequestMethod } from "./DataPassthroughRequestMethod";
-import { DataPassthroughRequestRequestFormat } from "./DataPassthroughRequestRequestFormat";
+import { MethodEnum } from "./MethodEnum";
 import { MultipartFormFieldRequest } from "./MultipartFormFieldRequest";
+import { RequestFormatEnum } from "./RequestFormatEnum";
 
 export const DataPassthroughRequest: core.serialization.ObjectSchema<
     serializers.accounting.DataPassthroughRequest.Raw,
     Merge.accounting.DataPassthroughRequest
 > = core.serialization.object({
-    method: DataPassthroughRequestMethod,
+    method: MethodEnum,
     path: core.serialization.string(),
     baseUrlOverride: core.serialization.property("base_url_override", core.serialization.string().optional()),
     data: core.serialization.string().optional(),
@@ -20,19 +20,19 @@ export const DataPassthroughRequest: core.serialization.ObjectSchema<
         core.serialization.list(MultipartFormFieldRequest).optional(),
     ),
     headers: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    requestFormat: core.serialization.property("request_format", DataPassthroughRequestRequestFormat.optional()),
+    requestFormat: core.serialization.property("request_format", RequestFormatEnum.optional()),
     normalizeResponse: core.serialization.property("normalize_response", core.serialization.boolean().optional()),
 });
 
 export declare namespace DataPassthroughRequest {
     export interface Raw {
-        method: DataPassthroughRequestMethod.Raw;
+        method: MethodEnum.Raw;
         path: string;
         base_url_override?: string | null;
         data?: string | null;
         multipart_form_data?: MultipartFormFieldRequest.Raw[] | null;
         headers?: Record<string, unknown> | null;
-        request_format?: DataPassthroughRequestRequestFormat.Raw | null;
+        request_format?: RequestFormatEnum.Raw | null;
         normalize_response?: boolean | null;
     }
 }

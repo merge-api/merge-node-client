@@ -2,4 +2,4 @@
 
 import type * as Merge from "../../../index";
 
-export type JournalLineRequestAccount = string | Merge.accounting.AccountRequest;
+export type JournalLineRequestAccount = string | Merge.accounting.Account;

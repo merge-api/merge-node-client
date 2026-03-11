@@ -2,4 +2,4 @@
 
 import type * as Merge from "../../../index";
 
-export type JournalEntryRequestPaymentsItem = string | Merge.accounting.PaymentRequest;
+export type JournalEntryRequestPaymentsItem = string | Merge.accounting.Payment;

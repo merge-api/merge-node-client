@@ -334,37 +334,30 @@ export class ItemFulfillmentsClient {
     }
 
     /**
-     * Creates an `ItemFulfillment` object with the given values.
+     * Creates multiple `ItemFulfillment` objects with the given values.
      *
      * @param {Merge.accounting.ItemFulfillmentBulkRequest} request
      * @param {ItemFulfillmentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.itemFulfillments.asyncBulkCreate({
-     *         isDebugMode: true,
-     *         runAsync: true,
+     *     await client.accounting.itemFulfillments.bulkCreate({
      *         batchItems: [{
      *                 itemId: "item_id",
      *                 payload: {}
      *             }]
      *     })
      */
-    public asyncBulkCreate(
+    public bulkCreate(
         request: Merge.accounting.ItemFulfillmentBulkRequest,
         requestOptions?: ItemFulfillmentsClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.AsyncBulkCreateResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__asyncBulkCreate(request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkCreate(request, requestOptions));
     }
 
-    private async __asyncBulkCreate(
+    private async __bulkCreate(
         request: Merge.accounting.ItemFulfillmentBulkRequest,
         requestOptions?: ItemFulfillmentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.AsyncBulkCreateResponse>> {
-        const { isDebugMode, runAsync, ..._body } = request;
-        const _queryParams: Record<string, unknown> = {
-            is_debug_mode: isDebugMode,
-            run_async: runAsync,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -377,14 +370,14 @@ export class ItemFulfillmentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                "accounting/v1/item-fulfillments/async/bulk",
+                "accounting/v1/item-fulfillments/bulk",
             ),
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.accounting.ItemFulfillmentBulkRequest.jsonOrThrow(_body, {
+            body: serializers.accounting.ItemFulfillmentBulkRequest.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
             }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -418,74 +411,30 @@ export class ItemFulfillmentsClient {
             _response.error,
             _response.rawResponse,
             "POST",
-            "/accounting/v1/item-fulfillments/async/bulk",
+            "/accounting/v1/item-fulfillments/bulk",
         );
     }
 
     /**
-     * Returns a list of `ItemFulfillment` objects.
+     * Returns the status and results of an `ItemFulfillment` bulk create batch.
      *
      * @param {string} batch_id
-     * @param {Merge.accounting.ItemFulfillmentsBatchObjectsListRequest} request
      * @param {ItemFulfillmentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.accounting.itemFulfillments.batchObjectsList("batch_id", {
-     *         cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-     *         includeDeletedData: true,
-     *         includeRemoteData: true,
-     *         includeRemoteFields: true,
-     *         includeShellData: true,
-     *         pageSize: 1,
-     *         remoteFields: "status",
-     *         showEnumOrigins: "status"
-     *     })
+     *     await client.accounting.itemFulfillments.bulkRetrieve("batch_id")
      */
-    public batchObjectsList(
+    public bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.ItemFulfillmentsBatchObjectsListRequest = {},
         requestOptions?: ItemFulfillmentsClient.RequestOptions,
     ): core.HttpResponsePromise<Merge.accounting.BatchObjectsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__batchObjectsList(batch_id, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__bulkRetrieve(batch_id, requestOptions));
     }
 
-    private async __batchObjectsList(
+    private async __bulkRetrieve(
         batch_id: string,
-        request: Merge.accounting.ItemFulfillmentsBatchObjectsListRequest = {},
         requestOptions?: ItemFulfillmentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Merge.accounting.BatchObjectsResponse>> {
-        const {
-            cursor,
-            expand,
-            includeDeletedData,
-            includeRemoteData,
-            includeRemoteFields,
-            includeShellData,
-            pageSize,
-            remoteFields,
-            showEnumOrigins,
-        } = request;
-        const _queryParams: Record<string, unknown> = {
-            cursor,
-            expand: Array.isArray(expand)
-                ? expand.map((item) =>
-                      serializers.accounting.ItemFulfillmentsBatchObjectsListRequestExpandItem.jsonOrThrow(item, {
-                          unrecognizedObjectKeys: "strip",
-                      }),
-                  )
-                : expand != null
-                  ? serializers.accounting.ItemFulfillmentsBatchObjectsListRequestExpandItem.jsonOrThrow(expand, {
-                        unrecognizedObjectKeys: "strip",
-                    })
-                  : undefined,
-            include_deleted_data: includeDeletedData,
-            include_remote_data: includeRemoteData,
-            include_remote_fields: includeRemoteFields,
-            include_shell_data: includeShellData,
-            page_size: pageSize,
-            remote_fields: remoteFields != null ? remoteFields : undefined,
-            show_enum_origins: showEnumOrigins != null ? showEnumOrigins : undefined,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -498,11 +447,11 @@ export class ItemFulfillmentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MergeEnvironment.Production,
-                `accounting/v1/item-fulfillments/batch/${core.url.encodePathParam(batch_id)}/objects`,
+                `accounting/v1/item-fulfillments/bulk/${core.url.encodePathParam(batch_id)}`,
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -534,7 +483,7 @@ export class ItemFulfillmentsClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/accounting/v1/item-fulfillments/batch/{batch_id}/objects",
+            "/accounting/v1/item-fulfillments/bulk/{batch_id}",
         );
     }
 

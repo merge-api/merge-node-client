@@ -3,13 +3,13 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { AddressRequest } from "./AddressRequest";
+import { Address } from "./Address";
 
 export const ContactRequestAddressesItem: core.serialization.Schema<
     serializers.accounting.ContactRequestAddressesItem.Raw,
     Merge.accounting.ContactRequestAddressesItem
-> = core.serialization.undiscriminatedUnion([core.serialization.string(), AddressRequest]);
+> = core.serialization.undiscriminatedUnion([core.serialization.string(), Address]);
 
 export declare namespace ContactRequestAddressesItem {
-    export type Raw = string | AddressRequest.Raw;
+    export type Raw = string | Address.Raw;
 }

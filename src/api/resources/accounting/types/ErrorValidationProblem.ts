@@ -8,4 +8,6 @@ export interface ErrorValidationProblem {
     detail: string;
     problemType: string;
     blockMergeLink?: boolean;
+    rawError?: string;
+    errorCode?: number;
 }

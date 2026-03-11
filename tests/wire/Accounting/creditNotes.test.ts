@@ -70,6 +70,7 @@ describe("CreditNotesClient", () => {
                     accounting_period: "accounting_period",
                     applied_to_lines: [
                         {
+                            remote_id: "088899",
                             created_at: "2021-09-15T00:00:00Z",
                             modified_at: "2021-10-16T00:00:00Z",
                             invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -151,6 +152,7 @@ describe("CreditNotesClient", () => {
                     accountingPeriod: "accounting_period",
                     appliedToLines: [
                         {
+                            remoteId: "088899",
                             createdAt: new Date("2021-09-15T00:00:00.000Z"),
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -263,6 +265,7 @@ describe("CreditNotesClient", () => {
                 accounting_period: "accounting_period",
                 applied_to_lines: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -284,6 +287,8 @@ describe("CreditNotesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -293,6 +298,8 @@ describe("CreditNotesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -375,6 +382,7 @@ describe("CreditNotesClient", () => {
                 accountingPeriod: "accounting_period",
                 appliedToLines: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -407,6 +415,8 @@ describe("CreditNotesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -418,6 +428,8 @@ describe("CreditNotesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [
@@ -496,7 +508,7 @@ describe("CreditNotesClient", () => {
             accounting_period: "accounting_period",
             applied_to_lines: [
                 {
-                    remote_id: "remote_id",
+                    remote_id: "088899",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -579,7 +591,7 @@ describe("CreditNotesClient", () => {
             accountingPeriod: "accounting_period",
             appliedToLines: [
                 {
-                    remoteId: "remote_id",
+                    remoteId: "088899",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -669,6 +681,7 @@ describe("CreditNotesClient", () => {
                 accounting_period: "accounting_period",
                 applied_to_lines: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -690,6 +703,8 @@ describe("CreditNotesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -699,6 +714,8 @@ describe("CreditNotesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -781,6 +798,7 @@ describe("CreditNotesClient", () => {
                 accountingPeriod: "accounting_period",
                 appliedToLines: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -813,6 +831,8 @@ describe("CreditNotesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -824,6 +844,8 @@ describe("CreditNotesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [
@@ -903,6 +925,7 @@ describe("CreditNotesClient", () => {
                 accounting_period: "accounting_period",
                 applied_to_lines: [
                     {
+                        remote_id: "088899",
                         created_at: "2021-09-15T00:00:00Z",
                         modified_at: "2021-10-16T00:00:00Z",
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -924,6 +947,8 @@ describe("CreditNotesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -933,6 +958,8 @@ describe("CreditNotesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -1016,6 +1043,7 @@ describe("CreditNotesClient", () => {
                 accountingPeriod: "accounting_period",
                 appliedToLines: [
                     {
+                        remoteId: "088899",
                         createdAt: new Date("2021-09-15T00:00:00.000Z"),
                         modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                         invoice: "5b3c1341-a20f-4e51-b72c-f3830a16c97b",
@@ -1048,6 +1076,8 @@ describe("CreditNotesClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -1059,6 +1089,8 @@ describe("CreditNotesClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [

@@ -2,4 +2,4 @@
 
 import type * as Merge from "../../../index";
 
-export type CreditNoteApplyLineForCreditNoteRequestInvoice = string | Merge.accounting.InvoiceRequest;
+export type CreditNoteApplyLineForCreditNoteRequestInvoice = string | Merge.accounting.Invoice;
