@@ -19,7 +19,7 @@ describe("TaxRatesClient", () => {
             results: [
                 {
                     id: "b82302de-852e-4e60-b050-edf9da3b7c02",
-                    remote_id: "remote_id",
+                    remote_id: "039111",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     company: "company",
@@ -33,7 +33,7 @@ describe("TaxRatesClient", () => {
                     tax_components: [
                         {
                             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                            remote_id: "remote_id",
+                            remote_id: "039111",
                             created_at: "2021-09-15T00:00:00Z",
                             modified_at: "2021-10-16T00:00:00Z",
                             name: "Drink Tax Component",
@@ -65,7 +65,7 @@ describe("TaxRatesClient", () => {
             results: [
                 {
                     id: "b82302de-852e-4e60-b050-edf9da3b7c02",
-                    remoteId: "remote_id",
+                    remoteId: "039111",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     company: "company",
@@ -79,7 +79,7 @@ describe("TaxRatesClient", () => {
                     taxComponents: [
                         {
                             id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                            remoteId: "remote_id",
+                            remoteId: "039111",
                             createdAt: new Date("2021-09-15T00:00:00.000Z"),
                             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                             name: "Drink Tax Component",
@@ -138,7 +138,7 @@ describe("TaxRatesClient", () => {
 
         const rawResponseBody = {
             id: "b82302de-852e-4e60-b050-edf9da3b7c02",
-            remote_id: "remote_id",
+            remote_id: "039111",
             created_at: "2021-09-15T00:00:00Z",
             modified_at: "2021-10-16T00:00:00Z",
             company: "company",
@@ -152,7 +152,7 @@ describe("TaxRatesClient", () => {
             tax_components: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remote_id: "remote_id",
+                    remote_id: "039111",
                     created_at: "2021-09-15T00:00:00Z",
                     modified_at: "2021-10-16T00:00:00Z",
                     name: "Drink Tax Component",
@@ -183,7 +183,7 @@ describe("TaxRatesClient", () => {
         });
         expect(response).toEqual({
             id: "b82302de-852e-4e60-b050-edf9da3b7c02",
-            remoteId: "remote_id",
+            remoteId: "039111",
             createdAt: new Date("2021-09-15T00:00:00.000Z"),
             modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
             company: "company",
@@ -197,7 +197,7 @@ describe("TaxRatesClient", () => {
             taxComponents: [
                 {
                     id: "ecbe05ac-62a3-46c5-ab31-4b478b37d1b4",
-                    remoteId: "remote_id",
+                    remoteId: "039111",
                     createdAt: new Date("2021-09-15T00:00:00.000Z"),
                     modifiedAt: new Date("2021-10-16T00:00:00.000Z"),
                     name: "Drink Tax Component",

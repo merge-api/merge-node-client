@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The vendor that owes the gift or refund.
  */
-export type VendorCreditRequestVendor = string | Merge.accounting.ContactRequest;
+export type VendorCreditRequestVendor = string | Merge.accounting.Contact;

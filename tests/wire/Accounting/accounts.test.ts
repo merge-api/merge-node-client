@@ -154,6 +154,8 @@ describe("AccountsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problem_type: "UNRECOGNIZED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             errors: [
@@ -163,6 +165,8 @@ describe("AccountsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problem_type: "MISSING_REQUIRED_FIELD",
                     block_merge_link: true,
+                    raw_error: "raw_error",
+                    error_code: 1,
                 },
             ],
             logs: [
@@ -233,6 +237,8 @@ describe("AccountsClient", () => {
                     detail: "An unrecognized field, age, was passed in with request data.",
                     problemType: "UNRECOGNIZED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             errors: [
@@ -244,6 +250,8 @@ describe("AccountsClient", () => {
                     detail: "custom_fields is a required field on model.",
                     problemType: "MISSING_REQUIRED_FIELD",
                     blockMergeLink: true,
+                    rawError: "raw_error",
+                    errorCode: 1,
                 },
             ],
             logs: [

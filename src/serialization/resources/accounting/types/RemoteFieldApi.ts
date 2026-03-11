@@ -3,8 +3,8 @@
 import type * as Merge from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { AdvancedMetadata } from "./AdvancedMetadata";
 import { RemoteEndpointInfo } from "./RemoteEndpointInfo";
-import { RemoteFieldApiAdvancedMetadata } from "./RemoteFieldApiAdvancedMetadata";
 import { RemoteFieldApiCoverage } from "./RemoteFieldApiCoverage";
 
 export const RemoteFieldApi: core.serialization.ObjectSchema<
@@ -18,7 +18,7 @@ export const RemoteFieldApi: core.serialization.ObjectSchema<
         "example_values",
         core.serialization.list(core.serialization.unknown()).optional(),
     ),
-    advancedMetadata: core.serialization.property("advanced_metadata", RemoteFieldApiAdvancedMetadata.optional()),
+    advancedMetadata: core.serialization.property("advanced_metadata", AdvancedMetadata.optional()),
     coverage: RemoteFieldApiCoverage.optional(),
 });
 
@@ -28,7 +28,7 @@ export declare namespace RemoteFieldApi {
         remote_key_name: string;
         remote_endpoint_info: RemoteEndpointInfo.Raw;
         example_values?: unknown[] | null;
-        advanced_metadata?: RemoteFieldApiAdvancedMetadata.Raw | null;
+        advanced_metadata?: AdvancedMetadata.Raw | null;
         coverage?: RemoteFieldApiCoverage.Raw | null;
     }
 }

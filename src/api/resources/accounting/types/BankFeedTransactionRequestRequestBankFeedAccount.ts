@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The bank feed account associated with the transaction.
  */
-export type BankFeedTransactionRequestRequestBankFeedAccount = string | Merge.accounting.BankFeedAccountRequest;
+export type BankFeedTransactionRequestRequestBankFeedAccount = string | Merge.accounting.BankFeedAccount;

@@ -5,4 +5,4 @@ import type * as Merge from "../../../index";
 /**
  * The invoice's contact.
  */
-export type InvoiceLineItemRequestContact = string | Merge.accounting.ContactRequest;
+export type InvoiceLineItemRequestContact = string | Merge.accounting.Contact;
