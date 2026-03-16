@@ -43,4 +43,6 @@ export interface EndUserDetailsRequest {
     areSyncsDisabled?: boolean;
     /** A JSON object containing integration-specific configuration options. */
     integrationSpecificConfig?: Record<string, unknown>;
+    /** The UUID of the linked destination that you want this Linked Account to be tied to. */
+    linkedDestinationId?: string;
 }

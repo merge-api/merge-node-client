@@ -42,6 +42,7 @@ export const EndUserDetailsRequest: core.serialization.Schema<
         "integration_specific_config",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     ),
+    linkedDestinationId: core.serialization.property("linked_destination_id", core.serialization.string().optional()),
 });
 
 export declare namespace EndUserDetailsRequest {
@@ -62,5 +63,6 @@ export declare namespace EndUserDetailsRequest {
         language?: EndUserDetailsRequestLanguage.Raw | null;
         are_syncs_disabled?: boolean | null;
         integration_specific_config?: Record<string, unknown> | null;
+        linked_destination_id?: string | null;
     }
 }
