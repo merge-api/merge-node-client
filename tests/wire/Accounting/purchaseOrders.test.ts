@@ -99,14 +99,32 @@ describe("PurchaseOrdersClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/purchase-orders")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.purchaseOrders.list({
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeRemoteFields: true,
+            includeShellData: true,
+            issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+            issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            pageSize: 1,
+            remoteFields: "status",
+            remoteId: "remote_id",
+            showEnumOrigins: "status",
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -206,30 +224,7 @@ describe("PurchaseOrdersClient", () => {
                     ],
                 },
             ],
-        };
-        const page = await client.accounting.purchaseOrders.list({
-            companyId: "company_id",
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeRemoteFields: true,
-            includeShellData: true,
-            issueDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-            issueDateBefore: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            pageSize: 1,
-            remoteFields: "status",
-            remoteId: "remote_id",
-            showEnumOrigins: "status",
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("create", async () => {
@@ -759,14 +754,23 @@ describe("PurchaseOrdersClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/purchase-orders/line-items/remote-field-classes")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            isCommonModelField: true,
+            isCustom: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -783,21 +787,7 @@ describe("PurchaseOrdersClient", () => {
                     fieldChoices: ["field_choices"],
                 },
             ],
-        };
-        const page = await client.accounting.purchaseOrders.lineItemsRemoteFieldClassesList({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            isCommonModelField: true,
-            isCustom: true,
-            pageSize: 1,
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("metaPostRetrieve", async () => {
@@ -1247,14 +1237,23 @@ describe("PurchaseOrdersClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/purchase-orders/remote-field-classes")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.purchaseOrders.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            isCommonModelField: true,
+            isCustom: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -1271,20 +1270,6 @@ describe("PurchaseOrdersClient", () => {
                     fieldChoices: ["field_choices"],
                 },
             ],
-        };
-        const page = await client.accounting.purchaseOrders.remoteFieldClassesList({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            isCommonModelField: true,
-            isCustom: true,
-            pageSize: 1,
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 });

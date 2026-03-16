@@ -75,14 +75,30 @@ describe("JournalEntriesClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/journal-entries")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.journalEntries.list({
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeRemoteFields: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            pageSize: 1,
+            remoteId: "remote_id",
+            transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
+            transactionDateBefore: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -158,28 +174,7 @@ describe("JournalEntriesClient", () => {
                     ],
                 },
             ],
-        };
-        const page = await client.accounting.journalEntries.list({
-            companyId: "company_id",
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeRemoteFields: true,
-            includeShellData: true,
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            pageSize: 1,
-            remoteId: "remote_id",
-            transactionDateAfter: new Date("2024-01-15T09:30:00.000Z"),
-            transactionDateBefore: new Date("2024-01-15T09:30:00.000Z"),
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("create", async () => {
@@ -596,14 +591,23 @@ describe("JournalEntriesClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/journal-entries/lines/remote-field-classes")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.journalEntries.linesRemoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            isCommonModelField: true,
+            isCustom: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -620,21 +624,7 @@ describe("JournalEntriesClient", () => {
                     fieldChoices: ["field_choices"],
                 },
             ],
-        };
-        const page = await client.accounting.journalEntries.linesRemoteFieldClassesList({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            isCommonModelField: true,
-            isCustom: true,
-            pageSize: 1,
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("metaPostRetrieve", async () => {
@@ -1084,14 +1074,23 @@ describe("JournalEntriesClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/journal-entries/remote-field-classes")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.journalEntries.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            isCommonModelField: true,
+            isCustom: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -1108,20 +1107,6 @@ describe("JournalEntriesClient", () => {
                     fieldChoices: ["field_choices"],
                 },
             ],
-        };
-        const page = await client.accounting.journalEntries.remoteFieldClassesList({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            isCommonModelField: true,
-            isCustom: true,
-            pageSize: 1,
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 });

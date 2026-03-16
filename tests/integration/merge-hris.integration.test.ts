@@ -18,80 +18,80 @@ describe("Merge HRIS Client Integration", () => {
   });
 
   it("should list employees", async () => {
-    const page = await client.hris.employees.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.employees.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list employments", async () => {
-    const page = await client.hris.employments.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.employments.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list teams", async () => {
-    const page = await client.hris.teams.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.teams.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list locations", async () => {
-    const page = await client.hris.locations.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.locations.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list benefits", async () => {
-    const page = await client.hris.benefits.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.benefits.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list pay groups", async () => {
-    const page = await client.hris.payGroups.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.payGroups.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list dependents", async () => {
-    const page = await client.hris.dependents.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.dependents.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list groups", async () => {
-    const page = await client.hris.groups.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.groups.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list time off", async () => {
-    const page = await client.hris.timeOff.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.timeOff.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list time off balances", async () => {
-    const page = await client.hris.timeOffBalances.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.timeOffBalances.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list bank info", async () => {
-    const page = await client.hris.bankInfo.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.bankInfo.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should retrieve linked account scopes", async () => {
@@ -107,9 +107,9 @@ describe("Merge HRIS Client Integration", () => {
   });
 
   it("should list sync status", async () => {
-    const page = await client.hris.syncStatus.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
+    const { data: body, rawResponse: response } = await client.hris.syncStatus.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
   }, 65000);
 
   it("should list available actions", async () => {
@@ -119,18 +119,18 @@ describe("Merge HRIS Client Integration", () => {
   });
 
   it("should list issues", async () => {
-    const page = await client.hris.issues.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.issues.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
 
   it("should retrieve audit trail", async () => {
-    const page = await client.hris.auditTrail.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.hris.auditTrail.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should retrieve account details fields exist", async () => {

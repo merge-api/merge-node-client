@@ -42,14 +42,24 @@ describe("ItemFulfillmentsClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/item-fulfillments")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.itemFulfillments.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeRemoteFields: true,
+            includeShellData: true,
+            pageSize: 1,
+            remoteFields: "status",
+            showEnumOrigins: "status",
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -94,22 +104,7 @@ describe("ItemFulfillmentsClient", () => {
                     ],
                 },
             ],
-        };
-        const page = await client.accounting.itemFulfillments.list({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeRemoteFields: true,
-            includeShellData: true,
-            pageSize: 1,
-            remoteFields: "status",
-            showEnumOrigins: "status",
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("create", async () => {
@@ -458,14 +453,23 @@ describe("ItemFulfillmentsClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/item-fulfillments/lines/remote-field-classes")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.itemFulfillments.linesRemoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            isCommonModelField: true,
+            isCustom: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -482,21 +486,7 @@ describe("ItemFulfillmentsClient", () => {
                     fieldChoices: ["field_choices"],
                 },
             ],
-        };
-        const page = await client.accounting.itemFulfillments.linesRemoteFieldClassesList({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            isCommonModelField: true,
-            isCustom: true,
-            pageSize: 1,
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("metaPostRetrieve", async () => {
@@ -946,14 +936,23 @@ describe("ItemFulfillmentsClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/item-fulfillments/remote-field-classes")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.itemFulfillments.remoteFieldClassesList({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            isCommonModelField: true,
+            isCustom: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -970,20 +969,6 @@ describe("ItemFulfillmentsClient", () => {
                     fieldChoices: ["field_choices"],
                 },
             ],
-        };
-        const page = await client.accounting.itemFulfillments.remoteFieldClassesList({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            isCommonModelField: true,
-            isCustom: true,
-            pageSize: 1,
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 });

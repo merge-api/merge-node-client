@@ -43,14 +43,33 @@ describe("AccountsClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/accounts")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.accounts.list({
+            accountType: "account_type",
+            classification: "",
+            companyId: "company_id",
+            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
+            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
+            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
+            name: "name",
+            pageSize: 1,
+            remoteFields: "classification",
+            remoteId: "remote_id",
+            showEnumOrigins: "classification",
+            status: "",
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -87,31 +106,7 @@ describe("AccountsClient", () => {
                     ],
                 },
             ],
-        };
-        const page = await client.accounting.accounts.list({
-            accountType: "account_type",
-            classification: "",
-            companyId: "company_id",
-            createdAfter: new Date("2024-01-15T09:30:00.000Z"),
-            createdBefore: new Date("2024-01-15T09:30:00.000Z"),
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
-            modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
-            name: "name",
-            pageSize: 1,
-            remoteFields: "classification",
-            remoteId: "remote_id",
-            showEnumOrigins: "classification",
-            status: "",
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("create", async () => {

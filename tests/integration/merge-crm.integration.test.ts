@@ -18,74 +18,74 @@ describe("Merge CRM Client Integration", () => {
   });
 
   it("should list accounts", async () => {
-    const page = await client.crm.accounts.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.accounts.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   }, 65000);
 
   it("should list contacts", async () => {
-    const page = await client.crm.contacts.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.contacts.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list leads", async () => {
-    const page = await client.crm.leads.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.leads.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list opportunities", async () => {
-    const page = await client.crm.opportunities.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.opportunities.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list users", async () => {
-    const page = await client.crm.users.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.users.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list tasks", async () => {
-    const page = await client.crm.tasks.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.tasks.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list notes", async () => {
-    const page = await client.crm.notes.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.notes.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list engagements", async () => {
-    const page = await client.crm.engagements.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.engagements.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should list stages", async () => {
-    const page = await client.crm.stages.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.stages.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
 
   it("should list custom object classes", async () => {
-    const page = await client.crm.customObjectClasses.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.customObjectClasses.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
 
@@ -103,9 +103,9 @@ describe("Merge CRM Client Integration", () => {
   });
 
   it("should list sync status", async () => {
-    const page = await client.crm.syncStatus.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
+    const { data: body, rawResponse: response } = await client.crm.syncStatus.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
   }, 65000);
 
   it("should list available actions", async () => {
@@ -115,18 +115,18 @@ describe("Merge CRM Client Integration", () => {
   });
 
   it("should list issues", async () => {
-    const page = await client.crm.issues.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.issues.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
 
   it("should retrieve audit trail", async () => {
-    const page = await client.crm.auditTrail.list();
-    expect(page.rawResponse.status).toBe(200);
-    expect(page.response).toBeTruthy();
-    expect(Array.isArray(page.response.results)).toBe(true);
+    const { data: body, rawResponse: response } = await client.crm.auditTrail.list().withRawResponse();
+    expect(response.status).toBe(200);
+    expect(body).toBeTruthy();
+    expect(Array.isArray(body.results)).toBe(true);
   });
 
   it("should retrieve account details fields exist", async () => {

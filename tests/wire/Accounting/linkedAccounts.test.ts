@@ -50,14 +50,29 @@ describe("LinkedAccountsClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/linked-accounts")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.linkedAccounts.list({
+            category: "accounting",
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            endUserEmailAddress: "end_user_email_address",
+            endUserOrganizationName: "end_user_organization_name",
+            endUserOriginId: "end_user_origin_id",
+            endUserOriginIds: "end_user_origin_ids",
+            id: "id",
+            ids: "ids",
+            includeDuplicates: true,
+            integrationName: "integration_name",
+            isTestAccount: "is_test_account",
+            pageSize: 1,
+            status: "status",
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -94,26 +109,6 @@ describe("LinkedAccountsClient", () => {
                     },
                 },
             ],
-        };
-        const page = await client.accounting.linkedAccounts.list({
-            category: "accounting",
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            endUserEmailAddress: "end_user_email_address",
-            endUserOrganizationName: "end_user_organization_name",
-            endUserOriginId: "end_user_origin_id",
-            endUserOriginIds: "end_user_origin_ids",
-            id: "id",
-            ids: "ids",
-            includeDuplicates: true,
-            integrationName: "integration_name",
-            isTestAccount: "is_test_account",
-            pageSize: 1,
-            status: "status",
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 });

@@ -35,14 +35,21 @@ describe("PaymentMethodsClient", () => {
             ],
         };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/accounting/v1/payment-methods")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
+        const response = await client.accounting.paymentMethods.list({
+            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+            includeDeletedData: true,
+            includeRemoteData: true,
+            includeShellData: true,
+            pageSize: 1,
+        });
+        expect(response).toEqual({
             next: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
             previous: "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ",
             results: [
@@ -71,19 +78,7 @@ describe("PaymentMethodsClient", () => {
                     ],
                 },
             ],
-        };
-        const page = await client.accounting.paymentMethods.list({
-            cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
-            includeDeletedData: true,
-            includeRemoteData: true,
-            includeShellData: true,
-            pageSize: 1,
         });
-
-        expect(expected.results).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.results).toEqual(nextPage.data);
     });
 
     test("retrieve", async () => {
