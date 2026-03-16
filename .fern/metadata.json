@@ -20,5 +20,5 @@
         "testFramework": "jest",
         "enableForwardCompatibleEnums": true
     },
-    "sdkVersion": "4.0.0"
+    "sdkVersion": "4.0.1"
 }
