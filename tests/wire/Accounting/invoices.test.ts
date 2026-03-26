@@ -83,6 +83,7 @@ describe("InvoicesClient", () => {
                                 "a47e11b6-c73b-4a0c-be31-130fc48177fa",
                             ],
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            is_billable: true,
                             field_mappings: {
                                 organization_defined_targets: { custom_key: "custom_value" },
                                 linked_account_defined_targets: { custom_key: "custom_value" },
@@ -198,6 +199,7 @@ describe("InvoicesClient", () => {
                                 "a47e11b6-c73b-4a0c-be31-130fc48177fa",
                             ],
                             company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                            isBillable: true,
                             fieldMappings: {
                                 organization_defined_targets: {
                                     custom_key: "custom_value",
@@ -360,6 +362,7 @@ describe("InvoicesClient", () => {
                             "a47e11b6-c73b-4a0c-be31-130fc48177fa",
                         ],
                         company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        is_billable: true,
                         field_mappings: {
                             organization_defined_targets: { custom_key: "custom_value" },
                             linked_account_defined_targets: { custom_key: "custom_value" },
@@ -510,6 +513,7 @@ describe("InvoicesClient", () => {
                             "a47e11b6-c73b-4a0c-be31-130fc48177fa",
                         ],
                         company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        isBillable: true,
                         fieldMappings: {
                             organization_defined_targets: {
                                 custom_key: "custom_value",
@@ -681,6 +685,7 @@ describe("InvoicesClient", () => {
                     ],
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remote_was_deleted: true,
+                    is_billable: true,
                     field_mappings: {
                         organization_defined_targets: { custom_key: "custom_value" },
                         linked_account_defined_targets: { custom_key: "custom_value" },
@@ -801,6 +806,7 @@ describe("InvoicesClient", () => {
                     ],
                     company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
                     remoteWasDeleted: true,
+                    isBillable: true,
                     fieldMappings: {
                         organization_defined_targets: {
                             custom_key: "custom_value",
@@ -944,6 +950,7 @@ describe("InvoicesClient", () => {
                             "a47e11b6-c73b-4a0c-be31-130fc48177fa",
                         ],
                         company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        is_billable: true,
                         field_mappings: {
                             organization_defined_targets: { custom_key: "custom_value" },
                             linked_account_defined_targets: { custom_key: "custom_value" },
@@ -1094,6 +1101,7 @@ describe("InvoicesClient", () => {
                             "a47e11b6-c73b-4a0c-be31-130fc48177fa",
                         ],
                         company: "595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                        isBillable: true,
                         fieldMappings: {
                             organization_defined_targets: {
                                 custom_key: "custom_value",

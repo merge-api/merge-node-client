@@ -348,6 +348,8 @@ export interface InvoiceLineItemRequest {
     trackingCategories?: (Merge.accounting.InvoiceLineItemRequestTrackingCategoriesItem | undefined)[];
     /** The company the invoice belongs to. */
     company?: string;
+    /** Indicates if the line item can be charged to the client/customer. */
+    isBillable?: boolean;
     integrationParams?: Record<string, unknown>;
     linkedAccountParams?: Record<string, unknown>;
     remoteFields?: Merge.accounting.RemoteFieldRequest[];
