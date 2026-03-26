@@ -80,6 +80,7 @@ describe("ProjectsClient", () => {
             includeDeletedData: true,
             includeRemoteData: true,
             includeShellData: true,
+            isActive: "is_active",
             modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
             modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
             pageSize: 1,

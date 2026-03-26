@@ -39,6 +39,7 @@ export const InvoiceLineItem: core.serialization.ObjectSchema<
     ),
     company: core.serialization.string().optional(),
     remoteWasDeleted: core.serialization.property("remote_was_deleted", core.serialization.boolean().optional()),
+    isBillable: core.serialization.property("is_billable", core.serialization.boolean().optional()),
     fieldMappings: core.serialization.property(
         "field_mappings",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -68,6 +69,7 @@ export declare namespace InvoiceLineItem {
         tracking_categories?: (InvoiceLineItemTrackingCategoriesItem.Raw | null | undefined)[] | null;
         company?: string | null;
         remote_was_deleted?: boolean | null;
+        is_billable?: boolean | null;
         field_mappings?: Record<string, unknown> | null;
         remote_fields?: RemoteField.Raw[] | null;
     }

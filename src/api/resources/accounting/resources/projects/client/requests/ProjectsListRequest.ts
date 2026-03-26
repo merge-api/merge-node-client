@@ -12,6 +12,7 @@ import type * as Merge from "../../../../../../index";
  *         includeDeletedData: true,
  *         includeRemoteData: true,
  *         includeShellData: true,
+ *         isActive: "is_active",
  *         modifiedAfter: new Date("2024-01-15T09:30:00.000Z"),
  *         modifiedBefore: new Date("2024-01-15T09:30:00.000Z"),
  *         pageSize: 1,
@@ -35,6 +36,8 @@ export interface ProjectsListRequest {
     includeRemoteData?: boolean;
     /** Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null). */
     includeShellData?: boolean;
+    /** If provided, will only return projects with this value for is_active. */
+    isActive?: string;
     /** If provided, only objects synced by Merge after this date time will be returned. */
     modifiedAfter?: Date;
     /** If provided, only objects synced by Merge before this date time will be returned. */

@@ -38,6 +38,7 @@ export const InvoiceLineItemRequest: core.serialization.ObjectSchema<
         core.serialization.list(InvoiceLineItemRequestTrackingCategoriesItem.optional()).optional(),
     ),
     company: core.serialization.string().optional(),
+    isBillable: core.serialization.property("is_billable", core.serialization.boolean().optional()),
     integrationParams: core.serialization.property(
         "integration_params",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -67,6 +68,7 @@ export declare namespace InvoiceLineItemRequest {
         tracking_category?: InvoiceLineItemRequestTrackingCategory.Raw | null;
         tracking_categories?: (InvoiceLineItemRequestTrackingCategoriesItem.Raw | null | undefined)[] | null;
         company?: string | null;
+        is_billable?: boolean | null;
         integration_params?: Record<string, unknown> | null;
         linked_account_params?: Record<string, unknown> | null;
         remote_fields?: RemoteFieldRequest.Raw[] | null;

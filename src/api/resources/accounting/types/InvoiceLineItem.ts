@@ -355,6 +355,8 @@ export interface InvoiceLineItem {
     company?: string;
     /** Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. [Learn more](https://docs.merge.dev/integrations/hris/supported-features/). */
     remoteWasDeleted?: boolean;
+    /** Indicates if the line item can be charged to the client/customer. */
+    isBillable?: boolean;
     fieldMappings?: Record<string, unknown>;
     remoteFields?: Merge.accounting.RemoteField[];
 }
