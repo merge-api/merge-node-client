@@ -1,4 +1,5 @@
 # Specify files that shouldn't be modified by Fern
+CODEOWNERS
 
 README.md
 LICENSE.md
