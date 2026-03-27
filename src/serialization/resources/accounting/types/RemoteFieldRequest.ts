@@ -9,12 +9,12 @@ export const RemoteFieldRequest: core.serialization.ObjectSchema<
     Merge.accounting.RemoteFieldRequest
 > = core.serialization.object({
     remoteFieldClass: core.serialization.property("remote_field_class", core.serialization.string()),
-    value: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    value: core.serialization.unknown().optional(),
 });
 
 export declare namespace RemoteFieldRequest {
     export interface Raw {
         remote_field_class: string;
-        value?: Record<string, unknown> | null;
+        value?: unknown | null;
     }
 }
