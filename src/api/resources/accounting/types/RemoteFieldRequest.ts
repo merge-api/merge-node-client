@@ -2,5 +2,5 @@
 
 export interface RemoteFieldRequest {
     remoteFieldClass: string;
-    value?: Record<string, unknown>;
+    value?: unknown;
 }
