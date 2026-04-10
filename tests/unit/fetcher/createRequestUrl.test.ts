@@ -23,10 +23,10 @@ describe("Test createRequestUrl", () => {
             expected: "https://api.example.com?key=value&another=param",
         },
         {
-            description: "should handle array query parameters",
+            description: "should handle array query parameters as comma-separated values",
             baseUrl: BASE_URL,
             queryParams: { items: ["a", "b", "c"] },
-            expected: "https://api.example.com?items=a&items=b&items=c",
+            expected: "https://api.example.com?items=a%2Cb%2Cc",
         },
         {
             description: "should handle object query parameters",
@@ -42,7 +42,7 @@ describe("Test createRequestUrl", () => {
                 array: ["x", "y"],
                 object: { key: "value" },
             },
-            expected: "https://api.example.com?simple=value&array=x&array=y&object%5Bkey%5D=value",
+            expected: "https://api.example.com?simple=value&array=x%2Cy&object%5Bkey%5D=value",
         },
         {
             description: "should handle empty query parameters object",
