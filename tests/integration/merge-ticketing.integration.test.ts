@@ -1,12 +1,12 @@
 import { MergeClient } from "../../src/Client";
 
 describe("Merge Ticketing Client Integration", () => {
-  const apiKey = process.env.SDK_TESTING_KEY;
+  const apiKey = process.env.SDK_TESTING_KEY_SECONDARY;
   const accountToken = process.env.SDK_TESTING_TICKETING_ACCOUNT_TOKEN;
   let client: MergeClient;
 
   beforeAll(() => {
-    if (!apiKey) throw new Error("SDK_TESTING_KEY env var not set");
+    if (!apiKey) throw new Error("SDK_TESTING_KEY_SECONDARY env var not set");
     if (!accountToken) throw new Error("SDK_TESTING_TICKETING_ACCOUNT_TOKEN env var not set");
     client = new MergeClient({ apiKey, accountToken });
   });
