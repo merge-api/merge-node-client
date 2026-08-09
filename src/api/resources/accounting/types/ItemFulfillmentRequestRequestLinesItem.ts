@@ -2,4 +2,4 @@
 
 import type * as Merge from "../../../index";
 
-export type ItemFulfillmentRequestRequestLinesItem = string | Merge.accounting.ItemFulfillmentLineRequest;
+export type ItemFulfillmentRequestRequestLinesItem = string | Merge.accounting.ItemFulfillmentLine;
